@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>Sistema de Administracion de Proyectos</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+        <!-- Bootstrap -->
+        <link href="{{STATIC_URL}}aplicaciones/css/bootstrap.css" rel="stylesheet" media="screen">
+        <!-- Nuestro estilo -->
+        <link href="{{STATIC_URL}}aplicaciones/css/main.css" rel="stylesheet" media="screen">
+		<!-- Bootstrap JS -->
+		<script type="text/javascript" src="{{STATIC_URL}}aplicaciones/js/jquery.js"></script>
+		<script type="text/javascript" src="{{STATIC_URL}}aplicaciones/js/bootstrap.js"></script>
+	</head>
+	<body>
+		{% if not user.is_authenticated %}
+				<meta http-equiv="refresh" content="0;URL=/">
+		{% endif %}
+		<div class="container-fluid"><!-- Comienzo del banner -->
+			<div class="row">
+			  <div class="col-md-8"><h3>{{user.username|capfirst}}</h3></div>
+			  <div class="col-md-4"><!--<button type="button" class="btn btn-primary btn-sm">Cerrar Sesion</button> --><a href="/cerrar/">Salir</a></div>
+			  
+			</div>
+			<div class="row">
+			  <div class="col-md-9 col-md-offset-1">
+				<h1>Sistema de Administracion de Proyectos</h1>
+				<div class="row">
+				  <div class="col-md-6">
+					<p>
+					  <div class="btn-group">
+					  <button type="button" class="btn btn-default">Inicio</button><!-- Boton de Inicio -->
+					  <div class="btn-group">
+						<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><!-- Boton de Configuracion -->
+						  <span class="glyphicon glyphicon-cog"></span> Configuracion
+						</button>
+						<ul class="dropdown-menu">
+						  <li><a href="#">Administrar Usuarios</a></li>
+						  <li><a href="#">Administrar Roles</a></li>
+						</ul>
+					  </div>
+					  </div>
+					</p>
+				  </div>
+				</div>
+			  </div>
+			</div>
+		</div><!-- Fin del banner -->
+		<div class="wrapper">
+				<div class="menu">
+					<ul>
+					<li id="option1" class="active">
+					        <a href="#">Proyectos</a>
+					</li>
+					<li id="option2" >
+						    <a href="#">Solicitudes</a>
+					   </li>
+					<li id="option3">
+		 	                <a href="#">Credenciales</a>
+					</ul>
+				</div>
+			</div>
+			<div class="row">
+				<form class="navbar-form navbar-left">
+						<button type="submit" class="btn btn-default">Crear Proyecto</button>
+						<button type="submit" class="btn btn-default">Importar Proyecto</button>
+		                <div class="form-group">
+		                    <input type="text" class="form-control">
+						</div>
+		                <button type="submit" class="btn btn-default">Buscar</button>
+                </form>
+			</div>
+			<div class="content-secondary">
+			<!-- Aca van la  lista de Proyectos.. o de Solicitudes.. o de credenciales -->
+				<div class="list-group">
+				  <a href="#" class="list-group-item">Proyecto 1</a>
+				  <a href="#" class="list-group-item">Proyecto 2</a>
+				  <a href="#" class="list-group-item">Proyecto 3</a>
+				  <a href="#" class="list-group-item">Proyecto 4</a>
+				  <a href="#" class="list-group-item">Proyecto 5</a>
+				</div>
+			</div>
+		</div>
+		<footer class='centrar'>
+	    	<span>Grupo R11</span>
+			<span>Facultad Politecnica - Universidad Nacional de Asunción</span>
+		</footer>
+	</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
