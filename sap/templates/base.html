@@ -1,17 +1,63 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
-		<title>{% block titulo %}{% endblock %}</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}aplicaciones/css/bootstrap.css">
-		<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}aplicaciones/css/login.css">
+		<title>Sistema de Administracion de Proyectos</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+        <!-- Bootstrap -->
+        <link href="{{STATIC_URL}}aplicaciones/css/bootstrap.css" rel="stylesheet" media="screen">
+        <!-- Nuestro estilo -->
+        <link href="{{STATIC_URL}}aplicaciones/css/main.css" rel="stylesheet" media="screen">
+		<!-- Bootstrap JS -->
+		<script type="text/javascript" src="{{STATIC_URL}}aplicaciones/js/jquery.js"></script>
+		<script type="text/javascript" src="{{STATIC_URL}}aplicaciones/js/bootstrap.js"></script>
 	</head>
-	
-<body>
-	
-	{% block contenido %}{% endblock %}
-	
-</body>
-	
+	<body>
+		{% if not user.is_authenticated %}
+				<meta http-equiv="refresh" content="0;URL=/">
+		{% endif %}
+		<div class="container-fluid"><!-- Comienzo del banner -->
+			<div class="row">
+			  <div class="col-md-8"><h3>{{user.username|capfirst}}</h3></div>
+			  <div class="col-md-4"><!--<button type="button" class="btn btn-primary btn-sm">Cerrar Sesion</button> --><a href="/cerrar/">Salir</a></div>
+			  
+			</div>
+			<div class="row">
+			  <div class="col-md-9 col-md-offset-1">
+				<h1>Sistema de Administracion de Proyectos</h1>
+				<div class="row">
+				  <div class="col-md-6">
+					<p>
+					  <div class="btn-group">
+					  <button type="button" class="btn btn-default">Inicio</button><!-- Boton de Inicio -->
+					  <div class="btn-group">
+						<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><!-- Boton de Configuracion -->
+						  <span class="glyphicon glyphicon-cog"></span> Configuracion
+						</button>
+						<ul class="dropdown-menu">
+						  <li><a href="#">Administrar Usuarios</a></li>
+						  <li><a href="#">Administrar Roles</a></li>
+						</ul>
+					  </div>
+					  </div>
+					</p>
+				  </div>
+				</div>
+			  </div>
+			</div>
+		</div><!-- Fin del banner -->
+		<div class="wrapper">
+		{% block menu %}{% endblock %}
+		{% block botones %}{% endblock %}
+		{% block contenido  %}{% endblock %}
+		</div>
+		<footer class='centrar'>
+	    	<span>Grupo R11</span>
+			<span>Facultad Politecnica - Universidad Nacional de Asunción</span>
+		</footer>
+	</body>
 </html>
+
+
+
+
