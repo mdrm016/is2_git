@@ -13,4 +13,5 @@ urlpatterns = patterns('',
     #autenticacion
     url(r'^', include('aplicaciones.autenticacion.urls')), #incluimos la urls.py de la aplicacion autenticacion
 	url(r'^adm_usuarios/', include('aplicaciones.usuarios.urls'))#incluimos la urls.py de la aplicacion usuarios
+
 )

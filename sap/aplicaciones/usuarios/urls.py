@@ -6,3 +6,4 @@ urlpatterns = patterns('',
                        url(r'^nuevo/$', 'UsuarioNuevo', name='usuarionuevo'),
                        url(r'^adm_usuarios/$', 'Administrar_usuarios', name='admusuarios'),
 )
+
