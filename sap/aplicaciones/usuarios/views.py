@@ -14,7 +14,7 @@ from forms import UsuarioNuevoForm
 
 def Administrar_usuarios(request):
 	#recibir la solicitud y listar los usuarios
-	cusuarios = Usuarios.objects.all()
+	usuarios = Usuarios.objects.all()
 	return render(request, 'usuarios.html', {'lista_usuarios': usuarios})
 
 def UsuarioNuevo(request):
@@ -35,7 +35,7 @@ def UsuarioNuevo(request):
             return HttpResponseRedirect(reverse('inicio'))
         else:
             form = UsuarioNuevoForm()
-            
+            	#return render_to_response('usuarios.html')
         data = {
                 'form': form,
                 }
