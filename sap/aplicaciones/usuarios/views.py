@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import render_to_response
-from django.template.context import RequestContext
+#from django.template.context import RequestContext
 
 from forms import UsuarioNuevoForm
 
@@ -14,8 +14,8 @@ from forms import UsuarioNuevoForm
 
 def Administrar_usuarios(request):
 	#recibir la solicitud y listar los usuarios
-	cusuarios = Usuarios.objects.all()
-	return render(request, 'usuarios.html', {'lista_usuarios': usuarios})
+	usuarios = Usuarios.objects.all()
+	return render(request, './Usuarios/usuarios.html', {'lista_usuarios': usuarios})
 
 def UsuarioNuevo(request):
     if request.method == 'POST':
