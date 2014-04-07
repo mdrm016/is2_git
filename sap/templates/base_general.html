@@ -19,7 +19,7 @@
 		<div class="container-fluid"><!-- Comienzo del banner -->
 			<div class="row">
 			  <div class="col-md-8"><h3>{{user.username|capfirst}}</h3></div>
-			  <div class="col-md-4"><!--<button type="button" class="btn btn-primary btn-sm">Cerrar Sesion</button> --><a href="/cerrar/">Salir</a></div>
+			  <div class="col-md-4"><a href="/cerrar/"><button type="button" class="btn btn-primary btn-sm">Cerrar Sesion</button></a></div>
 			  
 			</div>
 			<div class="row">
@@ -29,7 +29,7 @@
 				  <div class="col-md-6">
 					<p>
 					  <div class="btn-group">
-					  <button type="button" class="btn btn-default">Inicio</button><!-- Boton de Inicio -->
+					  <a href="/"><button type="button" class="btn btn-default">Inicio</button></a><!-- Boton de Inicio -->
 					  <div class="btn-group">
 						<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><!-- Boton de Configuracion -->
 						  <span class="glyphicon glyphicon-cog"></span> Configuracion
