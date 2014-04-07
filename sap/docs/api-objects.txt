@@ -1,0 +1,3 @@
+aplicaciones.usuarios.views	aplicaciones.usuarios.views-module.html
+aplicaciones.usuarios.views.Administrar_usuarios	aplicaciones.usuarios.views-module.html#Administrar_usuarios
+aplicaciones.usuarios.views.UsuarioNuevo	aplicaciones.usuarios.views-module.html#UsuarioNuevo

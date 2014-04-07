@@ -14,7 +14,17 @@ from forms import UsuarioNuevoForm
 # Create your views here.
 
 def Administrar_usuarios(request):
-	#recibir la solicitud y listar los usuarios
+	""" Recibe un request, obtiene la lista de todos los usuarios del sistema y 
+	luego retorna el html renderizado con la lista de usuarios 
+	@type request: django.http.HttpRequest
+	@param request: Contiene informacion sobre la solic. web actual que llamo a esta vista
+	
+	@rtype: django.http.HttpResponse
+	@return: usuarios.html, donde se listan los usuarios, ademas de las funcionalidades para un usuario
+	
+	@author: eduardo gimenez
+	
+	"""
 	usuarios = Usuarios.objects.all()
 	template_name='./Usuarios/usuarios.html'
 	return render(request, template_name, {'lista_usuarios': usuarios})

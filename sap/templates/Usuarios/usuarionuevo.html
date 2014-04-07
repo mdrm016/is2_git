@@ -1,0 +1,38 @@
+{% extends "base_general.html" %}
+
+{% block menu %}		
+<div class="menu">
+	<ul>
+		<li id="option1" class="active">
+			<a href="#">Crear Usuario</a>
+		</li>
+	</ul>
+</div>
+{% endblock %}
+
+{% block contenido %}
+<div class="content-secondary">
+<!-- Aca van la  lista de Proyectos.. o de Solicitudes.. o de credenciales -->
+	<form action="/adm_usuarios/nuevo/" method="post">
+		<div>Nombre de usuario:<br> <input type="text" name="username" /></div>
+		<div>Contrasenha:<br> <input type="password" name="contrasenha" /></div>
+		<div>Vuelva a introducir la contrasenha:<br> <input type="password" name="contrasenha" /></div>
+		<div>Nombre: <br><input type="text" name="nombre" /></div>
+		<div>Apellido:<br> <input type="text" name="apellido" /></div>
+		<div>Email: <br><input type="text" name="email" /></div>
+		<div>Telefono: <br><input type="text" name="telefono" /></div>
+		<div>Direccion: <br><input type="text" name="direccion" /></div>
+		<div>Especialidad: <br><input type="text" name="especialidad" /></div>
+		<div>Observaciones: <br><input type="text" name="observaciones" /></div>
+		<tr><br>
+			<td><div align="center">
+				<input type="submit" value="Crear Usuario">
+			</div></td><br>
+			<td><div align="center">
+				<input type="Reset" value="Vaciar Campos">
+			</div></td>
+		</tr><br><br><br><br>
+	</form>
+
+</div>
+{% endblock %}
