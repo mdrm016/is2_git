@@ -3,20 +3,12 @@
 
 {% block contenido %}
 	<h1 align="center">Registro de Usuario</h1>
-	{% if user.is_authenticated %}
-		<meta http-equiv="refresh" content="0;URL=/inicio/">
-	{% else %}
-		{% if form.errors %}
-			<p class="error">Disculpa, el nombre de usuario o contraseña no coinciden.</p>
-		{% endif %}
+	
+		<p class="error">{{ mensaje }}</p>
 		<div class="jumbotron boxlogin">
 			<form method="POST" name="flogin" id="flogin">{% csrf_token %}
-				<label>Nombre de Usuario:</label>
-				<input type="text" name="username" id="username" class="form-control">
-				<label>Contraseña:</label>
-				<input name="password" type="password" id="password" class="form-control">
+				{{ form.as_p }}
 				<input type="submit" class="btn btn-success" value="Ingresar">
 				</form>
-		</div>
-     {% endif %}  
+		</div> 
 {% endblock %}
