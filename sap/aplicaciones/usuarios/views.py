@@ -9,35 +9,48 @@ from django.template.context import RequestContext
 
 from forms import UsuarioNuevoForm
 
-
 # Create your views here.
 
 def Administrar_usuarios(request):
 	#recibir la solicitud y listar los usuarios
 	usuarios = Usuarios.objects.all()
-	return render(request, 'usuarios.html', {'lista_usuarios': usuarios})
+	template_name='./Usuarios/usuarios.html'
+	return render(request, template_name, {'lista_usuarios': usuarios})
 
-def UsuarioNuevo(request):
-    if request.method == 'POST':
-        form = UsuarioNuevoForm(request.POST)
-        if form.is_valid():
-            username = form.cleaned_data["username"]
-            password = form.cleaned_data["password"]
-            email = form.cleaned_data["email"]
-            telefono = form.cleaned_data["telefono"] 
-            direccion = form.cleaned_data["direccion"]
-            especialidad = form.cleaned_data["especialidad"]
-            observaciones = form.cleaned_data["observaciones"]
-            
-            user = User.objects.create_user(username, email, password, telefono, direccion, especialidad, observaciones)
-            user.save()
-            
-            return HttpResponseRedirect(reverse('inicio'))
-        else:
-            form = UsuarioNuevoForm()
-            	#return render_to_response('usuarios.html')
-        data = {
-                'form': form,
-                }
-        return render_to_response('usuarionuevo.html', data, context_instance=ResquestContext(request))
+def usuario_form(request):
+	template_name='./Usuarios/usuarionuevo.html'
+	return render(request, template_name)
 
+def usuario_nuevo(request):
+	if request.method == 'POST':
+		form = UsuarioNuevoForm(request.POST)
+		if form.is_valid():
+			username = form.cleaned_data["username"]
+			password = form.cleaned_data["password"]
+			email = form.cleaned_data["email"]
+			first_name = form.cleaned_data["first_name"]
+			last_name = form.cleaned_data["last_name"]
+			
+			user = User.objects.create_user(username, email, password)
+			user.first_name = first_name
+			user.last_name = last_name
+			
+			user.save()
+			
+			telefono = form.cleaned_data["telefono"]
+			direccion = form.cleaned_data["direccion"]
+			especialidad = form.cleaned.data["especialidad"]
+			observaciones = form.cleaned_data["observaciones"]
+			
+			usuario = Usuarios.objects.create_user(user, telefono, direccion, especialidad, observaciones)
+			
+			usuario.save()
+		else: 
+			form = UsuarioNuevoForm()
+		
+		data = {
+			'form': form,
+		}
+		return render_to_response('./Usuarios/usuario.html', data, context_instance=RequestContext(request))
+			
+			
