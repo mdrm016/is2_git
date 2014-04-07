@@ -56,10 +56,12 @@ def usuarionuevo(request):
 			usuario = Usuarios.objects.create_user(user, telefono, direccion, especialidad, observaciones)
 			
 			usuario.save()
-			return HttpResponseRedirect('/adm_usuarios/')
+			template_name='./Usuarios/usuariocreado.html'
+			return render(request, template_name)
 		else: 
-			mensaje = 'Complete correctamente los campos.'
 			form = UsuarioNuevoForm()
-	form = UsuarioNuevoForm()
-	ctx = {'form':form, 'mensaje':mensaje}
-	return render_to_response ('/Usuarios/usuarionuevo.html', ctx, context_instance=RequestContext(request))
+			template_name='./Usuarios/usuariocreado.html'
+			return render(request, template_name)
+			
+	template_name='./Usuarios/usuariocreado.html'
+	return render(request, template_name)
