@@ -1,6 +1,5 @@
 from django.shortcuts import render
 from .models import Usuarios
-from django.contrib.auth import create
 from django.views.generic import TemplateView
 
 from django.contrib.auth.models import User

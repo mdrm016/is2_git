@@ -1,5 +1,5 @@
 from django.conf.urls import patterns, url
-from .views import Usuario_nuevo
+from .views import usuario_nuevo
 from .views import Administrar_usuarios
 
 urlpatterns = patterns('',
