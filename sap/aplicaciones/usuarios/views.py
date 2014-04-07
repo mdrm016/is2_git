@@ -38,9 +38,15 @@ def usuarionuevo(request):
 		if form.is_valid():
 			username = form.cleaned_data['username']
 			password = form.cleaned_data['password']
+			password2 = form.cleaned_data['password2']
 			email = form.cleaned_data['email']
 			first_name = form.cleaned_data['first_name']
 			last_name = form.cleaned_data['last_name']
+			
+		#	if (password != password2):
+		#		template_name='./Usuarios/usuarionuevo.html'
+		#		mensaje='contrasenhas no coinciden'
+		#		return render(request, template_name)
 			
 			user = User.objects.create_user(self, username, email, password, *extra_fields)
 			user.first_name = first_name
