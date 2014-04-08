@@ -89,19 +89,15 @@ USE_TZ = True
 
 STATIC_URL = '/static/'     
 
+""" Esta variable nos proporciona la ruta a archivos estaticos """
 STATICFILES_DIRS = (
-        RUTA_PROYECTO.child('static'),          #ruta a archivos estaticos     
+        RUTA_PROYECTO.child('static'),    
 )
 
-#Variables del login
-from django.core.urlresolvers import reverse_lazy
-LOGIN_URL = reverse_lazy('login')
-LOGIN_REDIRECT_URL = reverse_lazy('inicio')     #aqui debo poner a donde me debe enviar despues de loguearme
-LOGOUT_URL = reverse_lazy('logout')
-
+""" Esta variable nos indica la ruta del directorio que contendra nuestros templates html """
 TEMPLATE_DIRS = (
-    RUTA_PROYECTO.child('templates'),       #Esta variable nos indica la ruta del directorio que contendra nuestros templates html
+    RUTA_PROYECTO.child('templates'),
 )
 
-#Identificar o definir el perfil de los usuarios
+""" Esta variable nos permite identificar o definir el perfil de los usuarios """
 AUTH_PROFILE_MODULE = 'usuarios.Usuarios'

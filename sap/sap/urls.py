@@ -9,10 +9,13 @@ urlpatterns = patterns('',
     # url(r'^$', 'sap.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
 
-    url(r'^admin/', include(admin.site.urls)),
+     url(r'^admin/', include(admin.site.urls)),
     
-    #autenticacion
-    url(r'^', include('aplicaciones.autenticacion.urls')), #incluimos la urls.py de la aplicacion autenticacion
-	url(r'^', include('aplicaciones.usuarios.urls')), #incluimos la urls.py de la aplicacion usuarios
+    #""" Incluimos la urls.py de la aplicacion Autenticacion """
+    url(r'^', include('aplicaciones.autenticacion.urls')),
+    
+    #""" Incluimos la urls.py de la aplicacion usuarios"""
+    url(r'^', include('aplicaciones.usuarios.urls')),
+
 
 )
