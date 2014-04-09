@@ -41,9 +41,7 @@
 				      <div class="panel-body">
 				      		<a href="consultar/"><button type="button" class="btn btn-default btn-sm">Consultar</button></a>
 				      		<a href="modificar/"><button type="button" class="btn btn-default btn-sm">Modificar</button></a>
-				      		<button class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal">
-							  Eliminar
-							</button>
+				      		<button class="open-Modal btn btn-danger btn-sm" data-toggle="modal" data-target="#myModal" data-id="{{ usuario.id }}">Eliminar</button>
 				      </div>
 				    </div>
 				  </div>
@@ -68,6 +66,8 @@
 				    </div>
 				  </div>
 		{% endif %}
+		
+		<!-- Ininicia Modal -->
 		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		  <div class="modal-dialog">
 		    <div class="modal-content">
@@ -80,11 +80,13 @@
 		      </div>
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-default" data-dismiss="modal">cancelar</button>
-		        <a href="eliminar/"><button type="button" class="btn btn-primary">Ok</button></a>
+		       <a id="link" href=""><button type="button" class="btn btn-danger">Eliminar</button></a>
 		      </div>
 		    </div>
 		  </div>
 		</div>
+		<!-- Finaliza el Modal -->
+		
 	</div>
 	</div>
 </div>

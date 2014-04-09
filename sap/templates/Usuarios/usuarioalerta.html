@@ -1,0 +1,14 @@
+{% extends "base_general.html" %}
+{% block contenido %}
+<div class="jumbotron">
+	<div class="bs-example">
+		<h2>Notificacion</h2>
+		<form action="" method="post">
+			{% csrf_token %}
+			<p class="text-warning"><small>{{ mensaje }}</small></p>
+			<br>
+			<a type="button" class="btn btn-default" href="/adm_usuarios/">Volver</a>
+        </form>
+	</div>
+</div>
+{% endblock %}
