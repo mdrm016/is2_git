@@ -7,7 +7,7 @@ urlpatterns = patterns('',
         url(r'^adm_usuarios/nuevo/$', usuario_nuevo),
         url(r'^adm_usuarios/$', administrarUsuarios),
         url(r'^adm_usuarios/nuevo/enviar/$', usuarionuevo),
-        url(r'^adm_usuarios/modificar/$', modificarUsuario),
-        url(r'^adm_usuarios/consultar/$', consultarUsuario),
+        url(r'^adm_usuarios/modificar/(?P<id_usuario>.*)/$$', modificarUsuario),
+        url(r'^adm_usuarios/consultar/(?P<id_usuario>.*)/$$', consultarUsuario),
 
 )

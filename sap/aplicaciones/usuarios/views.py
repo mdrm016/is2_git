@@ -66,7 +66,7 @@ def usuarionuevo(request):
 	template_name='./Usuarios/usuarionuevo.html'
 	return render(request, template_name, {'form': form})
 
-def modificarUsuario(request):
+def modificarUsuario(request, id_usuario):
 	""" Busca en la base de datos al usuario cuyos datos se quieren modificar.
 	Presenta esos datos en un formulario y luego se guardan los cambios realizados """
 	#if request.method == 'POST':
@@ -74,7 +74,7 @@ def modificarUsuario(request):
 	template_name='./Usuarios/modificar_usuario.html'
 	return render(request, template_name)
 
-def consultarUsuario(request):
+def consultarUsuario(request, id_usuario):
 	""" Busca en la base de datos al usuario cuyos datos se quieren consultar, 
 	los presenta en un html con la disponibilidad de regresar a la pagina anterior """
 	
