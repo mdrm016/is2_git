@@ -1,5 +1,4 @@
 from django.shortcuts import render
-from .models import Usuarios
 from django.views.generic import TemplateView
 
 from django.contrib.auth.models import User
@@ -24,7 +23,7 @@ def administrarUsuarios(request):
 	@author: eduardo gimenez
 	
 	"""
-	usuarios = Usuarios.objects.all()
+	usuarios = User.objects.all()
 	template_name='./Usuarios/usuarios.html'
 	return render(request, template_name, {'lista_usuarios': usuarios})
 
@@ -42,32 +41,27 @@ def usuarionuevo(request):
 			email = form.cleaned_data['email']
 			first_name = form.cleaned_data['first_name']
 			last_name = form.cleaned_data['last_name']
-			
-		#	if (password != password2):
-		#		template_name='./Usuarios/usuarionuevo.html'
-		#		mensaje='contrasenhas no coinciden'
-		#		return render(request, template_name)
-			
-			user = User.objects.create_user(self, username, email, password, *extra_fields)
-			user.first_name = first_name
-			user.last_name = last_name
-			
-			user.save()
-			
 			telefono = form.cleaned_data['telefono']
 			direccion = form.cleaned_data['direccion']
-			especialidad = form.cleaned.data['especialidad']
+			especialidad = form.cleaned_data['especialidad']
 			observaciones = form.cleaned_data['observaciones']
 			
-			usuario = Usuarios.objects.create_user(user, telefono, direccion, especialidad, observaciones)
+			if (password != password2):
+				template_name='./Usuarios/usuarionuevo.html'
+				#mensaje='contrasenhas no coinciden'
+				return render(request, template_name, {'form': form})
 			
-			usuario.save()
+			user = User.objects.create_user(username, password, email)
+			user.first_name = first_name
+			user.last_name = last_name
+			user.telefono = telefono
+			user.direccion = direccion
+			user.especialidad = especialidad
+			user.observaciones = observaciones
+			user.save()
 			template_name='./Usuarios/usuariocreado.html'
 			return render(request, template_name)
-		else: 
-			form = UsuarioNuevoForm()
-			template_name='./Usuarios/usuariocreado.html'
-			return render(request, template_name)
+<<<<<<< HEAD
 			
 	template_name='./Usuarios/usuariocreado.html'
 	return render(request, template_name)
@@ -87,3 +81,9 @@ def consultarUsuario(request):
 	
 	template_name='./Usuarios/consultar_usuario.html'
 	return render(request, template_name)
+=======
+	else: 
+		form = UsuarioNuevoForm()
+	template_name='./Usuarios/usuarionuevo.html'
+	return render(request, template_name, {'form': form})
+>>>>>>> b1cad3d969538d70fb742a7842d3c512dfe6820f
