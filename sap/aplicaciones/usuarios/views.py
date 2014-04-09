@@ -12,7 +12,7 @@ from forms import UsuarioNuevoForm
 
 # Create your views here.
 
-def Administrar_usuarios(request):
+def administrarUsuarios(request):
 	""" Recibe un request, obtiene la lista de todos los usuarios del sistema y 
 	luego retorna el html renderizado con la lista de usuarios 
 	@type request: django.http.HttpRequest
@@ -70,4 +70,20 @@ def usuarionuevo(request):
 			return render(request, template_name)
 			
 	template_name='./Usuarios/usuariocreado.html'
+	return render(request, template_name)
+
+
+def modificarUsuario(request):
+	""" Busca en la base de datos al usuario cuyos datos se quieren modificar.
+	Presenta esos datos en un formulario y luego se guardan los cambios realizados """
+	#if request.method == 'POST':
+		
+	template_name='./Usuarios/modificar_usuario.html'
+	return render(request, template_name)
+
+def consultarUsuario(request):
+	""" Busca en la base de datos al usuario cuyos datos se quieren consultar, 
+	los presenta en un html con la disponibilidad de regresar a la pagina anterior """
+	
+	template_name='./Usuarios/consultar_usuario.html'
 	return render(request, template_name)
