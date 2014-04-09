@@ -76,7 +76,15 @@ def modificarUsuario(request, id_usuario):
 
 def consultarUsuario(request, id_usuario):
 	""" Busca en la base de datos al usuario cuyos datos se quieren consultar, 
-	los presenta en un html con la disponibilidad de regresar a la pagina anterior """
+	los presenta en un html con la disponibilidad de regresar a la pagina anterior 
+	@type request: django.http.HttpRequest
+	@param request: Contiene informacion sobre la solic. web actual que llamo a esta vista
 	
+	@type id_usuario: integer
+	@param id_usuario: es el id del usuario cuyos datos se quieren consultar
+	
+	@rtype: 
+	@return: """
+	usuario = User.objects.filter(id = id_usuario)
 	template_name='./Usuarios/consultar_usuario.html'
-	return render(request, template_name)
+	return render(request, template_name, {'usuario' : usuario})
