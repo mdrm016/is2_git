@@ -5,7 +5,8 @@ from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import render_to_response
-#from django.template.context import RequestContext
+from django.http import HttpResponseRedirect, HttpResponse
+from django.template.context import RequestContext
 
 from forms import UsuarioNuevoForm
 
@@ -61,6 +62,7 @@ def usuarionuevo(request):
 			user.save()
 			template_name='./Usuarios/usuariocreado.html'
 			return render(request, template_name)
+
 	else: 
 		form = UsuarioNuevoForm()
 	template_name='./Usuarios/usuarionuevo.html'
@@ -88,3 +90,29 @@ def consultarUsuario(request, id_usuario):
 	usuario = User.objects.filter(id = id_usuario)
 	template_name='./Usuarios/consultar_usuario.html'
 	return render(request, template_name, {'usuario' : usuario})
+
+#Revisar alternativa A2.2 cuando exista la tabla proyectos.
+def usuario_eliminar (request, id_usuario):
+	""" La funcion usuario_eliminar comprueba que el id del usuario a ser eliminado
+		no sea del administrador, osea id_usuario == 1. Caso contrario procede a eliminar
+		de la base de datos los registros del usuario cuyo id corresponda.
+        
+        @type request: django.http.HttpRequest
+        @type id_usuario : string
+        @param request: Contiene informacion sobre la solicitud web actual que llamo a esta vista
+        @param id_usuario : Contiene el id del usuario a ser eliminado.
+        @rtype: django.http.HttpResponseRedirect
+        @rtype: django.shortcuts.render_to_response
+        @return: Se retorna al la administracion de usuarios o se manda a la pagina de notificacion
+        @author: Marcelo Denis
+	"""
+	if id_usuario != '1':
+		userDelOfTable = User.objects.get(pk=id_usuario)
+		userDelOfTable.delete()
+		return HttpResponseRedirect('/adm_usuarios/')
+	
+	elif id_usuario == '1':
+		mensaje="Imposible eliminar usuario, el usuario es el Administrador"
+		ctx = {'mensaje':mensaje}
+		return render_to_response('Usuarios/usuarioalerta.html',ctx, context_instance=RequestContext(request))
+		

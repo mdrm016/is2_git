@@ -40,11 +40,17 @@
 				    </div>
 				    <div id="collapse{{ usuario.id }}" class="panel-collapse collapse">
 				      <div class="panel-body">
+<<<<<<< HEAD
 				      		<a href="consultar/{{ usuario.id }}/"><button type="button" class="btn btn-default btn-sm">Consultar</button></a>
 				      		<a href="modificar/{{ usuario.id }}/"><button type="button" class="btn btn-default btn-sm">Modificar</button></a>
 				      		<button class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal">
 							  Eliminar
 							</button>
+=======
+				      		<a href="consultar/"><button type="button" class="btn btn-default btn-sm">Consultar</button></a>
+				      		<a href="modificar/"><button type="button" class="btn btn-default btn-sm">Modificar</button></a>
+				      		<button class="open-Modal btn btn-danger btn-sm" data-toggle="modal" data-target="#myModal" data-id="{{ usuario.id }}">Eliminar</button>
+>>>>>>> e8fe5ea8cc8df21c34015c89fdd7a8908f8c1420
 				      </div>
 				    </div>
 	</div>
@@ -67,10 +73,10 @@
 							</button>
 				      </div>
 				    </div>
-	</div>
+				  </div>
 		{% endif %}
-	</div>
-
+		
+		<!-- Ininicia Modal -->
 		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		  <div class="modal-dialog">
 		    <div class="modal-content">
@@ -83,11 +89,13 @@
 		      </div>
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-default" data-dismiss="modal">cancelar</button>
-		        <a href="eliminar/"><button type="button" class="btn btn-primary">Ok</button></a>
+		       <a id="link" href=""><button type="button" class="btn btn-danger">Eliminar</button></a>
 		      </div>
 		    </div>
 		  </div>
 		</div>
-
+		<!-- Finaliza el Modal -->
+	</div>
+	</div>
 </div>
 {% endblock %}

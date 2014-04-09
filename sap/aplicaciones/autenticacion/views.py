@@ -37,7 +37,8 @@ def login_view(request):
         
         @type request: django.http.HttpRequest
         @param request: Contiene informacion sobre la solicitud web actual que llamo a esta vista
-        @rtype: django.http.HttpResponse
+        @rtype: django.http.HttpResponseRedirect
+        @rtype: django.shortcuts.render_to_response
         @return: Se retorna al inicio o se manda a la pagina de login
         @author: Marcelo Denis
         
@@ -66,7 +67,7 @@ def logout_view (request):
     
     @type request: django.http.HttpRequest
     @param request: Contiene informacion sobre la solicitud web actual que llamo a esta vista
-    @rtype: django.http.HttpResponse
+    @rtype: django.http.HttpResponseRedirect
     @return: Se retorna a la pagina de login
     @author: Marcelo Denis
     """  
