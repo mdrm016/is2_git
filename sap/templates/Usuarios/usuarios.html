@@ -27,13 +27,14 @@
 <div class="content-secondary">
 <!-- Aca van la  lista de Proyectos.. o de Solicitudes.. o de credenciales -->
 	<div class="panel-group" id="accordion">
-	<div class="panel panel-default">
+	
 		{% if lista_usuarios %}
 			{% for usuario in lista_usuarios %}
+	<div class="panel panel-default">
 				    <div class="panel-heading">
 				      <h4 class="panel-title">
 				        <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ usuario.id }}">
-				          {{ usuario.id }} : {{ usuario.user.first_name }} {{ usuario.user.last_name }}
+				          {{ usuario.id }} : {{ usuario.username }}
 				        </a>
 				      </h4>
 				    </div>
@@ -44,11 +45,11 @@
 				      		<button class="open-Modal btn btn-danger btn-sm" data-toggle="modal" data-target="#myModal" data-id="{{ usuario.id }}">Eliminar</button>
 				      </div>
 				    </div>
-				  </div>
+	</div>
 			{% endfor %}
 		{% else %}
-			
-			<div class="panel-heading">
+	<div class="panel panel-default">
+					<div class="panel-heading">
 				      <h4 class="panel-title">
 				        <a data-toggle="collapse" data-parent="#accordion" href="#collapse">
 				          <!-- <h6 class="list-group-item"> -->La lista de Usuarios esta vacia.<!-- </h6> -->
@@ -64,9 +65,9 @@
 							</button>
 				      </div>
 				    </div>
-				  </div>
-		{% endif %}
-		
+	</div>
+
+	</div>
 		<!-- Ininicia Modal -->
 		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		  <div class="modal-dialog">
@@ -86,7 +87,6 @@
 		  </div>
 		</div>
 		<!-- Finaliza el Modal -->
-		
 	</div>
 	</div>
 </div>
