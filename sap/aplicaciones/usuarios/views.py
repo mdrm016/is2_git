@@ -61,11 +61,10 @@ def usuarionuevo(request):
 			user.save()
 			template_name='./Usuarios/usuariocreado.html'
 			return render(request, template_name)
-<<<<<<< HEAD
-			
-	template_name='./Usuarios/usuariocreado.html'
-	return render(request, template_name)
-
+	else: 
+		form = UsuarioNuevoForm()
+	template_name='./Usuarios/usuarionuevo.html'
+	return render(request, template_name, {'form': form})
 
 def modificarUsuario(request):
 	""" Busca en la base de datos al usuario cuyos datos se quieren modificar.
@@ -81,9 +80,3 @@ def consultarUsuario(request):
 	
 	template_name='./Usuarios/consultar_usuario.html'
 	return render(request, template_name)
-=======
-	else: 
-		form = UsuarioNuevoForm()
-	template_name='./Usuarios/usuarionuevo.html'
-	return render(request, template_name, {'form': form})
->>>>>>> b1cad3d969538d70fb742a7842d3c512dfe6820f
