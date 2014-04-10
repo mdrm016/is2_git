@@ -1,1 +1,26 @@
 {% extends "base_general.html" %}
+
+{% block menu %}		
+<div class="menu">
+	<ul>
+		<li id="option1" class="active">
+			<a href="#">{{ usuario.username }}</a>
+	</ul>
+</div>
+{% endblock %}
+
+{% block contenido %}
+<div class="content-secondary">
+	<p><h4>id<span class="label label-default">{{ usuario.id }}</span></h4></p>
+	<p><h4>username<span class="label label-default">{{ usuario.username }}</span></h4></p>
+	<p><h4>nombre<span class="label label-default">{{ usuario.first_name }}</span></h4></p>
+	<p><h4>apellido<span class="label label-default">{{ usuario.last_name }}</span></h4></p>
+	<p><h4>telefono<span class="label label-default">{{ usuario.telefono }}</span></h4></p>
+	<p><h4>direccion<span class="label label-default">{{ usuario.direccion }}</span></h4></p>
+	<p><h4>especialidad<span class="label label-default">{{ usuario.especialidad }}</span></h4></p>
+	<p><h4>observaciones<span class="label label-default">{{ usuario.obervaciones }}</span></h4></p>
+	
+</div>
+{% endblock %}
+
+

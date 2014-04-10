@@ -34,15 +34,16 @@
 				    <div class="panel-heading">
 				      <h4 class="panel-title">
 				        <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ usuario.id }}">
-				          {{ usuario.id }} : {{ usuario.username }}
+				          	{{ usuario.username }}
 				        </a>
 				      </h4>
 				    </div>
 				    <div id="collapse{{ usuario.id }}" class="panel-collapse collapse">
 				      <div class="panel-body">
-				      		<a href="consultar/"><button type="button" class="btn btn-default btn-sm">Consultar</button></a>
-				      		<a href="modificar/"><button type="button" class="btn btn-default btn-sm">Modificar</button></a>
+				      		<a href="consultar/{{ usuario.id }}/"><button type="button" class="btn btn-default btn-sm">Consultar</button></a>
+				      		<a href="modificar/{{ usuario.id }}/"><button type="button" class="btn btn-default btn-sm">Modificar</button></a>
 				      		<button class="open-Modal btn btn-danger btn-sm" data-toggle="modal" data-target="#myModal" data-id="{{ usuario.id }}">Eliminar</button>
+
 				      </div>
 				    </div>
 	</div>
@@ -58,8 +59,8 @@
 				    </div>
 				    <div id="collapse" class="panel-collapse collapse collapse">
 				      <div class="panel-body">
-				      		<a href="consultar/"><button type="button" class="btn btn-default btn-sm">Consultar</button></a>
-				      		<a href="modificar/"><button type="button" class="btn btn-default btn-sm">Modificar</button></a>
+				      		<a href="consultar/{{ usuario.id }}/"><button type="button" class="btn btn-default btn-sm">Consultar</button></a>
+				      		<a href="modificar/{{ usuario.id }}/"><button type="button" class="btn btn-default btn-sm">Modificar</button></a>
 				      		<button class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal">
 							  Eliminar
 							</button>

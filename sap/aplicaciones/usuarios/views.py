@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView
 
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Permission
 from django.core.urlresolvers import reverse
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import render_to_response
@@ -9,6 +9,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.template.context import RequestContext
 
 from forms import UsuarioNuevoForm
+from .models import Usuarios
 
 # Create your views here.
 
@@ -28,10 +29,6 @@ def administrarUsuarios(request):
 	template_name='./Usuarios/usuarios.html'
 	return render(request, template_name, {'lista_usuarios': usuarios})
 
-def usuario_nuevo(request):
-	template_name='./Usuarios/usuarionuevo.html'
-	return render(request, template_name)
-	
 def usuarionuevo(request):
 	if request.method == 'POST':
 		form = UsuarioNuevoForm(request.POST)
@@ -52,19 +49,23 @@ def usuarionuevo(request):
 				#mensaje='contrasenhas no coinciden'
 				return render(request, template_name, {'form': form})
 			
-			user = User.objects.create_user(username, password, email)
-			user.first_name = first_name
-			user.last_name = last_name
-			user.telefono = telefono
-			user.direccion = direccion
-			user.especialidad = especialidad
-			user.observaciones = observaciones
-			user.save()
+			useri = User.objects.create_user(username, email, password)
+			useri.first_name = first_name
+			useri.last_name = last_name
+			useri.save()
+			
+			profile = useri.get_profile()
+			profile.telefono=telefono
+			profile.direccion=direccion
+			profile.especialidad=especialidad
+			profile.observaciones=observaciones
+			
+			profile.save()
+					
 			template_name='./Usuarios/usuariocreado.html'
 			return render(request, template_name)
-
 	else: 
-		form = UsuarioNuevoForm()
+		form = UsuarioNuevoForm()	
 	template_name='./Usuarios/usuarionuevo.html'
 	return render(request, template_name, {'form': form})
 
@@ -78,10 +79,18 @@ def modificarUsuario(request, id_usuario):
 
 def consultarUsuario(request, id_usuario):
 	""" Busca en la base de datos al usuario cuyos datos se quieren consultar, 
-	los presenta en un html con la disponibilidad de regresar a la pagina anterior """
+	los presenta en un html con la disponibilidad de regresar a la pagina anterior 
+	@type request: django.http.HttpRequest
+	@param request: Contiene informacion sobre la solic. web actual que llamo a esta vista
 	
+	@type id_usuario: integer
+	@param id_usuario: es el id del usuario cuyos datos se quieren consultar
+	
+	@rtype: 
+	@return: """
+	usuario = User.objects.get(id = id_usuario)
 	template_name='./Usuarios/consultar_usuario.html'
-	return render(request, template_name)
+	return render(request, template_name, {'usuario' : usuario})
 
 #Revisar alternativa A2.2 cuando exista la tabla proyectos.
 def usuario_eliminar (request, id_usuario):
