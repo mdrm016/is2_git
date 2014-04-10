@@ -7,7 +7,7 @@ from django.http.response import HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.http import HttpResponseRedirect, HttpResponse
 from django.template.context import RequestContext
-from django.contrib.auth.hashers import check_password
+from django.contrib.auth.hashers import check_password, make_password
 from forms import UsuarioNuevoForm, UsuarioModificadoForm
 from .models import Usuarios
 
@@ -67,12 +67,9 @@ def usuarionuevo(request):
 			return render(request, template_name)
 	else: 
 		form = UsuarioNuevoForm()	
+		
 	template_name='./Usuarios/usuarionuevo.html'
-	if f.is_bound:
-		mensaje = 'esta completo'
-	else:
-		mensaje = 'error en el form'
-	return render(request, template_name, {'form': form, 'mensaje': mensaje})
+	return render(request, template_name, {'form': form})
 
 def modificarUsuario(request, id_usuario):
 	""" Busca en la base de datos al usuario cuyos datos se quieren modificar.
@@ -83,25 +80,30 @@ def modificarUsuario(request, id_usuario):
 	if request.method == 'POST':
 		form = UsuarioModificadoForm(request.POST)
 		if form.is_valid():
-			username = form.cleaned_data['username']
-			password = form.cleaned_data['password']
-			nuevo_password= form.cleaned_data['nuevo_password']
-			email = form.cleaned_data['email']
-			first_name = form.cleaned_data['first_name']
-			last_name = form.cleaned_data['last_name']
-			telefono = form.cleaned_data['telefono']
-			direccion = form.cleaned_data['direccion']
-			especialidad = form.cleaned_data['especialidad']
-			observaciones = form.cleaned_data['observaciones']
+			form.clean()
+			username = form.cleaned_data['Nombre_de_Usuario']
+			password = form.cleaned_data['Contrasenha']
+			nuevo_password= form.cleaned_data['Nueva_contrasenha']
+			email = form.cleaned_data['Email']
+			first_name = form.cleaned_data['Nombre']
+			last_name = form.cleaned_data['Apellido']
+			telefono = form.cleaned_data['Telefono']
+			direccion = form.cleaned_data['Direccion']
+			especialidad = form.cleaned_data['Especialidad']
+			observaciones = form.cleaned_data['Observaciones']
 			
-			if password is not '':
+			if password:
 				if check_password(password, usuario.password):
+					password = make_password(nuevo_password)
+				else:
 					template_name='./Usuarios/modificar_usuario.html'
-					return render(request, template_name, {'form': form, 'mensajer': 'la contrasenha antigua no coincide'})
-			
+					return render(request, template_name, {'form': form})
+			else: 
+				password = usuario.password
+				
 			usuario.username= username
+			usuario.password = password
 			usuario.email = email 
-			usuario.password = nuevo_password
 			usuario.first_name = first_name
 			usuario.last_name = last_name
 			usuario.save()
@@ -117,7 +119,7 @@ def modificarUsuario(request, id_usuario):
 			template_name='./Usuarios/usuario_modificado.html'
 			return render(request, template_name)
 	else: 
-		data = {'username': usuario.username, 'password': '', 'nuevo_password': '', 'email': usuario.email, 'first_name':usuario.first_name,'last_name':usuario.last_name, 'telefono': perfil.telefono, 'direccion':perfil.direccion, 'especialidad':perfil.especialidad , 'observaciones':perfil.observaciones}
+		data = {'Nombre_de_Usuario': usuario.username, 'Contrasenha': '', 'Nueva_contrasenha': '', 'Email': usuario.email, 'Nombre':usuario.first_name,'Apellido':usuario.last_name, 'Telefono': perfil.telefono, 'Direccion':perfil.direccion, 'Especialidad':perfil.especialidad , 'Observaciones':perfil.observaciones}
 		form = UsuarioModificadoForm(data)
 	template_name='./Usuarios/modificar_usuario.html'
 	return render(request, template_name,{'form':form})
