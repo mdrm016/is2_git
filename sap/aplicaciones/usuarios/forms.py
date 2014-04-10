@@ -1,16 +1,31 @@
 from django import forms
 from django.contrib.auth.models import User
+from .models import Usuarios
 from django.forms import ModelForm
+from django.core import validators
+from django.core.exceptions import ValidationError
+
+def validate_username_unique(value):
+    if User.objects.filter(username=value).exists():
+        raise ValidationError(u'El nombre de usuario ya existe')
 
 class UsuarioNuevoForm (forms.Form):
-    username = forms.CharField(widget=forms.TextInput(), max_length=14, min_length=5, required=True, error_messages={'required': 'Ingrese un nombre de usuario', 'max_length': 'Longitud maxima: 14', 'min_length': 'Longitud minima: 5 caracteres'})
-    password = forms.CharField(widget=forms.PasswordInput(render_value=False), max_length=14, min_length=5, required=True, error_messages={'required': 'Ingrese contrasenha', 'max_length': 'Longitud maxima: 14', 'min_length': 'Longitu minima: 5 caracteres',})
-    password2 = forms.CharField(widget=forms.PasswordInput(render_value=False), max_length=14, min_length=5, required=True, error_messages={'required': 'Ingrese contrasenha', 'max_length': 'Longitud maxima: 14', 'min_length': 'Longitu minima: 5 caracteres',})
-    email = forms.CharField(widget=forms.TextInput(), required=False)
-    first_name = forms.CharField(widget=forms.TextInput(), max_length=30, required=True, error_messages={'required': 'Ingrese nombre', })
-    last_name = forms.CharField(widget=forms.TextInput(), max_length=30, required=True, error_messages={'required': 'Ingrese Apellido', })
-    telefono = forms.CharField(widget=forms.TextInput(), max_length=30, required=True, error_messages={'required': 'Ingrese Telefono', })
-    direccion = forms.CharField(widget=forms.TextInput(), max_length=100, required=True, error_messages={'required': 'Ingrese Direccion', })
-    especialidad = forms.CharField(widget=forms.TextInput(), max_length=100, required=False)
-    observaciones = forms.CharField(widget=forms.TextInput(), max_length=1000, required=False)
+    Nombre_de_Usuario = forms.CharField(widget=forms.TextInput(), validators=[validate_username_unique], max_length=14, min_length=5, required=True, error_messages={'required': 'Ingrese un nombre de usuario', 'max_length': 'Longitud maxima: 14', 'min_length': 'Longitud minima: 5 caracteres'})
+    Contrasenha = forms.CharField(widget=forms.PasswordInput(render_value=False), max_length=14, min_length=5, required=True, error_messages={'required': 'Ingrese contrasenha', 'max_length': 'Longitud maxima: 14', 'min_length': 'Longitu minima: 5 caracteres',})
+    Confirmar_contrasenha = forms.CharField(widget=forms.PasswordInput(render_value=False), max_length=14, min_length=5, required=True, error_messages={'required': 'Ingrese contrasenha', 'max_length': 'Longitud maxima: 14', 'min_length': 'Longitu minima: 5 caracteres',})
+    Email = forms.CharField(widget=forms.TextInput(), required=False)
+    Nombre = forms.CharField(widget=forms.TextInput(), max_length=30, required=True, error_messages={'required': 'Ingrese nombre', })
+    Apellido = forms.CharField(widget=forms.TextInput(), max_length=30, required=True, error_messages={'required': 'Ingrese Apellido', })
+    Telefono = forms.CharField(widget=forms.TextInput(), max_length=30, required=True, error_messages={'required': 'Ingrese Telefono', })
+    Direccion = forms.CharField(widget=forms.TextInput(), max_length=100, required=True, error_messages={'required': 'Ingrese Direccion', })
+    Especialidad = forms.CharField(widget=forms.TextInput(), max_length=100, required=False)
+    Observaciones = forms.CharField(widget=forms.TextInput(), max_length=1000, required=False)
     #fields = ['username', 'password', 'email', 'last_name', 'first_name', 'telefono', 'direccion', 'especialidad', 'observaciones']
+    
+    def clean(self):
+        super(forms.Form,self).clean()
+        if 'Contrasenha' in self.cleaned_data and 'Confirmar_contrasenha' in self.cleaned_data:
+            if self.cleaned_data['Contrasenha'] != self.cleaned_data['Confirmar_contrasenha']:
+                self._errors['Contrasenha'] = [u'Las contrasenhas deben coincidir.']
+                self._errors['Confirmar_contrasenha'] = [u'Las contrasenhas deben coincidir.']
+        return self.cleaned_data

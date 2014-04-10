@@ -33,21 +33,17 @@ def usuarionuevo(request):
 	if request.method == 'POST':
 		form = UsuarioNuevoForm(request.POST)
 		if form.is_valid():
-			username = form.cleaned_data['username']
-			password = form.cleaned_data['password']
-			password2 = form.cleaned_data['password2']
-			email = form.cleaned_data['email']
-			first_name = form.cleaned_data['first_name']
-			last_name = form.cleaned_data['last_name']
-			telefono = form.cleaned_data['telefono']
-			direccion = form.cleaned_data['direccion']
-			especialidad = form.cleaned_data['especialidad']
-			observaciones = form.cleaned_data['observaciones']
-			
-			if (password != password2):
-				template_name='./Usuarios/usuarionuevo.html'
-				#mensaje='contrasenhas no coinciden'
-				return render(request, template_name, {'form': form})
+			form.clean()
+			username = form.cleaned_data['Nombre_de_Usuario']
+			password = form.cleaned_data['Contrasenha']
+			password2 = form.cleaned_data['Confirmar_contrasenha']
+			email = form.cleaned_data['Email']
+			first_name = form.cleaned_data['Nombre']
+			last_name = form.cleaned_data['Apellido']
+			telefono = form.cleaned_data['Telefono']
+			direccion = form.cleaned_data['Direccion']
+			especialidad = form.cleaned_data['Especialidad']
+			observaciones = form.cleaned_data['Observaciones']
 			
 			useri = User.objects.create_user(username, email, password)
 			useri.first_name = first_name
