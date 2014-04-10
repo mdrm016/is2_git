@@ -1,18 +1,17 @@
-from django.shortcuts import render
 from django.views.generic import TemplateView
-
 from django.contrib.auth.models import User, Permission
 from django.core.urlresolvers import reverse
-from django.http.response import HttpResponseRedirect
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response, render
 from django.http import HttpResponseRedirect, HttpResponse
 from django.template.context import RequestContext
 from django.contrib.auth.hashers import check_password
-from forms import UsuarioNuevoForm, UsuarioModificadoForm
+from .forms import UsuarioNuevoForm, UsuarioModificadoForm
 from .models import Usuarios
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
+@login_required(login_url='/login/')
 def administrarUsuarios(request):
 	""" Recibe un request, obtiene la lista de todos los usuarios del sistema y 
 	luego retorna el html renderizado con la lista de usuarios 
@@ -29,6 +28,7 @@ def administrarUsuarios(request):
 	template_name='./Usuarios/usuarios.html'
 	return render(request, template_name, {'lista_usuarios': user})
 
+@login_required(login_url='/login/')
 def usuarionuevo(request):
 	if request.method == 'POST':
 		form = UsuarioNuevoForm(request.POST)
@@ -68,12 +68,13 @@ def usuarionuevo(request):
 	else: 
 		form = UsuarioNuevoForm()	
 	template_name='./Usuarios/usuarionuevo.html'
-	if f.is_bound:
+	if form.is_bound:
 		mensaje = 'esta completo'
 	else:
 		mensaje = 'error en el form'
 	return render(request, template_name, {'form': form, 'mensaje': mensaje})
 
+@login_required(login_url='/login/')
 def modificarUsuario(request, id_usuario):
 	""" Busca en la base de datos al usuario cuyos datos se quieren modificar.
 	Presenta esos datos en un formulario y luego se guardan los cambios realizados """
@@ -122,6 +123,7 @@ def modificarUsuario(request, id_usuario):
 	template_name='./Usuarios/modificar_usuario.html'
 	return render(request, template_name,{'form':form})
 
+@login_required(login_url='/login/')
 def consultarUsuario(request, id_usuario):
 	""" Busca en la base de datos al usuario cuyos datos se quieren consultar, 
 	los presenta en un html con la disponibilidad de regresar a la pagina anterior 
@@ -139,6 +141,7 @@ def consultarUsuario(request, id_usuario):
 	return render(request, template_name, {'usuario' : usuario, 'perfil':perfil})
 
 #Revisar alternativa A2.2 cuando exista la tabla proyectos.
+@login_required(login_url='/login/')
 def usuario_eliminar (request, id_usuario):
 	""" La funcion usuario_eliminar comprueba que el id del usuario a ser eliminado
 		no sea del administrador, osea id_usuario == 1. Caso contrario procede a eliminar
