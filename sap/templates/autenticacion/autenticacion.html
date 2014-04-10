@@ -3,12 +3,11 @@
 
 {% block contenido %}
 	<h1 align="center">Registro de Usuario</h1>
-	
-		<p class="error">{{ mensaje }}</p>
-		<div class="jumbotron boxlogin">
-			<form method="POST" name="flogin" id="flogin">{% csrf_token %}
-				{{ form.as_p }}
-				<input type="submit" class="btn btn-success" value="Ingresar">
-				</form>
-		</div> 
+	<p class="error">{{ mensaje }}</p>
+	<div class="jumbotron boxlogin">
+		<form method="POST" name="flogin" id="flogin">{% csrf_token %}
+			{{ form.as_p }}
+			<input type="submit" class="btn btn-success" value="Ingresar">
+		</form>
+	</div> 
 {% endblock %}
