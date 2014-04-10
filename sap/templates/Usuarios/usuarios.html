@@ -29,20 +29,20 @@
 	<div class="panel-group" id="accordion">
 	
 		{% if lista_usuarios %}
-			{% for usuario in lista_usuarios %}
+			{% for user in lista_usuarios %}
 	<div class="panel panel-default">
 				    <div class="panel-heading">
 				      <h4 class="panel-title">
-				        <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ usuario.id }}">
-				          	{{ usuario.username }}
+				        <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ user.id }}">
+				          	{{ user.username }}
 				        </a>
 				      </h4>
 				    </div>
-				    <div id="collapse{{ usuario.id }}" class="panel-collapse collapse">
+				    <div id="collapse{{ user.id }}" class="panel-collapse collapse">
 				      <div class="panel-body">
-				      		<a href="consultar/{{ usuario.id }}/"><button type="button" class="btn btn-default btn-sm">Consultar</button></a>
-				      		<a href="modificar/{{ usuario.id }}/"><button type="button" class="btn btn-default btn-sm">Modificar</button></a>
-				      		<button class="open-Modal btn btn-danger btn-sm" data-toggle="modal" data-target="#myModal" data-id="{{ usuario.id }}">Eliminar</button>
+				      		<a href="consultar/{{ user.id }}/"><button type="button" class="btn btn-default btn-sm">Consultar</button></a>
+				      		<a href="modificar/{{ user.id }}/"><button type="button" class="btn btn-default btn-sm">Modificar</button></a>
+				      		<button class="open-Modal btn btn-danger btn-sm" data-toggle="modal" data-target="#myModal" data-id="{{ user.id }}">Eliminar</button>
 
 				      </div>
 				    </div>
@@ -56,15 +56,6 @@
 				          <!-- <h6 class="list-group-item"> -->La lista de Usuarios esta vacia.<!-- </h6> -->
 				        </a>
 				      </h4>
-				    </div>
-				    <div id="collapse" class="panel-collapse collapse collapse">
-				      <div class="panel-body">
-				      		<a href="consultar/{{ usuario.id }}/"><button type="button" class="btn btn-default btn-sm">Consultar</button></a>
-				      		<a href="modificar/{{ usuario.id }}/"><button type="button" class="btn btn-default btn-sm">Modificar</button></a>
-				      		<button class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal">
-							  Eliminar
-							</button>
-				      </div>
 				    </div>
 				  </div>
 		{% endif %}

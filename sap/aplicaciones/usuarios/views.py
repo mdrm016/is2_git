@@ -25,9 +25,9 @@ def administrarUsuarios(request):
 	@author: eduardo gimenez
 	
 	"""
-	usuarios = User.objects.all()
+	user = User.objects.all()
 	template_name='./Usuarios/usuarios.html'
-	return render(request, template_name, {'lista_usuarios': usuarios})
+	return render(request, template_name, {'lista_usuarios': user})
 
 def usuarionuevo(request):
 	if request.method == 'POST':
@@ -68,10 +68,50 @@ def usuarionuevo(request):
 def modificarUsuario(request, id_usuario):
 	""" Busca en la base de datos al usuario cuyos datos se quieren modificar.
 	Presenta esos datos en un formulario y luego se guardan los cambios realizados """
-	#if request.method == 'POST':
-		
+	
+	usuario = User.objects.get(id=id_usuario)
 	template_name='./Usuarios/modificar_usuario.html'
-	return render(request, template_name)
+	
+	if request.method == 'POST':
+		form = UsuarioNuevoForm(request.POST)
+		if form.is_valid():
+			username = form.cleaned_data['username']
+			password = form.cleaned_data['password']
+			password2 = form.cleaned_data['password2']
+			email = form.cleaned_data['email']
+			first_name = form.cleaned_data['first_name']
+			last_name = form.cleaned_data['last_name']
+			telefono = form.cleaned_data['telefono']
+			direccion = form.cleaned_data['direccion']
+			especialidad = form.cleaned_data['especialidad']
+			observaciones = form.cleaned_data['observaciones']
+			
+			if (password != password2):
+				template_name='./Usuarios/usuarionuevo.html'
+				#mensaje='contrasenhas no coinciden'
+				return render(request, template_name, {'form': form})
+			
+			user = User.objects.create_user(username, password, email)
+			usuario.username = username
+			usuario.password = password2
+			usuario.email = email
+			usuario.first_name = first_name
+			usuario.last_name = last_name
+			usuario.telefono = telefono
+			usuario.direccion = direccion
+			usuario.especialidad = especialidad
+			usuario.observaciones = observaciones
+			usuario.save()
+			template_name='./Usuarios/usuariomodidificado.html'
+			return render(request, template_name)
+		else: 
+			data = {'username': usuario.username, 'password': usuario.password,
+			'nuevo password': '', 'email': usuario.email, 'first_name':usuario.first_name,
+			'last_name':usuario.last_name, 'telefono': usuario.telefono, 'direccion':usuario.direccion,  
+			'especialidad':usuario.especialidad , 'observaciones':usuario.observaciones}
+			form = UsuarioNuevoForm(data)
+	
+	return render(request, template_name,{'form':form})
 
 def consultarUsuario(request, id_usuario):
 	""" Busca en la base de datos al usuario cuyos datos se quieren consultar, 
@@ -85,8 +125,9 @@ def consultarUsuario(request, id_usuario):
 	@rtype: 
 	@return: """
 	usuario = User.objects.get(id = id_usuario)
+	perfil = usuario.get_profile()
 	template_name='./Usuarios/consultar_usuario.html'
-	return render(request, template_name, {'usuario' : usuario})
+	return render(request, template_name, {'usuario' : usuario, 'perfil':perfil})
 
 #Revisar alternativa A2.2 cuando exista la tabla proyectos.
 def usuario_eliminar (request, id_usuario):
