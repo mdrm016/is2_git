@@ -25,9 +25,9 @@ def administrarUsuarios(request):
 	@author: eduardo gimenez
 	
 	"""
-	usuarios = User.objects.all()
+	user = User.objects.all()
 	template_name='./Usuarios/usuarios.html'
-	return render(request, template_name, {'lista_usuarios': usuarios})
+	return render(request, template_name, {'lista_usuarios': user})
 
 def usuarionuevo(request):
 	if request.method == 'POST':
@@ -106,7 +106,7 @@ def modificarUsuario(request, id_usuario):
 			usuario.especialidad = especialidad
 			usuario.observaciones = observaciones
 			usuario.save()
-			template_name='./Usuarios/usuariocreado.html'
+			template_name='./Usuarios/usuariomodidificado.html'
 			return render(request, template_name)
 		else: 
 			data = {'username': usuario.username, 'password': usuario.password,
@@ -129,8 +129,9 @@ def consultarUsuario(request, id_usuario):
 	@rtype: 
 	@return: """
 	usuario = User.objects.get(id = id_usuario)
+	perfil = usuario.get_profile()
 	template_name='./Usuarios/consultar_usuario.html'
-	return render(request, template_name, {'usuario' : usuario})
+	return render(request, template_name, {'usuario' : usuario, 'perfil':perfil})
 
 #Revisar alternativa A2.2 cuando exista la tabla proyectos.
 def usuario_eliminar (request, id_usuario):
