@@ -74,7 +74,19 @@ def usuarionuevo(request):
 @login_required(login_url='/login/')
 def modificarUsuario(request, id_usuario):
 	""" Busca en la base de datos al usuario cuyos datos se quieren modificar.
-	Presenta esos datos en un formulario y luego se guardan los cambios realizados """
+	Presenta esos datos en un formulario y luego se guardan los cambios realizados.
+	Con la posibilidad de que el usuario cancele la operacion
+	 
+	@type request: django.http.HttpRequest
+	@param request: Contiene informacion sobre la solic. web actual que llamo a esta vista
+	
+	@type id_usuario: integer
+	@param id_usuario: es el id del usuario cuyos datos se quieren modificar
+	
+	@rtype: django.HttpResponse
+	@return: modificar_usuario.html,un formulario donde se despliegan los datos que el usuario puede modificar ,usuario_modificado.html, donde se notifica al usuario el exito de la operacion 
+	
+	@author: eduardo gimenez"""
 	
 	usuario = User.objects.get(id=id_usuario)
 	perfil = usuario.get_profile()
@@ -135,8 +147,10 @@ def consultarUsuario(request, id_usuario):
 	@type id_usuario: integer
 	@param id_usuario: es el id del usuario cuyos datos se quieren consultar
 	
-	@rtype: 
-	@return: """
+	@rtype: django.HttpResponse
+	@return: consultar_usuario.html, donde se le despliega al usuario los datos
+	
+	@author: eduardo gimenez"""
 	usuario = User.objects.get(id = id_usuario)
 	perfil = usuario.get_profile()
 	template_name='./Usuarios/consultar_usuario.html'
