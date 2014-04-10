@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView
 
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Permission
 from django.core.urlresolvers import reverse
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import render_to_response
@@ -9,6 +9,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.template.context import RequestContext
 
 from forms import UsuarioNuevoForm
+from .models import Usuarios
 
 # Create your views here.
 
@@ -48,19 +49,23 @@ def usuarionuevo(request):
 				#mensaje='contrasenhas no coinciden'
 				return render(request, template_name, {'form': form})
 			
-			user = User.objects.create_user(username, password, email)
-			user.first_name = first_name
-			user.last_name = last_name
-			user.telefono = telefono
-			user.direccion = direccion
-			user.especialidad = especialidad
-			user.observaciones = observaciones
-			user.save()
+			useri = User.objects.create_user(username, email, password)
+			useri.first_name = first_name
+			useri.last_name = last_name
+			useri.save()
+			
+			profile = useri.get_profile()
+			profile.telefono=telefono
+			profile.direccion=direccion
+			profile.especialidad=especialidad
+			profile.observaciones=observaciones
+			
+			profile.save()
+					
 			template_name='./Usuarios/usuariocreado.html'
 			return render(request, template_name)
-		else: 
-			form = UsuarioNuevoForm()
-			
+	else: 
+		form = UsuarioNuevoForm()	
 	template_name='./Usuarios/usuarionuevo.html'
 	return render(request, template_name, {'form': form})
 
