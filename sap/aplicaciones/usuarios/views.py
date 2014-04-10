@@ -28,10 +28,6 @@ def administrarUsuarios(request):
 	template_name='./Usuarios/usuarios.html'
 	return render(request, template_name, {'lista_usuarios': usuarios})
 
-def usuario_nuevo(request):
-	template_name='./Usuarios/usuarionuevo.html'
-	return render(request, template_name)
-	
 def usuarionuevo(request):
 	if request.method == 'POST':
 		form = UsuarioNuevoForm(request.POST)
@@ -62,9 +58,9 @@ def usuarionuevo(request):
 			user.save()
 			template_name='./Usuarios/usuariocreado.html'
 			return render(request, template_name)
-
-	else: 
-		form = UsuarioNuevoForm()
+		else: 
+			form = UsuarioNuevoForm()
+			
 	template_name='./Usuarios/usuarionuevo.html'
 	return render(request, template_name, {'form': form})
 
@@ -87,7 +83,7 @@ def consultarUsuario(request, id_usuario):
 	
 	@rtype: 
 	@return: """
-	usuario = User.objects.filter(id = id_usuario)
+	usuario = User.objects.get(id = id_usuario)
 	template_name='./Usuarios/consultar_usuario.html'
 	return render(request, template_name, {'usuario' : usuario})
 
