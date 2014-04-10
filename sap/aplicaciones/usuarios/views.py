@@ -7,8 +7,8 @@ from django.http.response import HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.http import HttpResponseRedirect, HttpResponse
 from django.template.context import RequestContext
-
-from forms import UsuarioNuevoForm
+from django.contrib.auth.hashers import check_password
+from forms import UsuarioNuevoForm, UsuarioModificadoForm
 from .models import Usuarios
 
 # Create your views here.
@@ -47,7 +47,7 @@ def usuarionuevo(request):
 			if (password != password2):
 				template_name='./Usuarios/usuarionuevo.html'
 				#mensaje='contrasenhas no coinciden'
-				return render(request, template_name, {'form': form})
+				return render(request, template_name, {'form': form, 'mensaje': 'el password no coincide'})
 			
 			useri = User.objects.create_user(username, email, password)
 			useri.first_name = first_name
@@ -67,21 +67,24 @@ def usuarionuevo(request):
 	else: 
 		form = UsuarioNuevoForm()	
 	template_name='./Usuarios/usuarionuevo.html'
-	return render(request, template_name, {'form': form})
+	if f.is_bound:
+		mensaje = 'esta completo'
+	else:
+		mensaje = 'error en el form'
+	return render(request, template_name, {'form': form, 'mensaje': mensaje})
 
 def modificarUsuario(request, id_usuario):
 	""" Busca en la base de datos al usuario cuyos datos se quieren modificar.
 	Presenta esos datos en un formulario y luego se guardan los cambios realizados """
 	
 	usuario = User.objects.get(id=id_usuario)
-	template_name='./Usuarios/modificar_usuario.html'
-	
+	perfil = usuario.get_profile()
 	if request.method == 'POST':
-		form = UsuarioNuevoForm(request.POST)
+		form = UsuarioModificadoForm(request.POST)
 		if form.is_valid():
 			username = form.cleaned_data['username']
 			password = form.cleaned_data['password']
-			password2 = form.cleaned_data['password2']
+			nuevo_password= form.cleaned_data['nuevo_password']
 			email = form.cleaned_data['email']
 			first_name = form.cleaned_data['first_name']
 			last_name = form.cleaned_data['last_name']
@@ -90,31 +93,32 @@ def modificarUsuario(request, id_usuario):
 			especialidad = form.cleaned_data['especialidad']
 			observaciones = form.cleaned_data['observaciones']
 			
-			if (password != password2):
-				template_name='./Usuarios/usuarionuevo.html'
-				#mensaje='contrasenhas no coinciden'
-				return render(request, template_name, {'form': form})
+			if password is not '':
+				if check_password(password, usuario.password):
+					template_name='./Usuarios/modificar_usuario.html'
+					return render(request, template_name, {'form': form, 'mensajer': 'la contrasenha antigua no coincide'})
 			
-			user = User.objects.create_user(username, password, email)
-			usuario.username = username
-			usuario.password = password2
-			usuario.email = email
+			usuario.username= username
+			usuario.email = email 
+			usuario.password = nuevo_password
 			usuario.first_name = first_name
 			usuario.last_name = last_name
-			usuario.telefono = telefono
-			usuario.direccion = direccion
-			usuario.especialidad = especialidad
-			usuario.observaciones = observaciones
 			usuario.save()
-			template_name='./Usuarios/usuariomodidificado.html'
+			
+			profile = usuario.get_profile()
+			profile.telefono=telefono
+			profile.direccion=direccion
+			profile.especialidad=especialidad
+			profile.observaciones=observaciones
+			
+			profile.save()
+					
+			template_name='./Usuarios/usuario_modificado.html'
 			return render(request, template_name)
-		else: 
-			data = {'username': usuario.username, 'password': usuario.password,
-			'nuevo password': '', 'email': usuario.email, 'first_name':usuario.first_name,
-			'last_name':usuario.last_name, 'telefono': usuario.telefono, 'direccion':usuario.direccion,  
-			'especialidad':usuario.especialidad , 'observaciones':usuario.observaciones}
-			form = UsuarioNuevoForm(data)
-	
+	else: 
+		data = {'username': usuario.username, 'password': '', 'nuevo_password': '', 'email': usuario.email, 'first_name':usuario.first_name,'last_name':usuario.last_name, 'telefono': perfil.telefono, 'direccion':perfil.direccion, 'especialidad':perfil.especialidad , 'observaciones':perfil.observaciones}
+		form = UsuarioModificadoForm(data)
+	template_name='./Usuarios/modificar_usuario.html'
 	return render(request, template_name,{'form':form})
 
 def consultarUsuario(request, id_usuario):
