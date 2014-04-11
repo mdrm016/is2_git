@@ -159,19 +159,20 @@ def consultarUsuario(request, id_usuario):
 #Revisar alternativa A2.2 cuando exista la tabla proyectos.
 @login_required(login_url='/login/')
 def usuario_eliminar (request, id_usuario):
-	""" La funcion usuario_eliminar comprueba que el id del usuario a ser eliminado
-		no sea del administrador, osea id_usuario == 1. Caso contrario procede a eliminar
-		de la base de datos los registros del usuario cuyo id corresponda.
+	"""	
+		Comprueba que el id del usuario a eliminar no se sea del administrador,
+		caso contrario procede a eliminar de la base de datos los registros del usuario.
         
-        @type request: django.http.HttpRequest
-        @type id_usuario : string
-        @param request: Contiene informacion sobre la solicitud web actual que llamo a esta vista
-        @param id_usuario : Contiene el id del usuario a ser eliminado.
-        @rtype: django.http.HttpResponseRedirect
-        @rtype: django.shortcuts.render_to_response
-        @return: Se retorna al la administracion de usuarios o se manda a la pagina de notificacion
-        @author: Marcelo Denis
-	"""
+	@type request: django.http.HttpRequest
+	@param request: Contiene informacion sobre la solicitud web actual que llamo a esta vista
+        
+	@type id_usuario : string
+ 	@param id_usuario : Contiene el id del usuario a ser eliminado.
+        
+	@rtype: django.shortcuts.render_to_response
+	@return: Se retorna al la administracion de usuarios o se manda a la pagina de notificacion
+        
+	@author: Marcelo Denis"""
 	if id_usuario != '1':
 		userDelOfTable = User.objects.get(pk=id_usuario)
 		userDelOfTable.delete()
