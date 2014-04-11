@@ -5,12 +5,12 @@ from django.db import models
 from django.contrib.auth.models import User, Permission
 from django.db.models.signals import post_save
 
-"""User.add_to_class('telefono', models.CharField(max_length=30))
-User.add_to_class('direccion', models.CharField(max_length=100))
-User.add_to_class('especialidad', models.CharField(max_length=50))
-User.add_to_class('observaciones', models.CharField(max_length=300))"""
-
 class Usuarios(models.Model):
+    """ La clase Usuarios crea un perfil a cada instancia de la clase
+         User, con los atributos descritos en este modelo 
+    
+    @author: Ysapy Ortiz
+    """  
     
     user = models.OneToOneField(User)
     telefono = models.CharField(max_length=30)

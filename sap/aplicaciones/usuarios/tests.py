@@ -7,6 +7,8 @@ from aplicaciones.usuarios.views import usuario_eliminar
 class SimpleTest(TestCase):
     """    Cargamos los usuarios de prueba en la base de datos    """
     fixtures = ['users.json']
+    username = 'sap'
+    password = 'sap'
     
     def setUp(self):
         """ Inicializamos la variable factory que posteriormente nos permitira cargar
@@ -55,4 +57,32 @@ class SimpleTest(TestCase):
         """ Comprobamos que el administrador no puede ser eliminado.
         """
         usuarioname = User.objects.filter(pk=id)
-        self.assertTrue(usuarioname)
+        self.assertTrue(usuarioname) 
+            
+    def testUsernuevo(self):
+        usuario = User.objects.get(pk=1)
+        
+        resp = self.client.get('/login/')
+        self.assertEqual(resp.status_code, 200)
+        login = self.client.login(username=self.username, password=self.password)
+        self.assertTrue(login)
+        url = '/adm_usuarios/nuevo/'
+        p = self.client.post('/adm_usuarios/nuevo/', {'username': 'mama', 'password': 'ysapy', 'email': 'ysa@correo', 'first_name': 'mimbi', 'last_name': 'ortiz', 'telefono': '021', 'direccion': 'lambare', 'especialidad': 'desarrollador'})
+        res = self.client.get(url)
+        usuario = User.objects.all()
+        print usuario
+        
+    def testBuscarusuario(self):
+        usuario = User.objects.get(pk=1)
+        resp = self.client.get('/login/')
+        self.assertEqual(resp.status_code, 200)
+        login = self.client.login(username=self.username, password=self.password)
+        self.assertTrue(login)
+        url = '/adm_usuarios/?busqueda=ysapy/'
+        res = self.client.get(url)
+        usuario = User.first_name.filter(username='ysapy')
+        print usuario
+        
+        
+    if __name__ == '__main__':
+        unittest.main()
