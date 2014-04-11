@@ -11,13 +11,13 @@ class TestUsuario(TestCase):
     password = 'sap'
          
       
-    def testUser(self):
+    def testUsereliminar(self):
         usuario= User.objects.get(pk=1) 
         
         resp = self.client.get('/login/')                                           #Solicitud de la pagina de autenticacion
         self.assertEqual(resp.status_code, 200)                                     #Pagina de login recibida con exito
-        loguin = self.client.login(username=self.username, password=self.password)  #Proceso de autenticacion
-        self.assertTrue(loguin)               
+        login = self.client.login(username=self.username, password=self.password)  #Proceso de autenticacion
+        self.assertTrue(login)               
         url = '/adm_usuarios/eliminar/2'
         p = self.client.get(url)
         usuario= User.objects.all()
