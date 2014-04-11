@@ -8,6 +8,8 @@ from django.contrib.auth.hashers import check_password, make_password
 from forms import UsuarioNuevoForm, UsuarioModificadoForm
 from .models import Usuarios
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
+from collections import OrderedDict
 
 # Create your views here.
 
@@ -24,9 +26,54 @@ def administrarUsuarios(request):
 	@author: eduardo gimenez
 	
 	"""
+	error = False
+	if 'busqueda' in request.GET:
+		busqueda = request.GET['busqueda']
+		if not busqueda:
+			error = True
+			template_name= './Usuarios/usuarios.html'
+			return render(request, template_name, {'error': error})
+		else:
+			usuarioname = User.objects.filter(username=busqueda)
+			usuarionombre = User.objects.filter(first_name=busqueda)
+			usuarioapellido = User.objects.filter(last_name=busqueda)
+			usuarioemail = User.objects.filter(email=busqueda)
+			usuariotelefono = Usuarios.objects.filter(telefono=busqueda)
+			usuariodireccion = Usuarios.objects.filter(direccion=busqueda)
+			usuarioespecialidad = Usuarios.objects.filter(especialidad=busqueda)
+			usuarioobservaciones = Usuarios.objects.filter(observaciones=busqueda)
+			if (not usuarioname) & (not usuarionombre) & (not usuarioemail) & (not usuariotelefono) & (not usuariodireccion) & (not usuarioespecialidad) & (not usuarioobservaciones):
+				error = True
+				template_name= './Usuarios/usuarios.html'
+				return render(request, template_name, {'error': error})
+			else:
+				user=[]
+				if (usuarioname):
+					user.extend(usuarioname)
+				if (usuarioname):
+					user.extend(usuarioname)
+				if (usuarionombre):
+					user.extend(usuarionombre)
+				if (usuarioapellido):
+					user.extend(usuarioapellido)
+				if (usuarioemail):
+					user.extend(usuarioemail)
+				if (usuariotelefono):
+					user.extend(usuariotelefono)
+				if (usuariodireccion):
+					user.extend(usuariodireccion)
+				if (usuarioespecialidad):
+					user.extend(usuarioespecialidad)
+				if (usuarioobservaciones):
+					user.extend(usuarioobservaciones)
+				useri = set(user)
+				template_name='./Usuarios/usuarios.html'
+				return render(request, template_name, {'lista_usuarios': useri, 'error': error})
+
 	user = User.objects.all()
 	template_name='./Usuarios/usuarios.html'
 	return render(request, template_name, {'lista_usuarios': user})
+	
 
 @login_required(login_url='/login/')
 def usuarionuevo(request):
@@ -141,6 +188,7 @@ def consultarUsuario(request, id_usuario):
 	perfil = usuario.get_profile()
 	template_name='./Usuarios/consultar_usuario.html'
 	return render(request, template_name, {'usuario' : usuario, 'perfil':perfil})
+	
 
 #Revisar alternativa A2.2 cuando exista la tabla proyectos.
 @login_required(login_url='/login/')
@@ -168,3 +216,40 @@ def usuario_eliminar (request, id_usuario):
 		ctx = {'mensaje':mensaje}
 		return render_to_response('Usuarios/usuarioalerta.html',ctx, context_instance=RequestContext(request))
 		
+#def buscar_usuario(request):
+	""" Recibe un request, obtiene la lista de todos los usuarios del sistema que tengan
+	coincidencias con lo solicitado luego retorna el html renderizado con la lista de
+	dichos usuarios 
+	@type request: django.http.HttpRequest
+	@param request: Contiene informacion sobre la solic. web actual que llamo a esta vista
+	
+	@rtype: django.http.HttpResponse
+	@return: usuarios.html, donde se listan los usuarios, ademas de las funcionalidades para un usuario
+	
+	@author: ysapy ortiz
+	
+	
+	if request.POST:
+		dato=request.POST.get()
+		usuario = User.objects.get(username=dato)
+		#if (not usuario):
+		#	return HttpResponseRedirect('/adm_usuarios/')
+		template_name='./Usuarios/buscar_usuario.html'
+		return render(request, template_name, {'lista_usuarios': usuario})
+	return HttpResponseRedirect('/adm_usuarios/buscar/')"""
+
+def buscar_usuario(request):
+	error = False
+	if 'busqueda' in request.GET:
+		busqueda = request.GET['busqueda']
+		if not busqueda:
+			error = True
+		else:
+			user = User.objects.filter(username=busqueda)
+			if not user:
+				error = True
+			else:
+				template_name='./Usuarios/buscar_usuario.html'
+				return render_to_response(template_name, {'lista_usuarios': user, 'query': busqueda})
+	template_name='./Usuarios/buscar_usuario.html'
+	return render_to_response(template_name, {'error': error})

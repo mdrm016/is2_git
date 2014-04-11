@@ -16,9 +16,15 @@
 		
 		<a href="nuevo/"><button type="button" class="btn btn-default">Crear Usuario</button></a>
 		<div class="form-group">
-			<input type="text" class="form-control">
+			{% if error %}
+			<p style="color:red;">No se encontraron coincidencias.</p>
+			{% endif %}
+			<form action="" method="get">
+				<input type="text" name="busqueda">
+				<input type="submit" value="Search">
+			</form>
+			
 		</div>
-		<button type="button" class="btn btn-default">Buscar</button>
 	</form>
 </div>
 {% endblock %}
@@ -53,7 +59,7 @@
 					<div class="panel-heading">
 				      <h4 class="panel-title">
 				        <a data-toggle="collapse" data-parent="#accordion" href="#collapse">
-				          <!-- <h6 class="list-group-item"> -->La lista de Usuarios esta vacia.<!-- </h6> -->
+				          <!-- <h6 class="list-group-item"> -->No se encontraron usuarios.<!-- </h6> -->
 				        </a>
 				      </h4>
 				    </div>
