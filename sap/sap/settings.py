@@ -101,3 +101,4 @@ TEMPLATE_DIRS = (
 
 """ Esta variable nos permite identificar o definir el perfil de los usuarios """
 AUTH_PROFILE_MODULE = 'usuarios.Usuarios'
+
