@@ -77,6 +77,19 @@ def administrarUsuarios(request):
 
 @login_required(login_url='/login/')
 def usuarionuevo(request):
+	""" Recibe un request, obtiene el formulario con los datos del usuario a crear
+	o la solicitud de envio de dicho formulario. Luego verifica los datos recibidos
+	y registra al nuevo usuario.  
+	
+	@type request: django.http.HttpRequest
+	@param request: Contiene informacion sobre la solic. web actual que llamo a esta vista
+	
+	@rtype: django.http.HttpResponse
+	@return: usuariocreado.html, mensaje de exito
+	
+	@author: Ysapy Ortiz
+	
+	"""
 	if request.method == 'POST':
 		form = UsuarioNuevoForm(request.POST)
 		if form.is_valid():
