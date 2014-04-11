@@ -22,7 +22,7 @@ class TestUsuario(TestCase):
         p = self.client.get(url)
         usuario= User.objects.all()
         print usuario
-        #self.assertNotEqual(self.username, 'sap')
+        #self.assertNotEqual(self.username, 'sap')"""
             
     if __name__ == '__main__':
         unittest.main()
