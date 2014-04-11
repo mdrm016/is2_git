@@ -14,7 +14,7 @@
 <div class="content-secondary">
 <!-- Aca van la  lista de Proyectos.. o de Solicitudes.. o de credenciales -->
 	{% if form.errors %}
-		Por favor verifique: error{{ mensaje }}.
+		Por favor verifique: 
 	{% endif %}
 	
 	<form action="" method="post">
@@ -24,6 +24,7 @@
 		{% csrf_token %}
 	<div align="center">
 		<input class="btn btn-default" type="submit" value="Guardar"/>
+		<a href="/adm_usuarios/"><button type="button" class="btn btn-default">Cancelar</button></a>
 	</div>
 	<br>
 	</form>
