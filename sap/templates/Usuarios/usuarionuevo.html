@@ -18,11 +18,11 @@
 	{% endif %}
 	
 	<form action="" method="post">
-		<table>
+		<table align="center">
 			{{ form.as_table }}
 		</table>
 		{% csrf_token %}
-	<div align="center">
+	<div align="center"><br>
 		<input class="btn btn-default" type="submit" value="Crear"/>
 		<a href="/adm_usuarios/"><button type="button" class="btn btn-default">Cancelar</button></a>
 	</div>

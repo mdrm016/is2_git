@@ -1,52 +1,43 @@
-from django.test import TestCase
-from .models import Usuarios
-from django.contrib.auth.models import User
-from django.http import HttpResponse, HttpRequest
+from django.contrib.auth.models import User 
+from django.test import TestCase 
+from django.test.client import RequestFactory 
+from aplicaciones.usuarios.views import administrarUsuarios 
 from aplicaciones.usuarios.views import usuario_eliminar, usuarionuevo
-from django.core.urlresolvers import reverse
 
-class TestUsuario(TestCase):
-    fixtures = ['users.json']
-    username = 'sap'
-    password = 'sap'
+class SimpleTest(TestCase): 
+    fixtures = ['users.json'] 
+    def setUp(self): 
+        # Every test needs access to the request factory. 
+        self.factory = RequestFactory()
+
+    def test_details(self): # Create an instance of a GET request. 
+        self.user = User.objects.get(pk=1) 
+        request = self.factory.get('/adm_usuarios/eliminar/2/') 
+        # Recall that middleware are not suported. You can simulate a 
+        # logged-in user by setting request.user manually. 
+        request.user = self.user 
+        print User.objects.all() 
+        response = usuario_eliminar(request, 3) 
          
-      
-    def testUsereliminar(self):
-        usuario= User.objects.get(pk=1) 
-        resp = self.client.get('/login/')                                           #Solicitud de la pagina de autenticacion
-        self.assertEqual(resp.status_code, 200)                                     #Pagina de login recibida con exito
-        login = self.client.login(username=self.username, password=self.password)  #Proceso de autenticacion
-        self.assertTrue(login)               
-        url = '/adm_usuarios/eliminar/2'
-        p = self.client.get(url)
-        usuario= User.objects.all()
-        print usuario
-        self.assertNotEqual(self.username, 'sap')
-            
-    def testUsernuevo(self):
-        usuario = User.objects.get(pk=1)
+        print User.objects.all() 
+        #como ven pude eliminar al usuario com pk=2 osea mdrm016 
         
-        resp = self.client.get('/login/')
-        self.assertEqual(resp.status_code, 200)
-        login = self.client.login(username=self.username, password=self.password)
-        self.assertTrue(login)
-        url = '/adm_usuarios/nuevo/'
-        p = self.client.post('/adm_usuarios/nuevo/', {'username': 'mama', 'password': 'ysapy', 'email': 'ysa@correo', 'first_name': 'mimbi', 'last_name': 'ortiz', 'telefono': '021', 'direccion': 'lambare', 'especialidad': 'desarrollador'})
-        res = self.client.get(url)
-        usuario = User.objects.all()
-        print usuario
+    def testUsuarioNuevo(self): # Create an instance of a GET request. 
+        self.user = User.objects.get(pk=1) 
+        request = self.factory.post('/adm_usuarios/nuevo/', {'Nombre_de_Usuario': 'usuario2', 'Contrasenha': 'ysapy', 'Confirmar_contrasenha': 'ysapy', 'Email': 'ysapy', 'Nombre': 'ysa', 'Apellido':'ortiz', 'Telefono': '021', 'Direccion': 'lambare'})
+        request.user = self.user 
+        response = usuarionuevo(request) 
+        self.assertEqual(response.status_code, 200)
+        busco = User.objects.get(username='usuario2')
+        perfil = busco.get_profile()
+        print perfil.telefono 
         
-    def testBuscarusuario(self):
-        usuario = User.objects.get(pk=1)
-        resp = self.client.get('/login/')
-        self.assertEqual(resp.status_code, 200)
-        login = self.client.login(username=self.username, password=self.password)
-        self.assertTrue(login)
-        url = '/adm_usuarios/?busqueda=ysapy/'
-        res = self.client.get(url)
-        usuario = User.first_name.filter(username='ysapy')
-        print usuario
-        
-        
+    def testUsuarioBuscar(self):  
+        self.user = User.objects.get(pk=1) 
+        request = self.factory.get('/adm_usuarios/', {'busqueda': 'ysapy'})
+        request.user = self.user
+        response = administrarUsuarios(request) 
+        self.assertEqual(response.status_code, 200)
+              
     if __name__ == '__main__':
         unittest.main()

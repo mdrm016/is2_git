@@ -159,10 +159,12 @@ body
 }
 
 #footer {
-   position:absolute;
+   position:relative;
+   margin-top:-150px;
    bottom:0;
    width:100%;
-   height:20px;            /* Altura del footer */
+   height:150px;            /* Altura del footer */
+   clear:both;
 }
 
 .footer span

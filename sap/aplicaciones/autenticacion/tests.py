@@ -10,8 +10,8 @@ class TestLoguin(TestCase):
     password = 'sap'
     
     #Un usuario cualquiera
-    u1 = 'mdrm016'
-    p1 = '123456'
+    u1 = 'sap'
+    p1 = 'sap'
     
     #Un usuario inexistente
     u2 = 'xxxxx'
