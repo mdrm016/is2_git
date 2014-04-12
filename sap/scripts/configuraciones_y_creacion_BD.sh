@@ -3,25 +3,8 @@
 clear
 
 echo "*****************Creando Usuario sapAdmin*****************"
-sudo -u postgres psql postgres
-sudo -u postgres createuser sap
-n
-n
-n
-sudo -u postgres psql
-\password sap
-sap
-sap
-
-echo "*****************Creando Base de Datos sap*****************"
+cd /home/ysapy/workspace/is2_git/sap/scripts/
+createuser -d -a sap
 createdb -O sap sap
-yes
-SapAdmin
-sap@sap.com
-sapAdmin
-sapAdmin
-
-echo "*****************Sincronizando la Base de Datos*****************"
-cd ..
-python manage.py syncdb
+psql -d sap -a -f pass.sql
 
