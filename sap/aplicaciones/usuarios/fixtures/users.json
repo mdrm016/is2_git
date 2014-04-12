@@ -9,30 +9,84 @@
         "is_active": true, 
         "is_superuser": true, 
         "is_staff": true, 
-        "last_login": "2014-04-10T19:56:04.323Z", 
+        "last_login": "2014-04-11T16:46:15.279Z", 
         "groups": [], 
         "user_permissions": [], 
-        "password": "pbkdf2_sha256$12000$n3kFd173nlJ8$DHRxTBwAzIKfeaHepKlg/uWpfYhywgs+iH2vBCs/4CY=", 
-        "email": "sap@sap.com", 
-        "date_joined": "2014-04-10T18:43:58.149Z"
+        "password": "pbkdf2_sha256$12000$Ujlm8D1zHG3K$xZY7eILZF2pnTue5n7K41cWUTJgQSP4j69PwqjneJ9g=", 
+        "email": "", 
+        "date_joined": "2014-04-11T02:48:17.241Z"
+    }
+},
+{
+    "pk": 3, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "usuario1", 
+        "first_name": "m", 
+        "last_name": "m", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2014-04-11T02:50:53.286Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$12000$QcMFrFxvG37b$BgJD9ReHeO1I9uyS0mt/cuVomz0rGDGglcrBa+aFMVk=", 
+        "email": "m", 
+        "date_joined": "2014-04-11T02:50:53.286Z"
+    }
+},
+{
+    "pk": 4, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "ysapycita", 
+        "first_name": "kk", 
+        "last_name": "j", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2014-04-11T02:51:59.665Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$12000$Ec4hmwm89r6m$M9ub1rTSNBePfGwUCEstZ541nmGSxhJbZw1Ji+Q54jg=", 
+        "email": "ysapy", 
+        "date_joined": "2014-04-11T02:51:59.665Z"
+    }
+},
+{
+    "pk": 5, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "jeruti", 
+        "first_name": "olga", 
+        "last_name": "ortiz", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2014-04-11T05:44:42.014Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$12000$5bpTIMwlUOED$W9+RJHBxArmE/posvZY8ZCq8/bAb/b2hYBdTRpexR+w=", 
+        "email": "jeru", 
+        "date_joined": "2014-04-11T02:55:25.790Z"
     }
 },
 {
     "pk": 6, 
     "model": "auth.user", 
     "fields": {
-        "username": "ysa1234", 
-        "first_name": "Ysapy", 
-        "last_name": "Ortiz", 
+        "username": "ysapy", 
+        "first_name": "nk", 
+        "last_name": "hh", 
         "is_active": true, 
         "is_superuser": false, 
         "is_staff": false, 
-        "last_login": "2014-04-10T19:53:47.490Z", 
+        "last_login": "2014-04-11T05:14:39.635Z", 
         "groups": [], 
         "user_permissions": [], 
-        "password": "pbkdf2_sha256$12000$6d3KJzjfHAOP$j/cbi26wM2ijYxWDBCa9r6F/qRZEOHpYu6YPg2O1bBw=", 
-        "email": "ysa@hotmail.com", 
-        "date_joined": "2014-04-10T19:42:07.056Z"
+        "password": "pbkdf2_sha256$12000$Ra9aKXxCypta$MuQoQ41B5xEWLKz2VHvrT9P9letucAIv1c9bYU6bwy4=", 
+        "email": "sayp", 
+        "date_joined": "2014-04-11T05:14:39.635Z"
     }
 }
 ]

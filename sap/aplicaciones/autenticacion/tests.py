@@ -10,8 +10,8 @@ class TestLoguin(TestCase):
     password = 'sapadmin'
     
     #Un usuario cualquiera
-    u1 = 'ysa1234'
-    p1 = '12345'
+    u1 = 'sap'
+    p1 = 'sap'
     
     #Un usuario inexistente
     u2 = 'xxxxx'
@@ -25,26 +25,34 @@ class TestLoguin(TestCase):
         
         resp = self.client.get('/login/')                                           #Solicitud de la pagina de autenticacion
         self.assertEqual(resp.status_code, 200)                                     #Pagina de login recibida con exito
-        login = self.client.login(username=self.username, password=self.password)  #Proceso de autenticacion
-        self.assertTrue(login)                                                     #Comprobamos si el usuario esta autenticado
+        login = self.client.login(username=self.username, password=self.password)   #Proceso de autenticacion
+        self.assertTrue(login)                                                      #Comprobamos si el usuario esta autenticado
         resp = self.client.get('/')                                                 #Pasamos a la pagina de inicio
         self.assertEqual(resp.status_code, 200)                                     #Pagina de inicio recibida con exito
         resp = self.client.get('/adm_usuarios/')                                    #Pasamos a la pagina de administracion de usuarios
         self.assertEqual(resp.status_code, 200)                                     #Pagina de adm_usuarios recibida con exito
         self.assertTrue('lista_usuarios' in resp.context)                           #Comprobamos si recibimos la lista de usuarios
+        logout= self.client.logout()                                                #Cerramos la sesion actual
+        self.assertFalse(logout)                                                    #Probamos que efectivamente la sesion esta cerrada
+        resp = self.client.get('/')                                                 #Pasamos a la pagina de inicio
+        self.assertNotEqual(resp.status_code, 200)                                  #Probamos que ya no podemos acceder al sistema si no estamos logueados
     
     def test_loguin_user(self):
         """ Test para loguear a un usuario. """
         
         resp = self.client.get('/login/')                                           #Solicitud de la pagina de autenticacion
         self.assertEqual(resp.status_code, 200)                                     #Pagina de login recibida con exito
-        login = self.client.login(username=self.u1, password=self.p1)              #Proceso de autenticacion
-        self.assertTrue(login)                                                     #Comprobamos si el usuario esta autenticado
+        login = self.client.login(username=self.u1, password=self.p1)               #Proceso de autenticacion
+        self.assertTrue(login)                                                      #Comprobamos si el usuario esta autenticado
         resp = self.client.get('/')                                                 #Pasamos a la pagina de inicio
         self.assertEqual(resp.status_code, 200)                                     #Pagina de inicio recibida con exito
         resp = self.client.get('/adm_usuarios/')                                    #Pasamos a la pagina de administracion de usuarios
         self.assertEqual(resp.status_code, 200)                                     #Pagina de adm_usuarios recibida con exito
         self.assertTrue('lista_usuarios' in resp.context)                           #Comprobamos si recibimos la lista de usuarios
+        logout= self.client.logout()                                                #Cerramos la sesion actual
+        self.assertFalse(logout)                                                    #Probamos que efectivamente la sesion esta cerrada
+        resp = self.client.get('/')                                                 #Pasamos a la pagina de inicio
+        self.assertNotEqual(resp.status_code, 200)                                  #Probamos que ya no podemos acceder al sistema si no estamos logueados
     
     def test_loguin_userAnonimo(self):
         """ Test para loguear a un usuario no registardo.
@@ -75,4 +83,3 @@ class TestLoguin(TestCase):
         if __name__ == '__main__':
             unittest.main()
     
-
