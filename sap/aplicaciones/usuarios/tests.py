@@ -2,7 +2,7 @@
 from django.contrib.auth.models import User 
 from django.test import TestCase 
 from django.test.client import RequestFactory 
-from aplicaciones.usuarios.views import administrarUsuarios 
+from aplicaciones.usuarios.views import administrarUsuarios, modificarUsuario
 from aplicaciones.usuarios.views import usuario_eliminar, usuarionuevo
 
 class test_user(TestCase):
@@ -73,6 +73,26 @@ class test_user(TestCase):
         request.user = self.user
         response = administrarUsuarios(request) 
         self.assertEqual(response.status_code, 200)
-              
+
+    def testAdministrarUsuario(self):
+        
+        self.user = User.objects.get(pk=1)  
+        request = self.factory.get('/adm_usuarios/')
+        request.user = self.user
+        response = administrarUsuarios(request)                                    #Pasamos a la pagina de administracion de usuarios
+        self.assertEqual(response.status_code, 200)           
+        
+    def testModificarUsuario(self):
+        
+        self.user = User.objects.get(pk=1)
+        print User.objects.all()
+        usuario = User.objects.get(username='sap')
+        request = self.factory.post('/adm_usuarios/modificar/1/', {'Nombre_de_Usuario': 'sapMod', 'Contrasenha': '', 'Nueva_contrasenha': '', 'Email': usuario.email, 'Nombre': usuario.first_name,'Apellido': usuario.last_name, 'Telefono': '2333443545', 'Direccion' : 'xxxxxxxxxxx', 'Especialidad' : '' , 'Observaciones' : ''})
+        request.user = self.user
+        response = modificarUsuario(request, 1)
+        self.assertEqual(response.status_code, 200)
+        print User.objects.all()
+
+
     if __name__ == '__main__':
         unittest.main()
