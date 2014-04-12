@@ -1,0 +1,2 @@
+manage	manage-module.html
+manage.__package__	manage-module.html#__package__
