@@ -3,54 +3,36 @@
     "pk": 1, 
     "model": "auth.user", 
     "fields": {
-        "username": "sap", 
-        "first_name": "", 
-        "last_name": "", 
+        "username": "sap123", 
+        "first_name": "Administrador", 
+        "last_name": "Sistema", 
         "is_active": true, 
         "is_superuser": true, 
         "is_staff": true, 
-        "last_login": "2014-04-10T22:43:43.367Z", 
+        "last_login": "2014-04-10T19:56:04.323Z", 
         "groups": [], 
         "user_permissions": [], 
-        "password": "pbkdf2_sha256$12000$8W9ge6jmrNTK$vFelHVupAGOCa1jrB1+NW1Ar9txb2DTpbQ+77a2bOTI=", 
-        "email": "", 
-        "date_joined": "2014-04-10T17:59:45.700Z"
+        "password": "pbkdf2_sha256$12000$n3kFd173nlJ8$DHRxTBwAzIKfeaHepKlg/uWpfYhywgs+iH2vBCs/4CY=", 
+        "email": "sap@sap.com", 
+        "date_joined": "2014-04-10T18:43:58.149Z"
     }
 },
 {
-    "pk": 2, 
+    "pk": 6, 
     "model": "auth.user", 
     "fields": {
-        "username": "mdrm016", 
-        "first_name": "marcelo", 
-        "last_name": "denis", 
+        "username": "ysa1234", 
+        "first_name": "Ysapy", 
+        "last_name": "Ortiz", 
         "is_active": true, 
         "is_superuser": false, 
         "is_staff": false, 
-        "last_login": "2014-04-10T18:04:23.273Z", 
+        "last_login": "2014-04-10T19:53:47.490Z", 
         "groups": [], 
         "user_permissions": [], 
-        "password": "pbkdf2_sha256$12000$OmOtvGrlqmbY$zeA2GVXsRx0SKAvvGNbtL4UlClaXCw6t3RMtsxRdDq0=", 
-        "email": "mdrm016@hotmail.com", 
-        "date_joined": "2014-04-10T18:04:08.719Z"
-    }
-},
-{
-    "pk": 3, 
-    "model": "auth.user", 
-    "fields": {
-        "username": "marcelo", 
-        "first_name": "marcelo", 
-        "last_name": "denis", 
-        "is_active": true, 
-        "is_superuser": false, 
-        "is_staff": false, 
-        "last_login": "2014-04-10T18:06:44.636Z", 
-        "groups": [], 
-        "user_permissions": [], 
-        "password": "", 
-        "email": "mdrm016@hotmail.com", 
-        "date_joined": "2014-04-10T18:06:29.316Z"
+        "password": "pbkdf2_sha256$12000$6d3KJzjfHAOP$j/cbi26wM2ijYxWDBCa9r6F/qRZEOHpYu6YPg2O1bBw=", 
+        "email": "ysa@hotmail.com", 
+        "date_joined": "2014-04-10T19:42:07.056Z"
     }
 }
 ]

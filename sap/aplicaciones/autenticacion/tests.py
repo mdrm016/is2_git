@@ -6,12 +6,12 @@ class TestLoguin(TestCase):
     """ Inicializamos variables globales """
     
     #Usuario administrador
-    username = 'sap'
-    password = 'sap'
+    username = 'sap123'
+    password = 'sapadmin'
     
     #Un usuario cualquiera
-    u1 = 'mdrm016'
-    p1 = '123456'
+    u1 = 'ysa1234'
+    p1 = '12345'
     
     #Un usuario inexistente
     u2 = 'xxxxx'
