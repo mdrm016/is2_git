@@ -10,6 +10,7 @@ from .models import Usuarios
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from collections import OrderedDict
+from aplicaciones.proyectos.models import Proyectos
 
 # Create your views here.
 
@@ -217,11 +218,10 @@ def consultarUsuario(request, id_usuario):
 	return render(request, template_name, {'usuario' : usuario, 'perfil':perfil})
 	
 
-#Revisar alternativa A2.2 cuando exista la tabla proyectos.
 @login_required(login_url='/login/')
 def usuario_eliminar (request, id_usuario):
 	"""	
-		Comprueba que el id del usuario a eliminar no se sea del administrador,
+		Comprueba que el id del usuario a eliminar no se sea del administrador o de algun lider de proyecto,
 		caso contrario procede a eliminar de la base de datos los registros del usuario.
         
 	@type request: django.http.HttpRequest
@@ -235,9 +235,19 @@ def usuario_eliminar (request, id_usuario):
         
 	@author: Marcelo Denis"""
 	if id_usuario != '1':
-		userDelOfTable = User.objects.get(pk=id_usuario)
-		userDelOfTable.delete()
-		return HttpResponseRedirect('/adm_usuarios/')
+		proyecto = Proyectos.objects.filter(lider_id=id_usuario)
+		if proyecto:
+			if len(proyecto) > 1:
+				mensaje="Imposible eliminar usuario, el usuario es el lider de los proyectos"	
+			else:
+				mensaje="Imposible eliminar usuario, el usuario es el lider del proyecto"
+			ctx = {'mensaje':mensaje, 'lista_proyectos':proyecto}
+			return render_to_response('Usuarios/usuarioalerta.html',ctx, context_instance=RequestContext(request))
+		else:
+			userDelLogic = User.objects.get(pk=id_usuario)
+			userDelLogic.is_active = False
+			userDelLogic.save()
+			return HttpResponseRedirect('/adm_usuarios/')
 	
 	elif id_usuario == '1':
 		mensaje="Imposible eliminar usuario, el usuario es el Administrador"

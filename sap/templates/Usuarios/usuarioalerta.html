@@ -3,10 +3,20 @@
 <div class="jumbotron">
 	<div class="bs-example">
 		<h2>Notificacion</h2>
-		<form action="" method="post">
-			{% csrf_token %}
 			<p class="text-warning"><small>{{ mensaje }}</small></p>
-			<br>
+			{% if lista_proyectos %}
+				<div class="panel-group" id="accordion">
+					{% for proyecto in  lista_proyectos%}
+						<div class="panel panel-default">
+				    		<div class="panel-heading">
+				     			 <h4 class="panel-title">
+				       				<a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ user.id }}">{{ proyecto.nombre }}</a>
+				      			</h4>
+				    		</div>
+						</div>
+					{% endfor %}
+				</div>
+			{% endif %}	
 			<a type="button" class="btn btn-default" href="/adm_usuarios/">Volver</a>
         </form>
 	</div>

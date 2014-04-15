@@ -2,7 +2,12 @@ $('.carousel').carousel({
 	interval:10000
 });
 
-$(document).on("click", ".open-Modal", function () {
-var user_id = $(this).data('id');
-document.getElementById("link").setAttribute("href",'eliminar/'+user_id);
+$(document).on("click", ".usuarios", function () {
+var id = $(this).data('id');
+document.getElementById("link").setAttribute("href",'eliminar/'+id);
+});
+
+$(document).on("click", ".proyectos", function () {
+	var id = $(this).data('id');
+	document.getElementById("proyecto").setAttribute("href",'adm_proyecto/eliminar/'+id);
 });

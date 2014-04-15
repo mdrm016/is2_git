@@ -16,6 +16,8 @@ urlpatterns = patterns('',
     
     #""" Incluimos la urls.py de la aplicacion usuarios"""
     url(r'^', include('aplicaciones.usuarios.urls')),
-
+    
+    #""" Incluimos la urls.py de la aplicacion Proyectos"""
+    url(r'^', include('aplicaciones.proyectos.urls')),
 
 )

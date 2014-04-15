@@ -4,7 +4,8 @@ from django.views.generic import TemplateView
 from aplicaciones.autenticacion.forms import LoginForms
 from django.contrib.auth import login, logout, authenticate
 from django.http import HttpResponseRedirect
-
+from aplicaciones.proyectos.models import Proyectos
+from django.contrib.auth.models import User
 
 class Autenticacion(TemplateView):
     """"Verificacion de autenticacion de usuario
@@ -26,7 +27,9 @@ class Autenticacion(TemplateView):
         if not request.user.is_authenticated():
             return HttpResponseRedirect('login/')
         else:
-            return render_to_response('inicio.html', context_instance=RequestContext(request))
+            proyectos = Proyectos.objects.all()
+            ctx = {'lista_proyectos':proyectos}
+            return render_to_response('inicio.html', ctx, context_instance=RequestContext(request))
 
     
 def login_view(request):
