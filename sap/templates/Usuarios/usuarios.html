@@ -53,6 +53,7 @@
 	<br>
 		{% if lista_usuarios %}
 			{% for user in lista_usuarios %}
+				{% if user.is_active %}
 	<div class="panel panel-default">
 				    <div class="panel-heading">
 				      <h4 class="panel-title">
@@ -65,11 +66,12 @@
 				      <div class="panel-body">
 				      		<a href="consultar/{{ user.id }}/"><button type="button" class="btn btn-default btn-sm">Consultar</button></a>
 				      		<a href="modificar/{{ user.id }}/"><button type="button" class="btn btn-default btn-sm">Modificar</button></a>
-				      		<button class="open-Modal btn btn-danger btn-sm" data-toggle="modal" data-target="#myModal" data-id="{{ user.id }}">Eliminar</button>
+				      		<button class="usuarios btn btn-danger btn-sm" data-toggle="modal" data-target="#myModal" data-id="{{ user.id }}">Eliminar</button>
 
 				      </div>
 				    </div>
 	</div>
+				{% endif %}
 			{% endfor %}
 		{% endif %}
 		

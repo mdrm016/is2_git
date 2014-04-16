@@ -4,7 +4,7 @@
 <div class="menu">
 	<ul>
 		<li id="option1" class="active">
-			<a href="#">Proyectos</a>
+			<a href="/">Proyectos</a>
 		</li>
 		<li id="option2" >
 			<a href="#">Solicitudes</a>
@@ -32,13 +32,102 @@
 {% block contenido %}
 <div class="content-secondary">
 <!-- Aca van la  lista de Proyectos.. o de Solicitudes.. o de credenciales -->
-	<div class="list-group">
-		<a href="#" class="list-group-item">Proyecto 1</a>
-		<a href="#" class="list-group-item">Proyecto 2</a>
-		<a href="#" class="list-group-item">Proyecto 3</a>
-		<a href="#" class="list-group-item">Proyecto 4</a>
-		<a href="#" class="list-group-item">Proyecto 5</a>
-	</div>
+		{% if lista_proyectos %}
+		<div class="row ">
+			<div class="panel-group" id="accordion">
+				<div class="panel panel-default">
+					<div class="row color1">
+				    	<div class="col-md-4">
+				   			<div class="panel-heading">
+				      			<h4 class="panel-title"><b>Nombre</b></h4>
+				    		</div>
+				    	</div>
+				    
+				    	<div class="col-md-4">
+				    		<div class="panel-heading">
+				      			<h4 class="panel-title"><b>Lider</b></h4>
+				    		</div>
+				    	</div>
+				    
+				    	<div class="col-md-4">
+				    		<div class="panel-heading">
+				      			<h4 class="panel-title"><b>Estado</b></h4>
+				    		</div>
+				    	</div>
+				    </div>
+				</div>
+			{% for proyecto in lista_proyectos %}
+				<div class="panel panel-default">
+					<div class="col-md-4">
+				    	<div class="panel-heading">
+				      		<h4 class="panel-title">
+				        		<a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ proyecto.id }}">
+				          		{{ proyecto.nombre }}
+				        		</a>
+				      		</h4>
+				    	</div>
+				    </div>
+				    
+				    <div class="col-md-4">
+				    	<div class="panel-heading">
+				      		<h4 class="panel-title">
+				        		<a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ proyecto.id }}">
+				          		{{ proyecto.lider }}
+				        		</a>
+				      		</h4>
+				    	</div>
+				    </div>
+				    
+				    <div class="col-md-4">
+				    	<div class="panel-heading">
+				      		<h4 class="panel-title">
+				        		<a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ proyecto.id }}">
+				          		{{ proyecto.estado }}
+				        		</a>
+				      		</h4>
+				    	</div>
+				    </div>
+				    
+				    <div id="collapse{{ proyecto.id }}" class="panel-collapse collapse pull-left">
+				      <div class="panel-body">
+				      		<a href="adm_proyectos/consultar/{{ proyecto.id }}/"><button type="button" class="btn btn-default btn-sm">Consultar</button></a>
+				      		<a href="adm_proyectos/modificar/{{ proyecto.id }}/"><button type="button" class="btn btn-default btn-sm">Modificar</button></a>
+				      		<button class="btn btn-danger btn-sm proyectos" data-toggle="modal" data-target="#myModal" data-id="{{ proyecto.id }}">Eliminar</button>
+				      		<a href="adm_proyectos/gestionar/{{ proyecto.id }}/"><button type="button" class="btn btn-primary btn-sm">Gestionar Proyecto</button></a>
+				      </div>
+				    </div>
+				</div>
+				
+			{% endfor %}
+		</div>
+		</div>
+		{% else %}
+			<div class="jumbotron">
+				<div class="bs-example">
+						<p class="text-warning" align="center"><small>Actualmente no hay proyectos cargados en el sistema</small></p>
+				</div>
+			</div>
+		{% endif %}
+		
+		<!-- Ininicia Modal -->
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		        <h4 class="modal-title" id="myModalLabel">Eliminar</h4>
+		      </div>
+		      <div class="modal-body">
+		        	Esta usted seguro de que desea eliminar el proyecto?
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+		       <a id="proyecto" href=""><button type="button" class="btn btn-danger">Estoy Seguro</button></a>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		<!-- Finaliza el Modal -->
 </div>
 {% endblock %}
 
