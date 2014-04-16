@@ -7,9 +7,10 @@ from django.template.context import RequestContext
 from django.contrib.auth.hashers import check_password, make_password
 from forms import UsuarioNuevoForm, UsuarioModificadoForm
 from .models import Usuarios
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
 from django.db.models import Q
 from collections import OrderedDict
+
 
 # Create your views here.
 
@@ -27,6 +28,7 @@ def administrarUsuarios(request):
 	
 	"""
 	error = False
+	
 	if 'busqueda' in request.GET:
 		busqueda = request.GET['busqueda']
 		if not busqueda:
@@ -69,13 +71,18 @@ def administrarUsuarios(request):
 				useri = set(user)
 				template_name='./Usuarios/usuarios.html'
 				return render(request, template_name, {'lista_usuarios': useri, 'error': error})
-
-	user = User.objects.all()
+	
+	usuarios = 0
+	mi_perfil = User.objects.get(username=request.user.username)
+	if mi_perfil.has_perm('usuarios.administrar_usuario'):
+		usuarios = User.objects.all()
+	
 	template_name='./Usuarios/usuarios.html'
-	return render(request, template_name, {'lista_usuarios': user})
+	return render(request, template_name, {'lista_usuarios': usuarios, 'mi_perfil': mi_perfil})
 	
 
 @login_required(login_url='/login/')
+@permission_required('usuarios.add_usuarios',raise_exception=True)
 def usuarionuevo(request):
 	""" Recibe un request, obtiene el formulario con los datos del usuario a crear
 	o la solicitud de envio de dicho formulario. Luego verifica los datos recibidos
@@ -132,6 +139,7 @@ def usuarionuevo(request):
 	return render(request, template_name, {'form': form})
 
 @login_required(login_url='/login/')
+@permission_required('usuarios.change_usuarios',raise_exception=True)
 def modificarUsuario(request, id_usuario):
 	""" Busca en la base de datos al usuario cuyos datos se quieren modificar.
 	Presenta esos datos en un formulario y luego se guardan los cambios realizados.
@@ -219,6 +227,7 @@ def consultarUsuario(request, id_usuario):
 
 #Revisar alternativa A2.2 cuando exista la tabla proyectos.
 @login_required(login_url='/login/')
+@permission_required('usuarios.delete_usuarios',raise_exception=True)
 def usuario_eliminar (request, id_usuario):
 	"""	
 		Comprueba que el id del usuario a eliminar no se sea del administrador,
@@ -244,7 +253,8 @@ def usuario_eliminar (request, id_usuario):
 		ctx = {'mensaje':mensaje}
 		return render_to_response('Usuarios/usuarioalerta.html',ctx, context_instance=RequestContext(request))
 		
-#def buscar_usuario(request):
+
+def buscar_usuario(request):
 	""" Recibe un request, obtiene la lista de todos los usuarios del sistema que tengan
 	coincidencias con lo solicitado luego retorna el html renderizado con la lista de
 	dichos usuarios 
@@ -254,19 +264,10 @@ def usuario_eliminar (request, id_usuario):
 	@rtype: django.http.HttpResponse
 	@return: usuarios.html, donde se listan los usuarios, ademas de las funcionalidades para un usuario
 	
-	@author: ysapy ortiz
+	@author: ysapy ortiz 
 	
-	
-	if request.POST:
-		dato=request.POST.get()
-		usuario = User.objects.get(username=dato)
-		#if (not usuario):
-		#	return HttpResponseRedirect('/adm_usuarios/')
-		template_name='./Usuarios/buscar_usuario.html'
-		return render(request, template_name, {'lista_usuarios': usuario})
-	return HttpResponseRedirect('/adm_usuarios/buscar/')"""
+	"""
 
-def buscar_usuario(request):
 	error = False
 	if 'busqueda' in request.GET:
 		busqueda = request.GET['busqueda']
