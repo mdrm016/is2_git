@@ -10,7 +10,7 @@ class Proyectos(models.Model):
     
     nombre = models.CharField(max_length=30, unique=True)
     lider = models.ForeignKey(User)
-    estado = models.CharField(max_length=15, choices=ESTADOS_PROYECTO, default='I')
+    estado = models.CharField(max_length=15, choices=ESTADOS_PROYECTO, default='Inactivo')
     fecha_inicio = models.DateField()
     duracion = models.IntegerField()
     is_active = models.BooleanField(default=True)
