@@ -4,7 +4,7 @@
 <div class="menu">
 	<ul>
 		<li id="option1" class="active">
-			<a href="#">Usuarios</a>
+			<a href="#">Roles</a>
 		</li>
 	</ul>
 </div>
@@ -14,7 +14,7 @@
 <div class="row">
 	<form class="navbar-form navbar-left">
 		
-		<a href="nuevo/"><button type="button" class="btn btn-default">Crear Usuario</button></a>
+		<a href="nuevo/"><button type="button" class="btn btn-default">Crear Rol</button></a>
 		<div class="form-group">
 			{% if error %}
 			<p style="color:red;">No se encontraron coincidencias.</p>
@@ -33,45 +33,47 @@
 <div class="content-secondary">
 <!-- Aca van la  lista de Proyectos.. o de Solicitudes.. o de credenciales -->
 	<div class="panel-group" id="accordion">
+	{% if lista_roles %}
+			{% for rol in lista_roles %}
 	<div class="panel panel-default">
 				    <div class="panel-heading">
 				      <h4 class="panel-title">
-				        <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ mi_perfil.id }}">
-				          	 Mi Perfil
+				        <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ rol.id }}">
+				          	 {{ rol.rol.name }}
 				        </a>
 				      </h4>
 				    </div>
-				    <div id="collapse{{ mi_perfil.id }}" class="panel-collapse collapse">
+				    <div id="collapse{{ rol.id }}" class="panel-collapse collapse">
 				      <div class="panel-body">
-				      		<a href="consultar/{{ mi_perfil.id }}/"><button type="button" class="btn btn-default btn-sm">Consultar</button></a>
-				      		<a href="modificar/{{ mi_perfil.id }}/"><button type="button" class="btn btn-default btn-sm">Modificar</button></a>
-				      		<button class="open-Modal btn btn-danger btn-sm" data-toggle="modal" data-target="#myModal" data-id="{{ mi_perfil.id }}">Eliminar</button>
+				      		<a href="consultar/{{ rol.id }}/"><button type="button" class="btn btn-default btn-sm">Consultar</button></a>
+				      		<a href="modificar/{{ rol.id }}/"><button type="button" class="btn btn-default btn-sm">Modificar</button></a>
+				      		<button class="open-Modal btn btn-danger btn-sm" data-toggle="modal" data-target="#myModal" data-id="{{ rol.id }}">Eliminar</button>
 
 				      </div>
 				    </div>
 	</div>
+			{% endfor %}
+		{% endif %}
 	<br>
-		{% if lista_usuarios %}
-			{% for user in lista_usuarios %}
-				{% if user.is_active %}
+		{% if lista_roles %}
+			{% for rol in lista_roles %}
 	<div class="panel panel-default">
 				    <div class="panel-heading">
 				      <h4 class="panel-title">
-				        <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ user.id }}">
-				          	{{ user.username }}
+				        <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ rol.id }}">
+				          	{{ rol.rol.name }}
 				        </a>
 				      </h4>
 				    </div>
-				    <div id="collapse{{ user.id }}" class="panel-collapse collapse">
+				    <div id="collapse{{ rol.id }}" class="panel-collapse collapse">
 				      <div class="panel-body">
-				      		<a href="consultar/{{ user.id }}/"><button type="button" class="btn btn-default btn-sm">Consultar</button></a>
-				      		<a href="modificar/{{ user.id }}/"><button type="button" class="btn btn-default btn-sm">Modificar</button></a>
-				      		<button class="usuarios btn btn-danger btn-sm" data-toggle="modal" data-target="#myModal" data-id="{{ user.id }}">Eliminar</button>
+				      		<a href="consultar/{{ rol.id }}/"><button type="button" class="btn btn-default btn-sm">Consultar</button></a>
+				      		<a href="modificar/{{ rol.id }}/"><button type="button" class="btn btn-default btn-sm">Modificar</button></a>
+				      		<button class="open-Modal btn btn-danger btn-sm" data-toggle="modal" data-target="#myModal" data-id="{{ rol.id }}">Eliminar</button>
 
 				      </div>
 				    </div>
 	</div>
-				{% endif %}
 			{% endfor %}
 		{% endif %}
 		
@@ -84,7 +86,7 @@
 		        <h4 class="modal-title" id="myModalLabel">Eliminar</h4>
 		      </div>
 		      <div class="modal-body">
-		        	Esta usted seguro de que desea eliminar al usuario?
+		        	Esta usted seguro de que desea eliminar el Rol?
 		      </div>
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>

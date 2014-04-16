@@ -22,6 +22,11 @@ class Usuarios(models.Model):
     especialidad = models.CharField(max_length=50)
     observaciones = models.TextField(max_length=300)
     
+    class Meta:
+        permissions = (
+                       ("administrar_usuario", "puede visualizar los datos de un usuario"),
+        )
+    
     def __unicode__(self):
         return self.user.username
     
