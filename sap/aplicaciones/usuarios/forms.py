@@ -22,7 +22,7 @@ class UsuarioNuevoForm (forms.Form):
         
     """
     
-    Nombre_de_Usuario = forms.CharField(widget=forms.TextInput(), validators=[validate_username_unique], max_length=14, min_length=5, required=True, error_messages={'required': 'Ingrese un nombre de usuario', 'max_length': 'Longitud maxima: 14', 'min_length': 'Longitud minima: 5 caracteres'})
+    Nombre_de_Usuario = forms.CharField(widget=forms.TextInput(), validators=[validate_username_unique], max_length=14, min_length=5, required=True, error_messages={'required': 'Ingrese un nombre de usuario', 'max_length': 'Longitud maxima: 14 caracteres', 'min_length': 'Longitud minima: 5 caracteres'})
     Contrasenha = forms.CharField(widget=forms.PasswordInput(render_value=False), max_length=14, min_length=5, required=True, error_messages={'required': 'Ingrese contrasenha', 'max_length': 'Longitud maxima: 14', 'min_length': 'Longitu minima: 5 caracteres',})
     Confirmar_contrasenha = forms.CharField(widget=forms.PasswordInput(render_value=False), max_length=14, min_length=5, required=True, error_messages={'required': 'Ingrese contrasenha', 'max_length': 'Longitud maxima: 14', 'min_length': 'Longitu minima: 5 caracteres',})
     Email = forms.CharField(widget=forms.TextInput(), required=False)
