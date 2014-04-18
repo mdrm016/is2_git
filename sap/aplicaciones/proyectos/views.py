@@ -5,7 +5,7 @@ from .models import Proyectos
 from django.contrib.auth.models import User
 from django.db.models import Q
 from aplicaciones.usuarios.models import Usuarios
-from itertools import chain
+from aplicaciones.fases.models import Fases
 
 def adm_proyectos (request):
     
@@ -135,9 +135,8 @@ def modificar_proyecto (request, id_proyecto):
 
 def consultar_proyecto (request, id_proyecto):
     proyecto = Proyectos.objects.get(id=id_proyecto)
-    # conseguir el contexto de las fases y sus estados
-    #fases = Fases.objects.filter(id_proyecto = id_proyecto)
-    ctx = {'proyecto':proyecto}
+    fases = Fases.objects.filter(proyecto = id_proyecto)
+    ctx = {'proyecto':proyecto, 'fases':fases}
     template_name = 'proyectos/consultarproyecto.html'
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
 
@@ -158,7 +157,6 @@ def listar_miembros (request, id_proyecto):
     #obtener Roles.
     proyecto = Proyectos.objects.get(id=id_proyecto)
     miembros = Proyectos.objects.get(id=id_proyecto).miembros.all()
-    print miembros
     ctx ={'miembros':miembros, 'proyecto':proyecto}
     template_name = 'proyectos/listarmiembrosproyecto.html'
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
