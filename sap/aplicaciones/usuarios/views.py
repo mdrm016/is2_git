@@ -244,7 +244,7 @@ def usuario_eliminar (request, id_usuario):
         
 	@author: Marcelo Denis"""
 	if id_usuario != '1':
-		proyecto = Proyectos.objects.filter(lider_id=id_usuario)
+		proyecto = Proyectos.objects.filter(lider_id=id_usuario, is_active=True)
 		if proyecto:
 			if len(proyecto) > 1:
 				mensaje="Imposible eliminar usuario, el usuario es el lider de los proyectos"	

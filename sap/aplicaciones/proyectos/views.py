@@ -40,6 +40,7 @@ def adm_proyectos (request):
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
 
 def crear_proyecto (request):
+    
     if request.method == 'POST':
         form = ProyectoNuevoForm(request.POST)
         if form.is_valid():
@@ -67,7 +68,7 @@ def crear_proyecto (request):
             mensaje="Proyecto creado exitosamente"
             ctx = {'mensaje':mensaje}
             return render_to_response('proyectos/proyectoalerta.html',ctx, context_instance=RequestContext(request))
-    else:    
+    else:
         form = ProyectoNuevoForm()
         
     ctx ={'form': form}      
@@ -75,6 +76,7 @@ def crear_proyecto (request):
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
 
 def modificar_proyecto (request, id_proyecto):
+    
     proyecto = Proyectos.objects.get(id=id_proyecto)
     mensaje=''
     if request.method == 'POST':
@@ -199,7 +201,7 @@ def importar (request, id_proyecto):
                 miembro = Usuarios.objects.get(user_id=miembro_id)
                 proyecto.miembros.add(miembro)
                 
-            fasesImportadas = Fases.objects.filter(proyecto=id_proyecto)     
+            fasesImportadas = Fases.objects.filter(proyecto=id_proyecto, is_active=True)     
             for faseImport in fasesImportadas:
                 fase = Fases()
                 fase.nombre = faseImport.nombre

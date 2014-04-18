@@ -1,24 +1,33 @@
 {% extends "base_general.html" %}
 {% block contenido %}
 <div class="jumbotron">
-	<div class="bs-example">
+	<div class="bs-example" align="center">
 		<h2>Notificacion</h2>
 			<p class="text-warning"><small>{{ mensaje }}</small></p>
 			{% if lista_proyectos %}
-				<div class="panel-group" id="accordion">
-					{% for proyecto in  lista_proyectos%}
-						<div class="panel panel-default">
-				    		<div class="panel-heading">
-				     			 <h4 class="panel-title">
-				       				<a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ user.id }}">{{ proyecto.nombre }}</a>
-				      			</h4>
-				    		</div>
+				<div class="container">
+					<div class="row">
+						<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
 						</div>
-					{% endfor %}
+				
+						<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+							<table class="table table-hover table-bordered table-condensed table-responsive">
+								<tbody>
+						  		{% for proyecto in  lista_proyectos%}
+									<tr class="active">
+										<td><p><h4>{{ proyecto.nombre }}</h4></p></td>
+									</tr>
+								{% endfor %}
+								</tbody>
+							</table>
+						</div>
+				
+						<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+						</div>					
+					</div>
 				</div>
 			{% endif %}	
-			<a type="button" class="btn btn-default" href="/adm_usuarios/">Volver</a>
-        </form>
+		<a type="button" class="btn btn-default" href="/adm_usuarios/">Volver</a>
 	</div>
 </div>
 {% endblock %}

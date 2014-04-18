@@ -58,7 +58,7 @@ def login_view(request):
                     login(request, usuario)
                     return HttpResponseRedirect('/')
                 else:
-                    mensaje = 'Disculpa, el nombre de Usuario o la Clave no coinciden.'
+                    mensaje = 'Disculpa, el Nombre de Usuario o la Clave no coinciden.'
         form = LoginForms()
         ctx = {'form':form, 'mensaje':mensaje}
         return render_to_response ('autenticacion/autenticacion.html', ctx, context_instance=RequestContext(request))      
