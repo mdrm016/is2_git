@@ -99,7 +99,7 @@ def modificar_proyecto (request, id_proyecto):
             print miembros
             print proyecto.miembros
             #si exite ya un proyecto con el nombre suministrado y el nombre suminitrado es distinto al del proyecto que esta siendo modificado
-            # Comprobar con fases y miembros de comite para pasar a un estado en construccion con un elif
+            # Comprobar cantidad miembros de comite para pasar a un estado en construccion con un elif
             if Proyectos.objects.filter(nombre=nombreNuevo) and nombreNuevo != proyecto.nombre:
                 data ={'Nombre_del_Proyecto':nombreNuevo, 'Lider_Actual':lider, 'Duracion':duracion}  
                 form = ProyectoModificadoForm(data)
@@ -108,6 +108,9 @@ def modificar_proyecto (request, id_proyecto):
             else:
                 if nombreNuevo == proyecto.nombre and  lideruser == proyecto.lider and estado == proyecto.estado and duracion == proyecto.duracion and not miembros:
                       mensaje="Proyecto Guardado sin modificaciones"
+                      
+                elif estado == 'En Construccion' and not Fases.objects.filter(proyecto = id_proyecto):
+                    mensaje="El proyecto no puede pasar a un estado En Construccion si aun no tiene fases"
                 else:
                     proyecto.nombre=nombreNuevo
                     proyecto.lider=lideruser
@@ -154,10 +157,66 @@ def eliminar_proyecto (request, id_proyecto):
         return HttpResponseRedirect('/')
         
 def listar_miembros (request, id_proyecto):
-    #obtener Roles.
+    
     proyecto = Proyectos.objects.get(id=id_proyecto)
     miembros = Proyectos.objects.get(id=id_proyecto).miembros.all()
+    #obtener Roles.
     ctx ={'miembros':miembros, 'proyecto':proyecto}
     template_name = 'proyectos/listarmiembrosproyecto.html'
+    return render_to_response(template_name, ctx, context_instance=RequestContext(request))
+
+def importar_proyecto (request):
+    
+    proyectos = Proyectos.objects.filter(is_active=True)
+    ctx ={'lista_proyectos':proyectos}
+    template_name = 'proyectos/importarproyecto.html'
+    return render_to_response(template_name, ctx, context_instance=RequestContext(request))
+
+def importar (request, id_proyecto):
+    
+    proyectoImportado = Proyectos.objects.get(id=id_proyecto)
+    if request.method == 'POST':
+        form = ProyectoNuevoForm(request.POST)
+        if form.is_valid():
+            form.clean()
+            nombre = form.cleaned_data['Nombre_del_Proyecto'] 
+            lider =  form.cleaned_data['Lider']
+            fecha_inicio = form.cleaned_data['Fecha_de_Inicio']
+            duracion =  form.cleaned_data['Duracion']
+            miembros = form.cleaned_data['Miembros']
+            
+            user = User.objects.get(id=lider)
+            
+            proyecto = Proyectos()
+            proyecto.nombre=nombre
+            proyecto.lider=user
+            proyecto.fecha_inicio=fecha_inicio
+            proyecto.duracion=duracion
+            proyecto.is_active='True'
+            proyecto.save()
+            
+            for miembro_id in miembros:
+                miembro = Usuarios.objects.get(user_id=miembro_id)
+                proyecto.miembros.add(miembro)
+                
+            fasesImportadas = Fases.objects.filter(proyecto=id_proyecto)     
+            for faseImport in fasesImportadas:
+                fase = Fases()
+                fase.nombre = faseImport.nombre
+                fase.descripcion = faseImport.descripcion
+                fase.duracion = faseImport.duracion
+                fase.estado = 'DF'
+                fase.fechainicio = faseImport.fechainicio
+                fase.proyecto = proyecto
+                fase.save()
+                
+            mensaje="Proyecto importado exitosamente"
+            ctx = {'mensaje':mensaje}
+            return render_to_response('proyectos/proyectoalerta.html',ctx, context_instance=RequestContext(request))
+    else:    
+        form = ProyectoNuevoForm()
+        
+    ctx ={'form': form, 'proyecto':proyectoImportado}      
+    template_name='proyectos/crearproyectoimportado.html'
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
     

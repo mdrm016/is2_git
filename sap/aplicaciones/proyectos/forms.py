@@ -8,7 +8,7 @@ from django.contrib.admin import widgets
 from aplicaciones.usuarios.models import Usuarios
 
 def validate_nombreproyecto_unique(value):
-    if Proyectos.objects.filter(nombre=value).exists():
+    if Proyectos.objects.filter(nombre=value, is_active=True).exists():
         raise ValidationError(u'El nombre del proyecto ya existe y no puede haber duplicados')
     
 def validate_fechainicio_proyecto (value):

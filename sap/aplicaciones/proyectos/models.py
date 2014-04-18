@@ -9,7 +9,7 @@ class Proyectos(models.Model):
         ('Finalizado', 'Finalizado'),
     )
     
-    nombre = models.CharField(max_length=30, unique=True)
+    nombre = models.CharField(max_length=30)
     lider = models.ForeignKey(User)
     estado = models.CharField(max_length=15, choices=ESTADOS_PROYECTO, default='Inactivo')
     fecha_inicio = models.DateField()

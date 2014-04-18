@@ -3,7 +3,13 @@
 
 {% block contenido %}
 	<h1 align="center">Registro de Usuario</h1>
-	<p class="error">{{ mensaje }}</p>
+	{% if mensaje %}
+		<div class="jumbotron">
+			<div class="bs-example">
+				<p class="text-warning" align="center"><small>{{ mensaje }}</small></p>
+			</div>
+		</div>
+	{% endif %}
 	<div class="jumbotron boxlogin">
 		<form method="POST" name="flogin" id="flogin">{% csrf_token %}
 			{{ form.as_p }}

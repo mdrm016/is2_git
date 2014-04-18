@@ -1,0 +1,40 @@
+{% extends "base_general.html" %}
+
+{% block menu %}		
+<div class="menu">
+	<ul>
+		<li id="option1" class="active">
+			<a href="#">Importar {{ proyecto.nombre }}</a>
+		</li>
+	</ul>
+</div>
+{% endblock %}
+
+{% block contenido %}
+<div class="content-secondary">
+	<div class="container">
+		<div class="row">
+			<form action="" method="post">{% csrf_token %}
+				<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+				</div>
+				
+				<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+					{% if form.errors %}
+						<font color="red"><h4><p align="center"><b>Por favor verifique:</b></p></h4></font>
+					{% endif %}
+					<table class="table table-hover table-bordered table-condensed table-responsive">
+						{{ form.as_table }}
+					</table>
+					<div align="center"><br>
+						<input class="btn btn-default" type="submit" value="Importar Proyecto"/>
+						<a href="/"><button type="button" class="btn btn-default">Cancelar</button></a>
+					</div>
+				</div>
+				
+				<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+{% endblock %}
