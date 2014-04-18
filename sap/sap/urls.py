@@ -22,9 +22,6 @@ urlpatterns = patterns('',
 
     #""" Incluimos la urls.py de la aplicacion Proyectos"""
     url(r'^', include('aplicaciones.proyectos.urls')),
-    
-    #""" Incluimos la urls.py de la aplicacion Fases"""
-    url(r'^', include('aplicaciones.fases.urls')),
 
 )
 
