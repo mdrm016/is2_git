@@ -19,4 +19,4 @@ class FaseNuevaForm(forms.Form):
     Descripcion = forms.CharField(widget=forms.TextInput(), required=True, max_length=300, error_messages={'required':'Ingrese una descripcio para la fase', 'max_length':'Longitud maxima 300'})
    # Estado = forms.ChoiceField(widget=Select, choice=ESTADOS_CREAR, required=True)
     Duracion_semanas = forms.IntegerField(required=True, error_messages={'required':'Ingrese una duracion estimada en semanas'})
-    Proyecto = forms.IntegerField()
+    

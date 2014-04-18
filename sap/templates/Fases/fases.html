@@ -13,7 +13,7 @@
 {% block botones %}
 <div class="row">
 	<form class="navbar-form navbar-left">
-		<a href="#"><button type="button" class="btn btn-default">Crear Fase</button></a>
+		<a href="nuevo/"><button type="button" class="btn btn-default">Crear Fase</button></a>
 		<button type="submit" class="btn btn-default">Importar Fase</button>
 		<form action="" method="get">
 				<input type="text" name="busqueda" class="btn btn-default">
@@ -80,7 +80,7 @@
 		{% else %}
 			<div class="jumbotron">
 				<div class="bs-example">
-						<p class="text-warning" align="center"><small>Actualmente no hay Fases en el proyecto</small></p>
+						<p class="text-warning" align="center"><small>No se encontraron Fases</small></p>
 				</div>
 			</div>
 		{% endif %}
