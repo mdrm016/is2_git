@@ -258,7 +258,8 @@ def usuario_eliminar (request, id_usuario):
 			userDelLogic.save()
 			return HttpResponseRedirect('/adm_usuarios/')
 	
-	elif id_usuario == '1':
+	else:
+	#elif id_usuario == '1':
 		mensaje="Imposible eliminar usuario, el usuario es el Administrador"
 		ctx = {'mensaje':mensaje}
 		return render_to_response('Usuarios/usuarioalerta.html',ctx, context_instance=RequestContext(request))

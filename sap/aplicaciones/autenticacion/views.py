@@ -9,7 +9,7 @@ from django.contrib.auth.models import User
 
 class Autenticacion(TemplateView):
     """"Verificacion de autenticacion de usuario
-        si el usuario esta registrado pasa a la pagina de inicio
+        si el usuario esta registrado pasa a la pagina de adminitracion de proyectos
         de lo contrario pasa a la pagina de autenticacion.
         
         @type TemplateView: django.views.generic.TemplateView
@@ -27,9 +27,7 @@ class Autenticacion(TemplateView):
         if not request.user.is_authenticated():
             return HttpResponseRedirect('login/')
         else:
-            proyectos = Proyectos.objects.all()
-            ctx = {'lista_proyectos':proyectos}
-            return render_to_response('inicio.html', ctx, context_instance=RequestContext(request))
+            return HttpResponseRedirect('/adm_proyectos/')
 
     
 def login_view(request):

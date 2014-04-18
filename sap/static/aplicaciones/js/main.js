@@ -9,5 +9,5 @@ document.getElementById("link").setAttribute("href",'eliminar/'+id);
 
 $(document).on("click", ".proyectos", function () {
 	var id = $(this).data('id');
-	document.getElementById("proyecto").setAttribute("href",'adm_proyecto/eliminar/'+id);
+	document.getElementById("proyecto").setAttribute("href",'eliminar/'+id);
 });

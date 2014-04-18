@@ -22,10 +22,10 @@ def adm_fases(request, id_proyecto):
         else:
             fasenombre = Fases.objects.filter(nombre=busqueda, proyecto=id_proyecto, is_active='True')
             faseestado = Fases.objects.filter(estado=busqueda, proyecto=id_proyecto, is_active='True')
-            fasefechainicio = Fases.objects.filter(fechainicio=busqueda, proyecto=id_proyecto, is_active='True')
-            faseduracion = Fases.objects.filter(duracion=busqueda, proyecto=id_proyecto, is_active='True')
+           # fasefechainicio = Fases.objects.filter(fechainicio=busqueda, proyecto=id_proyecto, is_active='True')
+           # faseduracion = Fases.objects.filter(duracion=busqueda, proyecto=id_proyecto, is_active='True')
             
-            if (not fasenombre) & (not faseestado) & (not fasefechainicio) & (not faseduracion):
+            if (not fasenombre) & (not faseestado):
                 error = True
                 template_name = './Fases/fases.html'
                 return render(request, template_name, {'error':error})
@@ -35,10 +35,6 @@ def adm_fases(request, id_proyecto):
                     fases.extend(fasenombre)
                 if (faseestado):
                     fases.extend(faseestado)
-                if (fasefechainicio):
-                    fases.extend(fasefechainicio)
-                if (faseduracion):
-                    fases.extend(faseduracion)
                 listfases = set(fases)
                 template_name='./Fases/fases.html'
                 return render(request, template_name, {'lista_fases': listfases, 'error':error})
