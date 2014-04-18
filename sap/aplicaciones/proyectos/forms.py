@@ -45,6 +45,6 @@ class ProyectoModificadoForm(forms.Form):
     Estado_Actual = forms.CharField(widget=forms.TextInput(), required=False)
     Nuevo_Estado = forms.ChoiceField(widget=forms.Select(), choices= (ESTADOS_PROYECTO), required=False)
     Duracion = forms.IntegerField(required=True, help_text='En semanas', validators=[validate_duracion_proyecto], error_messages={'required': 'Ingrese la duracion del proyecto',})
-    Cambio_de_Miembros = forms.MultipleChoiceField(widget=forms.SelectMultiple(), required=False, help_text='* Seleccione los nuevos miembros del proyecto', choices= (opcionMiembros) )
+    Cambio_de_Miembros = forms.MultipleChoiceField(widget=forms.SelectMultiple(), required=False, help_text='Seleccione los nuevos miembros del proyecto', choices= (opcionMiembros) )
     
     

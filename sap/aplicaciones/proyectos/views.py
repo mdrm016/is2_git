@@ -5,9 +5,20 @@ from .models import Proyectos
 from django.contrib.auth.models import User
 from django.db.models import Q
 from aplicaciones.usuarios.models import Usuarios
+from itertools import chain
 
 def adm_proyectos (request):
     
+    usuario = Usuarios.objects.get(user_id=request.user.id)
+    if request.user.id != 1:
+        proyectos = usuario.proyectos_set.all()
+        lider = Proyectos.objects.filter(lider_id=request.user.id)
+        miembros = proyectos | lider
+        proyectos = miembros.distinct()
+
+    else:
+        proyectos = Proyectos.objects.all()
+        
     busqueda = ''
     error=False
     if 'busqueda' in request.GET:
@@ -20,13 +31,9 @@ def adm_proyectos (request):
                 Q(fecha_inicio__icontains=busqueda) |
                 Q(duracion__icontains=busqueda) 
             )
-            proyectos = Proyectos.objects.filter(qset).distinct()
+            proyectos= proyectos.filter(qset).distinct()
             if not proyectos:
                 error = True
-        else:
-            proyectos = Proyectos.objects.all()
-    else:
-        proyectos = Proyectos.objects.all()
         
     ctx = {'lista_proyectos':proyectos, 'query':busqueda, 'error':error}   
     template_name = 'index.html'
