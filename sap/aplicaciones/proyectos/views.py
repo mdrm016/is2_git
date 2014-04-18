@@ -6,7 +6,10 @@ from django.contrib.auth.models import User
 from django.db.models import Q
 from aplicaciones.usuarios.models import Usuarios
 from aplicaciones.fases.models import Fases
+from django.contrib.auth.decorators import login_required
 
+
+@login_required(login_url='/login/')
 def adm_proyectos (request):
     
     usuario = Usuarios.objects.get(user_id=request.user.id)
@@ -39,6 +42,7 @@ def adm_proyectos (request):
     template_name = 'index.html'
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
 
+@login_required(login_url='/login/')
 def crear_proyecto (request):
     
     if request.method == 'POST':
@@ -75,6 +79,7 @@ def crear_proyecto (request):
     template_name='proyectos/crearproyecto.html'
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
 
+@login_required(login_url='/login/')
 def modificar_proyecto (request, id_proyecto):
     
     proyecto = Proyectos.objects.get(id=id_proyecto)
@@ -138,6 +143,7 @@ def modificar_proyecto (request, id_proyecto):
     template_name='proyectos/modificarproyecto.html'
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
 
+@login_required(login_url='/login/')
 def consultar_proyecto (request, id_proyecto):
     proyecto = Proyectos.objects.get(id=id_proyecto)
     fases = Fases.objects.filter(proyecto = id_proyecto)
@@ -145,6 +151,7 @@ def consultar_proyecto (request, id_proyecto):
     template_name = 'proyectos/consultarproyecto.html'
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
 
+@login_required(login_url='/login/')
 def eliminar_proyecto (request, id_proyecto):
     proyecto = Proyectos.objects.get(id=id_proyecto)
     if proyecto.estado == 'Finalizado':
@@ -157,7 +164,8 @@ def eliminar_proyecto (request, id_proyecto):
         proyecto.is_active = False
         proyecto.save()
         return HttpResponseRedirect('/')
-        
+
+@login_required(login_url='/login/')      
 def listar_miembros (request, id_proyecto):
     
     proyecto = Proyectos.objects.get(id=id_proyecto)
@@ -167,6 +175,7 @@ def listar_miembros (request, id_proyecto):
     template_name = 'proyectos/listarmiembrosproyecto.html'
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
 
+@login_required(login_url='/login/')
 def importar_proyecto (request):
     
     proyectos = Proyectos.objects.filter(is_active=True)
@@ -174,6 +183,7 @@ def importar_proyecto (request):
     template_name = 'proyectos/importarproyecto.html'
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
 
+@login_required(login_url='/login/')
 def importar (request, id_proyecto):
     
     proyectoImportado = Proyectos.objects.get(id=id_proyecto)
