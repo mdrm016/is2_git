@@ -41,8 +41,8 @@ class test_user(TestCase):
         response = usuario_eliminar(request, id)
         
         """ Nos aseguramos que el usuario con id se ha eliminado. """
-        usuarioname = User.objects.filter(pk=id)
-        self.assertFalse(usuarioname)
+        usuarioname = User.objects.get(pk=id)
+        self.assertFalse(usuarioname.is_active)
         
         """ Ahora nos aseguramos de que el Administrador no puede ser eliminado
             utilizando la tecnica anterior.

@@ -346,10 +346,10 @@ def importar (request, id_proyecto):
             for faseImport in fasesImportadas:
                 fase = Fases()
                 fase.nombre = faseImport.nombre
-                fase.descripcion = faseImport.descripcion
-                fase.duracion = faseImport.duracion
+                #fase.descripcion = faseImport.descripcion
+                #fase.duracion = faseImport.duracion
                 fase.estado = 'DF'
-                fase.fechainicio = faseImport.fechainicio
+                #fase.fechainicio = faseImport.fechainicio
                 fase.proyecto = proyecto
                 fase.save()
                 
