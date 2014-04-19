@@ -7,12 +7,12 @@ class Proyectos(models.Model):
     """ El modelo Proyectos describe la estructura de cada instancia de un proyecto, los campos
     que contiene el modelo son: 
     nombre: campo de tipo texto que contendra el nombre del proyecto.
-    lider: campo que contendrá una clave foranea a la tabla user, donde solo un usuario pude ser lider
+    lider: campo que contendra una clave foranea a la tabla user, donde solo un usuario pude ser lider
     de un proyecto.
     estado: campo de tipo texto que contendra uno de los siguientes estado de proyecto: Inactivo, En construccion, Finalizado.
     fecha_inicio: Campo de tipo fecha que contendra la fecha de inicio del proyecto.
     duracion: campo de tipo numerico que contendra la duracion de proyecto en semanas.
-    is_active: campo de tipo logico que indicará si el proyecto esta eliminado.
+    is_active: campo de tipo logico que indicara si el proyecto esta eliminado.
     miembros: campo que contendra la lista de miembros que trabajan en un proyecto. Es un muchos a muchos con la tabla Usuarios.
     Los proyectos seran ordenados en la tabla por nombre.
     
