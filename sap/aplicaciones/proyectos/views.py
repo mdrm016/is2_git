@@ -13,7 +13,7 @@ from django.contrib.auth.decorators import login_required
 def adm_proyectos (request):
     
     """ Recibe un request, se verifica cual es el usuario registrado y se obtiene la lista de proyectos
-    con los que esta relacionado desplegandolo en pantalla, además permite realizar busquedas avanzadas sobre
+    con los que esta relacionado desplegandolo en pantalla, ademas permite realizar busquedas avanzadas sobre
     los los proyectos que puede mostrar. Si el usuario es el administrador despliega todos los proyectos.
     
     @type request: django.http.HttpRequest.
