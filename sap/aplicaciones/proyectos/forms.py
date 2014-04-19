@@ -45,6 +45,16 @@ ESTADOS_PROYECTO=(
   
 class ProyectoNuevoForm(forms.Form):
     
+    """ Atributos de Proyecto necesarios para el registro en la base de datos
+    enviados al template html encargado de tomar los datos de registro.
+    Control de datos ingresados por el usuario.
+        
+    @type forms.Form: django.forms
+    @param forms.Form: Heredamos la clase forms.Form para hacer uso de sus funcionalidades en el formulario de registro
+    @author: Marcelo Denis
+        
+    """
+    
     Nombre_del_Proyecto = forms.CharField(widget=forms.TextInput(), validators=[validate_nombreproyecto_unique], max_length=15, min_length=2, required=True, help_text='*', error_messages={'required': 'Ingrese un nombre para el proyecto', 'max_length': 'Longitud maxima: 15', 'min_length': 'Longitud minima: 2 caracteres'})
     Lider =  forms.ChoiceField(widget=forms.Select(), choices= (opcionLider()), required=True, help_text='*', error_messages={'required': 'Seleccione un lider para el proyecto',})
     Fecha_de_Inicio =  forms.DateField(input_formats=['%Y-%m-%d'], widget=widgets.AdminDateWidget, required=True, help_text='* Ingrese en formato anho-mes-dia', error_messages={'required': 'Ingrese una fecha de inicio de proyecto'} )
@@ -61,6 +71,18 @@ class ProyectoNuevoForm(forms.Form):
 
     
 class ProyectoModificadoForm(forms.Form):
+    
+    """ Atributos de proyecto necesarios para la modificacion en la base de datos
+    de un proyecto. Este formulario con los campos descritos son 
+    enviados al template html encargado de desplegar los datos del proyecto a modificar.
+    
+    Control de datos ingresados por el usuario.
+        
+    @type forms.Form: django.forms
+    @param forms.Form: Heredamos la clase forms.Form para hacer uso de sus funcionalidades en el formulario de registro
+    @author: Marcelo Denis
+    
+    """
 
     Nombre_del_Proyecto = forms.CharField(widget=forms.TextInput(), max_length=15, min_length=2, required=True, error_messages={'required': 'Ingrese un nombre para el proyecto', 'max_length': 'Longitud maxima: 15', 'min_length': 'Longitud minima: 2 caracteres'})
     Lider_Actual = forms.CharField(widget=forms.TextInput(), required=False)

@@ -11,7 +11,7 @@ class test_user(TestCase):
     
     def setUp(self):
         """ Inicializamos la variable factory que posteriormente nos permitira cargar
-            un request para utilizarlo en las visata.
+            un request para utilizarlo en las vista.
         """
         self.factory = RequestFactory()
         
