@@ -27,14 +27,14 @@ class TestLoguin(TestCase):
         self.assertEqual(resp.status_code, 200)                                     #Pagina de login recibida con exito
         login = self.client.login(username=self.username, password=self.password)   #Proceso de autenticacion
         self.assertTrue(login)                                                      #Comprobamos si el usuario esta autenticado
-        resp = self.client.get('/')                                                 #Pasamos a la pagina de inicio
+        resp = self.client.get('/adm_usuarios/')                                                 #Pasamos a la pagina de inicio
         self.assertEqual(resp.status_code, 200)                                     #Pagina de inicio recibida con exito
         resp = self.client.get('/adm_usuarios/')                                    #Pasamos a la pagina de administracion de usuarios
         self.assertEqual(resp.status_code, 200)                                     #Pagina de adm_usuarios recibida con exito
         self.assertTrue('lista_usuarios' in resp.context)                           #Comprobamos si recibimos la lista de usuarios
         logout= self.client.logout()                                                #Cerramos la sesion actual
         self.assertFalse(logout)                                                    #Probamos que efectivamente la sesion esta cerrada
-        resp = self.client.get('/')                                                 #Pasamos a la pagina de inicio
+        resp = self.client.get('/adm_usuarios/')                                                 #Pasamos a la pagina de inicio
         self.assertNotEqual(resp.status_code, 200)                                  #Probamos que ya no podemos acceder al sistema si no estamos logueados
     
     def test_loguin_user(self):
@@ -44,14 +44,14 @@ class TestLoguin(TestCase):
         self.assertEqual(resp.status_code, 200)                                     #Pagina de login recibida con exito
         login = self.client.login(username=self.u1, password=self.p1)               #Proceso de autenticacion
         self.assertTrue(login)                                                      #Comprobamos si el usuario esta autenticado
-        resp = self.client.get('/')                                                 #Pasamos a la pagina de inicio
+        resp = self.client.get('/adm_proyectos/')                                   #Pasamos a la pagina de inicio
         self.assertEqual(resp.status_code, 200)                                     #Pagina de inicio recibida con exito
         resp = self.client.get('/adm_usuarios/')                                    #Pasamos a la pagina de administracion de usuarios
         self.assertEqual(resp.status_code, 200)                                     #Pagina de adm_usuarios recibida con exito
         self.assertTrue('lista_usuarios' in resp.context)                           #Comprobamos si recibimos la lista de usuarios
         logout= self.client.logout()                                                #Cerramos la sesion actual
         self.assertFalse(logout)                                                    #Probamos que efectivamente la sesion esta cerrada
-        resp = self.client.get('/')                                                 #Pasamos a la pagina de inicio
+        resp = self.client.get('/adm_proyectos/')                                   #Pasamos a la pagina de inicio
         self.assertNotEqual(resp.status_code, 200)                                  #Probamos que ya no podemos acceder al sistema si no estamos logueados
     
     def test_loguin_userAnonimo(self):
@@ -62,7 +62,7 @@ class TestLoguin(TestCase):
         self.assertEqual(resp.status_code, 200)                                     #Pagina de login recibida con exito
         login = self.client.login(username=self.u2, password=self.p2)              #Proceso de autenticacion
         self.assertFalse(login)                                                     #Comprobamos si el usuario esta autenticado
-        resp = self.client.get('/')                                                 #Pasamos a la pagina de inicio
+        resp = self.client.get('/adm_usuarios/')                                                 #Pasamos a la pagina de inicio
         self.assertEqual(resp.status_code, 302)                                     #Pagina de inicio recibida con exito
         resp = self.client.get('/adm_usuarios/')                                    #Pasamos a la pagina de administracion de usuarios
         self.assertEqual(resp.status_code, 302)                                     #Pagina de adm_usuarios recibida con exito

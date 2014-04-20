@@ -66,8 +66,13 @@
 				    
 				    <div id="collapse{{ fase.id }}" class="panel-collapse collapse pull-left">
 				      <div class="panel-body">
+<<<<<<< HEAD
 				      		<a href="consultar/{{ fase.id }}/"><button type="button" class="btn btn-default btn-sm">Consultar</button></a>
 				      		<a href="modificar/{{ fase.id }}"><button type="button" class="btn btn-default btn-sm">Modificar</button></a>
+=======
+				      		<a href="#"><button type="button" class="btn btn-default btn-sm">Consultar</button></a>
+				      		<a href="#"><button type="button" class="btn btn-default btn-sm">Modificar</button></a>
+>>>>>>> branch 'master' of git@github.com:mdrm016/is2_git.git
 				      		<button class="btn btn-danger btn-sm fases" data-toggle="modal" data-target="#myModal" data-id="{{ fase.id }}">Eliminar</button>
 				      		<a href="#"><button type="button" class="btn btn-primary btn-sm">Gestionar Fase</button></a>
 				      </div>
@@ -85,6 +90,7 @@
 			</div>
 		{% endif %}
 		
+
 			<!-- Ininicia Modal -->
 			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 				<div class="modal-dialog">
@@ -94,7 +100,7 @@
 							<h4 class="modal-title" id="myModalLabel">Eliminar</h4>
 						</div>
 						<div class="modal-body">
-							Esta usted seguro de que desea eliminar el proyecto?
+							Esta usted seguro de que desea eliminar la fase?
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
@@ -104,5 +110,6 @@
 				</div>
 			</div>
 <!-- Finaliza el Modal -->
+
 </div>
 {% endblock %}

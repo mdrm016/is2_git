@@ -107,11 +107,16 @@
 		</div>
 		{% else %}
 			{% if error %}
-				<font color="red"><h3><p align="center"><b>No se encontraron coincidencias.</b></p></h3></font>
+				<div class="jumbotron">
+  					<div class="alert alert-danger"><h3><p align="center"><b>No se encontraron coincidencias</b></p></h3></div>
+				</div>
+				<div  align="center">
+					<a type="button" class="btn btn-default" href="/">Volver</a>
+				</div>	
 			{% else %}
 				<div class="jumbotron">
 					<div class="bs-example">
-						<p class="text-warning" align="center"><small>Actualmente no hay proyectos cargados en el sistema</small></p>
+						<p class="text-warning" align="center"><small>Usted actualmente no esta asociado a ningun proyecto</small></p>
 					</div>
 				</div>
 			{% endif %}
@@ -138,15 +143,3 @@
 		<!-- Finaliza el Modal -->
 </div>
 {% endblock %}
-
-
-
-
-
-
-
-
-
-
-
-

@@ -8,18 +8,33 @@ from django.contrib.admin import widgets
 from aplicaciones.usuarios.models import Usuarios
 
 def validate_nombreproyecto_unique(value):
-    if Proyectos.objects.filter(nombre=value).exists():
+    if Proyectos.objects.filter(nombre=value, is_active=True).exists():
         raise ValidationError(u'El nombre del proyecto ya existe y no puede haber duplicados')
-    
-def validate_fechainicio_proyecto (value):
-        raise ValidationError(u'Ingrese una fecha valida')
 
 def validate_duracion_proyecto (value):
     if value < 1:
         raise ValidationError(u'La duracion debe ser mayor a cero.')
     
-opcionLider = [('', '--seleccione un lider--')] + [(Usuario.id, Usuario.username) for Usuario in User.objects.exclude(id='1')] 
-opcionMiembros = [(Usuario.user_id, Usuario.user.username) for Usuario in Usuarios.objects.exclude(user_id='1')]
+
+def opcionLider():
+    usuarios = User.objects.exclude(id='1')
+    resultado = []
+    tupla = ('', '--seleccione un lider--')
+    resultado.append(tupla)
+    for usuario in usuarios: 
+        if usuario.is_active:
+            tupla = (usuario.id, usuario.username)
+            resultado.append(tupla)
+    return resultado
+
+def opcionMiembros():
+    usuarios = Usuarios.objects.exclude(user_id='1')
+    resultado = []
+    for usuario in usuarios: 
+        if usuario.user.is_active:
+            tupla = (usuario.user_id, usuario.user.username)
+            resultado.append(tupla)
+    return resultado
 
 ESTADOS_PROYECTO=(
         ('', '--seleccione un Estado--'),
@@ -30,21 +45,58 @@ ESTADOS_PROYECTO=(
   
 class ProyectoNuevoForm(forms.Form):
     
+    """ Atributos de Proyecto necesarios para el registro en la base de datos
+    enviados al template html encargado de tomar los datos de registro.
+    Control de datos ingresados por el usuario.
+        
+    @type forms.Form: django.forms
+    @param forms.Form: Heredamos la clase forms.Form para hacer uso de sus funcionalidades en el formulario de registro
+    @author: Marcelo Denis
+        
+    """
+    
     Nombre_del_Proyecto = forms.CharField(widget=forms.TextInput(), validators=[validate_nombreproyecto_unique], max_length=15, min_length=2, required=True, help_text='*', error_messages={'required': 'Ingrese un nombre para el proyecto', 'max_length': 'Longitud maxima: 15', 'min_length': 'Longitud minima: 2 caracteres'})
-    Lider =  forms.ChoiceField(widget=forms.Select(), choices= (opcionLider), required=True, help_text='*', error_messages={'required': 'Seleccione un lider para el proyecto',})
+    Lider =  forms.ChoiceField(widget=forms.Select(), choices= (opcionLider()), required=True, help_text='*', error_messages={'required': 'Seleccione un lider para el proyecto',})
     Fecha_de_Inicio =  forms.DateField(input_formats=['%Y-%m-%d'], widget=widgets.AdminDateWidget, required=True, help_text='* Ingrese en formato anho-mes-dia', error_messages={'required': 'Ingrese una fecha de inicio de proyecto'} )
     Duracion = forms.IntegerField(required=True, help_text='* En semanas', validators=[validate_duracion_proyecto], error_messages={'required': 'Ingrese la duracion del proyecto',})
-    Miembros = forms.MultipleChoiceField(widget=forms.SelectMultiple(), required=False, help_text='Seleccione los miembros del proyecto', choices= (opcionMiembros))
+    Miembros = forms.MultipleChoiceField(widget=forms.SelectMultiple(), required=False, help_text='Seleccione los miembros del proyecto', choices= (opcionMiembros()))
     
-        
+    
+    def __init__(self, *args, **kwargs):
+        self.Lider = opcionLider()
+        self.Miembros = opcionMiembros()
+        super(ProyectoNuevoForm, self).__init__(*args, **kwargs)
+        self.fields['Lider']= forms.ChoiceField(widget=forms.Select(), choices= (self.Lider), required=True, help_text='*', error_messages={'required': 'Seleccione un lider para el proyecto',})
+        self.fields['Miembros'] = forms.MultipleChoiceField(widget=forms.SelectMultiple(), required=False, help_text='Seleccione los miembros del proyecto', choices= (self.Miembros))
+
+    
 class ProyectoModificadoForm(forms.Form):
+    
+    """ Atributos de proyecto necesarios para la modificacion en la base de datos
+    de un proyecto. Este formulario con los campos descritos son 
+    enviados al template html encargado de desplegar los datos del proyecto a modificar.
+    
+    Control de datos ingresados por el usuario.
+        
+    @type forms.Form: django.forms
+    @param forms.Form: Heredamos la clase forms.Form para hacer uso de sus funcionalidades en el formulario de registro
+    @author: Marcelo Denis
+    
+    """
 
     Nombre_del_Proyecto = forms.CharField(widget=forms.TextInput(), max_length=15, min_length=2, required=True, error_messages={'required': 'Ingrese un nombre para el proyecto', 'max_length': 'Longitud maxima: 15', 'min_length': 'Longitud minima: 2 caracteres'})
     Lider_Actual = forms.CharField(widget=forms.TextInput(), required=False)
-    Nuevo_Lider =  forms.ChoiceField(widget=forms.Select(), choices= (opcionLider), required=False)
+    Nuevo_Lider =  forms.ChoiceField(widget=forms.Select(), choices= (opcionLider()), required=False)
     Estado_Actual = forms.CharField(widget=forms.TextInput(), required=False)
     Nuevo_Estado = forms.ChoiceField(widget=forms.Select(), choices= (ESTADOS_PROYECTO), required=False)
     Duracion = forms.IntegerField(required=True, help_text='En semanas', validators=[validate_duracion_proyecto], error_messages={'required': 'Ingrese la duracion del proyecto',})
-    Cambio_de_Miembros = forms.MultipleChoiceField(widget=forms.SelectMultiple(), required=False, help_text='* Seleccione los nuevos miembros del proyecto', choices= (opcionMiembros) )
+    Cambio_de_Miembros = forms.MultipleChoiceField(widget=forms.SelectMultiple(), required=False, help_text='Seleccione los nuevos miembros del proyecto', choices= (opcionMiembros()) )
     
-    
+    def __init__(self, *args, **kwargs):
+        self.Nuevo_Lider = opcionLider()
+        self.Cambio_de_Miembros = opcionMiembros()
+        super(ProyectoModificadoForm, self).__init__( *args, **kwargs)
+        self.fields['Nuevo_Lider']= forms.ChoiceField(widget=forms.Select(), choices= (self.Nuevo_Lider), required=False)
+        self.fields['Cambio_de_Miembros'] = forms.MultipleChoiceField(widget=forms.SelectMultiple(), required=False, help_text='Seleccione los miembros del proyecto', choices= (self.Cambio_de_Miembros))
+
+   
