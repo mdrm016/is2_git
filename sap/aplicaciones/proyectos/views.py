@@ -183,7 +183,8 @@ def modificar_proyecto (request, id_proyecto):
                 template_name='proyectos/proyectoalerta.html'
                 return render_to_response(template_name, ctx, context_instance=RequestContext(request))
     else:
-        data ={'Nombre_del_Proyecto':proyecto.nombre, 'Lider_Actual':proyecto.lider, 'Estado_Actual':proyecto.estado, 'Duracion':proyecto.duracion, 'Miembros_Actuales': proyecto.miembros.all()}   
+        print proyecto.miembros.all()
+        data ={'Nombre_del_Proyecto':proyecto.nombre, 'Lider_Actual':proyecto.lider, 'Estado_Actual':proyecto.estado, 'Duracion':proyecto.duracion}   
         form = ProyectoModificadoForm(data)
         
     ctx ={'form': form, 'mensaje':mensaje, 'proyecto':proyecto}      
