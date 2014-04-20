@@ -1,0 +1,77 @@
+{% extends "base_general.html" %}
+
+{% block menu %}		
+<div class="menu">
+	<ul>
+		<li id="option1" class="active">
+			<a href="#">{{ fase.nombre }}</a>
+	</ul>
+</div>
+{% endblock %}
+
+{% block contenido %}
+<div class="content-secondary">
+	<div class="container">
+		<div class="row">
+				<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+				</div>
+				
+				<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+					<table class="table table-hover table-bordered table-condensed table-responsive">
+						<tbody>
+						  	<!-- Aplicadas en las filas -->
+						  	<tr class="active">
+						  		<td><p><h4>Id</h4></p></td>
+						  		<td><p><h4><span class="label label-default">{{ fase.id }}</span></h4></h4></p></td>
+							</tr>
+						  	<tr class="active">
+						  		<td><p><h4>Nombre:</h4></p></td>
+						  		<td><p><h4><span class="label label-default">{{ fase.nombre }}</span></h4></h4></p></td>
+						  	</tr>
+						  	<tr class="active">
+						  		<td><p><h4>Descripcion:</h4></p></td>
+						  		<td><p><h4><span class="label label-default">{{ fase.descripcion }}</span></h4></h4></p></td>
+						  	</tr>
+						  	<tr class="active">
+						  		<td><p><h4>Estado:</h4></p></td>
+						  		<td><p><h4><span class="label label-default">{{ fase.estado }}</span></h4></h4></p></td>
+						  	</tr>
+						 	<tr class="active">
+						  		<td><p><h4>Fecha de Inicio</h4></p></td>
+						  		<td><p><h4><span class="label label-default">{{ fase.fechainicio | date:"j F, Y" }}</span></h4></h4></p></td>
+							</tr>
+						  	<tr class="active">
+						  		<td><p><h4>Duracion:</h4></p></td>
+						  		<td><p><h4><span class="label label-default">{{ fase.duracion }} Semanas</span></h4></h4></p></td>
+						  	</tr>
+						  	<br>
+						</tbody>	
+					</table>
+					
+					<!-- <table class="table table-hover table-bordered table-condensed table-responsive">
+						<tbody>
+							<tr class="active">
+						  		<p><h2><span class="label label-default">Fases</span></h2></h4></p>
+						  	</tr>
+						  	<tr class="active">
+						  		<td><p><h4>Nombre de Fase</h4></p></td>
+						  		<td><p><h4>Estado</h4></p></td>
+						  	</tr>
+						  	<!-- aca va el bloque de iteracion de fases 
+						<tbody>
+					</table>-->
+					<div align="center">
+						<a href="/adm_proyectos/gestionar/{{ id_proyecto }}/"><button type="button" class="btn btn-default">Volver</button></a>
+					</div>
+				</div>
+				
+				<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+				</div>
+		</div>
+	</div>
+</div>
+
+	
+{% endblock %}
+
+
