@@ -34,7 +34,7 @@ def adm_proyectos (request):
         proyectos = miembros.distinct()
 
     else:
-        proyectos = Proyectos.objects.all()
+        proyectos = Proyectos.objects.filter(is_active=True)
         
     busqueda = ''
     error=False
@@ -346,10 +346,7 @@ def importar (request, id_proyecto):
             for faseImport in fasesImportadas:
                 fase = Fases()
                 fase.nombre = faseImport.nombre
-                #fase.descripcion = faseImport.descripcion
-                #fase.duracion = faseImport.duracion
                 fase.estado = 'DF'
-                #fase.fechainicio = faseImport.fechainicio
                 fase.proyecto = proyecto
                 fase.save()
                 
