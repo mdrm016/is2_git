@@ -6,6 +6,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.template.context import RequestContext
 from forms import FaseNuevaForm, FaseModificadaForm
 from .models import Fases
+from aplicaciones.proyectos.models import Proyectos
 from datetime import datetime
 
 # Create your views here.
@@ -77,7 +78,7 @@ def crear_fase(request, id_proyecto):
         form = FaseNuevaForm()    
         
     template_name='./Fases/fasenueva.html'
-    return render(request, template_name, {'form': form})
+    return render(request, template_name, {'form': form, 'id_proyecto':id_proyecto})
 
 def consultar_fase (request, id_fase, id_proyecto):
     fase = Fases.objects.get(id=id_fase, proyecto_id=id_proyecto)
@@ -147,3 +148,82 @@ def modificar_fase (request, id_proyecto, id_fase):
     ctx ={'form': form, 'mensaje':mensaje, 'id_proyecto':id_proyecto, 'id_fase':id_fase}      
     template_name='Fases/modificarfase.html'
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
+
+def abrir_proyectos (request, id_proyecto):
+    
+    """ Recibe un request, se verifica los permisos del usuario que desea importar un proyecto y luego se lo
+redirige a la pagina donde se lista los proyectos del sistema que pueden ser importados.
+@type request: django.http.HttpRequest.
+@param request: Contiene informacion sobre la solicitud web actual que llamo a esta vista importar_proyecto.
+@rtype: django.shortcuts.render_to_response.
+@return: mportarproyecto.html, donde se encuentra la pagina que lista los proyectos a ser importados.
+@author: Marcelo Denis
+"""
+    
+    proyectos = Proyectos.objects.filter(is_active=True)
+    ctx ={'lista_proyectos':proyectos, 'id_proyecto':id_proyecto}
+    template_name = 'Fases/elegirproyecto.html'
+    return render_to_response(template_name, ctx, context_instance=RequestContext(request))
+
+def importar_fase (request, id_proyecto):
+    
+    """ Recibe un request, se verifica los permisos del usuario que desea importar un proyecto y luego se lo
+redirige a la pagina donde se lista los proyectos del sistema que pueden ser importados.
+@type request: django.http.HttpRequest.
+@param request: Contiene informacion sobre la solicitud web actual que llamo a esta vista importar_proyecto.
+@rtype: django.shortcuts.render_to_response.
+@return: mportarproyecto.html, donde se encuentra la pagina que lista los proyectos a ser importados.
+@author: Marcelo Denis
+"""
+   # id_import = int(id_importar)
+    fases = Fases.objects.filter(is_active=True)
+    ctx ={'lista_fases':fases}
+    template_name = 'Fases/importarfase.html'
+    return render_to_response(template_name, ctx, context_instance=RequestContext(request))
+
+def importarf (request, id_proyecto, id_fase):
+    
+    """ Recibe un request y el id del proyecto a ser importado, se verifica si el usuario tiene
+permisos para importar un proyecto existente, luego se lo redirige a la pagina para completar los
+datos del formulario de nuevo proyecto importado, una vez completado correctamente el formulario el
+sistema crea un nuevo proyecto con las caracteristicas del proyecto importado.
+@type request: django.http.HttpRequest.
+@param request: Contiene informacion sobre la solicitud web actual que llamo a esta vista importar.
+@type id_usuario : string.
+@param id_usuario : Contiene el id del proyecto a ser importado.
+@rtype: django.shortcuts.render_to_response.
+@return: crearproyectoimportado.html, donde se redirige al usuario para completar los datos del nuevo
+proyecto importado o a proyectoalerta.html donde se notifica que el proyecto fue importado correctamente.
+@author: Marcelo Denis.
+"""
+    
+    faseImportada = Fases.objects.get(id=id_fase)
+    if request.method == 'POST':
+        form = FaseModificadaForm(request.POST)
+        if form.is_valid():
+            form.clean()
+            nombre = form.cleaned_data['Nombre_de_Fase']
+            descripcion = form.cleaned_data['Descripcion']
+            duracion = form.cleaned_data['Duracion']
+            
+            fase = Fases()
+            fase.nombre=nombre
+            fase.descripcion=descripcion
+            fase.estado='DF'
+            fase.fechainicio= datetime.now()
+            fase.duracion = duracion
+            fase.proyecto_id = id_proyecto
+            fase.is_active = True
+            fase.save()
+                
+            mensaje="Fase importada exitosamente"
+            ctx = {'mensaje':mensaje}
+            return render_to_response('Fases/fasealerta.html',ctx, context_instance=RequestContext(request))
+    else:
+        data ={'Nombre_de_Fase':faseImportada.nombre, 'Descripcion':faseImportada.descripcion, 'Estado':faseImportada.estado, 'Duracion':faseImportada.duracion}   
+        form = FaseModificadaForm(data)
+        
+    ctx ={'form': form, 'fase':faseImportada}
+    template_name='Fases/crearfaseimportada.html'
+    return render_to_response(template_name, ctx, context_instance=RequestContext(request))
+
