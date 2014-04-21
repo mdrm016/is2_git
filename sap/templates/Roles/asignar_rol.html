@@ -1,0 +1,41 @@
+{% extends "base_general.html" %}
+
+{% block menu %}		
+<div class="menu">
+	<ul>
+		<li id="option1" class="active">
+			<a href="#">Asignar Rol</a>
+		</li>
+	</ul>
+</div>
+{% endblock %}
+
+{% block contenido %}
+<div class="content-secondary">
+	{% if form.errors %}
+		<ul>
+            {% for error in errors %}
+            <li>{{ error }}</li>
+            {% endfor %}
+        </ul> 
+	{% endif %}
+	<br>
+	<br>
+	<form action="" method="post">
+		<p>Usuarios: 
+        <select id="id_usuario" name="Usuario">
+        	{% for usuario in usuarios %}
+        		<option value="{{ usuario.username }}">{{ usuario.username }}</option>
+        	{% endfor %}
+		</select>
+		</p>
+		{% csrf_token %}
+	<div align="center">
+		<input class="btn btn-default" type="submit" value="Guardar"/>
+		<a href="/adm_roles/"><button type="button" class="btn btn-default">Cancelar</button></a>
+	</div>
+	<br>
+	</form>
+
+</div>
+{% endblock %}
