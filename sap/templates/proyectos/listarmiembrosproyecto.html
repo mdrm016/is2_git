@@ -1,0 +1,55 @@
+{% extends "base_general.html" %}
+
+{% block menu %}		
+<div class="menu">
+	<ul>
+		<li id="option1" class="active">
+			<a href="#">{{ proyecto.nombre }}</a>
+	</ul>
+</div>
+{% endblock %}
+
+{% block contenido %}
+<div class="content-secondary">
+	<div class="container">
+		<div class="row">
+				<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+				</div>
+				
+				<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+					{% if miembros %}
+					<p><h2><span class="label label-default">Lista de miembros de {{ proyecto.nombre }}</span></h2></h4></p>
+					<table class="table table-hover table-bordered table-condensed table-responsive">
+						<tbody>
+						  	<tr class="active">
+						  		<td><p><h4><b>ID</b></h4></p></td>
+						  		<td><p><h4><b>Nombre de Usuario</b></h4></p></td>
+						  		<td><p><h4><b>Nombre y Apellido</b></h4></p></td>
+						  		<td><p><h4><b>Rol</b></h4></p></td>
+						  	</tr>
+						  	{% for miembro in miembros %}
+								<tr class="active">
+									<td><p><h4>{{ miembro.user_id }}</h4></p></td>
+									<td><p><h4>{{ miembro }}</h4></p></td>
+									<td><p><h4>{{ miembro.user.first_name }} {{ miembro.user.last_name }}</h4></p></td>
+									<td><p><h4>Rol</h4></p></td>
+								</tr>
+							{% endfor %}
+						<tbody>
+					</table>
+					{% else %}
+						<p><h2><span class="label label-default">El proyecto aun no cuenta con Miembros</span></h2></h4></p>
+					{% endif %}
+					<div align="center">
+						<a href="/"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-arrow-left"></span> Volver</button></a>
+					</div>
+				</div>
+				
+				<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+				</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
+
+

@@ -1,0 +1,87 @@
+{% extends "base_general.html" %}
+
+{% block menu %}		
+<div class="menu">
+	<ul>
+		<li id="option1" class="active">
+			<a href="#">{{ proyecto.nombre }}</a>
+	</ul>
+</div>
+{% endblock %}
+
+{% block contenido %}
+<div class="content-secondary">
+	<div class="container">
+		<div class="row">
+				<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+				</div>
+				
+				<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+					<table class="table table-hover table-bordered table-condensed table-responsive">
+						<tbody>
+						  	<!-- Aplicadas en las filas -->
+						  	<tr class="active">
+						  		<td><p><h4>ID de Proyecto</h4></p></td>
+						  		<td><p><h4><span class="label label-default">{{ proyecto.id }}</span></h4></h4></p></td>
+							</tr>
+						  	<tr class="active">
+						  		<td><p><h4>Nombre de Proyecto:</h4></p></td>
+						  		<td><p><h4><span class="label label-default">{{ proyecto.nombre }}</span></h4></h4></p></td>
+						  	</tr>
+						  	<tr class="active">
+						  		<td><p><h4>Lider de Proyecto:</h4></p></td>
+						  		<td><p><h4><span class="label label-default">{{ proyecto.lider }}</span></h4></h4></p></td>
+						  	</tr>
+						  	<tr class="active">
+						  		<td><p><h4>Estado de Proyecto:</h4></p></td>
+						  		<td><p><h4><span class="label label-default">{{ proyecto.estado }}</span></h4></h4></p></td>
+						  	</tr>
+						 	<tr class="active">
+						  		<td><p><h4>Fecha de Inicio</h4></p></td>
+						  		<td><p><h4><span class="label label-default">{{ proyecto.fecha_inicio | date:"j F, Y" }}</span></h4></h4></p></td>
+							</tr>
+						  	<tr class="active">
+						  		<td><p><h4>Duracion del Proyecto:</h4></p></td>
+						  		<td><p><h4><span class="label label-default">{{ proyecto.duracion }} Semanas</span></h4></h4></p></td>
+						  	</tr>
+						  	<br>
+						</tbody>	
+					</table>
+					
+					{% if fases %}
+					<table class="table table-hover table-bordered table-condensed table-responsive">
+						<tbody>
+							<tr class="active">
+						  		<p><h2><span class="label label-default">Fases</span></h2></h4></p>
+						  	</tr>
+						  	<tr class="active">
+						  		<td><p><h4><b>Nombre de Fase</b></h4></p></td>
+						  		<td><p><h4><b>Estado</b></h4></p></td>
+						  	</tr>
+						  	
+						  	{% for fase in fases %}
+								<tr class="active">
+									<td><p><h4>{{ fase.nombre }}</h4></p></td>
+									<td><p><h4>{{ fase.estado }}</h4></p></td>
+								</tr>
+							{% endfor %}
+						<tbody>
+					</table>
+					{% else %}
+						<p><h2><span class="label label-default">El proyecto aun no cuenta con fases</span></h2></h4></p>
+					{% endif %}
+					<div align="center">
+						<a href="/"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-arrow-left"></span> Volver</button></a>
+					</div>
+				</div>
+				
+				<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+				</div>
+		</div>
+	</div>
+</div>
+
+	
+{% endblock %}
+
+
