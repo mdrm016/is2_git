@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 from django.contrib.auth.models import Group
 
-class Roles(models.Model):
+class Roles(Group):
     """ La clase Roles crea un perfil a cada instancia de la clase
          Group, con los atributos descritos en este modelo.
          Contiene como atributo los campos: proyecto (Clave foranea 
@@ -14,11 +14,14 @@ class Roles(models.Model):
     
     @author: eduardo gimenez
     """  
-    rol = models.OneToOneField(Group)
-    proyecto = models.CharField(max_length=10)
+    
+    proyecto = models.CharField(max_length=30)
     descripcion = models.TextField(max_length=300)
+    is_active = models.BooleanField(default=True)
+    objects = models.Manager()
     
     class Meta:
+        ordering = ['name']
         permissions = (
                       ("administrar_roles", "puede listar los roles"),
                       ("asignar_rol", "puede asignar un rol a un usuario"),
@@ -26,6 +29,6 @@ class Roles(models.Model):
         )
     
     def __unicode__(self):
-        return self.rol.name
+        return u'%s' % (self.name)
     
     

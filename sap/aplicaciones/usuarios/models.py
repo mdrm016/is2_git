@@ -24,7 +24,7 @@ class Usuarios(models.Model):
     
     class Meta:
         permissions = (
-                       ("administrar_usuario", "puede visualizar los datos de un usuario"),
+                       ("administrar_usuario", "puede listar usuarios"),
         )
     
     def __unicode__(self):
