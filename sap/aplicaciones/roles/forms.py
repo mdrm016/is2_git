@@ -9,11 +9,11 @@ def validarNombreRolUnico(value):
         raise ValidationError(u'El nombre del Rol ya existe')
         
 def listaProyectos():
-    proyectos = [('', 'None')] + [(proyecto.nombre, proyecto.id) for proyecto in Proyectos.objects.all()]
+    proyectos = [(proyecto.id, proyecto.nombre) for proyecto in Proyectos.objects.all()]
     return proyectos
 
 def listaPermisos():
-    permisos = [('', 'None')] + [(permiso.codename, permiso.name) for permiso in Permission.objects.all()]
+    permisos = [(permiso.codename, permiso.name) for permiso in Permission.objects.all()]
     return permisos
 
 class RolForm (forms.Form):

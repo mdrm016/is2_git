@@ -82,7 +82,7 @@ def rolNuevo(request):
             p = proyecto
             if proyecto:
                 try:
-                    p = Proyectos.objects.get(nombre=proyecto)
+                    p = Proyectos.objects.get(id=proyecto)
                 except Roles.DoesNotExist:
                    p = ''
                  
