@@ -19,11 +19,12 @@
 {% block botones %}
 <div class="row">
 	<form class="navbar-form navbar-left">
-		<a href="crear/"><button type="button" class="btn btn-default">Crear Proyecto</button></a>
-		<a href="importar_proyecto/"><button type="button" class="btn btn-default">Importar Proyecto</button></a>
+		<a href="crear/"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-folder-open"></span> Crear Proyecto</button></a>
+		<a href="importar_proyecto/"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-import"></span> Importar Proyecto</button></a>
 		<div class="form-group">
 			<form action="" method="get">
-				<input type="text" name="busqueda" class="btn btn-default" value="{{ query|escape }}">
+				<input type="text" name="busqueda" class="btn btn-default" placeholder="Busqueda de proyecto..." value="{{ query|escape }}">
+				<span class="glyphicon glyphicon-search"></span>
 				<input class="btn btn-default" type="submit" value="Buscar Proyectos">
 			</form>
 		</div>
@@ -93,11 +94,11 @@
 				    
 				    <div id="collapse{{ proyecto.id }}" class="panel-collapse collapse pull-left">
 				      <div class="panel-body">
-				      		<a href="consultar/{{ proyecto.id }}/"><button type="button" class="btn btn-default btn-sm">Consultar</button></a>
-				      		<a href="listar_miembros/{{ proyecto.id }}/"><button type="button" class="btn btn-default btn-sm">Listar Miembros</button></a>
-				      		<a href="modificar/{{ proyecto.id }}/"><button type="button" class="btn btn-default btn-sm">Modificar</button></a>
-				      		<button class="btn btn-danger btn-sm proyectos" data-toggle="modal" data-target="#myModal" data-id="{{ proyecto.id }}">Eliminar</button>
-				      		<a href="gestionar/{{ proyecto.id }}/"><button type="button" class="btn btn-primary btn-sm">Gestionar Proyecto</button></a>
+				      		<a href="consultar/{{ proyecto.id }}/"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-eye-open"></span> Consultar</button></a>
+				      		<a href="listar_miembros/{{ proyecto.id }}/"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-list-alt"></span> Listar Miembros</button></a>
+				      		<a href="modificar/{{ proyecto.id }}/"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-edit"></span> Modificar</button></a>
+				      		<button class="btn btn-danger btn-sm proyectos" data-toggle="modal" data-target="#myModal" data-id="{{ proyecto.id }}"><span class="glyphicon glyphicon-trash"></span> Eliminar</button>
+				      		<a href="gestionar/{{ proyecto.id }}/"><button type="button" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-th"></span> Gestionar Proyecto</button></a>
 				      </div>
 				    </div>
 				</div>
@@ -134,8 +135,8 @@
 		        	Esta usted seguro de que desea eliminar el proyecto?
 		      </div>
 		      <div class="modal-footer">
-		        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-		       <a id="proyecto" href=""><button type="button" class="btn btn-danger">Estoy Seguro</button></a>
+		        <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancelar</button>
+		       <a id="proyecto" href=""><button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-ok"></span> Estoy Seguro</button></a>
 		      </div>
 		    </div>
 		  </div>

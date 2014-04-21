@@ -6,10 +6,9 @@
 		<title>Sistema de Administracion de Proyectos</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
-        <link href="{{STATIC_URL}}aplicaciones/img/favicon.ico" type="image/x-icon" rel="shortcut icon" />
         <!-- Bootstrap -->
-        <link href="{{STATIC_URL}}aplicaciones/css/bootstrap.css" rel="stylesheet" media="screen">
-        <link href="{{STATIC_URL}}aplicaciones/css/main.css" rel="stylesheet" media="screen">
+        <link href="css/bootstrap.css" rel="stylesheet" media="screen">
+        <link href="css/main.css" rel="stylesheet" media="screen">
         <!-- Nuestro estilo -->
         <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}admin/css/widgets.css"/>
 		<!-- Bootstrap JS -->
@@ -24,15 +23,20 @@
 		<script type="text/javascript" src="{{ STATIC_URL }}admin/js/SelectBox.js"></script>
 		<script type="text/javascript" src="{{ STATIC_URL }}admin/js/SelectFilter2.js"></script>
 
+
+
 	</head>
 	<!-- Fin de la cabecera -->
 	
 	<body>
+	    <button type="button" class="btn btn-default btn-lg">
+  <span class="glyphicon glyphicon-star"></span> Star
+</button>
 		<!-- Comienzo del banner -->
 		<div class="container-fluid">
 			<div class="row">
 			  <div class="col-md-8"><h3>{{ user.username | capfirst }}</h3></div>
-			  <div class="col-md-4"><a href="/cerrar/"><button type="button" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-log-out"></span> Cerrar Sesion</button></a></div>
+			  <div class="col-md-4"><a href="/cerrar/"><button type="button" class="btn btn-primary btn-sm">Cerrar Sesion</button></a></div>
 			</div>
 			<div class="row">
 			  <div class="col-md-9 col-md-offset-1">
@@ -40,7 +44,7 @@
 				<div class="row">
 				  <div class="col-md-6">
 					<br>
-					  <a href="/"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-refresh"></span> Inicio</button></a><!-- Boton de Inicio -->
+					  <a href="/"><button type="button" class="btn btn-default">Inicio</button></a><!-- Boton de Inicio -->
 					  <div class="btn-group">
 						<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><!-- Boton de Configuracion -->
 						  <span class="glyphicon glyphicon-cog"></span> Configuracion

@@ -20,7 +20,7 @@ def validate_duracion_proyecto (value):
 def opcionLider():
     usuarios = User.objects.exclude(id='1')
     resultado = []
-    tupla = ('', '--seleccione un lider--')
+    tupla = ('', '--Seleccione un lider--')
     resultado.append(tupla)
     for usuario in usuarios: 
         if usuario.is_active:
@@ -38,7 +38,7 @@ def opcionMiembros():
     return resultado
 
 ESTADOS_PROYECTO=(
-        ('', '--seleccione un Estado--'),
+        ('', '--Seleccione un Estado--'),
         ('Inactivo', 'Inactivo'),
         ('En Construccion', 'En Construccion'),
         ('Finalizado', 'Finalizado'),

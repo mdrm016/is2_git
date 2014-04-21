@@ -161,7 +161,7 @@ def modificar_proyecto (request, id_proyecto):
             
             else:
                 if nombreNuevo == proyecto.nombre and  lideruser == proyecto.lider and estado == proyecto.estado and duracion == proyecto.duracion and not miembros:
-                      mensaje="Proyecto Guardado sin modificaciones"
+                      mensaje="Proyecto guardado sin modificaciones"
                       
                 elif estado == 'En Construccion' and not Fases.objects.filter(proyecto = id_proyecto):
                     mensaje="El proyecto no puede pasar a un estado En Construccion si aun no tiene fases"
