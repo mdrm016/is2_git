@@ -8,9 +8,11 @@ from forms import FaseNuevaForm, FaseModificadaForm
 from .models import Fases
 from aplicaciones.proyectos.models import Proyectos
 from datetime import datetime
+from django.contrib.auth.decorators import login_required, permission_required
 
 # Create your views here.
-
+@login_required(login_url='/login/')
+@permission_required('fases.administrar_fases',raise_exception=True)
 def adm_fases(request, id_proyecto):
     
     error = False
@@ -41,6 +43,8 @@ def adm_fases(request, id_proyecto):
     template_name = './Fases/fases.html'
     return render(request, template_name, {'lista_fases': listfases})
 
+@login_required(login_url='/login/')
+@permission_required('fases.add_fases',raise_exception=True)
 def crear_fase(request, id_proyecto):
     """ Recibe un request, obtiene el formulario con los datos del usuario a crear
     o la solicitud de envio de dicho formulario. Luego verifica los datos recibidos
@@ -90,6 +94,7 @@ def crear_fase(request, id_proyecto):
     template_name='./Fases/fasenueva.html'
     return render(request, template_name, {'form': form, 'id_proyecto':id_proyecto})
 
+@login_required(login_url='/login/')
 def consultar_fase (request, id_fase, id_proyecto):
     fase = Fases.objects.get(id=id_fase, proyecto_id=id_proyecto)
     # conseguir el contexto de las fases y sus estados
@@ -98,6 +103,8 @@ def consultar_fase (request, id_fase, id_proyecto):
     template_name = './Fases/consultarfase.html'
     return render(request, template_name, {'id_proyecto': id_proyecto, 'fase': fase, 'id_fase': id_fase})
     
+@login_required(login_url='/login/')
+@permission_required('fases.delete_fases',raise_exception=True)
 def eliminar_fase (request, id_fase, id_proyecto):
     fase = Fases.objects.get(id=id_fase, proyecto_id=id_proyecto)
     if fase.estado != 'DF':
@@ -115,6 +122,8 @@ def eliminar_fase (request, id_fase, id_proyecto):
         template_name='./Fases/faseeliminada.html'
         return render(request, template_name, {'id_proyecto': id_proyecto})
 
+@login_required(login_url='/login/')
+@permission_required('fases.change_fases',raise_exception=True)
 def modificar_fase (request, id_proyecto, id_fase):
     fase = Fases.objects.get(id=id_fase, proyecto_id=id_proyecto)
     mensaje=''
@@ -128,12 +137,20 @@ def modificar_fase (request, id_proyecto, id_fase):
             duracionNueva =  form.cleaned_data['Duracion']
             mismo_nombres = Fases.objects.filter(nombre=nombreNuevo, is_active=True, proyecto_id=id_proyecto)
             repetido='Vacio'
+            
             if (mismo_nombres):
-                repetido='Si'
-                
-            for mismos_nombre in mismo_nombres:
-                if (mismos_nombre.id==id_fase):
-                    repetido='No'
+                for nombre in mismo_nombres:
+                    if (nombre.id!=fase.id):
+                        repetido='No'
+                    
+                    
+            if (repetido=='No'):
+                mensaje = 'El nombre de Fase ya existe'
+                data ={'Nombre_de_Fase':fase.nombre, 'Descripcion':fase.descripcion, 'Estado':fase.estado, 'Duracion':fase.duracion}
+                form = FaseModificadaForm(data)
+                ctx ={'form': form, 'mensaje':mensaje, 'id_proyecto':id_proyecto, 'id_fase':id_fase}      
+                template_name='Fases/modificarfase.html'
+                return render_to_response(template_name, ctx, context_instance=RequestContext(request))
             
             #Si no se ha suministrado un nuevo lider, el proyecto se queda con el lider actual
             if nombreNuevo:
@@ -153,14 +170,6 @@ def modificar_fase (request, id_proyecto, id_fase):
                 else:
                     fase.estado = estadoNuevo
                     
-            if (repetido=='Si'):
-                mensaje = 'El nombre de Fase ya existe'
-                data ={'Nombre_de_Fase':fase.nombre, 'Descripcion':fase.descripcion, 'Estado':fase.estado, 'Duracion':fase.duracion}
-                form = FaseModificadaForm(data)
-                ctx ={'form': form, 'mensaje':mensaje, 'id_proyecto':id_proyecto, 'id_fase':id_fase}      
-                template_name='Fases/modificarfase.html'
-                return render_to_response(template_name, ctx, context_instance=RequestContext(request))
-                    
             fase.save()
             mensaje="Proyecto modificado exitosamente"
                     
@@ -175,6 +184,8 @@ def modificar_fase (request, id_proyecto, id_fase):
     template_name='Fases/modificarfase.html'
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
 
+
+@login_required(login_url='/login/')
 def importar_fase (request, id_proyecto):
     
     """ Recibe un request, se verifica los permisos del usuario que desea importar un proyecto y luego se lo
@@ -195,6 +206,9 @@ redirige a la pagina donde se lista los proyectos del sistema que pueden ser imp
     template_name = 'Fases/importarfase.html'
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
 
+
+@login_required(login_url='/login/')
+@permission_required('fases.importar_fases',raise_exception=True)
 def importarf (request, id_proyecto, id_fase):
     
     """ Recibe un request y el id del proyecto a ser importado, se verifica si el usuario tiene
@@ -231,7 +245,7 @@ proyecto importado o a proyectoalerta.html donde se notifica que el proyecto fue
             fase.is_active = True
             
             repetido=False
-            for mismos_nombre in mismo_nombres:
+            for mismos_nombre in mismo_nombre:
                 if (mismos_nombre.id!=id_fase):
                     repetido=True
             

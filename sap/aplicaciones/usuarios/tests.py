@@ -87,7 +87,7 @@ class test_user(TestCase):
         self.user = User.objects.get(pk=1)
         print User.objects.all()
         usuario = User.objects.get(username='sap')
-        request = self.factory.post('/adm_usuarios/modificar/1/', {'Nombre_de_Usuario': 'sapMod', 'Contrasenha': '', 'Nueva_contrasenha': '', 'Email': usuario.email, 'Nombre': usuario.first_name,'Apellido': usuario.last_name, 'Telefono': '2333443545', 'Direccion' : 'xxxxxxxxxxx', 'Especialidad' : '' , 'Observaciones' : ''})
+        request = self.factory.post('/adm_roles/modificar/1/', {'Nombre_de_Usuario': 'sapMod', 'Contrasenha': '', 'Nueva_contrasenha': '', 'Email': usuario.email, 'Nombre': usuario.first_name,'Apellido': usuario.last_name, 'Telefono': '2333443545', 'Direccion' : 'xxxxxxxxxxx', 'Especialidad' : '' , 'Observaciones' : ''})
         request.user = self.user
         response = modificarUsuario(request, 1)
         self.assertEqual(response.status_code, 200)

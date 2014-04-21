@@ -4,10 +4,17 @@
  	<title>{% block titulo %}{% endblock %}</title>
  	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link href="{{STATIC_URL}}aplicaciones/img/favicon.ico" type="image/x-icon" rel="shortcut icon" />
 	<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}aplicaciones/css/bootstrap.css">
  	<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}aplicaciones/css/login.css">
+    <link href="{{STATIC_URL}}aplicaciones/css/main.css" rel="stylesheet" media="screen">
 </head>
 <body>
 	{% block contenido %}{% endblock %}
  </body>
+ <footer class='centrar'>
+		<br><span>Grupo R11</span><br>
+			<span>Facultad Politecnica - Universidad Nacional de Asuncion</span><br>
+			<span>2014</span>
+</footer>
 </html>

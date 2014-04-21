@@ -3,7 +3,7 @@
 clear
 
 echo "*****************Creando Usuario sapAdmin*****************"
-cd /home/ysapy/workspace/is2_git/sap/scripts/
+cd /home/eduardo/workspace/is2_git/sap/scripts/
 createuser -d -a sap
 createdb -O sap sap
 psql -d sap -a -f pass.sql

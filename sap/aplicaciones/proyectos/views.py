@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 from django.db.models import Q
 from aplicaciones.usuarios.models import Usuarios
 from aplicaciones.fases.models import Fases
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
 
 
 @login_required(login_url='/login/')
@@ -57,6 +57,7 @@ def adm_proyectos (request):
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
 
 @login_required(login_url='/login/')
+@permission_required('proyectos.add_proyectos',raise_exception=True)
 def crear_proyecto (request):
     
     """ Recibe un request, se verifica si el usuario tiene permisos para crear un proyecto 
@@ -109,6 +110,7 @@ def crear_proyecto (request):
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
 
 @login_required(login_url='/login/')
+@permission_required('proyectos.change_proyectos',raise_exception=True)
 def modificar_proyecto (request, id_proyecto):
     
     """ Recibe un request y el id del proyecto a ser modificado, se verifica si el usuario tiene
@@ -161,7 +163,7 @@ def modificar_proyecto (request, id_proyecto):
             
             else:
                 if nombreNuevo == proyecto.nombre and  lideruser == proyecto.lider and estado == proyecto.estado and duracion == proyecto.duracion and not miembros:
-                      mensaje="Proyecto Guardado sin modificaciones"
+                      mensaje="Proyecto guardado sin modificaciones"
                       
                 elif estado == 'En Construccion' and not Fases.objects.filter(proyecto = id_proyecto):
                     mensaje="El proyecto no puede pasar a un estado En Construccion si aun no tiene fases"
@@ -183,7 +185,8 @@ def modificar_proyecto (request, id_proyecto):
                 template_name='proyectos/proyectoalerta.html'
                 return render_to_response(template_name, ctx, context_instance=RequestContext(request))
     else:
-        data ={'Nombre_del_Proyecto':proyecto.nombre, 'Lider_Actual':proyecto.lider, 'Estado_Actual':proyecto.estado, 'Duracion':proyecto.duracion, 'Miembros_Actuales': proyecto.miembros.all()}   
+        print proyecto.miembros.all()
+        data ={'Nombre_del_Proyecto':proyecto.nombre, 'Lider_Actual':proyecto.lider, 'Estado_Actual':proyecto.estado, 'Duracion':proyecto.duracion}   
         form = ProyectoModificadoForm(data)
         
     ctx ={'form': form, 'mensaje':mensaje, 'proyecto':proyecto}      
@@ -217,6 +220,7 @@ def consultar_proyecto (request, id_proyecto):
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
 
 @login_required(login_url='/login/')
+@permission_required('proyectos.delete_proyectos',raise_exception=True)
 def eliminar_proyecto (request, id_proyecto):
     
     """ Recibe un request y el id del proyecto a ser eliminado, se verifica si el usuario tiene
@@ -249,6 +253,7 @@ def eliminar_proyecto (request, id_proyecto):
         return HttpResponseRedirect('/')
 
 @login_required(login_url='/login/')      
+@permission_required('proyectos.listar_miembros',raise_exception=True)
 def listar_miembros (request, id_proyecto):
     
     """ Recibe un request y el id del proyecto cuyos miembros se desea que se liste, se verifica
@@ -275,6 +280,7 @@ def listar_miembros (request, id_proyecto):
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
 
 @login_required(login_url='/login/')
+@permission_required('proyectos.importar_proyecto',raise_exception=True)
 def importar_proyecto (request):
     
     """ Recibe un request, se verifica los permisos del usuario que desea importar un proyecto y luego se lo 

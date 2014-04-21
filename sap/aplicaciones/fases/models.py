@@ -14,5 +14,11 @@ class Fases(models.Model):
     proyecto = models.ForeignKey(Proyectos)
     is_active = models.BooleanField(default=True)
     
+    class Meta:
+        permissions = (
+                      ("administrar_fases", "puede listar las Fases"),
+                      ("importar_fase", "puede importar fases"),
+                      )
+    
     def __unicode__ (self):
         return self.nombre

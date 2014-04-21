@@ -73,13 +73,13 @@ def administrarUsuarios(request):
 				template_name='./Usuarios/usuarios.html'
 				return render(request, template_name, {'lista_usuarios': useri, 'error': error})
 	
-	usuarios = 0
+	u=[]
 	mi_perfil = User.objects.get(username=request.user.username)
 	if mi_perfil.has_perm('usuarios.administrar_usuario'):
-		usuarios = User.objects.all()
+		u = User.objects.filter(is_active=True)
 	
 	template_name='./Usuarios/usuarios.html'
-	return render(request, template_name, {'lista_usuarios': usuarios, 'mi_perfil': mi_perfil})
+	return render(request, template_name, {'lista_usuarios': u, 'mi_perfil': mi_perfil})
 	
 
 @login_required(login_url='/login/')
@@ -140,7 +140,6 @@ def usuarionuevo(request):
 	return render(request, template_name, {'form': form})
 
 @login_required(login_url='/login/')
-@permission_required('usuarios.change_usuarios',raise_exception=True)
 def modificarUsuario(request, id_usuario):
 	""" Busca en la base de datos al usuario cuyos datos se quieren modificar.
 	Presenta esos datos en un formulario y luego se guardan los cambios realizados.
@@ -156,55 +155,58 @@ def modificarUsuario(request, id_usuario):
 	@return: modificar_usuario.html,un formulario donde se despliegan los datos que el usuario puede modificar ,usuario_modificado.html, donde se notifica al usuario el exito de la operacion 
 	
 	@author: eduardo gimenez"""
-	
-	usuario = User.objects.get(id=id_usuario)
-	perfil = usuario.get_profile()
-	if request.method == 'POST':
-		form = UsuarioModificadoForm(request.POST)
-		if form.is_valid():
-			form.clean()
-			username = form.cleaned_data['Nombre_de_Usuario']
-			password = form.cleaned_data['Contrasenha']
-			nuevo_password= form.cleaned_data['Nueva_contrasenha']
-			email = form.cleaned_data['Email']
-			first_name = form.cleaned_data['Nombre']
-			last_name = form.cleaned_data['Apellido']
-			telefono = form.cleaned_data['Telefono']
-			direccion = form.cleaned_data['Direccion']
-			especialidad = form.cleaned_data['Especialidad']
-			observaciones = form.cleaned_data['Observaciones']
-			
-			if password:
-				if check_password(password, usuario.password):
-					password = make_password(nuevo_password)
-				else:
-					template_name='./Usuarios/modificar_usuario.html'
-					return render(request, template_name, {'form': form})
-			else: 
-				password = usuario.password
+	solicitante = User.objects.get(username=request.user.username)
+	if solicitante.has_perm('usuarios.change_usuarios') or solicitante.id == id_usuario:
+		usuario = User.objects.get(id=id_usuario)
+		perfil = usuario.get_profile()
+		if request.method == 'POST':
+			form = UsuarioModificadoForm(request.POST)
+			if form.is_valid():
+				form.clean()
+				username = form.cleaned_data['Nombre_de_Usuario']
+				password = form.cleaned_data['Contrasenha']
+				nuevo_password= form.cleaned_data['Nueva_contrasenha']
+				email = form.cleaned_data['Email']
+				first_name = form.cleaned_data['Nombre']
+				last_name = form.cleaned_data['Apellido']
+				telefono = form.cleaned_data['Telefono']
+				direccion = form.cleaned_data['Direccion']
+				especialidad = form.cleaned_data['Especialidad']
+				observaciones = form.cleaned_data['Observaciones']
 				
-			usuario.username= username
-			usuario.password = password
-			usuario.email = email 
-			usuario.first_name = first_name
-			usuario.last_name = last_name
-			usuario.save()
-			
-			profile = usuario.get_profile()
-			profile.telefono=telefono
-			profile.direccion=direccion
-			profile.especialidad=especialidad
-			profile.observaciones=observaciones
-			
-			profile.save()
+				if password:
+					if check_password(password, usuario.password):
+						password = make_password(nuevo_password)
+					else:
+						template_name='./Usuarios/modificar_usuario.html'
+						return render(request, template_name, {'form': form})
+				else: 
+					password = usuario.password
 					
-			template_name='./Usuarios/usuario_modificado.html'
-			return render(request, template_name)
-	else: 
-		data = {'Nombre_de_Usuario': usuario.username, 'Contrasenha': '', 'Nueva_contrasenha': '', 'Email': usuario.email, 'Nombre':usuario.first_name,'Apellido':usuario.last_name, 'Telefono': perfil.telefono, 'Direccion':perfil.direccion, 'Especialidad':perfil.especialidad , 'Observaciones':perfil.observaciones}
-		form = UsuarioModificadoForm(data)
-	template_name='./Usuarios/modificar_usuario.html'
-	return render(request, template_name,{'form':form})
+				usuario.username= username
+				usuario.password = password
+				usuario.email = email 
+				usuario.first_name = first_name
+				usuario.last_name = last_name
+				usuario.save()
+				
+				profile = usuario.get_profile()
+				profile.telefono=telefono
+				profile.direccion=direccion
+				profile.especialidad=especialidad
+				profile.observaciones=observaciones
+				
+				profile.save()
+						
+				template_name='./Usuarios/usuario_modificado.html'
+				return render(request, template_name)
+		else: 
+			data = {'Nombre_de_Usuario': usuario.username, 'Contrasenha': '', 'Nueva_contrasenha': '', 'Email': usuario.email, 'Nombre':usuario.first_name,'Apellido':usuario.last_name, 'Telefono': perfil.telefono, 'Direccion':perfil.direccion, 'Especialidad':perfil.especialidad , 'Observaciones':perfil.observaciones}
+			form = UsuarioModificadoForm(data)
+		template_name='./Usuarios/modificar_usuario.html'
+		return render(request, template_name,{'form':form})
+	else:
+		raise PermissionDenied
 
 @login_required(login_url='/login/')
 def consultarUsuario(request, id_usuario):
@@ -220,12 +222,12 @@ def consultarUsuario(request, id_usuario):
 	@return: consultar_usuario.html, donde se le despliega al usuario los datos
 	
 	@author: eduardo gimenez"""
-	usuario = User.objects.get(id = id_usuario)
-	perfil = usuario.get_profile()
 	template_name='./Usuarios/consultar_usuario.html'
+	usuario = User.objects.get(pk = id_usuario)
+	perfil = usuario.get_profile()
 	return render(request, template_name, {'usuario' : usuario, 'perfil':perfil})
-	
 
+		
 @login_required(login_url='/login/')
 @permission_required('usuarios.delete_usuarios',raise_exception=True)
 def usuario_eliminar (request, id_usuario):

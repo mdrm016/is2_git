@@ -1,0 +1,40 @@
+{% extends "base_general.html" %}
+
+{% block menu %}		
+<div class="menu">
+	<ul>
+		<li id="option1" class="active">
+			<a href="#">{{ rol.name }}</a>
+	</ul>
+</div>
+{% endblock %}
+
+{% block contenido %}
+<div class="content-secondary">
+	<p><h4>Id: <span class="label label-default">{{ rol.id }}</span></h4></p>
+	<p><h4>Permisos: </h4></p>
+	<ul>
+	{% for permiso in permisos %}
+		<li><h4><span class="label label-default">{{ permiso.name }}</span></h4></li>
+	{% endfor %}
+	</ul>
+	<p><h4>Descripcion: <span class="label label-default">{{ rol.descripcion }}</span></h4></p>
+	<p><h4>Usuarios con este Rol: </h4></p>
+	<p>
+	{% if usuarios %}
+		{% for usuario in usuarios %}
+			<h4><span class="label label-default">{{ usuario.username }} | </span></h4>
+		{% endfor %}
+	{% else %}
+		<h4><span class="label label-default"> No hay usuarios con este Rol</span></h4>
+	{% endif %}
+	<p>
+</div>
+<br>
+<div align="center">
+		<a href="/adm_roles/"><button type="button" class="btn btn-default">Volver</button></a>
+</div>
+	
+{% endblock %}
+
+
