@@ -185,6 +185,7 @@ def consultarRol(request, id_rol):
     @author: eduardo gimenez"""
     template_name='./Roles/consultar_rol.html'
     rol = Roles.objects.get(id = id_rol)
+    este_rol = rol
     permisos = rol.permissions.all()
     usuarios_con_rol = []
     usuarios_activos = User.objects.filter(is_active=True)
