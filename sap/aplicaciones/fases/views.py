@@ -9,13 +9,33 @@ from .models import Fases
 from aplicaciones.proyectos.models import Proyectos
 from datetime import datetime
 from django.contrib.auth.decorators import login_required, permission_required
+from django.db.models import Q
 
 # Create your views here.
 @login_required(login_url='/login/')
 @permission_required('fases.administrar_fases',raise_exception=True)
 def adm_fases(request, id_proyecto):
     
-    error = False
+    fases = Fases.objects.filter(proyecto=id_proyecto, is_active=True)
+    busqueda = ''
+    error=False
+    if 'busqueda' in request.GET:
+        busqueda = request.GET.get('busqueda', '')
+        if busqueda:
+            qset = (
+                Q(nombre__icontains=busqueda) |
+                Q(estado__icontains=busqueda) |
+                Q(fechainicio__icontains=busqueda) |
+                Q(duracion__icontains=busqueda) 
+            )
+            fases= Fases.objects.filter(qset).distinct()
+            if not fases:
+                error = True
+        
+    ctx = {'lista_fases':fases, 'query':busqueda, 'error':error, 'id_proyecto':id_proyecto}
+    template_name = './Fases/fases.html'
+    return render_to_response(template_name, ctx, context_instance=RequestContext(request))
+    """error = False
     if 'busqueda' in request.GET:
         busqueda = request.GET['busqueda']
         if not busqueda:
@@ -41,7 +61,7 @@ def adm_fases(request, id_proyecto):
                 return render(request, template_name, {'lista_fases': listfases, 'error':error})
     listfases = Fases.objects.filter(proyecto=id_proyecto, is_active=True)
     template_name = './Fases/fases.html'
-    return render(request, template_name, {'lista_fases': listfases})
+    return render(request, template_name, {'lista_fases': listfases})"""
 
 @login_required(login_url='/login/')
 @permission_required('fases.add_fases',raise_exception=True)
