@@ -16,15 +16,18 @@
 	{% if form.errors %}
 		Por favor verifique:error
 	{% endif %}
-	
+	<div class="bs-example">
+			<h3><p align="center" class="text-warning"><small>{{ mensaje }}</small></p></h3>
+	</div>
 	<form action="" method="post">
 		<table align="center">
 			{{ form.as_table }}
 		</table>
 		{% csrf_token %}
 	<div align="center"><br>
+		<a href="#"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-save"></span> Agregar item</button></a>
 		<input class="btn btn-default" type="submit" value="Crear"/>
-		<a href="/adm_proyectos/gestionar/{{ id_proyecto }}/"><button type="button" class="btn btn-default">Cancelar</button></a>
+		<a href="/adm_proyectos/gestionar/{{ id_proyecto }}/"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-remove"></span> Cancelar</button></a>
 	</div>
 	<br>
 	</form>

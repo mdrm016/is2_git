@@ -25,14 +25,12 @@
 						  		<td><p><h4><b>ID</b></h4></p></td>
 						  		<td><p><h4><b>Nombre de Usuario</b></h4></p></td>
 						  		<td><p><h4><b>Nombre y Apellido</b></h4></p></td>
-						  		<td><p><h4><b>Rol</b></h4></p></td>
 						  	</tr>
 						  	{% for miembro in miembros %}
 								<tr class="active">
 									<td><p><h4>{{ miembro.user_id }}</h4></p></td>
 									<td><p><h4>{{ miembro }}</h4></p></td>
 									<td><p><h4>{{ miembro.user.first_name }} {{ miembro.user.last_name }}</h4></p></td>
-									<td><p><h4>Rol</h4></p></td>
 								</tr>
 							{% endfor %}
 						<tbody>
