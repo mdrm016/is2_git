@@ -66,11 +66,7 @@
 				<div class="panel-heading">
 					<h4 class="panel-title">
 					<a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ fase.id }}">
-					{% for proyect in lista_proyectos %}
-						{% ifequal proyect.id fase.proyecto_id %}
-							{{ proyect.nombre }}
-						{% endifequal %}
-					{% endfor %}
+					{{ fase.proyecto.nombre }}
 					</a>
 					</h4>
 				</div>
@@ -85,7 +81,7 @@
 			{% endif %}
 		{% endfor %}
 		<div align="center"><br>
-			<a href="/adm_proyectos/gestionar/{{ id_proyecto }}/"><button type="button" class="btn btn-default">Cancelar</button></a>
+			<a href="/adm_proyectos/gestionar/{{ id_proyecto }}/"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-remove"></span> Cancelar</button></a>
 		</div>
 		</div>
 		</div>
