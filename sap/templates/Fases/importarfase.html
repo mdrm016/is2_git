@@ -31,12 +31,6 @@
 			<h4 class="panel-title"><b>Descripcion</b></h4>
 		</div>
 		</div>
-
-		<div class="col-md-4">
-		<div class="panel-heading">
-		<h4 class="panel-title"><b>Estado</b></h4>
-		</div>
-		</div>
 		
 		<div class="col-md-4">
 		<div class="panel-heading">
@@ -67,16 +61,6 @@
 					</h4>
 				</div>
 				</div>
-		
-				<div class="col-md-4">
-				<div class="panel-heading">
-					<h4 class="panel-title">
-					<a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ fase.id }}">
-					{{ fase.estado }}
-					</a>
-					</h4>
-				</div>
-				</div>
 				
 				<div class="col-md-4">
 				<div class="panel-heading">
@@ -85,6 +69,7 @@
 					{% for proyect in lista_proyectos %}
 						{% ifequal proyect.id fase.proyecto_id %}
 							{{ proyect.nombre }}
+							{% break %}
 						{% endifequal %}
 					{% endfor %}
 					</a>

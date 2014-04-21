@@ -5,6 +5,18 @@ from aplicaciones.proyectos.models import Proyectos
 
 class Fases(models.Model):
     
+    """ El modelo Fases describe la estructura de cada instancia de una fase, los campos
+    que contiene el modelo son: 
+    nombre: campo de tipo texto que contendra el nombre de la fase.
+    estado: campo de tipo texto que contendra uno de los siguientes estado de fase: Definicion, Desarrollo, Finalizado.
+    fecha_inicio: Campo de tipo fecha que contendra la fecha de inicio de la fase.
+    duracion: campo de tipo numerico que contendra la duracion de la fase en semanas.
+    is_active: campo de tipo logico que indicara si la fase esta eliminada.
+    Las fases seran ordenadas en la tabla por nombre.
+    
+    @author: Ysapy Ortiz
+    """
+    
     nombre = models.CharField(max_length=20, null=True)
     nombre_eliminado=models.CharField(max_length=20, null = True)
     descripcion = models.CharField(max_length=300, null=True)
