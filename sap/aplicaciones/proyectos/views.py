@@ -274,12 +274,17 @@ def listar_miembros (request, id_proyecto):
     
     proyecto = Proyectos.objects.get(id=id_proyecto)
     miembros = Proyectos.objects.get(id=id_proyecto).miembros.all()
+    user_rol={}
     for miembro in miembros:
         usuario = User.objects.get(username=miembro)
         rolesmiembro = usuario.groups.all()
-        #print rolesmiembro
+        lista = []
+        for rol in rolesmiembro:
+            lista.append(rol)
+        user_rol[usuario.id]= lista
+    print user_rol
         
-    ctx ={'miembros':miembros, 'proyecto':proyecto}
+    ctx ={'miembros':miembros, 'proyecto':proyecto, 'user_rol':user_rol}
     template_name = 'proyectos/listarmiembrosproyecto.html'
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
 
