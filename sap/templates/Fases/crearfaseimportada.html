@@ -22,6 +22,9 @@
 {% if form.errors %}
 	<font color="red"><h4><p align="center"><b>Por favor verifique:</b></p></h4></font>
 {% endif %}
+<div class="bs-example">
+			<h3><p align="center" class="text-warning"><small>{{ mensaje }}</small></p></h3>
+</div>
 <table class="table table-hover table-bordered table-condensed table-responsive">
 	{{ form.as_table }}
 </table>
