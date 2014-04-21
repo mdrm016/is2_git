@@ -58,18 +58,28 @@ def crear_fase(request, id_proyecto):
     if request.method == 'POST':
         form = FaseNuevaForm(request.POST)
         if form.is_valid():
-            nombre = form.cleaned_data['Nombre_de_Fase']
+            nombre_crear = form.cleaned_data['Nombre_de_Fase']
             descripcion = form.cleaned_data['Descripcion']
             duracion = form.cleaned_data['Duracion_semanas']
+            mismo_nombre = Fases.objects.filter(nombre=nombre_crear, is_active=True, proyecto_id=id_proyecto)
             
             fase = Fases()
-            fase.nombre=nombre
+            fase.nombre=nombre_crear
             fase.descripcion=descripcion
             fase.estado='DF'
             fase.fechainicio= datetime.now()
             fase.duracion = duracion
             fase.proyecto_id = id_proyecto
             fase.is_active = True
+            
+            if (mismo_nombre):
+                mensaje = 'El nombre de fase ya existe'
+                data ={'Nombre_de_Fase': nombre_crear, 'Descripcion':descripcion, 'Duracion_semanas':duracion}   
+                form = FaseNuevaForm(data)
+                ctx = {'form': form, 'mensaje':mensaje, 'id_proyecto': id_proyecto}
+                template_name = 'Fases/fasenueva.html'
+                return render_to_response(template_name, ctx, context_instance=RequestContext(request))
+            
             fase.save()
       
             template_name='./Fases/fasecreada.html'
@@ -116,6 +126,14 @@ def modificar_fase (request, id_proyecto, id_fase):
             descripcionNueva =  form.cleaned_data['Descripcion']
             estadoNuevo = form.cleaned_data['Estado']
             duracionNueva =  form.cleaned_data['Duracion']
+            mismo_nombres = Fases.objects.filter(nombre=nombreNuevo, is_active=True, proyecto_id=id_proyecto)
+            repetido='Vacio'
+            if (mismo_nombres):
+                repetido='Si'
+                
+            for mismos_nombre in mismo_nombres:
+                if (mismos_nombre.id==id_fase):
+                    repetido='No'
             
             #Si no se ha suministrado un nuevo lider, el proyecto se queda con el lider actual
             if nombreNuevo:
@@ -135,6 +153,14 @@ def modificar_fase (request, id_proyecto, id_fase):
                 else:
                     fase.estado = estadoNuevo
                     
+            if (repetido=='Si'):
+                mensaje = 'El nombre de Fase ya existe'
+                data ={'Nombre_de_Fase':fase.nombre, 'Descripcion':fase.descripcion, 'Estado':fase.estado, 'Duracion':fase.duracion}
+                form = FaseModificadaForm(data)
+                ctx ={'form': form, 'mensaje':mensaje, 'id_proyecto':id_proyecto, 'id_fase':id_fase}      
+                template_name='Fases/modificarfase.html'
+                return render_to_response(template_name, ctx, context_instance=RequestContext(request))
+                    
             fase.save()
             mensaje="Proyecto modificado exitosamente"
                     
@@ -142,27 +168,11 @@ def modificar_fase (request, id_proyecto, id_fase):
             template_name='Fases/fasealerta.html'
             return render_to_response(template_name, ctx, context_instance=RequestContext(request))
     else:
-        data ={'Descripcion':fase.descripcion, 'Estado':fase.estado, 'Duracion':fase.duracion}   
+        data ={'Nombre_de_Fase':fase.nombre, 'Descripcion':fase.descripcion, 'Estado':fase.estado, 'Duracion':fase.duracion}   
         form = FaseModificadaForm(data)
         
     ctx ={'form': form, 'mensaje':mensaje, 'id_proyecto':id_proyecto, 'id_fase':id_fase}      
     template_name='Fases/modificarfase.html'
-    return render_to_response(template_name, ctx, context_instance=RequestContext(request))
-
-def abrir_proyectos (request, id_proyecto):
-    
-    """ Recibe un request, se verifica los permisos del usuario que desea importar un proyecto y luego se lo
-redirige a la pagina donde se lista los proyectos del sistema que pueden ser importados.
-@type request: django.http.HttpRequest.
-@param request: Contiene informacion sobre la solicitud web actual que llamo a esta vista importar_proyecto.
-@rtype: django.shortcuts.render_to_response.
-@return: mportarproyecto.html, donde se encuentra la pagina que lista los proyectos a ser importados.
-@author: Marcelo Denis
-"""
-    
-    proyectos = Proyectos.objects.filter(is_active=True)
-    ctx ={'lista_proyectos':proyectos, 'id_proyecto':id_proyecto}
-    template_name = 'Fases/elegirproyecto.html'
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
 
 def importar_fase (request, id_proyecto):
@@ -177,7 +187,11 @@ redirige a la pagina donde se lista los proyectos del sistema que pueden ser imp
 """
    # id_import = int(id_importar)
     fases = Fases.objects.filter(is_active=True)
-    ctx ={'lista_fases':fases}
+    lista_proyectos = []
+    for fase in fases:
+        proyec = Proyectos.objects.filter(id=fase.proyecto_id)
+        lista_proyectos.extend(proyec)
+    ctx ={'lista_fases':fases, 'lista_proyectos':lista_proyectos}
     template_name = 'Fases/importarfase.html'
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
 
@@ -205,6 +219,7 @@ proyecto importado o a proyectoalerta.html donde se notifica que el proyecto fue
             nombre = form.cleaned_data['Nombre_de_Fase']
             descripcion = form.cleaned_data['Descripcion']
             duracion = form.cleaned_data['Duracion']
+            mismo_nombre = Fases.objects.filter(nombre=nombre, is_active=True, proyecto_id=id_proyecto)
             
             fase = Fases()
             fase.nombre=nombre
@@ -214,6 +229,20 @@ proyecto importado o a proyectoalerta.html donde se notifica que el proyecto fue
             fase.duracion = duracion
             fase.proyecto_id = id_proyecto
             fase.is_active = True
+            
+            repetido=False
+            for mismos_nombre in mismo_nombres:
+                if (mismos_nombre.id!=id_fase):
+                    repetido=True
+            
+            if (repetido):
+                mensaje = 'El nombre de Fase ya existe'
+                data ={'Nombre_de_Fase':fase.nombre, 'Descripcion':fase.descripcion, 'Estado':fase.estado, 'Duracion':fase.duracion}
+                form = FaseModificadaForm(data)
+                ctx ={'form': form, 'mensaje':mensaje, 'id_proyecto':id_proyecto, 'id_fase':id_fase}      
+                template_name='Fases/crearfaseimportada.html'
+                return render_to_response(template_name, ctx, context_instance=RequestContext(request))
+            
             fase.save()
                 
             mensaje="Fase importada exitosamente"
