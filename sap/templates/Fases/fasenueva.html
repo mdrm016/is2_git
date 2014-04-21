@@ -16,7 +16,9 @@
 	{% if form.errors %}
 		Por favor verifique:error
 	{% endif %}
-	
+	<div class="bs-example">
+			<h3><p align="center" class="text-warning"><small>{{ mensaje }}</small></p></h3>
+	</div>
 	<form action="" method="post">
 		<table align="center">
 			{{ form.as_table }}
