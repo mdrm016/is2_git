@@ -295,7 +295,7 @@ def importarf (request, id_proyecto, id_fase):
     @return: crearfaseimportada.html, donde se redirige al usuario para completar los datos de la nueva
     fase importada o a fasealerta.html donde se notifica que la fase fue importada correctamente.
     
-    @author: Marcelo Denis.
+    @author: Ysapy Ortiz.
     
     """
     

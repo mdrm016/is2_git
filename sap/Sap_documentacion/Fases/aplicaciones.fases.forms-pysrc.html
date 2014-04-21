@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>aplicaciones.fases.forms</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="aplicaciones.fases-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            >Sap_documentacion</th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        Package&nbsp;aplicaciones ::
+        <a href="aplicaciones.fases-module.html">Package&nbsp;fases</a> ::
+        Module&nbsp;forms
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="aplicaciones.fases.forms-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="aplicaciones.fases.forms-module.html">Module aplicaciones.fases.forms</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno"> 1</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">django</tt> <tt class="py-keyword">import</tt> <tt id="link-0" class="py-name" targets="Module aplicaciones.fases.forms=aplicaciones.fases.forms-module.html"><a title="aplicaciones.fases.forms" class="py-name" href="#" onclick="return doclink('link-0', 'forms', 'link-0');">forms</a></tt> </tt>
+<a name="L2"></a><tt class="py-lineno"> 2</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">django</tt><tt class="py-op">.</tt><tt id="link-1" class="py-name"><a title="aplicaciones.fases.forms" class="py-name" href="#" onclick="return doclink('link-1', 'forms', 'link-0');">forms</a></tt><tt class="py-op">.</tt><tt class="py-name">extras</tt><tt class="py-op">.</tt><tt class="py-name">widgets</tt> <tt class="py-keyword">import</tt> <tt class="py-name">Select</tt> </tt>
+<a name="L3"></a><tt class="py-lineno"> 3</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-op">.</tt><tt id="link-2" class="py-name" targets="Module aplicaciones.fases.models=aplicaciones.fases.models-module.html"><a title="aplicaciones.fases.models" class="py-name" href="#" onclick="return doclink('link-2', 'models', 'link-2');">models</a></tt> <tt class="py-keyword">import</tt> <tt id="link-3" class="py-name" targets="Class aplicaciones.fases.models.Fases=aplicaciones.fases.models.Fases-class.html"><a title="aplicaciones.fases.models.Fases" class="py-name" href="#" onclick="return doclink('link-3', 'Fases', 'link-3');">Fases</a></tt> </tt>
+<a name="L4"></a><tt class="py-lineno"> 4</tt>  <tt class="py-line"> </tt>
+<a name="L5"></a><tt class="py-lineno"> 5</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">django</tt><tt class="py-op">.</tt><tt id="link-4" class="py-name"><a title="aplicaciones.fases.forms" class="py-name" href="#" onclick="return doclink('link-4', 'forms', 'link-0');">forms</a></tt> <tt class="py-keyword">import</tt> <tt class="py-name">ModelForm</tt> </tt>
+<a name="L6"></a><tt class="py-lineno"> 6</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">django</tt><tt class="py-op">.</tt><tt class="py-name">core</tt> <tt class="py-keyword">import</tt> <tt class="py-name">validators</tt> </tt>
+<a name="L7"></a><tt class="py-lineno"> 7</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">django</tt><tt class="py-op">.</tt><tt class="py-name">core</tt><tt class="py-op">.</tt><tt class="py-name">exceptions</tt> <tt class="py-keyword">import</tt> <tt class="py-name">ValidationError</tt> </tt>
+<a name="L8"></a><tt class="py-lineno"> 8</tt>  <tt class="py-line"> </tt>
+<a name="validar_fasenombre_unico"></a><div id="validar_fasenombre_unico-def"><a name="L9"></a><tt class="py-lineno"> 9</tt> <a class="py-toggle" href="#" id="validar_fasenombre_unico-toggle" onclick="return toggle('validar_fasenombre_unico');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="aplicaciones.fases.forms-module.html#validar_fasenombre_unico">validar_fasenombre_unico</a><tt class="py-op">(</tt><tt class="py-param">value</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="validar_fasenombre_unico-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="validar_fasenombre_unico-expanded"><a name="L10"></a><tt class="py-lineno">10</tt>  <tt class="py-line">    <tt class="py-keyword">if</tt> <tt id="link-5" class="py-name"><a title="aplicaciones.fases.models.Fases" class="py-name" href="#" onclick="return doclink('link-5', 'Fases', 'link-3');">Fases</a></tt><tt class="py-op">.</tt><tt class="py-name">objects</tt><tt class="py-op">.</tt><tt class="py-name">filter</tt><tt class="py-op">(</tt><tt id="link-6" class="py-name" targets="Variable aplicaciones.fases.models.Fases.nombre=aplicaciones.fases.models.Fases-class.html#nombre"><a title="aplicaciones.fases.models.Fases.nombre" class="py-name" href="#" onclick="return doclink('link-6', 'nombre', 'link-6');">nombre</a></tt><tt class="py-op">=</tt><tt class="py-name">value</tt><tt class="py-op">,</tt> <tt id="link-7" class="py-name" targets="Variable aplicaciones.fases.models.Fases.is_active=aplicaciones.fases.models.Fases-class.html#is_active"><a title="aplicaciones.fases.models.Fases.is_active" class="py-name" href="#" onclick="return doclink('link-7', 'is_active', 'link-7');">is_active</a></tt><tt class="py-op">=</tt><tt class="py-name">True</tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt class="py-name">exists</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L11"></a><tt class="py-lineno">11</tt>  <tt class="py-line">        <tt class="py-keyword">raise</tt> <tt class="py-name">ValidationError</tt><tt class="py-op">(</tt><tt class="py-string">u'El nombre de fase ya existe'</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L12"></a><tt class="py-lineno">12</tt>  <tt class="py-line">     </tt>
+<a name="validate_duracion_fase"></a><div id="validate_duracion_fase-def"><a name="L13"></a><tt class="py-lineno">13</tt> <a class="py-toggle" href="#" id="validate_duracion_fase-toggle" onclick="return toggle('validate_duracion_fase');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="aplicaciones.fases.forms-module.html#validate_duracion_fase">validate_duracion_fase</a> <tt class="py-op">(</tt><tt class="py-param">value</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="validate_duracion_fase-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="validate_duracion_fase-expanded"><a name="L14"></a><tt class="py-lineno">14</tt>  <tt class="py-line">    <tt class="py-keyword">if</tt> <tt class="py-name">value</tt> <tt class="py-op">&lt;</tt> <tt class="py-number">1</tt><tt class="py-op">:</tt> </tt>
+<a name="L15"></a><tt class="py-lineno">15</tt>  <tt class="py-line">        <tt class="py-keyword">raise</tt> <tt class="py-name">ValidationError</tt><tt class="py-op">(</tt><tt class="py-string">u'Ingrese una duracion valida'</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L16"></a><tt class="py-lineno">16</tt>  <tt class="py-line">     </tt>
+<a name="L17"></a><tt class="py-lineno">17</tt>  <tt class="py-line"><tt id="link-8" class="py-name" targets="Variable aplicaciones.fases.forms.ESTADOS_FASE=aplicaciones.fases.forms-module.html#ESTADOS_FASE"><a title="aplicaciones.fases.forms.ESTADOS_FASE" class="py-name" href="#" onclick="return doclink('link-8', 'ESTADOS_FASE', 'link-8');">ESTADOS_FASE</a></tt><tt class="py-op">=</tt><tt class="py-op">(</tt> </tt>
+<a name="L18"></a><tt class="py-lineno">18</tt>  <tt class="py-line">        <tt class="py-op">(</tt><tt class="py-string">''</tt><tt class="py-op">,</tt> <tt class="py-string">'--seleccione un Estado--'</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> </tt>
+<a name="L19"></a><tt class="py-lineno">19</tt>  <tt class="py-line">        <tt class="py-op">(</tt><tt class="py-string">'DF'</tt><tt class="py-op">,</tt> <tt class="py-string">'Definicion'</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> </tt>
+<a name="L20"></a><tt class="py-lineno">20</tt>  <tt class="py-line">        <tt class="py-op">(</tt><tt class="py-string">'DR'</tt><tt class="py-op">,</tt> <tt class="py-string">'Desarrollo'</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> </tt>
+<a name="L21"></a><tt class="py-lineno">21</tt>  <tt class="py-line">        <tt class="py-op">(</tt><tt class="py-string">'FD'</tt><tt class="py-op">,</tt> <tt class="py-string">'Finalizado'</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> </tt>
+<a name="L22"></a><tt class="py-lineno">22</tt>  <tt class="py-line">    <tt class="py-op">)</tt> </tt>
+<a name="L23"></a><tt class="py-lineno">23</tt>  <tt class="py-line"> </tt>
+<a name="FaseNuevaForm"></a><div id="FaseNuevaForm-def"><a name="L24"></a><tt class="py-lineno">24</tt> <a class="py-toggle" href="#" id="FaseNuevaForm-toggle" onclick="return toggle('FaseNuevaForm');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="aplicaciones.fases.forms.FaseNuevaForm-class.html">FaseNuevaForm</a><tt class="py-op">(</tt><tt class="py-base-class">forms</tt><tt class="py-op">.</tt><tt class="py-base-class">Form</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="FaseNuevaForm-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="FaseNuevaForm-expanded"><a name="L25"></a><tt class="py-lineno">25</tt>  <tt class="py-line"><tt class="py-comment">#, validators=[validar_fasenombre_unico]</tt> </tt>
+<a name="L26"></a><tt class="py-lineno">26</tt>  <tt class="py-line">    <tt class="py-docstring">""" Atributos de Fase necesarios para el registro en la base de datos</tt> </tt>
+<a name="L27"></a><tt class="py-lineno">27</tt>  <tt class="py-line"><tt class="py-docstring">    enviados al template html encargado de tomar los datos de registro.</tt> </tt>
+<a name="L28"></a><tt class="py-lineno">28</tt>  <tt class="py-line"><tt class="py-docstring">    Control de datos ingresados por el usuario.</tt> </tt>
+<a name="L29"></a><tt class="py-lineno">29</tt>  <tt class="py-line"><tt class="py-docstring">        </tt> </tt>
+<a name="L30"></a><tt class="py-lineno">30</tt>  <tt class="py-line"><tt class="py-docstring">    @type forms.Form: django.forms</tt> </tt>
+<a name="L31"></a><tt class="py-lineno">31</tt>  <tt class="py-line"><tt class="py-docstring">    @param forms.Form: Heredamos la clase forms.Form para hacer uso de sus funcionalidades en el formulario de registro</tt> </tt>
+<a name="L32"></a><tt class="py-lineno">32</tt>  <tt class="py-line"><tt class="py-docstring">    @author: Ysapy Ortiz</tt> </tt>
+<a name="L33"></a><tt class="py-lineno">33</tt>  <tt class="py-line"><tt class="py-docstring">        </tt> </tt>
+<a name="L34"></a><tt class="py-lineno">34</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L35"></a><tt class="py-lineno">35</tt>  <tt class="py-line"> </tt>
+<a name="L36"></a><tt class="py-lineno">36</tt>  <tt class="py-line">    <tt id="link-9" class="py-name" targets="Variable aplicaciones.fases.forms.FaseModificadaForm.Nombre_de_Fase=aplicaciones.fases.forms.FaseModificadaForm-class.html#Nombre_de_Fase,Variable aplicaciones.fases.forms.FaseNuevaForm.Nombre_de_Fase=aplicaciones.fases.forms.FaseNuevaForm-class.html#Nombre_de_Fase"><a title="aplicaciones.fases.forms.FaseModificadaForm.Nombre_de_Fase
+aplicaciones.fases.forms.FaseNuevaForm.Nombre_de_Fase" class="py-name" href="#" onclick="return doclink('link-9', 'Nombre_de_Fase', 'link-9');">Nombre_de_Fase</a></tt> <tt class="py-op">=</tt> <tt id="link-10" class="py-name"><a title="aplicaciones.fases.forms" class="py-name" href="#" onclick="return doclink('link-10', 'forms', 'link-0');">forms</a></tt><tt class="py-op">.</tt><tt class="py-name">CharField</tt><tt class="py-op">(</tt><tt class="py-name">widget</tt><tt class="py-op">=</tt><tt id="link-11" class="py-name"><a title="aplicaciones.fases.forms" class="py-name" href="#" onclick="return doclink('link-11', 'forms', 'link-0');">forms</a></tt><tt class="py-op">.</tt><tt class="py-name">TextInput</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-name">max_length</tt><tt class="py-op">=</tt><tt class="py-number">20</tt><tt class="py-op">,</tt> <tt class="py-name">required</tt><tt class="py-op">=</tt><tt class="py-name">True</tt><tt class="py-op">,</tt> <tt class="py-name">error_messages</tt><tt class="py-op">=</tt><tt class="py-op">{</tt><tt class="py-string">'required'</tt><tt class="py-op">:</tt><tt class="py-string">'Ingrese un nombre de fase'</tt><tt class="py-op">,</tt> <tt class="py-string">'max_length'</tt><tt class="py-op">:</tt><tt class="py-string">'Longitud maxima 20'</tt><tt class="py-op">}</tt><tt class="py-op">)</tt> </tt>
+<a name="L37"></a><tt class="py-lineno">37</tt>  <tt class="py-line">    <tt id="link-12" class="py-name" targets="Variable aplicaciones.fases.forms.FaseModificadaForm.Descripcion=aplicaciones.fases.forms.FaseModificadaForm-class.html#Descripcion,Variable aplicaciones.fases.forms.FaseNuevaForm.Descripcion=aplicaciones.fases.forms.FaseNuevaForm-class.html#Descripcion"><a title="aplicaciones.fases.forms.FaseModificadaForm.Descripcion
+aplicaciones.fases.forms.FaseNuevaForm.Descripcion" class="py-name" href="#" onclick="return doclink('link-12', 'Descripcion', 'link-12');">Descripcion</a></tt> <tt class="py-op">=</tt> <tt id="link-13" class="py-name"><a title="aplicaciones.fases.forms" class="py-name" href="#" onclick="return doclink('link-13', 'forms', 'link-0');">forms</a></tt><tt class="py-op">.</tt><tt class="py-name">CharField</tt><tt class="py-op">(</tt><tt class="py-name">widget</tt><tt class="py-op">=</tt><tt id="link-14" class="py-name"><a title="aplicaciones.fases.forms" class="py-name" href="#" onclick="return doclink('link-14', 'forms', 'link-0');">forms</a></tt><tt class="py-op">.</tt><tt class="py-name">TextInput</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-name">required</tt><tt class="py-op">=</tt><tt class="py-name">True</tt><tt class="py-op">,</tt> <tt class="py-name">max_length</tt><tt class="py-op">=</tt><tt class="py-number">300</tt><tt class="py-op">,</tt> <tt class="py-name">error_messages</tt><tt class="py-op">=</tt><tt class="py-op">{</tt><tt class="py-string">'required'</tt><tt class="py-op">:</tt><tt class="py-string">'Ingrese una descripcion para la fase'</tt><tt class="py-op">,</tt> <tt class="py-string">'max_length'</tt><tt class="py-op">:</tt><tt class="py-string">'Longitud maxima 300'</tt><tt class="py-op">}</tt><tt class="py-op">)</tt> </tt>
+<a name="L38"></a><tt class="py-lineno">38</tt>  <tt class="py-line">   <tt class="py-comment"># Estado = forms.ChoiceField(widget=Select, choice=ESTADOS_CREAR, required=True)</tt> </tt>
+<a name="L39"></a><tt class="py-lineno">39</tt>  <tt class="py-line">    <tt id="link-15" class="py-name" targets="Variable aplicaciones.fases.forms.FaseNuevaForm.Duracion_semanas=aplicaciones.fases.forms.FaseNuevaForm-class.html#Duracion_semanas"><a title="aplicaciones.fases.forms.FaseNuevaForm.Duracion_semanas" class="py-name" href="#" onclick="return doclink('link-15', 'Duracion_semanas', 'link-15');">Duracion_semanas</a></tt> <tt class="py-op">=</tt> <tt id="link-16" class="py-name"><a title="aplicaciones.fases.forms" class="py-name" href="#" onclick="return doclink('link-16', 'forms', 'link-0');">forms</a></tt><tt class="py-op">.</tt><tt class="py-name">IntegerField</tt><tt class="py-op">(</tt><tt class="py-name">required</tt><tt class="py-op">=</tt><tt class="py-name">True</tt><tt class="py-op">,</tt> <tt class="py-name">error_messages</tt><tt class="py-op">=</tt><tt class="py-op">{</tt><tt class="py-string">'required'</tt><tt class="py-op">:</tt><tt class="py-string">'Ingrese una duracion estimada en semanas'</tt><tt class="py-op">}</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L40"></a><tt class="py-lineno">40</tt>  <tt class="py-line">     </tt>
+<a name="FaseModificadaForm"></a><div id="FaseModificadaForm-def"><a name="L41"></a><tt class="py-lineno">41</tt> <a class="py-toggle" href="#" id="FaseModificadaForm-toggle" onclick="return toggle('FaseModificadaForm');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="aplicaciones.fases.forms.FaseModificadaForm-class.html">FaseModificadaForm</a><tt class="py-op">(</tt><tt class="py-base-class">forms</tt><tt class="py-op">.</tt><tt class="py-base-class">Form</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="FaseModificadaForm-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="FaseModificadaForm-expanded"><a name="L42"></a><tt class="py-lineno">42</tt>  <tt class="py-line"><tt class="py-comment">#, validators=[validar_fasenombre_unico]</tt> </tt>
+<a name="L43"></a><tt class="py-lineno">43</tt>  <tt class="py-line"> </tt>
+<a name="L44"></a><tt class="py-lineno">44</tt>  <tt class="py-line">    <tt class="py-docstring">""" Atributos de fase necesarios para la modificacion en la base de datos</tt> </tt>
+<a name="L45"></a><tt class="py-lineno">45</tt>  <tt class="py-line"><tt class="py-docstring">    de una fase. Este formulario con los campos descritos son </tt> </tt>
+<a name="L46"></a><tt class="py-lineno">46</tt>  <tt class="py-line"><tt class="py-docstring">    enviados al template html encargado de desplegar los datos de la fase a modificar.</tt> </tt>
+<a name="L47"></a><tt class="py-lineno">47</tt>  <tt class="py-line"><tt class="py-docstring">    </tt> </tt>
+<a name="L48"></a><tt class="py-lineno">48</tt>  <tt class="py-line"><tt class="py-docstring">    Control de datos ingresados por el usuario.</tt> </tt>
+<a name="L49"></a><tt class="py-lineno">49</tt>  <tt class="py-line"><tt class="py-docstring">        </tt> </tt>
+<a name="L50"></a><tt class="py-lineno">50</tt>  <tt class="py-line"><tt class="py-docstring">    @type forms.Form: django.forms</tt> </tt>
+<a name="L51"></a><tt class="py-lineno">51</tt>  <tt class="py-line"><tt class="py-docstring">    @param forms.Form: Heredamos la clase forms.Form para hacer uso de sus funcionalidades en el formulario de registro</tt> </tt>
+<a name="L52"></a><tt class="py-lineno">52</tt>  <tt class="py-line"><tt class="py-docstring">    @author: Ysapy Ortiz</tt> </tt>
+<a name="L53"></a><tt class="py-lineno">53</tt>  <tt class="py-line"><tt class="py-docstring">    </tt> </tt>
+<a name="L54"></a><tt class="py-lineno">54</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L55"></a><tt class="py-lineno">55</tt>  <tt class="py-line">    <tt id="link-17" class="py-name"><a title="aplicaciones.fases.forms.FaseModificadaForm.Nombre_de_Fase
+aplicaciones.fases.forms.FaseNuevaForm.Nombre_de_Fase" class="py-name" href="#" onclick="return doclink('link-17', 'Nombre_de_Fase', 'link-9');">Nombre_de_Fase</a></tt> <tt class="py-op">=</tt> <tt id="link-18" class="py-name"><a title="aplicaciones.fases.forms" class="py-name" href="#" onclick="return doclink('link-18', 'forms', 'link-0');">forms</a></tt><tt class="py-op">.</tt><tt class="py-name">CharField</tt><tt class="py-op">(</tt><tt class="py-name">widget</tt><tt class="py-op">=</tt><tt id="link-19" class="py-name"><a title="aplicaciones.fases.forms" class="py-name" href="#" onclick="return doclink('link-19', 'forms', 'link-0');">forms</a></tt><tt class="py-op">.</tt><tt class="py-name">TextInput</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-name">max_length</tt><tt class="py-op">=</tt><tt class="py-number">20</tt><tt class="py-op">,</tt> <tt class="py-name">required</tt><tt class="py-op">=</tt><tt class="py-name">True</tt><tt class="py-op">,</tt> <tt class="py-name">error_messages</tt><tt class="py-op">=</tt><tt class="py-op">{</tt><tt class="py-string">'required'</tt><tt class="py-op">:</tt> <tt class="py-string">'Ingrese un nombre de fase'</tt><tt class="py-op">,</tt> <tt class="py-string">'max_length'</tt><tt class="py-op">:</tt> <tt class="py-string">'Longitud maxima: 20'</tt><tt class="py-op">}</tt><tt class="py-op">)</tt> </tt>
+<a name="L56"></a><tt class="py-lineno">56</tt>  <tt class="py-line">    <tt id="link-20" class="py-name"><a title="aplicaciones.fases.forms.FaseModificadaForm.Descripcion
+aplicaciones.fases.forms.FaseNuevaForm.Descripcion" class="py-name" href="#" onclick="return doclink('link-20', 'Descripcion', 'link-12');">Descripcion</a></tt> <tt class="py-op">=</tt> <tt id="link-21" class="py-name"><a title="aplicaciones.fases.forms" class="py-name" href="#" onclick="return doclink('link-21', 'forms', 'link-0');">forms</a></tt><tt class="py-op">.</tt><tt class="py-name">CharField</tt><tt class="py-op">(</tt><tt class="py-name">widget</tt><tt class="py-op">=</tt><tt id="link-22" class="py-name"><a title="aplicaciones.fases.forms" class="py-name" href="#" onclick="return doclink('link-22', 'forms', 'link-0');">forms</a></tt><tt class="py-op">.</tt><tt class="py-name">TextInput</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-name">required</tt><tt class="py-op">=</tt><tt class="py-name">False</tt><tt class="py-op">,</tt> <tt class="py-name">max_length</tt><tt class="py-op">=</tt><tt class="py-number">300</tt><tt class="py-op">,</tt> <tt class="py-name">error_messages</tt><tt class="py-op">=</tt><tt class="py-op">{</tt><tt class="py-string">'required'</tt><tt class="py-op">:</tt> <tt class="py-string">'Ingrese una descripcion para la fase'</tt><tt class="py-op">,</tt> <tt class="py-string">'max_length'</tt><tt class="py-op">:</tt> <tt class="py-string">'Longitud maxima 300'</tt><tt class="py-op">}</tt><tt class="py-op">)</tt> </tt>
+<a name="L57"></a><tt class="py-lineno">57</tt>  <tt class="py-line">    <tt id="link-23" class="py-name" targets="Variable aplicaciones.fases.forms.FaseModificadaForm.Estado=aplicaciones.fases.forms.FaseModificadaForm-class.html#Estado"><a title="aplicaciones.fases.forms.FaseModificadaForm.Estado" class="py-name" href="#" onclick="return doclink('link-23', 'Estado', 'link-23');">Estado</a></tt> <tt class="py-op">=</tt> <tt id="link-24" class="py-name"><a title="aplicaciones.fases.forms" class="py-name" href="#" onclick="return doclink('link-24', 'forms', 'link-0');">forms</a></tt><tt class="py-op">.</tt><tt class="py-name">ChoiceField</tt><tt class="py-op">(</tt><tt class="py-name">widget</tt><tt class="py-op">=</tt><tt id="link-25" class="py-name"><a title="aplicaciones.fases.forms" class="py-name" href="#" onclick="return doclink('link-25', 'forms', 'link-0');">forms</a></tt><tt class="py-op">.</tt><tt class="py-name">Select</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-name">choices</tt><tt class="py-op">=</tt> <tt class="py-op">(</tt><tt id="link-26" class="py-name"><a title="aplicaciones.fases.forms.ESTADOS_FASE" class="py-name" href="#" onclick="return doclink('link-26', 'ESTADOS_FASE', 'link-8');">ESTADOS_FASE</a></tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-name">required</tt><tt class="py-op">=</tt><tt class="py-name">False</tt><tt class="py-op">)</tt> </tt>
+<a name="L58"></a><tt class="py-lineno">58</tt>  <tt class="py-line">    <tt id="link-27" class="py-name" targets="Variable aplicaciones.fases.forms.FaseModificadaForm.Duracion=aplicaciones.fases.forms.FaseModificadaForm-class.html#Duracion"><a title="aplicaciones.fases.forms.FaseModificadaForm.Duracion" class="py-name" href="#" onclick="return doclink('link-27', 'Duracion', 'link-27');">Duracion</a></tt> <tt class="py-op">=</tt> <tt id="link-28" class="py-name"><a title="aplicaciones.fases.forms" class="py-name" href="#" onclick="return doclink('link-28', 'forms', 'link-0');">forms</a></tt><tt class="py-op">.</tt><tt class="py-name">IntegerField</tt><tt class="py-op">(</tt><tt class="py-name">required</tt><tt class="py-op">=</tt><tt class="py-name">True</tt><tt class="py-op">,</tt> <tt class="py-name">help_text</tt><tt class="py-op">=</tt><tt class="py-string">'En semanas'</tt><tt class="py-op">,</tt> <tt class="py-name">validators</tt><tt class="py-op">=</tt><tt class="py-op">[</tt><tt id="link-29" class="py-name" targets="Function aplicaciones.fases.forms.validate_duracion_fase()=aplicaciones.fases.forms-module.html#validate_duracion_fase"><a title="aplicaciones.fases.forms.validate_duracion_fase" class="py-name" href="#" onclick="return doclink('link-29', 'validate_duracion_fase', 'link-29');">validate_duracion_fase</a></tt><tt class="py-op">]</tt><tt class="py-op">,</tt> <tt class="py-name">error_messages</tt><tt class="py-op">=</tt><tt class="py-op">{</tt><tt class="py-string">'required'</tt><tt class="py-op">:</tt> <tt class="py-string">'Ingrese una duracion aproximada de fase'</tt><tt class="py-op">,</tt><tt class="py-op">}</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L59"></a><tt class="py-lineno">59</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="aplicaciones.fases-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            >Sap_documentacion</th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Mon Apr 21 09:18:57 2014
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

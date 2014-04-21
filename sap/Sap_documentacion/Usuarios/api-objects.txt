@@ -23,6 +23,7 @@ aplicaciones.usuarios.forms.UsuarioModificadoForm.Especialidad	aplicaciones.usua
 aplicaciones.usuarios.forms.UsuarioModificadoForm.Direccion	aplicaciones.usuarios.forms.UsuarioModificadoForm-class.html#Direccion
 aplicaciones.usuarios.forms.UsuarioModificadoForm.Nueva_contrasenha	aplicaciones.usuarios.forms.UsuarioModificadoForm-class.html#Nueva_contrasenha
 aplicaciones.usuarios.forms.UsuarioModificadoForm.clean	aplicaciones.usuarios.forms.UsuarioModificadoForm-class.html#clean
+aplicaciones.usuarios.forms.UsuarioModificadoForm.forms.Form	aplicaciones.usuarios.forms.UsuarioModificadoForm-class.html#forms.Form
 aplicaciones.usuarios.forms.UsuarioModificadoForm.Nombre	aplicaciones.usuarios.forms.UsuarioModificadoForm-class.html#Nombre
 aplicaciones.usuarios.forms.UsuarioModificadoForm.Telefono	aplicaciones.usuarios.forms.UsuarioModificadoForm-class.html#Telefono
 aplicaciones.usuarios.forms.UsuarioModificadoForm.Email	aplicaciones.usuarios.forms.UsuarioModificadoForm-class.html#Email
@@ -44,10 +45,15 @@ aplicaciones.usuarios.models.Usuarios.create_user_profile	aplicaciones.usuarios.
 aplicaciones.usuarios.models.Usuarios.observaciones	aplicaciones.usuarios.models.Usuarios-class.html#observaciones
 aplicaciones.usuarios.models.Usuarios.especialidad	aplicaciones.usuarios.models.Usuarios-class.html#especialidad
 aplicaciones.usuarios.models.Usuarios.direccion	aplicaciones.usuarios.models.Usuarios-class.html#direccion
+aplicaciones.usuarios.models.Usuarios.Meta	aplicaciones.usuarios.models.Usuarios.Meta-class.html
 aplicaciones.usuarios.models.Usuarios.user	aplicaciones.usuarios.models.Usuarios-class.html#user
 aplicaciones.usuarios.models.Usuarios.telefono	aplicaciones.usuarios.models.Usuarios-class.html#telefono
 aplicaciones.usuarios.models.Usuarios.__unicode__	aplicaciones.usuarios.models.Usuarios-class.html#__unicode__
+aplicaciones.usuarios.models.Usuarios.Meta	aplicaciones.usuarios.models.Usuarios.Meta-class.html
+aplicaciones.usuarios.models.Usuarios.Meta.permissions	aplicaciones.usuarios.models.Usuarios.Meta-class.html#permissions
 aplicaciones.usuarios.tests.test_user	aplicaciones.usuarios.tests.test_user-class.html
+aplicaciones.usuarios.tests.test_user.testModificarUsuario	aplicaciones.usuarios.tests.test_user-class.html#testModificarUsuario
+aplicaciones.usuarios.tests.test_user.testAdministrarUsuario	aplicaciones.usuarios.tests.test_user-class.html#testAdministrarUsuario
 aplicaciones.usuarios.tests.test_user.setUp	aplicaciones.usuarios.tests.test_user-class.html#setUp
 aplicaciones.usuarios.tests.test_user.test_usuario_eliminar	aplicaciones.usuarios.tests.test_user-class.html#test_usuario_eliminar
 aplicaciones.usuarios.tests.test_user.testUsuarioNuevo	aplicaciones.usuarios.tests.test_user-class.html#testUsuarioNuevo

@@ -17,7 +17,9 @@ class UsuarioNuevoForm (forms.Form):
         Control de datos ingresados por el usuario.
         
         @type forms.Form: django.forms
-        @param forms.Form: Heredamos la clase forms.Form para hacer uso de sus funcionalidades en el formulario de registro
+        @param forms.Form: Heredamos la clase forms.Form para hacer uso de sus
+        funcionalidades en el formulario de registro
+        
         @author: Ysapy Ortiz
         
     """
@@ -45,11 +47,10 @@ class UsuarioModificadoForm (forms.Form):
     """ Atributos de Usuario necesarios para el registro en la base de datos
     de un Usuario a modificar. Este formulario con los campos descritos son 
     enviados al template html encargado de desplegar los datos del usuario a modificar.
-    
     Control de datos ingresados por el usuario.
         
-     @type forms.Form: django.forms
-     @param forms.Form: Heredamos la clase forms.Form para hacer uso de sus funcionalidades en el formulario de registro
+    @type forms.Form: django.forms
+    @param forms.Form: Heredamos la clase forms.Form para hacer uso de sus funcionalidades en el formulario de registro
     @author: eduardo gimenez 
     
     """
