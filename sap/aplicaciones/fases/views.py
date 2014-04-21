@@ -251,7 +251,7 @@ def modificar_fase (request, id_proyecto, id_fase):
 
 
 @login_required(login_url='/login/')
-@permission_required('fases.importar_fases',raise_exception=True)
+@permission_required('fases.importar_fase',raise_exception=True)
 def importar_fase (request, id_proyecto):
     
     """ Recibe un request, se verifica los permisos del usuario que desea importar una fase y luego se lo 
@@ -334,7 +334,7 @@ def importarf (request, id_proyecto, id_fase):
             fase.save()
                 
             mensaje="Fase importada exitosamente"
-            ctx = {'mensaje':mensaje}
+            ctx = {'mensaje':mensaje, 'id_proyecto':id_proyecto}
             return render_to_response('Fases/fasealerta.html',ctx, context_instance=RequestContext(request))
     else:
         data ={'Nombre_de_Fase':faseImportada.nombre, 'Descripcion':faseImportada.descripcion, 'Estado':faseImportada.estado, 'Duracion':faseImportada.duracion}   

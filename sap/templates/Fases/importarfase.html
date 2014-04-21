@@ -69,7 +69,6 @@
 					{% for proyect in lista_proyectos %}
 						{% ifequal proyect.id fase.proyecto_id %}
 							{{ proyect.nombre }}
-							{% break %}
 						{% endifequal %}
 					{% endfor %}
 					</a>
