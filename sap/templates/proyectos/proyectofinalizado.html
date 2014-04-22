@@ -4,13 +4,7 @@
 <div class="menu">
 	<ul>
 		<li id="option1" class="active">
-			<a href="/">Proyectos</a>
-		</li>
-		<li id="option2" >
-			<a href="#">Solicitudes</a>
-		</li>
-		<li id="option3">
-		 	<a href="#">Credenciales</a>
+			<a href="#">Proyectos Finalizados</a>
 		</li>
 	</ul>
 </div>
@@ -19,9 +13,6 @@
 {% block botones %}
 <div class="row">
 	<form class="navbar-form navbar-left">
-		<a href="crear/"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-folder-open"></span> Crear Proyecto</button></a>
-		<a href="importar_proyecto/"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-import"></span> Importar Proyecto</button></a>
-		<a href="proyecto_finalizado/"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-ok-circle"></span> Proyectos Finalizados</button></a>
 		<div class="form-group">
 			<form action="" method="get">
 				<input type="text" name="busqueda" class="btn btn-default" placeholder="Busqueda de proyecto..." value="{{ query|escape }}">
@@ -61,7 +52,7 @@
 				    </div>
 				</div>
 			{% for proyecto in lista_proyectos %}
-				{% if proyecto.is_active and proyecto.estado != 'Finalizado' %}
+				{% if proyecto.is_active %}
 				<div class="panel panel-default">
 					<div class="col-md-4">
 				    	<div class="panel-heading">
@@ -97,15 +88,13 @@
 				      <div class="panel-body">
 				      		<a href="consultar/{{ proyecto.id }}/"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-eye-open"></span> Consultar</button></a>
 				      		<a href="listar_miembros/{{ proyecto.id }}/"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-list-alt"></span> Listar Miembros</button></a>
-				      		<a href="modificar/{{ proyecto.id }}/"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-edit"></span> Modificar</button></a>
-				      		<button class="btn btn-danger btn-sm proyectos" data-toggle="modal" data-target="#myModal" data-id="{{ proyecto.id }}"><span class="glyphicon glyphicon-trash"></span> Eliminar</button>
-				      		<a href="gestionar/{{ proyecto.id }}/"><button type="button" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-th"></span> Gestionar Proyecto</button></a>
 				      </div>
 				    </div>
 				</div>
 				{% endif %}
 			{% endfor %}
 		</div>
+		<a href="/"><button type="button" align="center" class="btn btn-default"><span class="glyphicon glyphicon-arrow-left"></span> Volver</button></a>
 		</div>
 		{% else %}
 			{% if error %}
@@ -113,35 +102,16 @@
   					<div class="alert alert-danger"><h3><p align="center"><b>No se encontraron coincidencias</b></p></h3></div>
 				</div>
 				<div  align="center">
-					<a type="button" class="btn btn-default" href="/"><span class="glyphicon glyphicon-arrow-left"></span> Volver</a>
+					<a type="button" class="btn btn-default" href="/adm_proyectos/proyecto_finalizado/"><span class="glyphicon glyphicon-arrow-left"></span> Volver</a>
 				</div>	
 			{% else %}
 				<div class="jumbotron">
-					<div class="bs-example">
-						<p class="text-warning" align="center"><small>Usted actualmente no esta asociado a ningun proyecto</small></p>
+					<div class="bs-example" align="center">
+						<p class="text-warning" align="center"><small>Actualmente no hay ningun proyecto finalizado</small></p>
+						<a href="/"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-arrow-left"></span> Volver</button></a>
 					</div>
 				</div>
 			{% endif %}
 		{% endif %}
-		
-		<!-- Ininicia Modal -->
-		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		  <div class="modal-dialog">
-		    <div class="modal-content">
-		      <div class="modal-header">
-		        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-		        <h4 class="modal-title" id="myModalLabel">Eliminar</h4>
-		      </div>
-		      <div class="modal-body">
-		        	Esta usted seguro de que desea eliminar el proyecto?
-		      </div>
-		      <div class="modal-footer">
-		        <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancelar</button>
-		       <a id="proyecto" href=""><button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-ok"></span> Estoy Seguro</button></a>
-		      </div>
-		    </div>
-		  </div>
-		</div>
-		<!-- Finaliza el Modal -->
 </div>
 {% endblock %}

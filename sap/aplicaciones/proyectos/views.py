@@ -56,6 +56,42 @@ def adm_proyectos (request):
     template_name = 'index.html'
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
 
+def proyecto_finalizado (request):
+    
+    """ Recibe un request, se verifica cual es el usuario registrado y se obtiene la lista de proyectos finalizados
+    con los que esta relacionado desplegandolo en pantalla, ademas permite realizar busquedas avanzadas sobre
+    los los proyectos que puede mostrar. Si el usuario es el administrador despliega todos los proyectos.
+    
+    @type request: django.http.HttpRequest.
+    @param request: Contiene informacion sobre la solicitud web actual que llamo a esta vista adm_proyectos.
+    
+    @rtype: django.shortcuts.render_to_response.
+    @return: index.html, donde se listan los proyectos, ademas de las funcionalidades para cada proyecto.
+    
+    @author: Marcelo Denis.
+    
+    """
+    proyectos = Proyectos.objects.filter(estado='Finalizado', is_active=True)
+    
+    busqueda = ''
+    error=False
+    if 'busqueda' in request.GET:
+        busqueda = request.GET.get('busqueda', '')
+        if busqueda:
+            qset = (
+                Q(nombre__icontains=busqueda) |
+                Q(lider__username__icontains=busqueda) |
+                Q(fecha_inicio__icontains=busqueda) |
+                Q(duracion__icontains=busqueda) 
+            )
+            proyectos= proyectos.filter(qset).distinct()
+            if not proyectos:
+                error = True
+    
+    ctx = {'lista_proyectos':proyectos, 'query':busqueda, 'error':error}
+    template_name = 'proyectos/proyectofinalizado.html'
+    return render_to_response(template_name, ctx, context_instance=RequestContext(request))
+
 @login_required(login_url='/login/')
 @permission_required('proyectos.add_proyectos',raise_exception=True)
 def crear_proyecto (request):
@@ -241,8 +277,12 @@ def eliminar_proyecto (request, id_proyecto):
     """
     
     proyecto = Proyectos.objects.get(id=id_proyecto)
-    if proyecto.estado == 'Finalizado':
-        mensaje = 'Imposible eliminar un proyecto con estado finalizado.'
+    if proyecto.estado != 'Inactivo':
+        if proyecto.estado == 'En Construccion':
+            mensaje = 'Imposible eliminar un proyecto Inicializado.'
+        else:
+            mensaje = 'Imposible eliminar un proyecto con estado finalizado.'
+            
         ctx = {'mensaje':mensaje}
         template_name = 'proyectos/proyectoalerta.html'
         return render_to_response(template_name, ctx, context_instance=RequestContext(request))
@@ -282,7 +322,7 @@ def listar_miembros (request, id_proyecto):
         for rol in rolesmiembro:
             lista.append(rol)
         user_rol[usuario.id]= lista
-    print user_rol
+
         
     ctx ={'miembros':miembros, 'proyecto':proyecto, 'user_rol':user_rol}
     template_name = 'proyectos/listarmiembrosproyecto.html'
@@ -368,7 +408,7 @@ def importar (request, id_proyecto):
             mensaje="Proyecto importado exitosamente"
             ctx = {'mensaje':mensaje}
             return render_to_response('proyectos/proyectoalerta.html',ctx, context_instance=RequestContext(request))
-    else:    
+    else:   
         form = ProyectoNuevoForm()
         
     ctx ={'form': form, 'proyecto':proyectoImportado}      
