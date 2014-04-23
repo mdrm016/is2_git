@@ -6,6 +6,5 @@ class ProyectoAdmin (admin.ModelAdmin):
     list_filter = ('lider',)
     search_fields = ('nombre', 'lider__username')
     list_editable = ('nombre', 'lider', 'estado', 'fecha_inicio', 'duracion', 'is_active')
-    filter_horizontal = ('miembros',)
 
 admin.site.register(Proyectos, ProyectoAdmin)

@@ -61,7 +61,6 @@
 				    </div>
 				</div>
 			{% for proyecto in lista_proyectos %}
-				{% if proyecto.is_active and proyecto.estado != 'Finalizado' %}
 				<div class="panel panel-default">
 					<div class="col-md-4">
 				    	<div class="panel-heading">
@@ -103,7 +102,6 @@
 				      </div>
 				    </div>
 				</div>
-				{% endif %}
 			{% endfor %}
 		</div>
 		</div>

@@ -28,15 +28,6 @@ def opcionLider():
             resultado.append(tupla)
     return resultado
 
-def opcionMiembros():
-    usuarios = Usuarios.objects.exclude(user_id='1')
-    resultado = []
-    for usuario in usuarios: 
-        if usuario.user.is_active:
-            tupla = (usuario.user_id, usuario.user.username)
-            resultado.append(tupla)
-    return resultado
-
 ESTADOS_PROYECTO=(
         ('', '--Seleccione un Estado--'),
         ('Inactivo', 'Inactivo'),
@@ -60,15 +51,12 @@ class ProyectoNuevoForm(forms.Form):
     Lider =  forms.ChoiceField(widget=forms.Select(), choices= (opcionLider()), required=True, help_text='*', error_messages={'required': 'Seleccione un lider para el proyecto',})
     Fecha_de_Inicio =  forms.DateField(input_formats=['%d/%m/%Y'], widget=widgets.AdminDateWidget, required=True, help_text='* Ingrese en formato dia/mes/anho', error_messages={'required': 'Ingrese una fecha de inicio de proyecto'} )
     Duracion = forms.IntegerField(required=True, help_text='* En semanas', validators=[validate_duracion_proyecto], error_messages={'required': 'Ingrese la duracion del proyecto',})
-    Miembros = forms.MultipleChoiceField(widget=FilteredSelectMultiple(('Miembros'),False,), required=False, choices= (opcionMiembros()))
     
     
     def __init__(self, *args, **kwargs):
         self.Lider = opcionLider()
-        self.Miembros = opcionMiembros()
         super(ProyectoNuevoForm, self).__init__(*args, **kwargs)
         self.fields['Lider']= forms.ChoiceField(widget=forms.Select(), choices= (self.Lider), required=True, help_text='*', error_messages={'required': 'Seleccione un lider para el proyecto',})
-        self.fields['Miembros'] = forms.MultipleChoiceField(widget=FilteredSelectMultiple(('Miembros'),False,), required=False, choices= (self.Miembros))
 
     
 class ProyectoModificadoForm(forms.Form):
@@ -91,13 +79,11 @@ class ProyectoModificadoForm(forms.Form):
     Estado_Actual = forms.CharField(widget=forms.TextInput(), required=False)
     Nuevo_Estado = forms.ChoiceField(widget=forms.Select(), choices= (ESTADOS_PROYECTO), required=False)
     Duracion = forms.IntegerField(required=True, help_text='En semanas', validators=[validate_duracion_proyecto], error_messages={'required': 'Ingrese la duracion del proyecto',})
-    Cambio_de_Miembros = forms.MultipleChoiceField(widget=FilteredSelectMultiple(('Cambio_de_Miembros'),False,), required=False, choices= (opcionMiembros()) )
     
     def __init__(self, *args, **kwargs):
         self.Nuevo_Lider = opcionLider()
-        self.Cambio_de_Miembros = opcionMiembros()
         super(ProyectoModificadoForm, self).__init__( *args, **kwargs)
         self.fields['Nuevo_Lider']= forms.ChoiceField(widget=forms.Select(), choices= (self.Nuevo_Lider), required=False)
-        self.fields['Cambio_de_Miembros'] = forms.MultipleChoiceField(widget=FilteredSelectMultiple(('Cambio_de_Miembros'),False,), required=False, choices= (self.Cambio_de_Miembros))
+        
 
    

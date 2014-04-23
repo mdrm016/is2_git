@@ -7,6 +7,7 @@ from django.db.models import Q
 from aplicaciones.usuarios.models import Usuarios
 from aplicaciones.fases.models import Fases
 from django.contrib.auth.decorators import login_required, permission_required
+from aplicaciones.roles.models import Roles
 
 
 @login_required(login_url='/login/')
@@ -35,6 +36,9 @@ def adm_proyectos (request):
 
     else:
         proyectos = Proyectos.objects.filter(is_active=True)
+        
+    qset=(Q(estado__icontains='Inactivo') | Q(estado__icontains='En Construccion') )
+    proyectos= proyectos.filter(qset).distinct()
         
     busqueda = ''
     error=False
@@ -119,7 +123,6 @@ def crear_proyecto (request):
             lider =  form.cleaned_data['Lider']
             fecha_inicio = form.cleaned_data['Fecha_de_Inicio']
             duracion =  form.cleaned_data['Duracion']
-            miembros = form.cleaned_data['Miembros']
             
             user = User.objects.get(id=lider)
             
@@ -130,11 +133,7 @@ def crear_proyecto (request):
             proyecto.duracion=duracion
             proyecto.is_active='True'
             proyecto.save()
-            
-            for miembro_id in miembros:
-                miembro = Usuarios.objects.get(user_id=miembro_id)
-                proyecto.miembros.add(miembro)
-            
+
             mensaje="Proyecto creado exitosamente"
             ctx = {'mensaje':mensaje}
             return render_to_response('proyectos/proyectoalerta.html',ctx, context_instance=RequestContext(request))
@@ -178,7 +177,6 @@ def modificar_proyecto (request, id_proyecto):
             lider =  form.cleaned_data['Nuevo_Lider']
             estado = form.cleaned_data['Nuevo_Estado']
             duracion =  form.cleaned_data['Duracion']
-            miembros = form.cleaned_data['Cambio_de_Miembros']
             
             #Si no se ha suministrado un nuevo lider, el proyecto se queda con el lider actual
             if not lider:
@@ -198,7 +196,7 @@ def modificar_proyecto (request, id_proyecto):
                 mensaje = 'El nombre del proyecto ya existe y no puede haber duplicados'
             
             else:
-                if nombreNuevo == proyecto.nombre and  lideruser == proyecto.lider and estado == proyecto.estado and duracion == proyecto.duracion and not miembros:
+                if nombreNuevo == proyecto.nombre and  lideruser == proyecto.lider and estado == proyecto.estado and duracion == proyecto.duracion:
                       mensaje="Proyecto guardado sin modificaciones"
                       
                 elif estado == 'En Construccion' and not Fases.objects.filter(proyecto = id_proyecto):
@@ -209,11 +207,6 @@ def modificar_proyecto (request, id_proyecto):
                     proyecto.estado = estado
                     proyecto.duracion=duracion
                     proyecto.save()
-                    
-                    proyecto.miembros.clear()
-                    for miembro_id in miembros:
-                        miembro = Usuarios.objects.get(user_id=miembro_id)
-                        proyecto.miembros.add(miembro)
                         
                     mensaje="Proyecto modificado exitosamente"
                     
@@ -221,7 +214,6 @@ def modificar_proyecto (request, id_proyecto):
                 template_name='proyectos/proyectoalerta.html'
                 return render_to_response(template_name, ctx, context_instance=RequestContext(request))
     else:
-        print proyecto.miembros.all()
         data ={'Nombre_del_Proyecto':proyecto.nombre, 'Lider_Actual':proyecto.lider, 'Estado_Actual':proyecto.estado, 'Duracion':proyecto.duracion}   
         form = ProyectoModificadoForm(data)
         
@@ -312,7 +304,7 @@ def listar_miembros (request, id_proyecto):
     
     """
     
-    proyecto = Proyectos.objects.get(id=id_proyecto)
+    """proyecto = Proyectos.objects.get(id=id_proyecto)
     miembros = Proyectos.objects.get(id=id_proyecto).miembros.all()
     user_rol={}
     for miembro in miembros:
@@ -321,10 +313,43 @@ def listar_miembros (request, id_proyecto):
         lista = []
         for rol in rolesmiembro:
             lista.append(rol)
-        user_rol[usuario.id]= lista
-
+        user_rol[usuario.id]= lista"""
+    
+    
+    users = User.objects.all()
+    proyecto = Proyectos.objects.get(id=id_proyecto)
+    rolesProyecto = Roles.objects.filter(proyecto=id_proyecto)
+    
+    #conseguimos la lista de usuarios que tienen un rol en el proyecto
+    lista = []
+    roluser=[]
+    for user in users:
+        if user.is_active:
+            rols = user.groups.all()
+            for rol in rols:
+                for roluser in rolesProyecto:
+                    if rol.name == roluser.name:
+                        lista.append(user)
+                        
+    #eliminamos los usuarios duplicados si existen
+    listamiembro = []                    
+    for lis in lista:
+        if lis not in listamiembro:
+            listamiembro.append(lis)
+            
+    #Armamos una lista de tuplas de usuario con sus roles en el proyecto
+    lista=[]
+    for miembro in listamiembro:
+        rls=[]
+        roles = miembro.groups.all()
+        for r in roles:
+            for rp in rolesProyecto:
+                if r.name == rp.name:
+                    rls.append(rp)
+        tupla = (miembro, rls)
+        lista.append(tupla)                       
         
-    ctx ={'miembros':miembros, 'proyecto':proyecto, 'user_rol':user_rol}
+    ctx ={'miembros':lista, 'proyecto':proyecto}
     template_name = 'proyectos/listarmiembrosproyecto.html'
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
 

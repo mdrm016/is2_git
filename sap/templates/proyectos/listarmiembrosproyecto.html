@@ -27,13 +27,15 @@
 						  		<td><p><h4><b>Nombre y Apellido</b></h4></p></td>
 						  		<td><p><h4><b>Rol</b></h4></p></td>
 						  	</tr>
-						  	{% for miembro in miembros %}
+						  	{% for miembro, roles in miembros %}
 								<tr class="active">
-									<td><p><h4>{{ miembro.user_id }}</h4></p></td>
+									<td><p><h4>{{ miembro.id }}</h4></p></td>
 									<td><p><h4>{{ miembro }}</h4></p></td>
-									<td><p><h4>{{ miembro.user.first_name }} {{ miembro.user.last_name }}</h4></p></td>
+									<td><p><h4>{{ miembro.first_name }} {{ miembro.last_name }}</h4></p></td>
 									<td><p><h4>
-										{{Rol}}
+										{% for rol in roles %}
+										<p>{{rol}}</p>
+										{% endfor %}
 									</h4></p></td>
 								</tr>
 							{% endfor %}
@@ -43,7 +45,7 @@
 						<p><h2><span class="label label-default">El proyecto aun no cuenta con Miembros</span></h2></h4></p>
 					{% endif %}
 					<div align="center">
-						<a href="/"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-arrow-left"></span> Volver</button></a>
+						<a class="btn btn-default" href="javascript:window.history.go(-1);"><span class="glyphicon glyphicon-arrow-left"></span> Volver</a>
 					</div>
 				</div>
 				

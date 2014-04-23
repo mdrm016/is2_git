@@ -3,13 +3,17 @@ from django.contrib.auth.models import Group, Permission
 from aplicaciones.proyectos.models import Proyectos
 from django.core import validators
 from django.core.exceptions import ValidationError
+from django.db.models import Q
 
 def validarNombreRolUnico(value):
     if Group.objects.filter(name=value).exists():
         raise ValidationError(u'El nombre del Rol ya existe')
         
 def listaProyectos():
-    proyectos = [(proyecto.id, proyecto.nombre) for proyecto in Proyectos.objects.all()]
+    proyectos = Proyectos.objects.filter(is_active=True)
+    qset=(Q(estado__icontains='Inactivo') | Q(estado__icontains='En Construccion') )
+    proyectos= proyectos.filter(qset).distinct()
+    proyectos = [(proyecto.id, proyecto.nombre) for proyecto in proyectos]
     return proyectos
 
 def listaPermisos():
