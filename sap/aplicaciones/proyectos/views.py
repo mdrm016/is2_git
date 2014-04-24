@@ -27,12 +27,16 @@ def adm_proyectos (request):
     
     """
     
-    usuario = Usuarios.objects.get(user_id=request.user.id)
     if request.user.id != 1:
-        proyectos = usuario.proyectos_set.all()
-        lider = Proyectos.objects.filter(lider_id=request.user.id)
-        miembros = proyectos | lider
-        proyectos = miembros.distinct()
+        id_p=[]
+        usuario = User.objects.get(id=request.user.id)
+        rolesUsuario=usuario.groups.all()
+        roles = Roles.objects.all()
+        for rls in roles:
+            for ru in rolesUsuario:
+                if rls.name == ru.name:
+                    id_p.append(rls.proyecto)
+        proyectos = Proyectos.objects.filter(pk__in=id_p, is_active=True)
 
     else:
         proyectos = Proyectos.objects.filter(is_active=True)
