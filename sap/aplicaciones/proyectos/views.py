@@ -186,65 +186,59 @@ def modificar_proyecto (request, id_proyecto):
     """
     
     proyecto = Proyectos.objects.get(id=id_proyecto)
-    if proyecto.estado != 'En Construccion':
-        mensaje=''
-        if request.method == 'POST':
-            form = ProyectoModificadoForm(request.POST)
-            if form.is_valid():
-                form.clean()
-                nombreNuevo = form.cleaned_data['Nombre_del_Proyecto'] 
-                lider =  form.cleaned_data['Nuevo_Lider']
-                estado = form.cleaned_data['Nuevo_Estado']
-                duracion =  form.cleaned_data['Duracion']
-                
-                #Si no se ha suministrado un nuevo lider, el proyecto se queda con el lider actual
-                if not lider:
-                    lider = User.objects.get(username=proyecto.lider)
-                    lider = lider.id
-                lideruser = User.objects.get(id=lider)
-                
-                #Si no se ha suministrado un nuevo estado, el proyecto se queda con el estado actual
-                if not estado:
-                    estado = proyecto.estado
-                
-                # Comprobar cantidad miembros de comite para pasar a un estado en construccion con un elif
-                #si exite ya un proyecto con el nombre suministrado y el nombre suminitrado es distinto al del proyecto que esta siendo modificado
-                if Proyectos.objects.filter(nombre=nombreNuevo) and nombreNuevo != proyecto.nombre:
-                    data ={'Nombre_del_Proyecto':nombreNuevo, 'Lider_Actual':lider, 'Duracion':duracion}  
-                    form = ProyectoModificadoForm(data)
-                    mensaje = 'El nombre del proyecto ya existe y no puede haber duplicados'
-                
-                else:
-                    if nombreNuevo == proyecto.nombre and  lideruser == proyecto.lider and estado == proyecto.estado and duracion == proyecto.duracion:
-                          mensaje="Proyecto guardado sin modificaciones"
-                          
-                    elif estado == 'En Construccion' and not Fases.objects.filter(proyecto = id_proyecto):
-                        mensaje="El proyecto no puede pasar a un estado En Construccion si aun no tiene fases"
-                    else:
-                        proyecto.nombre=nombreNuevo
-                        proyecto.lider=lideruser
-                        proyecto.estado = estado
-                        proyecto.duracion=duracion
-                        proyecto.save()
-                            
-                        mensaje="Proyecto modificado exitosamente"
-                        
-                    ctx = {'mensaje':mensaje}
-                    template_name='proyectos/proyectoalerta.html'
-                    return render_to_response(template_name, ctx, context_instance=RequestContext(request))
-        else:
-            data ={'Nombre_del_Proyecto':proyecto.nombre, 'Lider_Actual':proyecto.lider, 'Estado_Actual':proyecto.estado, 'Duracion':proyecto.duracion}   
-            form = ProyectoModificadoForm(data)
+    mensaje=''
+    if request.method == 'POST':
+        form = ProyectoModificadoForm(request.POST)
+        if form.is_valid():
+            form.clean()
+            nombreNuevo = form.cleaned_data['Nombre_del_Proyecto'] 
+            lider =  form.cleaned_data['Nuevo_Lider']
+            estado = form.cleaned_data['Nuevo_Estado']
+            duracion =  form.cleaned_data['Duracion']
             
-        ctx ={'form': form, 'mensaje':mensaje, 'proyecto':proyecto}      
-        template_name='proyectos/modificarproyecto.html'
-        return render_to_response(template_name, ctx, context_instance=RequestContext(request))
+            #Si no se ha suministrado un nuevo lider, el proyecto se queda con el lider actual
+            if not lider:
+                lider = User.objects.get(username=proyecto.lider)
+                lider = lider.id
+            lideruser = User.objects.get(id=lider)
+            
+            #Si no se ha suministrado un nuevo estado, el proyecto se queda con el estado actual
+            if not estado:
+                estado = proyecto.estado
+            
+            # Comprobar cantidad miembros de comite para pasar a un estado en construccion con un elif
+            #si exite ya un proyecto con el nombre suministrado y el nombre suminitrado es distinto al del proyecto que esta siendo modificado
+            if Proyectos.objects.filter(nombre=nombreNuevo) and nombreNuevo != proyecto.nombre:
+                data ={'Nombre_del_Proyecto':nombreNuevo, 'Lider_Actual':lider, 'Duracion':duracion}  
+                form = ProyectoModificadoForm(data)
+                mensaje = 'El nombre del proyecto ya existe y no puede haber duplicados'
+            
+            else:
+                if nombreNuevo == proyecto.nombre and  lideruser == proyecto.lider and estado == proyecto.estado and duracion == proyecto.duracion:
+                      mensaje="Proyecto guardado sin modificaciones"
+                      
+                elif estado == 'En Construccion' and not Fases.objects.filter(proyecto = id_proyecto):
+                    mensaje="El proyecto no puede pasar a un estado En Construccion si aun no tiene fases"
+                else:
+                    proyecto.nombre=nombreNuevo
+                    proyecto.lider=lideruser
+                    proyecto.estado = estado
+                    proyecto.duracion=duracion
+                    proyecto.save()
+                        
+                    mensaje="Proyecto modificado exitosamente"
+                    
+                ctx = {'mensaje':mensaje}
+                template_name='proyectos/proyectoalerta.html'
+                return render_to_response(template_name, ctx, context_instance=RequestContext(request))
     else:
-        mensaje="Imposible modificar un proyecto inicializado"           
-        ctx = {'mensaje':mensaje}
-        template_name='proyectos/proyectoalerta.html'
-        return render_to_response(template_name, ctx, context_instance=RequestContext(request))
-    
+        data ={'Nombre_del_Proyecto':proyecto.nombre, 'Lider_Actual':proyecto.lider, 'Estado_Actual':proyecto.estado, 'Duracion':proyecto.duracion}   
+        form = ProyectoModificadoForm(data)
+        
+    ctx ={'form': form, 'mensaje':mensaje, 'proyecto':proyecto}      
+    template_name='proyectos/modificarproyecto.html'
+    return render_to_response(template_name, ctx, context_instance=RequestContext(request))
+
 @login_required(login_url='/login/')
 def consultar_proyecto (request, id_proyecto):
     
