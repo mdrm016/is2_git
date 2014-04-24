@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required, permission_required
 from models import Roles
 from aplicaciones.proyectos.models import Proyectos
 from django.contrib.auth.models import Group, Permission, User
-from forms import RolForm, RolModificadoForm
+from forms import RolForm, RolModificadoForm, PermisosForm
 from django.http import HttpResponseRedirect
 # Create your views here.
 
@@ -118,28 +118,36 @@ def modificarRol(request, id_rol):
     rol = Roles.objects.get(id=id_rol)
     if request.method == 'POST':
         form = RolModificadoForm(request.POST)
-        if form.is_valid():
+        #permisos_rol = PermisosForm(request.POST, prefix='perm')
+        if form.is_valid(): #and permisos_rol.is_valid():
             form.clean()
-            nombreRol = form.cleaned_data['Nombre_de_Rol']
+            permisos_rol.clean()
+            #nombreRol = form.cleaned_data['Nombre_de_Rol']
             permisos = form.cleaned_data['Permisos']
-            descripcion = form.cleaned_data['Descripcion']
+            #descripcion = form.cleaned_data['Descripcion']
             
-            rol.name = nombreRol
+            #rol.name = nombreRol
             if permisos:
                 for permiso in permisos:
                     rol.permissions.add(Permission.objects.get(codename=permiso))
             
-            rol.descripcion = descripcion
+            #rol.descripcion = descripcion
             rol.save()
                     
             template_name='./Roles/rol_modificado.html'
             return render(request, template_name)
     else:
-        data = {'Nombre_de_Rol': rol.name, 'Descripcion': rol.descripcion}
-        form = RolModificadoForm(data)
-        
+        marcados = []
+        permisos = rol.permissions.all()
+        for perm in permisos:
+            marcados.append(perm.name)
+        #initial = {'Nombre_de_Rol': rol.name, 'Descripcion': rol.descripcion}
+        #form = RolModificadoForm(initial, prefix='rol')
+        #initial = {'Permisos': marcados}
+        permisos_rol = PermisosForm(initial=marcados)
+
     template_name='./Roles/modificar_rol.html'
-    return render(request, template_name, {'form': form})
+    return render(request, template_name, {'permisos': permisos_rol})
 
 @login_required(login_url='/login/')
 @permission_required('roles.delete_roles',raise_exception=True)
@@ -226,15 +234,17 @@ def asignarRol(request, id_rol):
             return render(request, './Roles/rol_asignado.html')
     
     usuarios_sin_rol = []
+    
     este_rol = Roles.objects.get(id = id_rol)
     usuarios_activos = User.objects.filter(is_active=True)
     for usuario in usuarios_activos:
         roles = usuario.groups.all()
+        bandera_tiene = False
         if roles:
             for rol in roles:
-                if rol.name != este_rol.name:
-                    usuarios_sin_rol.append(usuario)
-        else:
+                if rol.name == este_rol.name:
+                    bandera_tiene = True
+        if not bandera_tiene:
             usuarios_sin_rol.append(usuario)
     
     template_name='./Roles/asignar_rol.html'

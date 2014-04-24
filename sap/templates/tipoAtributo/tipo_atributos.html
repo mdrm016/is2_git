@@ -1,0 +1,91 @@
+{% extends "base_general.html" %}
+
+{% block tipo_Item_y_Atributo %}
+<li><a href="/adm_tipos_item">Administrar Tipos de Item</a></li>
+<li><a href="/adm_tipos_atributo">Administrar Tipos de Atributo</a></li>
+{% endblock %}
+
+{% block menu %}		
+<div class="menu">
+	<ul>
+		<li id="option1" class="active">
+			<a href="#">Tipos de Atributo</a>
+		</li>
+	</ul>
+</div>
+{% endblock %}
+
+{% block botones %}
+<div class="row">
+	<form class="navbar-form navbar-left">
+		
+		<a href="nuevo/"><button type="button" class="btn btn-default">Crear</button></a>
+		<div class="form-group">
+			{% if error %}
+			<p style="color:red;">No se encontraron coincidencias.</p>
+			{% endif %}
+			<form action="" method="get">
+				<input type="text" name="busqueda" class="btn btn-default">
+				<input class="btn btn-default" type="submit" value="Buscar">
+			</form>
+			
+		</div>
+	</form>
+</div>
+{% endblock %}
+
+{% block contenido %}
+<div class="content-secondary">
+<!-- Aca van la  lista de Proyectos.. o de Solicitudes.. o de credenciales -->
+	<div class="panel-group" id="accordion">
+		{% if tipos_de_atributo %}
+			{% for tipo_atributo in tipos_de_atributo %}
+			<div class="panel panel-default">
+				    <div class="panel-heading">
+				      <h4 class="panel-title">
+				        <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ tipo_atributo.id }}">
+				          	{{ tipo_atributo.nombre }}
+				        </a>
+				      </h4>
+				    </div>
+				    <div id="collapse{{ rol.id }}" class="panel-collapse collapse">
+				      <div class="panel-body">
+				      		<a href="consultar/{{ tipo_atributo.id }}/"><button type="button" class="btn btn-default btn-sm">Consultar</button></a>
+				      		<a href="modificar/{{ tipo_atributo.id }}/"><button type="button" class="btn btn-default btn-sm">Modificar</button></a>
+				      		<a href="asignar/{{ tipo_atributo.id }}/"><button type="button" class="btn btn-default btn-sm">Asignar Rol</button></a>
+				      		<a href="desasignar/{{ tipo_atributo.id }}/"><button type="button" class="btn btn-default btn-sm">Desasignar Rol</button></a>
+				      		<button class="btn btn-danger btn-sm roles" data-toggle="modal" data-target="#myModal" data-id="{{ tipo_atributo.id }}">Eliminar</button>
+
+				      </div>
+				    </div>
+			</div>
+			{% endfor %}
+		{% else %}
+				<div class="jumbotron">
+					<div class="bs-example">
+						<p class="text-warning" align="center"><small>No se encontraron Fases</small></p>
+					</div>
+				</div>
+		{% endif %}
+		<!-- Ininicia Modal -->
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		        <h4 class="modal-title" id="myModalLabel">Eliminar</h4>
+		      </div>
+		      <div class="modal-body">
+		        	Esta usted seguro de que desea eliminar el Tipo de atributo?
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+		       <a id="tipoAtributo" href=""><button type="button" class="btn btn-danger">Estoy Seguro</button></a>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		<!-- Finaliza el Modal -->
+	</div>
+	</div>
+{% endblock %}

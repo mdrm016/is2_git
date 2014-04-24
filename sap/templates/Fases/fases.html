@@ -1,5 +1,10 @@
 {% extends "base_general.html" %}
 
+{% block tipo_Item_y_Atributo %}
+<li><a href="adm_tipos_item/">Administrar Tipos de Item</a></li>
+<li><a href="adm_tipos_atributo/">Administrar Tipos de Atributo</a></li>
+{% endblock %}
+
 {% block menu %}		
 <div class="menu">
 	<ul>
@@ -93,7 +98,7 @@
 						<p class="text-warning" align="center"><small>No se encontraron Fases</small></p>
 					</div>
 				</div>
-			{% endif %}}
+			{% endif %}
 		{% endif %}
 		
 

@@ -9,7 +9,7 @@ def validarNombreRolUnico(value):
         raise ValidationError(u'El nombre del Rol ya existe')
         
 def listaProyectos():
-    proyectos = [(proyecto.id, proyecto.nombre) for proyecto in Proyectos.objects.all()]
+    proyectos = [('', 'None')] + [(proyecto.id, proyecto.nombre) for proyecto in Proyectos.objects.all()]
     return proyectos
 
 def listaPermisos():
@@ -28,7 +28,6 @@ class RolForm (forms.Form):
         @author: Eduardo Gimenez
         
     """
-    
     Nombre_de_Rol = forms.CharField(widget=forms.TextInput(), validators=[validarNombreRolUnico], max_length=20, required=True, error_messages={'required': 'Ingrese un nombre de usuario', 'max_length': 'Longitud maxima: 14 caracteres'})
     Permisos = forms.MultipleChoiceField(required=True, widget=forms.CheckboxSelectMultiple(), choices=listaPermisos(), error_messages={'required': 'Debe escoger por lo menos  un Rol'})
     Proyecto = forms.ChoiceField(widget=forms.Select() , choices=listaProyectos(),  required=False)
@@ -46,13 +45,14 @@ class RolModificadoForm (forms.Form):
         @author: Eduardo Gimenez
         
     """
-    
+                
     Nombre_de_Rol = forms.CharField(widget=forms.TextInput(), max_length=20, required=True, error_messages={'required': 'Ingrese un nombre de usuario', 'max_length': 'Longitud maxima: 14 caracteres'})
-    Permisos = forms.MultipleChoiceField(required=False, widget=forms.CheckboxSelectMultiple(), choices=listaPermisos())
     Descripcion = forms.CharField(widget=forms.Textarea(), required=False, max_length= 300, error_messages={'max_length': 'Longitud maxima: 300 caracteres'})
     
+class PermisosForm (forms.Form):
     
-    
-    
-    
-    
+     Permisos = forms.MultipleChoiceField(required=False, widget=forms.CheckboxSelectMultiple(), choices=listaPermisos())
+     def __init__(self, list=None, *args, **kwargs):
+        super(PermisosForm, self).__init__(*args, **kwargs)
+        self.fields["Permisos"]=forms.MultipleChoiceField(initial=list)
+     
