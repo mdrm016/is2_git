@@ -79,7 +79,21 @@ def proyecto_finalizado (request):
     @author: Marcelo Denis.
     
     """
-    proyectos = Proyectos.objects.filter(estado='Finalizado', is_active=True)
+    if request.user.id != 1:
+        id_p=[]
+        usuario = User.objects.get(id=request.user.id)
+        rolesUsuario=usuario.groups.all()
+        roles = Roles.objects.all()
+        for rls in roles:
+            for ru in rolesUsuario:
+                if rls.name == ru.name:
+                    id_p.append(rls.proyecto)
+        proyectos = Proyectos.objects.filter(pk__in=id_p, is_active=True, estado='Finalizado')
+
+    else:
+        proyectos = Proyectos.objects.filter(is_active=True, estado='Finalizado')
+        
+    proyectos= proyectos.distinct()
     
     busqueda = ''
     error=False
