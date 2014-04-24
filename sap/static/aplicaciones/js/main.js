@@ -22,3 +22,8 @@ $(document).on("click", ".fases", function () {
 	var id = $(this).data('id');
 	document.getElementById("fase").setAttribute("href",'eliminar/'+id);
 });
+
+$(document).on("click", ".tipoitems", function () {
+	var id = $(this).data('id');
+	document.getElementById("tipoitem").setAttribute("href",'eliminar/'+id);
+});

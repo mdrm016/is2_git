@@ -4,7 +4,7 @@
 <div class="menu">
 	<ul>
 		<li id="option1" class="active">
-			<a href="#">Modificar {{ tipoitem.nombre }}</a>
+			<a href="#">Crear Tipo de Item</a>
 		</li>
 	</ul>
 </div>
@@ -22,16 +22,12 @@
 					{% if form.errors %}
 						<font color="red"><h4><p align="center"><b>Por favor verifique:</b></p></h4></font>
 					{% endif %}
-					{% if mensaje %}
-						<font color="red"><h4><p align="center"><b>Por favor verifique:</b></p></h4></font>
-						<h6><li align="center"><b>{{ mensaje }}</b></li></h6>
-					{% endif %}
 					<table class="table table-hover table-bordered table-condensed table-responsive">
 						{{ form.as_table }}
 					</table>
 					<div align="center"><br>
-						<input class="btn btn-default" type="submit" value="Guardar Cambios"/>
-						<a href="/"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-remove"></span> Cancelar</button></a>
+						<input class="btn btn-default" type="submit" value="Guardar"/>
+						<a class="btn btn-default" href="javascript:window.history.go(-1);"><span class="glyphicon glyphicon-remove"></span> Cancelar</a>
 					</div>
 				</form>
 			</div>
