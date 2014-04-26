@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from models import TipoAtributo
-from forms import TipoAtributoForm
+from forms import TipoAtributoForm, TipoAtributoModificadoForm
 from aplicaciones.proyectos.models import Proyectos
 from django.contrib.auth.decorators import login_required, permission_required
 
@@ -114,4 +114,72 @@ def tipoAtributoNuevo(request, id_proyecto):
         form = TipoAtributoForm()    
         
     template_name='./tipoAtributo/tipo_atributo_nuevo.html'
+    return render(request, template_name, {'form': form, 'errors': errors, 'id_proyecto': id_proyecto})
+
+def modificarTipoAtributo(request, id_proyecto, id_tipo_atributo):
+    """ Recibe un request, obtiene el formulario con los datos del Tipo de Atributo a modificar
+    o la solicitud de envio de dicho formulario. Luego verifica los datos recibidos
+    y registra los cambios hechos en el Tipo de atributo.  
+    
+    @type request: django.http.HttpRequest
+    @param request: Contiene informacion sobre la solic. web actual que llamo a esta vista
+    
+    @rtype: django.http.HttpResponse
+    @return: tipo_atributo_mmodificado.html, mensaje de exito
+    
+    @author: Eduardo Gimenez
+    
+    """
+    errors = []
+    tipo_atributo = TipoAtributo.objects.get(id=id_tipo_atributo)
+    if request.method == 'POST':
+        form = TipoAtributoModificadoForm(request.POST)
+        if form.is_valid():
+            form.clean()
+            nombre = form.cleaned_data['Nombre_tipo_atributo']
+            tipo = form.cleaned_data['Tipo_de_dato']
+            precision = form.cleaned_data['Precision']
+            longitud = form.cleaned_data['Longitud']
+            obligatorio = form.cleaned_data['Obligatorio']
+            descripcion = form.cleaned_data['Descripcion']
+            
+            if tipo == 'Numerico':
+                if not precision:
+                    errors.append('Ha seleccionado como tipo de dato NUMERICO, por favor especifique la cantidad de decimales con el campo Precision')
+                if not longitud:
+                    errors.append('Ha seleccionado como tipo de dato NUMERICO, por favor especifique la longitud (enteros mas decimales) con el campo Longitud')
+            elif tipo == 'Texto':
+                precision = 0
+                if not longitud:
+                    errors.append('Ha seleccionado como tipo de dato TEXTO, por favor especifique la cantidad de caracteres con el campo Longitud')
+            else: 
+                precision = 0
+                longitud = 0
+            
+            if not errors:
+                
+                tipo_atributo.nombre = nombre
+                tipo_atributo.tipo = tipo
+                tipo_atributo.precision = precision
+                tipo_atributo.longitud = longitud
+                if obligatorio == 'N':
+                    tipo_atributo.obligatorio = False
+                else:
+                    tipo_atributo.obligatorio = True 
+                tipo_atributo.descripcion = descripcion
+                tipo_atributo.save()
+                
+                
+                        
+                template_name='./tipoAtributo/tipo_atributo_modificado.html'
+                return render(request, template_name, {'id_proyecto': id_proyecto})
+    else: 
+        if tipo_atributo.obligatorio:
+            obligatorio = 'S'
+        else:
+            obligatorio = 'N'
+        initial = {'Nombre_tipo_atributo': tipo_atributo.nombre, 'Tipo_de_dato': tipo_atributo.tipo, 'Precision': tipo_atributo.precision, 'Longitud': tipo_atributo.longitud, 'Obligatorio': obligatorio, 'Descripcion': tipo_atributo.descripcion}
+        form = TipoAtributoModificadoForm(initial)    
+        
+    template_name='./tipoAtributo/modificar_tipo_atributo.html'
     return render(request, template_name, {'form': form, 'errors': errors, 'id_proyecto': id_proyecto})

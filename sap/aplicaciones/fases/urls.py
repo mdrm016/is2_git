@@ -10,7 +10,7 @@ urlpatterns = patterns('',
                        #url(r'^adm_proyectos/gestionar/(?P<id_proyecto>\d+)/abrir_proyecto/importar_fase/(?P<id_proyectoimportado>.*)/$', importar_fase),
                        url(r'^adm_proyectos/gestionar/(?P<id_proyecto>\d+)/importar_fase/$', importar_fase),
                        url(r'^adm_proyectos/gestionar/(?P<id_proyecto>\d+)/consultar/(?P<id_fase>\d+)/$', consultar_fase),
-                       url(r'^adm_proyectos/gestionar/(?P<id_proyecto>.*)/eliminar/(?P<id_fase>.*)/$', eliminar_fase),
-                       url(r'^adm_proyectos/gestionar/(?P<id_proyecto>.*)/modificar/(?P<id_fase>.*)/$', modificar_fase),
+                       url(r'^adm_proyectos/gestionar/(?P<id_proyecto>\d+)/eliminar/(?P<id_fase>.*)/$', eliminar_fase),
+                       url(r'^adm_proyectos/gestionar/(?P<id_proyecto>\d+)/modificar/(?P<id_fase>.*)/$', modificar_fase),
                        
                        )
