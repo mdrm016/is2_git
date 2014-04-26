@@ -27,7 +27,12 @@ urlpatterns = patterns('',
     url(r'^', include('aplicaciones.fases.urls')),
     
     #""" Incluimos la urls.py de la aplicacion tipoAtributo"""
-    url(r'^', include('aplicaciones.tipoAtributo.urls')),
+    url(r'^', include('aplicaciones.tipoatributo.urls')),
+    
+     #""" Incluimos la urls.py de la aplicacion tipoitem"""
+    url(r'^', include('aplicaciones.tipoitem.urls')),
+
+
 
 )
 

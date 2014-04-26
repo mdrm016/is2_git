@@ -1,0 +1,75 @@
+{% extends "base_general.html" %}
+
+{% block menu %}		
+<div class="menu">
+	<ul>
+		<li id="option1" class="active">
+			<a href="#">{{ tipoitem.nombre }}</a>
+	</ul>
+</div>
+{% endblock %}
+
+{% block contenido %}
+<div class="content-secondary">
+	<div class="container">
+		<div class="row">
+				<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+				</div>
+				
+				<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+					<table class="table table-hover table-bordered table-condensed table-responsive">
+						<tbody>
+						  	<!-- Aplicadas en las filas -->
+						  	<tr class="active">
+						  		<td><p><h4>ID:</h4></p></td>
+						  		<td><p><h4><span class="label label-default">{{ tipoitem.id }}</span></h4></h4></p></td>
+							</tr>
+						  	<tr class="active">
+						  		<td><p><h4>Nombre Tipo de Item:</h4></p></td>
+						  		<td><p><h4><span class="label label-default">{{ tipoitem.nombre }}</span></h4></h4></p></td>
+						  	</tr>
+						  	<tr class="active">
+						  		<td><p><h4>Descripcion:</h4></p></td>
+						  		<td><p><h4><span class="label label-default">{{ tipoitem.descripcion }}</span></h4></h4></p></td>
+						  	</tr>
+						  	<br>
+						</tbody>	
+					</table>
+					
+					{% if atributos %}
+					<table class="table table-hover table-bordered table-condensed table-responsive">
+						<tbody>
+							<tr class="active">
+						  		<p><h2><span class="label label-default">Tipos de Atributos</span></h2></h4></p>
+						  	</tr>
+						  	<tr class="active">
+						  		<td><p><h4><b>Nombre del Tipo de Atributo</b></h4></p></td>
+						  		<td><p><h4><b>Descripcion</b></h4></p></td>
+						  	</tr>
+						  	
+						  	{% for fase in fases %}
+								<tr class="active">
+									<td><p><h4>{{ atributos.nombre }}</h4></p></td>
+									<td><p><h4>{{ atributos.descripcion }}</h4></p></td>
+								</tr>
+							{% endfor %}
+						<tbody>
+					</table>
+					{% else %}
+						<p><h2><span class="label label-default">El Tipo de Item aun no cuenta con Tipos de Atributos</span></h2></h4></p>
+					{% endif %}
+					<div align="center">
+						<a class="btn btn-default" href="javascript:window.history.go(-1);"><span class="glyphicon glyphicon-arrow-left"></span> Volver</a>
+					</div>
+				</div>
+				
+				<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+				</div>
+		</div>
+	</div>
+</div>
+
+	
+{% endblock %}
+
+

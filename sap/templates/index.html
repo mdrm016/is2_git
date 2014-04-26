@@ -21,6 +21,7 @@
 	<form class="navbar-form navbar-left">
 		<a href="crear/"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-folder-open"></span> Crear Proyecto</button></a>
 		<a href="importar_proyecto/"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-import"></span> Importar Proyecto</button></a>
+		<a href="proyecto_finalizado/"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-ok-circle"></span> Proyectos Finalizados</button></a>
 		<div class="form-group">
 			<form action="" method="get">
 				<input type="text" name="busqueda" class="btn btn-default" placeholder="Busqueda de proyecto..." value="{{ query|escape }}">
@@ -60,7 +61,6 @@
 				    </div>
 				</div>
 			{% for proyecto in lista_proyectos %}
-				{% if proyecto.is_active %}
 				<div class="panel panel-default">
 					<div class="col-md-4">
 				    	<div class="panel-heading">
@@ -102,7 +102,6 @@
 				      </div>
 				    </div>
 				</div>
-				{% endif %}
 			{% endfor %}
 		</div>
 		</div>
@@ -112,7 +111,7 @@
   					<div class="alert alert-danger"><h3><p align="center"><b>No se encontraron coincidencias</b></p></h3></div>
 				</div>
 				<div  align="center">
-					<a type="button" class="btn btn-default" href="/">Volver</a>
+					<a type="button" class="btn btn-default" href="/"><span class="glyphicon glyphicon-arrow-left"></span> Volver</a>
 				</div>	
 			{% else %}
 				<div class="jumbotron">

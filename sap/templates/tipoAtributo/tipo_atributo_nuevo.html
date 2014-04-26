@@ -1,0 +1,41 @@
+{% extends "base_general.html" %}
+
+{% block tipo_Item_y_Atributo %}
+<li><a href="/adm_tipos_item">Administrar Tipos de Item</a></li>
+<li><a href="/adm_tipos_atributo">Administrar Tipos de Atributo</a></li>
+{% endblock %}
+
+{% block menu %}		
+<div class="menu">
+	<ul>
+		<li id="option1" class="active">
+			<a href="#">Crear Tipo de Atributo</a>
+		</li>
+	</ul>
+</div>
+{% endblock %}
+
+{% block contenido %}
+<div class="content-secondary">
+	{% if form.errors %}
+		{% for error in errors %}
+			<ul>
+				<li>{{ error }} </li>
+			</ul>
+		{% endfor %}
+	{% endif %}
+	
+	<form action="" method="post">
+		<table align="center">
+			{{ form.as_table }}
+		</table>
+		{% csrf_token %}
+	<div align="center"><br>
+		<input class="btn btn-default" type="submit" value="Crear"/>
+		<a href="/adm_proyectos/gestionar/{{ id_proyecto }}/adm_tipos_atributo/"><button type="button" class="btn btn-default">Cancelar</button></a>
+	</div>
+	<br>
+	</form>
+
+</div>
+{% endblock %}

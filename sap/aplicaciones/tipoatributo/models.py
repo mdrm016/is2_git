@@ -1,4 +1,5 @@
 from django.db import models
+from aplicaciones.proyectos.models import Proyectos
 
 # Create your models here.
 class TipoAtributo(models.Model):
@@ -21,12 +22,12 @@ class TipoAtributo(models.Model):
                    ('Archivo Externo', 'Archivo Externo'),
                    ('Imagen', 'Imagen'),)
     nombre = models.CharField(max_length=20, unique=True)
-    Tipo = models.CharField(max_length=1, choices=TIPOS_DATOS)
+    tipo = models.CharField(max_length=16, choices=TIPOS_DATOS)
     precision = models.IntegerField(max_length=2)
     longitud = models.IntegerField(max_length=2)
     obligatorio = models.BooleanField(default=False)
+    proyecto = models.ManyToManyField(Proyectos)
     descripcion = models.TextField(max_length=300)
-    tipo_id = models.IntegerField()
     is_active = models.BooleanField(default=True)
     
     class Meta:
@@ -40,7 +41,7 @@ class TipoAtributo(models.Model):
         )
     
     def __unicode__(self):
-        return u'%s' % (self.name)
+        return u'%s' % (self.nombre)
     
 class Numerico(models.Model):
     """
@@ -50,6 +51,11 @@ class Numerico(models.Model):
     @author: Eduardo Gimenez
     """
     valor = models.DecimalField(max_digits=30, decimal_places=10)
+    id_item = models.IntegerField()
+    nombre_atributo = models.CharField(max_length=20)
+    precision = models.IntegerField()
+    longitud = models.IntegerField()
+    obligatorio = models.BooleanField(default=False)
     
 class Fecha(models.Model):
     """
@@ -59,6 +65,9 @@ class Fecha(models.Model):
     @author: Eduardo Gimenez
     """
     valor = models.DateField()
+    id_item = models.IntegerField()
+    nombre_atributo = models.CharField(max_length=20)
+    obligatorio = models.BooleanField(default=False)
 
 class Texto(models.Model):
     """
@@ -68,6 +77,10 @@ class Texto(models.Model):
     @author: Eduardo Gimenez
     """
     valor = models.CharField(max_length=300)
+    id_item = models.IntegerField()
+    nombre_atributo = models.CharField(max_length=20)
+    longitud = models.IntegerField()
+    obligatorio = models.BooleanField(default=False)
     
 class Logico(models.Model):
     """
@@ -77,6 +90,9 @@ class Logico(models.Model):
     @author: Eduardo Gimenez
     """
     valor = models.BooleanField()
+    id_item = models.IntegerField()
+    nombre_atributo = models.CharField(max_length=20)
+    obligatorio = models.BooleanField(default=False)
 
 class ArchivoExterno(models.Model):
     """
@@ -86,6 +102,9 @@ class ArchivoExterno(models.Model):
     @author: Eduardo Gimenez
     """
     valor = models.FileField(upload_to='archivos', blank=True)
+    id_item = models.IntegerField()
+    nombre_atributo = models.CharField(max_length=20)
+    obligatorio = models.BooleanField(default=False)
     
 class Imagen(models.Model):
     """
@@ -95,7 +114,9 @@ class Imagen(models.Model):
     @author: Eduardo Gimenez
     """
     valor = models.ImageField(upload_to='imagenes', blank=True)
-    
+    id_item = models.IntegerField()
+    nombre_atributo = models.CharField(max_length=20)
+    obligatorio = models.BooleanField(default=False)
 
 
 
