@@ -152,14 +152,13 @@ def modificarRol(request, id_rol):
 @login_required(login_url='/login/')
 @permission_required('roles.delete_roles',raise_exception=True)
 def eliminarRol(request, id_rol):
-    """ Eliminar de manera logica los registros del rol.Tambien elimina la relacion entre 
-    los usuarios que posees este rol.
+    """ Eliminar de manera logica los registros del rol.
         
     @type request: django.http.HttpRequest
     @param request: Contiene informacion sobre la solicitud web actual que llamo a esta vista
         
-    @type id_usuario : string
-    @param id_usuario : Contiene el id del rol a ser eliminado.
+    @type id_rol : integer
+    @param id_rol : Contiene el id del rol a ser eliminado.
         
     @rtype: django.shortcuts.render_to_response
     @return: Se retorna al la administracion de Roles o se manda a la pagina de notificacion
@@ -169,10 +168,6 @@ def eliminarRol(request, id_rol):
     rol = Roles.objects.get(id=id_rol)
     rol.is_active = False
     rol.save()
-    grupos = Group.objects.filter(name=rol.name)
-    if grupos:
-        for grupo in grupos:
-            grupo.delete()
     
     return HttpResponseRedirect('/adm_roles/')
 

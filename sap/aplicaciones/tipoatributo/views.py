@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from models import TipoAtributo
+from  django.http import  HttpResponseRedirect
 from forms import TipoAtributoForm, TipoAtributoModificadoForm
 from aplicaciones.proyectos.models import Proyectos
 from django.contrib.auth.decorators import login_required, permission_required
@@ -9,8 +10,12 @@ from django.contrib.auth.decorators import login_required, permission_required
 def administrarTipoAtributo(request, id_proyecto):
     """ Recibe un request, obtiene la lista de todos los Tipos de Atributo de un Proyecto y 
     luego retorna el html renderizado con la lista de Tipos de atributo 
+    
     @type request: django.http.HttpRequest
     @param request: Contiene informacion sobre la solic. web actual que llamo a esta vista
+    
+    @type id_proyecto: Integer
+    @param id_proyecto: Es el id del proyecto actual en el que se esta trabajando
     
     @rtype: django.http.HttpResponse
     @return: tipo_atributos.html, donde se listan los Tipos de atributos, ademas de las funcionalidades para un Tipo de Atributo
@@ -60,6 +65,9 @@ def tipoAtributoNuevo(request, id_proyecto):
     
     @type request: django.http.HttpRequest
     @param request: Contiene informacion sobre la solic. web actual que llamo a esta vista
+    
+    @type id_proyecto: Integer
+    @param id_proyecto: Es el id del proyecto actual en el que se esta trabajando
     
     @rtype: django.http.HttpResponse
     @return: tipo_atributo_creado.html, mensaje de exito
@@ -116,6 +124,8 @@ def tipoAtributoNuevo(request, id_proyecto):
     template_name='./tipoAtributo/tipo_atributo_nuevo.html'
     return render(request, template_name, {'form': form, 'errors': errors, 'id_proyecto': id_proyecto})
 
+@login_required(login_url='/login/')
+@permission_required('tipoAtributo.modificar_tipo_de_atributo',raise_exception=True)
 def modificarTipoAtributo(request, id_proyecto, id_tipo_atributo):
     """ Recibe un request, obtiene el formulario con los datos del Tipo de Atributo a modificar
     o la solicitud de envio de dicho formulario. Luego verifica los datos recibidos
@@ -123,6 +133,9 @@ def modificarTipoAtributo(request, id_proyecto, id_tipo_atributo):
     
     @type request: django.http.HttpRequest
     @param request: Contiene informacion sobre la solic. web actual que llamo a esta vista
+    
+    @type id_proyecto: Integer
+    @param id_proyecto: Es el id del proyecto actual en el que se esta trabajando
     
     @rtype: django.http.HttpResponse
     @return: tipo_atributo_mmodificado.html, mensaje de exito
@@ -183,3 +196,25 @@ def modificarTipoAtributo(request, id_proyecto, id_tipo_atributo):
         
     template_name='./tipoAtributo/modificar_tipo_atributo.html'
     return render(request, template_name, {'form': form, 'errors': errors, 'id_proyecto': id_proyecto})
+
+def eliminarTipoAtributo(request, id_proyecto, id_tipo_atributo):
+    """ Eliminar de manera logica los registros del Tipo de atributo.Tambien elimina la relacion entre 
+    los proyectos que poseen este Tipo de atributo.
+        
+    @type request: django.http.HttpRequest
+    @param request: Contiene informacion sobre la solicitud web actual que llamo a esta vista
+    
+    @type id_proyecto: Integer
+    @param id_proyecto: Es el id del proyecto actual en el que se esta trabajando
+        
+    @rtype: django.shortcuts.render_to_response
+    @return: Se retorna al la administracion de Roles o se manda a la pagina de notificacion
+        
+    @author: Eduardo Gimenez"""
+    
+    tipo_atributo = TipoAtributo.objects.get(id=id_tipo_atributo)
+    tipo_atributo.is_active = False
+    tipo_atributo.save()
+    
+    return HttpResponseRedirect('/adm_proyectos/gestionar/%s/adm_tipos_atributo/' % id_proyecto)
+
