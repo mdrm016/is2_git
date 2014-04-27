@@ -4,7 +4,7 @@ from .models import TipoItem
 from .forms import TipoItemNuevoForm, TipoItemModificadoForm
 from django.db.models import Q
 
-def adm_tipoitem (request):
+def adm_tipoitem (request, id_proyecto):
     
     tipoitem = TipoItem.objects.filter(is_active=True)
     
@@ -25,7 +25,7 @@ def adm_tipoitem (request):
     template_name = 'tipoitem/tipoitem.html'
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
 
-def crear_tipoitem (request):
+def crear_tipoitem (request, id_proyecto):
     if request.method == 'POST':
         form = TipoItemNuevoForm(request.POST)
         if form.is_valid():
@@ -45,7 +45,7 @@ def crear_tipoitem (request):
                 tipoitem.tipoAtributo.add(tipoatributo)"""
 
             mensaje="Tipo Item creado exitosamente"
-            ctx = {'mensaje':mensaje}
+            ctx = {'mensaje':mensaje, 'id_proyecto':id_proyecto}
             return render_to_response('tipoitem/tipoitemalerta.html',ctx, context_instance=RequestContext(request))
     else:
         form = TipoItemNuevoForm()
@@ -54,37 +54,7 @@ def crear_tipoitem (request):
     template_name='tipoitem/creartipoitem.html'
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
 
-
-def crear_tipoitem (request):
-    if request.method == 'POST':
-        form = TipoItemNuevoForm(request.POST)
-        if form.is_valid():
-            form.clean()
-            nombre = form.cleaned_data['Nombre_Tipo_de_Item'] 
-            descripcion =  form.cleaned_data['Descripcion']
-            #tipoatributos= form.cleaned_data['Tipo_Atributo']
-            
-            tipoitem = TipoItem()
-            tipoitem.nombre=nombre
-            tipoitem.descripcion=descripcion
-            tipoitem.is_active='True'
-            tipoitem.save()
-            
-            """for tipoatributo_id in tipoatributos:
-                tipoatributo = TipoAtributo.objects.get(id=tipoatributo_id)
-                tipoitem.tipoAtributo.add(tipoatributo)"""
-
-            mensaje="Tipo Item creado exitosamente"
-            ctx = {'mensaje':mensaje}
-            return render_to_response('tipoitem/tipoitemalerta.html',ctx, context_instance=RequestContext(request))
-    else:
-        form = TipoItemNuevoForm()
-        
-    ctx ={'form': form}      
-    template_name='tipoitem/creartipoitem.html'
-    return render_to_response(template_name, ctx, context_instance=RequestContext(request))
-
-def modificar_tipoitem (request, id_tipoitem):
+def modificar_tipoitem (request, id_tipoitem, id_proyecto):
     
     
     tipoitem = TipoItem.objects.get(id=id_tipoitem)
@@ -116,7 +86,7 @@ def modificar_tipoitem (request, id_tipoitem):
                         
                     mensaje="Tipo de Item modificado exitosamente"
                     
-                ctx = {'mensaje':mensaje}
+                ctx = {'mensaje':mensaje, 'id_proyecto':id_proyecto}
                 template_name='tipoitem/tipoitemalerta.html'
                 return render_to_response(template_name, ctx, context_instance=RequestContext(request))
     else:
@@ -128,15 +98,15 @@ def modificar_tipoitem (request, id_tipoitem):
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
 
 
-def eliminar_tipoitem (request, id_tipoitem):
+def eliminar_tipoitem (request, id_tipoitem, id_proyecto):
     
     tipoitem = TipoItem.objects.get(id=id_tipoitem)
     #si algun item usa este tipo de item, ya no se podra borrar
     tipoitem.is_active = False
     tipoitem.save()
-    return HttpResponseRedirect('/adm_tipoitem')
+    return HttpResponseRedirect('/adm_proyectos/gestionar/%s/adm_tipos_item/' % id_proyecto)
 
-def consultar_tipoitem (request, id_tipoitem):
+def consultar_tipoitem (request, id_tipoitem, id_proyecto):
     
     tipoitem = TipoItem.objects.get(id=id_tipoitem)
     #consegir los tipos de atributos
