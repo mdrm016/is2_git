@@ -49,6 +49,7 @@ INSTALLED_APPS = (
     'aplicaciones.fases',
     'aplicaciones.tipoatributo',
     'aplicaciones.tipoitem',
+    'aplicaciones.items'
 )
 
 MIDDLEWARE_CLASSES = (
