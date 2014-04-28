@@ -30,7 +30,6 @@ class Proyectos(models.Model):
     fecha_inicio = models.DateField()
     duracion = models.IntegerField()
     is_active = models.BooleanField(default=True)
-    miembros = models.ManyToManyField(Usuarios, null=True,blank=True)
     
     def __unicode__ (self):
         return self.nombre

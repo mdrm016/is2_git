@@ -23,6 +23,9 @@ class Roles(Group):
     class Meta:
         ordering = ['name']
         permissions = (
+                      ("crear_roles", "puede crear roles"),
+                      ("modificar_roles", "puede modificar roles"),
+                      ("eliminar_roles", "puede eliminar roles"),
                       ("administrar_roles", "puede listar los roles"),
                       ("asignar_rol", "puede asignar un rol a un usuario"),
                       ("desasignar_rol", "puede desasignar un rol de un usuario"),

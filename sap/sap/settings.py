@@ -29,6 +29,10 @@ TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
 
+#En este path se almacenaran los archivos externos y las imagenes que carguen
+#los usuarios del sistema
+
+MEDIA_ROOT = Path(__file__).ancestor(2) + '/aplicaciones/uploads/'
 
 # Application definition
 
@@ -43,10 +47,14 @@ INSTALLED_APPS = (
     'aplicaciones.roles',
     'aplicaciones.proyectos',
     'aplicaciones.fases',
+    'aplicaciones.tipoatributo',
+    'aplicaciones.tipoitem',
+    'aplicaciones.items'
 )
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',

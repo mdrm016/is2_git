@@ -12,5 +12,6 @@ urlpatterns = patterns('',
                        url(r'^adm_proyectos/gestionar/(?P<id_proyecto>\d+)/consultar/(?P<id_fase>\d+)/$', consultar_fase),
                        url(r'^adm_proyectos/gestionar/(?P<id_proyecto>\d+)/eliminar/(?P<id_fase>\d+)/$', eliminar_fase),
                        url(r'^adm_proyectos/gestionar/(?P<id_proyecto>\d+)/modificar/(?P<id_fase>\d+)/$', modificar_fase),
+
                        
                        )
