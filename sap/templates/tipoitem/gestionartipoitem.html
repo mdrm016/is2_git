@@ -1,0 +1,82 @@
+{% extends "base_general.html" %}
+
+{% block tipo_Item_y_Atributo %}
+<li><a href="/adm_proyectos/gestionar/{{ id_proyecto }}/adm_tipos_item/">Administrar Tipos de Item</a></li>
+<li><a href="/adm_proyectos/gestionar/{{ id_proyecto }}/adm_tipos_atributo">Administrar Tipos de Atributo</a></li>
+{% endblock %}
+
+{% block menu %}		
+<div class="menu">
+	<ul>
+		<li id="option1" class="active">
+			<a href="/">Gestionar {{ tipoitem.nombre }}</a>
+		</li>
+	</ul>
+</div>
+{% endblock %}
+
+{% block botones %}
+<div class="container">
+
+	<div class="col-xs-6 col-sm-6 col-md-6 col lg-6">
+		{% if tipoatributos_dispon %}
+		<div class="alert alert-info"><h3><p align="center"><b>Tipo de Atributos disponibles</p></h3></div>
+        	<div class="panel-group" id="accordion">
+				{% for tipoatributo in tipoatributos_dispon %}
+					<div class="panel panel-default">
+					
+						<div class="col-md-9 col lg-9">
+							<div class="panel-heading">
+								<h4 class="panel-title"><b>{{ tipoatributo.nombre }}</b></h4>
+							</div>
+						</div>
+								 
+						<div class="col-md-3 col lg-3">
+							<a href="agregar_tipo_atributo/{{ tipoatributo.id }}/"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-share"></span> Agregar</button></a>
+						</div>
+								 
+					</div>
+				{% endfor %}
+			</div>
+		{% else %}
+			<br><br><br>
+			<div class="jumbotron">
+  				<div class="bs-example">
+						<p class="text-warning" align="center"><small>No hay tipo de atributos cargados en el sistema</small></p>
+				</div>
+			</div> 
+		{% endif %}            
+	</div>
+	
+	<div class="col-xs-6 col-sm-6 col-md-6 col lg-6">
+		{% if tipoatributo_selec %}
+		<div class="alert alert-success"><h3><p align="center"><b>Tipo de Atributos seleccionados</p></h3></div>
+			<div class="panel-group" id="accordion">
+				{% for tipoatributo in tipoatributo_selec %}
+					<div class="panel panel-default">
+					
+						<div class="col-md-6 col lg-6">
+							<div class="panel-heading">
+								<h4 class="panel-title"><b>{{ tipoatributo.nombre }}</b></h4>
+							</div>
+						</div>
+								 
+						<div class="col-md-6 col lg-6">
+							<a href="agregar_tipo_atributo/{{ tipoatributo.id }}/"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-trash"></span> Quitar</button></a>
+						</div>
+								 
+					</div>
+				{% endfor %}
+			</div>
+		{% else %}
+			<br><br><br>
+			<div class="jumbotron">
+				<div class="bs-example">
+						<p class="text-warning" align="center"><small>No hay tipo de atributos seleccionados para este Tipo de Item</small></p>
+				</div>
+			</div> 
+		{% endif %}    
+    </div>
+    
+</div>
+{% endblock %}

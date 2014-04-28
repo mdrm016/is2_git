@@ -1,8 +1,9 @@
 from django.shortcuts import render_to_response, render, HttpResponseRedirect
 from django.template import RequestContext
-from .models import TipoItem
+from .models import TipoItem, ListaAtributo
 from .forms import TipoItemNuevoForm, TipoItemModificadoForm
 from django.db.models import Q
+from aplicaciones.tipoatributo.models import TipoAtributo
 
 def adm_tipoitem (request, id_proyecto):
     
@@ -21,7 +22,7 @@ def adm_tipoitem (request, id_proyecto):
             if not tipoitem:
                 error = True
                 
-    ctx = {'lista_tipoitem':tipoitem, 'query':busqueda, 'error':error}   
+    ctx = {'lista_tipoitem':tipoitem, 'query':busqueda, 'error':error, 'id_proyecto':id_proyecto}   
     template_name = 'tipoitem/tipoitem.html'
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
 
@@ -39,6 +40,13 @@ def crear_tipoitem (request, id_proyecto):
             tipoitem.descripcion=descripcion
             tipoitem.is_active='True'
             tipoitem.save()
+            
+            tablaTipoAtributo = TipoAtributo.objects.filter(is_active=True)
+            
+            for tipoatributo in tablaTipoAtributo:
+                tipoitem.tipoAtributo.add(tipoatributo)
+                
+            print tipoitem.tipoAtributo.all()
             
             """for tipoatributo_id in tipoatributos:
                 tipoatributo = TipoAtributo.objects.get(id=tipoatributo_id)
@@ -114,5 +122,31 @@ def consultar_tipoitem (request, id_tipoitem, id_proyecto):
     template_name = 'tipoitem/consultartipoitem.html'
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
 
+def gestionar_tipoitem (request, id_tipoitem, id_proyecto):
+    
+    tipoitem = TipoItem.objects.get(id=id_tipoitem)
+    tablaTipoAtributo = TipoAtributo.objects.filter(is_active=True)
+    tablaListaAtributo = ListaAtributo.objects.filter(id_tipoitem=id_tipoitem, is_active=True)
+                
+    ctx = {'tipoatributos_dispon':tablaTipoAtributo, 'tipoatributo_selec':tablaListaAtributo, 'tipoitem':tipoitem}
+    template_name = 'tipoitem/gestionartipoitem.html'
+    return render_to_response(template_name, ctx, context_instance=RequestContext(request))
 
+def agregar_tipo_atributo (request, id_tipoitem, id_proyecto, id_tipoatributo):
+    
+    tipoAtributo = TipoAtributo.objects.get(id=id_tipoatributo)
+    
+    lista_atributo = ListaAtributo()
+    lista_atributo.id_atributo = tipoAtributo.id
+    lista_atributo.id_tipoitem = id_tipoitem
+    lista_atributo.nombre = tipoAtributo.nombre
+    lista_atributo.is_active = True
+    
+    elementos_existentes = ListaAtributo.objects.filter(id_tipoitem=id_tipoitem, is_active=True)
+    if elementos_existentes:
+        lista_atributo.orden = len(elementos_existentes) + 1
+    else:
+        lista_atributo.orden = 1
+    lista_atributo.save()
+    return HttpResponseRedirect('/adm_proyectos/gestionar/%s/adm_tipos_item/gestionar_tipoitem/%s/' % (id_proyecto, id_tipoitem))
     

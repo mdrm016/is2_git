@@ -1,5 +1,10 @@
 {% extends "base_general.html" %}
 
+{% block tipo_Item_y_Atributo %}
+<li><a href="/adm_proyectos/gestionar/{{ id_proyecto }}/adm_tipos_item/">Administrar Tipos de Item</a></li>
+<li><a href="/adm_proyectos/gestionar/{{ id_proyecto }}/adm_tipos_atributo">Administrar Tipos de Atributo</a></li>
+{% endblock %}
+
 {% block menu %}		
 <div class="menu">
 	<ul>
@@ -44,7 +49,7 @@
 				    </div>
 				</div>
 			{% for tipoitem in lista_tipoitem %}
-				<div class="panel panel-default">
+				<div class="panel-group" id="accordion">
 					<div class="col-md-4">
 				    	<div class="panel-heading">
 				      		<h4 class="panel-title">
@@ -70,7 +75,7 @@
 				      		<a href="consultar/{{ tipoitem.id }}/"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-eye-open"></span> Consultar</button></a>
 				      		<a href="modificar/{{ tipoitem.id }}"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-edit"></span> Modificar</button></a>
 				      		<button class="btn btn-danger btn-sm tipoitems" data-toggle="modal" data-target="#myModal" data-id="{{ tipoitem.id }}"><span class="glyphicon glyphicon-trash"></span> Eliminar</button>
-				      		<a href="gestionar_tipoitem/"><button type="button" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-th"></span> Gestionar Tipo de Item</button></a>
+				      		<a href="gestionar_tipoitem/{{ tipoitem.id }}"><button type="button" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-th"></span> Gestionar Tipo de Item</button></a>
 				      </div>
 				    </div>
 				</div>

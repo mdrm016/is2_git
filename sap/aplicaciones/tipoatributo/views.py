@@ -53,7 +53,7 @@ def administrarTipoAtributo(request, id_proyecto):
         raise PermissionDenied
     
     template_name='./tipoAtributo/tipo_atributos.html'
-    return render(request, template_name, {'tipos_de_atributo': atributos})
+    return render(request, template_name, {'tipos_de_atributo': atributos, 'id_proyecto':id_proyecto})
 
 
 @login_required(login_url='/login/')

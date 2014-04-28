@@ -1,5 +1,15 @@
 from django.db import models
-#from aplicaciones.tipoatributo.models import TipoAtributo
+from aplicaciones.tipoatributo.models import TipoAtributo
+
+class ListaAtributo (models.Model):
+    id_atributo = models.IntegerField()
+    id_tipoitem = models.IntegerField()
+    orden = models.IntegerField()
+    nombre = models.CharField(max_length=20)
+    is_active = models.BooleanField(default=True)
+    
+    def __unicode__ (self):
+        return self.nombre
 
 class TipoItem (models.Model):
     
@@ -17,7 +27,8 @@ class TipoItem (models.Model):
     nombre = models.CharField(max_length=30, null=True)
     descripcion = models.TextField(max_length=300)
     is_active = models.BooleanField(default=True)
-    #tipoAtributo = models.ForeignKey(tipoAtributo)
+    tipoAtributo = models.ManyToManyField(TipoAtributo)
+    listaAtributo = models.ManyToManyField(ListaAtributo)
 
     def __unicode__ (self):
         return self.nombre
