@@ -27,7 +27,6 @@ class TipoItem (models.Model):
     nombre = models.CharField(max_length=30, null=True)
     descripcion = models.TextField(max_length=300)
     is_active = models.BooleanField(default=True)
-    tipoAtributo = models.ManyToManyField(TipoAtributo)
     listaAtributo = models.ManyToManyField(ListaAtributo)
 
     def __unicode__ (self):

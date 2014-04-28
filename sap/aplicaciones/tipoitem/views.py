@@ -40,17 +40,6 @@ def crear_tipoitem (request, id_proyecto):
             tipoitem.descripcion=descripcion
             tipoitem.is_active='True'
             tipoitem.save()
-            
-            tablaTipoAtributo = TipoAtributo.objects.filter(is_active=True)
-            
-            for tipoatributo in tablaTipoAtributo:
-                tipoitem.tipoAtributo.add(tipoatributo)
-                
-            print tipoitem.tipoAtributo.all()
-            
-            """for tipoatributo_id in tipoatributos:
-                tipoatributo = TipoAtributo.objects.get(id=tipoatributo_id)
-                tipoitem.tipoAtributo.add(tipoatributo)"""
 
             mensaje="Tipo Item creado exitosamente"
             ctx = {'mensaje':mensaje, 'id_proyecto':id_proyecto}
@@ -126,9 +115,9 @@ def gestionar_tipoitem (request, id_tipoitem, id_proyecto):
     
     tipoitem = TipoItem.objects.get(id=id_tipoitem)
     tablaTipoAtributo = TipoAtributo.objects.filter(is_active=True)
-    tablaListaAtributo = ListaAtributo.objects.filter(id_tipoitem=id_tipoitem, is_active=True)
+    lista_atributos = tipoitem.listaAtributo.all().filter(is_active=True).order_by('orden')
                 
-    ctx = {'tipoatributos_dispon':tablaTipoAtributo, 'tipoatributo_selec':tablaListaAtributo, 'tipoitem':tipoitem}
+    ctx = {'tipoatributos_dispon':tablaTipoAtributo, 'tipoatributo_selec':lista_atributos, 'id_proyecto':id_proyecto, 'tipoitem':tipoitem}
     template_name = 'tipoitem/gestionartipoitem.html'
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
 
@@ -142,11 +131,59 @@ def agregar_tipo_atributo (request, id_tipoitem, id_proyecto, id_tipoatributo):
     lista_atributo.nombre = tipoAtributo.nombre
     lista_atributo.is_active = True
     
-    elementos_existentes = ListaAtributo.objects.filter(id_tipoitem=id_tipoitem, is_active=True)
+    elementos_existentes = ordenar_mantener(id_tipoitem)
     if elementos_existentes:
         lista_atributo.orden = len(elementos_existentes) + 1
     else:
         lista_atributo.orden = 1
     lista_atributo.save()
+    
+    tipoitem = TipoItem.objects.get(id=id_tipoitem)
+    tipoitem.listaAtributo.add(lista_atributo)
+    
+    return HttpResponseRedirect('/adm_proyectos/gestionar/%s/adm_tipos_item/gestionar_tipoitem/%s/' % (id_proyecto, id_tipoitem))
+
+def quitar_tipo_atributo (request, id_tipoitem, id_proyecto, id_tipoatributo):
+    
+    tipo_atributo = ListaAtributo.objects.get(id=id_tipoatributo)
+    tipo_atributo.is_active = False
+    tipo_atributo.orden = 0
+    tipo_atributo.save()
+    elementos_existentes = ordenar_mantener(id_tipoitem)
+    return HttpResponseRedirect('/adm_proyectos/gestionar/%s/adm_tipos_item/gestionar_tipoitem/%s/' % (id_proyecto, id_tipoitem))
+
+def ordenar_mantener (id_tipoitem):
+    elementos_existentes = ListaAtributo.objects.filter(id_tipoitem=id_tipoitem, is_active=True).exclude(orden='0').order_by('orden')
+    control = 1
+    for elemento in elementos_existentes:
+        if elemento.orden != control:
+            elemento.orden = control
+            elemento.save()
+        control = control + 1
+    return elementos_existentes
+
+def subir_tipo_atributo (request, id_tipoitem, id_proyecto, id_tipoatributo):
+    atributo_a_subir=ListaAtributo.objects.get(id=id_tipoatributo)
+    if atributo_a_subir.orden-1 > 0:
+        atributo_a_bajar=ListaAtributo.objects.get(orden=(atributo_a_subir.orden-1))
+        orden = atributo_a_bajar.orden
+        atributo_a_bajar.orden = atributo_a_subir.orden
+        atributo_a_subir.orden = orden
+        atributo_a_bajar.save()
+        atributo_a_subir.save()
+        
     return HttpResponseRedirect('/adm_proyectos/gestionar/%s/adm_tipos_item/gestionar_tipoitem/%s/' % (id_proyecto, id_tipoitem))
     
+def bajar_tipo_atributo (request, id_tipoitem, id_proyecto, id_tipoatributo):
+    
+    atributo_a_bajar=ListaAtributo.objects.get(id=id_tipoatributo)
+    cantidad = len(ordenar_mantener (id_tipoitem))
+    if atributo_a_bajar.orden+1 <= cantidad:
+        atributo_a_subir=ListaAtributo.objects.get(orden=(atributo_a_bajar.orden+1))
+        orden = atributo_a_subir.orden
+        atributo_a_subir.orden = atributo_a_bajar.orden
+        atributo_a_bajar.orden = orden
+        atributo_a_subir.save()
+        atributo_a_bajar.save()
+        
+    return HttpResponseRedirect('/adm_proyectos/gestionar/%s/adm_tipos_item/gestionar_tipoitem/%s/' % (id_proyecto, id_tipoitem))
