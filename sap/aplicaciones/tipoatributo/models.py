@@ -33,9 +33,6 @@ class TipoAtributo(models.Model):
     class Meta:
         ordering = ['nombre']
         permissions = (
-                      ("crear_tipo_de_atributo", "puede crear roles"),
-                      ("modificar_tipo_de_atributo", "puede modificar roles"),
-                      ("eliminar_tipo_de_atributo", "puede eliminar roles"),
                       ("administrar_tipos_de_atributo", "puede listar los roles"),
                       ("importar_tipo_de_atributo", "puede asignar un rol a un usuario"),
         )
