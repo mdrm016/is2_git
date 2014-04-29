@@ -38,6 +38,7 @@ def crear_tipoitem (request, id_proyecto):
             tipoitem = TipoItem()
             tipoitem.nombre=nombre
             tipoitem.descripcion=descripcion
+            tipoitem.id_proyecto=id_proyecto
             tipoitem.is_active='True'
             tipoitem.save()
 

@@ -13,7 +13,7 @@
 {% block botones %}
 <div class="row">
 	<form class="navbar-form navbar-left">
-		<a href="#"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-folder-open"></span> Crear Item</button></a>
+		<a href="nuevo/"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-folder-open"></span> Crear Item</button></a>
 <!-- 		<a href="#"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-import"></span> Importar Fase</button></a>-->
 		<form action="" method="get">
 				<input type="text" name="busqueda" class="btn btn-default" placeholder="Busqueda de Items..." value="{{ query|escape }}">
@@ -105,11 +105,11 @@
 							<h4 class="modal-title" id="myModalLabel">Eliminar</h4>
 						</div>
 						<div class="modal-body">
-							Esta usted seguro de que desea eliminar la fase?
+							Esta usted seguro de que desea eliminar el item?
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancelar</button>
-							<a id="fase" href=""><button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-ok"></span> Estoy Seguro</button></a>
+							<a id="item" href=""><button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-ok"></span> Estoy Seguro</button></a>
 						</div>
 					</div>
 				</div>

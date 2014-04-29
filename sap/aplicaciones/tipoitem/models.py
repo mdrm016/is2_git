@@ -26,6 +26,7 @@ class TipoItem (models.Model):
     
     nombre = models.CharField(max_length=30, null=True)
     descripcion = models.TextField(max_length=300)
+    id_proyecto = models.IntegerField()
     is_active = models.BooleanField(default=True)
     listaAtributo = models.ManyToManyField(ListaAtributo)
 
