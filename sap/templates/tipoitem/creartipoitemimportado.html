@@ -9,7 +9,7 @@
 <div class="menu">
 	<ul>
 		<li id="option1" class="active">
-			<a href="#">Crear Tipo de Item</a>
+			<a href="#">Importar {{ tipoitem.nombre }}</a>
 		</li>
 	</ul>
 </div>
@@ -31,7 +31,7 @@
 						{{ form.as_table }}
 					</table>
 					<div align="center"><br>
-						<input class="btn btn-default" type="submit" value="Guardar"/>
+						<input class="btn btn-default" type="submit" value="Importar"/>
 						<a class="btn btn-default" href="javascript:window.history.go(-1);"><span class="glyphicon glyphicon-remove"></span> Cancelar</a>
 					</div>
 				</form>
