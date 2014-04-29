@@ -1,0 +1,114 @@
+{% extends "base_general.html" %}
+
+{% block menu %}		
+<div class="menu">
+	<ul>
+		<li id="option1" class="active">
+			<a href="/">Proyectos</a>
+		</li>
+	</ul>
+</div>
+{% endblock %}
+
+{% block botones %}
+<div class="row">
+	<form class="navbar-form navbar-left">
+<!-- 		<a href="#"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-import"></span> Importar Fase</button></a>-->
+	</form>
+</div>
+{% endblock %}
+
+{% block contenido %}
+<div class="content-secondary">
+<!-- Aca van la  lista de Proyectos.. o de Solicitudes.. o de credenciales -->
+		{% if lista_atributos %}
+		<div class="row ">
+			<div class="panel-group" id="accordion">
+				<div class="panel panel-default">
+					<div class="row">
+				    	<div class="col-md-4">
+				   			<div class="panel-heading">
+				      			<h4 class="panel-title"><b>Nombre</b></h4>
+				    		</div>
+				    	</div>				    
+				    	<div class="col-md-4">
+				    		<div class="panel-heading">
+				      			<h4 class="panel-title"><b>Estado</b></h4>
+				    		</div>
+				    	</div>
+				    </div>
+				</div>
+			{% for item in lista_items %}
+				<div class="panel panel-default">
+					<div class="col-md-4">
+				    	<div class="panel-heading">
+				      		<h4 class="panel-title">
+				        		<a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ item.id }}">
+				          		{{ item.nombre }}
+				        		</a>
+				      		</h4>
+				    	</div>
+				    </div>				    
+				    <div class="col-md-4">
+				    	<div class="panel-heading">
+				      		<h4 class="panel-title">
+				        		<a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ item.id }}">
+				          		{{ item.estado }}
+				        		</a>
+				      		</h4>
+				    	</div>
+				    </div>
+				    
+				    <div id="collapse{{ item.id }}" class="panel-collapse collapse pull-left">
+				      <div class="panel-body">
+
+				      		<a href="#"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-eye-open"></span> Consultar</button></a>
+				      		<a href="#"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-edit"></span> Modificar</button></a>
+				      		<button class="btn btn-danger btn-sm fases" data-toggle="modal" data-target="#myModal" data-id="{{ item.id }}"><span class="glyphicon glyphicon-trash"></span> Eliminar</button>
+				      </div>
+				    </div>
+				</div>
+				
+			{% endfor %}
+		</div>
+		</div>
+		{% else %}
+			{% if error %}
+				<div class="jumbotron">
+  					<div class="alert alert-danger"><h3><p align="center"><b>No se encontraron coincidencias</b></p></h3></div>
+				</div>
+				<div  align="center">
+					<a type="button" class="btn btn-default" href="/adm_proyectos/gestionar/{{ id_proyecto }}/adm_items/{{ id_fase }}">Volver</a>
+				</div>	
+			{% else %}
+				<div class="jumbotron">
+					<div class="bs-example">
+						<p class="text-warning" align="center"><small>No se encontraron Items</small></p>
+					</div>
+				</div>
+			{% endif %}}
+		{% endif %}
+		
+
+			<!-- Ininicia Modal -->
+			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+							<h4 class="modal-title" id="myModalLabel">Eliminar</h4>
+						</div>
+						<div class="modal-body">
+							Esta usted seguro de que desea eliminar el item?
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancelar</button>
+							<a id="item" href=""><button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-ok"></span> Estoy Seguro</button></a>
+						</div>
+					</div>
+				</div>
+			</div>
+<!-- Finaliza el Modal -->
+
+</div>
+{% endblock %}

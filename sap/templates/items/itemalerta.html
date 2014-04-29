@@ -1,0 +1,11 @@
+{% extends "base_general.html" %}
+{% block contenido %}
+<div class="jumbotron">
+	<div class="bs-example">
+		<h2>Notificacion</h2>
+			<p class="text-warning"><small>{{ mensaje }}</small></p>
+			<a type="button" class="btn btn-default" href="/adm_proyectos/gestionar/{{ id_proyecto }}/adm_items/{{ id_fase }}/nuevo/">Volver</a>
+        </form>
+	</div>
+</div>
+{% endblock %}

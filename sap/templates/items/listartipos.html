@@ -1,0 +1,64 @@
+{% extends "base_general.html" %}
+
+{% block menu %}
+<div class="menu">
+	<ul>
+	<li id="option1" class="active">
+		<a href="#">Crear Item - Seleccionar Tipo</a>
+	</li>
+	</ul>
+</div>
+{% endblock %}
+
+
+{% block contenido %}
+<div class="content-secondary">
+<!-- Aca van la lista de Proyectos.. o de Solicitudes.. o de credenciales -->
+{% if lista_tipo_item %}
+   <div class="alert alert-info"><h2><p align="center"><b>Seleccione el Tipo de Item</p></h2></div>
+		<div class="row ">
+			<div class="panel-group" id="accordion">
+				<div class="panel panel-default">
+					<div class="row">
+						<div class="col-md-4">
+							<div class="panel-heading">
+								<h4 class="panel-title"><b>Nombre</b></h4>
+							</div>
+						</div>
+					</div>
+				</div>
+				{% for tipo in lista_tipo_item %}
+					{% if tipo.is_active %}
+						<div class="panel panel-default">
+							<div class="col-md-4">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+									<a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ tipo.id }}">
+										{{ tipo.nombre }}
+									</a>
+									</h4>
+								</div>
+							</div>
+
+							<div id="collapse{{ tipo.id }}" class="panel-collapse collapse pull-left">
+								<div class="panel-body">
+									<a href="crear/{{ tipo.id }}/"><button type="button" class="btn btn-default btn-sm">Seleccionar</button></a>
+								</div>
+							</div>
+						</div>
+					{% endif %}
+				{% endfor %}
+				<div align="center"><br>
+					<a href="/adm_proyectos/gestionar/{{ id_proyecto }}/adm_items/{{ id_fase }}"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-remove"></span> Cancelar</button></a>
+				</div>
+			</div>
+		</div>
+		{% else %}
+			<div class="jumbotron">
+				<div class="bs-example">
+					<p class="text-warning" align="center"><small>No se encontraron Tipos de Items en el proyecto</small></p>
+				</div>
+			</div>
+		{% endif %}
+</div>
+{% endblock %}
