@@ -1,5 +1,10 @@
 {% extends "base_general.html" %}
 
+{% block tipo_Item_y_Atributo %}
+<li><a href="/adm_proyectos/gestionar/{{ id_proyecto }}/adm_tipos_item/">Administrar Tipos de Item</a></li>
+<li><a href="/adm_proyectos/gestionar/{{ id_proyecto }}/adm_tipos_atributo">Administrar Tipos de Atributo</a></li>
+{% endblock %}
+
 {% block menu %}		
 <div class="menu">
 	<ul>
@@ -47,10 +52,10 @@
 						  		<td><p><h4><b>Descripcion</b></h4></p></td>
 						  	</tr>
 						  	
-						  	{% for fase in fases %}
+						  	{% for nombre, descripcion in atributos %}
 								<tr class="active">
-									<td><p><h4>{{ atributos.nombre }}</h4></p></td>
-									<td><p><h4>{{ atributos.descripcion }}</h4></p></td>
+									<td><p><h4>{{ nombre }}</h4></p></td>
+									<td><p><h4>{{ descripcion }}</h4></p></td>
 								</tr>
 							{% endfor %}
 						<tbody>

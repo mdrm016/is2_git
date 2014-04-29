@@ -1,5 +1,10 @@
 {% extends "base_general.html" %}
 
+{% block tipo_Item_y_Atributo %}
+<li><a href="/adm_proyectos/gestionar/{{ id_proyecto }}/adm_tipos_item/">Administrar Tipos de Item</a></li>
+<li><a href="/adm_proyectos/gestionar/{{ id_proyecto }}/adm_tipos_atributo">Administrar Tipos de Atributo</a></li>
+{% endblock %}
+
 {% block menu %}		
 <div class="menu">
 	<ul>
@@ -14,7 +19,7 @@
 <div class="row">
 	<form class="navbar-form navbar-left">
 		<a href="crear_tipoitem/"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-folder-open"></span> Crear Tipo de Item</button></a>
-		<a href="importar_tipoitem/"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-import"></span> Importar Tipo de Item</button></a>
+		<a href="listar_proyectos/"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-import"></span> Importar Tipo de Item</button></a>
 		<form action="" method="get">
 				<input type="text" name="busqueda" class="btn btn-default" placeholder="Busqueda de Tipo de Item..." value="{{ query|escape }}">
 				<span class="glyphicon glyphicon-search"></span>
@@ -70,7 +75,7 @@
 				      		<a href="consultar/{{ tipoitem.id }}/"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-eye-open"></span> Consultar</button></a>
 				      		<a href="modificar/{{ tipoitem.id }}"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-edit"></span> Modificar</button></a>
 				      		<button class="btn btn-danger btn-sm tipoitems" data-toggle="modal" data-target="#myModal" data-id="{{ tipoitem.id }}"><span class="glyphicon glyphicon-trash"></span> Eliminar</button>
-				      		<a href="gestionar_tipoitem/"><button type="button" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-th"></span> Gestionar Tipo de Item</button></a>
+				      		<a href="gestionar_tipoitem/{{ tipoitem.id }}"><button type="button" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-th"></span> Gestionar Tipo de Item</button></a>
 				      </div>
 				    </div>
 				</div>

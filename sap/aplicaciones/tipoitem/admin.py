@@ -1,3 +1,5 @@
 from django.contrib import admin
+from .models import TipoItem, ListaAtributo
 
-# Register your models here.
+admin.site.register(TipoItem)
+admin.site.register(ListaAtributo)

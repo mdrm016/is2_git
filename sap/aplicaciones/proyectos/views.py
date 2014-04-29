@@ -36,7 +36,9 @@ def adm_proyectos (request):
             for ru in rolesUsuario:
                 if rls.name == ru.name:
                     id_p.append(rls.proyecto)
+        print id_p
         proyectos = Proyectos.objects.filter(pk__in=id_p, is_active=True)
+        print id_p
 
     else:
         proyectos = Proyectos.objects.filter(is_active=True)
