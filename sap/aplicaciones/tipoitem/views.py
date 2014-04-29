@@ -4,6 +4,7 @@ from .models import TipoItem, ListaAtributo
 from .forms import TipoItemNuevoForm, TipoItemModificadoForm
 from django.db.models import Q
 from aplicaciones.tipoatributo.models import TipoAtributo
+from aplicaciones.proyectos.models import Proyectos
 
 def adm_tipoitem (request, id_proyecto):
     
@@ -38,6 +39,7 @@ def crear_tipoitem (request, id_proyecto):
             tipoitem = TipoItem()
             tipoitem.nombre=nombre
             tipoitem.descripcion=descripcion
+            tipoitem.id_proyecto=id_proyecto
             tipoitem.is_active='True'
             tipoitem.save()
 
@@ -47,7 +49,7 @@ def crear_tipoitem (request, id_proyecto):
     else:
         form = TipoItemNuevoForm()
         
-    ctx ={'form': form}      
+    ctx ={'form': form, 'id_proyecto':id_proyecto}      
     template_name='tipoitem/creartipoitem.html'
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
 
@@ -99,6 +101,13 @@ def eliminar_tipoitem (request, id_tipoitem, id_proyecto):
     
     tipoitem = TipoItem.objects.get(id=id_tipoitem)
     #si algun item usa este tipo de item, ya no se podra borrar
+    
+    elementos_existentes = ordenar_mantener (id_tipoitem)
+    for elemento in elementos_existentes:
+        elemento.is_active = False
+        elemento.orden = 0
+        elemento.save()
+        
     tipoitem.is_active = False
     tipoitem.save()
     return HttpResponseRedirect('/adm_proyectos/gestionar/%s/adm_tipos_item/' % id_proyecto)
@@ -106,12 +115,19 @@ def eliminar_tipoitem (request, id_tipoitem, id_proyecto):
 def consultar_tipoitem (request, id_tipoitem, id_proyecto):
     
     tipoitem = TipoItem.objects.get(id=id_tipoitem)
-    #consegir los tipos de atributos
-    ctx = {'tipoitem':tipoitem}
+    
+    elementos_existentes = ordenar_mantener (id_tipoitem)
+    consulta = []
+    for elemento in elementos_existentes:
+        tupla = (elemento.nombre, TipoAtributo.objects.get(id=elemento.id_atributo).descripcion)
+        consulta.append(tupla)
+        
+    ctx = {'tipoitem':tipoitem, 'atributos':consulta, 'id_proyecto':id_proyecto}
     template_name = 'tipoitem/consultartipoitem.html'
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
 
 def gestionar_tipoitem (request, id_tipoitem, id_proyecto):
+    
     
     tipoitem = TipoItem.objects.get(id=id_tipoitem)
     tablaTipoAtributo = TipoAtributo.objects.filter(is_active=True)
@@ -139,6 +155,7 @@ def agregar_tipo_atributo (request, id_tipoitem, id_proyecto, id_tipoatributo):
     lista_atributo.save()
     
     tipoitem = TipoItem.objects.get(id=id_tipoitem)
+    print tipoitem
     tipoitem.listaAtributo.add(lista_atributo)
     
     return HttpResponseRedirect('/adm_proyectos/gestionar/%s/adm_tipos_item/gestionar_tipoitem/%s/' % (id_proyecto, id_tipoitem))
@@ -187,3 +204,63 @@ def bajar_tipo_atributo (request, id_tipoitem, id_proyecto, id_tipoatributo):
         atributo_a_bajar.save()
         
     return HttpResponseRedirect('/adm_proyectos/gestionar/%s/adm_tipos_item/gestionar_tipoitem/%s/' % (id_proyecto, id_tipoitem))
+
+def listar_proyectos (request, id_proyecto):
+    
+    proyectos = Proyectos.objects.filter(is_active=True)
+    ctx = {'id_proyecto':id_proyecto, 'lista_proyectos':proyectos}
+    template_name = 'tipoitem/listarproyectos.html'
+    return render_to_response(template_name, ctx, context_instance=RequestContext(request))
+    
+def listar_tipoitem(request, id_proyecto, proyecto_select):
+    
+    tipoitem = TipoItem.objects.filter(id_proyecto=proyecto_select, is_active=True)
+    proyecto = Proyectos.objects.get(id=id_proyecto)
+    ctx = {'proyecto':proyecto, 'lista_tipoitem':tipoitem}
+    template_name = 'tipoitem/listartipoitem.html'
+    return render_to_response(template_name, ctx, context_instance=RequestContext(request))
+
+def importar_tipoitem(request, id_proyecto, proyecto_select, id_tipoitem):
+    
+    tipoI = TipoItem.objects.get(id=id_tipoitem)
+    if request.method == 'POST':
+        form = TipoItemNuevoForm(request.POST)
+        if form.is_valid():
+            form.clean()
+            nombre = form.cleaned_data['Nombre_Tipo_de_Item'] 
+            descripcion =  form.cleaned_data['Descripcion']
+            
+            tipoitem = TipoItem()
+            tipoitem.nombre=nombre
+            tipoitem.descripcion=descripcion
+            tipoitem.id_proyecto=id_proyecto
+            tipoitem.is_active='True'
+            tipoitem.save()
+            
+            elementos_existentes = ordenar_mantener(id_tipoitem)
+            for elemento in elementos_existentes:
+                lista_atributo = ListaAtributo()
+                lista_atributo.id_atributo = elemento.id
+                lista_atributo.id_tipoitem = tipoitem.id
+                lista_atributo.nombre = elemento.nombre
+                lista_atributo.is_active = True
+                
+                elementos = ordenar_mantener(tipoitem.id)
+                if elementos:
+                    lista_atributo.orden = len(elementos_existentes) + 1
+                else:
+                    lista_atributo.orden = 1
+                lista_atributo.save()
+                
+                tipoitem.listaAtributo.add(lista_atributo)
+            
+            
+            mensaje="Tipo Item Importado exitosamente"
+            ctx = {'mensaje':mensaje, 'id_proyecto':id_proyecto}
+            return render_to_response('tipoitem/tipoitemalerta.html',ctx, context_instance=RequestContext(request))
+    else:
+        form = TipoItemNuevoForm()
+        
+    ctx ={'form': form, 'tipoitem':tipoI}      
+    template_name='tipoitem/creartipoitemimportado.html'
+    return render_to_response(template_name, ctx, context_instance=RequestContext(request))
