@@ -12,6 +12,7 @@ from datetime import datetime
 from django.contrib.auth.decorators import login_required, permission_required
 from django.db.models import Q
 from forms import ItemNuevoForm
+from aplicaciones.tipoitem.views import ordenar_mantener
 
 # Create your views here.
 
@@ -33,7 +34,7 @@ def adm_items(request, id_proyecto, id_fase):
     """
 
     #lista_items=Items.objects.get(proyecto=id_proyecto, fase=id_fase, is_active=True)
-    lista_items = Items.objects.filter(is_active=True)
+    lista_items = Items.objects.filter(proyecto_id=id_proyecto, fase_id=id_fase, is_active=True)
     mensaje = ''
     ctx = {'lista_items': lista_items, 'mensaje': mensaje, 'id_proyecto':id_proyecto, 'id_fase': id_fase}
     template_name = './items/items.html'
@@ -81,6 +82,15 @@ def crear_item(request, id_proyecto, id_fase, id_tipoitem):
             costo_temporal = form.cleaned_data['Costo_Temporal']
             costo_monetario = form.cleaned_data['Costo_Monetario']
             complejidad = form.cleaned_data['Complejidad']
+            repetido = 'Vacio'
+            rep= Items.objects.filter(proyecto_id=id_proyecto, fase_id=id_fase, is_active=True, nombre=nombre)
+            if rep:
+                mensaje = 'El nombre de item ya existe para esta fase'
+                data = {'Nombre_de_Item': nombre, 'Prioridad': prioridad, 'Descripcion': descripcion, 'Observaciones': observaciones, 'Costo_Temporal': costo_temporal, 'Costo_Monetario': costo_monetario, 'Complejidad': complejidad}
+                form = ItemNuevoForm(data)
+                ctx = {'form': form, 'mensaje':mensaje, 'id_proyecto': id_proyecto, 'id_fase': id_fase, 'id_tipoitem': id_tipoitem}
+                template_name = 'items/itemnuevo.html'
+                return render_to_response(template_name, ctx, context_instance=RequestContext(request))
             
             item = Items()
             item.nombre = nombre
