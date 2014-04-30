@@ -34,11 +34,9 @@ def adm_proyectos (request):
         roles = Roles.objects.all()
         for rls in roles:
             for ru in rolesUsuario:
-                if rls.name == ru.name:
+                if rls.name == ru.name and rls.proyecto:
                     id_p.append(rls.proyecto)
-        print id_p
         proyectos = Proyectos.objects.filter(pk__in=id_p, is_active=True)
-        print id_p
 
     else:
         proyectos = Proyectos.objects.filter(is_active=True)
@@ -140,15 +138,15 @@ def crear_proyecto (request):
         if form.is_valid():
             form.clean()
             nombre = form.cleaned_data['Nombre_del_Proyecto'] 
-            lider =  form.cleaned_data['Lider']
+            #lider =  form.cleaned_data['Lider']
             fecha_inicio = form.cleaned_data['Fecha_de_Inicio']
             duracion =  form.cleaned_data['Duracion']
             
-            user = User.objects.get(id=lider)
+            #user = User.objects.get(id=lider)
             
             proyecto = Proyectos()
             proyecto.nombre=nombre
-            proyecto.lider=user
+            proyecto.lider=request.user
             proyecto.fecha_inicio=fecha_inicio
             proyecto.duracion=duracion
             proyecto.is_active='True'
@@ -186,9 +184,31 @@ def modificar_proyecto (request, id_proyecto):
     @author: Marcelo Denis.
     
     """
-    
-    proyecto = Proyectos.objects.get(id=id_proyecto)
     mensaje=''
+    lista=[]      
+    roles = Roles.objects.filter(proyecto=id_proyecto)
+    users = User.objects.filter(is_active=True).exclude(id=1)
+    for rol in roles:
+        for user in users:
+            roles_usuario=user.groups.all()
+            for ru in roles_usuario:
+                if ru.name == rol.name:
+                    tupla=(user.id, user.username)
+                    lista.append(tupla)
+    choices_lider=[]
+    if not lista:
+        mensaje='No existen opcione de lider para est proyecto'
+    for eleccion in lista:
+        if eleccion not in choices_lider:
+            choices_lider.append(eleccion)
+     
+    ESTADOS_PROYECTO = (
+        ('Inactivo', 'Inactivo'),
+        ('En Construccion', 'En Construccion'),
+        ('Finalizado', 'Finalizado'),
+    )
+     
+    proyecto = Proyectos.objects.get(id=id_proyecto)
     if request.method == 'POST':
         form = ProyectoModificadoForm(request.POST)
         if form.is_valid():
@@ -210,9 +230,8 @@ def modificar_proyecto (request, id_proyecto):
             
             # Comprobar cantidad miembros de comite para pasar a un estado en construccion con un elif
             #si exite ya un proyecto con el nombre suministrado y el nombre suminitrado es distinto al del proyecto que esta siendo modificado
-            if Proyectos.objects.filter(nombre=nombreNuevo) and nombreNuevo != proyecto.nombre:
-                data ={'Nombre_del_Proyecto':nombreNuevo, 'Lider_Actual':lider, 'Duracion':duracion}  
-                form = ProyectoModificadoForm(data)
+            if Proyectos.objects.filter(nombre=nombreNuevo) and nombreNuevo != proyecto.nombre:  
+                form = ProyectoModificadoForm()
                 mensaje = 'El nombre del proyecto ya existe y no puede haber duplicados'
             
             else:
@@ -233,11 +252,10 @@ def modificar_proyecto (request, id_proyecto):
                 ctx = {'mensaje':mensaje}
                 template_name='proyectos/proyectoalerta.html'
                 return render_to_response(template_name, ctx, context_instance=RequestContext(request))
-    else:
-        data ={'Nombre_del_Proyecto':proyecto.nombre, 'Lider_Actual':proyecto.lider, 'Estado_Actual':proyecto.estado, 'Duracion':proyecto.duracion}   
-        form = ProyectoModificadoForm(data)
+    else:       
+        form = ProyectoModificadoForm()
         
-    ctx ={'form': form, 'mensaje':mensaje, 'proyecto':proyecto}      
+    ctx ={'form': form, 'mensaje':mensaje, 'proyecto':proyecto, 'choices_lider':choices_lider, 'ESTADOS_PROYECTO':ESTADOS_PROYECTO}      
     template_name='proyectos/modificarproyecto.html'
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
 
