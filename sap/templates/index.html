@@ -76,7 +76,7 @@
 				    	<div class="panel-heading">
 				      		<h4 class="panel-title">
 				        		<a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ proyecto.id }}">
-				          		{{ proyecto.lider }}
+				          		{% if proyecto.lider %} {{ proyecto.lider }} {% else %} Ninguno {% endif %}
 				        		</a>
 				      		</h4>
 				    	</div>
@@ -98,7 +98,9 @@
 				      		<a href="listar_miembros/{{ proyecto.id }}/"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-list-alt"></span> Listar Miembros</button></a>
 				      		<a href="modificar/{{ proyecto.id }}/"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-edit"></span> Modificar</button></a>
 				      		<button class="btn btn-danger btn-sm proyectos" data-toggle="modal" data-target="#myModal" data-id="{{ proyecto.id }}"><span class="glyphicon glyphicon-trash"></span> Eliminar</button>
-				      		<a href="gestionar/{{ proyecto.id }}/"><button type="button" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-th"></span> Gestionar Proyecto</button></a>
+				      		{% if proyecto.lider %}
+				      			<a href="gestionar/{{ proyecto.id }}/"><button type="button" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-th"></span> Gestionar Proyecto</button></a>
+				      		{% endif %}
 				      </div>
 				    </div>
 				</div>

@@ -54,7 +54,7 @@
 
 						<tr><th><label for="id_Nombre_del_Proyecto"><h4><b>Nombre del proyecto:</b></h4></label></th><td><input id="id_Nombre_del_Proyecto" maxlength="15" name="Nombre_del_Proyecto" type="text" class="form-control" value="{{ proyecto.nombre }}" /></td></tr>
 						<tr><th><label for="id_Nuevo_Lider"><h4><b>Lider:</b></h4></label></th><td><select id="id_Nuevo_Lider" name="Nuevo_Lider" class="form-control">
-						<option value="" selected="selected">{{ proyecto.lider }}</option>
+						<option value="" selected="selected">{% if proyecto.lider %} {{ proyecto.lider }} {% else %} Ninguno {% endif %}</option>
 						{% for id, lider in choices_lider %}
 							{% if not lider == proyecto.lider.username %}
 								<option value="{{ id }}">{{ lider }}</option>

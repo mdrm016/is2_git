@@ -8,7 +8,7 @@ from aplicaciones.proyectos.models import Proyectos
 
 def adm_tipoitem (request, id_proyecto):
     
-    tipoitem = TipoItem.objects.filter(is_active=True)
+    tipoitem = TipoItem.objects.filter(id_proyecto=id_proyecto, is_active=True)
     
     busqueda = ''
     error=False

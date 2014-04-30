@@ -146,7 +146,7 @@ def crear_proyecto (request):
             
             proyecto = Proyectos()
             proyecto.nombre=nombre
-            proyecto.lider=request.user
+            #proyecto.lider=request.user
             proyecto.fecha_inicio=fecha_inicio
             proyecto.duracion=duracion
             proyecto.is_active='True'
@@ -197,7 +197,7 @@ def modificar_proyecto (request, id_proyecto):
                     lista.append(tupla)
     choices_lider=[]
     if not lista:
-        mensaje='No existen opcione de lider para est proyecto'
+        mensaje='No existen opciones de lider para este proyecto'
     for eleccion in lista:
         if eleccion not in choices_lider:
             choices_lider.append(eleccion)
@@ -220,9 +220,11 @@ def modificar_proyecto (request, id_proyecto):
             
             #Si no se ha suministrado un nuevo lider, el proyecto se queda con el lider actual
             if not lider:
-                lider = User.objects.get(username=proyecto.lider)
-                lider = lider.id
-            lideruser = User.objects.get(id=lider)
+                if proyecto.lider:
+                    lideruser = User.objects.get(username=proyecto.lider)
+                else:
+                    lideruser = None
+            #lideruser = User.objects.get(id=lider)
             
             #Si no se ha suministrado un nuevo estado, el proyecto se queda con el estado actual
             if not estado:
