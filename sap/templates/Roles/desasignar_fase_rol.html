@@ -1,0 +1,55 @@
+{% extends "base_general.html" %}
+
+
+{% block menu %}		
+<div class="menu">
+	<ul>
+		<li id="option1" class="active">
+			<a href="#">Crear Rol</a>
+		</li>
+	</ul>
+</div>
+{% endblock %}
+
+{% block contenido %}
+<div class="content-secondary">
+	{% if errors %}
+		{% for error in errors %}
+		<font color="red"><h4><p align="center"><b>{{ error }}</b></p></h4></font>
+		{% endfor %}
+	{% endif %}
+	
+	<form action="" method="post">
+	{% if Fases %}
+		<table align="center">
+			<tr>
+			<th> Fases: </th>
+			<td>
+			<select multiple="multiple" name="Fases">
+				{% for id_fase, nombre_fase in Fases %}
+						<option  name="Fases" value="{{ id_fase }}">{{ nombre_fase }}</option>
+				{% endfor %}
+			</select><br>
+			* Campo Obligatorio
+			</td>
+			</tr>
+		</table>
+		
+		{% csrf_token %}
+	<div align="center"><br>
+		<input class="btn btn-default" type="submit" value="Guardar"/>
+		<a href="/adm_roles/"><button type="button" class="btn btn-default">Cancelar</button></a>
+	</div>
+	<br>
+	</form>
+	{% else %}
+	<div class="jumbotron">
+	<div class="bs-example" align="center">
+		<h2>Notificacion</h2>
+			<p class="text-warning"><small>El Proyecto  de este Rol todavia no cuenta con Fases</small></p>
+			<a type="button" class="btn btn-default" href="/adm_roles/"><span class="glyphicon glyphicon-arrow-left"></span> Volver</a>
+	</div>
+	</div>
+	{% endif %}
+</div>
+{% endblock %}

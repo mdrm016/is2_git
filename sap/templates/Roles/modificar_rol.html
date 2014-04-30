@@ -18,8 +18,31 @@
 	
 	<form action="" method="post">
 		<table>
-			{{ form.as_table }}
-			{{ permisos.as_table}}
+		<tbody>
+			<tr>
+				{{ form.Nombre_de_Rol.errors }}
+				<th>{{ form.Nombre_de_Rol.label_tag }} </th><td> {{ form.Nombre_de_Rol }} {{ form.Nombre_de_Rol.help_text }}</td>
+			</tr>
+			<tr>
+				<th>{{ form.Permisos.label_tag }} </th>
+				<td>
+				<ul>
+				{% for codigo, nombre in permisos %}
+						{% if codigo in marcados %}
+							<li><input type="checkbox" name="Permisos" value="{{ codigo }}" checked />{{ nombre }}</li>
+						{% else %}
+							<li><input type="checkbox" name="Permisos" value="{{ codigo }}" />{{ nombre }}</li>
+						{% endif %}
+				{% endfor %}
+				</ul>
+				 {{ form.Permisos.help_text }}
+				</td>
+			</tr>
+			<tr>
+				{{ form.Descripcion.errors }}
+				<th> {{ Descripcion.label_tag }} </th><td> {{ form.Descripcion }} {{ form.Descripcion.help_text }}</td>
+			</tr>
+		</tbody>
 		</table>
 		{% csrf_token %}
 	<div align="center">
