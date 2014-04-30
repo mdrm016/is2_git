@@ -8,6 +8,8 @@ from aplicaciones.usuarios.models import Usuarios
 from aplicaciones.fases.models import Fases
 from django.contrib.auth.decorators import login_required, permission_required
 from aplicaciones.roles.models import Roles
+from aplicaciones.tipoitem.models import TipoItem, ListaAtributo
+from aplicaciones.tipoitem.views import ordenar_mantener
 
 
 @login_required(login_url='/login/')
@@ -64,6 +66,7 @@ def adm_proyectos (request):
     template_name = 'index.html'
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
 
+@login_required(login_url='/login/')
 def proyecto_finalizado (request):
     
     """ Recibe un request, se verifica cual es el usuario registrado y se obtiene la lista de proyectos finalizados
@@ -292,13 +295,13 @@ def consultar_proyecto (request, id_proyecto):
 def eliminar_proyecto (request, id_proyecto):
     
     """ Recibe un request y el id del proyecto a ser eliminado, se verifica si el usuario tiene
-    permisos para eliminar un proyecto existente y le brinda la opcion de eliminar elm proyecto.
+    permisos para eliminar un proyecto existente y le brinda la opcion de eliminar el proyecto.
     
     @type request: django.http.HttpRequest.
     @param request: Contiene informacion sobre la solicitud web actual que llamo a esta vista eliminar_proyecto.
      
     @rtype: django.shortcuts.render_to_response.
-    @return: index.html, donde se redirige al usuario con actualizacion de la lista de proyectos o a
+    @return: index.html, donde se redirige al usuario con la actualizacion de la lista de proyectos o a
     proyectoalerta.html donde se notifica al usuario la razon por la cual no se puede eliminar un proyecto.
     
     @type id_usuario : string.
@@ -443,24 +446,16 @@ def importar (request, id_proyecto):
         if form.is_valid():
             form.clean()
             nombre = form.cleaned_data['Nombre_del_Proyecto'] 
-            lider =  form.cleaned_data['Lider']
             fecha_inicio = form.cleaned_data['Fecha_de_Inicio']
             duracion =  form.cleaned_data['Duracion']
-            miembros = form.cleaned_data['Miembros']
-            
-            user = User.objects.get(id=lider)
             
             proyecto = Proyectos()
             proyecto.nombre=nombre
-            proyecto.lider=user
+            proyecto.lider=None
             proyecto.fecha_inicio=fecha_inicio
             proyecto.duracion=duracion
             proyecto.is_active='True'
             proyecto.save()
-            
-            for miembro_id in miembros:
-                miembro = Usuarios.objects.get(user_id=miembro_id)
-                proyecto.miembros.add(miembro)
                 
             fasesImportadas = Fases.objects.filter(proyecto=id_proyecto, is_active=True)     
             for faseImport in fasesImportadas:
@@ -470,6 +465,32 @@ def importar (request, id_proyecto):
                 fase.proyecto = proyecto
                 fase.save()
                 
+            tipoitems=TipoItem.objects.filter(id_proyecto=id_proyecto, is_active=True)
+            for tipoitem in tipoitems:
+                TI= TipoItem()
+                TI.nombre=tipoitem.nombre
+                TI.descripcion=tipoitem.descripcion
+                TI.id_proyecto=proyecto.id
+                TI.is_active='True'
+                TI.save()
+                    
+                elementos_existentes = ordenar_mantener(tipoitem.id)
+                for elemento in elementos_existentes:
+                    lista_atributo = ListaAtributo()
+                    lista_atributo.id_atributo = elemento.id
+                    lista_atributo.id_tipoitem = TI.id
+                    lista_atributo.nombre = elemento.nombre
+                    lista_atributo.is_active = True
+                    
+                    elementos = ordenar_mantener(TI.id)
+                    if elementos:
+                        lista_atributo.orden = len(elementos_existentes) + 1
+                    else:
+                        lista_atributo.orden = 1
+                    lista_atributo.save()
+                        
+                    TI.listaAtributo.add(lista_atributo)
+            
             mensaje="Proyecto importado exitosamente"
             ctx = {'mensaje':mensaje}
             return render_to_response('proyectos/proyectoalerta.html',ctx, context_instance=RequestContext(request))
