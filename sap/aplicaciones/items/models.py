@@ -38,10 +38,12 @@ class Items(models.Model):
 
 class ValorItem(models.Model):
     item = models.ForeignKey(Items)
-    valor_id = models.IntegerField()
-    tabla_valor_nombre = models.CharField(max_length=40)
-    version = models.IntegerField()
-    orden = models.IntegerField()
+    valor_id = models.IntegerField(null=True)
+    tabla_valor_nombre = models.CharField(max_length=40, null=True)
+    nombre_atributo = models.CharField(max_length=40, null=True)
+    tipo_dato = models.CharField(max_length=40, null=True)
+    version = models.IntegerField(null=True)
+    orden = models.IntegerField(null=True)
     fase = models.ForeignKey(Fases)
     proyecto = models.ForeignKey(Proyectos)
     
@@ -49,11 +51,14 @@ class ValorItem(models.Model):
         return self.valor_id
     
 class ListaValores(models.Model):
-    nombre_atributo = models.CharField(max_length=20)
-    tipo_dato = models.CharField(max_length=20)
-    valor_texto = models.CharField(max_length=300)
+    nombre_atributo = models.CharField(max_length=20, null=True)
+    tipo_dato = models.CharField(max_length=20, null=True)
+    valor_texto = models.CharField(max_length=300, null=True)
+    valor_numerico = models.IntegerField(null=True)
+    valor_fecha = models.CharField(max_length=15, null=True)
+    valor_archivoexterno = models.FileField(upload_to='archivos', null=True)
     
-    orden = models.IntegerField()
+    orden = models.IntegerField(null=True)
     
     def __unicode__(self):
         return self.nombre_atributo

@@ -7,7 +7,7 @@ from django.template.context import RequestContext
 from aplicaciones.proyectos.models import Proyectos
 from aplicaciones.fases.models import Fases
 from aplicaciones.tipoitem.models import TipoItem
-from aplicaciones.tipoatributo.models import TipoAtributo, Numerico, Fecha, Texto, Imagen
+from aplicaciones.tipoatributo.models import TipoAtributo, Numerico, Fecha, Texto, ArchivoExterno, Logico
 from .models import Items, ListaValores, ValorItem
 from datetime import datetime
 from django.contrib.auth.decorators import login_required, permission_required
@@ -121,16 +121,15 @@ def crear_item(request, id_proyecto, id_fase, id_tipoitem):
 def cargar_valores(request, id_proyecto, id_fase, id_item):
     proyecto = Proyectos.objects.get(id=id_proyecto)
     fase = Fases.objects.get(id=id_fase)
-    itemactual = Items.objects.filter(id=id_item)
+    itemactual = Items.objects.get(id=id_item)
     if fase.estado == 'FD' or proyecto.estado=='Inactivo':
         mensaje = 'No se pueden modificar atributos. Dirijase a consultar item.'
         ctx = {'mensaje':mensaje, 'id_proyecto': id_proyecto}
         template_name = './items/itemalerta.html'
         return render_to_response(template_name, ctx, context_instance=RequestContext(request))
-    if request.method=='POST':
-        for j in itemactual:
-            idtipoitem = j.tipo_item_id
-            versionitem = j.version
+    if request.method=='POST': 
+        idtipoitem = itemactual.tipo_item_id
+        versionitem = itemactual.version + 1
         lista_atributos = ordenar_mantener(idtipoitem)
         i = 1
         posicion = 1
@@ -151,6 +150,8 @@ def cargar_valores(request, id_proyecto, id_fase, id_item):
                 valoritems.item_id = id_item
                 valoritems.valor_id = archivo.id
                 valoritems.tabla_valor_nombre = 'tipoatributo_archivoexterno'
+                valoritems.nombre_atributo = nombreatributo
+                valoritems.tipo_dato = tipodatoatributo
                 valoritems.version = versionitem
                 valoritems.orden = posicion
                 valoritems.proyecto_id = id_proyecto
@@ -167,6 +168,8 @@ def cargar_valores(request, id_proyecto, id_fase, id_item):
                 valoritems.item_id = id_item
                 valoritems.valor_id = archivo.id
                 valoritems.tabla_valor_nombre = 'tipoatributo_texto'
+                valoritems.nombre_atributo = nombreatributo
+                valoritems.tipo_dato = tipodatoatributo
                 valoritems.version = versionitem
                 valoritems.orden = posicion
                 valoritems.proyecto_id = id_proyecto
@@ -184,6 +187,8 @@ def cargar_valores(request, id_proyecto, id_fase, id_item):
                 valoritems.item_id = id_item
                 valoritems.valor_id = archivo.id
                 valoritems.tabla_valor_nombre = 'tipoatributo_numerico'
+                valoritems.nombre_atributo = nombreatributo
+                valoritems.tipo_dato = tipodatoatributo
                 valoritems.version = versionitem
                 valoritems.orden = posicion
                 valoritems.proyecto_id = id_proyecto
@@ -198,6 +203,8 @@ def cargar_valores(request, id_proyecto, id_fase, id_item):
                 valoritems.item_id = id_item
                 valoritems.valor_id = archivo.id
                 valoritems.tabla_valor_nombre = 'tipoatributo_fecha'
+                valoritems.nombre_atributo = nombreatributo
+                valoritems.tipo_dato = tipodatoatributo
                 valoritems.version = versionitem
                 valoritems.orden = posicion
                 valoritems.proyecto_id = id_proyecto
@@ -212,6 +219,8 @@ def cargar_valores(request, id_proyecto, id_fase, id_item):
                 valoritems.item_id = id_item
                 valoritems.valor_id = archivo.id
                 valoritems.tabla_valor_nombre = 'tipoatributo_logico'
+                valoritems.nombre_atributo = nombreatributo
+                valoritems.tipo_dato = tipodatoatributo
                 valoritems.version = versionitem
                 valoritems.orden = posicion
                 valoritems.proyecto_id = id_proyecto
@@ -219,30 +228,84 @@ def cargar_valores(request, id_proyecto, id_fase, id_item):
                 valoritems.save()
             i = i+1
             posicion = posicion+1
-
-        mensaje = 'Item creado con exito.'
+        
+        itemactual.version = versionitem
+        itemactual.save()
+        mensaje = 'Atributos modificados con extito.'
         template_name='./items/itemalerta.html'
         ctx = {'mensaje': mensaje, 'id_proyecto':id_proyecto, 'id_fase': id_fase,}
         return render_to_response(template_name, ctx, context_instance=RequestContext(request))
         
-    for j in itemahora:
-        idtipo = j.tipo_item_id
-       
+    idtipo = itemactual.tipo_item_id     
     lista_atributos = ordenar_mantener(idtipo)
     lista_valores = []
     orden = 0
-    for i in lista_atributos:
-        tipoat = TipoAtributo.objects.filter(id=i.id_atributo)
-        for tipoatrib in tipoat:
-            tipo = tipoatrib.tipo
-        orden = orden + 1
-        valorfuturo = ListaValores()
-        valorfuturo.nombre_atributo = i.nombre
-        valorfuturo.tipo_dato = tipo
-        valorfuturo.valor = ""
-        valorfuturo.orden = orden
-        valorfuturo.save()
-        lista_valores.append(valorfuturo)
-        
+    atributositem = ValorItem.objects.filter(proyecto_id=id_proyecto, fase_id=id_fase, item_id=id_item, version=itemactual.version).order_by('orden')
+    if atributositem:
+        for i in atributositem:
+            valorfuturo = ListaValores()
+            valorfuturo.nombre_atributo = i.nombre_atributo
+            valorfuturo.tipo_dato = i.tipo_dato
+            valorfuturo.orden = i.orden
+            if i.tipo_dato=='Texto':
+                textos = Texto.objects.filter(id=i.valor_id)
+                if textos:
+                    for texto in textos:
+                        valorfuturo.valor_texto = texto.valor
+                else:
+                    valorfuturo.valor_texto = ""
+                valorfuturo.save()
+                lista_valores.append(valorfuturo)
+            if i.tipo_dato=='Numerico':
+                textos = Numerico.objects.filter(id=i.valor_id)
+                if textos:
+                    for texto in textos:
+                        valorfuturo.valor_numerico = texto.valor
+                else:
+                    valorfuturo.valor_numerico = ""
+                valorfuturo.save()
+                lista_valores.append(valorfuturo)
+            if i.tipo_dato=='Fecha':
+                textos = Fecha.objects.filter(id=i.valor_id)
+                if textos:
+                    for texto in textos:
+                        valorfuturo.valor_fecha = texto.valor
+                else:
+                    valorfuturo.valor_fecha = ""
+                valorfuturo.save()
+                lista_valores.append(valorfuturo)
+            if i.tipo_dato=='Archivo Externo':
+                textos = Texto.objects.filter(id=i.valor_id)
+                if textos:
+                    for texto in textos:
+                        valorfuturo.valor_archivoexterno = texto.valor
+                else:
+                    valorfuturo.valor_archivoexterno = ""
+                valorfuturo.save()
+                lista_valores.append(valorfuturo)
+            if i.tipo_dato=='Logico':
+                textos = Logico.objects.filter(id=i.valor_id)
+                if textos:
+                    for texto in textos:
+                        valorfuturo.valor_logico = texto.valor
+                else:
+                    valorfuturo.valor_logico = ""
+                valorfuturo.save()
+                lista_valores.append(valorfuturo)
+    else:
+        for atributo in lista_atributos:
+            orden = orden+1
+            valorfuturo = ListaValores()
+            valorfuturo.nombre_atributo = atributo.nombre
+            atributoobjeto = TipoAtributo.objects.get(id=atributo.id_atributo)
+            valorfuturo.tipo_dato = atributoobjeto.tipo
+            valorfuturo.orden = orden
+            valorfuturo.valor_archivoexterno = ""
+            valorfuturo.valor_texto = ""
+            valorfuturo.valor_numerico = ""
+            valorfuturo.valor_fecha = ""
+            
+            lista_valores.append(valorfuturo)
+            
     template_name='./items/cargaratributos.html'
     return render(request, template_name, {'id_proyecto':id_proyecto, 'id_fase': id_fase, 'id_tipoitem': idtipo, 'lista_valores': lista_valores, 'id_item': id_item})        

@@ -27,26 +27,26 @@
 				<table align="center">
 			{% for valores in lista_valores %}
 				<tr>
-					<td>{{ valores.nombre_atributo }} : </td>
+					<td>{{ valores.nombre_atributo }} :  </td>
 					{% ifequal valores.tipo_dato "Fecha" %}
-						<td><input type="date" name={{forloop.counter}} /> En formato AAAA-MM-DD
+						<td><input type="date" name={{forloop.counter}} value="{{ valores.valor_fecha }}" /> En formato AAAA-MM-DD {{ valores.orden }}
 						</td>
 					{% endifequal %}
 					{% ifequal valores.tipo_dato "Logico" %}
-						<td>Si<input type="radio" name={{forloop.counter}} />
-						No<input type="radio" name={{forloop.counter}} />
+						<td> Si<input type="radio" name={{forloop.counter}} />
+						 No<input type="radio" name={{forloop.counter}} /> {{ valores.orden }}
 						</td>
 					{% endifequal %}
 					{% ifequal valores.tipo_dato "Arvhivo Externo" %}
-						<td><input type="file" name={{forloop.counter}} />
+						<td><input type="file" name={{forloop.counter}} value="{{ valores.valor_archivoexterno }}" /> {{ valores.orden }}
 						</td>
 					{% endifequal %}
 					{% ifequal valores.tipo_dato "Numerico" %}
-						<td><input type="number" name={{forloop.counter}} />
+						<td><input type="number" name={{forloop.counter}} value="{{ valores.valor_numerico }}" /> {{ valores.orden }}
 						</td>
 					{% endifequal %}
 					{% ifequal valores.tipo_dato "Texto" %}
-				    	<td><input type="text" name="{{forloop.counter}}" maxlength=300 />
+				    	<td><input type="text" name="{{forloop.counter}}" maxlength=300 value="{{ valores.valor_texto }}" /> {{ valores.orden }}
 				    	</td>
 				    {% endifequal %}
 				</tr>
