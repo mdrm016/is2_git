@@ -81,7 +81,6 @@ def tipoAtributoNuevo(request, id_proyecto):
             longitud = form.cleaned_data['Longitud']
             obligatorio = form.cleaned_data['Obligatorio']
             descripcion = form.cleaned_data['Descripcion']
-            
             if tipo == 'Numerico':
                 if not precision and precision != 0:
                     errors.append('Ha seleccionado como tipo de dato NUMERICO, por favor especifique la cantidad de decimales con el campo Precision')

@@ -193,6 +193,8 @@ def modificarRol(request, id_rol):
     @author: Eduardo Gimenez
     """
     rol = Roles.objects.get(id=id_rol)
+    marcados = []
+    permisos = ()
     if request.method == 'POST':
         form = RolModificadoForm(request.POST)
         if form.is_valid():
@@ -212,7 +214,6 @@ def modificarRol(request, id_rol):
             template_name='./Roles/rol_modificado.html'
             return render(request, template_name)
     else:
-        marcados = []
         for perm in rol.permissions.all():
             marcados.append(perm.codename)
         data = {'Nombre_de_Rol': rol.name, 'Descripcion': rol.descripcion}
