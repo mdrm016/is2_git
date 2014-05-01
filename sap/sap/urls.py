@@ -34,6 +34,9 @@ urlpatterns = patterns('',
     
      #""" Incluimos la urls.py de la aplicacion tipoitem"""
     url(r'^', include('aplicaciones.tipoitem.urls')),
+    
+     #""" Incluimos la urls.py de la aplicacion relaciones"""
+    url(r'^', include('aplicaciones.relaciones.urls')),
 
 
 )

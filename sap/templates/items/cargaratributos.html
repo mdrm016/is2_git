@@ -1,0 +1,104 @@
+{% extends "base_general.html" %}
+
+{% block menu %}		
+<div class="menu">
+	<ul>
+		<li id="option1" class="active">
+			<a href="/">Proyectos</a>
+		</li>
+	</ul>
+</div>
+{% endblock %}
+
+{% block botones %}
+<div class="row">
+	<form class="navbar-form navbar-left">
+<!-- 		<a href="#"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-import"></span> Importar Fase</button></a>-->
+	</form>
+</div>
+{% endblock %}
+
+{% block contenido %}
+<div class="content-secondary">
+<!-- Aca van la  lista de Proyectos.. o de Solicitudes.. o de credenciales -->
+		{% if lista_valores %}
+		<form action="" method="post">
+			<div class="panel-group" id="accordion">
+				<table align="center">
+			{% for valores in lista_valores %}
+				<tr>
+					<td>{{ valores.nombre_atributo }} :  </td>
+					{% ifequal valores.tipo_dato "Fecha" %}
+						<td><input type="date" name={{forloop.counter}} value="{{ valores.valor_fecha }}" /> En formato AAAA-MM-DD {{ valores.orden }}
+						</td>
+					{% endifequal %}
+					{% ifequal valores.tipo_dato "Logico" %}
+						{% ifequal valores.valor_logico "t" %}
+						<td> Si<input type="radio" name={{forloop.counter}} checked="checked" />
+						 No<input type="radio" name={{forloop.counter}} /> {{ valores.orden }}
+						</td>
+						{% else %}
+						<td> Si<input type="radio" name={{forloop.counter}}  />
+						 No<input type="radio" name={{forloop.counter}} checked="checked" /> {{ valores.orden }}
+						</td>
+						{% endifequal %}
+					{% endifequal %}
+					{% ifequal valores.tipo_dato "Arvhivo Externo" %}
+						<td><input type="file" name={{forloop.counter}} value="{{ valores.valor_archivoexterno }}" /> {{ valores.orden }}
+						</td>
+					{% endifequal %}
+					{% ifequal valores.tipo_dato "Numerico" %}
+						<td><input type="number" name={{forloop.counter}} value="{{ valores.valor_numerico }}" /> {{ valores.orden }}
+						</td>
+					{% endifequal %}
+					{% ifequal valores.tipo_dato "Texto" %}
+				    	<td><input type="text" name="{{forloop.counter}}" maxlength=300 value="{{ valores.valor_texto }}" /> {{ valores.orden }}
+				    	</td>
+				    {% endifequal %}
+				</tr>
+			{% endfor %}
+		</table>
+					{% csrf_token %}
+					<input action="adm_proyectos/gestionar/{{ id_proyecto }}/adm_items/{{ id_fase }}/atributos/" class="btn btn-default" type="submit" value="Crear Item"/>
+		</div>
+		</form>
+		{% else %}
+			{% if error %}
+				<div class="jumbotron">
+  					<div class="alert alert-danger"><h3><p align="center"><b>No se encontraron coincidencias</b></p></h3></div>
+				</div>
+				<div  align="center">
+					<a type="button" class="btn btn-default" href="/adm_proyectos/gestionar/{{ id_proyecto }}/adm_items/{{ id_fase }}">Volver</a>
+				</div>	
+			{% else %}
+				<div class="jumbotron">
+					<div class="bs-example">
+						<p class="text-warning" align="center"><small>No se encontraron Items</small></p>
+					</div>
+				</div>
+			{% endif %}}
+		{% endif %}
+		
+
+			<!-- Ininicia Modal -->
+			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+							<h4 class="modal-title" id="myModalLabel">Eliminar</h4>
+						</div>
+						<div class="modal-body">
+							Esta usted seguro de que desea eliminar el item?
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancelar</button>
+							<a id="item" href=""><button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-ok"></span> Estoy Seguro</button></a>
+						</div>
+					</div>
+				</div>
+			</div>
+<!-- Finaliza el Modal -->
+
+</div>
+{% endblock %}

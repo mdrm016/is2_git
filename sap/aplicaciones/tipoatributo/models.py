@@ -61,7 +61,7 @@ class Fecha(models.Model):
     
     @author: Eduardo Gimenez
     """
-    valor = models.DateField()
+    valor = models.CharField(max_length=15)
     id_item = models.IntegerField()
     nombre_atributo = models.CharField(max_length=20)
     obligatorio = models.BooleanField(default=False)

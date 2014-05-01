@@ -32,3 +32,8 @@ $(document).on("click", ".tipoatributo", function () {
 	var id = $(this).data('id');
 	document.getElementById("tipoAtributo").setAttribute("href",'eliminar/'+id);
 });
+
+$(document).on("click", ".relacion", function () {
+	var id = $(this).data('id');
+	document.getElementById("relacion").setAttribute("href",'eliminar/'+id);
+});
