@@ -18,27 +18,31 @@
 {% block botones %}
 <div class="row">
 	<form class="navbar-form navbar-left">
-		
-		<a href="nuevo/"><button type="button" class="btn btn-default">Crear</button></a>
-		<div class="form-group">
-			{% if error %}
-			<p style="color:red;">No se encontraron coincidencias.</p>
-			{% endif %}
-			<form action="" method="get">
-				<input type="text" name="busqueda" class="btn btn-default">
+		<a href="nuevo/"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-folder-open"></span> Crear</button></a>
+		<a href="listar_proyectos/"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-import"></span> Importar</button></a>
+		<form action="" method="get">
+				<input type="text" name="busqueda" class="btn btn-default" placeholder="Busqueda de Tipos de Atributo..." value="{{ query|escape }}">
+				<span class="glyphicon glyphicon-search"></span>
 				<input class="btn btn-default" type="submit" value="Buscar">
-			</form>
-			
-		</div>
+		</form>
 	</form>
 </div>
 {% endblock %}
 
 {% block contenido %}
 <div class="content-secondary">
-<!-- Aca van la  lista de Proyectos.. o de Solicitudes.. o de credenciales -->
 	<div class="panel-group" id="accordion">
 		{% if tipos_de_atributo %}
+			<div class="panel-group" id="accordion">
+				<div class="panel panel-default">
+					<div class="row">
+				    	<div class="col-md-4">
+				   			<div class="panel-heading">
+				      			<h4 class="panel-title"><b>Nombre</b></h4>
+				    		</div>
+				    	</div>	
+				    </div>
+				</div>
 			{% for tipo_atributo in tipos_de_atributo %}
 			<div class="panel panel-default">
 				    <div class="panel-heading">
@@ -59,11 +63,20 @@
 			</div>
 			{% endfor %}
 		{% else %}
+				{% if error %}
+				<div class="jumbotron">
+  					<div class="alert alert-danger"><h3><p align="center"><b>No se encontraron coincidencias</b></p></h3></div>
+				</div>
+				<div  align="center">
+					<a type="button" class="btn btn-default" href="/adm_proyectos/gestionar/{{ id_proyecto }}/adm_tipos_atributo/">Volver</a>
+				</div>	
+			{% else %}
 				<div class="jumbotron">
 					<div class="bs-example">
 						<p class="text-warning" align="center"><small>No se encontraron Tipos de Atributo</small></p>
 					</div>
 				</div>
+			{% endif %}
 		{% endif %}
 		<!-- Ininicia Modal -->
 		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

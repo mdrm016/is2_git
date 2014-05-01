@@ -5,7 +5,7 @@
 <div class="menu">
 	<ul>
 		<li id="option1" class="active">
-			<a href="#">Crear Rol</a>
+			<a href="#">Asignar Fase a Rol</a>
 		</li>
 	</ul>
 </div>
@@ -13,13 +13,12 @@
 
 {% block contenido %}
 <div class="content-secondary">
+	<form action="" method="post">
 	{% if errors %}
 		{% for error in errors %}
 		<font color="red"><h4><p align="center"><b>{{ error }}</b></p></h4></font>
 		{% endfor %}
 	{% endif %}
-	
-	<form action="" method="post">
 	{% if Fases %}
 		<table align="center">
 			<tr>

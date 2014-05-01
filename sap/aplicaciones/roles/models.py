@@ -28,6 +28,7 @@ class Roles(Group):
                       ("administrar_roles", "puede listar los roles"),
                       ("asignar_rol", "puede asignar un rol a un usuario"),
                       ("desasignar_rol", "puede desasignar un rol de un usuario"),
+                      ("asignar_proyecto_rol", "puede asignar un proyecto a un rol"),
         )
     
     def __unicode__(self):

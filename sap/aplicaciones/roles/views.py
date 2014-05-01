@@ -19,7 +19,7 @@ def administrarRoles(request):
     @rtype: django.http.HttpResponse
     @return: usuarios.html, donde se listan los Roles, ademas de las funcionalidades para un Rol
     
-    @author: eduardo gimenez
+    @author: Eduardo Gimenez
     
     """
     error = False
@@ -190,7 +190,8 @@ def modificarRol(request, id_rol):
     @rtype: django.HttpResponse
     @return: modificar_rol.html,un formulario donde se despliegan los datos que el usuario puede modificar ,usuario_modificado.html, donde se notifica al usuario el exito de la operacion 
     
-    @author: eduardo gimenez"""
+    @author: Eduardo Gimenez
+    """
     rol = Roles.objects.get(id=id_rol)
     if request.method == 'POST':
         form = RolModificadoForm(request.POST)
@@ -256,7 +257,7 @@ def consultarRol(request, id_rol):
     @rtype: django.HttpResponse
     @return: consultar_rol.html, donde se le despliega al usuario los datos
     
-    @author: eduardo gimenez"""
+    @author: Eduardo Gimenez"""
     template_name='./Roles/consultar_rol.html'
     rol = Roles.objects.get(id = id_rol)
     este_rol = rol
@@ -334,6 +335,7 @@ def desasignarRol(request, id_rol):
     @return: desasignar_rol.html, donde se despliega un formulario con los usuarios que poseen el rol
     
     @author: Eduardo Gimenez"""
+    
     errors = []
     if request.method == 'POST':
         eleccion = request.POST.get('Usuario', '')
@@ -360,3 +362,38 @@ def desasignarRol(request, id_rol):
     template_name='./Roles/desasignar_rol.html'
     return render(request, template_name, {'usuarios':usuarios_con_rol})
 
+@login_required(login_url='/login/')
+@permission_required('roles.asignar_proyecto_rol',raise_exception=True)
+def asignarProyectoRol(request, id_rol):
+    """ Asigna un Proyecto a un Rol, desplegando los proyectos existentes en el Sistema
+    
+    @type request: django.http.HttpRequest
+    @param request: Contiene informacion sobre la solic. web actual que llamo a esta vista
+    
+    @type id_rol: integer
+    @param id_rol: es el id del Rol al cual se le quiere asignar un proyecto
+    
+    @rtype: django.HttpResponse
+    @return: asignar_rol.html, donde se despliega un formulario con los usuarios que poseen el rol
+    
+    @author: Eduardo Gimenez"""
+    
+    errors = []
+    rol = Roles.objects.get(id=id_rol)
+    if request.method == 'POST':
+            proyecto = request.POST.get('Proyectos', '')
+            if proyecto:
+                rol.proyecto = proyecto
+            else:
+                errors.append('Debe escoger al menos un Proyecto')
+            if not errors:
+                rol.save()
+                template_name='./Roles/rol_alerta.html'
+                return render_to_response(template_name, {'mensaje': 'El proyecto ha sido asginado correctamente'}, context_instance=RequestContext(request))
+       
+    proyectos = [(proyecto.id, proyecto.nombre) for proyecto in Proyectos.objects.filter(is_active=True)]
+    
+    template_name='./Roles/asignar_proyecto_rol.html'
+    return render(request, template_name, {'Proyectos': proyectos,'errors': errors})
+
+    
