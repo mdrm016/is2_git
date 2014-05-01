@@ -299,7 +299,6 @@ def agregar_tipo_atributo (request, id_tipoitem, id_proyecto, id_tipoatributo):
     lista_atributo.save()
     
     tipoitem = TipoItem.objects.get(id=id_tipoitem)
-    print tipoitem
     tipoitem.listaAtributo.add(lista_atributo)
     
     return HttpResponseRedirect('/adm_proyectos/gestionar/%s/adm_tipos_item/gestionar_tipoitem/%s/' % (id_proyecto, id_tipoitem))
@@ -445,7 +444,24 @@ def listar_proyectos (request, id_proyecto):
     """
     
     proyectos = Proyectos.objects.filter(is_active=True)
-    ctx = {'id_proyecto':id_proyecto, 'lista_proyectos':proyectos}
+    
+    busqueda = ''
+    error=False
+    if 'busqueda' in request.GET:
+        busqueda = request.GET.get('busqueda', '')
+        if busqueda:
+            qset = (
+                Q(nombre__icontains=busqueda) |
+                Q(lider__username__icontains=busqueda) |
+                Q(estado__icontains=busqueda) |
+                Q(fecha_inicio__icontains=busqueda) |
+                Q(duracion__icontains=busqueda) 
+            )
+            proyectos= proyectos.filter(qset).distinct()
+            if not proyectos:
+                error = True
+    
+    ctx = {'id_proyecto':id_proyecto, 'lista_proyectos':proyectos, 'query':busqueda, 'error':error}
     template_name = 'tipoitem/listarproyectos.html'
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
 
@@ -470,7 +486,21 @@ def listar_tipoitem(request, id_proyecto, proyecto_select):
     
     tipoitem = TipoItem.objects.filter(id_proyecto=proyecto_select, is_active=True)
     proyecto = Proyectos.objects.get(id=id_proyecto)
-    ctx = {'proyecto':proyecto, 'lista_tipoitem':tipoitem}
+    
+    busqueda = ''
+    error=False
+    if 'busqueda' in request.GET:
+        busqueda = request.GET.get('busqueda', '')
+        if busqueda:
+            qset = (
+                Q(nombre__icontains=busqueda) |
+                Q(descripcion__icontains=busqueda) 
+            )
+            tipoitem = tipoitem.filter(qset).distinct()
+            if not tipoitem:
+                error = True
+                
+    ctx = {'proyecto':proyecto, 'lista_tipoitem':tipoitem, 'query':busqueda, 'error':error}
     template_name = 'tipoitem/listartipoitem.html'
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
 
