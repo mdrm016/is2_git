@@ -20,11 +20,15 @@
 	<form class="navbar-form navbar-left">
 		<a href="nuevo/"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-folder-open"></span> Crear</button></a>
 		<a href="listar_proyectos/"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-import"></span> Importar</button></a>
-		<form action="" method="get">
+		<div class="form-group">
+			<form action="" method="get">
 				<input type="text" name="busqueda" class="btn btn-default" placeholder="Busqueda de Tipos de Atributo..." value="{{ query|escape }}">
 				<span class="glyphicon glyphicon-search"></span>
-				<input class="btn btn-default" type="submit" value="Buscar">
-		</form>
+			{% if error %}
+				<p style="color:red;">No se encontraron coincidencias.</p>
+			{% endif %}
+			</form>
+		</div>
 	</form>
 </div>
 {% endblock %}

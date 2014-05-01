@@ -8,6 +8,8 @@ from aplicaciones.usuarios.models import Usuarios
 from aplicaciones.fases.models import Fases
 from django.contrib.auth.decorators import login_required, permission_required
 from aplicaciones.roles.models import Roles
+from aplicaciones.tipoitem.models import TipoItem, ListaAtributo
+from aplicaciones.tipoitem.views import ordenar_mantener
 
 
 @login_required(login_url='/login/')
@@ -34,11 +36,9 @@ def adm_proyectos (request):
         roles = Roles.objects.all()
         for rls in roles:
             for ru in rolesUsuario:
-                if rls.name == ru.name:
+                if rls.name == ru.name and rls.proyecto:
                     id_p.append(rls.proyecto)
-        print id_p
         proyectos = Proyectos.objects.filter(pk__in=id_p, is_active=True)
-        print id_p
 
     else:
         proyectos = Proyectos.objects.filter(is_active=True)
@@ -66,6 +66,7 @@ def adm_proyectos (request):
     template_name = 'index.html'
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
 
+@login_required(login_url='/login/')
 def proyecto_finalizado (request):
     
     """ Recibe un request, se verifica cual es el usuario registrado y se obtiene la lista de proyectos finalizados
@@ -140,15 +141,15 @@ def crear_proyecto (request):
         if form.is_valid():
             form.clean()
             nombre = form.cleaned_data['Nombre_del_Proyecto'] 
-            lider =  form.cleaned_data['Lider']
+            #lider =  form.cleaned_data['Lider']
             fecha_inicio = form.cleaned_data['Fecha_de_Inicio']
             duracion =  form.cleaned_data['Duracion']
             
-            user = User.objects.get(id=lider)
+            #user = User.objects.get(id=lider)
             
             proyecto = Proyectos()
             proyecto.nombre=nombre
-            proyecto.lider=user
+            #proyecto.lider=request.user
             proyecto.fecha_inicio=fecha_inicio
             proyecto.duracion=duracion
             proyecto.is_active='True'
@@ -186,9 +187,31 @@ def modificar_proyecto (request, id_proyecto):
     @author: Marcelo Denis.
     
     """
-    
-    proyecto = Proyectos.objects.get(id=id_proyecto)
     mensaje=''
+    lista=[]      
+    roles = Roles.objects.filter(proyecto=id_proyecto)
+    users = User.objects.filter(is_active=True).exclude(id=1)
+    for rol in roles:
+        for user in users:
+            roles_usuario=user.groups.all()
+            for ru in roles_usuario:
+                if ru.name == rol.name:
+                    tupla=(user.id, user.username)
+                    lista.append(tupla)
+    choices_lider=[]
+    if not lista:
+        mensaje='No existen opciones de lider para este proyecto'
+    for eleccion in lista:
+        if eleccion not in choices_lider:
+            choices_lider.append(eleccion)
+     
+    ESTADOS_PROYECTO = (
+        ('Inactivo', 'Inactivo'),
+        ('En Construccion', 'En Construccion'),
+        ('Finalizado', 'Finalizado'),
+    )
+     
+    proyecto = Proyectos.objects.get(id=id_proyecto)
     if request.method == 'POST':
         form = ProyectoModificadoForm(request.POST)
         if form.is_valid():
@@ -200,9 +223,11 @@ def modificar_proyecto (request, id_proyecto):
             
             #Si no se ha suministrado un nuevo lider, el proyecto se queda con el lider actual
             if not lider:
-                lider = User.objects.get(username=proyecto.lider)
-                lider = lider.id
-            lideruser = User.objects.get(id=lider)
+                if proyecto.lider:
+                    lideruser = User.objects.get(username=proyecto.lider)
+                else:
+                    lideruser = None
+            #lideruser = User.objects.get(id=lider)
             
             #Si no se ha suministrado un nuevo estado, el proyecto se queda con el estado actual
             if not estado:
@@ -210,9 +235,8 @@ def modificar_proyecto (request, id_proyecto):
             
             # Comprobar cantidad miembros de comite para pasar a un estado en construccion con un elif
             #si exite ya un proyecto con el nombre suministrado y el nombre suminitrado es distinto al del proyecto que esta siendo modificado
-            if Proyectos.objects.filter(nombre=nombreNuevo) and nombreNuevo != proyecto.nombre:
-                data ={'Nombre_del_Proyecto':nombreNuevo, 'Lider_Actual':lider, 'Duracion':duracion}  
-                form = ProyectoModificadoForm(data)
+            if Proyectos.objects.filter(nombre=nombreNuevo) and nombreNuevo != proyecto.nombre:  
+                form = ProyectoModificadoForm()
                 mensaje = 'El nombre del proyecto ya existe y no puede haber duplicados'
             
             else:
@@ -233,11 +257,10 @@ def modificar_proyecto (request, id_proyecto):
                 ctx = {'mensaje':mensaje}
                 template_name='proyectos/proyectoalerta.html'
                 return render_to_response(template_name, ctx, context_instance=RequestContext(request))
-    else:
-        data ={'Nombre_del_Proyecto':proyecto.nombre, 'Lider_Actual':proyecto.lider, 'Estado_Actual':proyecto.estado, 'Duracion':proyecto.duracion}   
-        form = ProyectoModificadoForm(data)
+    else:       
+        form = ProyectoModificadoForm()
         
-    ctx ={'form': form, 'mensaje':mensaje, 'proyecto':proyecto}      
+    ctx ={'form': form, 'mensaje':mensaje, 'proyecto':proyecto, 'choices_lider':choices_lider, 'ESTADOS_PROYECTO':ESTADOS_PROYECTO}      
     template_name='proyectos/modificarproyecto.html'
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
 
@@ -272,13 +295,13 @@ def consultar_proyecto (request, id_proyecto):
 def eliminar_proyecto (request, id_proyecto):
     
     """ Recibe un request y el id del proyecto a ser eliminado, se verifica si el usuario tiene
-    permisos para eliminar un proyecto existente y le brinda la opcion de eliminar elm proyecto.
+    permisos para eliminar un proyecto existente y le brinda la opcion de eliminar el proyecto.
     
     @type request: django.http.HttpRequest.
     @param request: Contiene informacion sobre la solicitud web actual que llamo a esta vista eliminar_proyecto.
      
     @rtype: django.shortcuts.render_to_response.
-    @return: index.html, donde se redirige al usuario con actualizacion de la lista de proyectos o a
+    @return: index.html, donde se redirige al usuario con la actualizacion de la lista de proyectos o a
     proyectoalerta.html donde se notifica al usuario la razon por la cual no se puede eliminar un proyecto.
     
     @type id_usuario : string.
@@ -423,24 +446,16 @@ def importar (request, id_proyecto):
         if form.is_valid():
             form.clean()
             nombre = form.cleaned_data['Nombre_del_Proyecto'] 
-            lider =  form.cleaned_data['Lider']
             fecha_inicio = form.cleaned_data['Fecha_de_Inicio']
             duracion =  form.cleaned_data['Duracion']
-            miembros = form.cleaned_data['Miembros']
-            
-            user = User.objects.get(id=lider)
             
             proyecto = Proyectos()
             proyecto.nombre=nombre
-            proyecto.lider=user
+            proyecto.lider=None
             proyecto.fecha_inicio=fecha_inicio
             proyecto.duracion=duracion
             proyecto.is_active='True'
             proyecto.save()
-            
-            for miembro_id in miembros:
-                miembro = Usuarios.objects.get(user_id=miembro_id)
-                proyecto.miembros.add(miembro)
                 
             fasesImportadas = Fases.objects.filter(proyecto=id_proyecto, is_active=True)     
             for faseImport in fasesImportadas:
@@ -450,6 +465,32 @@ def importar (request, id_proyecto):
                 fase.proyecto = proyecto
                 fase.save()
                 
+            tipoitems=TipoItem.objects.filter(id_proyecto=id_proyecto, is_active=True)
+            for tipoitem in tipoitems:
+                TI= TipoItem()
+                TI.nombre=tipoitem.nombre
+                TI.descripcion=tipoitem.descripcion
+                TI.id_proyecto=proyecto.id
+                TI.is_active='True'
+                TI.save()
+                    
+                elementos_existentes = ordenar_mantener(tipoitem.id)
+                for elemento in elementos_existentes:
+                    lista_atributo = ListaAtributo()
+                    lista_atributo.id_atributo = elemento.id
+                    lista_atributo.id_tipoitem = TI.id
+                    lista_atributo.nombre = elemento.nombre
+                    lista_atributo.is_active = True
+                    
+                    elementos = ordenar_mantener(TI.id)
+                    if elementos:
+                        lista_atributo.orden = len(elementos_existentes) + 1
+                    else:
+                        lista_atributo.orden = 1
+                    lista_atributo.save()
+                        
+                    TI.listaAtributo.add(lista_atributo)
+            
             mensaje="Proyecto importado exitosamente"
             ctx = {'mensaje':mensaje}
             return render_to_response('proyectos/proyectoalerta.html',ctx, context_instance=RequestContext(request))

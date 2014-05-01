@@ -3,7 +3,6 @@
     "pk": 1, 
     "model": "proyectos.proyectos", 
     "fields": {
-        "miembros": [], 
         "fecha_inicio": "2014-04-19", 
         "is_active": true, 
         "lider": 2, 
@@ -16,7 +15,6 @@
     "pk": 2, 
     "model": "proyectos.proyectos", 
     "fields": {
-        "miembros": [], 
         "fecha_inicio": "2014-04-19", 
         "is_active": true, 
         "lider": 2, 
@@ -28,8 +26,7 @@
 {
     "pk": 3, 
     "model": "proyectos.proyectos", 
-    "fields": {
-        "miembros": [], 
+    "fields": { 
         "fecha_inicio": "2014-04-19", 
         "is_active": true, 
         "lider": 3, 
@@ -41,8 +38,7 @@
 {
     "pk": 4, 
     "model": "proyectos.proyectos", 
-    "fields": {
-        "miembros": [], 
+    "fields": { 
         "fecha_inicio": "2014-04-19", 
         "is_active": true, 
         "lider": 4, 
@@ -54,8 +50,7 @@
 {
     "pk": 5, 
     "model": "proyectos.proyectos", 
-    "fields": {
-        "miembros": [], 
+    "fields": { 
         "fecha_inicio": "2014-04-19", 
         "is_active": true, 
         "lider": 3, 
@@ -67,8 +62,7 @@
 {
     "pk": 6, 
     "model": "proyectos.proyectos", 
-    "fields": {
-        "miembros": [], 
+    "fields": { 
         "fecha_inicio": "2014-04-19", 
         "is_active": true, 
         "lider": 2, 

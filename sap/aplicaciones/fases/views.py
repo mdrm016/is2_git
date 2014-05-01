@@ -46,8 +46,8 @@ def adm_fases(request, id_proyecto):
             fases= Fases.objects.filter(qset).distinct()
             if not fases:
                 error = True
-        
-    ctx = {'lista_fases':fases, 'query':busqueda, 'error':error, 'id_proyecto':id_proyecto}
+    proyecto = Proyectos.objects.get(id=id_proyecto)    
+    ctx = {'lista_fases':fases, 'query':busqueda, 'error':error, 'id_proyecto':id_proyecto, 'proyecto':proyecto}
     template_name = './Fases/fases.html'
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
 

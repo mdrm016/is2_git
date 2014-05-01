@@ -1,0 +1,298 @@
+[
+{
+    "pk": 1, 
+    "model": "tipoitem.listaatributo", 
+    "fields": {
+        "id_atributo": 1, 
+        "nombre": "cantidad", 
+        "is_active": true, 
+        "id_tipoitem": 1, 
+        "orden": 3
+    }
+},
+{
+    "pk": 2, 
+    "model": "tipoitem.listaatributo", 
+    "fields": {
+        "id_atributo": 3, 
+        "nombre": "descripcion", 
+        "is_active": true, 
+        "id_tipoitem": 1, 
+        "orden": 1
+    }
+},
+{
+    "pk": 3, 
+    "model": "tipoitem.listaatributo", 
+    "fields": {
+        "id_atributo": 2, 
+        "nombre": "fecha de inicio", 
+        "is_active": false, 
+        "id_tipoitem": 1, 
+        "orden": 0
+    }
+},
+{
+    "pk": 4, 
+    "model": "tipoitem.listaatributo", 
+    "fields": {
+        "id_atributo": 2, 
+        "nombre": "fecha de inicio", 
+        "is_active": true, 
+        "id_tipoitem": 1, 
+        "orden": 2
+    }
+},
+{
+    "pk": 5, 
+    "model": "tipoitem.listaatributo", 
+    "fields": {
+        "id_atributo": 1, 
+        "nombre": "cantidad", 
+        "is_active": false, 
+        "id_tipoitem": 2, 
+        "orden": 0
+    }
+},
+{
+    "pk": 6, 
+    "model": "tipoitem.listaatributo", 
+    "fields": {
+        "id_atributo": 2, 
+        "nombre": "descripcion", 
+        "is_active": false, 
+        "id_tipoitem": 2, 
+        "orden": 0
+    }
+},
+{
+    "pk": 7, 
+    "model": "tipoitem.listaatributo", 
+    "fields": {
+        "id_atributo": 4, 
+        "nombre": "fecha de inicio", 
+        "is_active": false, 
+        "id_tipoitem": 2, 
+        "orden": 0
+    }
+},
+{
+    "pk": 8, 
+    "model": "tipoitem.listaatributo", 
+    "fields": {
+        "id_atributo": 2, 
+        "nombre": "descripcion", 
+        "is_active": true, 
+        "id_tipoitem": 4, 
+        "orden": 2
+    }
+},
+{
+    "pk": 9, 
+    "model": "tipoitem.listaatributo", 
+    "fields": {
+        "id_atributo": 4, 
+        "nombre": "fecha de inicio", 
+        "is_active": true, 
+        "id_tipoitem": 4, 
+        "orden": 1
+    }
+},
+{
+    "pk": 10, 
+    "model": "tipoitem.listaatributo", 
+    "fields": {
+        "id_atributo": 1, 
+        "nombre": "cantidad", 
+        "is_active": true, 
+        "id_tipoitem": 4, 
+        "orden": 3
+    }
+},
+{
+    "pk": 11, 
+    "model": "tipoitem.listaatributo", 
+    "fields": {
+        "id_atributo": 2, 
+        "nombre": "descripcion", 
+        "is_active": true, 
+        "id_tipoitem": 7, 
+        "orden": 2
+    }
+},
+{
+    "pk": 12, 
+    "model": "tipoitem.listaatributo", 
+    "fields": {
+        "id_atributo": 4, 
+        "nombre": "fecha de inicio", 
+        "is_active": true, 
+        "id_tipoitem": 7, 
+        "orden": 3
+    }
+},
+{
+    "pk": 13, 
+    "model": "tipoitem.listaatributo", 
+    "fields": {
+        "id_atributo": 1, 
+        "nombre": "cantidad", 
+        "is_active": true, 
+        "id_tipoitem": 7, 
+        "orden": 1
+    }
+},
+{
+    "pk": 14, 
+    "model": "tipoitem.listaatributo", 
+    "fields": {
+        "id_atributo": 8, 
+        "nombre": "descripcion", 
+        "is_active": true, 
+        "id_tipoitem": 8, 
+        "orden": 1
+    }
+},
+{
+    "pk": 15, 
+    "model": "tipoitem.listaatributo", 
+    "fields": {
+        "id_atributo": 9, 
+        "nombre": "fecha de inicio", 
+        "is_active": true, 
+        "id_tipoitem": 8, 
+        "orden": 2
+    }
+},
+{
+    "pk": 16, 
+    "model": "tipoitem.listaatributo", 
+    "fields": {
+        "id_atributo": 10, 
+        "nombre": "cantidad", 
+        "is_active": true, 
+        "id_tipoitem": 8, 
+        "orden": 3
+    }
+},
+{
+    "pk": 1, 
+    "model": "tipoitem.tipoitem", 
+    "fields": {
+        "descripcion": "ninguna", 
+        "nombre": "Tipo de Item 1", 
+        "listaAtributo": [
+            3, 
+            2, 
+            4, 
+            1
+        ], 
+        "is_active": true, 
+        "id_proyecto": 1
+    }
+},
+{
+    "pk": 2, 
+    "model": "tipoitem.tipoitem", 
+    "fields": {
+        "descripcion": "ningun", 
+        "nombre": "Tipo de Item 1 impor", 
+        "listaAtributo": [
+            5, 
+            6, 
+            7
+        ], 
+        "is_active": false, 
+        "id_proyecto": 1
+    }
+},
+{
+    "pk": 3, 
+    "model": "tipoitem.tipoitem", 
+    "fields": {
+        "descripcion": "ninguna", 
+        "nombre": "Tipo de Item 2", 
+        "listaAtributo": [], 
+        "is_active": true, 
+        "id_proyecto": 1
+    }
+},
+{
+    "pk": 4, 
+    "model": "tipoitem.tipoitem", 
+    "fields": {
+        "descripcion": "ninguna", 
+        "nombre": "Tipo de Item 1 importado", 
+        "listaAtributo": [
+            10, 
+            8, 
+            9
+        ], 
+        "is_active": true, 
+        "id_proyecto": 1
+    }
+},
+{
+    "pk": 5, 
+    "model": "tipoitem.tipoitem", 
+    "fields": {
+        "descripcion": "ninguna", 
+        "nombre": "Tipo de Item 1", 
+        "listaAtributo": [], 
+        "is_active": true, 
+        "id_proyecto": 4
+    }
+},
+{
+    "pk": 6, 
+    "model": "tipoitem.tipoitem", 
+    "fields": {
+        "descripcion": "ninguna", 
+        "nombre": "Tipo de Item 1", 
+        "listaAtributo": [], 
+        "is_active": true, 
+        "id_proyecto": 5
+    }
+},
+{
+    "pk": 7, 
+    "model": "tipoitem.tipoitem", 
+    "fields": {
+        "descripcion": "ninguna", 
+        "nombre": "Tipo de Item 1", 
+        "listaAtributo": [
+            13, 
+            11, 
+            12
+        ], 
+        "is_active": true, 
+        "id_proyecto": 6
+    }
+},
+{
+    "pk": 8, 
+    "model": "tipoitem.tipoitem", 
+    "fields": {
+        "descripcion": "ninguna", 
+        "nombre": "Tipo de Item 1 importado", 
+        "listaAtributo": [
+            16, 
+            15, 
+            14
+        ], 
+        "is_active": true, 
+        "id_proyecto": 6
+    }
+},
+{
+    "pk": 9, 
+    "model": "tipoitem.tipoitem", 
+    "fields": {
+        "descripcion": "ninguna", 
+        "nombre": "Tipo de Item 2", 
+        "listaAtributo": [], 
+        "is_active": true, 
+        "id_proyecto": 6
+    }
+}
+]
