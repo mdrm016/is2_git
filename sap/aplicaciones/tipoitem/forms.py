@@ -22,7 +22,7 @@ class TipoItemNuevoForm(forms.Form):
     """
     
     Nombre_Tipo_de_Item = forms.CharField(widget=forms.TextInput(), validators=[validate_nombretipoitem_unique], max_length=30, min_length=2, required=True, help_text='*', error_messages={'required': 'Ingrese un nombre para el tipo de item', 'max_length': 'Longitud maxima: 30', 'min_length': 'Longitud minima: 2 caracteres'})
-    Descripcion = forms.CharField(widget=forms.Textarea(), required=True, min_length=5, max_length= 300, help_text='*', error_messages={'required': 'Ingrese una breve descripcion para el tipo de item', 'max_length': 'Longitud maxima: 300 caracteres'})
+    Descripcion = forms.CharField(widget=forms.Textarea(), min_length=5, max_length= 300, required=True, help_text='*', error_messages={'required': 'Ingrese una breve descripcion para el tipo de item', 'max_length': 'Longitud maxima: 300 caracteres'})
         
 class TipoItemModificadoForm(forms.Form):
     
@@ -36,5 +36,5 @@ class TipoItemModificadoForm(forms.Form):
         
     """
     
-    Nombre_Tipo_de_Item = forms.CharField(widget=forms.TextInput(), max_length=30, min_length=2, required=False, error_messages={'max_length': 'Longitud maxima: 30', 'min_length': 'Longitud minima: 2 caracteres'})
+    Nombre_Tipo_de_Item = forms.CharField(widget=forms.TextInput(), max_length=30, min_length=2, required=True, error_messages={'max_length': 'Longitud maxima: 30', 'min_length': 'Longitud minima: 2 caracteres'})
     Descripcion = forms.CharField(widget=forms.Textarea(), required=True, min_length=5, max_length= 300, error_messages={'required': 'Ingrese una breve descripcion para el tipo de item', 'max_length': 'Longitud maxima: 300 caracteres'})

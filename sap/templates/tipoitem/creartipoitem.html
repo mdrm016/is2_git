@@ -23,16 +23,41 @@
 			</div>
 				
 			<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+			
+				{% if form.errors %}
+    					<div class="panel panel-danger">
+    						<div class="panel-heading">
+    							<h3 class="panel-title">Por favor verifique:</h3>
+           					</div>
+            				<div class="panel-body">
+            					<br>
+            					<ul class="list-unstyled">
+            					{% for field in form %}
+            						{% if field.errors %} 
+  										<li><b>{{ field.label }}</b></li>
+  										{% for error in field.errors %}
+    										<ul>
+      											<li>{{ error }}</li>
+    										</ul>
+    									{% endfor %}
+  										</li>
+  									{% endif %}
+  								{% endfor %}
+								</ul>
+            				</div>
+        				</div>
+        			{% endif %}
+			
 				<form action="" method="post">{% csrf_token %}
-					{% if form.errors %}
-						<font color="red"><h4><p align="center"><b>Por favor verifique:</b></p></h4></font>
-					{% endif %}
 					<table class="table table-hover table-bordered table-condensed table-responsive">
-						{{ form.as_table }}
+						<tr><th><label for="id_Nombre_Tipo_de_Item"><h4><b>Nombre Tipo de Item *:</b></h4></label></th><td><input id="id_Nombre_Tipo_de_Item" maxlength="30" name="Nombre_Tipo_de_Item" class="form-control" type="text" /><br /></td></tr>
+						<tr><th><label for="id_Descripcion"><h4><b>Descripcion *:</b></h4></label></th><td><textarea class="form-control" id="id_Descripcion" name="Descripcion" rows="5"></textarea><br/></td></tr>
+
 					</table>
 					<div align="center"><br>
 						<input class="btn btn-default" type="submit" value="Crear"/>
 						<a class="btn btn-default" href="javascript:window.history.go(-1);"><span class="glyphicon glyphicon-remove"></span> Cancelar</a>
+
 					</div>
 				</form>
 			</div>

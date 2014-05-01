@@ -254,7 +254,7 @@ def gestionar_tipoitem (request, id_tipoitem, id_proyecto):
     """
     
     tipoitem = TipoItem.objects.get(id=id_tipoitem)
-    tablaTipoAtributo = TipoAtributo.objects.filter(is_active=True)
+    tablaTipoAtributo = TipoAtributo.objects.filter(is_active=True, proyecto=id_proyecto)
     lista_atributos = tipoitem.listaAtributo.all().filter(is_active=True).order_by('orden')
                 
     ctx = {'tipoatributos_dispon':tablaTipoAtributo, 'tipoatributo_selec':lista_atributos, 'id_proyecto':id_proyecto, 'tipoitem':tipoitem}
