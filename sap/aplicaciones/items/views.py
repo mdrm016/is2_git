@@ -122,7 +122,7 @@ def cargar_valores(request, id_proyecto, id_fase, id_item):
     proyecto = Proyectos.objects.get(id=id_proyecto)
     fase = Fases.objects.get(id=id_fase)
     itemactual = Items.objects.get(id=id_item)
-    if fase.estado == 'FD' or proyecto.estado=='Inactivo':
+    if fase.estado == 'FD' or proyecto.estado=='Inactivo' or itemactual.estado=='En Revision' or itemactual.estado=='Bloqueado' or itemactual.estado=='Validado':
         mensaje = 'No se pueden modificar atributos. Dirijase a consultar item.'
         ctx = {'mensaje':mensaje, 'id_proyecto': id_proyecto}
         template_name = './items/itemalerta.html'
@@ -309,3 +309,172 @@ def cargar_valores(request, id_proyecto, id_fase, id_item):
             
     template_name='./items/cargaratributos.html'
     return render(request, template_name, {'id_proyecto':id_proyecto, 'id_fase': id_fase, 'id_tipoitem': idtipo, 'lista_valores': lista_valores, 'id_item': id_item})        
+
+def listar_versiones(request, id_proyecto, id_fase, id_item):
+    fase = Fases.objects.get(id=id_fase)
+    proyecto = Proyectos.objects.get(id=id_proyecto)
+    itemactual = Items.objects.get(id=id_item)
+    if fase.estado =='FD' or proyecto.estado=='Inactivo' or itemactual.estado=='En Revision' or itemactual.estado=='Bloqueado' or itemactual.estado=='Validado':
+        mensaje ='No se puede consultar esta opcion. Dirijase a consultar item.'
+        ctx = {'mensaje':mensaje, 'id_proyecto': id_proyecto, 'id_fase': id_fase}
+        template_name = './items/itemalerta.html'
+        return render_to_response(template_name, ctx, context_instance=RequestContext(request))
+    else:
+        lista_versiones = []
+        versionactual = itemactual.version
+        versiones = int(versionactual)
+        i=1
+        while i<versiones:
+            lista_versiones.append(i)
+            i = i+1
+             
+    ctx={'lista_versiones':lista_versiones, 'id_proyecto':id_proyecto, 'id_fase':id_fase, 'id_item': id_item}
+    template_name = './items/listarversiones.html'
+    return render_to_response(template_name, ctx, context_instance=RequestContext(request))
+
+def consultar_version(request, id_proyecto, id_fase, id_item, version):
+    item = Items.objects.get(id=id_item)
+    atributos = ValorItem.objects.filter(proyecto=id_proyecto, fase=id_fase, item=id_item, version=version).order_by('orden')
+    lista_valores = []
+    if atributos:
+        for i in atributos:
+            valorfuturo = ListaValores()
+            valorfuturo.nombre_atributo = i.nombre_atributo
+            valorfuturo.tipo_dato = i.tipo_dato
+            valorfuturo.orden = i.orden
+            if i.tipo_dato=='Texto':
+                textos = Texto.objects.filter(id=i.valor_id)
+                if textos:
+                    for texto in textos:
+                        valorfuturo.valor_texto = texto.valor
+                else:
+                    valorfuturo.valor_texto = ""
+                valorfuturo.save()
+                lista_valores.append(valorfuturo)
+            if i.tipo_dato=='Numerico':
+                textos = Numerico.objects.filter(id=i.valor_id)
+                if textos:
+                    for texto in textos:
+                        valorfuturo.valor_numerico = texto.valor
+                else:
+                    valorfuturo.valor_numerico = ""
+                valorfuturo.save()
+                lista_valores.append(valorfuturo)
+            if i.tipo_dato=='Fecha':
+                textos = Fecha.objects.filter(id=i.valor_id)
+                if textos:
+                    for texto in textos:
+                        valorfuturo.valor_fecha = texto.valor
+                else:
+                    valorfuturo.valor_fecha = ""
+                valorfuturo.save()
+                lista_valores.append(valorfuturo)
+            if i.tipo_dato=='Archivo Externo':
+                textos = Texto.objects.filter(id=i.valor_id)
+                if textos:
+                    for texto in textos:
+                        valorfuturo.valor_archivoexterno = texto.valor
+                else:
+                    valorfuturo.valor_archivoexterno = ""
+                valorfuturo.save()
+                lista_valores.append(valorfuturo)
+            if i.tipo_dato=='Logico':
+                textos = Logico.objects.filter(id=i.valor_id)
+                if textos:
+                    for texto in textos:
+                        valorfuturo.valor_logico = texto.valor
+                else:
+                    valorfuturo.valor_logico = ""
+                valorfuturo.save()
+                lista_valores.append(valorfuturo)
+                
+    template_name='./items/mostraratributos.html'
+    return render(request, template_name, {'id_proyecto':id_proyecto, 'id_fase': id_fase, 'lista_valores': lista_valores, 'id_item': id_item})
+
+def revertir_version(request, id_proyecto, id_fase, id_item, version):
+    item = Items.objects.get(id=id_item)
+    versionnueva = item.version + 1
+    valoresitem = ValorItem.objects.filter(proyecto=id_proyecto, fase=id_fase, item=id_item, version=version).order_by('orden')
+    if valoresitem:
+        for filaitem in valoresitem:
+            valor = ValorItem()
+            valor.item_id = id_item
+            valor.orden = filaitem.orden
+            valor.proyecto_id = id_proyecto
+            valor.fase_id = id_fase
+            valor.version = versionnueva
+            if filaitem.tipo_dato=='Numerico':
+                num = Numerico()
+                viejo = Numerico.objects.get(id=filaitem.valor_id)
+                num.valor = viejo.valor
+                num.id_item = id_item
+                num.nombre_atributo = viejo.nombre_atributo
+                num.precision = viejo.precision
+                num.longitud = viejo.longitud
+                num.obligatorio = viejo.obligatorio
+                num.save()
+                valor.valor_id = num.id
+                valor.tabla_valor_nombre = 'tipoatributo_numerico'
+                valor.nombre_atributo = filaitem.nombre_atributo
+                valor.tipo_dato = filaitem.tipo_dato
+                valor.save()
+            if filaitem.tipo_dato=='Texto':
+                num = Texto()
+                viejo = Texto.objects.get(id=filaitem.valor_id)
+                num.valor = viejo.valor
+                num.id_item = id_item
+                num.nombre_atributo = viejo.nombre_atributo
+                num.longitud = viejo.longitud
+                num.obligatorio = viejo.obligatorio
+                num.save()
+                valor.valor_id = num.id
+                valor.tabla_valor_nombre = 'tipoatributo_texto'
+                valor.nombre_atributo = filaitem.nombre_atributo
+                valor.tipo_dato = filaitem.tipo_dato
+                valor.save()
+            if filaitem.tipo_dato=='Fecha':
+                num = Fecha()
+                viejo = Fecha.objects.get(id=filaitem.valor_id)
+                num.valor = viejo.valor
+                num.id_item = id_item
+                num.nombre_atributo = viejo.nombre_atributo
+                num.obligatorio = viejo.obligatorio
+                num.save()
+                valor.valor_id = num.id
+                valor.tabla_valor_nombre = 'tipoatributo_fecha'
+                valor.nombre_atributo = filaitem.nombre_atributo
+                valor.tipo_dato = filaitem.tipo_dato
+                valor.save()
+            if filaitem.tipo_dato=='Logico':
+                num = Logico()
+                viejo = Logico.objects.get(id=filaitem.valor_id)
+                num.valor = viejo.valor
+                num.id_item = id_item
+                num.nombre_atributo = viejo.nombre_atributo
+                num.obligatorio = viejo.obligatorio
+                num.save()
+                valor.valor_id = num.id
+                valor.tabla_valor_nombre = 'tipoatributo_logico'
+                valor.nombre_atributo = filaitem.nombre_atributo
+                valor.tipo_dato = filaitem.tipo_dato
+                valor.save()
+            if filaitem.tipo_dato=='Archivo Externo':
+                num = ArchivoExterno()
+                viejo = ArchivoExterno.objects.get(id=filaitem.valor_id)
+                num.valor = viejo.valor
+                num.id_item = id_item
+                num.nombre_atributo = viejo.nombre_atributo
+                num.obligatorio = viejo.obligatorio
+                num.save()
+                valor.valor_id = num.id
+                valor.tabla_valor_nombre = 'tipoatributo_archivoexterno'
+                valor.nombre_atributo = filaitem.nombre_atributo
+                valor.tipo_dato = filaitem.tipo_dato
+                valor.save()
+    item.version = versionnueva
+    item.save()
+    
+    mensaje = 'Version Revertida con exito.'
+    template_name='./items/itemalerta.html'
+    ctx = {'mensaje': mensaje, 'id_proyecto':id_proyecto, 'id_fase': id_fase}
+    return render_to_response(template_name, ctx, context_instance=RequestContext(request))
