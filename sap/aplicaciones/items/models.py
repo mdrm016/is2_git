@@ -62,6 +62,3 @@ class ListaValores(models.Model):
     
     def __unicode__(self):
         return self.nombre_atributo
-    
-    
-    

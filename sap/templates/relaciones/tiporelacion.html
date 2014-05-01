@@ -1,0 +1,23 @@
+{% extends "base_general.html" %}
+{% block contenido %}
+<div class="jumbotron">
+	<div class="bs-example">
+		<h2>Tipo de Relacion</h2>
+			<form action="" method="post">
+				<tr>
+				<td><p class="text-warning"><small>{{ mensaje }}</small></p></td>
+				<td>
+				<select name="tiporelacion">
+					<option value="Padre">Padre</option>
+					<option value="Hijo">Hijo</option>
+				</select>
+				</td>
+				</tr>
+				{% csrf_token %}
+				<input class="btn btn-default" type="submit" value="Crear">
+			</form>
+			<a type="button" class="btn btn-default" href="/adm_proyectos/gestionar/{{ id_proyecto }}/adm_items/{{ id_fase }}/">Volver</a>
+        </form>
+	</div>
+</div>
+{% endblock %}

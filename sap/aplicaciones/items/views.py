@@ -478,3 +478,4 @@ def revertir_version(request, id_proyecto, id_fase, id_item, version):
     template_name='./items/itemalerta.html'
     ctx = {'mensaje': mensaje, 'id_proyecto':id_proyecto, 'id_fase': id_fase}
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
+
