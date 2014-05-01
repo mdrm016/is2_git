@@ -33,9 +33,15 @@
 						</td>
 					{% endifequal %}
 					{% ifequal valores.tipo_dato "Logico" %}
-						<td> Si<input type="radio" name={{forloop.counter}} />
+						{% ifequal valores.valor_logico "t" %}
+						<td> Si<input type="radio" name={{forloop.counter}} checked="checked" />
 						 No<input type="radio" name={{forloop.counter}} /> {{ valores.orden }}
 						</td>
+						{% else %}
+						<td> Si<input type="radio" name={{forloop.counter}}  />
+						 No<input type="radio" name={{forloop.counter}} checked="checked" /> {{ valores.orden }}
+						</td>
+						{% endifequal %}
 					{% endifequal %}
 					{% ifequal valores.tipo_dato "Arvhivo Externo" %}
 						<td><input type="file" name={{forloop.counter}} value="{{ valores.valor_archivoexterno }}" /> {{ valores.orden }}
