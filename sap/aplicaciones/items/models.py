@@ -35,3 +35,28 @@ class Items(models.Model):
 
     def __unicode__ (self):
         return self.nombre
+
+class ValorItem(models.Model):
+    item = models.ForeignKey(Items)
+    valor_id = models.IntegerField()
+    tabla_valor_nombre = models.CharField(max_length=40)
+    version = models.IntegerField()
+    orden = models.IntegerField()
+    fase = models.ForeignKey(Fases)
+    proyecto = models.ForeignKey(Proyectos)
+    
+    def __unicode__ (self):
+        return self.valor_id
+    
+class ListaValores(models.Model):
+    nombre_atributo = models.CharField(max_length=20)
+    tipo_dato = models.CharField(max_length=20)
+    valor_texto = models.CharField(max_length=300)
+    
+    orden = models.IntegerField()
+    
+    def __unicode__(self):
+        return self.nombre_atributo
+    
+    
+    

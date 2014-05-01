@@ -7,7 +7,8 @@ from django.template.context import RequestContext
 from aplicaciones.proyectos.models import Proyectos
 from aplicaciones.fases.models import Fases
 from aplicaciones.tipoitem.models import TipoItem
-from .models import Items
+from aplicaciones.tipoatributo.models import TipoAtributo, Numerico, Fecha, Texto, Imagen
+from .models import Items, ListaValores, ValorItem
 from datetime import datetime
 from django.contrib.auth.decorators import login_required, permission_required
 from django.db.models import Q
@@ -42,7 +43,8 @@ def adm_items(request, id_proyecto, id_fase):
 
 def listar_tipo_item(request, id_proyecto, id_fase):
     fase = Fases.objects.get(id=id_fase)
-    if fase.estado =='FD':
+    proyecto = Proyectos.objects.get(id=id_proyecto)
+    if fase.estado =='FD' or proyecto.estado=='Inactivo':
         mensaje ='No se pueden agregar items a la fase.'
         ctx = {'mensaje':mensaje, 'id_proyecto': id_proyecto, 'id_fase': id_fase}
         template_name = './items/itemalerta.html'
@@ -67,11 +69,6 @@ def listar_tipo_item(request, id_proyecto, id_fase):
 def crear_item(request, id_proyecto, id_fase, id_tipoitem):
     proyecto = Proyectos.objects.get(id=id_proyecto)
     fase = Fases.objects.get(id=id_fase)
-    if fase.estado == 'FD':
-        mensaje = 'No se pueden agregar items a la fase.'
-        ctx = {'mensaje':mensaje, 'id_proyecto': id_proyecto}
-        template_name = './items/itemalerta.html'
-        return render_to_response(template_name, ctx, context_instance=RequestContext(request))
     if request.method == 'POST':
         form = ItemNuevoForm(request.POST)
         if form.is_valid():
@@ -106,14 +103,146 @@ def crear_item(request, id_proyecto, id_fase, id_tipoitem):
             item.fase_id = id_fase
             item.is_active = True
             item.tipo_item_id = id_tipoitem
-            
             item.save()
-            id_item = item.id
-            template_name='./items/cargaratributos.html'
-            lista_atributos = ordenar_mantener(id_tipoitem)
-            return render(request, template_name, {'id_proyecto': id_proyecto, 'id_fase': id_fase, 'id_item': id_item, 'id_tipoitem': id_tipoitem, 'lista_atributos': lista_atributos})
+            
+
+            mensaje = 'Item creado con exito.'
+            template_name='./items/itemalerta.html'
+            ctx = {'mensaje': mensaje, 'id_proyecto':id_proyecto, 'id_fase': id_fase}
+            return render_to_response(template_name, ctx, context_instance=RequestContext(request))
+                
+            #return render(request, template_name, {'id_proyecto': id_proyecto, 'id_fase': id_fase, 'id_item': id_item, 'id_tipoitem': id_tipoitem, 'lista_valores': lista_valores, 'lista_atributos': lista_atributos})
     else: 
-        form = ItemNuevoForm()    
+        form = ItemNuevoForm()  
         
     template_name='./items/itemnuevo.html'
     return render(request, template_name, {'form': form, 'id_proyecto':id_proyecto, 'id_fase': id_fase, 'id_tipoitem': id_tipoitem})
+
+def cargar_valores(request, id_proyecto, id_fase, id_item):
+    proyecto = Proyectos.objects.get(id=id_proyecto)
+    fase = Fases.objects.get(id=id_fase)
+    itemactual = Items.objects.filter(id=id_item)
+    if fase.estado == 'FD' or proyecto.estado=='Inactivo':
+        mensaje = 'No se pueden modificar atributos. Dirijase a consultar item.'
+        ctx = {'mensaje':mensaje, 'id_proyecto': id_proyecto}
+        template_name = './items/itemalerta.html'
+        return render_to_response(template_name, ctx, context_instance=RequestContext(request))
+    if request.method=='POST':
+        for j in itemactual:
+            idtipoitem = j.tipo_item_id
+            versionitem = j.version
+        lista_atributos = ordenar_mantener(idtipoitem)
+        i = 1
+        posicion = 1
+        for listaatributo in lista_atributos:
+            nombreatributo = listaatributo.nombre
+            idatributo = listaatributo.id_atributo
+            iditematributo = listaatributo.id_tipoitem 
+            tipoatributoobjetos = TipoAtributo.objects.filter(id=listaatributo.id_atributo)
+            valoritems = ValorItem()
+            for tipoatributoobjeto in tipoatributoobjetos:
+                tipodatoatributo= tipoatributoobjeto.tipo
+            if tipodatoatributo=='Archivo Externo':
+                archivo = ArchivoExterno()
+                archivo.valor = request.FILE[str(i)]
+                archivo.id_item = id_item
+                archivo.nombre_atributo = nombreatributo
+                archivo.save()
+                valoritems.item_id = id_item
+                valoritems.valor_id = archivo.id
+                valoritems.tabla_valor_nombre = 'tipoatributo_archivoexterno'
+                valoritems.version = versionitem
+                valoritems.orden = posicion
+                valoritems.proyecto_id = id_proyecto
+                valoritems.fase_id = id_fase
+                valoritems.save()
+            elif tipodatoatributo=='Texto':
+                archivo = Texto()
+                archivo.valor = request.POST.get(str(i), '')
+                archivo.id_item = id_item
+                archivo.nombre_atributo = nombreatributo
+                for tipoatributoobjeto in tipoatributoobjetos:
+                    archivo.longitud = tipoatributoobjeto.longitud
+                archivo.save()
+                valoritems.item_id = id_item
+                valoritems.valor_id = archivo.id
+                valoritems.tabla_valor_nombre = 'tipoatributo_texto'
+                valoritems.version = versionitem
+                valoritems.orden = posicion
+                valoritems.proyecto_id = id_proyecto
+                valoritems.fase_id = id_fase
+                valoritems.save()
+            elif tipodatoatributo=='Numerico':
+                archivo = Numerico()
+                archivo.valor = request.POST.get(str(i), '')
+                archivo.id_item = id_item
+                archivo.nombre_atributo = nombreatributo
+                for tipoatributoobjeto in tipoatributoobjetos:
+                    archivo.longitud = tipoatributoobjeto.longitud
+                    archivo.precision = tipoatributoobjeto.precision
+                archivo.save()
+                valoritems.item_id = id_item
+                valoritems.valor_id = archivo.id
+                valoritems.tabla_valor_nombre = 'tipoatributo_numerico'
+                valoritems.version = versionitem
+                valoritems.orden = posicion
+                valoritems.proyecto_id = id_proyecto
+                valoritems.fase_id = id_fase
+                valoritems.save()
+            elif tipodatoatributo=='Fecha':
+                archivo = Fecha()
+                archivo.valor = request.POST.get(str(i), '')
+                archivo.id_item = id_item
+                archivo.nombre_atributo = nombreatributo
+                archivo.save()
+                valoritems.item_id = id_item
+                valoritems.valor_id = archivo.id
+                valoritems.tabla_valor_nombre = 'tipoatributo_fecha'
+                valoritems.version = versionitem
+                valoritems.orden = posicion
+                valoritems.proyecto_id = id_proyecto
+                valoritems.fase_id = id_fase
+                valoritems.save()
+            elif tipodatoatributo=='Logico':
+                archivo = Logico()
+                archivo.valor = request.POST.get(str(i), '')
+                archivo.id_item = id_item
+                archivo.nombre_atributo = nombreatributo
+                archivo.save()
+                valoritems.item_id = id_item
+                valoritems.valor_id = archivo.id
+                valoritems.tabla_valor_nombre = 'tipoatributo_logico'
+                valoritems.version = versionitem
+                valoritems.orden = posicion
+                valoritems.proyecto_id = id_proyecto
+                valoritems.fase_id = id_fase
+                valoritems.save()
+            i = i+1
+            posicion = posicion+1
+
+        mensaje = 'Item creado con exito.'
+        template_name='./items/itemalerta.html'
+        ctx = {'mensaje': mensaje, 'id_proyecto':id_proyecto, 'id_fase': id_fase,}
+        return render_to_response(template_name, ctx, context_instance=RequestContext(request))
+        
+    for j in itemahora:
+        idtipo = j.tipo_item_id
+       
+    lista_atributos = ordenar_mantener(idtipo)
+    lista_valores = []
+    orden = 0
+    for i in lista_atributos:
+        tipoat = TipoAtributo.objects.filter(id=i.id_atributo)
+        for tipoatrib in tipoat:
+            tipo = tipoatrib.tipo
+        orden = orden + 1
+        valorfuturo = ListaValores()
+        valorfuturo.nombre_atributo = i.nombre
+        valorfuturo.tipo_dato = tipo
+        valorfuturo.valor = ""
+        valorfuturo.orden = orden
+        valorfuturo.save()
+        lista_valores.append(valorfuturo)
+        
+    template_name='./items/cargaratributos.html'
+    return render(request, template_name, {'id_proyecto':id_proyecto, 'id_fase': id_fase, 'id_tipoitem': idtipo, 'lista_valores': lista_valores, 'id_item': id_item})        

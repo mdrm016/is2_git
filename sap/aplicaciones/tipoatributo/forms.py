@@ -33,6 +33,7 @@ class TipoAtributoForm (forms.Form):
     Longitud = forms.IntegerField(max_value=30 ,min_value=0, error_messages={'max_length': 'Valor maximo: 30'})
     Obligatorio = forms.ChoiceField(choices=OBLIG)
     Descripcion = forms.CharField(widget=forms.Textarea(), required=False, max_length= 300, error_messages={'max_length': 'Longitud maxima: 300 caracteres'})
+    Foto = forms.ImageField()
     
    
 class TipoAtributoModificadoForm (forms.Form):

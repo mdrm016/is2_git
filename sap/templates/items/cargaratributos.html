@@ -21,57 +21,41 @@
 {% block contenido %}
 <div class="content-secondary">
 <!-- Aca van la  lista de Proyectos.. o de Solicitudes.. o de credenciales -->
-		{% if lista_atributos %}
-		<div class="row ">
+		{% if lista_valores %}
+		<form action="" method="post">
 			<div class="panel-group" id="accordion">
-				<div class="panel panel-default">
-					<div class="row">
-				    	<div class="col-md-4">
-				   			<div class="panel-heading">
-				      			<h4 class="panel-title"><b>Nombre</b></h4>
-				    		</div>
-				    	</div>				    
-				    	<div class="col-md-4">
-				    		<div class="panel-heading">
-				      			<h4 class="panel-title"><b>Estado</b></h4>
-				    		</div>
-				    	</div>
-				    </div>
-				</div>
-			{% for item in lista_items %}
-				<div class="panel panel-default">
-					<div class="col-md-4">
-				    	<div class="panel-heading">
-				      		<h4 class="panel-title">
-				        		<a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ item.id }}">
-				          		{{ item.nombre }}
-				        		</a>
-				      		</h4>
-				    	</div>
-				    </div>				    
-				    <div class="col-md-4">
-				    	<div class="panel-heading">
-				      		<h4 class="panel-title">
-				        		<a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ item.id }}">
-				          		{{ item.estado }}
-				        		</a>
-				      		</h4>
-				    	</div>
-				    </div>
-				    
-				    <div id="collapse{{ item.id }}" class="panel-collapse collapse pull-left">
-				      <div class="panel-body">
-
-				      		<a href="#"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-eye-open"></span> Consultar</button></a>
-				      		<a href="#"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-edit"></span> Modificar</button></a>
-				      		<button class="btn btn-danger btn-sm fases" data-toggle="modal" data-target="#myModal" data-id="{{ item.id }}"><span class="glyphicon glyphicon-trash"></span> Eliminar</button>
-				      </div>
-				    </div>
-				</div>
-				
+				<table align="center">
+			{% for valores in lista_valores %}
+				<tr>
+					<td>{{ valores.nombre_atributo }} : </td>
+					{% ifequal valores.tipo_dato "Fecha" %}
+						<td><input type="date" name={{forloop.counter}} /> En formato AAAA-MM-DD
+						</td>
+					{% endifequal %}
+					{% ifequal valores.tipo_dato "Logico" %}
+						<td>Si<input type="radio" name={{forloop.counter}} />
+						No<input type="radio" name={{forloop.counter}} />
+						</td>
+					{% endifequal %}
+					{% ifequal valores.tipo_dato "Arvhivo Externo" %}
+						<td><input type="file" name={{forloop.counter}} />
+						</td>
+					{% endifequal %}
+					{% ifequal valores.tipo_dato "Numerico" %}
+						<td><input type="number" name={{forloop.counter}} />
+						</td>
+					{% endifequal %}
+					{% ifequal valores.tipo_dato "Texto" %}
+				    	<td><input type="text" name="{{forloop.counter}}" maxlength=300 />
+				    	</td>
+				    {% endifequal %}
+				</tr>
 			{% endfor %}
+		</table>
+					{% csrf_token %}
+					<input action="adm_proyectos/gestionar/{{ id_proyecto }}/adm_items/{{ id_fase }}/atributos/" class="btn btn-default" type="submit" value="Crear Item"/>
 		</div>
-		</div>
+		</form>
 		{% else %}
 			{% if error %}
 				<div class="jumbotron">
