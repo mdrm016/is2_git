@@ -1,0 +1,55 @@
+{% extends "base_general.html" %}
+
+{% block tipo_Item_y_Atributo %}
+<li><a href="/adm_proyectos/gestionar/{{ proyecto.id }}/adm_tipos_item/">Administrar Tipos de Item</a></li>
+<li><a href="/adm_proyectos/gestionar/{{ proyecto.id }}/adm_tipos_atributo">Administrar Tipos de Atributo</a></li>
+{% endblock %}
+
+{% block contenido %}
+<div class="content-secondary">
+<!-- Aca van la  lista de Proyectos.. o de Solicitudes.. o de credenciales -->
+		{% if lista_tipo_atributo %}
+  		<div class="alert alert-info"><h2><p align="center"><b>Seleccione el Tipo de Atributo a importar</b></p></h2></div>
+  		<div class="row ">
+		<div class="panel-group" id="accordion">
+        		<div class="panel panel-default">
+					
+						<div class="col-md-5 col lg-5">
+							<div class="panel-heading">
+								<h4 class="panel-title"><b>Nombre</b></h4>
+							</div>
+						</div>
+				</div>
+					
+				{% for tipo_atributo in lista_tipo_atributo %}
+					<div class="panel panel-default">
+					
+						<div class="col-md-5 col lg-5">
+							<div class="panel-heading">
+								<h4 class="panel-title">{{ tipo_atributo.nombre }}</h4>
+							</div>
+						</div>
+						
+						<div class="col-md-4 col lg-4">
+						</div>
+								 
+						<div class="col-md-3 col lg-3">
+							<a href="importar_tipo_atributo/{{ tipo_atributo.id }}/"><button type="button" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-import"></span> Importar</button></a>
+						</div>
+								 
+					</div>
+				{% endfor %}
+			</div>
+		{% else %}
+				<div class="jumbotron">
+					<div class="bs-example">
+						<p class="text-warning" align="center"><small>Actualmente no hay Tipos de Atributo cargados en este proyecto</small></p>
+					</div>
+				</div>
+		{% endif %}
+</div>
+<div align="center"><br>
+					<a href="/adm_proyectos/gestionar/{{ proyecto.id }}/adm_tipos_atributo/listar_proyectos/"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-arrow-left"></span> Volver</button></a>
+				</div>		
+</div>
+{% endblock %}

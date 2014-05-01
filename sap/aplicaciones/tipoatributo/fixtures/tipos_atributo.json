@@ -1,0 +1,66 @@
+[
+{
+    "pk": 1, 
+    "model": "tipoatributo.tipoatributo", 
+    "fields": {
+        "tipo": "Imagen", 
+        "is_active": true, 
+        "precision": 0, 
+        "proyecto": [
+            1
+        ], 
+        "descripcion": "", 
+        "nombre": "Foto Propaganda", 
+        "obligatorio": true, 
+        "longitud": 0
+    }
+},
+{
+    "pk": 2, 
+    "model": "tipoatributo.tipoatributo", 
+    "fields": {
+        "tipo": "Imagen", 
+        "is_active": false, 
+        "precision": 0, 
+        "proyecto": [
+            1
+        ], 
+        "descripcion": "", 
+        "nombre": "Foto Propaganda 2", 
+        "obligatorio": false, 
+        "longitud": 0
+    }
+},
+{
+    "pk": 3, 
+    "model": "tipoatributo.tipoatributo", 
+    "fields": {
+        "tipo": "Imagen", 
+        "is_active": true, 
+        "precision": 0, 
+        "proyecto": [
+            2
+        ], 
+        "descripcion": "Para publicidades de terceros", 
+        "nombre": "Propaganda Adjunta", 
+        "obligatorio": false, 
+        "longitud": 0
+    }
+},
+{
+    "pk": 4, 
+    "model": "tipoatributo.tipoatributo", 
+    "fields": {
+        "tipo": "Logico", 
+        "is_active": true, 
+        "precision": 0, 
+        "proyecto": [
+            2
+        ], 
+        "descripcion": "Detalle de que si un item esta disponible o no", 
+        "nombre": "Disponible", 
+        "obligatorio": true, 
+        "longitud": 0
+    }
+}
+]

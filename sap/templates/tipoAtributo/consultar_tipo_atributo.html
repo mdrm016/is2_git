@@ -1,0 +1,88 @@
+{% extends "base_general.html" %}
+
+{% block menu %}		
+<div class="menu">
+	<ul>
+		<li id="option1" class="active">
+			<a href="#"> Tipo de Atributo </a>
+	</ul>
+</div>
+{% endblock %}
+
+{% block contenido %}
+<div class="content-secondary">
+	<div class="container">
+		<div class="row">
+				<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+				</div>
+				
+				<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+					<table class="table table-hover table-bordered table-condensed table-responsive">
+						<tbody>
+						  	<!-- Aplicadas en las filas -->
+						  	<tr class="active">
+						  		<td><p><h4>ID de Tipo de Atributo</h4></p></td>
+						  		<td><p><h4><span class="label label-default">{{ tipo_atributo.id }}</span></h4></h4></p></td>
+							</tr>
+						  	<tr class="active">
+						  		<td><p><h4>Nombre de Tipo de Atributo:</h4></p></td>
+						  		<td><p><h4><span class="label label-default">{{ tipo_atributo.nombre }}</span></h4></h4></p></td>
+						  	</tr>
+						  	<tr class="active">
+						  		<td><p><h4>Tipo de Dato:</h4></p></td>
+						  		<td><p><h4><span class="label label-default">{{ tipo_atributo.tipo }}</span></h4></h4></p></td>
+						  	</tr>
+						  	{% if tipo_atributo.tipo == "Numerico" %}
+						  	<tr class="active">
+						  		<td><p><h4>Precision:</h4></p></td>
+						  		<td><p><h4><span class="label label-default">{{ tipo_atributo.precision }}</span></h4></h4></p></td>
+						  	</tr>
+						  	{% endif %}
+						  	{% if tipo_atributo.tipo == "Texto" %}
+						  	<tr class="active">
+						  		<td><p><h4>Longitud:</h4></p></td>
+						  		<td><p><h4><span class="label label-default">{{ tipo_atributo.longitud }}</span></h4></h4></p></td>
+						  	</tr>
+						  	{% endif %}
+						  	{% if tipo_atributo.tipo == "Numerico" %}
+						  	<tr class="active">
+						  		<td><p><h4>Longitud:</h4></p></td>
+						  		<td><p><h4><span class="label label-default">{{ tipo_atributo.longitud }}</span></h4></h4></p></td>
+						  	</tr>
+						  	{% endif %}
+						 	<tr class="active">
+						  		<td><p><h4>Obligatorio:</h4></p></td>
+						  		{% if tipo_atributo.obligatorio == True %}
+						  			<td><p><h4><span class="label label-default">Si</span></h4></h4></p></td>
+								{% else %}
+									<td><p><h4><span class="label label-default">No</span></h4></h4></p></td>
+								{% endif %}
+							</tr>
+						  	<tr class="active">
+						  		<td><p><h4>Descripcion:</h4></p></td>
+						  		<td><p><h4><span class="label label-default">{{ tipo_atributo.descripcion }}</span></h4></h4></p></td>
+						  	</tr>
+						  	{% if proyectos %}
+						  		<tr class="active">
+							  		<td><p><h4>Proyecto(s):</h4></p></td>
+							  		{% for proyecto in proyectos %}
+							  			<td><p><h4><span class="label label-default">{{ proyecto.nombre }}</span></h4></h4></p></td>
+							  		{% endfor %}
+						  		</tr>
+						  	{% endif %}
+						  	<br>
+						</tbody>	
+					</table>
+					<div align="center">
+						<a class="btn btn-default" href="javascript:window.history.go(-1);"><span class="glyphicon glyphicon-arrow-left"></span> Volver</a>
+					</div>
+				</div>
+				
+				<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+				</div>
+		</div>
+	</div>
+</div>
+
+	
+{% endblock %}

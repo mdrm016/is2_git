@@ -38,7 +38,7 @@ class test_user(TestCase):
         
         self.user = User.objects.get(pk=1)
         print Roles.objects.all()
-        request = self.factory.post('/adm_roles/modificar/2/', {'Nombre_de_Rol': 'pruebaRol3', 'Permisos': ['add_usuarios'], 'Descripcion':'Todos los permisos de Roles, agregamos crear usuarios'})
+        request = self.factory.post('/adm_roles/modificar/2/', {'Nombre_de_Rol': 'pruebaRol3', 'Permisos': ['add_usuarios'], 'Descripcion':'Agregamos crear usuarios'})
         request.user = self.user
         response = modificarRol(request, 2)
         self.assertEqual(response.status_code, 200)
@@ -51,11 +51,11 @@ class test_user(TestCase):
         self.user = User.objects.get(pk=1)
         request = self.factory.get('/adm_roles/eliminar/1/')
         request.user = self.user
-        rol = Roles.objects.filter(pk=1)
-        self.assertTrue(rol)
+        rol = Roles.objects.get(pk=1)
+        self.assertTrue(rol.is_active)
         response = eliminarRol(request, 1)
-        rol = Roles.objects.filter(pk=1)
-        self.assertFalse(rol)
+        rol = Roles.objects.get(pk=1)
+        self.assertFalse(rol.is_active)
         
     def testConsultarRol(self):
         

@@ -1,0 +1,16 @@
+{% extends "base_general.html" %}
+
+{% block tipo_Item_y_Atributo %}
+<li><a href="/adm_proyectos/gestionar/{{ id_proyecto }}/adm_tipos_item/">Administrar Tipos de Item</a></li>
+<li><a href="/adm_proyectos/gestionar/{{ id_proyecto }}/adm_tipos_atributo">Administrar Tipos de Atributo</a></li>
+{% endblock %}
+
+{% block contenido %}
+<div class="jumbotron">
+	<div class="bs-example" align="center">
+		<h2>Notificacion</h2>
+			<p class="text-warning"><small>{{ mensaje }}</small></p>
+			<a href="/adm_proyectos/gestionar/{{ id_proyecto }}/adm_tipos_atributo/"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-arrow-left"></span> Volver</button></a>
+	</div>
+</div>
+{% endblock %}
