@@ -70,13 +70,13 @@
 						</td>
 					{% endifequal %}
 					{% ifequal valores.tipo_dato "Logico" %}
-						{% ifequal valores.valor_logico "t" %}
-						<td> Si<input type="radio" name="{{ forloop.counter }}" checked="checked" />
-						 No<input type="radio" name="{{ forloop.counter }}" /> 
+						{% ifequal valores.valor_logico True %}
+						<td> Si<input type="radio" name="{{ forloop.counter }}" value="True" checked="checked" >
+						 No<input type="radio" name="{{ forloop.counter }}" value="False" > 
 						</td>
 						{% else %}
-						<td> Si<input type="radio" name="{{ forloop.counter }}"  />
-						 No<input type="radio" name="{{ forloop.counter }}" checked="checked" /> 
+						<td> Si<input type="radio" name="{{ forloop.counter }}" value="True" >
+						 No<input type="radio" name="{{ forloop.counter }}" value="False" checked="checked" > 
 						</td>
 						{% endifequal %}
 					{% endifequal %}

@@ -27,20 +27,18 @@ cd fases
 mkdir /home/"$Usuario"/workspace/is2_git/sap/Sap_documentacion/Fases
 epydoc --html --o /home/"$Usuario"/workspace/is2_git/sap/Sap_documentacion/Fases --name "Sap_documentacion" *.py
 
+cd .. 
+cd tipoitem
+mkdir /home/"$Usuario"/workspace/is2_git/sap/Sap_documentacion/TipoItem
+epydoc --html --o /home/"$Usuario"/workspace/is2_git/sap/Sap_documentacion/TipoItem --name "Sap_documentacion" *.py
+
+cd ..
+cd tipoatributo
+mkdir /home/"$Usuario"/workspace/is2_git/sap/Sap_documentacion/TipoAtributo
+epydoc --html --o /home/"$Usuario"/workspace/is2_git/sap/Sap_documentacion/TipoAtributo --name "Sap_documentacion" *.py
+
 cd /home/"$Usuario"/workspace/is2_git/sap
 mkdir /home/"$Usuario"/workspace/is2_git/sap/Sap_documentacion/Sap
 epydoc --html --o /home/"$Usuario"/workspace/is2_git/sap/Sap_documentacion/Sap --name "Sap_documentacion" *.py
 
-cd /home/"$Usuario"/workspace/is2_git/sap/Sap_documentacion/Sap 
-sudo firefox -new-tab index.html
-cd /home/"$Usuario"/workspace/is2_git/sap/Sap_documentacion/Usuarios
-sudo firefox -new-tab index.html
-cd /home/"$Usuario"/workspace/is2_git/sap/Sap_documentacion/Autenticacion
-sudo firefox -new-tab index.html
-cd /home/"$Usuario"/workspace/is2_git/sap/Sap_documentacion/Proyectos
-sudo firefox -new-tab index.html
-cd /home/"$Usuario"/workspace/is2_git/sap/Sap_documentacion/Roles
-sudo firefox -new-tab index.html
-cd /home/"$Usuario"/workspace/is2_git/sap/Sap_documentacion/Fases
-sudo firefox -new-tab index.html
 
