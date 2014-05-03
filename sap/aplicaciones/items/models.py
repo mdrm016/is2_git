@@ -57,6 +57,7 @@ class ListaValores(models.Model):
     valor_numerico = models.IntegerField(null=True)
     valor_fecha = models.CharField(max_length=15, null=True)
     valor_archivoexterno = models.FileField(upload_to='archivos', null=True)
+    valor_imagen = models.ImageField(upload_to='imagenes', null=True)
     
     orden = models.IntegerField(null=True)
     

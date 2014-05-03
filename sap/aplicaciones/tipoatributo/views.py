@@ -1,5 +1,6 @@
 from django.shortcuts import render, render_to_response
 from models import TipoAtributo
+from django.core.exceptions import PermissionDenied
 from  django.http import  HttpResponseRedirect
 from django.template import RequestContext
 from forms import TipoAtributoForm, TipoAtributoModificadoForm
@@ -45,7 +46,7 @@ def administrarTipoAtributo(request, id_proyecto):
                     error = True
                 
     else:
-        raise PermissionDenied
+        raise PermissionDenied()
     
     template_name='./tipoAtributo/tipo_atributos.html'
     return render(request, template_name, {'tipos_de_atributo': atributos, 'id_proyecto':id_proyecto, 'query':busqueda, 'error':error})
