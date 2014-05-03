@@ -49,3 +49,9 @@ class TipoItem (models.Model):
     
     class Meta:
         ordering = ["nombre"]
+        permissions = (
+                      ("consultar_tipoitem", "Puede consultar los datos de un Tipo de Item"),
+                      ("gestionar_tipoitem", "Puede gestionar un Tipo de Item"),
+                      ("importar_tipoitem", "Puede Importar un Tipo de Item"),
+                      ("administrar_tipoitem", "Puede administrar los Tipos de Item"),
+                      )
