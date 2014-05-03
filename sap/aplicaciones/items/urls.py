@@ -1,5 +1,5 @@
 from django.conf.urls import patterns, url
-from .views import adm_items, listar_tipo_item, crear_item, cargar_valores, listar_versiones, consultar_version, revertir_version, modificar_item, consultar_item, consultar_atributos, eliminar_item, listar_eliminados, revivir_eliminado, consultar_eliminado, consultar_version_eliminado
+from .views import adm_items, listar_tipo_item, crear_item, cargar_valores, listar_versiones, consultar_version, revertir_version, modificar_item, consultar_item, consultar_atributos, eliminar_item, listar_eliminados, revivir_eliminado, consultar_eliminado, consultar_version_eliminado, consultar_relaciones
 
 urlpatterns = patterns('',
                        url(r'^adm_proyectos/gestionar/(?P<id_proyecto>\d+)/adm_items/(?P<id_fase>\d+)/$', adm_items),
@@ -9,7 +9,8 @@ urlpatterns = patterns('',
                        url(r'^adm_proyectos/gestionar/(?P<id_proyecto>\d+)/adm_items/(?P<id_fase>\d+)/eliminar/(?P<id_item>\d+)/$', eliminar_item),
                        url(r'^adm_proyectos/gestionar/(?P<id_proyecto>\d+)/adm_items/(?P<id_fase>\d+)/consultar/(?P<id_item>\d+)/$', consultar_item),
                        url(r'^adm_proyectos/gestionar/(?P<id_proyecto>\d+)/adm_items/(?P<id_fase>\d+)/consul_eliminado/(?P<id_item>\d+)/$', consultar_eliminado),
-                       url(r'^adm_proyectos/gestionar/(?P<id_proyecto>\d+)/adm_items/(?P<id_fase>\d+)/consul_atrib/(?P<id_item>\d+)/$', consultar_atributos),        
+                       url(r'^adm_proyectos/gestionar/(?P<id_proyecto>\d+)/adm_items/(?P<id_fase>\d+)/consul_atrib/(?P<id_item>\d+)/$', consultar_atributos),
+                       url(r'^adm_proyectos/gestionar/(?P<id_proyecto>\d+)/adm_items/(?P<id_fase>\d+)/consul_relac/(?P<id_item>\d+)/$', consultar_relaciones),        
                        url(r'^adm_proyectos/gestionar/(?P<id_proyecto>\d+)/adm_items/(?P<id_fase>\d+)/versiones/(?P<id_item>\d+)/version/(?P<version>\d+)/$', consultar_version),
                        url(r'^adm_proyectos/gestionar/(?P<id_proyecto>\d+)/adm_items/(?P<id_fase>\d+)/consul_eliminado/(?P<id_item>\d+)/eliminadoversion/(?P<version>\d+)/$', consultar_version_eliminado),
                        url(r'^adm_proyectos/gestionar/(?P<id_proyecto>\d+)/adm_items/(?P<id_fase>\d+)/consul_eliminado/(?P<id_item>\d+)/revivir/(?P<version>\d+)/$', revivir_eliminado),

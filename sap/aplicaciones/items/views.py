@@ -45,10 +45,24 @@ def adm_items(request, id_proyecto, id_fase):
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
 
 def listar_tipo_item(request, id_proyecto, id_fase):
+    """ Recibe un request, se verifica cual es el usuario registrado y el proyecto del cual se solicita,
+    se obtiene la lista de fases con las que estan relacionados el usuario y el proyecto 
+    desplegandola en pantalla, ademas permite realizar busquedas avanzadas sobre
+    las fases que puede mostrar.
+    
+    @type request: django.http.HttpRequest.
+    @param request: Contiene informacion sobre la solicitud web actual que llamo a esta vista.
+    
+    @rtype: django.shortcuts.render_to_response.
+    @return: fases.html, donde se listan las fases, ademas de las funcionalidades para cada fase.
+    
+    @author: Ysapy Ortiz.
+    
+    """
     fase = Fases.objects.get(id=id_fase)
     proyecto = Proyectos.objects.get(id=id_proyecto)
     if fase.estado =='FD' or proyecto.estado=='Inactivo':
-        mensaje ='No se pueden agregar items a la fase, el proyecto o la fase del item no esta inicializado.'
+        mensaje ='No se pueden agregar items a la fase.'
         ctx = {'mensaje':mensaje, 'id_proyecto': id_proyecto, 'id_fase': id_fase}
         template_name = './items/itemalerta.html'
         return render_to_response(template_name, ctx, context_instance=RequestContext(request))
@@ -70,6 +84,20 @@ def listar_tipo_item(request, id_proyecto, id_fase):
                 if form.is_valid():
 """
 def crear_item(request, id_proyecto, id_fase, id_tipoitem):
+    """ Recibe un request, se verifica cual es el usuario registrado y el proyecto del cual se solicita,
+    se obtiene la lista de fases con las que estan relacionados el usuario y el proyecto 
+    desplegandola en pantalla, ademas permite realizar busquedas avanzadas sobre
+    las fases que puede mostrar.
+    
+    @type request: django.http.HttpRequest.
+    @param request: Contiene informacion sobre la solicitud web actual que llamo a esta vista.
+    
+    @rtype: django.shortcuts.render_to_response.
+    @return: fases.html, donde se listan las fases, ademas de las funcionalidades para cada fase.
+    
+    @author: Ysapy Ortiz.
+    
+    """
     proyecto = Proyectos.objects.get(id=id_proyecto)
     fase = Fases.objects.get(id=id_fase)
     if request.method == 'POST':
@@ -108,6 +136,9 @@ def crear_item(request, id_proyecto, id_fase, id_tipoitem):
             item.tipo_item_id = id_tipoitem
             item.save()
             
+            if fase.estado == 'DF':
+                fase.estado = 'DR'
+                fase.save()
 
             mensaje = 'Item creado con exito.'
             template_name='./items/itemalerta.html'
@@ -122,6 +153,20 @@ def crear_item(request, id_proyecto, id_fase, id_tipoitem):
     return render(request, template_name, {'form': form, 'id_proyecto':id_proyecto, 'id_fase': id_fase, 'id_tipoitem': id_tipoitem})
 
 def cargar_valores(request, id_proyecto, id_fase, id_item):
+    """ Recibe un request, se verifica cual es el usuario registrado y el proyecto del cual se solicita,
+    se obtiene la lista de fases con las que estan relacionados el usuario y el proyecto 
+    desplegandola en pantalla, ademas permite realizar busquedas avanzadas sobre
+    las fases que puede mostrar.
+    
+    @type request: django.http.HttpRequest.
+    @param request: Contiene informacion sobre la solicitud web actual que llamo a esta vista.
+    
+    @rtype: django.shortcuts.render_to_response.
+    @return: fases.html, donde se listan las fases, ademas de las funcionalidades para cada fase.
+    
+    @author: Ysapy Ortiz.
+    
+    """
     proyecto = Proyectos.objects.get(id=id_proyecto)
     fase = Fases.objects.get(id=id_fase)
     itemactual = Items.objects.get(id=id_item)
@@ -371,38 +416,9 @@ def cargar_valores(request, id_proyecto, id_fase, id_item):
                 relacionnueva.versionprimero = versionitem
                 relacionnueva.versionsegundo = padre.versionsegundo
                 padre_hijo = Items.objects.get(id=padre.hijo_id)
-                if padre.versionsegundo==padre_hijo.version:
+                if padre.versionsegundo==padre_hijo.version and padre_hijo.is_active==True:
                     relacionnueva.save()
-            for antecesor in rantecesor:
-                relacionnueva = Relaciones()
-                relacionnueva.padre_id = antecesor.padre_id
-                relacionnueva.hijo_id = antecesor.hijo_id
-                relacionnueva.antecesor_id = antecesor.antecesor_id
-                relacionnueva.sucesor_id = antecesor.sucesor_id
-                relacionnueva.is_active = True
-                relacionnueva.proyecto = antecesor.proyecto
-                relacionnueva.faseprimera = antecesor.faseprimera
-                relacionnueva.fasesegunda = antecesor.fasesegunda
-                relacionnueva.versionprimero = versionitem
-                relacionnueva.versionsegundo = antecesor.versionsegundo
-                antecesor_sucesor = Items.objects.get(id=antecesor.sucesor_id)
-                if sucesor.versionsegundo==antecesor_sucesor.version:
-                    relacionnueva.save()
-            for sucesor in rsucesor:
-                relacionnueva = Relaciones()
-                relacionnueva.padre_id = sucesor.padre_id
-                relacionnueva.hijo_id = sucesor.hijo_id
-                relacionnueva.antecesor_id = sucesor.antecesor_id
-                relacionnueva.sucesor_id = sucesor.sucesor_id
-                relacionnueva.is_active = True
-                relacionnueva.proyecto = sucesor.proyecto
-                relacionnueva.faseprimera = sucesor.faseprimera
-                relacionnueva.fasesegunda = sucesor.fasesegunda
-                relacionnueva.versionprimero = sucesor.versionprimero
-                relacionnueva.versionsegundo = versionitem
-                sucesor_antecesor = Items.objects.get(id=padre.antecesor_id)
-                if sucesor.versionprimero==sucesor_antecesor.version:
-                    relacionnueva.save()
+
             for hijo in rhijo:
                 relacionnueva = Relaciones()
                 relacionnueva.padre_id = hijo.padre_id
@@ -416,7 +432,7 @@ def cargar_valores(request, id_proyecto, id_fase, id_item):
                 relacionnueva.versionprimero = hijo.versionprimero
                 relacionnueva.versionsegundo = versionitem
                 hijo_padre = Items.objects.get(id=hijo.padre_id)
-                if hijo.versionprimero==hijo_padre.version:
+                if hijo.versionprimero==hijo_padre.version and hijo_padre.is_active==True:
                     relacionnueva.save()
                 
             itemactual.version = versionitem
@@ -544,6 +560,20 @@ def cargar_valores(request, id_proyecto, id_fase, id_item):
     return render(request, template_name, {'id_proyecto':id_proyecto, 'id_fase': id_fase, 'id_tipoitem': idtipo, 'lista_valores': lista_valores, 'id_item': id_item, 'listaPresicionLongitud':listaPresicionLongitud, 'lista_error':lista_error, 'itemactual':itemactual})        
 
 def listar_versiones(request, id_proyecto, id_fase, id_item):
+    """ Recibe un request, se verifica cual es el usuario registrado y el proyecto del cual se solicita,
+    se obtiene la lista de fases con las que estan relacionados el usuario y el proyecto 
+    desplegandola en pantalla, ademas permite realizar busquedas avanzadas sobre
+    las fases que puede mostrar.
+    
+    @type request: django.http.HttpRequest.
+    @param request: Contiene informacion sobre la solicitud web actual que llamo a esta vista.
+    
+    @rtype: django.shortcuts.render_to_response.
+    @return: fases.html, donde se listan las fases, ademas de las funcionalidades para cada fase.
+    
+    @author: Ysapy Ortiz.
+    
+    """
     fase = Fases.objects.get(id=id_fase)
     proyecto = Proyectos.objects.get(id=id_proyecto)
     itemactual = Items.objects.get(id=id_item)
@@ -566,6 +596,20 @@ def listar_versiones(request, id_proyecto, id_fase, id_item):
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
 
 def consultar_version(request, id_proyecto, id_fase, id_item, version):
+    """ Recibe un request, se verifica cual es el usuario registrado y el proyecto del cual se solicita,
+    se obtiene la lista de fases con las que estan relacionados el usuario y el proyecto 
+    desplegandola en pantalla, ademas permite realizar busquedas avanzadas sobre
+    las fases que puede mostrar.
+    
+    @type request: django.http.HttpRequest.
+    @param request: Contiene informacion sobre la solicitud web actual que llamo a esta vista.
+    
+    @rtype: django.shortcuts.render_to_response.
+    @return: fases.html, donde se listan las fases, ademas de las funcionalidades para cada fase.
+    
+    @author: Ysapy Ortiz.
+    
+    """
     item = Items.objects.get(id=id_item)
     atributos = ValorItem.objects.filter(proyecto=id_proyecto, fase=id_fase, item=id_item, version=version).order_by('orden')
     lista_valores = []
@@ -625,7 +669,7 @@ def consultar_version(request, id_proyecto, id_fase, id_item, version):
     rantecesor = Relaciones.objects.filter(antecesor_id=id_item, faseprimera=id_fase, proyecto=id_proyecto, versionprimero=version, is_active=True)
     rhijo = Relaciones.objects.filter(hijo_id=id_item, fasesegunda=id_fase, proyecto=id_proyecto, versionsegundo=version, is_active=True)
     rsucesor = Relaciones.objects.filter(sucesor_id=id_item, fasesegunda=id_fase, proyecto=id_proyecto, versionsegundo=version, is_active=True)
-    lista_relaciones = []
+    lista_relacione = []
     for antecesor in rantecesor:
         valor = ListaRelaciones()
         valor.itemrelacionado = antecesor.sucesor_id
@@ -634,7 +678,7 @@ def consultar_version(request, id_proyecto, id_fase, id_item, version):
         valor.nombreitemrelacionado = itemrelacionado.nombre
         valor.relacionid = antecesor.id
         valor.save()
-        lista_relaciones.append(valor)
+        lista_relacione.append(valor)
     for sucesor in rsucesor:
         valor = ListaRelaciones()
         valor.itemrelacionado = sucesor.antecesor_id
@@ -643,7 +687,7 @@ def consultar_version(request, id_proyecto, id_fase, id_item, version):
         valor.nombreitemrelacionado = itemrelacionado.nombre
         valor.relacionid = sucesor.id
         valor.save()
-        lista_relaciones.append(valor)
+        lista_relacione.append(valor)
     for padre in rpadre:
         valor = ListaRelaciones()
         valor.itemrelacionado = padre.hijo_id
@@ -652,7 +696,7 @@ def consultar_version(request, id_proyecto, id_fase, id_item, version):
         valor.nombreitemrelacionado = itemrelacionado.nombre
         valor.relacionid = padre.id
         valor.save()
-        lista_relaciones.append(valor)
+        lista_relacione.append(valor)
     for hijo in rhijo:
         valor = ListaRelaciones()
         valor.itemrelacionado = hijo.padre_id
@@ -661,12 +705,27 @@ def consultar_version(request, id_proyecto, id_fase, id_item, version):
         valor.nombreitemrelacionado = itemrelacionado.nombre
         valor.relacionid = hijo.id
         valor.save()
-        lista_relaciones.append(valor)
-    
+        lista_relacione.append(valor)
+    lista_relaciones = []
+    lista_relaciones = set(lista_relacione)
     template_name='./items/mostraratributos.html'
     return render(request, template_name, {'id_proyecto':id_proyecto, 'id_fase': id_fase, 'lista_valores': lista_valores, 'lista_relaciones': lista_relaciones, 'id_item': id_item})
 
 def revertir_version(request, id_proyecto, id_fase, id_item, version):
+    """ Recibe un request, se verifica cual es el usuario registrado y el proyecto del cual se solicita,
+    se obtiene la lista de fases con las que estan relacionados el usuario y el proyecto 
+    desplegandola en pantalla, ademas permite realizar busquedas avanzadas sobre
+    las fases que puede mostrar.
+    
+    @type request: django.http.HttpRequest.
+    @param request: Contiene informacion sobre la solicitud web actual que llamo a esta vista.
+    
+    @rtype: django.shortcuts.render_to_response.
+    @return: fases.html, donde se listan las fases, ademas de las funcionalidades para cada fase.
+    
+    @author: Ysapy Ortiz.
+    
+    """
     item = Items.objects.get(proyecto_id=id_proyecto, fase_id=id_fase, id=id_item)
     versionnueva = item.version + 1
     valoresitem = ValorItem.objects.filter(proyecto=id_proyecto, fase=id_fase, item=id_item, version=version).order_by('orden')
@@ -701,6 +760,8 @@ def revertir_version(request, id_proyecto, id_fase, id_item, version):
                         estamosenproblemas.append(sjetbg)
             pad.version = pad.version + 1
             pad.save()
+        else:
+            item.estado='En Construccion'
     item.version = versionnueva
     item.save()
     
@@ -710,12 +771,26 @@ def revertir_version(request, id_proyecto, id_fase, id_item, version):
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
 
 def modificar_item(request, id_proyecto, id_fase, id_item):
+    """ Recibe un request, se verifica cual es el usuario registrado y el proyecto del cual se solicita,
+    se obtiene la lista de fases con las que estan relacionados el usuario y el proyecto 
+    desplegandola en pantalla, ademas permite realizar busquedas avanzadas sobre
+    las fases que puede mostrar.
+    
+    @type request: django.http.HttpRequest.
+    @param request: Contiene informacion sobre la solicitud web actual que llamo a esta vista.
+    
+    @rtype: django.shortcuts.render_to_response.
+    @return: fases.html, donde se listan las fases, ademas de las funcionalidades para cada fase.
+    
+    @author: Ysapy Ortiz.
+    
+    """
     proyecto = Proyectos.objects.get(id=id_proyecto) 
     fase = Fases.objects.get(id=id_fase, proyecto_id=id_proyecto)
     item = Items.objects.get(proyecto_id=id_proyecto, fase_id=id_fase, id=id_item)
     mensaje=''
     if request.method == 'POST':
-        if fase.estado == 'FD':
+        if fase.estado == 'FD' or item.estado=='En Revision' or item.estado=='Bloqueado' or item.estado=='Validado':
             mensaje = 'No se puede modificar item. Dirijase a consultar item.'
             ctx ={'mensaje':mensaje, 'id_proyecto':id_proyecto, 'id_fase':id_fase, 'id_item': id_item}      
             template_name='./items/itemalerta.html'
@@ -817,6 +892,20 @@ def modificar_item(request, id_proyecto, id_fase, id_item):
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
 
 def consultar_item(request, id_proyecto, id_fase, id_item):
+    """ Recibe un request, se verifica cual es el usuario registrado y el proyecto del cual se solicita,
+    se obtiene la lista de fases con las que estan relacionados el usuario y el proyecto 
+    desplegandola en pantalla, ademas permite realizar busquedas avanzadas sobre
+    las fases que puede mostrar.
+    
+    @type request: django.http.HttpRequest.
+    @param request: Contiene informacion sobre la solicitud web actual que llamo a esta vista.
+    
+    @rtype: django.shortcuts.render_to_response.
+    @return: fases.html, donde se listan las fases, ademas de las funcionalidades para cada fase.
+    
+    @author: Ysapy Ortiz.
+    
+    """
     fase = Fases.objects.get(id=id_fase, proyecto_id=id_proyecto)
     item = Items.objects.get(proyecto_id=id_proyecto, fase_id=id_fase, id=id_item)
     # conseguir el contexto de las fases y sus estados
@@ -826,6 +915,20 @@ def consultar_item(request, id_proyecto, id_fase, id_item):
     return render(request, template_name, {'item': item, 'id_proyecto': id_proyecto, 'fase': fase, 'id_fase': id_fase, 'id_item': id_item})
 
 def consultar_atributos(request, id_proyecto, id_fase, id_item):
+    """ Recibe un request, se verifica cual es el usuario registrado y el proyecto del cual se solicita,
+    se obtiene la lista de fases con las que estan relacionados el usuario y el proyecto 
+    desplegandola en pantalla, ademas permite realizar busquedas avanzadas sobre
+    las fases que puede mostrar.
+    
+    @type request: django.http.HttpRequest.
+    @param request: Contiene informacion sobre la solicitud web actual que llamo a esta vista.
+    
+    @rtype: django.shortcuts.render_to_response.
+    @return: fases.html, donde se listan las fases, ademas de las funcionalidades para cada fase.
+    
+    @author: Ysapy Ortiz.
+    
+    """
     proyecto = Proyectos.objects.get(id=id_proyecto)
     fase = Fases.objects.get(proyecto_id=id_proyecto, id=id_fase)
     itemactual = Items.objects.get(proyecto_id=id_proyecto, fase_id=id_fase, id=id_item)
@@ -905,10 +1008,24 @@ def consultar_atributos(request, id_proyecto, id_fase, id_item):
     return render(request, template_name, {'id_proyecto':id_proyecto, 'id_fase': id_fase, 'lista_valores': lista_valores, 'id_item': id_item})        
 
 def eliminar_item(request, id_proyecto, id_fase, id_item):
+    """ Recibe un request, se verifica cual es el usuario registrado y el proyecto del cual se solicita,
+    se obtiene la lista de fases con las que estan relacionados el usuario y el proyecto 
+    desplegandola en pantalla, ademas permite realizar busquedas avanzadas sobre
+    las fases que puede mostrar.
+    
+    @type request: django.http.HttpRequest.
+    @param request: Contiene informacion sobre la solicitud web actual que llamo a esta vista.
+    
+    @rtype: django.shortcuts.render_to_response.
+    @return: fases.html, donde se listan las fases, ademas de las funcionalidades para cada fase.
+    
+    @author: Ysapy Ortiz.
+    
+    """
     proyecto = Proyectos.objects.get(id=id_proyecto)
     fase = Fases.objects.get(proyecto_id=id_proyecto, id=id_fase)
     item = Items.objects.get(proyecto_id=id_proyecto, fase_id=id_fase, id=id_item)
-    
+    version = item.version
     if fase.estado=='FD' or item.estado=='Validado' or item.estado=='En Revision' or item.estado=='Bloqueado':
         mensaje = 'No se puede eliminar el item. Dirijase a consultar.'
         template_name='./items/itemalerta.html'
@@ -923,43 +1040,30 @@ def eliminar_item(request, id_proyecto, id_fase, id_item):
             itemotro = ValorItem.objects.filter(proyecto=id_proyecto, fase=id_fase, item=pad.id, version=pad.version).order_by('orden')
             if itemotro:
                 for fila in itemotro:
-                    if not (cargar_atributos(fila.valor_id, fila.nombre_atributo, fila.orden, fila.tabla_valor_nombre, id_proyecto, id_fase, int(pad.id))):
-                        estamosenproblemas.append(sjetbg)
+                    nuevo = cargar_atributos(fila.valor_id, fila.nombre_atributo, fila.orden, fila.tabla_valor_nombre, id_proyecto, id_fase, int(pad.id))
+                    nuevo.versionprimero = nuevo.versionprimero - 1
+                    nuevo.save()
+            padre.is_active=False
+            padre.save()
             aumentar_relaciones(pad)
-            padre.versionprimera = padre.versionprimera -1
             pad.version = pad.version + 1
             pad.save()
+            padre.save()
         for hijo in rhijo:
             pad = Items.objects.get(id=hijo.padre_id)
             itemotro = ValorItem.objects.filter(proyecto=id_proyecto, fase=id_fase, item=pad.id, version=pad.version).order_by('orden')
             if itemotro:
                 for fila in itemotro:
-                    if not (cargar_atributos(fila.valor_id, fila.nombre_atributo, fila.orden, fila.tabla_valor_nombre, id_proyecto, id_fase, int(pad.id))):
-                        estamosenproblemas.append(sjetbg)
+                    nuevo = cargar_atributos(fila.valor_id, fila.nombre_atributo, fila.orden, fila.tabla_valor_nombre, id_proyecto, id_fase, int(pad.id))
+                    nuevo.versionsegundo = nuevo.versionsegundo -1
+                    nuevo.save()
+            hijo.is_active=False
+            hijo.save()
             aumentar_relaciones(pad)
-            hijo.versionprimera = hijo.versionprimera -1
+            hijo.versionprimero = hijo.versionprimero -1
             pad.version = pad.version + 1
             pad.save()
-        for antecesor in rantecesor:
-            pad = Items.objects.get(id=antecesor.sucesor_id)
-            itemotro = ValorItem.objects.filter(proyecto=id_proyecto, fase=id_fase, item=pad.id, version=pad.version).order_by('orden')
-            if itemotro:
-                for fila in itemotro:
-                    if not (cargar_atributos(fila.valor_id, fila.nombre_atributo, fila.orden, fila.tabla_valor_nombre, id_proyecto, id_fase, int(pad.id))):
-                        estamosenproblemas.append(sjetbg)
-            aumentar_relaciones(pad)
-            pad.version = pad.version + 1
-            pad.save()
-        for sucesor in rsucesor:
-            pad = Items.objects.get(id=sucesor.antecesor_id)
-            itemotro = ValorItem.objects.filter(proyecto=id_proyecto, fase=id_fase, item=pad.id, version=pad.version).order_by('orden')
-            if itemotro:
-                for fila in itemotro:
-                    if not (cargar_atributos(fila.valor_id, fila.nombre_atributo, fila.orden, fila.tabla_valor_nombre, id_proyecto, id_fase, int(pad.id))):
-                        estamosenproblemas.append(sjetbg)
-            aumentar_relaciones(pad)
-            pad.version = pad.version + 1
-            pad.save()
+            hijo.save()
         item.is_active = False
         item.save()
         mensaje ='Eliminacion exitosa.'
@@ -967,11 +1071,46 @@ def eliminar_item(request, id_proyecto, id_fase, id_item):
     return render(request, template_name, {'id_proyecto':id_proyecto, 'id_fase': id_fase, 'mensaje': mensaje, 'id_item': id_item})
 
 def listar_eliminados(request, id_proyecto, id_fase):
+    """ Recibe un request, se verifica cual es el usuario registrado y el proyecto del cual se solicita,
+    se obtiene la lista de fases con las que estan relacionados el usuario y el proyecto 
+    desplegandola en pantalla, ademas permite realizar busquedas avanzadas sobre
+    las fases que puede mostrar.
+    
+    @type request: django.http.HttpRequest.
+    @param request: Contiene informacion sobre la solicitud web actual que llamo a esta vista.
+    
+    @rtype: django.shortcuts.render_to_response.
+    @return: fases.html, donde se listan las fases, ademas de las funcionalidades para cada fase.
+    
+    @author: Ysapy Ortiz.
+    
+    """
+    proyecto = Proyectos.objects.get(id=id_proyecto)
+    if proyecto.estado=='Finalizado':
+        mensaje = 'El proyecto ha finzalizado.'
+        template_name = './items.itemalerta.html'
+        return render(request, template_name, {'id_proyecto':id_proyecto, 'id_fase': id_fase, 'mensaje': mensaje})
     lista_eliminados = Items.objects.filter(proyecto_id=id_proyecto, fase_id=id_fase, is_active=False)
     template_name='./items/listareliminados.html'
     return render(request, template_name, {'id_proyecto':id_proyecto, 'id_fase': id_fase, 'lista_eliminados': lista_eliminados})
 
 def revivir_eliminado(request, id_proyecto, id_fase, id_item, version):
+    """ Recibe un request, se verifica cual es el usuario registrado y el proyecto del cual se solicita,
+    se obtiene la lista de fases con las que estan relacionados el usuario y el proyecto 
+    desplegandola en pantalla, ademas permite realizar busquedas avanzadas sobre
+    las fases que puede mostrar.
+    
+    @type request: django.http.HttpRequest.
+    @param request: Contiene informacion sobre la solicitud web actual que llamo a esta vista.
+    
+    @rtype: django.shortcuts.render_to_response.
+    @return: fases.html, donde se listan las fases, ademas de las funcionalidades para cada fase.
+    
+    @author: Ysapy Ortiz.
+    
+    """
+    proyecto = Proyectos.objects.get(id=id_proyecto)
+    fase = Fases.objects.get(id=id_fase)
     item = Items.objects.get(proyecto_id=id_proyecto, fase_id=id_fase, id=id_item)
     nombres = Items.objects.filter(proyecto_id=id_proyecto, fase_id=id_fase, nombre=item.nombre, is_active=True)
     if nombres:
@@ -986,13 +1125,14 @@ def revivir_eliminado(request, id_proyecto, id_fase, id_item, version):
         for filaitem in valoresitem:
             if not (cargar_atributos(filaitem.valor_id, filaitem.nombre_atributo, filaitem.orden, filaitem.tabla_valor_nombre, id_proyecto, id_fase, int(id_item))):
                 estamosenproblemas.append(sjetbg)
-    mipadres = Relaciones.objects.filter(hijo_id=id_item, is_active=True, versionsegundo=version)
-    
+    mipadres = Relaciones.objects.filter(hijo_id=id_item, versionsegundo=version)
+    mipadres = set(mipadres)
     for hijo in mipadres:
         pad = Items.objects.get(id=hijo.padre_id)
         if pad.is_active == True:
             if not aumentar_relaciones(pad):
                 estamosenproblemas.append(sethrge)
+         
             relacionnueva = Relaciones()
             relacionnueva.padre_id = hijo.padre_id
             relacionnueva.hijo_id = hijo.hijo_id
@@ -1012,7 +1152,9 @@ def revivir_eliminado(request, id_proyecto, id_fase, id_item, version):
                         estamosenproblemas.append(sjetbg)
             pad.version = pad.version + 1
             pad.save()
-    
+        else:
+            item.estado = 'En Construccion'
+    item.is_active=True
     item.version = versionnueva
     item.save()
     
@@ -1022,6 +1164,20 @@ def revivir_eliminado(request, id_proyecto, id_fase, id_item, version):
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
 
 def consultar_eliminado(request, id_proyecto, id_fase, id_item):
+    """ Recibe un request, se verifica cual es el usuario registrado y el proyecto del cual se solicita,
+    se obtiene la lista de fases con las que estan relacionados el usuario y el proyecto 
+    desplegandola en pantalla, ademas permite realizar busquedas avanzadas sobre
+    las fases que puede mostrar.
+    
+    @type request: django.http.HttpRequest.
+    @param request: Contiene informacion sobre la solicitud web actual que llamo a esta vista.
+    
+    @rtype: django.shortcuts.render_to_response.
+    @return: fases.html, donde se listan las fases, ademas de las funcionalidades para cada fase.
+    
+    @author: Ysapy Ortiz.
+    
+    """
     fase = Fases.objects.get(id=id_fase)
     proyecto = Proyectos.objects.get(id=id_proyecto)
     itemactual = Items.objects.get(id=id_item)
@@ -1044,6 +1200,20 @@ def consultar_eliminado(request, id_proyecto, id_fase, id_item):
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
 
 def consultar_version_eliminado(request, id_proyecto, id_fase, id_item, version):
+    """ Recibe un request, se verifica cual es el usuario registrado y el proyecto del cual se solicita,
+    se obtiene la lista de fases con las que estan relacionados el usuario y el proyecto 
+    desplegandola en pantalla, ademas permite realizar busquedas avanzadas sobre
+    las fases que puede mostrar.
+    
+    @type request: django.http.HttpRequest.
+    @param request: Contiene informacion sobre la solicitud web actual que llamo a esta vista.
+    
+    @rtype: django.shortcuts.render_to_response.
+    @return: fases.html, donde se listan las fases, ademas de las funcionalidades para cada fase.
+    
+    @author: Ysapy Ortiz.
+    
+    """
     item = Items.objects.get(id=id_item)
     atributos = ValorItem.objects.filter(proyecto=id_proyecto, fase=id_fase, item=id_item, version=version).order_by('orden')
     lista_valores = []
@@ -1098,11 +1268,11 @@ def consultar_version_eliminado(request, id_proyecto, id_fase, id_item, version)
                     valorfuturo.valor_logico = ""
                 valorfuturo.save()
                 lista_valores.append(valorfuturo)
-    rpadre = Relaciones.objects.filter(padre_id=id_item, faseprimera=id_fase, proyecto=id_proyecto, versionprimero=version, is_active=True)
-    rantecesor = Relaciones.objects.filter(antecesor_id=id_item, faseprimera=id_fase, proyecto=id_proyecto, versionprimero=version, is_active=True)
-    rhijo = Relaciones.objects.filter(hijo_id=id_item, fasesegunda=id_fase, proyecto=id_proyecto, versionsegundo=version, is_active=True)
-    rsucesor = Relaciones.objects.filter(sucesor_id=id_item, fasesegunda=id_fase, proyecto=id_proyecto, versionsegundo=version, is_active=True)
-    lista_relaciones = []
+    rpadre = Relaciones.objects.filter(padre_id=id_item, faseprimera=id_fase, proyecto=id_proyecto, versionprimero=version, is_active=False)
+    rantecesor = Relaciones.objects.filter(antecesor_id=id_item, faseprimera=id_fase, proyecto=id_proyecto, versionprimero=version, is_active=False)
+    rhijo = Relaciones.objects.filter(hijo_id=id_item, fasesegunda=id_fase, proyecto=id_proyecto, versionsegundo=version, is_active=False)
+    rsucesor = Relaciones.objects.filter(sucesor_id=id_item, fasesegunda=id_fase, proyecto=id_proyecto, versionsegundo=version, is_active=False)
+    lista_relacione = []
     for antecesor in rantecesor:
         valor = ListaRelaciones()
         valor.itemrelacionado = antecesor.sucesor_id
@@ -1111,7 +1281,7 @@ def consultar_version_eliminado(request, id_proyecto, id_fase, id_item, version)
         valor.nombreitemrelacionado = itemrelacionado.nombre
         valor.relacionid = antecesor.id
         valor.save()
-        lista_relaciones.append(valor)
+        lista_relacione.append(valor)
     for sucesor in rsucesor:
         valor = ListaRelaciones()
         valor.itemrelacionado = sucesor.antecesor_id
@@ -1120,7 +1290,7 @@ def consultar_version_eliminado(request, id_proyecto, id_fase, id_item, version)
         valor.nombreitemrelacionado = itemrelacionado.nombre
         valor.relacionid = sucesor.id
         valor.save()
-        lista_relaciones.append(valor)
+        lista_relacione.append(valor)
     for padre in rpadre:
         valor = ListaRelaciones()
         valor.itemrelacionado = padre.hijo_id
@@ -1129,7 +1299,8 @@ def consultar_version_eliminado(request, id_proyecto, id_fase, id_item, version)
         valor.nombreitemrelacionado = itemrelacionado.nombre
         valor.relacionid = padre.id
         valor.save()
-        lista_relaciones.append(valor)
+        
+        lista_relacione.append(valor)
     for hijo in rhijo:
         valor = ListaRelaciones()
         valor.itemrelacionado = hijo.padre_id
@@ -1138,12 +1309,26 @@ def consultar_version_eliminado(request, id_proyecto, id_fase, id_item, version)
         valor.nombreitemrelacionado = itemrelacionado.nombre
         valor.relacionid = hijo.id
         valor.save()
-        lista_relaciones.append(valor)
-    
+        lista_relacione.append(valor)
+    lista_relaciones = set(lista_relacione)
     template_name='./items/mostrareliminados.html'
     return render(request, template_name, {'id_proyecto':id_proyecto, 'id_fase': id_fase, 'lista_valores': lista_valores, 'lista_relaciones': lista_relaciones, 'id_item': id_item})
 
 def aumentar_relaciones(item):
+    """ Recibe un request, se verifica cual es el usuario registrado y el proyecto del cual se solicita,
+    se obtiene la lista de fases con las que estan relacionados el usuario y el proyecto 
+    desplegandola en pantalla, ademas permite realizar busquedas avanzadas sobre
+    las fases que puede mostrar.
+    
+    @type request: django.http.HttpRequest.
+    @param request: Contiene informacion sobre la solicitud web actual que llamo a esta vista.
+    
+    @rtype: django.shortcuts.render_to_response.
+    @return: fases.html, donde se listan las fases, ademas de las funcionalidades para cada fase.
+    
+    @author: Ysapy Ortiz.
+    
+    """
     hijos = Relaciones.objects.filter(padre_id=item.id, versionprimero=item.version, is_active=True)
     padres = Relaciones.objects.filter(hijo_id=item.id, versionsegundo=item.version, is_active=True)
     
@@ -1173,4 +1358,78 @@ def aumentar_relaciones(item):
         nuevo.versionsegundo = item.version + 1
         nuevo.versionprimero = padre.versionsegundo
         nuevo.save()
-    return (True)
+    return (nuevo)
+
+def consultar_relaciones(request, id_proyecto, id_fase, id_item):
+    """ Recibe un request, se verifica cual es el usuario registrado y el proyecto del cual se solicita,
+    se obtiene la lista de fases con las que estan relacionados el usuario y el proyecto 
+    desplegandola en pantalla, ademas permite realizar busquedas avanzadas sobre
+    las fases que puede mostrar.
+    
+    @type request: django.http.HttpRequest.
+    @param request: Contiene informacion sobre la solicitud web actual que llamo a esta vista.
+    
+    @rtype: django.shortcuts.render_to_response.
+    @return: fases.html, donde se listan las fases, ademas de las funcionalidades para cada fase.
+    
+    @author: Ysapy Ortiz.
+    
+    """
+    proyecto = Proyectos.objects.get(id=id_proyecto)
+    fase = Fases.objects.get(id=id_fase)
+    item = Items.objects.get(id=id_item)
+
+    rantecesor = Relaciones.objects.filter(proyecto=id_proyecto, faseprimera=id_fase, antecesor_id=id_item, is_active=True, versionprimero=item.version)
+    rpadre = Relaciones.objects.filter(proyecto=id_proyecto, faseprimera=id_fase, padre_id=id_item, is_active=True, versionprimero=item.version)
+    rsucesor = Relaciones.objects.filter(proyecto=id_proyecto, fasesegunda=id_fase, sucesor_id=id_item, is_active=True, versionsegundo=item.version)
+    rhijo = Relaciones.objects.filter(proyecto=id_proyecto, fasesegunda=id_fase, hijo_id=id_item, is_active=True, versionsegundo=item.version)
+    lista_relaciones = []
+    
+    for antecesor in rantecesor:
+        valor = ListaRelaciones()
+        valor.itemrelacionado = antecesor.sucesor_id
+        valor.tiporelacion = 'Sucesor'
+        itemrelacionado = Items.objects.get(id=valor.itemrelacionado)
+        valor.nombreitemrelacionado = itemrelacionado.nombre
+        valor.relacionid = antecesor.id
+        valor.save()
+        antecesor_sucesor = Items.objects.get(id=antecesor.sucesor_id)
+        if antecesor.versionsegundo==antecesor_sucesor.version:
+            lista_relaciones.append(valor)
+    for sucesor in rsucesor:
+        valor = ListaRelaciones()
+        valor.itemrelacionado = sucesor.antecesor_id
+        valor.tiporelacion = 'Antecesor'
+        itemrelacionado = Items.objects.get(id=valor.itemrelacionado)
+        valor.nombreitemrelacionado = itemrelacionado.nombre
+        valor.relacionid = sucesor.id
+        valor.save()
+        sucesor_antecesor = Items.objects.get(id=sucesor.antecesor_id)
+        if sucesor.versionprimero==sucesor_antecesor.version:
+            lista_relaciones.append(valor)
+    for padre in rpadre:
+        valor = ListaRelaciones()
+        valor.itemrelacionado = padre.hijo_id
+        valor.tiporelacion = 'Hijo'
+        itemrelacionado = Items.objects.get(id=valor.itemrelacionado)
+        valor.nombreitemrelacionado = itemrelacionado.nombre
+        valor.relacionid = padre.id
+        valor.save()
+        padre_hijo = Items.objects.get(id=padre.hijo_id)
+        if padre.versionsegundo==padre_hijo.version:
+            lista_relaciones.append(valor)
+    for hijo in rhijo:
+        valor = ListaRelaciones()
+        valor.itemrelacionado = hijo.padre_id
+        valor.tiporelacion = 'Padre'
+        itemrelacionado = Items.objects.get(id=valor.itemrelacionado)
+        valor.nombreitemrelacionado = itemrelacionado.nombre
+        valor.relacionid = hijo.id
+        valor.save()
+        hijo_padre = Items.objects.get(id=hijo.padre_id)
+        if hijo.versionprimero==hijo_padre.version:
+            lista_relaciones.append(valor)
+
+    ctx = {'lista_relaciones': lista_relaciones, 'id_proyecto':id_proyecto, 'id_fase': id_fase, 'id_item': id_item}
+    template_name = './items/relaciones.html'
+    return render_to_response(template_name, ctx, context_instance=RequestContext(request))

@@ -4,7 +4,7 @@
 <div class="menu">
 	<ul>
 		<li id="option1" class="active">
-			<a href="#">{{ item.nombre }}</a>
+			<a href="/adm_proyectos/gestionar/{{ id_proyecto }}/adm_items/{{ id_fase }}/">Items - {{ item.nombre }}</a>
 	</ul>
 </div>
 {% endblock %}
@@ -68,7 +68,10 @@
 						</tbody>	
 					</table>
 					<div align="center">
-						<a href="/adm_proyectos/gestionar/{{ id_proyecto }}/adm_items/{{ id_fase }}/consul_atrib/{{ id_item }}/"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-arrow-left"></span> Atributos</button></a>
+						<a href="/adm_proyectos/gestionar/{{ id_proyecto }}/adm_items/{{ id_fase }}/consul_atrib/{{ id_item }}/"><button type="button" class="btn btn-default"> Atributos <br></button></a>
+					</div>
+					<div align="center">
+						<a href="/adm_proyectos/gestionar/{{ id_proyecto }}/adm_items/{{ id_fase }}/consul_relac/{{ id_item }}/"><button type="button" class="btn btn-default"> Relaciones <br></button></a>
 					</div>
 					<div align="center">
 						<a href="/adm_proyectos/gestionar/{{ id_proyecto }}/adm_items/{{ id_fase }}/"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-arrow-left"></span> Volver</button></a>

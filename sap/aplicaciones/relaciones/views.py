@@ -153,6 +153,20 @@ def crear_relacion(request, id_proyecto, id_fase, id_item, id_importar):
         rsucesor1 = Relaciones.objects.filter(sucesor_id=id_item, versionsegundo=item.version, is_active=True)
         rsucesor2 = Relaciones.objects.filter(sucesor_id=id_importar, versionsegundo=itemrelacionado.version, is_active=True)
         
+        if request.POST.get('tiporelacion', '')=='Padre':
+            if rhijo1 or rantecesor1:
+                mensaje ='El item ya posee un padre/antecesor. No se pudo crear la relacion.'
+                ctx = {'mensaje': mensaje, 'id_proyecto': id_proyecto, 'id_fase': id_fase, 'id_item': id_item}
+                template_name = './relaciones/relacionalerta.html'
+                return render_to_response(template_name, ctx, context_instance=RequestContext(request))
+        else:
+            for padre in rpadre1:
+                if padre.hijo_id==id_importar:
+                    mensaje ='El item ya posee un padre/antecesor. No se pudo crear la relacion.'
+                    ctx = {'mensaje': mensaje, 'id_proyecto': id_proyecto, 'id_fase': id_fase, 'id_item': id_item}
+                    template_name = './relaciones/relacionalerta.html'
+                    return render_to_response(template_name, ctx, context_instance=RequestContext(request))
+        
         listap1 = []
         listap1.extend(rpadre1)
         listap1.extend(rantecesor1)
@@ -175,7 +189,6 @@ def crear_relacion(request, id_proyecto, id_fase, id_item, id_importar):
         for s1 in listas1:
             if not (version_relacion(s1, int(id_item))):
                 estamosenproblemas.append(gkcmt)
-        
         for itemvalor in item2:
             if not (cargar_atributos(itemvalor.valor_id, itemvalor.nombre_atributo, itemvalor.orden, itemvalor.tabla_valor_nombre, id_proyecto, id_fase, id_importar)):
                 estamosenproblemas2.append(gkcmt)
@@ -185,7 +198,6 @@ def crear_relacion(request, id_proyecto, id_fase, id_item, id_importar):
         for s2 in listas2:
             if not (version_relacion(s2, int(id_importar))):
                 estamosenproblemas.append(gkcmt)
-                
         relacioncreada = Relaciones()
         if (request.POST.get('tiporelacion', ''))=='Padre':
             relacioncreada.padre_id = id_importar
@@ -295,19 +307,7 @@ def eliminar_relacion(request, id_proyecto, id_fase, id_item, id_relacion):
 
     itemaca.version = itemaca.version + 1
     itemotro.version = itemotro.version + 1
-    eliminada = Relaciones()
-    eliminada.padre_id = relacion.padre_id
-    eliminada.antecesor_id = relacion.antecesor_id
-    eliminada.sucesor_id = relacion.sucesor_id
-    eliminada.hijo_id = relacion.hijo_id
-    eliminada.faseprimera = relacion.faseprimera
-    eliminada.fasesegunda = relacion.fasesegunda
-    eliminada.is_active=True
-    eliminada.proyecto = relacion.proyecto
-    eliminada.versionprimero = relacion.versionprimero
-    eliminada.versionsegundo = relacion.versionsegundo
-    
-    eliminada.save()
+
     relacion.is_active=False
     relacion.save()
     itemaca.save()
@@ -482,75 +482,4 @@ def version_relacion(relacion, item):
             relacionnueva.versionprimero = relacion.versionprimero
             relacionnueva.versionsegundo = relacion.versionsegundo + 1
             relacionnueva.save()
-    return (True)
-
-def relacion_nueva_version(relacion, primero, segundo):
-    nuevo = Relaciones()
-    if (segundo):
-        if (relacion.padre_id==primero.id):
-            nuevo.padre_id = primero.id
-            nuevo.hijo_id = segundo.id
-            nuevo.antecesor_id = relacion.antecesor_id
-            nuevo.sucesor_id = relacion.sucesor_id
-            nuevo.faseprimera = relacion.faseprimera
-            nuevo.fasesegunda = relacion.fasesegunda
-            nuevo.proyecto = relacion.proyecto
-            nuevo.is_active = True
-            nuevo.versionprimero = primero.version + 1
-            nuevo.versionsegundo = segundo.version + 1
-        elif (relacion.hijo_id==primero.id):
-            nuevo.padre_id = segundo.id
-            nuevo.hijo_id = primero.id
-            nuevo.antecesor_id = relacion.antecesor_id
-            nuevo.sucesor_id = relacion.sucesor_id
-            nuevo.faseprimera = relacion.faseprimera
-            nuevo.fasesegunda = relacion.fasesegunda
-            nuevo.proyecto = relacion.proyecto
-            nuevo.is_active = True
-            nuevo.versionprimero = segundo.version + 1
-            nuevo.versionsegundo = primero.version + 1
-        elif (relacion.antecesor_id==primero_id):
-            nuevo.antecesor_id = primero.id
-            nuevo.sucesor_id = segundo.id
-            nuevo.hijo_id = relacion.hijo_id
-            nuevo.padre_id = relacion.padre_id
-            nuevo.faseprimera = relacion.faseprimera
-            nuevo.fasesegunda = relacion.fasesegunda
-            nuevo.proyecto = relacion.proyecto
-            nuevo.is_active = True
-            nuevo.versionprimero = primero.version + 1
-            nuevo.versionsegundo = segundo.version + 1
-        elif (relacion.sucesor_id==primero):
-            nuevo.antecesor_id = segundo.id
-            nuevo.sucesor_id = primero.id
-            nuevo.hijo_id = relacion.hijo_id
-            nuevo.padre_id = relacion.padre_id
-            nuevo.faseprimera = relacion.faseprimera
-            nuevo.fasesegunda = relacion.fasesegunda
-            nuevo.proyecto = relacion.proyecto
-            nuevo.is_active = True
-            nuevo.versionprimero = segundo.version + 1
-            nuevo.versionsegundo = primero.version + 1
-    else:
-        if relacion.padre_id==primero.id:
-            nuevo.versionprimero = primero.version + 1
-            nuevo.versionsegundo = relacion.versionsegundo
-        elif relacion.hijo_id==primero.id:
-            nuevo.versionsegundo = primero.version + 1
-            nuevo.versionprimero = relacion.versionsegundo
-        elif relacion.antecesor_id==primero.id:
-            nuevo.versionprimero = primero.version + 1
-            nuevo.versionsegundo = relacion.versionsegundo
-        elif relacion.sucesor_id==primero.id:
-            nuevo.versionsegundo = primero.version + 1
-            nuevo.versionprimero = relacion.versionsegundo
-        nuevo.padre_id = relacion.padre_id
-        nuevo.hijo_id = relacion.hijo_id
-        nuevo.sucesor_id = relacion.sucesor_id
-        nuevo.antecesor_id = relacion.antecesor_id
-        nuevo.is_active = True
-        nuevo.proyecto = relacion.proyecto
-        nuevo.faseprimera = relacion.faseprimera
-        nuevo.fasesegunda = relacion.fasesegunda
-    nuevo.save()
     return (True)

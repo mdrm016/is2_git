@@ -31,6 +31,16 @@ cd /home/"$Usuario"/workspace/is2_git/sap
 mkdir /home/"$Usuario"/workspace/is2_git/sap/Sap_documentacion/Sap
 epydoc --html --o /home/"$Usuario"/workspace/is2_git/sap/Sap_documentacion/Sap --name "Sap_documentacion" *.py
 
+cd ..
+cd items
+mkdir /home/"$Usuario"/workspace/is2_git/sap/Sap_documentacion/Items
+epydoc --html --o /home/"$Usuario"/workspace/is2_git/sap/Sap_documentacion/Items --name "Sap_documentacion" *.py
+
+cd ..
+cd relaciones
+mkdir /home/"$Usuario"/workspace/is2_git/sap/Sap_documentacion/Relaciones
+epydoc --html --o /home/"$Usuario"/workspace/is2_git/sap/Sap_documentacion/Relaciones --name "Sap_documentacion" *.py
+
 cd /home/"$Usuario"/workspace/is2_git/sap/Sap_documentacion/Sap 
 sudo firefox -new-tab index.html
 cd /home/"$Usuario"/workspace/is2_git/sap/Sap_documentacion/Usuarios

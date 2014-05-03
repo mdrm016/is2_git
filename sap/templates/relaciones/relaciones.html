@@ -4,7 +4,7 @@
 <div class="menu">
 	<ul>
 		<li id="option1" class="active">
-			<a href="/">Item - Relaciones</a>
+			<a href="/adm_proyectos/gestionar/{{ id_proyecto }}/adm_items/{{ id_fase }}/">Item - Relaciones</a>
 		</li>
 	</ul>
 </div>
@@ -79,6 +79,9 @@
 					</div>
 				</div>
 		{% endif %}
+		<div align="center"><br>
+			<a href="/adm_proyectos/gestionar/{{ id_proyecto }}/adm_items/{{ id_fase }}/"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-remove"></span> Cancelar</button></a>
+		</div>
 			<!-- Ininicia Modal -->
 			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 				<div class="modal-dialog">
@@ -98,6 +101,6 @@
 				</div>
 			</div>
 <!-- Finaliza el Modal -->
-
+			
 </div>
 {% endblock %}
