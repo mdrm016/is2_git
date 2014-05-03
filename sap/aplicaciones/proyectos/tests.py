@@ -36,7 +36,7 @@ class test_proyectos (TestCase):
     def test_crear_proyecto(self): 
 
         self.user = User.objects.get(pk=1) 
-        request = self.factory.post('/adm_proyectos/crear/', {'Nombre_del_Proyecto': 'Proyecto 10', 'Lider': '2', 'Fecha_de_Inicio': '17/04/2014', 'Duracion': '2'})
+        request = self.factory.post('/adm_proyectos/crear/', {'Nombre_del_Proyecto': 'Proyecto 10', 'Lider': '2', 'Fecha_de_Inicio': '2014-04-17', 'Duracion': '2'})
         request.user = self.user 
         response = crear_proyecto(request) 
         self.assertEqual(response.status_code, 200)
@@ -93,7 +93,7 @@ class test_proyectos (TestCase):
         proyecto_id = '1'
         fases = Fases.objects.filter(proyecto=1)
         self.assertTrue(fases)
-        request = self.factory.post('adm_proyectos/importar_proyecto/importar/1', {'Nombre_del_Proyecto': 'Proyecto 15 imp', 'Lider': '2', 'Fecha_de_Inicio': '17/04/2014', 'Duracion': '2'})
+        request = self.factory.post('adm_proyectos/importar_proyecto/importar/1', {'Nombre_del_Proyecto': 'Proyecto 15 imp', 'Lider': '2', 'Fecha_de_Inicio': '2014-04-17', 'Duracion': '2'})
         self.user = User.objects.get(pk=1)
         request.user = self.user
         response = importar(request, proyecto_id)
