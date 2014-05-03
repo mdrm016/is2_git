@@ -58,7 +58,7 @@ def administrarRoles(request):
     return render(request, template_name, {'lista_roles': roles, 'mis_roles': mis_roles})
     
 @login_required(login_url='/login/')
-@permission_required('roles.add_roles',raise_exception=True)
+@permission_required('roles.crear_roles',raise_exception=True)
 def rolNuevo(request):
     """ Recibe un request, obtiene el formulario con los datos del rol a crear
     o la solicitud de envio de dicho formulario. Luego verifica los datos recibidos
@@ -175,7 +175,7 @@ def desasignarFaseRol(request, id_rol):
     
 
 @login_required(login_url='/login/')
-@permission_required('roles.change_roles',raise_exception=True)
+@permission_required('roles.modificar_roles',raise_exception=True)
 def modificarRol(request, id_rol):
     """ Busca en la base de datos el Rol cuyos datos se quieren modificar.
     Presenta esos datos en un formulario y luego se guardan los cambios realizados.
@@ -217,14 +217,20 @@ def modificarRol(request, id_rol):
         for perm in rol.permissions.all():
             marcados.append(perm.codename)
         data = {'Nombre_de_Rol': rol.name, 'Descripcion': rol.descripcion}
-        permisos = [(permiso.codename, permiso.name) for permiso in Permission.objects.all()]
+        permisos = Permission.objects.filter(id__gt=18)  
+        parte1 = permisos.filter(id__range=(19,44))
+        parte2 = permisos.filter(id__gt=62)
+        permisos = []
+        permisos.extend(parte1)
+        permisos.extend(parte2)
+        permisos = [(permiso.codename, permiso.name) for permiso in permisos]
         form = RolModificadoForm(data)
 
     template_name='./Roles/modificar_rol.html'
     return render(request, template_name, {'form': form, 'marcados': marcados, 'permisos': permisos})
 
 @login_required(login_url='/login/')
-@permission_required('roles.delete_roles',raise_exception=True)
+@permission_required('roles.eliminar_roles',raise_exception=True)
 def eliminarRol(request, id_rol):
     """ Eliminar de manera logica los registros del rol.
         
