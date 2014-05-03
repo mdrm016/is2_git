@@ -1,0 +1,137 @@
+{% extends "base_general.html" %}
+
+{% block menu %}		
+<div class="menu">
+	<ul>
+		<li id="option1" class="active">
+			<a href="/">Proyectos</a>
+		</li>
+	</ul>
+</div>
+{% endblock %}
+
+{% block botones %}
+<div class="row">
+	<form class="navbar-form navbar-left">
+<!-- 		<a href="#"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-import"></span> Importar Fase</button></a>-->
+	</form>
+</div>
+{% endblock %}
+
+{% block contenido %}
+<div class="content-secondary">
+<!-- Aca van la  lista de Proyectos.. o de Solicitudes.. o de credenciales -->
+		{% if lista_valores %}
+			<div class="panel-group" id="accordion">
+				<table align="center">
+			{% for valores in lista_valores %}
+				<tr>
+					<td> {{ valores.nombre_atributo }} :  </td>
+					{% ifequal valores.tipo_dato "Fecha" %}
+						<td> {{ valores.valor_fecha }}
+						</td>
+					{% endifequal %}
+					{% ifequal valores.tipo_dato "Logico" %}
+						{% ifequal valores.valor True %}
+						<td> Si
+						</td>
+						{% endifequal %}
+						{% ifequal valores.valor False %}
+						<td> No
+						</td>
+						{% endifequal %}
+					{% endifequal %}
+					{% ifequal valores.tipo_dato "Arvhivo Externo" %}
+						<td> {{ valores.valor_archivoexterno }}
+						</td>
+					{% endifequal %}
+					{% ifequal valores.tipo_dato "Numerico" %}
+						<td> {{ valores.valor_numerico }}
+						</td>
+					{% endifequal %}
+					{% ifequal valores.tipo_dato "Texto" %}
+				    	<td> {{ valores.valor_texto }}
+				    	</td>
+				    {% endifequal %}
+				</tr>
+			{% endfor %}
+		</table>
+					{% csrf_token %}
+		</div>
+		{% else %}	
+				<div class="jumbotron">
+					<div class="bs-example">
+						<p class="text-warning" align="center"><small>No se encontraron Atributos</small></p>
+					</div>
+				</div>
+			
+		{% endif %}
+		
+		{% if lista_relaciones %}
+		<div class="row ">
+			<div class="panel-group" id="accordion">
+				<div class="panel panel-default">
+					<div class="row">
+				    	<div class="col-md-4">
+				   			<div class="panel-heading">
+				      			<h4 class="panel-title"><b>Nombre</b></h4>
+				    		</div>
+				    	</div>				    
+				    	<div class="col-md-4">
+				    		<div class="panel-heading">
+				      			<h4 class="panel-title"><b>Relacion (Item listado)</b></h4>
+				    		</div>
+				    	</div>
+				    </div>
+				</div>
+			<div class="panel-group" id="accordion">
+				<table align="center">
+			{% for relacion in lista_relaciones %}
+			{% ifequal relacion.itemrelacionado id_item %}
+			{% else %}
+				<div class="panel panel-default">
+					<div class="col-md-4">
+				    	<div class="panel-heading">
+				      		<h4 class="panel-title">
+				        		<a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ relacion.relacionid }}">
+				          			{{ relacion.nombreitemrelacionado }}
+				        		</a>
+				      		</h4>
+				    	</div>
+				    </div>				    
+				    <div class="col-md-4">
+				    	<div class="panel-heading">
+				      		<h4 class="panel-title">
+				        		<a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ relacion.relacionid }}">
+				          			{{ relacion.tiporelacion }}
+				        		</a>
+				      		</h4>
+				    	</div>
+				    </div>
+				    
+				    <div id="collapse{{ relacion.relacionid }}" class="panel-collapse collapse pull-left">
+				      <div class="panel-body">
+				      		<button class="btn btn-danger btn-sm relaciones" data-toggle="modal" data-target="#myModal" data-id="{{ relacion.relacionid }}"><span class="glyphicon glyphicon-trash"></span> Revivir </button>
+				      </div>
+				    </div>
+				</div>
+			{% endifequal %}
+			{% endfor %}
+		</table>
+					{% csrf_token %}
+		</div>
+		
+		{% else %}	
+				<div class="jumbotron">
+					<div class="bs-example">
+						<p class="text-warning" align="center"><small>No se encontraron Relaciones</small></p>
+					</div>
+				</div>
+			
+		{% endif %}
+		<div  align="center">
+			<a type="button" class="btn btn-default" href="/adm_proyectos/gestionar/{{ id_proyecto }}/adm_items/{{ id_fase }}/eliminados/{{ id_item }}">Volver</a>
+		</div>
+
+</div>
+{% endblock %}
