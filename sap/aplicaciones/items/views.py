@@ -7,7 +7,7 @@ from django.template.context import RequestContext
 from aplicaciones.proyectos.models import Proyectos
 from aplicaciones.fases.models import Fases
 from aplicaciones.tipoitem.models import TipoItem
-from aplicaciones.tipoatributo.models import TipoAtributo, Numerico, Fecha, Texto, ArchivoExterno, Logico
+from aplicaciones.tipoatributo.models import TipoAtributo, Numerico, Fecha, Texto, ArchivoExterno, Logico, Imagen
 from .models import Items, ListaValores, ValorItem
 from datetime import datetime
 from django.contrib.auth.decorators import login_required, permission_required
@@ -139,24 +139,69 @@ def cargar_valores(request, id_proyecto, id_fase, id_item):
             iditematributo = listaatributo.id_tipoitem 
             tipoatributoobjetos = TipoAtributo.objects.filter(id=listaatributo.id_atributo)
             valoritems = ValorItem()
+            
             for tipoatributoobjeto in tipoatributoobjetos:
                 tipodatoatributo= tipoatributoobjeto.tipo
             if tipodatoatributo=='Archivo Externo':
-                archivo = ArchivoExterno()
-                archivo.valor = request.FILE[str(i)]
-                archivo.id_item = id_item
-                archivo.nombre_atributo = nombreatributo
-                archivo.save()
-                valoritems.item_id = id_item
-                valoritems.valor_id = archivo.id
-                valoritems.tabla_valor_nombre = 'tipoatributo_archivoexterno'
-                valoritems.nombre_atributo = nombreatributo
-                valoritems.tipo_dato = tipodatoatributo
-                valoritems.version = versionitem
-                valoritems.orden = posicion
-                valoritems.proyecto_id = id_proyecto
-                valoritems.fase_id = id_fase
-                valoritems.save()
+                if request.FILES.has_key(str(i)):
+                    archivo = ArchivoExterno()
+                    archivo.valor = request.FILES[str(i)]
+                    archivo.id_item = id_item
+                    archivo.nombre_atributo = nombreatributo
+                    archivo.save()
+                    valoritems.item_id = id_item
+                    valoritems.valor_id = archivo.id
+                    valoritems.tabla_valor_nombre = 'tipoatributo_archivoexterno'
+                    valoritems.nombre_atributo = nombreatributo
+                    valoritems.tipo_dato = tipodatoatributo
+                    valoritems.version = versionitem
+                    valoritems.orden = posicion
+                    valoritems.proyecto_id = id_proyecto
+                    valoritems.fase_id = id_fase
+                    valoritems.save()
+                else:
+                    valoritems_guardado = ValorItem.objects.get(item_id = id_item, nombre_atributo = nombreatributo, tipo_dato = tipodatoatributo, version = versionitem-1, orden = posicion)
+                    valoritems.item_id = valoritems_guardado.item_id
+                    valoritems.valor_id = valoritems_guardado.valor_id
+                    valoritems.tabla_valor_nombre = 'tipoatributo_archivoexterno'
+                    valoritems.nombre_atributo = valoritems_guardado.nombre_atributo
+                    valoritems.tipo_dato = valoritems_guardado.tipo_dato
+                    valoritems.version = versionitem
+                    valoritems.orden = valoritems_guardado.orden
+                    valoritems.proyecto_id = valoritems_guardado.proyecto_id
+                    valoritems.fase_id = valoritems_guardado.fase_id
+                    valoritems.save()
+                    
+            elif tipodatoatributo=='Imagen':
+                if request.FILES.has_key(str(i)):
+                    imagen = Imagen()
+                    imagen.valor = request.FILES[str(i)]
+                    imagen.id_item = id_item
+                    imagen.nombre_atributo = nombreatributo
+                    imagen.save()
+                    valoritems.item_id = id_item
+                    valoritems.valor_id = imagen.id
+                    valoritems.tabla_valor_nombre = 'tipoatributo_imagen'
+                    valoritems.nombre_atributo = nombreatributo
+                    valoritems.tipo_dato = tipodatoatributo
+                    valoritems.version = versionitem
+                    valoritems.orden = posicion
+                    valoritems.proyecto_id = id_proyecto
+                    valoritems.fase_id = id_fase
+                    valoritems.save()
+                else:
+                    valoritems_guardado = ValorItem.objects.get(item_id = id_item, nombre_atributo=nombreatributo, tipo_dato = tipodatoatributo, version = versionitem-1, orden = posicion)
+                    valoritems.item_id = valoritems_guardado.item_id
+                    valoritems.valor_id = valoritems_guardado.valor_id
+                    valoritems.tabla_valor_nombre = 'tipoatributo_imagen'
+                    valoritems.nombre_atributo = valoritems_guardado.nombre_atributo
+                    valoritems.tipo_dato = valoritems_guardado.tipo_dato
+                    valoritems.version = versionitem
+                    valoritems.orden = valoritems_guardado.orden
+                    valoritems.proyecto_id = valoritems_guardado.proyecto_id
+                    valoritems.fase_id = valoritems_guardado.fase_id
+                    valoritems.save()
+                    
             elif tipodatoatributo=='Texto':
                 archivo = Texto()
                 archivo.valor = request.POST.get(str(i), '')
@@ -275,12 +320,21 @@ def cargar_valores(request, id_proyecto, id_fase, id_item):
                 valorfuturo.save()
                 lista_valores.append(valorfuturo)
             if i.tipo_dato=='Archivo Externo':
-                textos = Texto.objects.filter(id=i.valor_id)
+                textos = ArchivoExterno.objects.filter(id=i.valor_id)
                 if textos:
                     for texto in textos:
                         valorfuturo.valor_archivoexterno = texto.valor
                 else:
                     valorfuturo.valor_archivoexterno = ""
+                valorfuturo.save()
+                lista_valores.append(valorfuturo)
+            if i.tipo_dato=='Imagen':
+                textos = Imagen.objects.filter(id=i.valor_id)
+                if textos:
+                    for texto in textos:
+                        valorfuturo.valor_imagen = texto.valor
+                else:
+                    valorfuturo.valor_imagen = ""
                 valorfuturo.save()
                 lista_valores.append(valorfuturo)
             if i.tipo_dato=='Logico':
@@ -301,6 +355,7 @@ def cargar_valores(request, id_proyecto, id_fase, id_item):
             valorfuturo.tipo_dato = atributoobjeto.tipo
             valorfuturo.orden = orden
             valorfuturo.valor_archivoexterno = ""
+            valorfuturo.valor_imagen= ""
             valorfuturo.valor_texto = ""
             valorfuturo.valor_numerico = ""
             valorfuturo.valor_fecha = ""
@@ -378,6 +433,7 @@ def consultar_version(request, id_proyecto, id_fase, id_item, version):
                     valorfuturo.valor_archivoexterno = ""
                 valorfuturo.save()
                 lista_valores.append(valorfuturo)
+            
             if i.tipo_dato=='Logico':
                 textos = Logico.objects.filter(id=i.valor_id)
                 if textos:

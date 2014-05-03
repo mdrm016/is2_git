@@ -24,7 +24,12 @@ def administrarRoles(request):
     """
     error = False
     usuario_logueado = User.objects.get(username=request.user.username)
-    mis_roles = usuario_logueado.groups.all()
+    mis_roles_todos = usuario_logueado.groups.all()
+    mis_roles = []
+    for mi_rol in mis_roles_todos:
+        rol = Roles.objects.get(id = mi_rol.id)
+        if rol.is_active:
+            mis_roles.append(rol)
     if 'busqueda' in request.GET:
         busqueda = request.GET['busqueda']
         if not busqueda:
@@ -80,14 +85,10 @@ def rolNuevo(request):
             rol = Roles.objects.create(name = nombreRol)
             for permiso in permisos:
                 rol.permissions.add(Permission.objects.get(codename=permiso))
-            
-            p = proyecto
             if proyecto:
-                try:
-                    p = Proyectos.objects.get(id=proyecto)
-                except Roles.DoesNotExist:
-                   p = ''
-                 
+                p = Proyectos.objects.get(id=proyecto) 
+            else:
+                p = '' 
             rol.proyecto = p
             rol.descripcion = descripcion
             rol.save()
@@ -101,7 +102,6 @@ def rolNuevo(request):
     return render(request, template_name, {'form': form})
 
 @login_required(login_url='/login/')
-@permission_required('roles.add_roles',raise_exception=True)
 def asignarFaseRol(request, id_rol):
     """ Recibe un request, obtiene el formulario con las fases seleccionadas del proyecto al que
     esta asignado el Rol o la solicitud de envio de dicho formulario. Luego verifica los datos recibidos
@@ -207,7 +207,7 @@ def modificarRol(request, id_rol):
             if permisos:
                 for permiso in permisos:
                     rol.permissions.add(Permission.objects.get(codename=permiso))
-            
+                    
             rol.descripcion = descripcion
             rol.save()
                     
@@ -266,6 +266,7 @@ def consultarRol(request, id_rol):
     fases = rol.fases.all()
     usuarios_con_rol = []
     usuarios_activos = User.objects.filter(is_active=True)
+    proyecto = Proyectos.objects.get(id=rol.proyecto)
     for usuario in usuarios_activos:
         roles = usuario.groups.all()
         if roles:
@@ -273,7 +274,7 @@ def consultarRol(request, id_rol):
                 if rol.name == este_rol.name:
                     usuarios_con_rol.append(usuario)
         
-    return render(request, template_name, {'rol' : rol, 'permisos':permisos, 'usuarios': usuarios_con_rol, 'fases':fases}) 
+    return render(request, template_name, {'rol' : rol, 'permisos':permisos, 'usuarios': usuarios_con_rol, 'fases':fases, 'proyecto': proyecto}) 
 
 @login_required(login_url='/login/')
 @permission_required('roles.asignar_rol',raise_exception=True)

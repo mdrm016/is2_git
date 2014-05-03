@@ -118,7 +118,7 @@ def proyecto_finalizado (request):
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
 
 @login_required(login_url='/login/')
-@permission_required('proyectos.add_proyectos',raise_exception=True)
+@permission_required('proyectos.crear_proyectos',raise_exception=True)
 def crear_proyecto (request):
     
     """ Recibe un request, se verifica si el usuario tiene permisos para crear un proyecto 
@@ -166,7 +166,7 @@ def crear_proyecto (request):
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
 
 @login_required(login_url='/login/')
-@permission_required('proyectos.change_proyectos',raise_exception=True)
+@permission_required('proyectos.modificar_proyectos',raise_exception=True)
 def modificar_proyecto (request, id_proyecto):
     
     """ Recibe un request y el id del proyecto a ser modificado, se verifica si el usuario tiene
@@ -291,7 +291,7 @@ def consultar_proyecto (request, id_proyecto):
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
 
 @login_required(login_url='/login/')
-@permission_required('proyectos.delete_proyectos',raise_exception=True)
+@permission_required('proyectos.eliminar_proyectos',raise_exception=True)
 def eliminar_proyecto (request, id_proyecto):
     
     """ Recibe un request y el id del proyecto a ser eliminado, se verifica si el usuario tiene

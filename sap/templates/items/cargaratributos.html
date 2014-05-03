@@ -22,37 +22,55 @@
 <div class="content-secondary">
 <!-- Aca van la  lista de Proyectos.. o de Solicitudes.. o de credenciales -->
 		{% if lista_valores %}
-		<form action="" method="post">
+		<form enctype="multipart/form-data" action="" method="post">
 			<div class="panel-group" id="accordion">
 				<table align="center">
 			{% for valores in lista_valores %}
 				<tr>
 					<td>{{ valores.nombre_atributo }} :  </td>
 					{% ifequal valores.tipo_dato "Fecha" %}
-						<td><input type="date" name={{forloop.counter}} value="{{ valores.valor_fecha }}" /> En formato AAAA-MM-DD {{ valores.orden }}
+						<td><input type="date" name="{{ forloop.counter }}" value="{{ valores.valor_fecha }}" /> En formato AAAA-MM-DD {{ valores.orden }}
 						</td>
 					{% endifequal %}
 					{% ifequal valores.tipo_dato "Logico" %}
 						{% ifequal valores.valor_logico "t" %}
-						<td> Si<input type="radio" name={{forloop.counter}} checked="checked" />
-						 No<input type="radio" name={{forloop.counter}} /> {{ valores.orden }}
+						<td> Si<input type="radio" name="{{ forloop.counter }}" checked="checked" />
+						 No<input type="radio" name="{{ forloop.counter }}" /> 
 						</td>
 						{% else %}
-						<td> Si<input type="radio" name={{forloop.counter}}  />
-						 No<input type="radio" name={{forloop.counter}} checked="checked" /> {{ valores.orden }}
+						<td> Si<input type="radio" name="{{ forloop.counter }}"  />
+						 No<input type="radio" name="{{ forloop.counter }}" checked="checked" /> 
 						</td>
 						{% endifequal %}
 					{% endifequal %}
-					{% ifequal valores.tipo_dato "Arvhivo Externo" %}
-						<td><input type="file" name={{forloop.counter}} value="{{ valores.valor_archivoexterno }}" /> {{ valores.orden }}
-						</td>
+					{% ifequal valores.tipo_dato "Archivo Externo" %}
+						{% ifequal valores.valor_archivoexterno "" %}
+							<td><input type="file" name="{{ forloop.counter }}" value="{{ valores.valor_archivoexterno }}" />
+							</td>
+						{% else %}
+							<td><input type="file" name="{{ forloop.counter }}" value="{{ valores.valor_archivoexterno }}" />
+							</td>
+							<td><a href="{{ setting.MEDIA_URL }}{{ valores.valor_archivoexterno.url }}" name="{{ forloop.counter }}"> {{ valores.valor_archivoexterno.name }}</a>
+							</td>
+						{% endifequal %}
 					{% endifequal %}
+					{% ifequal valores.tipo_dato "Imagen" %}
+						{% ifequal valores.valor_imagen "" %}
+							<td><input type="file" name="{{ forloop.counter }}" value="{{ valores.valor_imagen }}" />
+							</td>
+						{% else %}
+							<td><input type="file" name="{{ forloop.counter }}" value="{{ valores.valor_imagen }}" />
+							</td>
+							<td><a href="{{ setting.MEDIA_URL }}{{ valores.valor_imagen.url }}" name="{{ forloop.counter }}"><img src="{{ setting.MEDIA_URL }}{{ valores.valor_imagen.url }}" width="400" height="400"></a>
+							</td>
+						{% endifequal %}
+					{% endifequal %}	
 					{% ifequal valores.tipo_dato "Numerico" %}
-						<td><input type="number" name={{forloop.counter}} value="{{ valores.valor_numerico }}" /> {{ valores.orden }}
+						<td><input type="number" name="{{ forloop.counter }}" value="{{ valores.valor_numerico }}" />
 						</td>
 					{% endifequal %}
 					{% ifequal valores.tipo_dato "Texto" %}
-				    	<td><input type="text" name="{{forloop.counter}}" maxlength=300 value="{{ valores.valor_texto }}" /> {{ valores.orden }}
+				    	<td><input type="text" name="{{forloop.counter}}" maxlength=300 value="{{ valores.valor_texto }}" /> 
 				    	</td>
 				    {% endifequal %}
 				</tr>

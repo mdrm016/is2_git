@@ -52,7 +52,7 @@ def adm_fases(request, id_proyecto):
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
 
 @login_required(login_url='/login/')
-@permission_required('fases.add_fases',raise_exception=True)
+@permission_required('fases.crear_fases',raise_exception=True)
 def crear_fase(request, id_proyecto):
     """ Recibe un request, se verifica si el usuario tiene permisos para crear una fase 
     y se lo redirige a una pagina para que rellene el formulario de creacion de fase,
@@ -137,7 +137,7 @@ def consultar_fase (request, id_fase, id_proyecto):
     return render(request, template_name, {'id_proyecto': id_proyecto, 'fase': fase, 'id_fase': id_fase})
     
 @login_required(login_url='/login/')
-@permission_required('fases.delete_fases',raise_exception=True)
+@permission_required('fases.eliminar_fases',raise_exception=True)
 def eliminar_fase (request, id_fase, id_proyecto):
     
     """ Recibe un request y el id de la fase a ser eliminada, se verifica si el usuario tiene
@@ -175,7 +175,7 @@ def eliminar_fase (request, id_fase, id_proyecto):
         return render(request, template_name, {'id_proyecto': id_proyecto})
 
 @login_required(login_url='/login/')
-@permission_required('fases.change_fases',raise_exception=True)
+@permission_required('fases.modificar_fases',raise_exception=True)
 def modificar_fase (request, id_proyecto, id_fase):
     
     """ Recibe un request y el id de la fase a ser modificada, se verifica si el usuario tiene
