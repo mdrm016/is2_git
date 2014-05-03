@@ -6,8 +6,10 @@ from django.db.models import Q
 from aplicaciones.tipoatributo.models import TipoAtributo
 from aplicaciones.proyectos.models import Proyectos
 from django.contrib.auth.decorators import login_required, permission_required
+from aplicaciones.items.models import Items
 
 @login_required(login_url='/login/')
+@permission_required('tipoitem.administrar_tipoitem',raise_exception=True)
 def adm_tipoitem (request, id_proyecto):
     
     """ Recibe un request y un id de proyecto, se obtiene todos los tipos de item disponibles para ese proyecto
@@ -42,11 +44,23 @@ def adm_tipoitem (request, id_proyecto):
             if not tipoitem:
                 error = True
                 
-    ctx = {'lista_tipoitem':tipoitem, 'query':busqueda, 'error':error, 'id_proyecto':id_proyecto}   
+    lista_tipoitem=[]            
+    for TA in tipoitem:
+        items = Items.objects.filter(is_active=True, tipo_item=TA.id)
+        if items:
+            usado= True
+        else:
+            usado= False
+        tupla=(TA, usado)
+        lista_tipoitem.append(tupla)
+        
+                
+    ctx = {'lista_tipoitem':lista_tipoitem, 'query':busqueda, 'error':error, 'id_proyecto':id_proyecto}   
     template_name = 'tipoitem/tipoitem.html'
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
 
 @login_required(login_url='/login/')
+@permission_required('tipoitem.crear_tipoitem',raise_exception=True)
 def crear_tipoitem (request, id_proyecto):
     
     """ Recibe un request y un id de proyecto, se verifica si el usuario tiene permisos para crear un tipo de item
@@ -93,6 +107,7 @@ def crear_tipoitem (request, id_proyecto):
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
 
 @login_required(login_url='/login/')
+@permission_required('tipoitem.modificar_tipoitem',raise_exception=True)
 def modificar_tipoitem (request, id_tipoitem, id_proyecto):
     
     """ Recibe un request, el id de proyecto y el id del tipo de item  a ser modificado, se verifica si
@@ -158,6 +173,7 @@ def modificar_tipoitem (request, id_tipoitem, id_proyecto):
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
 
 @login_required(login_url='/login/')
+@permission_required('tipoitem.eliminar_tipoitem',raise_exception=True)
 def eliminar_tipoitem (request, id_tipoitem, id_proyecto):
     
     """ Recibe un request, el id de proyecto y el id del tipo de item a ser eliminado, se verifica 
@@ -181,20 +197,36 @@ def eliminar_tipoitem (request, id_tipoitem, id_proyecto):
     
     """
     
-    tipoitem = TipoItem.objects.get(id=id_tipoitem)
-    #si algun item usa este tipo de item, ya no se podra borrar
-    
-    elementos_existentes = ordenar_mantener (id_tipoitem)
-    for elemento in elementos_existentes:
-        elemento.is_active = False
-        elemento.orden = 0
-        elemento.save()
+    items = Items.objects.filter(is_active=True, tipo_item=id_tipoitem)
+    if items:
+        msj=''
+        for item in items:
+            if msj=='':
+                msj='%s'% item.nombre
+            else:
+                msj='%s, %s' % (msj, item.nombre)
+        if len(items)==1:
+            mensaje='Imposible eliminar el Tipo de Item, es usado por el item: %s' % msj
+        else:
+            mensaje='Imposible eliminar el Tipo de Item, es usado por los items: %s' % msj
+        ctx = {'mensaje':mensaje, 'id_proyecto':id_proyecto}
+        template_name='tipoitem/tipoitemalerta.html'
+        return render_to_response(template_name, ctx, context_instance=RequestContext(request))
+    else:
+        tipoitem = TipoItem.objects.get(id=id_tipoitem)
         
-    tipoitem.is_active = False
-    tipoitem.save()
-    return HttpResponseRedirect('/adm_proyectos/gestionar/%s/adm_tipos_item/' % id_proyecto)
+        elementos_existentes = ordenar_mantener (id_tipoitem)
+        for elemento in elementos_existentes:
+            elemento.is_active = False
+            elemento.orden = 0
+            elemento.save()
+            
+        tipoitem.is_active = False
+        tipoitem.save()
+        return HttpResponseRedirect('/adm_proyectos/gestionar/%s/adm_tipos_item/' % id_proyecto)
 
 @login_required(login_url='/login/')
+@permission_required('tipoitem.consultar_tipoitem',raise_exception=True)
 def consultar_tipoitem (request, id_tipoitem, id_proyecto):
     
     """ Recibe un request, el id de proyecto y el id del tipo de item a ser consultado, se verifica
@@ -230,6 +262,7 @@ def consultar_tipoitem (request, id_tipoitem, id_proyecto):
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
 
 @login_required(login_url='/login/')
+@permission_required('tipoitem.gestionar_tipoitem',raise_exception=True)
 def gestionar_tipoitem (request, id_tipoitem, id_proyecto):
     
     """ Recibe un request, el id de proyecto y el id del tipo de item a gestionar, se verifica
@@ -425,6 +458,7 @@ def bajar_tipo_atributo (request, id_tipoitem, id_proyecto, id_tipoatributo):
     return HttpResponseRedirect('/adm_proyectos/gestionar/%s/adm_tipos_item/gestionar_tipoitem/%s/' % (id_proyecto, id_tipoitem))
 
 @login_required(login_url='/login/')
+@permission_required('tipoitem.importar_tipoitem',raise_exception=True)
 def listar_proyectos (request, id_proyecto):
     
     """ Recibe un request y un id de proyecto, se obtiene todos los proyectos activos en el sistema

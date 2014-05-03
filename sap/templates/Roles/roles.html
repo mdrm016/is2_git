@@ -49,9 +49,9 @@
 				      		<a href="modificar/{{ mi_rol.id }}/"><button type="button" class="btn btn-default btn-sm">Modificar</button></a>
 				      		{% if mi_rol.proyecto %}
 				      			<a href="asignar_fases/{{ mi_rol.id }}/"><button type="button" class="btn btn-default btn-sm">Asignar Fases</button></a>
-				      			<a href="desasignar_fases/{{ rol.id }}/"><button type="button" class="btn btn-default btn-sm">Desasignar Fases</button></a>
+				      			<a href="desasignar_fases/{{ mi_rol.id }}/"><button type="button" class="btn btn-default btn-sm">Desasignar Fases</button></a>
 				      		{% else %}
-				      			<a href="asignar_proyecto_rol/{{ rol.id }}/"><button type="button" class="btn btn-default btn-sm">Asignar Proyecto</button></a>
+				      			<a href="asignar_proyecto_rol/{{ mi_rol.id }}/"><button type="button" class="btn btn-default btn-sm">Asignar Proyecto</button></a>
 				      		{% endif %}
 				      		<a href="asignar/{{ mi_rol.id }}/"><button type="button" class="btn btn-default btn-sm">Asignar Rol</button></a>
 				      		<a href="desasignar/{{ mi_rol.id }}/"><button type="button" class="btn btn-default btn-sm">Desasignar Rol</button></a>

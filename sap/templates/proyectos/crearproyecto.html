@@ -19,11 +19,51 @@
 				
 			<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
 				<form action="" method="post">{% csrf_token %}
-					{% if form.errors %}
-						<font color="red"><h4><p align="center"><b>Por favor verifique:</b></p></h4></font>
-					{% endif %}
 					<table class="table table-hover table-bordered table-condensed table-responsive">
-						{{ form.as_table }}
+						<tr><th><label for="id_Nombre_del_Proyecto"><h4><b>Nombre del proyecto *:</b></h4></label></th>
+						<td>
+							{% if form.Nombre_del_Proyecto.errors %}
+							<div class="form-group has-error">
+								  <label class="control-label" for="inputError1">{{ form.Nombre_del_Proyecto.errors }}</label>
+								  <input id="id_Nombre_del_Proyecto" maxlength="30" name="Nombre_del_Proyecto" type="text" class="form-control" value="{{ form.data.Nombre_del_Proyecto }}" /><br />
+								  
+							</div>
+							{% else %}
+							
+								<input id="id_Nombre_del_Proyecto" maxlength="30" name="Nombre_del_Proyecto" type="text" class="form-control" value="{{ form.data.Nombre_del_Proyecto }}" /><br />
+							{% endif %}
+							
+						</td></tr>
+						
+						<tr><th><label for="id_Fecha_de_Inicio"><h4><b>Fecha de inicio *:</b></h4></label></th>
+						<td>
+							{% if form.Fecha_de_Inicio.errors %}
+							<div class="form-group has-error">
+								  <label class="control-label" for="inputError1">{{ form.Fecha_de_Inicio.errors }}</label>
+								 <input class="vDateField" id="id_Fecha_de_Inicio" name="Fecha_de_Inicio" size="10" type="date" class="form-control" value="{{ form.data.Fecha_de_Inicio }}" /><br /><span class="helptext"> Ingrese en formato Dia/Des/año</span>
+								  
+							</div>
+							{% else %}
+							
+								<input class="vDateField" id="id_Fecha_de_Inicio" name="Fecha_de_Inicio" size="10" type="date" class="form-control" value="{{ form.data.Fecha_de_Inicio }}" /><br /><span class="helptext"> Ingrese en formato Dia/Des/año</span>
+							{% endif %}
+						</td></tr>
+						
+						<tr><th><label for="id_Duracion"><h4><b>Duracion *:</b></h4></label></th>
+						<td>
+							{% if form.Duracion.errors %}
+							<div class="form-group has-error">
+								  <label class="control-label" for="inputError1">{{ form.Duracion.errors }}</label>
+								 <input id="id_Duracion" name="Duracion" type="number" class="form-control" value="{{ form.data.Duracion }}" /><br /><span class="helptext">* En semanas</span>
+								  
+							</div>
+							{% else %}
+							
+								<input id="id_Duracion" name="Duracion" type="number" class="form-control" value="{{ form.data.Duracion }}" /><br /><span class="helptext">* En semanas</span>
+							{% endif %}
+							
+						</td></tr>
+						
 					</table>
 					<div align="center"><br>
 						<input class="btn btn-default" type="submit" value="Crear Proyecto"/>

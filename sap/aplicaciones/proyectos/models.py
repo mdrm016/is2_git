@@ -37,6 +37,8 @@ class Proyectos(models.Model):
     class Meta:
         ordering = ["nombre"]
         permissions = (
-                      ("listar_miembros", "puede listar los miembros de un proyecto"),
-                      ("importar_proyecto", "puede importar proyectos"),
+                      ("listar_miembros", "Puede listar los miembros de un proyecto"),
+                      ("importar_proyectos", "Puede importar proyectos"),
+                      ("consultar_proyectos", "Puede consultar proyectos"),
+                      ("consultar_proyectosfinalizados", "Puede consultar proyectos finalizados"),
                       )

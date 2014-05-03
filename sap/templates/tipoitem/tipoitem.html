@@ -48,7 +48,7 @@
 				    	</div>
 				    </div>
 				</div>
-			{% for tipoitem in lista_tipoitem %}
+			{% for tipoitem, usado in lista_tipoitem %}
 				<div class="panel panel-default">
 					<div class="col-md-4">
 				    	<div class="panel-heading">
@@ -74,8 +74,10 @@
 
 				      		<a href="consultar/{{ tipoitem.id }}/"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-eye-open"></span> Consultar</button></a>
 				      		<a href="modificar/{{ tipoitem.id }}"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-edit"></span> Modificar</button></a>
+				      		{% if usado == False %}
 				      		<button class="btn btn-danger btn-sm tipoitems" data-toggle="modal" data-target="#myModal" data-id="{{ tipoitem.id }}"><span class="glyphicon glyphicon-trash"></span> Eliminar</button>
 				      		<a href="gestionar_tipoitem/{{ tipoitem.id }}"><button type="button" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-th"></span> Gestionar Tipo de Item</button></a>
+				      		{% endif %}
 				      </div>
 				    </div>
 				</div>

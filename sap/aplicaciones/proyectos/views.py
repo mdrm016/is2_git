@@ -67,6 +67,7 @@ def adm_proyectos (request):
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
 
 @login_required(login_url='/login/')
+@permission_required('proyectos.consultar_proyectosfinalizados',raise_exception=True)
 def proyecto_finalizado (request):
     
     """ Recibe un request, se verifica cual es el usuario registrado y se obtiene la lista de proyectos finalizados
@@ -227,6 +228,8 @@ def modificar_proyecto (request, id_proyecto):
                     lideruser = User.objects.get(username=proyecto.lider)
                 else:
                     lideruser = None
+            else:
+                lideruser = User.objects.get(id=lider)
             #lideruser = User.objects.get(id=lider)
             
             #Si no se ha suministrado un nuevo estado, el proyecto se queda con el estado actual
@@ -245,6 +248,10 @@ def modificar_proyecto (request, id_proyecto):
                       
                 elif estado == 'En Construccion' and not Fases.objects.filter(proyecto = id_proyecto):
                     mensaje="El proyecto no puede pasar a un estado En Construccion si aun no tiene fases"
+                    
+                elif not lider and proyecto.lider == None:
+                    mensaje="El proyecto no puede pasar a un estado En Construccion si aun no tiene un lider"
+                    
                 else:
                     proyecto.nombre=nombreNuevo
                     proyecto.lider=lideruser
@@ -265,6 +272,7 @@ def modificar_proyecto (request, id_proyecto):
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
 
 @login_required(login_url='/login/')
+@permission_required('proyectos.consultar_proyectos',raise_exception=True)
 def consultar_proyecto (request, id_proyecto):
     
     """ Recibe un request y el id del proyecto a ser consultado, se verifica si el usuario tiene
@@ -397,7 +405,7 @@ def listar_miembros (request, id_proyecto):
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
 
 @login_required(login_url='/login/')
-@permission_required('proyectos.importar_proyecto',raise_exception=True)
+@permission_required('proyectos.importar_proyectos',raise_exception=True)
 def importar_proyecto (request):
     
     """ Recibe un request, se verifica los permisos del usuario que desea importar un proyecto y luego se lo 

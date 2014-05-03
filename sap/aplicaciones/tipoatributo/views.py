@@ -8,6 +8,7 @@ from aplicaciones.proyectos.models import Proyectos
 from aplicaciones.tipoitem.models import TipoItem
 from django.contrib.auth.decorators import login_required, permission_required
 from django.db.models import Q
+from django.core.exceptions import PermissionDenied 
 
 # Create your views here.
 @login_required(login_url='/login/')
@@ -52,7 +53,7 @@ def administrarTipoAtributo(request, id_proyecto):
 
 
 @login_required(login_url='/login/')
-@permission_required('tipoatributo.crear_tipo_de_atributo',raise_exception=True)
+@permission_required('tipoatributo.crear_tipoatributo',raise_exception=True)
 def tipoAtributoNuevo(request, id_proyecto):
     """ Recibe un request, obtiene el formulario con los datos del Tipo de Atributo a crear
     o la solicitud de envio de dicho formulario. Luego verifica los datos recibidos
@@ -120,7 +121,7 @@ def tipoAtributoNuevo(request, id_proyecto):
     return render(request, template_name, {'form': form, 'errors': errors, 'id_proyecto': id_proyecto})
     
 @login_required(login_url='/login/')
-@permission_required('tipoatributo.modificar_tipo_de_atributo',raise_exception=True)
+@permission_required('tipoatributo.modificar_tipoatributo',raise_exception=True)
 def modificarTipoAtributo(request, id_proyecto, id_tipo_atributo):
     """ Recibe un request, obtiene el formulario con los datos del Tipo de Atributo a modificar
     o la solicitud de envio de dicho formulario. Luego verifica los datos recibidos
@@ -196,7 +197,7 @@ def modificarTipoAtributo(request, id_proyecto, id_tipo_atributo):
     return render(request, template_name, {'form': form, 'errors': errors, 'id_proyecto': id_proyecto})
 
 @login_required(login_url='/login/')
-@permission_required('tipoatributo.eliminar_tipo_de_atributo',raise_exception=True)
+@permission_required('tipoatributo.eliminar_tipoatributo',raise_exception=True)
 def eliminarTipoAtributo(request, id_proyecto, id_tipo_atributo):
     """ Eliminar de manera logica los registros del Tipo de atributo.Tambien elimina la relacion entre 
     los proyectos que poseen este Tipo de atributo.
