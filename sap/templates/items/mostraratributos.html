@@ -32,11 +32,11 @@
 						</td>
 					{% endifequal %}
 					{% ifequal valores.tipo_dato "Logico" %}
-						{% ifequal valore.valor "t" %}
+						{% ifequal valores.valor True %}
 						<td> Si
 						</td>
 						{% endifequal %}
-						{% ifequal valore.valor "f" %}
+						{% ifequal valores.valor False %}
 						<td> No
 						</td>
 						{% endifequal %}
@@ -62,6 +62,69 @@
 				<div class="jumbotron">
 					<div class="bs-example">
 						<p class="text-warning" align="center"><small>No se encontraron Atributos</small></p>
+					</div>
+				</div>
+			
+		{% endif %}
+		
+		{% if lista_relaciones %}
+		<div class="row ">
+			<div class="panel-group" id="accordion">
+				<div class="panel panel-default">
+					<div class="row">
+				    	<div class="col-md-4">
+				   			<div class="panel-heading">
+				      			<h4 class="panel-title"><b>Nombre</b></h4>
+				    		</div>
+				    	</div>				    
+				    	<div class="col-md-4">
+				    		<div class="panel-heading">
+				      			<h4 class="panel-title"><b>Relacion (Item listado)</b></h4>
+				    		</div>
+				    	</div>
+				    </div>
+				</div>
+			<div class="panel-group" id="accordion">
+				<table align="center">
+			{% for relacion in lista_relaciones %}
+			{% ifequal relacion.itemrelacionado id_item %}
+			{% else %}
+				<div class="panel panel-default">
+					<div class="col-md-4">
+				    	<div class="panel-heading">
+				      		<h4 class="panel-title">
+				        		<a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ relacion.relacionid }}">
+				          			{{ relacion.nombreitemrelacionado }}
+				        		</a>
+				      		</h4>
+				    	</div>
+				    </div>				    
+				    <div class="col-md-4">
+				    	<div class="panel-heading">
+				      		<h4 class="panel-title">
+				        		<a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ relacion.relacionid }}">
+				          			{{ relacion.tiporelacion }}
+				        		</a>
+				      		</h4>
+				    	</div>
+				    </div>
+				    
+				    <div id="collapse{{ relacion.relacionid }}" class="panel-collapse collapse pull-left">
+				      <div class="panel-body">
+				      		<button class="btn btn-danger btn-sm relaciones" data-toggle="modal" data-target="#myModal" data-id="{{ relacion.relacionid }}"><span class="glyphicon glyphicon-trash"></span> Eliminar</button>
+				      </div>
+				    </div>
+				</div>
+			{% endifequal %}
+			{% endfor %}
+		</table>
+					{% csrf_token %}
+		</div>
+		
+		{% else %}	
+				<div class="jumbotron">
+					<div class="bs-example">
+						<p class="text-warning" align="center"><small>No se encontraron Relaciones</small></p>
 					</div>
 				</div>
 			

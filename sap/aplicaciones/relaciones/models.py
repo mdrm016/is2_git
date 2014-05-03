@@ -6,6 +6,7 @@ from aplicaciones.items.models import Items
 # Create your models here.
 
 class Relaciones(models.Model):
+    nombre = models.CharField(max_length=30, null=True)
     padre_id = models.IntegerField(null=True)
     antecesor_id = models.IntegerField(null=True)
     sucesor_id = models.IntegerField(null=True)
@@ -14,14 +15,18 @@ class Relaciones(models.Model):
     proyecto = models.IntegerField(null=True)
     faseprimera = models.IntegerField(null=True)
     fasesegunda = models.IntegerField(null=True)
+    versionprimero = models.IntegerField(null=True)
+    versionsegundo = models.IntegerField(null=True)
     
     def __unicode__(self):
-        return self.sucesor_id
+        return self.snombre
 
 class ListaRelaciones(models.Model):
+    nombre = models.CharField(max_length=30, null=True)
     itemrelacionado = models.IntegerField(null=True)
     nombreitemrelacionado = models.CharField(max_length=30, null=True)
     tiporelacion = models.CharField(max_length=30, null=True)
+    relacionid = models.IntegerField(null=True)
     
     def __unicode__(self):
-        return self.tiporelacion
+        return self.nombre

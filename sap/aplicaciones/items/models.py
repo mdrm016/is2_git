@@ -33,10 +33,11 @@ class Items(models.Model):
     is_active = models.BooleanField(default=True)
     tipo_item = models.ForeignKey(TipoItem)
 
-    def __unicode__ (self):
+    def __unicode__(self):
         return self.nombre
 
 class ValorItem(models.Model):
+    nombre = models.CharField(max_length=30, null=True)
     item = models.ForeignKey(Items)
     valor_id = models.IntegerField(null=True)
     tabla_valor_nombre = models.CharField(max_length=40, null=True)
@@ -47,10 +48,11 @@ class ValorItem(models.Model):
     fase = models.ForeignKey(Fases)
     proyecto = models.ForeignKey(Proyectos)
     
-    def __unicode__ (self):
-        return self.valor_id
+    def __unicode__(self):
+        return self.nombre
     
 class ListaValores(models.Model):
+    nombre = models.CharField(max_length=20, null=True)
     nombre_atributo = models.CharField(max_length=20, null=True)
     tipo_dato = models.CharField(max_length=20, null=True)
     valor_texto = models.CharField(max_length=300, null=True)
@@ -61,4 +63,4 @@ class ListaValores(models.Model):
     orden = models.IntegerField(null=True)
     
     def __unicode__(self):
-        return self.nombre_atributo
+        return self.nombre

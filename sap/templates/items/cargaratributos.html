@@ -33,7 +33,7 @@
 						</td>
 					{% endifequal %}
 					{% ifequal valores.tipo_dato "Logico" %}
-						{% ifequal valores.valor_logico "t" %}
+						{% ifequal valores.valor_logico True %}
 						<td> Si<input type="radio" name={{forloop.counter}} checked="checked" />
 						 No<input type="radio" name={{forloop.counter}} /> {{ valores.orden }}
 						</td>
