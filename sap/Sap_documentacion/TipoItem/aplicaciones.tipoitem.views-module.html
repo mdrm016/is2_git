@@ -1,0 +1,1036 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>aplicaciones.tipoitem.views</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="aplicaciones.tipoitem-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            >Sap_documentacion</th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        Package&nbsp;aplicaciones ::
+        <a href="aplicaciones.tipoitem-module.html">Package&nbsp;tipoitem</a> ::
+        Module&nbsp;views
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="aplicaciones.tipoitem.views-module.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== MODULE DESCRIPTION ==================== -->
+<h1 class="epydoc">Module views</h1><p class="nomargin-top"><span class="codelink"><a href="aplicaciones.tipoitem.views-pysrc.html">source&nbsp;code</a></span></p>
+<!-- ==================== FUNCTIONS ==================== -->
+<a name="section-Functions"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Functions</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Functions"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">django.shortcuts.render_to_response.</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="aplicaciones.tipoitem.views-module.html#adm_tipoitem" class="summary-sig-name">adm_tipoitem</a>(<span class="summary-sig-arg">request</span>,
+        <span class="summary-sig-arg">id_proyecto</span>)</span><br />
+      Recibe un request y un id de proyecto, se obtiene todos los tipos de 
+      item disponibles para ese proyecto y luego son enviados al template 
+      para desplegarlos al usuario solicitante, ademas de realizar 
+      busquedas avanzadas de los tipos de items desplegados.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="aplicaciones.tipoitem.views-pysrc.html#adm_tipoitem">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">django.shortcuts.render_to_response.</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="aplicaciones.tipoitem.views-module.html#crear_tipoitem" class="summary-sig-name">crear_tipoitem</a>(<span class="summary-sig-arg">request</span>,
+        <span class="summary-sig-arg">id_proyecto</span>)</span><br />
+      Recibe un request y un id de proyecto, se verifica si el usuario 
+      tiene permisos para crear un tipo de item y se lo redirige a una 
+      pagina para que rellene el formulario de creacion de un tipo de item,
+      una vez completado correctamente dicho formulario, el tipo de item 
+      puede ser creado.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="aplicaciones.tipoitem.views-pysrc.html#crear_tipoitem">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">django.shortcuts.render_to_response.</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="aplicaciones.tipoitem.views-module.html#modificar_tipoitem" class="summary-sig-name">modificar_tipoitem</a>(<span class="summary-sig-arg">request</span>,
+        <span class="summary-sig-arg">id_tipoitem</span>,
+        <span class="summary-sig-arg">id_proyecto</span>)</span><br />
+      Recibe un request, el id de proyecto y el id del tipo de item  a ser 
+      modificado, se verifica si el usuario tiene permisos para modificar 
+      un tipo de item existente y se lo redirige a una pagina para que 
+      modifique el formulario existente de un tipo de item, una vez 
+      modificado de forma correcta dicho formulario el tipo de item puede 
+      ser modificado.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="aplicaciones.tipoitem.views-pysrc.html#modificar_tipoitem">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">django.shortcuts.render_to_response.</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="aplicaciones.tipoitem.views-module.html#eliminar_tipoitem" class="summary-sig-name">eliminar_tipoitem</a>(<span class="summary-sig-arg">request</span>,
+        <span class="summary-sig-arg">id_tipoitem</span>,
+        <span class="summary-sig-arg">id_proyecto</span>)</span><br />
+      Recibe un request, el id de proyecto y el id del tipo de item a ser 
+      eliminado, se verifica que el usuario tenga permisos para eliminar un
+      tipo de item y si el tipo de item no esta siendo usado por un item, 
+      luego le brinda la opcion de eliminar el tipo de item.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="aplicaciones.tipoitem.views-pysrc.html#eliminar_tipoitem">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">django.shortcuts.render_to_response.</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="aplicaciones.tipoitem.views-module.html#consultar_tipoitem" class="summary-sig-name">consultar_tipoitem</a>(<span class="summary-sig-arg">request</span>,
+        <span class="summary-sig-arg">id_tipoitem</span>,
+        <span class="summary-sig-arg">id_proyecto</span>)</span><br />
+      Recibe un request, el id de proyecto y el id del tipo de item a ser 
+      consultado, se verifica si el usuario tiene permisos para consultar 
+      un tipo de item y se lo redirige a una pagina que despliega los datos
+      del tipo de item solicitado.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="aplicaciones.tipoitem.views-pysrc.html#consultar_tipoitem">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">django.shortcuts.render_to_response.</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="aplicaciones.tipoitem.views-module.html#gestionar_tipoitem" class="summary-sig-name">gestionar_tipoitem</a>(<span class="summary-sig-arg">request</span>,
+        <span class="summary-sig-arg">id_tipoitem</span>,
+        <span class="summary-sig-arg">id_proyecto</span>)</span><br />
+      Recibe un request, el id de proyecto y el id del tipo de item a 
+      gestionar, se verifica si el usuario tiene permisos para gestionar un
+      tipo de item y se lo redirige a una pagina que le permite al usuario 
+      agregar, quitar o modificar los tipos de atributos de los cuales se 
+      compondra el tipo de item.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="aplicaciones.tipoitem.views-pysrc.html#gestionar_tipoitem">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">django.shortcuts.render_to_response.</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="aplicaciones.tipoitem.views-module.html#agregar_tipo_atributo" class="summary-sig-name">agregar_tipo_atributo</a>(<span class="summary-sig-arg">request</span>,
+        <span class="summary-sig-arg">id_tipoitem</span>,
+        <span class="summary-sig-arg">id_proyecto</span>,
+        <span class="summary-sig-arg">id_tipoatributo</span>)</span><br />
+      Recibe un request, el id de proyecto, el id del tipo de item y el id 
+      del tipo de atributo agregar al tipo de item, luego se agrega el tipo
+      de atributo especificado al tipo de item.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="aplicaciones.tipoitem.views-pysrc.html#agregar_tipo_atributo">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">django.shortcuts.render_to_response.</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="aplicaciones.tipoitem.views-module.html#quitar_tipo_atributo" class="summary-sig-name">quitar_tipo_atributo</a>(<span class="summary-sig-arg">request</span>,
+        <span class="summary-sig-arg">id_tipoitem</span>,
+        <span class="summary-sig-arg">id_proyecto</span>,
+        <span class="summary-sig-arg">id_tipoatributo</span>)</span><br />
+      Recibe un request, el id de proyecto, el id del tipo de item y el id 
+      del tipo de atributo quitar del tipo de item, luego se quita el tipo 
+      de atributo especificado del tipo de item.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="aplicaciones.tipoitem.views-pysrc.html#quitar_tipo_atributo">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">lista.</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="aplicaciones.tipoitem.views-module.html#ordenar_mantener" class="summary-sig-name">ordenar_mantener</a>(<span class="summary-sig-arg">id_tipoitem</span>)</span><br />
+      Recibe un id de tipo de item para conseguir los tipos de atributos de
+      ese tipo de item, ordenarlos y reparar el orden si este fue 
+      modificado para luego enviarselas a la funcion solicitante.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="aplicaciones.tipoitem.views-pysrc.html#ordenar_mantener">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">django.shortcuts.render_to_response.</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="aplicaciones.tipoitem.views-module.html#subir_tipo_atributo" class="summary-sig-name">subir_tipo_atributo</a>(<span class="summary-sig-arg">request</span>,
+        <span class="summary-sig-arg">id_tipoitem</span>,
+        <span class="summary-sig-arg">id_proyecto</span>,
+        <span class="summary-sig-arg">id_tipoatributo</span>)</span><br />
+      Recibe un request, el id de proyecto, el id del tipo de item y el id 
+      del tipo de atributo a subir un nivel en el orden del tipo de item, 
+      luego se mueve el tipo de atributo especificado en el tipo de item.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="aplicaciones.tipoitem.views-pysrc.html#subir_tipo_atributo">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">django.shortcuts.render_to_response.</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="aplicaciones.tipoitem.views-module.html#bajar_tipo_atributo" class="summary-sig-name">bajar_tipo_atributo</a>(<span class="summary-sig-arg">request</span>,
+        <span class="summary-sig-arg">id_tipoitem</span>,
+        <span class="summary-sig-arg">id_proyecto</span>,
+        <span class="summary-sig-arg">id_tipoatributo</span>)</span><br />
+      Recibe un request, el id de proyecto, el id del tipo de item y el id 
+      del tipo de atributo a bajar un nivel en el orden del tipo de item, 
+      luego se mueve el tipo de atributo especificado en el tipo de item.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="aplicaciones.tipoitem.views-pysrc.html#bajar_tipo_atributo">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">django.shortcuts.render_to_response.</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="aplicaciones.tipoitem.views-module.html#listar_proyectos" class="summary-sig-name">listar_proyectos</a>(<span class="summary-sig-arg">request</span>,
+        <span class="summary-sig-arg">id_proyecto</span>)</span><br />
+      Recibe un request y un id de proyecto, se obtiene todos los proyectos
+      activos en el sistema y son despelgados al usuario para que 
+      seleccione uno que contiene el tipo de item a importar.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="aplicaciones.tipoitem.views-pysrc.html#listar_proyectos">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">django.shortcuts.render_to_response.</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="aplicaciones.tipoitem.views-module.html#listar_tipoitem" class="summary-sig-name">listar_tipoitem</a>(<span class="summary-sig-arg">request</span>,
+        <span class="summary-sig-arg">id_proyecto</span>,
+        <span class="summary-sig-arg">proyecto_select</span>)</span><br />
+      Recibe un request y un id de proyecto y un id del proyecto 
+      seleccionado, se obtiene todos tipos de item del proyecto 
+      seleccionado y son desplegados al usuario para que este seleccione el
+      que desea importar.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="aplicaciones.tipoitem.views-pysrc.html#listar_tipoitem">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">django.shortcuts.render_to_response.</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="aplicaciones.tipoitem.views-module.html#importar_tipoitem" class="summary-sig-name">importar_tipoitem</a>(<span class="summary-sig-arg">request</span>,
+        <span class="summary-sig-arg">id_proyecto</span>,
+        <span class="summary-sig-arg">proyecto_select</span>,
+        <span class="summary-sig-arg">id_tipoitem</span>)</span><br />
+      Recibe un request, el id de proyecto y el id proyecto seleccionado y 
+      el id del tipo de item a ser importado del proyecto seleccionado, se 
+      verifica si el usuario tiene permisos para importar un tipo de item 
+      existente, luego se lo redirige a la pagina para completar los datos 
+      del formulario del tipo de item a importar, una vez completado 
+      correctamente el formulario el sistema crea un nuevo tipo de item con
+      tipos de atributos que tenia el tipo de item importado.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="aplicaciones.tipoitem.views-pysrc.html#importar_tipoitem">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+</table>
+<!-- ==================== FUNCTION DETAILS ==================== -->
+<a name="section-FunctionDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Function Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-FunctionDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="adm_tipoitem"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">adm_tipoitem</span>(<span class="sig-arg">request</span>,
+        <span class="sig-arg">id_proyecto</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="aplicaciones.tipoitem.views-pysrc.html#adm_tipoitem">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Recibe un request y un id de proyecto, se obtiene todos los tipos de 
+  item disponibles para ese proyecto y luego son enviados al template para 
+  desplegarlos al usuario solicitante, ademas de realizar busquedas 
+  avanzadas de los tipos de items desplegados.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>request</code></strong> (django.http.HttpRequest.) - Contiene informacion sobre la solicitud web actual que llamo a 
+          esta vista adm_tipoitem.</li>
+        <li><strong class="pname"><code>id_proyecto</code></strong> (string.) - Contiene el id del proyecto cuyos tipos de items seran 
+          desplegados.</li>
+    </ul></dd>
+    <dt>Returns: django.shortcuts.render_to_response.</dt>
+        <dd>tipoitem.html, donde se listan los tipos de items, ademas de las 
+          funcionalidades para cada tipo de item.</dd>
+    <dt>Decorators:</dt>
+    <dd><ul class="nomargin-top">
+        <li><code>@login_required(login_url= '/login/')</code></li>
+        <li><code>@permission_required('tipoitem.administrar_tipoitem', raise_exception= True)</code></li>
+    </ul></dd>
+  </dl>
+<div class="fields">      <p><strong>Author:</strong>
+        Marcelo Denis.
+      </p>
+</div></td></tr></table>
+</div>
+<a name="crear_tipoitem"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">crear_tipoitem</span>(<span class="sig-arg">request</span>,
+        <span class="sig-arg">id_proyecto</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="aplicaciones.tipoitem.views-pysrc.html#crear_tipoitem">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Recibe un request y un id de proyecto, se verifica si el usuario tiene
+  permisos para crear un tipo de item y se lo redirige a una pagina para 
+  que rellene el formulario de creacion de un tipo de item, una vez 
+  completado correctamente dicho formulario, el tipo de item puede ser 
+  creado.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>request</code></strong> (django.http.HttpRequest.) - Contiene informacion sobre la solicitud web actual que llamo a 
+          esta vista crear_tipoitem.</li>
+        <li><strong class="pname"><code>id_proyecto</code></strong> (string.) - Contiene el id del proyecto al cual pertenecera el tipo de item a
+          crear.</li>
+    </ul></dd>
+    <dt>Returns: django.shortcuts.render_to_response.</dt>
+        <dd>creartipoitem.html, donde se encuentra el formulario de creacion 
+          de tipo de item y luego a tipoitemalerta.html donde se notifica 
+          la creacion correcta de un tipo de item.</dd>
+    <dt>Decorators:</dt>
+    <dd><ul class="nomargin-top">
+        <li><code>@login_required(login_url= '/login/')</code></li>
+        <li><code>@permission_required('tipoitem.crear_tipoitem', raise_exception= True)</code></li>
+    </ul></dd>
+  </dl>
+<div class="fields">      <p><strong>Author:</strong>
+        Marcelo Denis.
+      </p>
+</div></td></tr></table>
+</div>
+<a name="modificar_tipoitem"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">modificar_tipoitem</span>(<span class="sig-arg">request</span>,
+        <span class="sig-arg">id_tipoitem</span>,
+        <span class="sig-arg">id_proyecto</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="aplicaciones.tipoitem.views-pysrc.html#modificar_tipoitem">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Recibe un request, el id de proyecto y el id del tipo de item  a ser 
+  modificado, se verifica si el usuario tiene permisos para modificar un 
+  tipo de item existente y se lo redirige a una pagina para que modifique 
+  el formulario existente de un tipo de item, una vez modificado de forma 
+  correcta dicho formulario el tipo de item puede ser modificado.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>request</code></strong> (django.http.HttpRequest.) - Contiene informacion sobre la solicitud web actual que llamo a 
+          esta vista modificar_tipoitem.</li>
+        <li><strong class="pname"><code>id_proyecto</code></strong> (string.) - Contiene el id del proyecto al cual pertenece el tipo de item a 
+          modificar.</li>
+        <li><strong class="pname"><code>id_tipoitem</code></strong> (string.) - Contiene el id del tipo de item a modificar.</li>
+    </ul></dd>
+    <dt>Returns: django.shortcuts.render_to_response.</dt>
+        <dd>modificartipoitem.html, donde se encuentra el formulario de 
+          modificacion de tipo de item y luego a tipoitemalerta.html donde 
+          se notifica la modificacion correcta de un tipo de item.</dd>
+    <dt>Decorators:</dt>
+    <dd><ul class="nomargin-top">
+        <li><code>@login_required(login_url= '/login/')</code></li>
+        <li><code>@permission_required('tipoitem.modificar_tipoitem', raise_exception= True)</code></li>
+    </ul></dd>
+  </dl>
+<div class="fields">      <p><strong>Author:</strong>
+        Marcelo Denis.
+      </p>
+</div></td></tr></table>
+</div>
+<a name="eliminar_tipoitem"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">eliminar_tipoitem</span>(<span class="sig-arg">request</span>,
+        <span class="sig-arg">id_tipoitem</span>,
+        <span class="sig-arg">id_proyecto</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="aplicaciones.tipoitem.views-pysrc.html#eliminar_tipoitem">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Recibe un request, el id de proyecto y el id del tipo de item a ser 
+  eliminado, se verifica que el usuario tenga permisos para eliminar un 
+  tipo de item y si el tipo de item no esta siendo usado por un item, luego
+  le brinda la opcion de eliminar el tipo de item.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>request</code></strong> (django.http.HttpRequest.) - Contiene informacion sobre la solicitud web actual que llamo a 
+          esta vista eliminar_tipoitem.</li>
+        <li><strong class="pname"><code>id_proyecto</code></strong> (string.) - Contiene el id del proyecto al cual pertenece el tipo de item a 
+          eliminar.</li>
+        <li><strong class="pname"><code>id_tipoitem</code></strong> (string.) - Contiene el id del tipo de item a eliminar.</li>
+    </ul></dd>
+    <dt>Returns: django.shortcuts.render_to_response.</dt>
+        <dd>tipoitem.html, donde se redirige al usuario con la actualizacion 
+          de la lista de tipos de item o a tipoitemalerta.html donde se 
+          notifica al usuario la razon por la cual no se puede eliminar el 
+          tipo de item.</dd>
+    <dt>Decorators:</dt>
+    <dd><ul class="nomargin-top">
+        <li><code>@login_required(login_url= '/login/')</code></li>
+        <li><code>@permission_required('tipoitem.eliminar_tipoitem', raise_exception= True)</code></li>
+    </ul></dd>
+  </dl>
+<div class="fields">      <p><strong>Author:</strong>
+        Marcelo Denis.
+      </p>
+</div></td></tr></table>
+</div>
+<a name="consultar_tipoitem"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">consultar_tipoitem</span>(<span class="sig-arg">request</span>,
+        <span class="sig-arg">id_tipoitem</span>,
+        <span class="sig-arg">id_proyecto</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="aplicaciones.tipoitem.views-pysrc.html#consultar_tipoitem">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Recibe un request, el id de proyecto y el id del tipo de item a ser 
+  consultado, se verifica si el usuario tiene permisos para consultar un 
+  tipo de item y se lo redirige a una pagina que despliega los datos del 
+  tipo de item solicitado.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>request</code></strong> (django.http.HttpRequest.) - Contiene informacion sobre la solicitud web actual que llamo a 
+          esta vista consultar_tipoitem.</li>
+        <li><strong class="pname"><code>id_proyecto</code></strong> (string.) - Contiene el id del proyecto al cual pertenece el tipo de item a 
+          consultar.</li>
+        <li><strong class="pname"><code>id_tipoitem</code></strong> (string.) - Contiene el id del tipo de item a consultar.</li>
+    </ul></dd>
+    <dt>Returns: django.shortcuts.render_to_response.</dt>
+        <dd>consultartipoitem.html, donde se encuentra la pagina de consulta 
+          de tipo item.</dd>
+    <dt>Decorators:</dt>
+    <dd><ul class="nomargin-top">
+        <li><code>@login_required(login_url= '/login/')</code></li>
+        <li><code>@permission_required('tipoitem.consultar_tipoitem', raise_exception= True)</code></li>
+    </ul></dd>
+  </dl>
+<div class="fields">      <p><strong>Author:</strong>
+        Marcelo Denis.
+      </p>
+</div></td></tr></table>
+</div>
+<a name="gestionar_tipoitem"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">gestionar_tipoitem</span>(<span class="sig-arg">request</span>,
+        <span class="sig-arg">id_tipoitem</span>,
+        <span class="sig-arg">id_proyecto</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="aplicaciones.tipoitem.views-pysrc.html#gestionar_tipoitem">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Recibe un request, el id de proyecto y el id del tipo de item a 
+  gestionar, se verifica si el usuario tiene permisos para gestionar un 
+  tipo de item y se lo redirige a una pagina que le permite al usuario 
+  agregar, quitar o modificar los tipos de atributos de los cuales se 
+  compondra el tipo de item.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>request</code></strong> (django.http.HttpRequest.) - Contiene informacion sobre la solicitud web actual que llamo a 
+          esta vista gestionar_tipoitem.</li>
+        <li><strong class="pname"><code>id_proyecto</code></strong> (string.) - Contiene el id del proyecto al cual pertenece el tipo de item a 
+          gestionar.</li>
+        <li><strong class="pname"><code>id_tipoitem</code></strong> (string.) - Contiene el id del tipo de item a gestionar.</li>
+    </ul></dd>
+    <dt>Returns: django.shortcuts.render_to_response.</dt>
+        <dd>gestionartipoitem.html, donde se encuentra la pagina de gestion 
+          de tipo item.</dd>
+    <dt>Decorators:</dt>
+    <dd><ul class="nomargin-top">
+        <li><code>@login_required(login_url= '/login/')</code></li>
+        <li><code>@permission_required('tipoitem.gestionar_tipoitem', raise_exception= True)</code></li>
+    </ul></dd>
+  </dl>
+<div class="fields">      <p><strong>Author:</strong>
+        Marcelo Denis.
+      </p>
+</div></td></tr></table>
+</div>
+<a name="agregar_tipo_atributo"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">agregar_tipo_atributo</span>(<span class="sig-arg">request</span>,
+        <span class="sig-arg">id_tipoitem</span>,
+        <span class="sig-arg">id_proyecto</span>,
+        <span class="sig-arg">id_tipoatributo</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="aplicaciones.tipoitem.views-pysrc.html#agregar_tipo_atributo">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Recibe un request, el id de proyecto, el id del tipo de item y el id 
+  del tipo de atributo agregar al tipo de item, luego se agrega el tipo de 
+  atributo especificado al tipo de item.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>request</code></strong> (django.http.HttpRequest.) - Contiene informacion sobre la solicitud web actual que llamo a 
+          esta vista agregar_tipo_atributo.</li>
+        <li><strong class="pname"><code>id_proyecto</code></strong> (string.) - Contiene el id del proyecto al cual pertenece el tipo de item a 
+          gestionar.</li>
+        <li><strong class="pname"><code>id_tipoitem</code></strong> (string.) - Contiene el id del tipo de item a gestionar.</li>
+    </ul></dd>
+    <dt>Returns: django.shortcuts.render_to_response.</dt>
+        <dd>gestionartipoitem.html, donde se encuentra la pagina de gestion 
+          de tipo item.</dd>
+  </dl>
+<div class="fields">      <p><strong>Author:</strong>
+        Marcelo Denis.
+      </p>
+</div></td></tr></table>
+</div>
+<a name="quitar_tipo_atributo"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">quitar_tipo_atributo</span>(<span class="sig-arg">request</span>,
+        <span class="sig-arg">id_tipoitem</span>,
+        <span class="sig-arg">id_proyecto</span>,
+        <span class="sig-arg">id_tipoatributo</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="aplicaciones.tipoitem.views-pysrc.html#quitar_tipo_atributo">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Recibe un request, el id de proyecto, el id del tipo de item y el id 
+  del tipo de atributo quitar del tipo de item, luego se quita el tipo de 
+  atributo especificado del tipo de item.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>request</code></strong> (django.http.HttpRequest.) - Contiene informacion sobre la solicitud web actual que llamo a 
+          esta vista quitar_tipo_atributo.</li>
+        <li><strong class="pname"><code>id_proyecto</code></strong> (string.) - Contiene el id del proyecto al cual pertenece el tipo de item a 
+          gestionar.</li>
+        <li><strong class="pname"><code>id_tipoitem</code></strong> (string.) - Contiene el id del tipo de item a gestionar.</li>
+    </ul></dd>
+    <dt>Returns: django.shortcuts.render_to_response.</dt>
+        <dd>gestionartipoitem.html, donde se encuentra la pagina de gestion 
+          de tipo item.</dd>
+  </dl>
+<div class="fields">      <p><strong>Author:</strong>
+        Marcelo Denis.
+      </p>
+</div></td></tr></table>
+</div>
+<a name="ordenar_mantener"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">ordenar_mantener</span>(<span class="sig-arg">id_tipoitem</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="aplicaciones.tipoitem.views-pysrc.html#ordenar_mantener">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Recibe un id de tipo de item para conseguir los tipos de atributos de 
+  ese tipo de item, ordenarlos y reparar el orden si este fue modificado 
+  para luego enviarselas a la funcion solicitante.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>id_tipoitem</code></strong> (string.) - Contiene el id del tipo de item a del cual se conseguiran los 
+          tipos de atributos.</li>
+    </ul></dd>
+    <dt>Returns: lista.</dt>
+        <dd>lista de objetos de tipo listaAtributo</dd>
+  </dl>
+<div class="fields">      <p><strong>Author:</strong>
+        Marcelo Denis.
+      </p>
+</div></td></tr></table>
+</div>
+<a name="subir_tipo_atributo"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">subir_tipo_atributo</span>(<span class="sig-arg">request</span>,
+        <span class="sig-arg">id_tipoitem</span>,
+        <span class="sig-arg">id_proyecto</span>,
+        <span class="sig-arg">id_tipoatributo</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="aplicaciones.tipoitem.views-pysrc.html#subir_tipo_atributo">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Recibe un request, el id de proyecto, el id del tipo de item y el id 
+  del tipo de atributo a subir un nivel en el orden del tipo de item, luego
+  se mueve el tipo de atributo especificado en el tipo de item.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>request</code></strong> (django.http.HttpRequest.) - Contiene informacion sobre la solicitud web actual que llamo a 
+          esta vista subir_tipo_atributo.</li>
+        <li><strong class="pname"><code>id_proyecto</code></strong> (string.) - Contiene el id del proyecto al cual pertenece el tipo de item a 
+          gestionar.</li>
+        <li><strong class="pname"><code>id_tipoitem</code></strong> (string.) - Contiene el id del tipo de item a gestionar.</li>
+    </ul></dd>
+    <dt>Returns: django.shortcuts.render_to_response.</dt>
+        <dd>gestionartipoitem.html, donde se encuentra la pagina de gestion 
+          de tipo item.</dd>
+  </dl>
+<div class="fields">      <p><strong>Author:</strong>
+        Marcelo Denis.
+      </p>
+</div></td></tr></table>
+</div>
+<a name="bajar_tipo_atributo"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">bajar_tipo_atributo</span>(<span class="sig-arg">request</span>,
+        <span class="sig-arg">id_tipoitem</span>,
+        <span class="sig-arg">id_proyecto</span>,
+        <span class="sig-arg">id_tipoatributo</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="aplicaciones.tipoitem.views-pysrc.html#bajar_tipo_atributo">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Recibe un request, el id de proyecto, el id del tipo de item y el id 
+  del tipo de atributo a bajar un nivel en el orden del tipo de item, luego
+  se mueve el tipo de atributo especificado en el tipo de item.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>request</code></strong> (django.http.HttpRequest.) - Contiene informacion sobre la solicitud web actual que llamo a 
+          esta vista bajar_tipo_atributo.</li>
+        <li><strong class="pname"><code>id_proyecto</code></strong> (string.) - Contiene el id del proyecto al cual pertenece el tipo de item a 
+          gestionar.</li>
+        <li><strong class="pname"><code>id_tipoitem</code></strong> (string.) - Contiene el id del tipo de item a gestionar.</li>
+    </ul></dd>
+    <dt>Returns: django.shortcuts.render_to_response.</dt>
+        <dd>gestionartipoitem.html, donde se encuentra la pagina de gestion 
+          de tipo item.</dd>
+  </dl>
+<div class="fields">      <p><strong>Author:</strong>
+        Marcelo Denis.
+      </p>
+</div></td></tr></table>
+</div>
+<a name="listar_proyectos"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">listar_proyectos</span>(<span class="sig-arg">request</span>,
+        <span class="sig-arg">id_proyecto</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="aplicaciones.tipoitem.views-pysrc.html#listar_proyectos">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Recibe un request y un id de proyecto, se obtiene todos los proyectos 
+  activos en el sistema y son despelgados al usuario para que seleccione 
+  uno que contiene el tipo de item a importar.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>request</code></strong> (django.http.HttpRequest.) - Contiene informacion sobre la solicitud web actual que llamo a 
+          esta vista listar_proyectos.</li>
+        <li><strong class="pname"><code>id_proyecto</code></strong> (string.) - Contiene el id del proyecto al cual se agregara el item a 
+          importar.</li>
+    </ul></dd>
+    <dt>Returns: django.shortcuts.render_to_response.</dt>
+        <dd>listarproyectos.html, donde se listan los proyectos, y se otorga 
+          la posbilidad de seleccionar uno.</dd>
+    <dt>Decorators:</dt>
+    <dd><ul class="nomargin-top">
+        <li><code>@login_required(login_url= '/login/')</code></li>
+        <li><code>@permission_required('tipoitem.importar_tipoitem', raise_exception= True)</code></li>
+    </ul></dd>
+  </dl>
+<div class="fields">      <p><strong>Author:</strong>
+        Marcelo Denis.
+      </p>
+</div></td></tr></table>
+</div>
+<a name="listar_tipoitem"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">listar_tipoitem</span>(<span class="sig-arg">request</span>,
+        <span class="sig-arg">id_proyecto</span>,
+        <span class="sig-arg">proyecto_select</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="aplicaciones.tipoitem.views-pysrc.html#listar_tipoitem">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Recibe un request y un id de proyecto y un id del proyecto 
+  seleccionado, se obtiene todos tipos de item del proyecto seleccionado y 
+  son desplegados al usuario para que este seleccione el que desea 
+  importar.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>request</code></strong> (django.http.HttpRequest.) - Contiene informacion sobre la solicitud web actual que llamo a 
+          esta vista listar_tipoitem.</li>
+        <li><strong class="pname"><code>id_proyecto</code></strong> (string.) - Contiene el id del proyecto al cual se agregara el item a 
+          importar.</li>
+    </ul></dd>
+    <dt>Returns: django.shortcuts.render_to_response.</dt>
+        <dd>listartipoitem.html, donde se listan los tipos de item, y se 
+          otorga la posbilidad de importar uno.</dd>
+    <dt>Decorators:</dt>
+    <dd><ul class="nomargin-top">
+        <li><code>@login_required(login_url= '/login/')</code></li>
+    </ul></dd>
+  </dl>
+<div class="fields">      <p><strong>Author:</strong>
+        Marcelo Denis.
+      </p>
+</div></td></tr></table>
+</div>
+<a name="importar_tipoitem"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">importar_tipoitem</span>(<span class="sig-arg">request</span>,
+        <span class="sig-arg">id_proyecto</span>,
+        <span class="sig-arg">proyecto_select</span>,
+        <span class="sig-arg">id_tipoitem</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="aplicaciones.tipoitem.views-pysrc.html#importar_tipoitem">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Recibe un request, el id de proyecto y el id proyecto seleccionado y 
+  el id del tipo de item a ser importado del proyecto seleccionado, se 
+  verifica si el usuario tiene permisos para importar un tipo de item 
+  existente, luego se lo redirige a la pagina para completar los datos del 
+  formulario del tipo de item a importar, una vez completado correctamente 
+  el formulario el sistema crea un nuevo tipo de item con tipos de 
+  atributos que tenia el tipo de item importado.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>request</code></strong> (django.http.HttpRequest.) - Contiene informacion sobre la solicitud web actual que llamo a 
+          esta vista importar_tipoitem.</li>
+        <li><strong class="pname"><code>id_proyecto</code></strong> (string.) - Contiene el id del proyecto al cual pertenecera el nuevo tipo de 
+          item a importar.</li>
+        <li><strong class="pname"><code>proyecto_select</code></strong> (string.) - Contiene el id del proyecto al cual pertenece el tipo de item que
+          sera importado.</li>
+        <li><strong class="pname"><code>id_tipoitem</code></strong> (string.) - Contiene el id del tipo de item a importar.</li>
+    </ul></dd>
+    <dt>Returns: django.shortcuts.render_to_response.</dt>
+        <dd>creartipoitemimportado.html, donde se redirige al usuario para 
+          completar los datos del nuevo tipo de item a importar y luego a 
+          proyectoalerta.html donde se notifica que el proyecto fue 
+          importado correctamente.</dd>
+    <dt>Decorators:</dt>
+    <dd><ul class="nomargin-top">
+        <li><code>@login_required(login_url= '/login/')</code></li>
+    </ul></dd>
+  </dl>
+<div class="fields">      <p><strong>Author:</strong>
+        Marcelo Denis.
+      </p>
+</div></td></tr></table>
+</div>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="aplicaciones.tipoitem-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            >Sap_documentacion</th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Sat May  3 01:48:30 2014
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>
