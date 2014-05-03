@@ -7,7 +7,7 @@ from django.template.context import RequestContext
 from aplicaciones.proyectos.models import Proyectos
 from aplicaciones.fases.models import Fases
 from aplicaciones.tipoitem.models import TipoItem
-from aplicaciones.tipoatributo.models import TipoAtributo, Numerico, Fecha, Texto, ArchivoExterno, Logico
+from aplicaciones.tipoatributo.models import TipoAtributo, Numerico, Fecha, Texto, ArchivoExterno, Logico, Imagen
 from aplicaciones.relaciones.models import Relaciones, ListaRelaciones
 from .models import Items, ListaValores, ValorItem
 from datetime import datetime
@@ -37,9 +37,10 @@ def adm_items(request, id_proyecto, id_fase):
     """
 
     #lista_items=Items.objects.get(proyecto=id_proyecto, fase=id_fase, is_active=True)
+    proyecto = Proyectos.objects.get(id=id_proyecto)
     lista_items = Items.objects.filter(proyecto_id=id_proyecto, fase_id=id_fase, is_active=True)
     mensaje = ''
-    ctx = {'lista_items': lista_items, 'mensaje': mensaje, 'id_proyecto':id_proyecto, 'id_fase': id_fase}
+    ctx = {'lista_items': lista_items, 'mensaje': mensaje, 'id_proyecto':id_proyecto, 'id_fase': id_fase, 'proyecto':proyecto}
     template_name = './items/items.html'
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
 
@@ -47,7 +48,7 @@ def listar_tipo_item(request, id_proyecto, id_fase):
     fase = Fases.objects.get(id=id_fase)
     proyecto = Proyectos.objects.get(id=id_proyecto)
     if fase.estado =='FD' or proyecto.estado=='Inactivo':
-        mensaje ='No se pueden agregar items a la fase.'
+        mensaje ='No se pueden agregar items a la fase, el proyecto o la fase del item no esta inicializado.'
         ctx = {'mensaje':mensaje, 'id_proyecto': id_proyecto, 'id_fase': id_fase}
         template_name = './items/itemalerta.html'
         return render_to_response(template_name, ctx, context_instance=RequestContext(request))
@@ -124,6 +125,7 @@ def cargar_valores(request, id_proyecto, id_fase, id_item):
     proyecto = Proyectos.objects.get(id=id_proyecto)
     fase = Fases.objects.get(id=id_fase)
     itemactual = Items.objects.get(id=id_item)
+    lista_error = []
     if fase.estado == 'FD' or proyecto.estado=='Inactivo' or itemactual.estado=='En Revision' or itemactual.estado=='Bloqueado' or itemactual.estado=='Validado':
         mensaje = 'No se pueden modificar atributos. Dirijase a consultar item.'
         ctx = {'mensaje':mensaje, 'id_proyecto': id_proyecto}
@@ -135,180 +137,325 @@ def cargar_valores(request, id_proyecto, id_fase, id_item):
         lista_atributos = ordenar_mantener(idtipoitem)
         i = 1
         posicion = 1
+        # variables para deshacer las acciones del post si error es verdadero
+        error = False
+        lista_desh=[]
         for listaatributo in lista_atributos:
             nombreatributo = listaatributo.nombre
             idatributo = listaatributo.id_atributo
-            iditematributo = listaatributo.id_tipoitem 
+            iditematributo = listaatributo.id_tipoitem
+            obligatoriedad = TipoAtributo.objects.get(id=idatributo).obligatorio
             tipoatributoobjetos = TipoAtributo.objects.filter(id=listaatributo.id_atributo)
             valoritems = ValorItem()
+            
             for tipoatributoobjeto in tipoatributoobjetos:
                 tipodatoatributo= tipoatributoobjeto.tipo
+ #               
             if tipodatoatributo=='Archivo Externo':
-                archivo = ArchivoExterno()
-                archivo.valor = request.FILE[str(i)]
-                archivo.id_item = id_item
-                archivo.nombre_atributo = nombreatributo
-                archivo.save()
-                valoritems.item_id = id_item
-                valoritems.valor_id = archivo.id
-                valoritems.tabla_valor_nombre = 'tipoatributo_archivoexterno'
-                valoritems.nombre_atributo = nombreatributo
-                valoritems.tipo_dato = tipodatoatributo
-                valoritems.version = versionitem
-                valoritems.orden = posicion
-                valoritems.proyecto_id = id_proyecto
-                valoritems.fase_id = id_fase
-                valoritems.save()
+                if obligatoriedad and request.FILES.has_key(str(i)):
+                    error = True
+                    nomb=nombreatributo
+                    mensaje = 'El campo %s es obligatorio' % nombreatributo
+                    tupla=(nomb, mensaje)
+                    lista_error.append(tupla)
+                else:
+                    if request.FILES.has_key(str(i)):
+                        archivo = ArchivoExterno()
+                        archivo.valor = request.FILES[str(i)]
+                        archivo.id_item = id_item
+                        archivo.nombre_atributo = nombreatributo
+                        archivo.save()
+                        valoritems.item_id = id_item
+                        valoritems.valor_id = archivo.id
+                        valoritems.tabla_valor_nombre = 'tipoatributo_archivoexterno'
+                        valoritems.nombre_atributo = nombreatributo
+                        valoritems.tipo_dato = tipodatoatributo
+                        valoritems.version = versionitem
+                        valoritems.orden = posicion
+                        valoritems.proyecto_id = id_proyecto
+                        valoritems.fase_id = id_fase
+                        valoritems.save()
+                        lista_desh.append(valoritems.id)
+                    else:
+                        existe=True
+                        try: 
+                            valoritems_guardado = ValorItem.objects.get(item_id = id_item, nombre_atributo = nombreatributo, tipo_dato = tipodatoatributo, version = versionitem-1, orden = posicion)
+                        except ValorItem.DoesNotExist:
+                            existe = False
+                        if existe: 
+                            valoritems.item_id = valoritems_guardado.item_id
+                            valoritems.valor_id = valoritems_guardado.valor_id
+                            valoritems.tabla_valor_nombre = 'tipoatributo_archivoexterno'
+                            valoritems.nombre_atributo = valoritems_guardado.nombre_atributo
+                            valoritems.tipo_dato = valoritems_guardado.tipo_dato
+                            valoritems.version = versionitem
+                            valoritems.orden = valoritems_guardado.orden
+                            valoritems.proyecto_id = valoritems_guardado.proyecto_id
+                            valoritems.fase_id = valoritems_guardado.fase_id
+                            valoritems.save()
+                            lista_desh.append(valoritems.id)
+                    
+            elif tipodatoatributo=='Imagen':
+                if obligatoriedad and request.FILES.has_key(str(i)):
+                    error = True
+                    nomb=nombreatributo
+                    mensaje = 'El campo %s es obligatorio' % nombreatributo
+                    tupla=(nomb, mensaje)
+                    lista_error.append(tupla)
+                else:
+                    if request.FILES.has_key(str(i)):
+                        imagen = Imagen()
+                        imagen.valor = request.FILES[str(i)]
+                        imagen.id_item = id_item
+                        imagen.nombre_atributo = nombreatributo
+                        imagen.save()
+                        valoritems.item_id = id_item
+                        valoritems.valor_id = imagen.id
+                        valoritems.tabla_valor_nombre = 'tipoatributo_imagen'
+                        valoritems.nombre_atributo = nombreatributo
+                        valoritems.tipo_dato = tipodatoatributo
+                        valoritems.version = versionitem
+                        valoritems.orden = posicion
+                        valoritems.proyecto_id = id_proyecto
+                        valoritems.fase_id = id_fase
+                        valoritems.save()
+                        lista_desh.append(valoritems.id)
+                    else:
+                        existe=True
+                        try:
+                            valoritems_guardado = ValorItem.objects.get(item_id = id_item, nombre_atributo=nombreatributo, tipo_dato = tipodatoatributo, version = versionitem-1, orden = posicion)
+                        except ValorItem.DoesNotExist:
+                            existe = False
+                        if existe:
+                            valoritems.item_id = valoritems_guardado.item_id
+                            valoritems.valor_id = valoritems_guardado.valor_id
+                            valoritems.tabla_valor_nombre = 'tipoatributo_imagen'
+                            valoritems.nombre_atributo = valoritems_guardado.nombre_atributo
+                            valoritems.tipo_dato = valoritems_guardado.tipo_dato
+                            valoritems.version = versionitem
+                            valoritems.orden = valoritems_guardado.orden
+                            valoritems.proyecto_id = valoritems_guardado.proyecto_id
+                            valoritems.fase_id = valoritems_guardado.fase_id
+                            valoritems.save()
+                            lista_desh.append(valoritems.id)
+#                       
             elif tipodatoatributo=='Texto':
                 archivo = Texto()
                 archivo.valor = request.POST.get(str(i), '')
-                archivo.id_item = id_item
-                archivo.nombre_atributo = nombreatributo
-                for tipoatributoobjeto in tipoatributoobjetos:
-                    archivo.longitud = tipoatributoobjeto.longitud
-                archivo.save()
-                valoritems.item_id = id_item
-                valoritems.valor_id = archivo.id
-                valoritems.tabla_valor_nombre = 'tipoatributo_texto'
-                valoritems.nombre_atributo = nombreatributo
-                valoritems.tipo_dato = tipodatoatributo
-                valoritems.version = versionitem
-                valoritems.orden = posicion
-                valoritems.proyecto_id = id_proyecto
-                valoritems.fase_id = id_fase
-                valoritems.save()
+                if obligatoriedad and archivo.valor == '':
+                    error = True
+                    nomb=nombreatributo
+                    mensaje = 'El campo %s es obligatorio' % nombreatributo
+                    tupla=(nomb, mensaje)
+                    lista_error.append(tupla)
+                else:
+                    archivo.id_item = id_item
+                    archivo.nombre_atributo = nombreatributo
+                    for tipoatributoobjeto in tipoatributoobjetos:
+                        archivo.longitud = tipoatributoobjeto.longitud
+                    archivo.save()
+                    valoritems.item_id = id_item
+                    valoritems.valor_id = archivo.id
+                    valoritems.tabla_valor_nombre = 'tipoatributo_texto'
+                    valoritems.nombre_atributo = nombreatributo
+                    valoritems.tipo_dato = tipodatoatributo
+                    valoritems.version = versionitem
+                    valoritems.orden = posicion
+                    valoritems.proyecto_id = id_proyecto
+                    valoritems.fase_id = id_fase
+                    valoritems.save()
+                    lista_desh.append(valoritems.id)
             elif tipodatoatributo=='Numerico':
                 archivo = Numerico()
                 archivo.valor = request.POST.get(str(i), '')
-                archivo.id_item = id_item
-                archivo.nombre_atributo = nombreatributo
-                for tipoatributoobjeto in tipoatributoobjetos:
-                    archivo.longitud = tipoatributoobjeto.longitud
-                    archivo.precision = tipoatributoobjeto.precision
-                archivo.save()
-                valoritems.item_id = id_item
-                valoritems.valor_id = archivo.id
-                valoritems.tabla_valor_nombre = 'tipoatributo_numerico'
-                valoritems.nombre_atributo = nombreatributo
-                valoritems.tipo_dato = tipodatoatributo
-                valoritems.version = versionitem
-                valoritems.orden = posicion
-                valoritems.proyecto_id = id_proyecto
-                valoritems.fase_id = id_fase
-                valoritems.save()
+                
+                if obligatoriedad and archivo.valor == '':
+                    error = True
+                    nomb=nombreatributo
+                    mensaje = 'El campo %s es obligatorio' % nombreatributo
+                    tupla=(nomb, mensaje)
+                    lista_error.append(tupla)
+                else:
+                    #si el atributo no es obligatorio, se debe guardar como un numero la cadena vacia
+                    if archivo.valor == '':
+                        archivo.valor = 0
+                    archivo.id_item = id_item
+                    archivo.nombre_atributo = nombreatributo
+                    for tipoatributoobjeto in tipoatributoobjetos:
+                        archivo.longitud = tipoatributoobjeto.longitud
+                        archivo.precision = tipoatributoobjeto.precision
+                    archivo.save()
+                    valoritems.item_id = id_item
+                    valoritems.valor_id = archivo.id
+                    valoritems.tabla_valor_nombre = 'tipoatributo_numerico'
+                    valoritems.nombre_atributo = nombreatributo
+                    valoritems.tipo_dato = tipodatoatributo
+                    valoritems.version = versionitem
+                    valoritems.orden = posicion
+                    valoritems.proyecto_id = id_proyecto
+                    valoritems.fase_id = id_fase
+                    valoritems.save()
+                    lista_desh.append(valoritems.id)
             elif tipodatoatributo=='Fecha':
                 archivo = Fecha()
                 archivo.valor = request.POST.get(str(i), '')
-                archivo.id_item = id_item
-                archivo.nombre_atributo = nombreatributo
-                archivo.save()
-                valoritems.item_id = id_item
-                valoritems.valor_id = archivo.id
-                valoritems.tabla_valor_nombre = 'tipoatributo_fecha'
-                valoritems.nombre_atributo = nombreatributo
-                valoritems.tipo_dato = tipodatoatributo
-                valoritems.version = versionitem
-                valoritems.orden = posicion
-                valoritems.proyecto_id = id_proyecto
-                valoritems.fase_id = id_fase
-                valoritems.save()
+                if obligatoriedad and archivo.valor == '':
+                    error = True
+                    nomb=nombreatributo
+                    mensaje = 'El campo %s es obligatorio' % nombreatributo
+                    tupla=(nomb, mensaje)
+                    lista_error.append(tupla)
+                else:
+                    archivo.id_item = id_item
+                    archivo.nombre_atributo = nombreatributo
+                    archivo.save()
+                    valoritems.item_id = id_item
+                    valoritems.valor_id = archivo.id
+                    valoritems.tabla_valor_nombre = 'tipoatributo_fecha'
+                    valoritems.nombre_atributo = nombreatributo
+                    valoritems.tipo_dato = tipodatoatributo
+                    valoritems.version = versionitem
+                    valoritems.orden = posicion
+                    valoritems.proyecto_id = id_proyecto
+                    valoritems.fase_id = id_fase
+                    valoritems.save()
+                    lista_desh.append(valoritems.id)
             elif tipodatoatributo=='Logico':
                 archivo = Logico()
                 archivo.valor = request.POST.get(str(i), '')
-                archivo.id_item = id_item
-                archivo.nombre_atributo = nombreatributo
-                archivo.save()
-                valoritems.item_id = id_item
-                valoritems.valor_id = archivo.id
-                valoritems.tabla_valor_nombre = 'tipoatributo_logico'
-                valoritems.nombre_atributo = nombreatributo
-                valoritems.tipo_dato = tipodatoatributo
-                valoritems.version = versionitem
-                valoritems.orden = posicion
-                valoritems.proyecto_id = id_proyecto
-                valoritems.fase_id = id_fase
-                valoritems.save()
+                if obligatoriedad and archivo.valor == '':
+                    error = True
+                    nomb=nombreatributo
+                    mensaje = 'El campo %s es obligatorio' % nombreatributo
+                    tupla=(nomb, mensaje)
+                    lista_error.append(tupla)
+                else:
+                    archivo.id_item = id_item
+                    archivo.nombre_atributo = nombreatributo
+                    archivo.save()
+                    valoritems.item_id = id_item
+                    valoritems.valor_id = archivo.id
+                    valoritems.tabla_valor_nombre = 'tipoatributo_logico'
+                    valoritems.nombre_atributo = nombreatributo
+                    valoritems.tipo_dato = tipodatoatributo
+                    valoritems.version = versionitem
+                    valoritems.orden = posicion
+                    valoritems.proyecto_id = id_proyecto
+                    valoritems.fase_id = id_fase
+                    valoritems.save()
+                    lista_desh.append(valoritems.id)
             i = i+1
             posicion = posicion+1
-        rpadre = Relaciones.objects.filter(padre_id=itemactual.id, is_active=True, versionprimero=itemactual.version)
-        rantecesor = Relaciones.objects.filter(antecesor_id=itemactual.id, is_active=True, versionprimero=itemactual.version)
-        rhijo = Relaciones.objects.filter(hijo_id=itemactual.id, is_active=True, versionsegundo=itemactual.version)
-        rsucesor = Relaciones.objects.filter(sucesor_id=itemactual.id, is_active=True, versionsegundo=itemactual.version)
+        if error:
+            #deshacemos las acciones del post, para que no se creem campos duplicados
+            atributositem = ValorItem.objects.filter(pk__in=lista_desh)
+            for atrib_item in atributositem:
+                print atrib_item.nombre_atributo
+                atrib_item.delete()
+        else:
+            rpadre = Relaciones.objects.filter(padre_id=itemactual.id, is_active=True, versionprimero=itemactual.version)
+            rantecesor = Relaciones.objects.filter(antecesor_id=itemactual.id, is_active=True, versionprimero=itemactual.version)
+            rhijo = Relaciones.objects.filter(hijo_id=itemactual.id, is_active=True, versionsegundo=itemactual.version)
+            rsucesor = Relaciones.objects.filter(sucesor_id=itemactual.id, is_active=True, versionsegundo=itemactual.version)
 
-        for padre in rpadre:
-            relacionnueva = Relaciones()
-            relacionnueva.padre_id = padre.padre_id
-            relacionnueva.hijo_id = padre.hijo_id
-            relacionnueva.antecesor_id = padre.antecesor_id
-            relacionnueva.sucesor_id = padre.sucesor_id
-            relacionnueva.is_active = True
-            relacionnueva.proyecto = padre.proyecto
-            relacionnueva.faseprimera = padre.faseprimera
-            relacionnueva.fasesegunda = padre.fasesegunda
-            relacionnueva.versionprimero = versionitem
-            relacionnueva.versionsegundo = padre.versionsegundo
-            padre_hijo = Items.objects.get(id=padre.hijo_id)
-            if padre.versionsegundo==padre_hijo.version:
-                relacionnueva.save()
-        for antecesor in rantecesor:
-            relacionnueva = Relaciones()
-            relacionnueva.padre_id = antecesor.padre_id
-            relacionnueva.hijo_id = antecesor.hijo_id
-            relacionnueva.antecesor_id = antecesor.antecesor_id
-            relacionnueva.sucesor_id = antecesor.sucesor_id
-            relacionnueva.is_active = True
-            relacionnueva.proyecto = antecesor.proyecto
-            relacionnueva.faseprimera = antecesor.faseprimera
-            relacionnueva.fasesegunda = antecesor.fasesegunda
-            relacionnueva.versionprimero = versionitem
-            relacionnueva.versionsegundo = antecesor.versionsegundo
-            antecesor_sucesor = Items.objects.get(id=antecesor.sucesor_id)
-            if sucesor.versionsegundo==antecesor_sucesor.version:
-                relacionnueva.save()
-        for sucesor in rsucesor:
-            relacionnueva = Relaciones()
-            relacionnueva.padre_id = sucesor.padre_id
-            relacionnueva.hijo_id = sucesor.hijo_id
-            relacionnueva.antecesor_id = sucesor.antecesor_id
-            relacionnueva.sucesor_id = sucesor.sucesor_id
-            relacionnueva.is_active = True
-            relacionnueva.proyecto = sucesor.proyecto
-            relacionnueva.faseprimera = sucesor.faseprimera
-            relacionnueva.fasesegunda = sucesor.fasesegunda
-            relacionnueva.versionprimero = sucesor.versionprimero
-            relacionnueva.versionsegundo = versionitem
-            sucesor_antecesor = Items.objects.get(id=padre.antecesor_id)
-            if sucesor.versionprimero==sucesor_antecesor.version:
-                relacionnueva.save()
-        for hijo in rhijo:
-            relacionnueva = Relaciones()
-            relacionnueva.padre_id = hijo.padre_id
-            relacionnueva.hijo_id = hijo.hijo_id
-            relacionnueva.antecesor_id = hijo.antecesor_id
-            relacionnueva.sucesor_id = hijo.sucesor_id
-            relacionnueva.is_active = True
-            relacionnueva.proyecto = hijo.proyecto
-            relacionnueva.faseprimera = hijo.faseprimera
-            relacionnueva.fasesegunda = hijo.fasesegunda
-            relacionnueva.versionprimero = hijo.versionprimero
-            relacionnueva.versionsegundo = versionitem
-            hijo_padre = Items.objects.get(id=hijo.padre_id)
-            if hijo.versionprimero==hijo_padre.version:
-                relacionnueva.save()
+            for padre in rpadre:
+                relacionnueva = Relaciones()
+                relacionnueva.padre_id = padre.padre_id
+                relacionnueva.hijo_id = padre.hijo_id
+                relacionnueva.antecesor_id = padre.antecesor_id
+                relacionnueva.sucesor_id = padre.sucesor_id
+                relacionnueva.is_active = True
+                relacionnueva.proyecto = padre.proyecto
+                relacionnueva.faseprimera = padre.faseprimera
+                relacionnueva.fasesegunda = padre.fasesegunda
+                relacionnueva.versionprimero = versionitem
+                relacionnueva.versionsegundo = padre.versionsegundo
+                padre_hijo = Items.objects.get(id=padre.hijo_id)
+                if padre.versionsegundo==padre_hijo.version:
+                    relacionnueva.save()
+            for antecesor in rantecesor:
+                relacionnueva = Relaciones()
+                relacionnueva.padre_id = antecesor.padre_id
+                relacionnueva.hijo_id = antecesor.hijo_id
+                relacionnueva.antecesor_id = antecesor.antecesor_id
+                relacionnueva.sucesor_id = antecesor.sucesor_id
+                relacionnueva.is_active = True
+                relacionnueva.proyecto = antecesor.proyecto
+                relacionnueva.faseprimera = antecesor.faseprimera
+                relacionnueva.fasesegunda = antecesor.fasesegunda
+                relacionnueva.versionprimero = versionitem
+                relacionnueva.versionsegundo = antecesor.versionsegundo
+                antecesor_sucesor = Items.objects.get(id=antecesor.sucesor_id)
+                if sucesor.versionsegundo==antecesor_sucesor.version:
+                    relacionnueva.save()
+            for sucesor in rsucesor:
+                relacionnueva = Relaciones()
+                relacionnueva.padre_id = sucesor.padre_id
+                relacionnueva.hijo_id = sucesor.hijo_id
+                relacionnueva.antecesor_id = sucesor.antecesor_id
+                relacionnueva.sucesor_id = sucesor.sucesor_id
+                relacionnueva.is_active = True
+                relacionnueva.proyecto = sucesor.proyecto
+                relacionnueva.faseprimera = sucesor.faseprimera
+                relacionnueva.fasesegunda = sucesor.fasesegunda
+                relacionnueva.versionprimero = sucesor.versionprimero
+                relacionnueva.versionsegundo = versionitem
+                sucesor_antecesor = Items.objects.get(id=padre.antecesor_id)
+                if sucesor.versionprimero==sucesor_antecesor.version:
+                    relacionnueva.save()
+            for hijo in rhijo:
+                relacionnueva = Relaciones()
+                relacionnueva.padre_id = hijo.padre_id
+                relacionnueva.hijo_id = hijo.hijo_id
+                relacionnueva.antecesor_id = hijo.antecesor_id
+                relacionnueva.sucesor_id = hijo.sucesor_id
+                relacionnueva.is_active = True
+                relacionnueva.proyecto = hijo.proyecto
+                relacionnueva.faseprimera = hijo.faseprimera
+                relacionnueva.fasesegunda = hijo.fasesegunda
+                relacionnueva.versionprimero = hijo.versionprimero
+                relacionnueva.versionsegundo = versionitem
+                hijo_padre = Items.objects.get(id=hijo.padre_id)
+                if hijo.versionprimero==hijo_padre.version:
+                    relacionnueva.save()
                 
-        itemactual.version = versionitem
-        itemactual.save()
-        mensaje = 'Atributos modificados con extito.'
-        template_name='./items/itemalerta.html'
-        ctx = {'mensaje': mensaje, 'id_proyecto':id_proyecto, 'id_fase': id_fase,}
-        return render_to_response(template_name, ctx, context_instance=RequestContext(request))
-        
+            itemactual.version = versionitem
+            itemactual.save()
+            mensaje = 'Atributos modificados con extito.'
+            template_name='./items/itemalerta.html'
+            ctx = {'mensaje': mensaje, 'id_proyecto':id_proyecto, 'id_fase': id_fase,}
+            return render_to_response(template_name, ctx, context_instance=RequestContext(request))
+
     idtipo = itemactual.tipo_item_id     
     lista_atributos = ordenar_mantener(idtipo)
     lista_valores = []
     orden = 0
     
     atributositem = ValorItem.objects.filter(proyecto_id=id_proyecto, fase_id=id_fase, item_id=id_item, version=itemactual.version).order_by('orden')
+
+    #preparamos una lista con los elementos necesarios para controlar la obligatoriedad y la longitud y presicion de los atributos
+    listaPresicionLongitud=[]
+    ord = 0
+    for l in lista_atributos:
+        atrib = TipoAtributo.objects.get(id=l.id_atributo)
+        minvalue = 0
+        maxvalue = 0
+        #si el atributo es numerico, rescatamos la longitud y la precision y creamos una cadena para el template
+        if atrib.tipo == 'Numerico':
+            num = int(atrib.longitud)
+            maxvalue = 10**num -1
+            
+            num = int(atrib.precision)
+            list=range(0, num)
+            minvalue = '0.'
+            maxvalue = '%s.' % maxvalue
+            for lis in list:
+                minvalue = '%s%s' % (minvalue, 0)
+                maxvalue = '%s%s' % (maxvalue, 9)
+        ord = ord+1
+        #guardamos una lista de tuplas para el template
+        tupla=(ord, atrib.nombre, atrib.longitud, atrib.precision, maxvalue, minvalue, atrib.obligatorio)
+        listaPresicionLongitud.append(tupla)
     if atributositem:
         for i in atributositem:
             valorfuturo = ListaValores()
@@ -329,6 +476,13 @@ def cargar_valores(request, id_proyecto, id_fase, id_item):
                 if textos:
                     for texto in textos:
                         valorfuturo.valor_numerico = texto.valor
+                        #al momento de recuperar los datos de un valor numerico, truncamos la cadena de acuerdo con la presicion
+                        for ord, nombre, long, precis, max, min, oblig in listaPresicionLongitud:
+                            if nombre == valorfuturo.nombre_atributo:
+                                valor = str(valorfuturo.valor_numerico)
+                                num = valor.find('.') + precis +1
+                                valorfuturo.valor_texto = valor[0:num]
+                                
                 else:
                     valorfuturo.valor_numerico = ""
                 valorfuturo.save()
@@ -343,12 +497,21 @@ def cargar_valores(request, id_proyecto, id_fase, id_item):
                 valorfuturo.save()
                 lista_valores.append(valorfuturo)
             if i.tipo_dato=='Archivo Externo':
-                textos = Texto.objects.filter(id=i.valor_id)
+                textos = ArchivoExterno.objects.filter(id=i.valor_id)
                 if textos:
                     for texto in textos:
                         valorfuturo.valor_archivoexterno = texto.valor
                 else:
                     valorfuturo.valor_archivoexterno = ""
+                valorfuturo.save()
+                lista_valores.append(valorfuturo)
+            if i.tipo_dato=='Imagen':
+                textos = Imagen.objects.filter(id=i.valor_id)
+                if textos:
+                    for texto in textos:
+                        valorfuturo.valor_imagen = texto.valor
+                else:
+                    valorfuturo.valor_imagen = ""
                 valorfuturo.save()
                 lista_valores.append(valorfuturo)
             if i.tipo_dato=='Logico':
@@ -361,6 +524,7 @@ def cargar_valores(request, id_proyecto, id_fase, id_item):
                 valorfuturo.save()
                 lista_valores.append(valorfuturo)
     else:
+        
         for atributo in lista_atributos:
             orden = orden+1
             valorfuturo = ListaValores()
@@ -369,13 +533,15 @@ def cargar_valores(request, id_proyecto, id_fase, id_item):
             valorfuturo.tipo_dato = atributoobjeto.tipo
             valorfuturo.orden = orden
             valorfuturo.valor_archivoexterno = ""
+            valorfuturo.valor_imagen= ""
             valorfuturo.valor_texto = ""
             valorfuturo.valor_numerico = ""
             valorfuturo.valor_fecha = ""
             
             lista_valores.append(valorfuturo)
+
     template_name='./items/cargaratributos.html'
-    return render(request, template_name, {'id_proyecto':id_proyecto, 'id_fase': id_fase, 'id_tipoitem': idtipo, 'lista_valores': lista_valores, 'id_item': id_item})        
+    return render(request, template_name, {'id_proyecto':id_proyecto, 'id_fase': id_fase, 'id_tipoitem': idtipo, 'lista_valores': lista_valores, 'id_item': id_item, 'listaPresicionLongitud':listaPresicionLongitud, 'lista_error':lista_error, 'itemactual':itemactual})        
 
 def listar_versiones(request, id_proyecto, id_fase, id_item):
     fase = Fases.objects.get(id=id_fase)
@@ -445,6 +611,7 @@ def consultar_version(request, id_proyecto, id_fase, id_item, version):
                     valorfuturo.valor_archivoexterno = ""
                 valorfuturo.save()
                 lista_valores.append(valorfuturo)
+            
             if i.tipo_dato=='Logico':
                 textos = Logico.objects.filter(id=i.valor_id)
                 if textos:

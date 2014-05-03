@@ -1,10 +1,15 @@
 {% extends "base_general.html" %}
 
+{% block tipo_Item_y_Atributo %}
+<li><a href="/adm_proyectos/gestionar/{{ id_proyecto }}/adm_tipos_item/">Administrar Tipos de Item</a></li>
+<li><a href="/adm_proyectos/gestionar/{{ id_proyecto }}/adm_tipos_atributo">Administrar Tipos de Atributo</a></li>
+{% endblock %}
+
 {% block menu %}		
 <div class="menu">
 	<ul>
 		<li id="option1" class="active">
-			<a href="/">Proyectos</a>
+			<a href="/"><p>Atributos de</p> {{ itemactual.nombre }}</a>
 		</li>
 	</ul>
 </div>
@@ -20,16 +25,48 @@
 
 {% block contenido %}
 <div class="content-secondary">
+
+
+{% if lista_error %}
+<div class="row">
+    <div class="panel panel-danger">
+    	<div class="panel-heading">
+    		<h3 class="panel-title">Por favor verifique:</h3>
+        </div>
+        <div class="panel-body">
+        <br>
+        <ul class="list-unstyled">
+           {% for campo, mensaje in lista_error %}
+		<ul>
+			<li><b>{{campo}}</b></li>
+			{{ mensaje }}
+		</ul>
+  			{% endfor %}
+		</ul>
+        </div>
+       	</div>
+</div>
+{% endif %}
+
 <!-- Aca van la  lista de Proyectos.. o de Solicitudes.. o de credenciales -->
 		{% if lista_valores %}
-		<form action="" method="post">
+
+		<form enctype="multipart/form-data" action="" method="post">
 			<div class="panel-group" id="accordion">
 				<table align="center">
 			{% for valores in lista_valores %}
 				<tr>
-					<td>{{ valores.nombre_atributo }} :  </td>
+					{% for orden, nombre, longitud, precision, maxvalue, minvalue, oblig in listaPresicionLongitud %}
+							{% if valores.nombre_atributo == nombre and valores.orden == orden %}
+								{% if oblig == True %}
+									<td><th><label>{{ valores.nombre_atributo }} *:</label></th></td>
+								{% else %}
+									<td><th><label>{{ valores.nombre_atributo }}:</label></th></td>
+								{% endif %}
+							{% endif %}
+					{% endfor %}
 					{% ifequal valores.tipo_dato "Fecha" %}
-						<td><input type="date" name={{forloop.counter}} value="{{ valores.valor_fecha }}" /> En formato AAAA-MM-DD {{ valores.orden }}
+						<td><input type="date" name={{forloop.counter}} class="form-control" value="{{ valores.valor_fecha }}" /> En formato Día/Mes/Año {{ valores.orden }}
 						</td>
 					{% endifequal %}
 					{% ifequal valores.tipo_dato "Logico" %}
@@ -38,29 +75,57 @@
 						 No<input type="radio" name={{forloop.counter}} /> {{ valores.orden }}
 						</td>
 						{% else %}
-						<td> Si<input type="radio" name={{forloop.counter}}  />
-						 No<input type="radio" name={{forloop.counter}} checked="checked" /> {{ valores.orden }}
+						<td> Si<input type="radio" name="{{ forloop.counter }}"  />
+						 No<input type="radio" name="{{ forloop.counter }}" checked="checked" /> 
 						</td>
 						{% endifequal %}
 					{% endifequal %}
-					{% ifequal valores.tipo_dato "Arvhivo Externo" %}
-						<td><input type="file" name={{forloop.counter}} value="{{ valores.valor_archivoexterno }}" /> {{ valores.orden }}
-						</td>
+					{% ifequal valores.tipo_dato "Archivo Externo" %}
+						{% ifequal valores.valor_archivoexterno "" %}
+							<td><input type="file" name="{{ forloop.counter }}" value="{{ valores.valor_archivoexterno }}" />
+							</td>
+						{% else %}
+							<td><input type="file" name="{{ forloop.counter }}" value="{{ valores.valor_archivoexterno }}" />
+							</td>
+							<td><a href="{{ setting.MEDIA_URL }}{{ valores.valor_archivoexterno.url }}" name="{{ forloop.counter }}"> {{ valores.valor_archivoexterno.name }}</a>
+							</td>
+						{% endifequal %}
 					{% endifequal %}
+					{% ifequal valores.tipo_dato "Imagen" %}
+						{% ifequal valores.valor_imagen "" %}
+							<td><input type="file" name="{{ forloop.counter }}" value="{{ valores.valor_imagen }}" />
+							</td>
+						{% else %}
+							<td><input type="file" name="{{ forloop.counter }}" value="{{ valores.valor_imagen }}" />
+							</td>
+							<td><a href="{{ setting.MEDIA_URL }}{{ valores.valor_imagen.url }}" name="{{ forloop.counter }}"><img src="{{ setting.MEDIA_URL }}{{ valores.valor_imagen.url }}" width="400" height="400"></a>
+							</td>
+						{% endifequal %}
+					{% endifequal %}	
 					{% ifequal valores.tipo_dato "Numerico" %}
-						<td><input type="number" name={{forloop.counter}} value="{{ valores.valor_numerico }}" /> {{ valores.orden }}
+					{% for orden, nombre, longitud, precision, maxvalue, minvalue, oblig in listaPresicionLongitud %}
+							{% if valores.nombre_atributo == nombre and valores.orden == orden %}
+						<td><input type="number" step="any" max="{{ maxvalue }}" min="{{ minvalue }}" name="{{forloop.counter}}" class="form-control" value="{{ valores.valor_texto }}"/> {{ valores.orden }}
 						</td>
+						{% endif %}
+				    {% endfor %}
 					{% endifequal %}
 					{% ifequal valores.tipo_dato "Texto" %}
-				    	<td><input type="text" name="{{forloop.counter}}" maxlength=300 value="{{ valores.valor_texto }}" /> {{ valores.orden }}
+						{% for orden, nombre, longitud, precision, maxvalue, minvalue, oblig in listaPresicionLongitud %}
+							{% if valores.nombre_atributo == nombre and valores.orden == orden %}
+								
+				    	<td>
+				    		<textarea class="form-control" maxlength="{{ longitud }}" name="{{forloop.counter}}" rows="5" value="{{ valores.valor_texto }}">{{ form.data.Descripcion }}</textarea>{{ valores.orden }}
 				    	</td>
+				    	{% endif %}
+				    {% endfor %}
 				    {% endifequal %}
 				</tr>
 			{% endfor %}
 		</table>
 					{% csrf_token %}
 					<input action="adm_proyectos/gestionar/{{ id_proyecto }}/adm_items/{{ id_fase }}/atributos/" class="btn btn-default" type="submit" value="Crear Item"/>
-		</div>
+		
 		</form>
 		{% else %}
 			{% if error %}

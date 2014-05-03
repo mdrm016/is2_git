@@ -1,5 +1,6 @@
 from django.shortcuts import render, render_to_response
 from models import TipoAtributo
+from django.core.exceptions import PermissionDenied
 from  django.http import  HttpResponseRedirect
 from django.template import RequestContext
 from forms import TipoAtributoForm, TipoAtributoModificadoForm
@@ -7,6 +8,7 @@ from aplicaciones.proyectos.models import Proyectos
 from aplicaciones.tipoitem.models import TipoItem
 from django.contrib.auth.decorators import login_required, permission_required
 from django.db.models import Q
+from django.core.exceptions import PermissionDenied 
 
 # Create your views here.
 @login_required(login_url='/login/')
@@ -27,7 +29,7 @@ def administrarTipoAtributo(request, id_proyecto):
     
     """
     
-    if request.user.has_perm('tipoAtributo.administrar_tipos_de_atributo'):
+    if request.user.has_perm('tipoatributo.administrar_tipos_de_atributo'):
         atributos = TipoAtributo.objects.filter(is_active=True, proyecto=id_proyecto)
         busqueda = ''
         error=False
@@ -44,14 +46,14 @@ def administrarTipoAtributo(request, id_proyecto):
                     error = True
                 
     else:
-        raise PermissionDenied
+        raise PermissionDenied()
     
     template_name='./tipoAtributo/tipo_atributos.html'
     return render(request, template_name, {'tipos_de_atributo': atributos, 'id_proyecto':id_proyecto, 'query':busqueda, 'error':error})
 
 
 @login_required(login_url='/login/')
-@permission_required('tipoAtributo.crear_tipo_de_atributo',raise_exception=True)
+@permission_required('tipoatributo.crear_tipoatributo',raise_exception=True)
 def tipoAtributoNuevo(request, id_proyecto):
     """ Recibe un request, obtiene el formulario con los datos del Tipo de Atributo a crear
     o la solicitud de envio de dicho formulario. Luego verifica los datos recibidos
@@ -81,7 +83,6 @@ def tipoAtributoNuevo(request, id_proyecto):
             longitud = form.cleaned_data['Longitud']
             obligatorio = form.cleaned_data['Obligatorio']
             descripcion = form.cleaned_data['Descripcion']
-            
             if tipo == 'Numerico':
                 if not precision and precision != 0:
                     errors.append('Ha seleccionado como tipo de dato NUMERICO, por favor especifique la cantidad de decimales con el campo Precision')
@@ -120,7 +121,7 @@ def tipoAtributoNuevo(request, id_proyecto):
     return render(request, template_name, {'form': form, 'errors': errors, 'id_proyecto': id_proyecto})
     
 @login_required(login_url='/login/')
-@permission_required('tipoAtributo.modificar_tipo_de_atributo',raise_exception=True)
+@permission_required('tipoatributo.modificar_tipoatributo',raise_exception=True)
 def modificarTipoAtributo(request, id_proyecto, id_tipo_atributo):
     """ Recibe un request, obtiene el formulario con los datos del Tipo de Atributo a modificar
     o la solicitud de envio de dicho formulario. Luego verifica los datos recibidos
@@ -196,7 +197,7 @@ def modificarTipoAtributo(request, id_proyecto, id_tipo_atributo):
     return render(request, template_name, {'form': form, 'errors': errors, 'id_proyecto': id_proyecto})
 
 @login_required(login_url='/login/')
-@permission_required('tipoAtributo.eliminar_tipo_de_atributo',raise_exception=True)
+@permission_required('tipoatributo.eliminar_tipoatributo',raise_exception=True)
 def eliminarTipoAtributo(request, id_proyecto, id_tipo_atributo):
     """ Eliminar de manera logica los registros del Tipo de atributo.Tambien elimina la relacion entre 
     los proyectos que poseen este Tipo de atributo.
@@ -261,7 +262,7 @@ def consultarTipoAtributo(request, id_proyecto, id_tipo_atributo):
     return render(request, template_name, {'tipo_atributo' : tipo_atributo, 'proyectos':proyectos}) 
 
 @login_required(login_url='/login/')
-@permission_required('tipoAtributo.importar_tipo_de_atributo',raise_exception=True)
+@permission_required('tipoatributo.importar_tipo_de_atributo',raise_exception=True)
 def importarTipoAtributo(request, id_proyecto, proyecto_select, id_tipo_atributo):
     """ Busca en la base de datos los Tipos de atributo de todos los proyectos,
     con la disponibilidad de importar el tipo de atributo que el usuario desee.  
@@ -293,7 +294,7 @@ def importarTipoAtributo(request, id_proyecto, proyecto_select, id_tipo_atributo
 
     
 @login_required(login_url='/login/')
-@permission_required('tipoAtributo.importar_tipo_de_atributo',raise_exception=True)
+@permission_required('tipoatributo.importar_tipo_de_atributo',raise_exception=True)
 def listar_proyectos (request, id_proyecto):
     
     proyectos = Proyectos.objects.filter(is_active=True)
@@ -302,7 +303,7 @@ def listar_proyectos (request, id_proyecto):
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
 
 @login_required(login_url='/login/')
-@permission_required('tipoAtributo.importar_tipo_de_atributo',raise_exception=True)
+@permission_required('tipoatributo.importar_tipo_de_atributo',raise_exception=True)
 def listar_tipoAtributo(request, id_proyecto, proyecto_select):
     
     tipo_atributo = TipoAtributo.objects.filter(proyecto=proyecto_select, is_active=True)

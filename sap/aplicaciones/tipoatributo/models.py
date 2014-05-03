@@ -33,8 +33,8 @@ class TipoAtributo(models.Model):
     class Meta:
         ordering = ['nombre']
         permissions = (
-                      ("administrar_tipos_de_atributo", "puede listar los roles"),
-                      ("importar_tipo_de_atributo", "puede asignar un rol a un usuario"),
+                      ("administrar_tipos_de_atributo", "puede listar los tipos de atributo"),
+                      ("importar_tipo_de_atributo", "puede importar un tipo de atributo"),
         )
     
     def __unicode__(self):

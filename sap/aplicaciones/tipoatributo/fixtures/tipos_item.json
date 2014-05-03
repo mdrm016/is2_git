@@ -6,10 +6,10 @@
         "descripcion": "Tiene las fotografias y mensajes para una propaganda", 
         "nombre": "Panfleto", 
         "listaAtributo": [
-            1
+            2
         ], 
         "is_active": true, 
-        "id_proyecto": 1
+        "id_proyecto": 2
     }
 }
 ]

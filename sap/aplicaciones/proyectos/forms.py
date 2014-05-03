@@ -44,16 +44,10 @@ class ProyectoNuevoForm(forms.Form):
         
     """
     
-    Nombre_del_Proyecto = forms.CharField(widget=forms.TextInput(), validators=[validate_nombreproyecto_unique], max_length=15, min_length=2, required=True, help_text='*', error_messages={'required': 'Ingrese un nombre para el proyecto', 'max_length': 'Longitud maxima: 15', 'min_length': 'Longitud minima: 2 caracteres'})
-    Fecha_de_Inicio =  forms.DateField(input_formats=['%d/%m/%Y'], widget=widgets.AdminDateWidget, required=True, help_text='* Ingrese en formato dia/mes/anho', error_messages={'required': 'Ingrese una fecha de inicio de proyecto'} )
+    Nombre_del_Proyecto = forms.CharField(widget=forms.TextInput(), validators=[validate_nombreproyecto_unique], max_length=30, min_length=2, required=True, help_text='*', error_messages={'required': 'Ingrese un nombre para el proyecto', 'max_length': 'Longitud maxima: 15', 'min_length': 'Longitud minima: 2 caracteres'})
+    Fecha_de_Inicio =  forms.DateField(input_formats=['%Y-%m-%d'], widget=widgets.AdminDateWidget, required=True, help_text='* Ingrese en formato dia/mes/anho', error_messages={'required': 'Ingrese una fecha de inicio de proyecto'} )
     Duracion = forms.IntegerField(required=True, help_text='* En semanas', validators=[validate_duracion_proyecto], error_messages={'required': 'Ingrese la duracion del proyecto',})
     
-    
-    """def __init__(self, *args, **kwargs):
-        self.Lider = opcionLider()
-        super(ProyectoNuevoForm, self).__init__(*args, **kwargs)
-        self.fields['Lider']= forms.ChoiceField(widget=forms.Select(), choices= (self.Lider), required=True, help_text='*', error_messages={'required': 'Seleccione un lider para el proyecto',})"""
-
     
 class ProyectoModificadoForm(forms.Form):
     
@@ -69,7 +63,7 @@ class ProyectoModificadoForm(forms.Form):
     
     """
     
-    Nombre_del_Proyecto = forms.CharField(widget=forms.TextInput(), max_length=15, min_length=2, required=True, error_messages={'required': 'Ingrese un nombre para el proyecto', 'max_length': 'Longitud maxima: 15', 'min_length': 'Longitud minima: 2 caracteres'})
+    Nombre_del_Proyecto = forms.CharField(widget=forms.TextInput(), max_length=30, min_length=2, required=True, error_messages={'required': 'Ingrese un nombre para el proyecto', 'max_length': 'Longitud maxima: 15', 'min_length': 'Longitud minima: 2 caracteres'})
     Nuevo_Lider =  forms.ChoiceField(widget=forms.Select(), choices= (opcionLider()), required=False)
     Nuevo_Estado = forms.ChoiceField(widget=forms.Select(), choices= (ESTADOS_PROYECTO), required=False)
     Duracion = forms.IntegerField(required=True, help_text='En semanas', validators=[validate_duracion_proyecto], error_messages={'required': 'Ingrese la duracion del proyecto',})

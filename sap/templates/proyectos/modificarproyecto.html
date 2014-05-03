@@ -20,7 +20,7 @@
 			<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
 				<form action="" method="post">{% csrf_token %}
 				
-					{% if form.errors or mensaje %}
+					{% if mensaje %}
     					<div class="panel panel-danger">
     						<div class="panel-heading">
     							<h3 class="panel-title">Por favor verifique:</h3>
@@ -32,18 +32,6 @@
 								<ul>
 									<li>{{ mensaje }}</li>
 								</ul>
-								{% else %}
-            					{% for field in form %}
-            						{% if field.errors %} 
-  										<li><b>{{ field.label }}</b></li>
-  										{% for error in field.errors %}
-    										<ul>
-      											<li>{{ error }}</li>
-    										</ul>
-    									{% endfor %}
-  										</li>
-  									{% endif %}
-  								{% endfor %}
   								{% endif %}
 								</ul>
             				</div>
@@ -52,7 +40,21 @@
         			
 					<table class="table table-hover table-bordered table-condensed table-responsive">
 
-						<tr><th><label for="id_Nombre_del_Proyecto"><h4><b>Nombre del proyecto:</b></h4></label></th><td><input id="id_Nombre_del_Proyecto" maxlength="15" name="Nombre_del_Proyecto" type="text" class="form-control" value="{{ proyecto.nombre }}" /></td></tr>
+						<tr><th><label for="id_Nombre_del_Proyecto"><h4><b>Nombre del proyecto *:</b></h4></label></th>
+						<td>
+							{% if form.Nombre_del_Proyecto.errors %}
+							<div class="form-group has-error">
+								  <label class="control-label" for="inputError1">{{ form.Nombre_del_Proyecto.errors }}</label>
+								  <input id="id_Nombre_del_Proyecto" maxlength="30" name="Nombre_del_Proyecto" type="text" class="form-control" value="{{ form.data.Nombre_del_Proyecto }}" /><br />
+								  
+							</div>
+							{% else %}
+							
+								<input id="id_Nombre_del_Proyecto" maxlength="30" name="Nombre_del_Proyecto" type="text" class="form-control" value="{{ proyecto.nombre }}" /><br />
+							{% endif %}
+							
+						</td></tr>
+						
 						<tr><th><label for="id_Nuevo_Lider"><h4><b>Lider:</b></h4></label></th><td><select id="id_Nuevo_Lider" name="Nuevo_Lider" class="form-control">
 						<option value="" selected="selected">{% if proyecto.lider %} {{ proyecto.lider }} {% else %} Ninguno {% endif %}</option>
 						{% for id, lider in choices_lider %}
@@ -69,7 +71,20 @@
 								{% endif %}
 							{% endfor %}
 						</select></td></tr>
-						<tr><th><label for="id_Duracion"><h4><b>Duracion:</b></h4></label></th><td><input id="id_Duracion" name="Duracion" type="number" class="form-control" value="{{ proyecto.duracion }}" /><br /><span class="helptext">En semanas</span></td></tr>
+						<tr><th><label for="id_Duracion"><h4><b>Duracion *:</b></h4></label></th>
+						<td>
+							{% if form.Duracion.errors %}
+							<div class="form-group has-error">
+								  <label class="control-label" for="inputError1">{{ form.Duracion.errors }}</label>
+								 <input id="id_Duracion" name="Duracion" type="number" class="form-control" value="{{ form.data.Duracion }}" /><br /><span class="helptext">* En semanas</span>
+								  
+							</div>
+							{% else %}
+							
+								<input id="id_Duracion" name="Duracion" type="number" class="form-control" value="{{ proyecto.duracion }}"" /><br /><span class="helptext">* En semanas</span>
+							{% endif %}
+							
+						</td></tr>
 
 					</table>
 					<div align="center"><br>
