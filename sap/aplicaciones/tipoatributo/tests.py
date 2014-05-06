@@ -31,24 +31,9 @@ class test_user(TestCase):
         request = self.factory.post('/adm_proyectos/gestionar/1/adm_tipos_atributo/nuevo/', {'Nombre_tipo_atributo': 'Detalle', 'Tipo_de_dato': 'Texto', 'Precision': '0', 'Longitud': '5', 'Obligatorio': 'N', 'Descripcion': ''})
         request.user = self.user 
         response = tipoAtributoNuevo(request, 1) 
-        print response
         self.assertEqual(response.status_code, 200)
         tipo_atributo = TipoAtributo.objects.get(nombre='Detalle')
         print tipo_atributo
-        
-    def testModificarRol(self):
-        
-        #self.user = User.objects.get(pk=1)
-        print Roles.objects.all()
-        #request = self.factory.post('/adm_roles/modificar/2/', {'Nombre_de_Rol': 'pruebaRol3', 'Permisos': ['crear_usuarios'], 'Descripcion':'Agregamos crear usuarios'})
-        #request.user = self.user
-        #response = modificarRol(request, 2)
-        #print response.status_code
-        #self.assertEqual(response.status_code, 200)
-        #rol = Roles.objects.get(name='pruebaRol3')
-        #print rol
-        print Roles.objects.all()
-        print 'Test de Modificar Rol ejecutado exitosamente.'
         
     if __name__ == '__main__':
         unittest.main()

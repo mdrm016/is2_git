@@ -18,21 +18,15 @@ class Relaciones(models.Model):
     @author: Ysapy Ortiz
     """
     nombre = models.CharField(max_length=30, null=True)
-    padre_id = models.IntegerField(null=True)
-    antecesor_id = models.IntegerField(null=True)
-    sucesor_id = models.IntegerField(null=True)
-    hijo_id = models.IntegerField(null=True)
-    is_active = models.BooleanField(default=True)
-    proyecto = models.IntegerField(null=True)
-    faseprimera = models.IntegerField(null=True)
-    fasesegunda = models.IntegerField(null=True)
-    versionprimero = models.IntegerField(null=True)
-    versionsegundo = models.IntegerField(null=True)
+    padre = models.IntegerField(null=True)
+    antecesor = models.IntegerField(null=True)
+    sucesor = models.IntegerField(null=True)
+    hijo = models.IntegerField(null=True)
     
     def __unicode__(self):
-        return self.snombre
+        return self.nombre
 
-class ListaRelaciones(models.Model):
+class VersionRelacion(models.Model):
     """ El modelo Relaciones describe la estructura de cada instancia de una fase, los campos
     que contiene el modelo son: 
     nombre: campo de tipo texto que contendra el nombre de la fase.
@@ -45,10 +39,17 @@ class ListaRelaciones(models.Model):
     @author: Ysapy Ortiz
     """
     nombre = models.CharField(max_length=30, null=True)
-    itemrelacionado = models.IntegerField(null=True)
-    nombreitemrelacionado = models.CharField(max_length=30, null=True)
-    tiporelacion = models.CharField(max_length=30, null=True)
-    relacionid = models.IntegerField(null=True)
+    relacion = models.ForeignKey(Relaciones)
+    item = models.ForeignKey(Items)
+    version = models.IntegerField(null=True)
+    
+    def __unicode__(self):
+        return self.nombre
+    
+class ListaRelacion(models.Model):
+    nombre = models.CharField(max_length=30, null=True)
+    nombreitem = models.CharField(max_length=30, null=True)
+    relacion = models.IntegerField(null=True)
     
     def __unicode__(self):
         return self.nombre

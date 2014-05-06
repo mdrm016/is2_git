@@ -8,14 +8,14 @@ from aplicaciones.proyectos.models import Proyectos
 from aplicaciones.fases.models import Fases
 from aplicaciones.tipoitem.models import TipoItem
 from aplicaciones.tipoatributo.models import TipoAtributo, Numerico, Fecha, Texto, ArchivoExterno, Logico, Imagen
-from aplicaciones.relaciones.models import Relaciones, ListaRelaciones
+from aplicaciones.relaciones.models import Relaciones, ListaRelacion, VersionRelacion
 from .models import Items, ListaValores, ValorItem
 from datetime import datetime
 from django.contrib.auth.decorators import login_required, permission_required
 from django.db.models import Q
 from forms import ItemNuevoForm, ItemModificadoForm
 from aplicaciones.tipoitem.views import ordenar_mantener
-from aplicaciones.relaciones.views import cargar_atributos
+from aplicaciones.relaciones.views import cargar_atributos, aumentar_version
 
 # Create your views here.
 
@@ -134,6 +134,7 @@ def crear_item(request, id_proyecto, id_fase, id_tipoitem):
             item.fase_id = id_fase
             item.is_active = True
             item.tipo_item_id = id_tipoitem
+            item.padre=0
             item.save()
             
             if fase.estado == 'DF':
@@ -398,44 +399,13 @@ def cargar_valores(request, id_proyecto, id_fase, id_item):
                 print atrib_item.nombre_atributo
                 atrib_item.delete()
         else:
-            rpadre = Relaciones.objects.filter(padre_id=itemactual.id, is_active=True, versionprimero=itemactual.version)
-            rantecesor = Relaciones.objects.filter(antecesor_id=itemactual.id, is_active=True, versionprimero=itemactual.version)
-            rhijo = Relaciones.objects.filter(hijo_id=itemactual.id, is_active=True, versionsegundo=itemactual.version)
-            rsucesor = Relaciones.objects.filter(sucesor_id=itemactual.id, is_active=True, versionsegundo=itemactual.version)
-
-            for padre in rpadre:
-                relacionnueva = Relaciones()
-                relacionnueva.padre_id = padre.padre_id
-                relacionnueva.hijo_id = padre.hijo_id
-                relacionnueva.antecesor_id = padre.antecesor_id
-                relacionnueva.sucesor_id = padre.sucesor_id
-                relacionnueva.is_active = True
-                relacionnueva.proyecto = padre.proyecto
-                relacionnueva.faseprimera = padre.faseprimera
-                relacionnueva.fasesegunda = padre.fasesegunda
-                relacionnueva.versionprimero = versionitem
-                relacionnueva.versionsegundo = padre.versionsegundo
-                padre_hijo = Items.objects.get(id=padre.hijo_id)
-                if padre.versionsegundo==padre_hijo.version and padre_hijo.is_active==True:
-                    relacionnueva.save()
-
-            for hijo in rhijo:
-                relacionnueva = Relaciones()
-                relacionnueva.padre_id = hijo.padre_id
-                relacionnueva.hijo_id = hijo.hijo_id
-                relacionnueva.antecesor_id = hijo.antecesor_id
-                relacionnueva.sucesor_id = hijo.sucesor_id
-                relacionnueva.is_active = True
-                relacionnueva.proyecto = hijo.proyecto
-                relacionnueva.faseprimera = hijo.faseprimera
-                relacionnueva.fasesegunda = hijo.fasesegunda
-                relacionnueva.versionprimero = hijo.versionprimero
-                relacionnueva.versionsegundo = versionitem
-                hijo_padre = Items.objects.get(id=hijo.padre_id)
-                if hijo.versionprimero==hijo_padre.version and hijo_padre.is_active==True:
-                    relacionnueva.save()
+            relaciones = VersionRelacion.objects.get(item_id=itemactual.id, version=itemactual.version)
+            relacionpadre = Relaciones.objects.get(id=relaciones.relacion_id)
+            padre = Items.objects.get(id=relacionpadre.padre)
+            if padre.is_active==True:
+                aumentar_version(relaciones, itemactual)
                 
-            itemactual.version = versionitem
+            itemactual.version = itemactual.version + 1
             itemactual.save()
             mensaje = 'Atributos modificados con extito.'
             template_name='./items/itemalerta.html'
@@ -665,51 +635,20 @@ def consultar_version(request, id_proyecto, id_fase, id_item, version):
                     valorfuturo.valor_logico = ""
                 valorfuturo.save()
                 lista_valores.append(valorfuturo)
-    rpadre = Relaciones.objects.filter(padre_id=id_item, faseprimera=id_fase, proyecto=id_proyecto, versionprimero=version, is_active=True)
-    rantecesor = Relaciones.objects.filter(antecesor_id=id_item, faseprimera=id_fase, proyecto=id_proyecto, versionprimero=version, is_active=True)
-    rhijo = Relaciones.objects.filter(hijo_id=id_item, fasesegunda=id_fase, proyecto=id_proyecto, versionsegundo=version, is_active=True)
-    rsucesor = Relaciones.objects.filter(sucesor_id=id_item, fasesegunda=id_fase, proyecto=id_proyecto, versionsegundo=version, is_active=True)
-    lista_relacione = []
-    for antecesor in rantecesor:
-        valor = ListaRelaciones()
-        valor.itemrelacionado = antecesor.sucesor_id
-        valor.tiporelacion = 'Sucesor'
-        itemrelacionado = Items.objects.get(id=valor.itemrelacionado)
-        valor.nombreitemrelacionado = itemrelacionado.nombre
-        valor.relacionid = antecesor.id
-        valor.save()
-        lista_relacione.append(valor)
-    for sucesor in rsucesor:
-        valor = ListaRelaciones()
-        valor.itemrelacionado = sucesor.antecesor_id
-        valor.tiporelacion = 'Antecesor'
-        itemrelacionado = Items.objects.get(id=valor.itemrelacionado)
-        valor.nombreitemrelacionado = itemrelacionado.nombre
-        valor.relacionid = sucesor.id
-        valor.save()
-        lista_relacione.append(valor)
-    for padre in rpadre:
-        valor = ListaRelaciones()
-        valor.itemrelacionado = padre.hijo_id
-        valor.tiporelacion = 'Hijo'
-        itemrelacionado = Items.objects.get(id=valor.itemrelacionado)
-        valor.nombreitemrelacionado = itemrelacionado.nombre
-        valor.relacionid = padre.id
-        valor.save()
-        lista_relacione.append(valor)
-    for hijo in rhijo:
-        valor = ListaRelaciones()
-        valor.itemrelacionado = hijo.padre_id
-        valor.tiporelacion = 'Padre'
-        itemrelacionado = Items.objects.get(id=valor.itemrelacionado)
-        valor.nombreitemrelacionado = itemrelacionado.nombre
-        valor.relacionid = hijo.id
-        valor.save()
-        lista_relacione.append(valor)
-    lista_relaciones = []
-    lista_relaciones = set(lista_relacione)
+    
+    relacionversion = VersionRelacion.objects.get(item_id=item.id, version=item.version)
+    relacionpadre = Relaciones.objects.get(id=relacionversion.relacion_id)
+    itempadre = Items.objects.get(id=relacionpadre.padre)
+    if item.padre!=0:
+        itempadre = Items.objects.get(id=item.padre)
+        if itempadre.is_active==True:
+            padre = ListaRelacion()
+            padre.nombreitem = itempadre.nombre
+            relacionpadre = Relaciones.objects.get(padre=item.padre, hijo=item.id)
+            padre.relacion = relacionpadre.id
+
     template_name='./items/mostraratributos.html'
-    return render(request, template_name, {'id_proyecto':id_proyecto, 'id_fase': id_fase, 'lista_valores': lista_valores, 'lista_relaciones': lista_relaciones, 'id_item': id_item})
+    return render(request, template_name, {'id_proyecto':id_proyecto, 'id_fase': id_fase, 'lista_valores': lista_valores, 'lista_relaciones': lista_relaciones, 'id_item': id_item, 'padre':padre})
 
 def revertir_version(request, id_proyecto, id_fase, id_item, version):
     """ Recibe un request, se verifica cual es el usuario registrado y el proyecto del cual se solicita,
@@ -727,44 +666,65 @@ def revertir_version(request, id_proyecto, id_fase, id_item, version):
     
     """
     item = Items.objects.get(proyecto_id=id_proyecto, fase_id=id_fase, id=id_item)
-    versionnueva = item.version + 1
+    
     valoresitem = ValorItem.objects.filter(proyecto=id_proyecto, fase=id_fase, item=id_item, version=version).order_by('orden')
     if valoresitem:
         for filaitem in valoresitem:
             if not (cargar_atributos(filaitem.valor_id, filaitem.nombre_atributo, filaitem.orden, filaitem.tabla_valor_nombre, id_proyecto, id_fase, int(id_item))):
                 estamosenproblemas.append(sjetbg)
-    
-    rhijo = Relaciones.objects.filter(hijo_id=id_item, is_active=True, versionsegundo=version)
-    for hijo in rhijo:
-        pad = Items.objects.get(id=hijo.padre_id)
-        if pad.is_active == True:
-            if not aumentar_relaciones(pad):
-                estamosenproblemas.append(sethrge)
-            relacionnueva = Relaciones()
-            relacionnueva.padre_id = hijo.padre_id
-            relacionnueva.hijo_id = hijo.hijo_id
-            relacionnueva.antecesor_id = hijo.antecesor_id
-            relacionnueva.sucesor_id = hijo.sucesor_id
-            relacionnueva.is_active = True
-            relacionnueva.proyecto = hijo.proyecto
-            relacionnueva.faseprimera = hijo.faseprimera
-            relacionnueva.fasesegunda = hijo.fasesegunda
-            relacionnueva.versionprimero = pad.version + 1
-            relacionnueva.versionsegundo = versionnueva
-            relacionnueva.save()
-    
-            itemotro = ValorItem.objects.filter(proyecto=id_proyecto, fase=id_fase, item=pad.id, version=pad.version).order_by('orden')
-            if itemotro:
-                for fila in itemotro:
-                    if not (cargar_atributos(fila.valor_id, fila.nombre_atributo, fila.orden, fila.tabla_valor_nombre, id_proyecto, id_fase, int(pad.id))):
+                
+    relacionesactuales = VersionRelacion.objects.filter(item_id=item.id, version=item.version)
+    for raversion in relacionesactuales:
+        ractual = Relaciones.objects.filter(id=raversion.relacion_id)
+        for ra in ractual:
+            if ra.hijo==item.id:
+                padreitem = Items.objects.filter(id=ra.padre)    
+            else:
+                padreitem = Items.objects.filter(id=ra.hijo)
+            versionrelacionespadre = VersionRelacion.objects.filter(item_id=padreitem.id, version=padreitem.version).exclude(relacion_id=raversion.relacion_id)
+            aumentar_version(versionrelacionespadre, padreitem)
+            valorespadre = ValorItem.objects.filter(proyecto=id_proyecto, fase=id_fase, item=padreitem.id, version=padreitem.version).order_by('orden')
+            if valorespadre:
+                for fila in valorespadre:
+                    if not (cargar_atributos(fila.valor_id, fila.nombre_atributo, fila.orden, fila.tabla_valor_nombre, id_proyecto, id_fase, int(padreitem.id))):
                         estamosenproblemas.append(sjetbg)
-            pad.version = pad.version + 1
-            pad.save()
-        else:
-            item.estado='En Construccion'
-    item.version = versionnueva
-    item.save()
+            padreitem.version = padreitem.version +1
+            padreitem.save()
+
+    relversiones = VersionRelacion.objects.filter(item_id=item.id, version=version)
+    for rv in relversiones:
+        relaciontodo = Relaciones.objects.filter(id=rv.relacion_id)
+        for relacion in relaciontodo:
+            if relacion.hijo==item.id:
+                padre = Items.objects.get(id=relacion.padre)
+                if padre.is_active==True:
+                    relacionespadre = VersionRelacion.objects.filter(item_id=padre.id, version=padre.version)
+                    aumentar_version(relacionespadre, padre)
+                    padrevalores = ValorItem.objects.filter(proyecto=id_proyecto, fase=id_fase, item=padre.id, version=padre.version).order_by('orden')
+                    if padrevalores:
+                        for fila in padrevalores:
+                            if not (cargar_atributos(fila.valor_id, fila.nombre_atributo, fila.orden, fila.tabla_valor_nombre, id_proyecto, id_fase, int(padre.id))):
+                                estamosenproblemas.append(sjetbg)
+                    nuevoversion = VersionRelacion()
+                    nuevoversion.relacion_id = relacion.id
+                    nuevoversion.item_id = item.id
+                    nuevoversion.version = item.version + 1
+                    nuevoversion.save()
+                    if padre.estado=='Terminado':
+                        padre.estado = 'En Construccion'
+                    nuevoversion = VersionRelacion()
+                    nuevoversion.relacion_id = relacion.id
+                    nuevoversion.item_id = padre.id
+                    nuevoversion.version = padre.version + 1
+                    nuevoversion.save()
+                    padre.version = padre.version + 1
+                    padre.save()
+                    item.padre = padre.id
     
+    item.version = item.version + 1
+    if item.estado=='Terminado':
+        item.estado = 'En Construccion'
+    item.save()
     mensaje = 'Version Revertida con exito.'
     template_name='./items/itemalerta.html'
     ctx = {'mensaje': mensaje, 'id_proyecto':id_proyecto, 'id_fase': id_fase}
@@ -1031,39 +991,23 @@ def eliminar_item(request, id_proyecto, id_fase, id_item):
         template_name='./items/itemalerta.html'
         return render(request, template_name, {'id_proyecto':id_proyecto, 'id_fase': id_fase, 'mensaje': mensaje, 'id_item': id_item})
     else:
-        rantecesor = Relaciones.objects.filter(proyecto=id_proyecto, faseprimera=id_fase, antecesor_id=id_item, is_active=True)
-        rpadre = Relaciones.objects.filter(proyecto=id_proyecto, faseprimera=id_fase, padre_id=id_item, is_active=True)
-        rsucesor = Relaciones.objects.filter(proyecto=id_proyecto, fasesegunda=id_fase, sucesor_id=id_item, is_active=True)
-        rhijo = Relaciones.objects.filter(proyecto=id_proyecto, fasesegunda=id_fase, hijo_id=id_item, is_active=True)
-        for padre in rpadre:
-            pad = Items.objects.get(id=padre.hijo_id)
-            itemotro = ValorItem.objects.filter(proyecto=id_proyecto, fase=id_fase, item=pad.id, version=pad.version).order_by('orden')
-            if itemotro:
-                for fila in itemotro:
-                    nuevo = cargar_atributos(fila.valor_id, fila.nombre_atributo, fila.orden, fila.tabla_valor_nombre, id_proyecto, id_fase, int(pad.id))
-                    nuevo.versionprimero = nuevo.versionprimero - 1
-                    nuevo.save()
-            padre.is_active=False
-            padre.save()
-            aumentar_relaciones(pad)
-            pad.version = pad.version + 1
-            pad.save()
-            padre.save()
-        for hijo in rhijo:
-            pad = Items.objects.get(id=hijo.padre_id)
-            itemotro = ValorItem.objects.filter(proyecto=id_proyecto, fase=id_fase, item=pad.id, version=pad.version).order_by('orden')
-            if itemotro:
-                for fila in itemotro:
-                    nuevo = cargar_atributos(fila.valor_id, fila.nombre_atributo, fila.orden, fila.tabla_valor_nombre, id_proyecto, id_fase, int(pad.id))
-                    nuevo.versionsegundo = nuevo.versionsegundo -1
-                    nuevo.save()
-            hijo.is_active=False
-            hijo.save()
-            aumentar_relaciones(pad)
-            hijo.versionprimero = hijo.versionprimero -1
-            pad.version = pad.version + 1
-            pad.save()
-            hijo.save()
+        versionesrelacion = VersionRelacion.objects.filter(item_id=item.id, version=item.version)
+        for vr in versionesrelacion:
+            relacion = Relaciones.objects.get(id=vr.relacion_id)
+            if relacion.hijo==item.id:
+                itemrelacionado = Items.objects.get(id=relacion.padre)
+            else:
+                itemrelacionado = Items.objects.get(id=relacion.hijo)
+            relacionespadre = VersionRelacion.objects.filter(item=itemrelacionado.id, version=itemrelacionado.version).exclude(relacion_id=relacion.id)
+            aumentar_version(relacionespadre, itemrelacionado)
+            itemrelacionadovalores = ValorItem.objects.filter(proyecto=id_proyecto, fase=id_fase, item=itemrelacionado.id, version=itemrelacionado.version).order_by('orden')
+            if itemrelacionadovalores:
+                for fila in itemrelacionadovalores:
+                    if not cargar_atributos(fila.valor_id, fila.nombre_atributo, fila.orden, fila.tabla_valor_nombre, id_proyecto, id_fase, int(itemrelacionado.id)):
+                        estamosenproblemas.append(sthwet)
+            itemrelacionado.version = itemrelacionado.version + 1
+            itemrelacionado.save()
+            
         item.is_active = False
         item.save()
         mensaje ='Eliminacion exitosa.'
@@ -1112,6 +1056,31 @@ def revivir_eliminado(request, id_proyecto, id_fase, id_item, version):
     proyecto = Proyectos.objects.get(id=id_proyecto)
     fase = Fases.objects.get(id=id_fase)
     item = Items.objects.get(proyecto_id=id_proyecto, fase_id=id_fase, id=id_item)
+    versionesrel = VersionRelacion.objects.filter(item_id=item.id, version=version)
+    for vr in versionesrel:
+        relacion = Relaciones.objects.get(id=vr.relacion_id)
+        if (relacion.hijo==item.id):
+            padre = Items.objects.get(id=relacion.padre)
+            if padre.is_active==True:
+                valorespadre = ValorItem.objects.filter(proyecto=id_proyecto, fase=id_fase, item=padre.id, version=padre.version).order_by('orden')
+                for filaitem in valorespadre:
+                    if not (cargar_atributos(filaitem.valor_id, filaitem.nombre_atributo, filaitem.orden, filaitem.tabla_valor_nombre, id_proyecto, id_fase, int(padre.id))):
+                        estamosenproblemas.append(sjetbg)
+                relacionespadre = VersionRelacion.objects.filter(item_id=padre.id, version=padre.version)
+                aumentar_version(relacionespadre, padre)
+                versionnueva = VersionRelacion()
+                versionnueva.item_id = padre.id
+                versionnueva.relacion_id = relacion.id
+                versionnueva.version = padre.version + 1
+                versionnueva.save()
+                padre.version = padre.version +1
+                versionnueva = VersionRelacion()
+                versionnueva.item_id = item.id
+                versionnueva.relacion_id = relacion.id
+                versionnueva.version = item.version + 1
+                versionnueva.save()
+                item.padre = padre.id
+                padre.save()
     nombres = Items.objects.filter(proyecto_id=id_proyecto, fase_id=id_fase, nombre=item.nombre, is_active=True)
     if nombres:
         mensaje = 'El nombre de item ya existe actualmente.'
@@ -1119,43 +1088,15 @@ def revivir_eliminado(request, id_proyecto, id_fase, id_item, version):
         template_name='./items/listareliminados.html'
         ctx = {'mensaje': mensaje, 'id_proyecto':id_proyecto, 'id_fase': id_fase, 'lista_eliminados': lista_eliminados}
         return render_to_response(template_name, ctx, context_instance=RequestContext(request))
-    versionnueva = item.version + 1
+    
     valoresitem = ValorItem.objects.filter(proyecto=id_proyecto, fase=id_fase, item=id_item, version=version).order_by('orden')
     if valoresitem:
         for filaitem in valoresitem:
             if not (cargar_atributos(filaitem.valor_id, filaitem.nombre_atributo, filaitem.orden, filaitem.tabla_valor_nombre, id_proyecto, id_fase, int(id_item))):
                 estamosenproblemas.append(sjetbg)
-    mipadres = Relaciones.objects.filter(hijo_id=id_item, versionsegundo=version)
-    mipadres = set(mipadres)
-    for hijo in mipadres:
-        pad = Items.objects.get(id=hijo.padre_id)
-        if pad.is_active == True:
-            if not aumentar_relaciones(pad):
-                estamosenproblemas.append(sethrge)
-         
-            relacionnueva = Relaciones()
-            relacionnueva.padre_id = hijo.padre_id
-            relacionnueva.hijo_id = hijo.hijo_id
-            relacionnueva.antecesor_id = hijo.antecesor_id
-            relacionnueva.sucesor_id = hijo.sucesor_id
-            relacionnueva.is_active = True
-            relacionnueva.proyecto = hijo.proyecto
-            relacionnueva.faseprimera = hijo.faseprimera
-            relacionnueva.fasesegunda = hijo.fasesegunda
-            relacionnueva.versionprimero = pad.version + 1
-            relacionnueva.versionsegundo = versionnueva
-            relacionnueva.save()
-            itemotro = ValorItem.objects.filter(proyecto=id_proyecto, fase=id_fase, item=pad.id, version=pad.version).order_by('orden')
-            if itemotro:
-                for fila in itemotro:
-                    if not (cargar_atributos(fila.valor_id, fila.nombre_atributo, fila.orden, fila.tabla_valor_nombre, id_proyecto, id_fase, int(pad.id))):
-                        estamosenproblemas.append(sjetbg)
-            pad.version = pad.version + 1
-            pad.save()
-        else:
-            item.estado = 'En Construccion'
+
     item.is_active=True
-    item.version = versionnueva
+    item.version = item.version + 1
     item.save()
     
     mensaje = 'Item revivido con exito.'
@@ -1268,104 +1209,37 @@ def consultar_version_eliminado(request, id_proyecto, id_fase, id_item, version)
                     valorfuturo.valor_logico = ""
                 valorfuturo.save()
                 lista_valores.append(valorfuturo)
-    rpadre = Relaciones.objects.filter(padre_id=id_item, faseprimera=id_fase, proyecto=id_proyecto, versionprimero=version, is_active=False)
-    rantecesor = Relaciones.objects.filter(antecesor_id=id_item, faseprimera=id_fase, proyecto=id_proyecto, versionprimero=version, is_active=False)
-    rhijo = Relaciones.objects.filter(hijo_id=id_item, fasesegunda=id_fase, proyecto=id_proyecto, versionsegundo=version, is_active=False)
-    rsucesor = Relaciones.objects.filter(sucesor_id=id_item, fasesegunda=id_fase, proyecto=id_proyecto, versionsegundo=version, is_active=False)
-    lista_relacione = []
-    for antecesor in rantecesor:
-        valor = ListaRelaciones()
-        valor.itemrelacionado = antecesor.sucesor_id
-        valor.tiporelacion = 'Sucesor'
-        itemrelacionado = Items.objects.get(id=valor.itemrelacionado)
-        valor.nombreitemrelacionado = itemrelacionado.nombre
-        valor.relacionid = antecesor.id
-        valor.save()
-        lista_relacione.append(valor)
-    for sucesor in rsucesor:
-        valor = ListaRelaciones()
-        valor.itemrelacionado = sucesor.antecesor_id
-        valor.tiporelacion = 'Antecesor'
-        itemrelacionado = Items.objects.get(id=valor.itemrelacionado)
-        valor.nombreitemrelacionado = itemrelacionado.nombre
-        valor.relacionid = sucesor.id
-        valor.save()
-        lista_relacione.append(valor)
-    for padre in rpadre:
-        valor = ListaRelaciones()
-        valor.itemrelacionado = padre.hijo_id
-        valor.tiporelacion = 'Hijo'
-        itemrelacionado = Items.objects.get(id=valor.itemrelacionado)
-        valor.nombreitemrelacionado = itemrelacionado.nombre
-        valor.relacionid = padre.id
-        valor.save()
-        
-        lista_relacione.append(valor)
-    for hijo in rhijo:
-        valor = ListaRelaciones()
-        valor.itemrelacionado = hijo.padre_id
-        valor.tiporelacion = 'Padre'
-        itemrelacionado = Items.objects.get(id=valor.itemrelacionado)
-        valor.nombreitemrelacionado = itemrelacionado.nombre
-        valor.relacionid = hijo.id
-        valor.save()
-        lista_relacione.append(valor)
-    lista_relaciones = set(lista_relacione)
-    template_name='./items/mostrareliminados.html'
-    return render(request, template_name, {'id_proyecto':id_proyecto, 'id_fase': id_fase, 'lista_valores': lista_valores, 'lista_relaciones': lista_relaciones, 'id_item': id_item})
+                
+    versionrelaciones = VersionRelacion.objects.filter(item_id=item.id, version=version) 
+    itempadre = Items.objects.get(id=item.padre, is_active=True)
+    if itempadre:
+        padre = ListaRelacion()
+        padre.nombreitem = itempadre.nombre
+        relacionpadre = Relaciones.objects.filter(padre=item.padre, hijo=item.id)
+        for rp in relacionpadre:
+            padre.relacion = rp.id
+    relaciones = VersionRelacion.objects.filter(item_id=item.id, version=item.version).exclude(relacion_id=padre.relacion)
+    lista_relaciones = []
+    for relacion in relaciones:
+        hijo = ListaRelacion()
+        rhijo = Relaciones.objects.get(id=relacion.relacion_id)
+        itemhijo = Items.objects.get(id=rhijo.hijo)
+        hijo.nombreitem = itemhijo.nombre
+        hijo.relacion = rhijo.id
+        hijo.save()
+        lista_relaciones.append(hijo)
+        hijo.delete()
 
-def aumentar_relaciones(item):
-    """ Recibe un request, se verifica cual es el usuario registrado y el proyecto del cual se solicita,
-    se obtiene la lista de fases con las que estan relacionados el usuario y el proyecto 
-    desplegandola en pantalla, ademas permite realizar busquedas avanzadas sobre
-    las fases que puede mostrar.
-    
-    @type request: django.http.HttpRequest.
-    @param request: Contiene informacion sobre la solicitud web actual que llamo a esta vista.
-    
-    @rtype: django.shortcuts.render_to_response.
-    @return: fases.html, donde se listan las fases, ademas de las funcionalidades para cada fase.
-    
-    @author: Ysapy Ortiz.
-    
-    """
-    hijos = Relaciones.objects.filter(padre_id=item.id, versionprimero=item.version, is_active=True)
-    padres = Relaciones.objects.filter(hijo_id=item.id, versionsegundo=item.version, is_active=True)
-    
-    for hijo in hijos:
-        nuevo = Relaciones()
-        nuevo.padre_id = hijo.padre_id
-        nuevo.hijo_id = hijo.hijo_id
-        nuevo.antecesor_id = hijo.antecesor_id
-        nuevo.sucesor_id = hijo.sucesor_id
-        nuevo.faseprimera = hijo.faseprimera
-        nuevo.fasesegunda = hijo.fasesegunda
-        nuevo.proyecto = hijo.proyecto
-        nuevo.is_active = True
-        nuevo.versionprimero = item.version + 1
-        nuevo.versionsegundo = hijo.versionsegundo
-        nuevo.save()
-    for padre in padres:
-        nuevo = Relaciones()
-        nuevo.padre_id = padre.padre_id
-        nuevo.hijo_id = padre.hijo_id
-        nuevo.antecesor_id = padre.antecesor_id
-        nuevo.sucesor_id = padre.sucesor_id
-        nuevo.faseprimera = padre.faseprimera
-        nuevo.fasesegunda = padre.fasesegunda
-        nuevo.proyecto = padre.proyecto
-        nuevo.is_active = True
-        nuevo.versionsegundo = item.version + 1
-        nuevo.versionprimero = padre.versionsegundo
-        nuevo.save()
-    return (nuevo)
+    template_name='./items/mostrareliminados.html'
+    return render(request, template_name, {'id_proyecto':id_proyecto, 'id_fase': id_fase, 'lista_valores': lista_valores, 'lista_relaciones': lista_relaciones, 'id_item': id_item, 'padre': padre})
 
 def consultar_relaciones(request, id_proyecto, id_fase, id_item):
-    """ Recibe un request, se verifica cual es el usuario registrado y el proyecto del cual se solicita,
+    """ 
+    Recibe un request, se verifica cual es el usuario registrado y el proyecto del cual se solicita,
     se obtiene la lista de fases con las que estan relacionados el usuario y el proyecto 
     desplegandola en pantalla, ademas permite realizar busquedas avanzadas sobre
     las fases que puede mostrar.
-    
+  
     @type request: django.http.HttpRequest.
     @param request: Contiene informacion sobre la solicitud web actual que llamo a esta vista.
     
@@ -1373,62 +1247,33 @@ def consultar_relaciones(request, id_proyecto, id_fase, id_item):
     @return: fases.html, donde se listan las fases, ademas de las funcionalidades para cada fase.
     
     @author: Ysapy Ortiz.
+    """ 
     
-    """
     proyecto = Proyectos.objects.get(id=id_proyecto)
     fase = Fases.objects.get(id=id_fase)
     item = Items.objects.get(id=id_item)
-
-    rantecesor = Relaciones.objects.filter(proyecto=id_proyecto, faseprimera=id_fase, antecesor_id=id_item, is_active=True, versionprimero=item.version)
-    rpadre = Relaciones.objects.filter(proyecto=id_proyecto, faseprimera=id_fase, padre_id=id_item, is_active=True, versionprimero=item.version)
-    rsucesor = Relaciones.objects.filter(proyecto=id_proyecto, fasesegunda=id_fase, sucesor_id=id_item, is_active=True, versionsegundo=item.version)
-    rhijo = Relaciones.objects.filter(proyecto=id_proyecto, fasesegunda=id_fase, hijo_id=id_item, is_active=True, versionsegundo=item.version)
+    idpadre = item.padre
+    versionrelaciones = VersionRelacion.objects.filter(item_id=item.id, version=item.version) 
+    itemspadre = Items.objects.filter(id=idpadre)
     lista_relaciones = []
-    
-    for antecesor in rantecesor:
-        valor = ListaRelaciones()
-        valor.itemrelacionado = antecesor.sucesor_id
-        valor.tiporelacion = 'Sucesor'
-        itemrelacionado = Items.objects.get(id=valor.itemrelacionado)
-        valor.nombreitemrelacionado = itemrelacionado.nombre
-        valor.relacionid = antecesor.id
-        valor.save()
-        antecesor_sucesor = Items.objects.get(id=antecesor.sucesor_id)
-        if antecesor.versionsegundo==antecesor_sucesor.version:
-            lista_relaciones.append(valor)
-    for sucesor in rsucesor:
-        valor = ListaRelaciones()
-        valor.itemrelacionado = sucesor.antecesor_id
-        valor.tiporelacion = 'Antecesor'
-        itemrelacionado = Items.objects.get(id=valor.itemrelacionado)
-        valor.nombreitemrelacionado = itemrelacionado.nombre
-        valor.relacionid = sucesor.id
-        valor.save()
-        sucesor_antecesor = Items.objects.get(id=sucesor.antecesor_id)
-        if sucesor.versionprimero==sucesor_antecesor.version:
-            lista_relaciones.append(valor)
-    for padre in rpadre:
-        valor = ListaRelaciones()
-        valor.itemrelacionado = padre.hijo_id
-        valor.tiporelacion = 'Hijo'
-        itemrelacionado = Items.objects.get(id=valor.itemrelacionado)
-        valor.nombreitemrelacionado = itemrelacionado.nombre
-        valor.relacionid = padre.id
-        valor.save()
-        padre_hijo = Items.objects.get(id=padre.hijo_id)
-        if padre.versionsegundo==padre_hijo.version:
-            lista_relaciones.append(valor)
-    for hijo in rhijo:
-        valor = ListaRelaciones()
-        valor.itemrelacionado = hijo.padre_id
-        valor.tiporelacion = 'Padre'
-        itemrelacionado = Items.objects.get(id=valor.itemrelacionado)
-        valor.nombreitemrelacionado = itemrelacionado.nombre
-        valor.relacionid = hijo.id
-        valor.save()
-        hijo_padre = Items.objects.get(id=hijo.padre_id)
-        if hijo.versionprimero==hijo_padre.version:
-            lista_relaciones.append(valor)
+    for i in itemspadre:
+        itempadre = i
+        if itempadre and itempadre.is_active==True:
+            padre = ListaRelacion()
+            padre.nombreitem = itempadre.nombre
+            relacionpadre = Relaciones.objects.filter(padre=item.padre, hijo=item.id)
+            for rp in relacionpadre:
+                padre.relacion = rp.id
+            relaciones = VersionRelacion.objects.filter(item_id=item.id, version=item.version).exclude(relacion_id=padre.relacion)
+            for relacion in relaciones:
+                hijo = ListaRelacion()
+                rhijo = Relaciones.objects.get(id=relacion.relacion_id)
+                itemhijo = Items.objects.get(id=rhijo.hijo)
+                hijo.nombreitem = itemhijo.nombre
+                hijo.relacion = rhijo.id
+                hijo.save()
+                lista_relaciones.append(hijo)
+                hijo.delete()
 
     ctx = {'lista_relaciones': lista_relaciones, 'id_proyecto':id_proyecto, 'id_fase': id_fase, 'id_item': id_item}
     template_name = './items/relaciones.html'

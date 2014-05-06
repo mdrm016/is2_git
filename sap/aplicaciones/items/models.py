@@ -32,6 +32,7 @@ class Items(models.Model):
     proyecto = models.ForeignKey(Proyectos)
     is_active = models.BooleanField(default=True)
     tipo_item = models.ForeignKey(TipoItem)
+    padre = models.IntegerField(null=True)
 
     def __unicode__(self):
         return self.nombre
