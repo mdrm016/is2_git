@@ -33,7 +33,12 @@ $(document).on("click", ".tipoatributo", function () {
 	document.getElementById("tipoAtributo").setAttribute("href",'eliminar/'+id);
 });
 
-$(document).on("click", ".relacion", function () {
+$(document).on("click", ".items", function () {
+	var id = $(this).data('id');
+	document.getElementById("item").setAttribute("href",'eliminar/'+id);
+});
+
+$(document).on("click", ".relaciones", function () {
 	var id = $(this).data('id');
 	document.getElementById("relacion").setAttribute("href",'eliminar/'+id);
 });

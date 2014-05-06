@@ -1,15 +1,10 @@
 {% extends "base_general.html" %}
 
-{% block tipo_Item_y_Atributo %}
-<li><a href="/adm_proyectos/gestionar/{{ id_proyecto }}/adm_tipos_item/">Administrar Tipos de Item</a></li>
-<li><a href="/adm_proyectos/gestionar/{{ id_proyecto }}/adm_tipos_atributo">Administrar Tipos de Atributo</a></li>
-{% endblock %}
-
 {% block menu %}		
 <div class="menu">
 	<ul>
 		<li id="option1" class="active">
-			<a href="/"><p>{{ proyecto.nombre }}</p>Items</a>
+			<a href="/">Proyectos</a>
 		</li>
 	</ul>
 </div>
@@ -19,11 +14,12 @@
 <div class="row">
 	<form class="navbar-form navbar-left">
 		<a href="nuevo/"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-folder-open"></span> Crear Item</button></a>
+		<a href="eliminados/"><button type="button" class="btn btn-default"> Items Eliminados</button></a>
 <!-- 		<a href="#"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-import"></span> Importar Fase</button></a>-->
 		<form action="" method="get">
-				<input type="text" name="busqueda" class="form-control" placeholder="Busqueda de Items..." value="{{ query|escape }}">
+				<input type="text" name="busqueda" class="btn btn-default" placeholder="Busqueda de Items..." value="{{ query|escape }}">
 				<span class="glyphicon glyphicon-search"></span>
-				<input class="btn btn-default" type="submit" value="Buscar Items">
+				<input class="btn btn-default" type="submit" value="Buscar Item">
 		</form>
 	</form>
 </div>
@@ -73,12 +69,12 @@
 				    <div id="collapse{{ item.id }}" class="panel-collapse collapse pull-left">
 				      <div class="panel-body">
 
-				      		<a href="#"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-eye-open"></span> Consultar</button></a>
-				      		<a href="#"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-edit"></span> Modificar</button></a>
+				      		<a href="consultar/{{ item.id }}/"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-eye-open"></span> Consultar</button></a>
+				      		<a href="modificar/{{ item.id }}/"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-edit"></span> Modificar</button></a>
 				      		<a href="atributos/{{ item.id }}/"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-edit"></span> Atributos</button></a>
 				      		<a href="relaciones/{{ item.id }}"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-edit"></span> Relaciones</button></a>
 				      		<a href="versiones/{{ item.id }}"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-edit"></span> Versiones</button></a>
-				      		<button class="btn btn-danger btn-sm fases" data-toggle="modal" data-target="#myModal" data-id="{{ item.id }}"><span class="glyphicon glyphicon-trash"></span> Eliminar</button>
+				      		<a href="eliminar/{{ item.id }}"><button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> Eliminar</button></a>
 				      </div>
 				    </div>
 				</div>

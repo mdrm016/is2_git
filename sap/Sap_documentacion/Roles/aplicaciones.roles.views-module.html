@@ -117,6 +117,46 @@
   </tr>
 <tr>
     <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">django.http.HttpResponse</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="aplicaciones.roles.views-module.html#asignarFaseRol" class="summary-sig-name">asignarFaseRol</a>(<span class="summary-sig-arg">request</span>,
+        <span class="summary-sig-arg">id_rol</span>)</span><br />
+      Recibe un request, obtiene el formulario con las fases seleccionadas 
+      del proyecto al que esta asignado el Rol o la solicitud de envio de 
+      dicho formulario.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="aplicaciones.roles.views-pysrc.html#asignarFaseRol">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">django.http.HttpResponse</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="aplicaciones.roles.views-module.html#desasignarFaseRol" class="summary-sig-name">desasignarFaseRol</a>(<span class="summary-sig-arg">request</span>,
+        <span class="summary-sig-arg">id_rol</span>)</span><br />
+      Recibe un request, obtiene el formulario con las fases seleccionadas 
+      del proyecto al que esta asignado el Rol o la solicitud de envio de 
+      dicho formulario.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="aplicaciones.roles.views-pysrc.html#desasignarFaseRol">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
       <span class="summary-type">django.HttpResponse</span>
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
@@ -141,8 +181,7 @@
         <tr>
           <td><span class="summary-sig"><a href="aplicaciones.roles.views-module.html#eliminarRol" class="summary-sig-name">eliminarRol</a>(<span class="summary-sig-arg">request</span>,
         <span class="summary-sig-arg">id_rol</span>)</span><br />
-      Eliminar de manera logica los registros del rol.Tambien elimina la 
-      relacion entre los usuarios que posees este rol.</td>
+      Eliminar de manera logica los registros del rol.</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="aplicaciones.roles.views-pysrc.html#eliminarRol">source&nbsp;code</a></span>
             
@@ -210,6 +249,25 @@
       
     </td>
   </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">django.HttpResponse</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="aplicaciones.roles.views-module.html#asignarProyectoRol" class="summary-sig-name">asignarProyectoRol</a>(<span class="summary-sig-arg">request</span>,
+        <span class="summary-sig-arg">id_rol</span>)</span><br />
+      Asigna un Proyecto a un Rol, desplegando los proyectos existentes en 
+      el Sistema</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="aplicaciones.roles.views-pysrc.html#asignarProyectoRol">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
 </table>
 <!-- ==================== FUNCTION DETAILS ==================== -->
 <a name="section-FunctionDetails"></a>
@@ -260,7 +318,7 @@
     </ul></dd>
   </dl>
 <div class="fields">      <p><strong>Author:</strong>
-        eduardo gimenez
+        Eduardo Gimenez
       </p>
 </div></td></tr></table>
 </div>
@@ -292,8 +350,78 @@
     <dt>Decorators:</dt>
     <dd><ul class="nomargin-top">
         <li><code>@login_required(login_url= '/login/')</code></li>
-        <li><code>@permission_required('roles.add_roles', raise_exception= True)</code></li>
+        <li><code>@permission_required('roles.crear_roles', raise_exception= True)</code></li>
     </ul></dd>
+  </dl>
+<div class="fields">      <p><strong>Author:</strong>
+        Eduardo Gimenez
+      </p>
+</div></td></tr></table>
+</div>
+<a name="asignarFaseRol"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">asignarFaseRol</span>(<span class="sig-arg">request</span>,
+        <span class="sig-arg">id_rol</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="aplicaciones.roles.views-pysrc.html#asignarFaseRol">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Recibe un request, obtiene el formulario con las fases seleccionadas 
+  del proyecto al que esta asignado el Rol o la solicitud de envio de dicho
+  formulario. Luego verifica los datos recibidos y registra las fases 
+  seleccionadas.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>request</code></strong> (django.http.HttpRequest) - Contiene informacion sobre la solic. web actual que llamo a esta 
+          vista</li>
+    </ul></dd>
+    <dt>Returns: django.http.HttpResponse</dt>
+        <dd>rol_alerta.html, mensaje de exito</dd>
+    <dt>Decorators:</dt>
+    <dd><ul class="nomargin-top">
+        <li><code>@login_required(login_url= '/login/')</code></li>
+    </ul></dd>
+  </dl>
+<div class="fields">      <p><strong>Author:</strong>
+        Eduardo Gimenez
+      </p>
+</div></td></tr></table>
+</div>
+<a name="desasignarFaseRol"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">desasignarFaseRol</span>(<span class="sig-arg">request</span>,
+        <span class="sig-arg">id_rol</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="aplicaciones.roles.views-pysrc.html#desasignarFaseRol">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Recibe un request, obtiene el formulario con las fases seleccionadas 
+  del proyecto al que esta asignado el Rol o la solicitud de envio de dicho
+  formulario. Luego verifica los datos recibidos y remueve las fases 
+  seleccionadas del Grupo de fases de ese Rol.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>request</code></strong> (django.http.HttpRequest) - Contiene informacion sobre la solic. web actual que llamo a esta 
+          vista</li>
+    </ul></dd>
+    <dt>Returns: django.http.HttpResponse</dt>
+        <dd>rol_alerta.html, mensaje de exito</dd>
   </dl>
 <div class="fields">      <p><strong>Author:</strong>
         Eduardo Gimenez
@@ -332,11 +460,11 @@
     <dt>Decorators:</dt>
     <dd><ul class="nomargin-top">
         <li><code>@login_required(login_url= '/login/')</code></li>
-        <li><code>@permission_required('roles.change_roles', raise_exception= True)</code></li>
+        <li><code>@permission_required('roles.modificar_roles', raise_exception= True)</code></li>
     </ul></dd>
   </dl>
 <div class="fields">      <p><strong>Author:</strong>
-        eduardo gimenez
+        Eduardo Gimenez
       </p>
 </div></td></tr></table>
 </div>
@@ -355,14 +483,13 @@
     </td>
   </tr></table>
   
-  <p>Eliminar de manera logica los registros del rol.Tambien elimina la 
-  relacion entre los usuarios que posees este rol.</p>
+  <p>Eliminar de manera logica los registros del rol.</p>
   <dl class="fields">
     <dt>Parameters:</dt>
     <dd><ul class="nomargin-top">
         <li><strong class="pname"><code>request</code></strong> (django.http.HttpRequest) - Contiene informacion sobre la solicitud web actual que llamo a 
           esta vista</li>
-        <li><strong class="pname"><code>id_usuario</code></strong> (string) - Contiene el id del rol a ser eliminado.</li>
+        <li><strong class="pname"><code>id_rol</code></strong> (integer) - Contiene el id del rol a ser eliminado.</li>
     </ul></dd>
     <dt>Returns: django.shortcuts.render_to_response</dt>
         <dd>Se retorna al la administracion de Roles o se manda a la pagina 
@@ -370,7 +497,7 @@
     <dt>Decorators:</dt>
     <dd><ul class="nomargin-top">
         <li><code>@login_required(login_url= '/login/')</code></li>
-        <li><code>@permission_required('roles.delete_roles', raise_exception= True)</code></li>
+        <li><code>@permission_required('roles.eliminar_roles', raise_exception= True)</code></li>
     </ul></dd>
   </dl>
 <div class="fields">      <p><strong>Author:</strong>
@@ -411,7 +538,7 @@
     </ul></dd>
   </dl>
 <div class="fields">      <p><strong>Author:</strong>
-        eduardo gimenez
+        Eduardo Gimenez
       </p>
 </div></td></tr></table>
 </div>
@@ -491,6 +618,44 @@
       </p>
 </div></td></tr></table>
 </div>
+<a name="asignarProyectoRol"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">asignarProyectoRol</span>(<span class="sig-arg">request</span>,
+        <span class="sig-arg">id_rol</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="aplicaciones.roles.views-pysrc.html#asignarProyectoRol">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Asigna un Proyecto a un Rol, desplegando los proyectos existentes en 
+  el Sistema</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>request</code></strong> (django.http.HttpRequest) - Contiene informacion sobre la solic. web actual que llamo a esta 
+          vista</li>
+        <li><strong class="pname"><code>id_rol</code></strong> (integer) - es el id del Rol al cual se le quiere asignar un proyecto</li>
+    </ul></dd>
+    <dt>Returns: django.HttpResponse</dt>
+        <dd>asignar_rol.html, donde se despliega un formulario con los 
+          usuarios que poseen el rol</dd>
+    <dt>Decorators:</dt>
+    <dd><ul class="nomargin-top">
+        <li><code>@login_required(login_url= '/login/')</code></li>
+        <li><code>@permission_required('roles.asignar_proyecto_rol', raise_exception= True)</code></li>
+    </ul></dd>
+  </dl>
+<div class="fields">      <p><strong>Author:</strong>
+        Eduardo Gimenez
+      </p>
+</div></td></tr></table>
+</div>
 <br />
 <!-- ==================== NAVIGATION BAR ==================== -->
 <table class="navbar" border="0" width="100%" cellpadding="0"
@@ -523,7 +688,7 @@
 <table border="0" cellpadding="0" cellspacing="0" width="100%%">
   <tr>
     <td align="left" class="footer">
-    Generated by Epydoc 3.0.1 on Mon Apr 21 10:28:40 2014
+    Generated by Epydoc 3.0.1 on Sat May  3 06:01:19 2014
     </td>
     <td align="right" class="footer">
       <a target="mainFrame" href="http://epydoc.sourceforge.net"

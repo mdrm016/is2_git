@@ -111,7 +111,7 @@ def crear_tipoitem (request, id_proyecto):
 def modificar_tipoitem (request, id_tipoitem, id_proyecto):
     
     """ Recibe un request, el id de proyecto y el id del tipo de item  a ser modificado, se verifica si
-     el usuario tiene permisos para modificar un tipo de item existente y se lo redirige a una pagina para
+    el usuario tiene permisos para modificar un tipo de item existente y se lo redirige a una pagina para
     que modifique el formulario existente de un tipo de item, una vez modificado de forma correcta dicho 
     formulario el tipo de item puede ser modificado.
     
@@ -462,7 +462,7 @@ def bajar_tipo_atributo (request, id_tipoitem, id_proyecto, id_tipoatributo):
 def listar_proyectos (request, id_proyecto):
     
     """ Recibe un request y un id de proyecto, se obtiene todos los proyectos activos en el sistema
-     y son despelgados al usuario para que seleccione uno que contiene el tipo de item a importar.
+    y son despelgados al usuario para que seleccione uno que contiene el tipo de item a importar.
     
     @type request: django.http.HttpRequest.
     @param request: Contiene informacion sobre la solicitud web actual que llamo a esta vista listar_proyectos.

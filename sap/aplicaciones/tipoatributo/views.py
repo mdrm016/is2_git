@@ -208,7 +208,7 @@ def eliminarTipoAtributo(request, id_proyecto, id_tipo_atributo):
     @type id_proyecto: Integer
     @param id_proyecto: Es el id del proyecto actual en el que se esta trabajando
     
-     @type id_tipo_atributo: Integer
+    @type id_tipo_atributo: Integer
     @param id_tipo_atributo: Es el id del Tipo de Atributo a eliminar
         
     @rtype: django.shortcuts.render_to_response
@@ -248,7 +248,7 @@ def consultarTipoAtributo(request, id_proyecto, id_tipo_atributo):
     @type id_proyecto: Integer
     @param id_proyecto: Es el id del proyecto actual en el que se esta trabajando
     
-     @type id_tipo_atributo: Integer
+    @type id_tipo_atributo: Integer
     @param id_tipo_atributo: Es el id del Tipo de Atributo cuyos datos se quieren visualizar
     
     @rtype: django.HttpResponse

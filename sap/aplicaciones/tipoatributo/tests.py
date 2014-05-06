@@ -4,6 +4,7 @@ from aplicaciones.tipoatributo.views import administrarTipoAtributo, tipoAtribut
 from aplicaciones.tipoatributo.views import eliminarTipoAtributo, consultarTipoAtributo, importarTipoAtributo
 from aplicaciones.tipoatributo.models import TipoAtributo
 from django.contrib.auth.models import User 
+from aplicaciones.roles.models import Roles
 
 class test_user(TestCase):
     """    Cargamos Proyectos, tipos de Item y Tipos de Atributo de prueba en la base de datos    """
@@ -80,5 +81,6 @@ class test_user(TestCase):
         self.assertEqual(response.status_code, 200)
         print 'Test Importar Tipo de Atributo ejecutado exitosamente'
     
+
     if __name__ == '__main__':
         unittest.main()

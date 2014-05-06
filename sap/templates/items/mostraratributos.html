@@ -9,7 +9,7 @@
 <div class="menu">
 	<ul>
 		<li id="option1" class="active">
-			<a href="/">Proyectos</a>
+			<a href="/adm_proyectos/gestionar/{{ id_proyecto }}/adm_items/{{ id_fase }}/"> Item - Atributos </a>
 		</li>
 	</ul>
 </div>
@@ -37,11 +37,11 @@
 						</td>
 					{% endifequal %}
 					{% ifequal valores.tipo_dato "Logico" %}
-						{% ifequal valore.valor "t" %}
+						{% ifequal valores.valor True %}
 						<td> Si
 						</td>
 						{% endifequal %}
-						{% ifequal valore.valor "f" %}
+						{% ifequal valores.valor False %}
 						<td> No
 						</td>
 						{% endifequal %}
@@ -67,6 +67,122 @@
 				<div class="jumbotron">
 					<div class="bs-example">
 						<p class="text-warning" align="center"><small>No se encontraron Atributos</small></p>
+					</div>
+				</div>
+			
+		{% endif %}
+		{% if lista_relaciones %}
+		<div class="row ">
+			<div class="panel-group" id="accordion">
+				<div class="panel panel-default">
+					<div class="row">
+				    	<div class="col-md-4">
+				   			<div class="panel-heading">
+				      			<h4 class="panel-title"><b>Nombre</b></h4>
+				    		</div>
+				    	</div>				    
+				    	<div class="col-md-4">
+				    		<div class="panel-heading">
+				      			<h4 class="panel-title"><b>Relacion (Item listado)</b></h4>
+				    		</div>
+				    	</div>
+				    </div>
+				</div>
+			<div class="panel-group" id="accordion">
+				<table align="center">
+		{% else %}
+			{% if padre %}
+			<div class="row ">
+			<div class="panel-group" id="accordion">
+				<div class="panel panel-default">
+					<div class="row">
+				    	<div class="col-md-4">
+				   			<div class="panel-heading">
+				      			<h4 class="panel-title"><b>Nombre</b></h4>
+				    		</div>
+				    	</div>				    
+				    	<div class="col-md-4">
+				    		<div class="panel-heading">
+				      			<h4 class="panel-title"><b>Relacion (Item listado)</b></h4>
+				    		</div>
+				    	</div>
+				    </div>
+				</div>
+			<div class="panel-group" id="accordion">
+				<table align="center">
+			{% endif %}
+		{% endif %}
+		{% if padre %}
+				<div class="panel panel-default">
+					<div class="col-md-4">
+				    	<div class="panel-heading">
+				      		<h4 class="panel-title">
+				        		<a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ padre.relacion }}">
+				          			{{ padre.nombreitem }}
+				        		</a>
+				      		</h4>
+				    	</div>
+				    </div>				    
+				    <div class="col-md-4">
+				    	<div class="panel-heading">
+				      		<h4 class="panel-title">
+				        		<a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ padre.relacion }}">
+				          			Padre
+				        		</a>
+				      		</h4>
+				    	</div>
+				    </div>
+				    <div id="collapse{{ padre.relacion }}" class="panel-collapse collapse pull-left">
+				      <div class="panel-body">
+				      		<button class="btn btn-danger btn-sm relaciones" data-toggle="modal" data-target="#myModal" data-id="{{ padre.relacion }}"><span class="glyphicon glyphicon-trash"></span> Eliminar</button>
+				      </div>
+				    </div>
+				    {% csrf_token %}
+				</div>
+		{% else %}
+				<div class="jumbotron">
+					<div class="bs-example">
+						<p class="text-warning" align="center"><small>El item no posee padre/antecesor</small></p>
+					</div>
+				</div>
+		{% endif %}
+		{% if lista_relaciones %}
+			{% for relacion in lista_relaciones %}
+				<div class="panel panel-default">
+					<div class="col-md-4">
+				    	<div class="panel-heading">
+				      		<h4 class="panel-title">
+				        		<a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ relacion.relacion }}">
+				          			{{ relacion.nombreitem }}
+				        		</a>
+				      		</h4>
+				    	</div>
+				    </div>				    
+				    <div class="col-md-4">
+				    	<div class="panel-heading">
+				      		<h4 class="panel-title">
+				        		<a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ relacion.relacion }}">
+				          			Hijo
+				        		</a>
+				      		</h4>
+				    	</div>
+				    </div>
+				    
+				    <div id="collapse{{ relacion.relacion }}" class="panel-collapse collapse pull-left">
+				      <div class="panel-body">
+				      		<button class="btn btn-danger btn-sm relaciones" data-toggle="modal" data-target="#myModal" data-id="{{ relacion.relacion }}"><span class="glyphicon glyphicon-trash"></span> Eliminar</button>
+				      </div>
+				    </div>
+				</div>
+		{% endfor %}
+		</table>
+					{% csrf_token %}
+		</div>
+		
+		{% else %}	
+				<div class="jumbotron">
+					<div class="bs-example">
+						<p class="text-warning" align="center"><small>No se encontraron hijos/sucesores</small></p>
 					</div>
 				</div>
 			
