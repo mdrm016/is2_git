@@ -204,7 +204,7 @@ def modificarUsuario(request, id_usuario):
 			data = {'Nombre_de_Usuario': usuario.username, 'Contrasenha': '', 'Nueva_contrasenha': '', 'Email': usuario.email, 'Nombre':usuario.first_name,'Apellido':usuario.last_name, 'Telefono': perfil.telefono, 'Direccion':perfil.direccion, 'Especialidad':perfil.especialidad , 'Observaciones':perfil.observaciones}
 			form = UsuarioModificadoForm(data)
 		template_name='./Usuarios/modificar_usuario.html'
-		return render(request, template_name,{'form':form})
+		return render(request, template_name,{'form':form, 'id_usuario':id_usuario})
 	else:
 		raise PermissionDenied
 
@@ -225,7 +225,7 @@ def consultarUsuario(request, id_usuario):
 	template_name='./Usuarios/consultar_usuario.html'
 	usuario = User.objects.get(pk = id_usuario)
 	perfil = usuario.get_profile()
-	return render(request, template_name, {'usuario' : usuario, 'perfil':perfil})
+	return render(request, template_name, {'usuario' : usuario, 'perfil':perfil, 'id_usuario':id_usuario})
 
 		
 @login_required(login_url='/login/')

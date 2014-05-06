@@ -11,17 +11,10 @@
         <link href="{{STATIC_URL}}aplicaciones/css/bootstrap.css" rel="stylesheet" media="screen">
         <link href="{{STATIC_URL}}aplicaciones/css/main.css" rel="stylesheet" media="screen">
         <!-- Nuestro estilo -->
-        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}admin/css/widgets.css"/>
 		<!-- Bootstrap JS -->
 		<script type="text/javascript" src="{{STATIC_URL}}aplicaciones/js/jquery.js"></script>
 		<script type="text/javascript" src="{{STATIC_URL}}aplicaciones/js/bootstrap.js"></script>
 		<script type="text/javascript" src="{{STATIC_URL}}aplicaciones/js/main.js"></script>
-		<script type="text/javascript" src="/admin/jsi18n/"></script>
-		<script type="text/javascript" src="{{ STATIC_URL }}admin/js/core.js"></script>
-		<script type="text/javascript" src="{{ STATIC_URL }}admin/js/calendar.js"></script>
-		<script type="text/javascript" src="{{ STATIC_URL }}admin/js/admin/DateTimeShortcuts.js"></script>
-		<script type="text/javascript">window.__admin_media_prefix__ = "/static/admin/";</script>
-
 	</head>
 	<!-- Fin de la cabecera -->
 	
@@ -59,6 +52,7 @@
 		
 		<!-- Fin del banner -->
 		<div class="wrapper">
+		{% block navegacion %}{% endblock %}
 		{% block menu %}{% endblock %}
 		{% block botones %}{% endblock %}
 		{% block contenido  %}{% endblock %}

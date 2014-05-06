@@ -30,6 +30,7 @@ def adm_tipoitem (request, id_proyecto):
     """
     
     tipoitem = TipoItem.objects.filter(id_proyecto=id_proyecto, is_active=True)
+    proyecto = Proyectos.objects.get(id=id_proyecto)
     
     busqueda = ''
     error=False
@@ -55,7 +56,7 @@ def adm_tipoitem (request, id_proyecto):
         lista_tipoitem.append(tupla)
         
                 
-    ctx = {'lista_tipoitem':lista_tipoitem, 'query':busqueda, 'error':error, 'id_proyecto':id_proyecto}   
+    ctx = {'lista_tipoitem':lista_tipoitem, 'query':busqueda, 'error':error, 'id_proyecto':id_proyecto, 'proyecto':proyecto}   
     template_name = 'tipoitem/tipoitem.html'
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
 
@@ -80,7 +81,7 @@ def crear_tipoitem (request, id_proyecto):
     @author: Marcelo Denis.
     
     """
-    
+    proyecto = Proyectos.objects.get(id=id_proyecto)
     if request.method == 'POST':
         form = TipoItemNuevoForm(request.POST)
         if form.is_valid():
@@ -97,12 +98,12 @@ def crear_tipoitem (request, id_proyecto):
             tipoitem.save()
 
             mensaje="Tipo Item creado exitosamente"
-            ctx = {'mensaje':mensaje, 'id_proyecto':id_proyecto}
+            ctx = {'mensaje':mensaje, 'id_proyecto':id_proyecto, 'proyecto':proyecto}
             return render_to_response('tipoitem/tipoitemalerta.html',ctx, context_instance=RequestContext(request))
     else:
         form = TipoItemNuevoForm()
         
-    ctx ={'form': form, 'id_proyecto':id_proyecto}      
+    ctx ={'form': form, 'id_proyecto':id_proyecto, 'proyecto':proyecto}      
     template_name='tipoitem/creartipoitem.html'
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
 
@@ -132,6 +133,7 @@ def modificar_tipoitem (request, id_tipoitem, id_proyecto):
     
     """
     
+    proyecto = Proyectos.objects.get(id=id_proyecto)
     tipoitem = TipoItem.objects.get(id=id_tipoitem)
     mensaje=''
     if request.method == 'POST':
@@ -161,14 +163,14 @@ def modificar_tipoitem (request, id_tipoitem, id_proyecto):
                         
                     mensaje="Tipo de Item modificado exitosamente"
                     
-                ctx = {'mensaje':mensaje, 'id_proyecto':id_proyecto}
+                ctx = {'mensaje':mensaje, 'id_proyecto':id_proyecto, 'proyecto':proyecto}
                 template_name='tipoitem/tipoitemalerta.html'
                 return render_to_response(template_name, ctx, context_instance=RequestContext(request))
     else:
         data ={'Nombre_Tipo_de_Item':tipoitem.nombre, 'Descripcion':tipoitem.descripcion}
         form = TipoItemModificadoForm(data)
         
-    ctx ={'form': form, 'mensaje':mensaje, 'tipoitem':tipoitem, 'id_proyecto':id_proyecto}      
+    ctx ={'form': form, 'mensaje':mensaje, 'tipoitem':tipoitem, 'id_proyecto':id_proyecto, 'proyecto':proyecto}      
     template_name='tipoitem/modificartipoitem.html'
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
 
@@ -197,6 +199,7 @@ def eliminar_tipoitem (request, id_tipoitem, id_proyecto):
     
     """
     
+    proyecto = Proyectos.objects.get(id=id_proyecto)
     items = Items.objects.filter(is_active=True, tipo_item=id_tipoitem)
     if items:
         msj=''
@@ -209,7 +212,7 @@ def eliminar_tipoitem (request, id_tipoitem, id_proyecto):
             mensaje='Imposible eliminar el Tipo de Item, es usado por el item: %s' % msj
         else:
             mensaje='Imposible eliminar el Tipo de Item, es usado por los items: %s' % msj
-        ctx = {'mensaje':mensaje, 'id_proyecto':id_proyecto}
+        ctx = {'mensaje':mensaje, 'id_proyecto':id_proyecto, 'proyecto':proyecto}
         template_name='tipoitem/tipoitemalerta.html'
         return render_to_response(template_name, ctx, context_instance=RequestContext(request))
     else:
@@ -249,6 +252,7 @@ def consultar_tipoitem (request, id_tipoitem, id_proyecto):
     
     """
     
+    proyecto = Proyectos.objects.get(id=id_proyecto)
     tipoitem = TipoItem.objects.get(id=id_tipoitem)
     
     elementos_existentes = ordenar_mantener (id_tipoitem)
@@ -257,7 +261,7 @@ def consultar_tipoitem (request, id_tipoitem, id_proyecto):
         tupla = (elemento.nombre, TipoAtributo.objects.get(id=elemento.id_atributo).descripcion)
         consulta.append(tupla)
         
-    ctx = {'tipoitem':tipoitem, 'atributos':consulta, 'id_proyecto':id_proyecto}
+    ctx = {'tipoitem':tipoitem, 'atributos':consulta, 'id_proyecto':id_proyecto, 'proyecto':proyecto}
     template_name = 'tipoitem/consultartipoitem.html'
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
 
@@ -286,11 +290,12 @@ def gestionar_tipoitem (request, id_tipoitem, id_proyecto):
     
     """
     
+    proyecto = Proyectos.objects.get(id=id_proyecto)
     tipoitem = TipoItem.objects.get(id=id_tipoitem)
     tablaTipoAtributo = TipoAtributo.objects.filter(is_active=True, proyecto=id_proyecto)
     lista_atributos = tipoitem.listaAtributo.all().filter(is_active=True).order_by('orden')
                 
-    ctx = {'tipoatributos_dispon':tablaTipoAtributo, 'tipoatributo_selec':lista_atributos, 'id_proyecto':id_proyecto, 'tipoitem':tipoitem}
+    ctx = {'tipoatributos_dispon':tablaTipoAtributo, 'tipoatributo_selec':lista_atributos, 'id_proyecto':id_proyecto, 'tipoitem':tipoitem, 'proyecto':proyecto}
     template_name = 'tipoitem/gestionartipoitem.html'
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
 
@@ -477,6 +482,7 @@ def listar_proyectos (request, id_proyecto):
     
     """
     
+    proyecto = Proyectos.objects.get(id=id_proyecto)
     proyectos = Proyectos.objects.filter(is_active=True)
     
     busqueda = ''
@@ -495,7 +501,7 @@ def listar_proyectos (request, id_proyecto):
             if not proyectos:
                 error = True
     
-    ctx = {'id_proyecto':id_proyecto, 'lista_proyectos':proyectos, 'query':busqueda, 'error':error}
+    ctx = {'id_proyecto':id_proyecto, 'lista_proyectos':proyectos, 'query':busqueda, 'error':error, 'proyecto':proyecto}
     template_name = 'tipoitem/listarproyectos.html'
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
 
@@ -534,7 +540,7 @@ def listar_tipoitem(request, id_proyecto, proyecto_select):
             if not tipoitem:
                 error = True
                 
-    ctx = {'proyecto':proyecto, 'lista_tipoitem':tipoitem, 'query':busqueda, 'error':error}
+    ctx = {'proyecto':proyecto, 'lista_tipoitem':tipoitem, 'query':busqueda, 'error':error, 'proyecto':proyecto, 'proyecto_select':proyecto_select}
     template_name = 'tipoitem/listartipoitem.html'
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
 
@@ -568,6 +574,7 @@ def importar_tipoitem(request, id_proyecto, proyecto_select, id_tipoitem):
     
     """
     
+    proyecto = Proyectos.objects.get(id=id_proyecto)
     tipoI = TipoItem.objects.get(id=id_tipoitem)
     if request.method == 'POST':
         form = TipoItemNuevoForm(request.POST)
@@ -602,11 +609,11 @@ def importar_tipoitem(request, id_proyecto, proyecto_select, id_tipoitem):
             
             
             mensaje="Tipo Item Importado exitosamente"
-            ctx = {'mensaje':mensaje, 'id_proyecto':id_proyecto}
+            ctx = {'mensaje':mensaje, 'id_proyecto':id_proyecto, 'proyecto':proyecto}
             return render_to_response('tipoitem/tipoitemalerta.html',ctx, context_instance=RequestContext(request))
     else:
         form = TipoItemNuevoForm()
         
-    ctx ={'form': form, 'tipoitem':tipoI, 'id_proyecto':id_proyecto}      
+    ctx ={'form': form, 'tipoitem':tipoI, 'id_proyecto':id_proyecto, 'proyecto':proyecto, 'proyecto_select':proyecto_select, 'id_tipoitem':id_tipoitem}      
     template_name='tipoitem/creartipoitemimportado.html'
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
