@@ -272,7 +272,10 @@ def consultarRol(request, id_rol):
     fases = rol.fases.all()
     usuarios_con_rol = []
     usuarios_activos = User.objects.filter(is_active=True)
-    proyecto = Proyectos.objects.get(id=rol.proyecto)
+    if rol.proyecto:
+        proyecto = Proyectos.objects.get(id=rol.proyecto)
+    else:
+        proyecto = ''
     for usuario in usuarios_activos:
         roles = usuario.groups.all()
         if roles:

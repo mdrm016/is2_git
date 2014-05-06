@@ -175,18 +175,23 @@ def cargar_valores(request, id_proyecto, id_fase, id_item):
                         valoritems.save()
                         lista_desh.append(valoritems.id)
                     else:
-                        valoritems_guardado = ValorItem.objects.get(item_id = id_item, nombre_atributo = nombreatributo, tipo_dato = tipodatoatributo, version = versionitem-1, orden = posicion)
-                        valoritems.item_id = valoritems_guardado.item_id
-                        valoritems.valor_id = valoritems_guardado.valor_id
-                        valoritems.tabla_valor_nombre = 'tipoatributo_archivoexterno'
-                        valoritems.nombre_atributo = valoritems_guardado.nombre_atributo
-                        valoritems.tipo_dato = valoritems_guardado.tipo_dato
-                        valoritems.version = versionitem
-                        valoritems.orden = valoritems_guardado.orden
-                        valoritems.proyecto_id = valoritems_guardado.proyecto_id
-                        valoritems.fase_id = valoritems_guardado.fase_id
-                        valoritems.save()
-                        lista_desh.append(valoritems.id)
+                        existe = True
+                        try:
+                            valoritems_guardado = ValorItem.objects.get(item_id = id_item, nombre_atributo = nombreatributo, tipo_dato = tipodatoatributo, version = versionitem-1, orden = posicion)
+                        except ValorItem.DoesNotExist:
+                            existe = False
+                        if existe:
+                            valoritems.item_id = valoritems_guardado.item_id
+                            valoritems.valor_id = valoritems_guardado.valor_id
+                            valoritems.tabla_valor_nombre = 'tipoatributo_archivoexterno'
+                            valoritems.nombre_atributo = valoritems_guardado.nombre_atributo
+                            valoritems.tipo_dato = valoritems_guardado.tipo_dato
+                            valoritems.version = versionitem
+                            valoritems.orden = valoritems_guardado.orden
+                            valoritems.proyecto_id = valoritems_guardado.proyecto_id
+                            valoritems.fase_id = valoritems_guardado.fase_id
+                            valoritems.save()
+                            lista_desh.append(valoritems.id)
                     
             elif tipodatoatributo=='Imagen':
                 if obligatoriedad and request.FILES.has_key(str(i)):
@@ -214,18 +219,24 @@ def cargar_valores(request, id_proyecto, id_fase, id_item):
                         valoritems.save()
                         lista_desh.append(valoritems.id)
                     else:
-                        valoritems_guardado = ValorItem.objects.get(item_id = id_item, nombre_atributo=nombreatributo, tipo_dato = tipodatoatributo, version = versionitem-1, orden = posicion)
-                        valoritems.item_id = valoritems_guardado.item_id
-                        valoritems.valor_id = valoritems_guardado.valor_id
-                        valoritems.tabla_valor_nombre = 'tipoatributo_imagen'
-                        valoritems.nombre_atributo = valoritems_guardado.nombre_atributo
-                        valoritems.tipo_dato = valoritems_guardado.tipo_dato
-                        valoritems.version = versionitem
-                        valoritems.orden = valoritems_guardado.orden
-                        valoritems.proyecto_id = valoritems_guardado.proyecto_id
-                        valoritems.fase_id = valoritems_guardado.fase_id
-                        valoritems.save()
-                        lista_desh.append(valoritems.id)
+                        existe = True
+                        try:
+                            valoritems_guardado = ValorItem.objects.get(item_id = id_item, nombre_atributo = nombreatributo, tipo_dato = tipodatoatributo, version = versionitem-1, orden = posicion)
+                        except ValorItem.DoesNotExist:
+                            existe = False
+                        if existe:
+                            valoritems_guardado = ValorItem.objects.get(item_id = id_item, nombre_atributo=nombreatributo, tipo_dato = tipodatoatributo, version = versionitem-1, orden = posicion)
+                            valoritems.item_id = valoritems_guardado.item_id
+                            valoritems.valor_id = valoritems_guardado.valor_id
+                            valoritems.tabla_valor_nombre = 'tipoatributo_imagen'
+                            valoritems.nombre_atributo = valoritems_guardado.nombre_atributo
+                            valoritems.tipo_dato = valoritems_guardado.tipo_dato
+                            valoritems.version = versionitem
+                            valoritems.orden = valoritems_guardado.orden
+                            valoritems.proyecto_id = valoritems_guardado.proyecto_id
+                            valoritems.fase_id = valoritems_guardado.fase_id
+                            valoritems.save()
+                            lista_desh.append(valoritems.id)
 #                       
             elif tipodatoatributo=='Texto':
                 archivo = Texto()

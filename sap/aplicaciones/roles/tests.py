@@ -33,23 +33,17 @@ class test_user(TestCase):
         response = rolNuevo(request) 
         self.assertEqual(response.status_code, 200)
         rol = Roles.objects.get(name='pruebaRol3')
-        print rol.permissions.all()
-        
         print 'Test de Crear un Rol Nuevo ejecutado exitosamente.'
         
         
     def testModificarRol(self):
         
         self.user = User.objects.get(pk=1)
-        print Roles.objects.all()
         request = self.factory.post('/adm_roles/modificar/2/', {'Nombre_de_Rol': 'pruebaRol3', 'Permisos': ['crear_usuarios'], 'Descripcion':'Agregamos crear usuarios'})
         request.user = self.user
         response = modificarRol(request, 2)
-        print response.status_code
         self.assertEqual(response.status_code, 200)
         rol = Roles.objects.get(name='pruebaRol3')
-        print rol
-        print Roles.objects.all()
         print 'Test de Modificar Rol ejecutado exitosamente.'
     
     def testEliminarRol(self):

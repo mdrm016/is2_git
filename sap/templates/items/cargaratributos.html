@@ -66,7 +66,7 @@
 							{% endif %}
 					{% endfor %}
 					{% ifequal valores.tipo_dato "Fecha" %}
-						<td><input type="date" name={{forloop.counter}} class="form-control" value="{{ valores.valor_fecha }}" /> En formato Día/Mes/Año {{ valores.orden }}
+						<td><input type="date" name={{forloop.counter}} class="form-control" value="{{ valores.valor_fecha }}" /> En formato Día/Mes/Año
 						</td>
 					{% endifequal %}
 					{% ifequal valores.tipo_dato "Logico" %}
@@ -105,7 +105,7 @@
 					{% ifequal valores.tipo_dato "Numerico" %}
 					{% for orden, nombre, longitud, precision, maxvalue, minvalue, oblig in listaPresicionLongitud %}
 							{% if valores.nombre_atributo == nombre and valores.orden == orden %}
-						<td><input type="number" step="any" max="{{ maxvalue }}" min="{{ minvalue }}" name="{{forloop.counter}}" class="form-control" value="{{ valores.valor_texto }}"/> {{ valores.orden }}
+						<td><input type="number" step="any" max="{{ maxvalue }}" min="{{ minvalue }}" name="{{forloop.counter}}" class="form-control" value="{{ valores.valor_texto }}"/>
 						</td>
 						{% endif %}
 				    {% endfor %}
@@ -115,7 +115,7 @@
 							{% if valores.nombre_atributo == nombre and valores.orden == orden %}
 								
 				    	<td>
-				    		<textarea class="form-control" maxlength="{{ longitud }}" name="{{forloop.counter}}" rows="5" value="{{ valores.valor_texto }}">{{ form.data.Descripcion }}</textarea>{{ valores.orden }}
+				    		<textarea class="form-control" maxlength="{{ longitud }}" name="{{forloop.counter}}" rows="5" value="{{ valores.valor_texto }}">{{ form.data.Descripcion }}</textarea>
 				    	</td>
 				    	{% endif %}
 				    {% endfor %}
