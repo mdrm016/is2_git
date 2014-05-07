@@ -21,7 +21,19 @@
 		<script type="text/javascript" src="{{ STATIC_URL }}admin/js/calendar.js"></script>
 		<script type="text/javascript" src="{{ STATIC_URL }}admin/js/admin/DateTimeShortcuts.js"></script>
 		<script type="text/javascript">window.__admin_media_prefix__ = "/static/admin/";</script>
-
+		<script type="text/javascript">
+	    function marcar(source) 
+	    {
+	        checkboxes=document.getElementsByTagName('input'); 
+	        for(i=0;i<checkboxes.length;i++)
+	        {
+	            if(checkboxes[i].type == "checkbox")
+	            {
+	                checkboxes[i].checked=.checked;
+	            }
+	        }
+	    }
+	</script>
 	</head>
 	<!-- Fin de la cabecera -->
 	

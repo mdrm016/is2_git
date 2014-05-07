@@ -1,0 +1,73 @@
+{% extends "base_general.html" %}
+
+{% block tipo_Item_y_Atributo %}
+<li><a href="/adm_proyectos/gestionar/{{ id_proyecto }}/adm_tipos_item/">Administrar Tipos de Item</a></li>
+<li><a href="/adm_proyectos/gestionar/{{ id_proyecto }}/adm_tipos_atributo">Administrar Tipos de Atributo</a></li>
+{% endblock %}
+
+{% block menu %}		
+<div class="menu">
+	<ul>
+		<li id="option2">
+		 	<a href="/adm_proyectos/gestionar/{{ id_proyecto }}/adm_items/{{ id_fase }}/">Items</a>
+		</li>
+		<li id="option1" class="active">
+			<a href="#">Lineas Base</a>
+		</li>
+	</ul>
+</div>
+{% endblock %}
+
+{% block botones %}
+<div class="row">
+	<form class="navbar-form navbar-left">
+		
+		<a href="nuevo/"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-sort-by-attributes"> Crear Linea Base</span></button></a>
+		<div class="form-group">
+			{% if error %}
+			<p style="color:red;">No se encontraron coincidencias.</p>
+			{% endif %}
+			<form action="" method="get">
+				<input type="text" name="busqueda" class="btn btn-default">
+				<input class="btn btn-default" type="submit" value="Buscar">
+			</form>
+			
+		</div>
+	</form>
+</div>
+{% endblock %}
+
+{% block contenido %}
+<div class="content-secondary">
+<!-- Aca van la  lista de Proyectos.. o de Solicitudes.. o de credenciales -->
+	<div class="panel-group" id="accordion">
+	{% if lista_lineas_base %}
+			{% for linea_base in lista_lineas_base %}
+	<div class="panel panel-default">
+				    <div class="panel-heading">
+				      <h4 class="panel-title">
+				        <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ linea_base.id }}">
+				          	 {{ linea_base.numero }}
+				        </a>
+				      </h4>
+				    </div>
+				    <div id="collapse{{ linea_base.id }}" class="panel-collapse collapse">
+				      <div class="panel-body">
+				      		<a href="consultar/{{ linea_base.id }}/"><button type="button" class="btn btn-default btn-sm">Consultar</button></a>
+				      </div>
+				    </div>
+	</div>
+			{% endfor %}
+		
+	<br>
+	{% else %}
+		<div class="panel panel-default">
+				    <div class="panel-heading">
+				      <h4 class="panel-title">
+				          	Aun no se ha creado Lineas Base en el Proyecto
+				      </h4>
+				    </div>
+		</div>
+	{% endif %}
+		
+{% endblock %}
