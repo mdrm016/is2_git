@@ -29,6 +29,7 @@ def administrarTipoAtributo(request, id_proyecto):
     
     """
     
+    proyecto = Proyectos.objects.get(id=id_proyecto)
     if request.user.has_perm('tipoatributo.administrar_tipos_de_atributo'):
         atributos = TipoAtributo.objects.filter(is_active=True, proyecto=id_proyecto)
         busqueda = ''
@@ -49,7 +50,7 @@ def administrarTipoAtributo(request, id_proyecto):
         raise PermissionDenied()
     
     template_name='./tipoAtributo/tipo_atributos.html'
-    return render(request, template_name, {'tipos_de_atributo': atributos, 'id_proyecto':id_proyecto, 'query':busqueda, 'error':error})
+    return render(request, template_name, {'tipos_de_atributo': atributos, 'id_proyecto':id_proyecto, 'query':busqueda, 'error':error, 'proyecto':proyecto})
 
 
 @login_required(login_url='/login/')
@@ -72,6 +73,7 @@ def tipoAtributoNuevo(request, id_proyecto):
     
     """
     
+    proyecto = Proyectos.objects.get(id=id_proyecto)
     errors = []
     if request.method == 'POST':
         form = TipoAtributoForm(request.POST)
@@ -113,12 +115,12 @@ def tipoAtributoNuevo(request, id_proyecto):
             
                         
                 template_name='./tipoAtributo/tipo_atributo_creado.html'
-                return render(request, template_name, {'id_proyecto': id_proyecto})
+                return render(request, template_name, {'id_proyecto': id_proyecto, 'proyecto':proyecto})
     else: 
         form = TipoAtributoForm()    
        
     template_name='./tipoAtributo/tipo_atributo_nuevo.html'
-    return render(request, template_name, {'form': form, 'errors': errors, 'id_proyecto': id_proyecto})
+    return render(request, template_name, {'form': form, 'errors': errors, 'id_proyecto': id_proyecto, 'proyecto':proyecto})
     
 @login_required(login_url='/login/')
 @permission_required('tipoatributo.modificar_tipoatributo',raise_exception=True)
@@ -142,6 +144,8 @@ def modificarTipoAtributo(request, id_proyecto, id_tipo_atributo):
     @author: Eduardo Gimenez
     
     """
+    
+    proyecto = Proyectos.objects.get(id=id_proyecto)
     errors = []
     tipo_atributo = TipoAtributo.objects.get(id=id_tipo_atributo)
     if request.method == 'POST':
@@ -184,7 +188,7 @@ def modificarTipoAtributo(request, id_proyecto, id_tipo_atributo):
                 
                         
                 template_name='./tipoAtributo/tipo_atributo_modificado.html'
-                return render(request, template_name, {'id_proyecto': id_proyecto})
+                return render(request, template_name, {'id_proyecto': id_proyecto, 'proyecto':proyecto})
     else: 
         if tipo_atributo.obligatorio:
             obligatorio = 'S'
@@ -194,7 +198,7 @@ def modificarTipoAtributo(request, id_proyecto, id_tipo_atributo):
         form = TipoAtributoModificadoForm(initial)    
         
     template_name='./tipoAtributo/modificar_tipo_atributo.html'
-    return render(request, template_name, {'form': form, 'errors': errors, 'id_proyecto': id_proyecto})
+    return render(request, template_name, {'form': form, 'errors': errors, 'id_proyecto': id_proyecto, 'proyecto':proyecto, 'tipo_atributo':tipo_atributo})
 
 @login_required(login_url='/login/')
 @permission_required('tipoatributo.eliminar_tipoatributo',raise_exception=True)
@@ -216,6 +220,7 @@ def eliminarTipoAtributo(request, id_proyecto, id_tipo_atributo):
         
     @author: Eduardo Gimenez"""
     
+    proyecto = Proyectos.objects.get(id=id_proyecto)
     tipo_atributo = TipoAtributo.objects.get(id=id_tipo_atributo)
     tipos_item = TipoItem.objects.filter(is_active=True, id_proyecto=id_proyecto)
     puede_eliminarse = True
@@ -233,7 +238,7 @@ def eliminarTipoAtributo(request, id_proyecto, id_tipo_atributo):
             tipo_atributo.proyecto.remove(id_proyecto)
     else:
         mensaje="No es posible eliminar Tipo de Atributo, actualmente esta siendo utilizado"
-        ctx = {'mensaje':mensaje, 'id_proyecto':id_proyecto}
+        ctx = {'mensaje':mensaje, 'id_proyecto':id_proyecto, 'proyecto':proyecto}
         return render_to_response('tipoAtributo/alerta_tipo_atributo.html',ctx, context_instance=RequestContext(request))
 
     return HttpResponseRedirect('/adm_proyectos/gestionar/%s/adm_tipos_atributo/' % id_proyecto)
@@ -256,10 +261,12 @@ def consultarTipoAtributo(request, id_proyecto, id_tipo_atributo):
         
     @author: Eduardo Gimenez
     """
+    
+    proyecto = Proyectos.objects.get(id=id_proyecto)
     template_name='./tipoAtributo/consultar_tipo_atributo.html'
     tipo_atributo = TipoAtributo.objects.get(id = id_tipo_atributo)
     proyectos = tipo_atributo.proyecto.all()
-    return render(request, template_name, {'tipo_atributo' : tipo_atributo, 'proyectos':proyectos}) 
+    return render(request, template_name, {'tipo_atributo' : tipo_atributo, 'proyectos':proyectos, 'proyecto':proyecto}) 
 
 @login_required(login_url='/login/')
 @permission_required('tipoatributo.importar_tipo_de_atributo',raise_exception=True)
@@ -277,6 +284,8 @@ def importarTipoAtributo(request, id_proyecto, proyecto_select, id_tipo_atributo
         
     @author: Eduardo Gimenez
     """
+    
+    proyecto = Proyectos.objects.get(id=id_proyecto)
     tipo_atributo = TipoAtributo.objects.get(id=id_tipo_atributo)
     proyectos_tipo_atributo = tipo_atributo.proyecto.all()
     proyectos = []
@@ -289,7 +298,7 @@ def importarTipoAtributo(request, id_proyecto, proyecto_select, id_tipo_atributo
         tipo_atributo.proyecto.add(id_proyecto)
         mensaje="Tipo de Atributo importado exitosamente"
         
-    ctx = {'mensaje':mensaje, 'id_proyecto':id_proyecto}
+    ctx = {'mensaje':mensaje, 'id_proyecto':id_proyecto, 'proyecto':proyecto}
     return render_to_response('tipoAtributo/alerta_tipo_atributo.html',ctx, context_instance=RequestContext(request))
 
     
@@ -297,8 +306,9 @@ def importarTipoAtributo(request, id_proyecto, proyecto_select, id_tipo_atributo
 @permission_required('tipoatributo.importar_tipo_de_atributo',raise_exception=True)
 def listar_proyectos (request, id_proyecto):
     
+    proyecto = Proyectos.objects.get(id=id_proyecto)
     proyectos = Proyectos.objects.filter(is_active=True)
-    ctx = {'id_proyecto':id_proyecto, 'lista_proyectos':proyectos}
+    ctx = {'id_proyecto':id_proyecto, 'lista_proyectos':proyectos, 'proyecto':proyecto}
     template_name = 'tipoAtributo/listar_Proyectos.html'
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
 
@@ -306,9 +316,10 @@ def listar_proyectos (request, id_proyecto):
 @permission_required('tipoatributo.importar_tipo_de_atributo',raise_exception=True)
 def listar_tipoAtributo(request, id_proyecto, proyecto_select):
     
+    proyecto = Proyectos.objects.get(id=id_proyecto)
     tipo_atributo = TipoAtributo.objects.filter(proyecto=proyecto_select, is_active=True)
     proyecto = Proyectos.objects.get(id=id_proyecto)
-    ctx = {'proyecto': proyecto, 'lista_tipo_atributo': tipo_atributo}
+    ctx = {'proyecto': proyecto, 'lista_tipo_atributo': tipo_atributo, 'proyecto':proyecto, 'proyecto_select':proyecto_select}
     template_name = 'tipoAtributo/importar_tipo_atributo.html'
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
    
