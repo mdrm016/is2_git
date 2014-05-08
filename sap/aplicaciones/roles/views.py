@@ -98,8 +98,15 @@ def rolNuevo(request):
     else:
         form = RolForm()
         
+    permisos = Permission.objects.filter(id__gt=18)  
+    parte1 = permisos.filter(id__range=(19,44))
+    parte2 = permisos.filter(id__gt=62)
+    permisos = []
+    permisos.extend(parte1)
+    permisos.extend(parte2)
+    permisos = [(permiso.codename, permiso.name) for permiso in permisos]
     template_name='./Roles/rolnuevo.html'
-    return render(request, template_name, {'form': form})
+    return render(request, template_name, {'form': form, 'permisos': permisos})
 
 @login_required(login_url='/login/')
 def asignarFaseRol(request, id_rol):

@@ -62,7 +62,10 @@ def generarLineaBase(request, id_proyecto, id_fase):
                 linea_base = LineaBase(numero = numero, proyecto = Proyectos.objects.get(id=id_proyecto), fase = Fases.objects.get(id=id_fase), descripcion = request.POST.get('Descripcion', ''))
                 linea_base.save()
                 for id_item in request.POST.getlist('Items'):
-                    linea_base.items.add(Items.objects.get(id=id_item))
+                    item = Items.objects.get(id=id_item)
+                    linea_base.items.add(item)
+                    item.estado = 'Bloqueado'
+                    item.save()
                 linea_base.save()
                 mensaje="Linea Base creada exitosamente"
                 ctx = {'mensaje':mensaje, 'id_proyecto':id_proyecto, 'id_fase':id_fase}

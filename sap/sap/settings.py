@@ -32,7 +32,7 @@ ALLOWED_HOSTS = []
 #En este path se almacenaran los archivos externos y las imagenes que carguen
 #los usuarios del sistema
 
-MEDIA_ROOT = Path(__file__).ancestor(2) + '/aplicaciones/uploads/'
+MEDIA_ROOT = Path(__file__).ancestor(2) + '/static/uploads/'
 MEDIA_URL = '/uploads/'
 
 

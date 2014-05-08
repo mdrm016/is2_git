@@ -167,7 +167,7 @@ def cargar_valores(request, id_proyecto, id_fase, id_item):
     @rtype: django.shortcuts.render_to_response.
     @return: fases.html, donde se listan las fases, ademas de las funcionalidades para cada fase.
     
-    @author: Ysapy Ortiz.
+    @author: Ysapy Ortiz
     
     """
     proyecto = Proyectos.objects.get(id=id_proyecto)
