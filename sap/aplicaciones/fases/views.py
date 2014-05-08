@@ -90,7 +90,15 @@ def crear_fase(request, id_proyecto):
             fase.duracion = duracion
             fase.proyecto_id = id_proyecto
             fase.is_active = True
-            
+            fasesproyecto = Fases.objects.filter(is_active=True)
+            orden = 1
+            if fasesproyecto:  
+                orden = 0  
+                for faseorden in fasesproyecto:
+                    if faseorden.orden>orden:
+                        orden = faseorden.orden
+                orden = orden + 1
+            fase.orden = orden
             if (mismo_nombre):
                 mensaje = 'El nombre de fase ya existe'
                 data ={'Nombre_de_Fase': nombre_crear, 'Descripcion':descripcion, 'Duracion_semanas':duracion}   
@@ -434,3 +442,39 @@ def importarf (request, id_proyecto, id_fase):
     template_name='Fases/crearfaseimportada.html'
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
 
+def ordenar_fases(request, id_proyecto):
+    lista_fases = Fases.objects.filter(proyecto=id_proyecto, is_active=True).order_by('orden')
+    ctx ={'lista_fases': lista_fases, 'id_proyecto': id_proyecto}
+    template_name='Fases/ordenarfases.html'
+    return render_to_response(template_name, ctx, context_instance=RequestContext(request))
+
+def subir_fase(request, id_proyecto, id_fase):
+    fase_a_subir=Fases.objects.get(id=id_fase)
+    mensaje = ''
+    if fase_a_subir.orden-1 > 0:
+        fase_a_bajar=Fases.objects.get(orden=(fase_a_subir.orden-1), is_active=True)
+        orden = fase_a_bajar.orden
+        fase_a_bajar.orden = fase_a_subir.orden
+        fase_a_subir.orden = orden
+        fase_a_bajar.save()
+        fase_a_subir.save()
+    else:
+        mensaje = 'La fase es la primera.'
+        
+    return HttpResponseRedirect('/adm_proyectos/gestionar/%s/ordenar_fases/' % (str(id_proyecto)))
+
+def bajar_fase(request, id_proyecto, id_fase):
+    fase_a_bajar=Fases.objects.get(id=id_fase)
+    fases = Fases.objects.filter(proyecto=id_proyecto, is_active=True)
+    cantidad = len(fases)
+    mensaje = ''
+    if fase_a_bajar.orden+1 <= cantidad:
+        fase_a_subir=Fases.objects.get(orden=(fase_a_bajar.orden+1), is_active=True)
+        orden = fase_a_subir.orden
+        fase_a_subir.orden = fase_a_bajar.orden
+        fase_a_bajar.orden = orden
+        fase_a_subir.save()
+        fase_a_bajar.save()
+    else:
+        mensaje = 'La fase es la utlima.'
+    return HttpResponseRedirect('/adm_proyectos/gestionar/%s/ordenar_fases/' % (str(id_proyecto)))

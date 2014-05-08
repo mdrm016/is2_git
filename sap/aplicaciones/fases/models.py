@@ -25,6 +25,7 @@ class Fases(models.Model):
     duracion = models.IntegerField(null=True)
     proyecto = models.ForeignKey(Proyectos)
     is_active = models.BooleanField(default=True)
+    orden = models.IntegerField(null=True)
     
     class Meta:
         permissions = (

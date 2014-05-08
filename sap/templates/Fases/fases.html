@@ -20,6 +20,9 @@
 	<form class="navbar-form navbar-left">
 		<a href="nuevo/"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-folder-open"></span> Crear Fase</button></a>
 		<a href="importar_fase/"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-import"></span> Importar Fase</button></a>
+		{% ifequal proyecto.estado "Inactivo" %}
+			<a href="ordenar_fases/"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-import"></span> Ordenar Fases</button></a>
+		{% endifequal %}
 		<form action="" method="get">
 				<input type="text" name="busqueda" class="form-control" placeholder="Busqueda de Fases..." value="{{ query|escape }}">
 				<span class="glyphicon glyphicon-search"></span>
