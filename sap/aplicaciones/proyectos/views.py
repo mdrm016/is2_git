@@ -293,7 +293,7 @@ def consultar_proyecto (request, id_proyecto):
     """
     
     proyecto = Proyectos.objects.get(id=id_proyecto)
-    fases = Fases.objects.filter(proyecto = id_proyecto)
+    fases = Fases.objects.filter(proyecto = id_proyecto, is_active=True)
     ctx = {'proyecto':proyecto, 'fases':fases}
     template_name = 'proyectos/consultarproyecto.html'
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))

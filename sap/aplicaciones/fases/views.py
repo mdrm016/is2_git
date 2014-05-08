@@ -110,12 +110,12 @@ def crear_fase(request, id_proyecto):
             fase.save()
       
             template_name='./Fases/fasecreada.html'
-            return render(request, template_name, {'id_proyecto': id_proyecto})
+            return render(request, template_name, {'id_proyecto': id_proyecto, 'proyecto':proyecto})
     else: 
         form = FaseNuevaForm()    
         
     template_name='./Fases/fasenueva.html'
-    return render(request, template_name, {'form': form, 'id_proyecto':id_proyecto})
+    return render(request, template_name, {'form': form, 'id_proyecto':id_proyecto, 'proyecto':proyecto})
 
 @login_required(login_url='/login/')
 def consultar_fase (request, id_fase, id_proyecto):
@@ -140,9 +140,10 @@ def consultar_fase (request, id_fase, id_proyecto):
     fase = Fases.objects.get(id=id_fase, proyecto_id=id_proyecto)
     # conseguir el contexto de las fases y sus estados
     #fases = Fases.objects.filter(id_proyecto = id_proyecto)
+    proyecto = Proyectos.objects.get(id=id_proyecto)
     ctx = {'fase':fase}
     template_name = './Fases/consultarfase.html'
-    return render(request, template_name, {'id_proyecto': id_proyecto, 'fase': fase, 'id_fase': id_fase})
+    return render(request, template_name, {'id_proyecto': id_proyecto, 'fase': fase, 'id_fase': id_fase, 'proyecto':proyecto})
     
 @login_required(login_url='/login/')
 @permission_required('fases.eliminar_fases',raise_exception=True)
@@ -169,7 +170,7 @@ def eliminar_fase (request, id_fase, id_proyecto):
     proyecto = Proyectos.objects.get(id=id_proyecto)
     if (proyecto.estado != 'Inactivo'):
         mensaje = 'Imposible eliminar la fase, ya se esta trabajando en el proyecto.'
-        ctx = {'mensaje':mensaje, 'id_proyecto': id_proyecto}
+        ctx = {'mensaje':mensaje, 'id_proyecto': id_proyecto, 'proyecto':proyecto}
         template_name = 'Fases/fasealerta.html'
         return render_to_response(template_name, ctx, context_instance=RequestContext(request))
     
@@ -180,7 +181,7 @@ def eliminar_fase (request, id_fase, id_proyecto):
         fase.nombre = '/eliminado/'+fase.nombre_eliminado
         fase.save()
         template_name='./Fases/faseeliminada.html'
-        return render(request, template_name, {'id_proyecto': id_proyecto})
+        return render(request, template_name, {'id_proyecto': id_proyecto, 'proyecto':proyecto})
 
 @login_required(login_url='/login/')
 @permission_required('fases.modificar_fases',raise_exception=True)
@@ -228,7 +229,7 @@ def modificar_fase (request, id_proyecto, id_fase):
                     mensaje = 'El nombre de Fase ya existe'
                     data ={'Nombre_de_Fase':fase.nombre, 'Descripcion':fase.descripcion, 'Estado':fase.estado, 'Duracion':fase.duracion}
                     form = FaseModificadaForm(data)
-                    ctx ={'form': form, 'mensaje':mensaje, 'id_proyecto':id_proyecto, 'id_fase':id_fase}      
+                    ctx ={'form': form, 'mensaje':mensaje, 'id_proyecto':id_proyecto, 'id_fase':id_fase,'proyecto':proyecto}      
                     template_name='Fases/modificarfase.html'
                     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
                      #Si no se ha suministrado un nuevo lider, el proyecto se queda con el lider actual
@@ -243,27 +244,27 @@ def modificar_fase (request, id_proyecto, id_fase):
                         mensaje = 'No se puede modificar el estado sin items'
                         data ={'Nombre_de_Fase':fase.nombre, 'Descripcion':fase.descripcion, 'Estado':fase.estado, 'Duracion':fase.duracion}
                         form = FaseModificadaForm(data)
-                        ctx ={'form': form, 'mensaje':mensaje, 'id_proyecto':id_proyecto, 'id_fase':id_fase}      
+                        ctx ={'form': form, 'mensaje':mensaje, 'id_proyecto':id_proyecto, 'id_fase':id_fase, 'proyecto':proyecto}      
                         template_name='Fases/modificarfase.html'
                         return render_to_response(template_name, ctx, context_instance=RequestContext(request))
                     else:
                         fase.estado = estadoNuevo
                 fase.save()
                 mensaje="Fase modificada exitosamente"
-                ctx = {'mensaje':mensaje, 'id_proyecto': id_proyecto, 'id_fase':id_fase}
+                ctx = {'mensaje':mensaje, 'id_proyecto': id_proyecto, 'id_fase':id_fase, 'proyecto':proyecto}
                 template_name='Fases/fasealerta.html'
                 return render_to_response(template_name, ctx, context_instance=RequestContext(request))
             else:
                 data ={'Nombre_de_Fase':fase.nombre, 'Descripcion':fase.descripcion, 'Estado':fase.estado, 'Duracion':fase.duracion}   
                 form = FaseModificadaForm(data)
-            ctx ={'form': form, 'mensaje':mensaje, 'id_proyecto':id_proyecto, 'id_fase':id_fase}      
+            ctx ={'form': form, 'mensaje':mensaje, 'id_proyecto':id_proyecto, 'id_fase':id_fase, 'proyecto':proyecto}      
             template_name='Fases/modificarfase.html'
             return render_to_response(template_name, ctx, context_instance=RequestContext(request))
         
         elif proyecto.estado=='En Construccion':
             if (fase.estado=='FD'):
                 mensaje = 'No se puede modificar la fase, ha finalizado.'
-                ctx ={'mensaje':mensaje, 'id_proyecto':id_proyecto, 'id_fase':id_fase}      
+                ctx ={'mensaje':mensaje, 'id_proyecto':id_proyecto, 'id_fase':id_fase, 'proyecto':proyecto}      
                 template_name='Fases/fasealerta.html'
                 return render_to_response(template_name, ctx, context_instance=RequestContext(request))
             form = FaseModificadaFormProyectoActivo(request.POST)
@@ -282,48 +283,48 @@ def modificar_fase (request, id_proyecto, id_fase):
                         mensaje = 'No se puede modificar el estado de la fase, aun no posee items.'
                         data ={'Estado':fase.estado, 'Duracion':duracion}
                         form = FaseModificadaFormProyectoActivo(data)
-                        ctx ={'form': form, 'mensaje':mensaje, 'id_proyecto':id_proyecto, 'id_fase':id_fase}      
+                        ctx ={'form': form, 'mensaje':mensaje, 'id_proyecto':id_proyecto, 'id_fase':id_fase, 'proyecto':proyecto}      
                         template_name='Fases/modificarfase.html'
                         return render_to_response(template_name, ctx, context_instance=RequestContext(request))
                     elif estadoActual=='DF':
                         fase.duracion=duracion
                         fase.save()
                         mensaje = 'Fase editada con exito'
-                        ctx ={'mensaje':mensaje, 'id_proyecto':id_proyecto, 'id_fase':id_fase}      
+                        ctx ={'mensaje':mensaje, 'id_proyecto':id_proyecto, 'id_fase':id_fase, 'proyecto':proyecto}      
                         template_name='Fases/fasealerta.html'
                         return render_to_response(template_name, ctx, context_instance=RequestContext(request))
                     elif (estadoActual=='DR' and estadoNuevo=='DF'):
                         mensaje = 'No se puede volver al estado definicion.'
                         data ={'Estado':fase.estado, 'Duracion':duracion}
                         form = FaseModificadaFormProyectoActivo(data)
-                        ctx ={'form': form, 'mensaje':mensaje, 'id_proyecto':id_proyecto, 'id_fase':id_fase}      
+                        ctx ={'form': form, 'mensaje':mensaje, 'id_proyecto':id_proyecto, 'id_fase':id_fase, 'proyecto':proyecto}      
                         template_name='Fases/modificarfase.html'
                         return render_to_response(template_name, ctx, context_instance=RequestContext(request))
                     elif (estadoActual=='DR' and estadoNuevo=='FD'):
                         mensaje = 'No se puede finalizar la fase. Todos los items deben pertenecer a una Linea Base.'
                         data ={'Estado':fase.estado, 'Duracion':duracion}
                         form = FaseModificadaFormProyectoActivo(data)
-                        ctx ={'form': form, 'mensaje':mensaje, 'id_proyecto':id_proyecto, 'id_fase':id_fase}      
+                        ctx ={'form': form, 'mensaje':mensaje, 'id_proyecto':id_proyecto, 'id_fase':id_fase, 'proyecto':proyecto}      
                         template_name='Fases/modificarfase.html'
                         return render_to_response(template_name, ctx, context_instance=RequestContext(request))
                     elif (estadoActual=='DR' and estadoNuevo=='DR'):
                         fase.duracion=duracion
                         fase.save()
                         mensaje = 'Fase editada con exito'
-                        ctx ={'mensaje':mensaje, 'id_proyecto':id_proyecto, 'id_fase':id_fase}      
+                        ctx ={'mensaje':mensaje, 'id_proyecto':id_proyecto, 'id_fase':id_fase, 'proyecto':proyecto}      
                         template_name='Fases/fasealerta.html'
                         return render_to_response(template_name, ctx, context_instance=RequestContext(request))
                 else:
                     fase.duracion = duracion
                     fase.save()
                     mensaje = 'Fase editada con exito'
-                    ctx ={'mensaje':mensaje, 'id_proyecto':id_proyecto, 'id_fase':id_fase}      
+                    ctx ={'mensaje':mensaje, 'id_proyecto':id_proyecto, 'id_fase':id_fase, 'proyecto':proyecto}      
                     template_name='Fases/fasealerta.html'
                     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
             else:
                 data ={'Estado':fase.estado, 'Duracion':fase.duracion}   
                 form = FaseModificadaFormProyectoActivo(data)
-                ctx ={'form': form, 'mensaje':mensaje, 'id_proyecto':id_proyecto, 'id_fase':id_fase}      
+                ctx ={'form': form, 'mensaje':mensaje, 'id_proyecto':id_proyecto, 'id_fase':id_fase, 'proyecto':proyecto}      
                 template_name='Fases/modificarfase.html'
                 return render_to_response(template_name, ctx, context_instance=RequestContext(request))
     elif proyecto.estado=='Inactivo':
@@ -334,11 +335,11 @@ def modificar_fase (request, id_proyecto, id_fase):
         form = FaseModificadaFormProyectoActivo(data)
     elif proyecto.estado=='Finalizado':
         mensaje = 'La fase no se puede modificar, el proyectos esta finalizado.'
-        ctx ={'mensaje':mensaje, 'id_proyecto':id_proyecto, 'id_fase':id_fase}      
+        ctx ={'mensaje':mensaje, 'id_proyecto':id_proyecto, 'id_fase':id_fase, 'proyecto':proyecto}      
         template_name='Fases/fasealerta.html'
         return render_to_response(template_name, ctx, context_instance=RequestContext(request))
     
-    ctx ={'form': form, 'mensaje':mensaje, 'id_proyecto':id_proyecto, 'id_fase':id_fase}
+    ctx ={'form': form, 'mensaje':mensaje, 'id_proyecto':id_proyecto, 'id_fase':id_fase, 'proyecto':proyecto}
     template_name='Fases/modificarfase.html'
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
     
@@ -362,7 +363,7 @@ def importar_fase (request, id_proyecto):
     proyecto = Proyectos.objects.get(id=id_proyecto)
     if proyecto.estado != 'Inactivo':
         mensaje = 'Ya se esta trabajando en el proyecto, no se pueden agregar fases'
-        ctx = {'mensaje':mensaje, 'id_proyecto': id_proyecto}
+        ctx = {'mensaje':mensaje, 'id_proyecto': id_proyecto, 'proyecto':proyecto}
         template_name = 'Fases/fasealerta.html'
         return render_to_response(template_name, ctx, context_instance=RequestContext(request))
     fases = Fases.objects.filter(is_active=True)
@@ -370,7 +371,7 @@ def importar_fase (request, id_proyecto):
     for fase in fases:
         proyec = Proyectos.objects.filter(id=fase.proyecto_id)
         lista_proyectos.extend(proyec)
-    ctx ={'lista_fases':fases, 'lista_proyectos':lista_proyectos, 'id_proyecto': id_proyecto}
+    ctx ={'lista_fases':fases, 'lista_proyectos':lista_proyectos, 'id_proyecto': id_proyecto, 'proyecto':proyecto}
     template_name = 'Fases/importarfase.html'
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
 
@@ -396,7 +397,7 @@ def importarf (request, id_proyecto, id_fase):
     @author: Ysapy Ortiz.
     
     """
-    
+    proyecto = Proyectos.objects.get(id=id_proyecto)
     faseImportada = Fases.objects.get(id=id_fase)
     if request.method == 'POST':
         form = FaseModificadaForm(request.POST)
@@ -425,20 +426,20 @@ def importarf (request, id_proyecto, id_fase):
                 mensaje = 'El nombre de Fase ya existe'
                 data ={'Nombre_de_Fase':fase.nombre, 'Descripcion':fase.descripcion, 'Estado':fase.estado, 'Duracion':fase.duracion}
                 form = FaseModificadaForm(data)
-                ctx ={'form': form, 'mensaje':mensaje, 'id_proyecto':id_proyecto, 'id_fase':id_fase}      
+                ctx ={'form': form, 'mensaje':mensaje, 'id_proyecto':id_proyecto, 'id_fase':id_fase, 'proyecto':proyecto}      
                 template_name='Fases/crearfaseimportada.html'
                 return render_to_response(template_name, ctx, context_instance=RequestContext(request))
             
             fase.save()
                 
             mensaje="Fase importada exitosamente"
-            ctx = {'mensaje':mensaje, 'id_proyecto':id_proyecto}
+            ctx = {'mensaje':mensaje, 'id_proyecto':id_proyecto, 'proyecto':proyecto}
             return render_to_response('Fases/fasealerta.html',ctx, context_instance=RequestContext(request))
     else:
         data ={'Nombre_de_Fase':faseImportada.nombre, 'Descripcion':faseImportada.descripcion, 'Estado':faseImportada.estado, 'Duracion':faseImportada.duracion}   
         form = FaseModificadaForm(data)
         
-    ctx ={'form': form, 'fase':faseImportada}
+    ctx ={'form': form, 'fase':faseImportada, 'proyecto':proyecto}
     template_name='Fases/crearfaseimportada.html'
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
 

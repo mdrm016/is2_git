@@ -1,5 +1,32 @@
 {% extends "base_general.html" %}
 
+{% block navegacion %}
+<nav class="navbar navbar-default">
+	<div class="navbar-header">
+		<a href="/" class="navbar-brand">SAP</a>
+	</div>
+
+	<div  class="collapse navbar-collapse navbar-ex1-collapse">
+		<ul class="nav navbar-nav">
+			<li><a href="/adm_proyectos/">Proyectos</a></li>
+			<li><a href="/adm_proyectos/gestionar/{{ proyecto.id }}/">Gestión de {{ proyecto.nombre }}</a></li>
+			<li><a href="/adm_proyectos/gestionar/{{ proyecto.id }}/adm_items/{{ fase.id }}/">Gestión de {{ fase.nombre }}</a></li>
+			<li class="active"><a href="/adm_proyectos/gestionar/{{ proyecto.id }}/adm_items/{{ fase.id }}/atributos/{{ id_item }}/">Atributos de Item</a></li>
+        </ul>
+
+		<ul class="nav navbar-nav navbar-right">
+			<li><a href="#">Acerca de</a></li>
+			<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Registro del Sistema<b class="caret"></b></a>
+				<ul class="dropdown-menu">
+				
+				</ul>
+			</li>
+		</ul>
+	</div>
+</nav>
+{% endblock %}
+
+
 {% block tipo_Item_y_Atributo %}
 <li><a href="/adm_proyectos/gestionar/{{ id_proyecto }}/adm_tipos_item/">Administrar Tipos de Item</a></li>
 <li><a href="/adm_proyectos/gestionar/{{ id_proyecto }}/adm_tipos_atributo">Administrar Tipos de Atributo</a></li>
@@ -66,7 +93,7 @@
 							{% endif %}
 					{% endfor %}
 					{% ifequal valores.tipo_dato "Fecha" %}
-						<td><input type="date" name={{forloop.counter}} class="form-control" value="{{ valores.valor_fecha }}" /> En formato Día/Mes/Año {{ valores.orden }}
+						<td><input type="date" name={{forloop.counter}} class="form-control" value="{{ valores.valor_fecha }}" /> En formato Día/Mes/Año
 						</td>
 					{% endifequal %}
 					{% ifequal valores.tipo_dato "Logico" %}
@@ -107,7 +134,7 @@
 					{% ifequal valores.tipo_dato "Numerico" %}
 					{% for orden, nombre, longitud, precision, maxvalue, minvalue, oblig in listaPresicionLongitud %}
 							{% if valores.nombre_atributo == nombre and valores.orden == orden %}
-						<td><input type="number" step="any" max="{{ maxvalue }}" min="{{ minvalue }}" name="{{forloop.counter}}" class="form-control" value="{{ valores.valor_texto }}"/> {{ valores.orden }}
+						<td><input type="number" step="any" max="{{ maxvalue }}" min="{{ minvalue }}" name="{{forloop.counter}}" class="form-control" value="{{ valores.valor_texto }}"/>
 						</td>
 						{% endif %}
 				    {% endfor %}
@@ -117,7 +144,7 @@
 							{% if valores.nombre_atributo == nombre and valores.orden == orden %}
 								
 				    	<td>
-				    		<textarea class="form-control" maxlength="{{ longitud }}" name="{{forloop.counter}}" rows="5" value="{{ valores.valor_texto }}">{{ form.data.Descripcion }}</textarea>{{ valores.orden }}
+				    		<textarea class="form-control" maxlength="{{ longitud }}" name="{{forloop.counter}}" rows="5" value="{{ valores.valor_texto }}">{{ form.data.Descripcion }}</textarea>
 				    	</td>
 				    	{% endif %}
 				    {% endfor %}

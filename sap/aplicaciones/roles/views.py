@@ -136,7 +136,7 @@ def asignarFaseRol(request, id_rol):
         fases_rol.append(fase.id)
         
     template_name='./Roles/asignar_fase_rol.html'
-    return render(request, template_name, {'Fases': fases, 'fases_rol':  fases_rol ,'errors': errors})
+    return render(request, template_name, {'Fases': fases, 'fases_rol':  fases_rol ,'errors': errors, 'id_rol':id_rol})
 
 def desasignarFaseRol(request, id_rol):
     """ Recibe un request, obtiene el formulario con las fases seleccionadas del proyecto al que
@@ -169,7 +169,7 @@ def desasignarFaseRol(request, id_rol):
     fases= [(fase.id, fase.nombre) for fase in rol.fases.all()]
         
     template_name='./Roles/desasignar_fase_rol.html'
-    return render(request, template_name, {'Fases': fases,'errors': errors})
+    return render(request, template_name, {'Fases': fases,'errors': errors, 'id_rol':id_rol})
 
     
     
@@ -227,7 +227,7 @@ def modificarRol(request, id_rol):
         form = RolModificadoForm(data)
 
     template_name='./Roles/modificar_rol.html'
-    return render(request, template_name, {'form': form, 'marcados': marcados, 'permisos': permisos})
+    return render(request, template_name, {'form': form, 'marcados': marcados, 'permisos': permisos, 'id_rol':id_rol})
 
 @login_required(login_url='/login/')
 @permission_required('roles.eliminar_roles',raise_exception=True)
@@ -272,7 +272,10 @@ def consultarRol(request, id_rol):
     fases = rol.fases.all()
     usuarios_con_rol = []
     usuarios_activos = User.objects.filter(is_active=True)
-    proyecto = Proyectos.objects.get(id=rol.proyecto)
+    if rol.proyecto:
+        proyecto = Proyectos.objects.get(id=rol.proyecto)
+    else:
+        proyecto = ''
     for usuario in usuarios_activos:
         roles = usuario.groups.all()
         if roles:
@@ -280,7 +283,7 @@ def consultarRol(request, id_rol):
                 if rol.name == este_rol.name:
                     usuarios_con_rol.append(usuario)
         
-    return render(request, template_name, {'rol' : rol, 'permisos':permisos, 'usuarios': usuarios_con_rol, 'fases':fases, 'proyecto': proyecto}) 
+    return render(request, template_name, {'rol' : rol, 'permisos':permisos, 'usuarios': usuarios_con_rol, 'fases':fases, 'proyecto': proyecto, 'id_rol':id_rol}) 
 
 @login_required(login_url='/login/')
 @permission_required('roles.asignar_rol',raise_exception=True)
@@ -326,7 +329,7 @@ def asignarRol(request, id_rol):
             usuarios_sin_rol.append(usuario)
     
     template_name='./Roles/asignar_rol.html'
-    return render(request, template_name, {'usuarios':usuarios_sin_rol})
+    return render(request, template_name, {'usuarios':usuarios_sin_rol, 'id_rol':id_rol})
 
 @login_required(login_url='/login/')
 @permission_required('roles.desasignar_rol',raise_exception=True)
@@ -368,7 +371,7 @@ def desasignarRol(request, id_rol):
                 if rol.name == este_rol.name:
                     usuarios_con_rol.append(usuario)
     template_name='./Roles/desasignar_rol.html'
-    return render(request, template_name, {'usuarios':usuarios_con_rol})
+    return render(request, template_name, {'usuarios':usuarios_con_rol, 'id_rol':id_rol})
 
 @login_required(login_url='/login/')
 @permission_required('roles.asignar_proyecto_rol',raise_exception=True)
@@ -402,6 +405,6 @@ def asignarProyectoRol(request, id_rol):
     proyectos = [(proyecto.id, proyecto.nombre) for proyecto in Proyectos.objects.filter(is_active=True)]
     
     template_name='./Roles/asignar_proyecto_rol.html'
-    return render(request, template_name, {'Proyectos': proyectos,'errors': errors})
+    return render(request, template_name, {'Proyectos': proyectos,'errors': errors, 'id_rol':id_rol})
 
     

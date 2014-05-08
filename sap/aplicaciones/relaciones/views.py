@@ -37,7 +37,7 @@ def adm_relaciones(request, id_proyecto, id_fase, id_item):
     item = Items.objects.get(id=id_item)
     if proyecto.estado=='Inactivo' or fase.estado=='FD' or item.estado=='En revision' or item.estado=='Validado' or item.estado=='Bloqueado':
         mensaje = 'No se pueden gestionar relaciones. Dirijase a consultar item.'
-        ctx = {'mensaje': mensaje, 'id_proyecto':id_proyecto, 'id_fase': id_fase}
+        ctx = {'mensaje': mensaje, 'id_proyecto':id_proyecto, 'id_fase': id_fase, 'proyecto':proyecto, 'fase':fase}
         template_name = './items/itemalerta.html'
         return render_to_response(template_name, ctx, context_instance=RequestContext(request))
     
@@ -46,7 +46,7 @@ def adm_relaciones(request, id_proyecto, id_fase, id_item):
     except Items.DoesNotExist:
         padre = Items()
 
-    ctx = {'id_proyecto':id_proyecto, 'id_fase': id_fase, 'id_item': id_item, 'padre': padre}
+    ctx = {'id_proyecto':id_proyecto, 'id_fase': id_fase, 'id_item': id_item, 'padre': padre, 'proyecto':proyecto, 'fase':fase}
     template_name = './relaciones/relaciones.html'
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
 
