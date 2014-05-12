@@ -44,8 +44,7 @@ def adm_tipoitem (request, id_proyecto):
             tipoitem = tipoitem.filter(qset).distinct()
             if not tipoitem:
                 error = True
-    
-    #necesario para desplegar o no el boton de gestionar Tipo de Item            
+                
     lista_tipoitem=[]            
     for TA in tipoitem:
         items = Items.objects.filter(is_active=True, tipo_item=TA.id)

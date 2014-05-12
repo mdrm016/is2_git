@@ -1,9 +1,7 @@
-# -*- coding: utf-8 -*-
-
 import ho.pisa as pisa
 import cStringIO as StringIO
 import cgi
-from django.shortcuts import render, render_to_response, HttpResponseRedirect
+from django.shortcuts import render, render_to_response
 from aplicaciones.proyectos.models import Proyectos
 from aplicaciones.fases.models import Fases
 from aplicaciones.items.models import Items
@@ -11,36 +9,17 @@ from aplicaciones.roles.models import Roles
 from models import LineaBase
 from django.core.exceptions import PermissionDenied 
 from django.template import RequestContext
-from django.template.loader import render_to_string
-from django.http import HttpResponse
-from django import http
 from django.contrib.auth.decorators import login_required, permission_required
 from django.db.models import Q
+from django.template import RequestContext
+from django.template.loader import render_to_string
 from django.conf import settings
 
 # Create your views here.
 def administrarLineaBase(request, id_proyecto, id_fase):
-    
-    proyecto = Proyectos.objects.get(id=id_proyecto)
-    fase = Fases.objects.get(id=id_fase)
     lineasbase = LineaBase.objects.filter(is_active=True)
-    
-    busqueda = ''
-    error=False
-    if 'busqueda' in request.GET:
-        busqueda = request.GET.get('busqueda', '')
-        if busqueda:
-            qset = (
-                Q(numero__icontains=busqueda) |
-                Q(descripcion__icontains=busqueda) 
-            )
-            lineasbase = lineasbase.filter(qset).distinct()
-            if not lineasbase:
-                error = True
-    
     template_name='./lineaBase/lineas_base.html'
-    ctx = {'lista_lineas_base': lineasbase, 'query':busqueda, 'error':error, 'id_proyecto': id_proyecto, 'id_fase': id_fase, 'proyecto':proyecto, 'fase':fase}
-    return render_to_response(template_name, ctx, context_instance=RequestContext(request) )
+    return render(request, template_name, {'lista_lineas_base': lineasbase, 'id_proyecto': id_proyecto, 'id_fase': id_fase})
 
 @login_required(login_url='/login/')
 @permission_required('lineabase.generar_linea_base',raise_exception=True)
@@ -89,7 +68,10 @@ def generarLineaBase(request, id_proyecto, id_fase):
                 linea_base = LineaBase(numero = numero, proyecto = Proyectos.objects.get(id=id_proyecto), fase = Fases.objects.get(id=id_fase), descripcion = request.POST.get('Descripcion', ''))
                 linea_base.save()
                 for id_item in request.POST.getlist('Items'):
-                    linea_base.items.add(Items.objects.get(id=id_item))
+                    item = Items.objects.get(id=id_item)
+                    linea_base.items.add(item)
+                    item.estado = 'Bloqueado'
+                    item.save()
                 linea_base.save()
                 mensaje="Linea Base creada exitosamente"
                 ctx = {'mensaje':mensaje, 'id_proyecto':id_proyecto, 'id_fase':id_fase}
