@@ -11,7 +11,6 @@
         <link href="{{STATIC_URL}}aplicaciones/css/bootstrap.css" rel="stylesheet" media="screen">
         <link href="{{STATIC_URL}}aplicaciones/css/main.css" rel="stylesheet" media="screen">
         <!-- Nuestro estilo -->
-        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}admin/css/widgets.css"/>
 		<!-- Bootstrap JS -->
 		<script type="text/javascript" src="{{STATIC_URL}}aplicaciones/js/jquery.js"></script>
 		<script type="text/javascript" src="{{STATIC_URL}}aplicaciones/js/bootstrap.js"></script>
@@ -21,9 +20,19 @@
 		<script type="text/javascript" src="{{ STATIC_URL }}admin/js/calendar.js"></script>
 		<script type="text/javascript" src="{{ STATIC_URL }}admin/js/admin/DateTimeShortcuts.js"></script>
 		<script type="text/javascript">window.__admin_media_prefix__ = "/static/admin/";</script>
-		<script type="text/javascript" src="{{ STATIC_URL }}admin/js/SelectBox.js"></script>
-		<script type="text/javascript" src="{{ STATIC_URL }}admin/js/SelectFilter2.js"></script>
-
+		<script type="text/javascript">
+	    function marcar(source) 
+	    {
+	        checkboxes=document.getElementsByTagName('input'); 
+	        for(i=0;i<checkboxes.length;i++)
+	        {
+	            if(checkboxes[i].type == "checkbox")
+	            {
+	                checkboxes[i].checked=.checked;
+	            }
+	        }
+	    }
+	</script>
 	</head>
 	<!-- Fin de la cabecera -->
 	
@@ -42,7 +51,7 @@
 				<div class="row">
 				  <div class="col-md-6">
 					<br>
-					  <a href="/"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-refresh"></span> Inicio</button></a><!-- Boton de Inicio -->
+					  <a href="/"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-home"></span> Inicio</button></a><!-- Boton de Inicio -->
 					  <div class="btn-group">
 						<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><!-- Boton de Configuracion -->
 						  <span class="glyphicon glyphicon-cog"></span> Configuracion
@@ -61,6 +70,7 @@
 		
 		<!-- Fin del banner -->
 		<div class="wrapper">
+		{% block navegacion %}{% endblock %}
 		{% block menu %}{% endblock %}
 		{% block botones %}{% endblock %}
 		{% block contenido  %}{% endblock %}

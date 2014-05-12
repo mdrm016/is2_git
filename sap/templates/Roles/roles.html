@@ -1,5 +1,28 @@
 {% extends "base_general.html" %}
 
+{% block navegacion %}
+<nav class="navbar navbar-default">
+	<div class="navbar-header">
+		<a href="/" class="navbar-brand">SAP</a>
+	</div>
+
+	<div  class="collapse navbar-collapse navbar-ex1-collapse">
+		<ul class="nav navbar-nav">
+			<li class="active"><a href="/adm_roles/">Roles</a></li>
+        </ul>
+
+		<ul class="nav navbar-nav navbar-right">
+			<li><a href="#">Acerca de</a></li>
+			<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Registro del Sistema<b class="caret"></b></a>
+				<ul class="dropdown-menu">
+				
+				</ul>
+			</li>
+		</ul>
+	</div>
+</nav>
+{% endblock %}
+
 {% block menu %}		
 <div class="menu">
 	<ul>
@@ -47,6 +70,12 @@
 				      <div class="panel-body">
 				      		<a href="consultar/{{ mi_rol.id }}/"><button type="button" class="btn btn-default btn-sm">Consultar</button></a>
 				      		<a href="modificar/{{ mi_rol.id }}/"><button type="button" class="btn btn-default btn-sm">Modificar</button></a>
+				      		{% if mi_rol.proyecto %}
+				      			<a href="asignar_fases/{{ mi_rol.id }}/"><button type="button" class="btn btn-default btn-sm">Asignar Fases</button></a>
+				      			<a href="desasignar_fases/{{ mi_rol.id }}/"><button type="button" class="btn btn-default btn-sm">Desasignar Fases</button></a>
+				      		{% else %}
+				      			<a href="asignar_proyecto_rol/{{ mi_rol.id }}/"><button type="button" class="btn btn-default btn-sm">Asignar Proyecto</button></a>
+				      		{% endif %}
 				      		<a href="asignar/{{ mi_rol.id }}/"><button type="button" class="btn btn-default btn-sm">Asignar Rol</button></a>
 				      		<a href="desasignar/{{ mi_rol.id }}/"><button type="button" class="btn btn-default btn-sm">Desasignar Rol</button></a>
 				      		<button class="btn btn-danger btn-sm roles" data-toggle="modal" data-target="#myModal" data-id="{{ mi_rol.id }}">Eliminar</button>
@@ -80,6 +109,12 @@
 				      <div class="panel-body">
 				      		<a href="consultar/{{ rol.id }}/"><button type="button" class="btn btn-default btn-sm">Consultar</button></a>
 				      		<a href="modificar/{{ rol.id }}/"><button type="button" class="btn btn-default btn-sm">Modificar</button></a>
+				      		{% if rol.proyecto %}
+				      			<a href="asignar_fases/{{ rol.id }}/"><button type="button" class="btn btn-default btn-sm">Asignar Fases</button></a>
+				      			<a href="desasignar_fases/{{ rol.id }}/"><button type="button" class="btn btn-default btn-sm">Desasignar Fases</button></a>
+				      		{% else %}
+				      			<a href="asignar_proyecto_rol/{{ rol.id }}/"><button type="button" class="btn btn-default btn-sm">Asignar Proyecto</button></a>
+				      		{% endif %}
 				      		<a href="asignar/{{ rol.id }}/"><button type="button" class="btn btn-default btn-sm">Asignar Rol</button></a>
 				      		<a href="desasignar/{{ rol.id }}/"><button type="button" class="btn btn-default btn-sm">Desasignar Rol</button></a>
 				      		<button class="btn btn-danger btn-sm roles" data-toggle="modal" data-target="#myModal" data-id="{{ rol.id }}">Eliminar</button>

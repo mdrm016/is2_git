@@ -78,43 +78,7 @@ django.forms.Form --+
 <div class="fields">      <p><strong>Author:</strong>
         Marcelo Denis
       </p>
-</div><!-- ==================== INSTANCE METHODS ==================== -->
-<a name="section-InstanceMethods"></a>
-<table class="summary" border="1" cellpadding="3"
-       cellspacing="0" width="100%" bgcolor="white">
-<tr bgcolor="#70b0f0" class="table-header">
-  <td colspan="2" class="table-header">
-    <table border="0" cellpadding="0" cellspacing="0" width="100%">
-      <tr valign="top">
-        <td align="left"><span class="table-header">Instance Methods</span></td>
-        <td align="right" valign="top"
-         ><span class="options">[<a href="#section-InstanceMethods"
-         class="privatelink" onclick="toggle_private();"
-         >hide private</a>]</span></td>
-      </tr>
-    </table>
-  </td>
-</tr>
-<tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-      <table width="100%" cellpadding="0" cellspacing="0" border="0">
-        <tr>
-          <td><span class="summary-sig"><a href="aplicaciones.proyectos.forms.ProyectoNuevoForm-class.html#__init__" class="summary-sig-name">__init__</a>(<span class="summary-sig-arg">self</span>,
-        <span class="summary-sig-arg">*args</span>,
-        <span class="summary-sig-arg">**kwargs</span>)</span></td>
-          <td align="right" valign="top">
-            <span class="codelink"><a href="aplicaciones.proyectos.forms-pysrc.html#ProyectoNuevoForm.__init__">source&nbsp;code</a></span>
-            
-          </td>
-        </tr>
-      </table>
-      
-    </td>
-  </tr>
-</table>
-<!-- ==================== CLASS VARIABLES ==================== -->
+</div><!-- ==================== CLASS VARIABLES ==================== -->
 <a name="section-ClassVariables"></a>
 <table class="summary" border="1" cellpadding="3"
        cellspacing="0" width="100%" bgcolor="white">
@@ -136,7 +100,7 @@ django.forms.Form --+
       <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
         <a href="aplicaciones.proyectos.forms.ProyectoNuevoForm-class.html#Nombre_del_Proyecto" class="summary-name">Nombre_del_Proyecto</a> = <code title="forms.CharField(widget= forms.TextInput(), validators= [validate_nombr\
-eproyecto_unique], max_length= 15, min_length= 2, required= True, help\
+eproyecto_unique], max_length= 30, min_length= 2, required= True, help\
 _text= '*', error_messages= {'required': 'Ingrese un nombre para el pr\
 oyecto', 'max_length': 'Longitud maxima: 15', 'min_length': 'Longitud \
 minima: 2 caracteres'})">forms.CharField(widget= forms.TextInput(<code class="variable-ellipsis">...</code></code>
@@ -146,19 +110,10 @@ minima: 2 caracteres'})">forms.CharField(widget= forms.TextInput(<code class="va
     <td width="15%" align="right" valign="top" class="summary">
       <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
-        <a href="aplicaciones.proyectos.forms.ProyectoNuevoForm-class.html#Lider" class="summary-name">Lider</a> = <code title="forms.ChoiceField(widget= forms.Select(), choices= (opcionLider()), re\
-quired= True, help_text= '*', error_messages= {'required': 'Seleccione\
- un lider para el proyecto',})">forms.ChoiceField(widget= forms.Select(), choices= (op<code class="variable-ellipsis">...</code></code>
-    </td>
-  </tr>
-<tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-        <a href="aplicaciones.proyectos.forms.ProyectoNuevoForm-class.html#Fecha_de_Inicio" class="summary-name">Fecha_de_Inicio</a> = <code title="forms.DateField(input_formats= ['%d/%m/%Y'], widget= widgets.AdminDate\
+        <a href="aplicaciones.proyectos.forms.ProyectoNuevoForm-class.html#Fecha_de_Inicio" class="summary-name">Fecha_de_Inicio</a> = <code title="forms.DateField(input_formats= ['%Y-%m-%d'], widget= widgets.AdminDate\
 Widget, required= True, help_text= '* Ingrese en formato dia/mes/anho'\
 , error_messages= {'required': 'Ingrese una fecha de inicio de proyect\
-o'})">forms.DateField(input_formats= ['%d/%m/%Y'],<code class="variable-ellipsis">...</code></code>
+o'})">forms.DateField(input_formats= ['%Y-%m-%d'],<code class="variable-ellipsis">...</code></code>
     </td>
   </tr>
 <tr>
@@ -172,59 +127,12 @@ e la duracion del proyecto',})">forms.IntegerField(required= True, help_text= '*
   </tr>
 <tr>
     <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
+      <span class="summary-type">django.forms</span>
     </td><td class="summary">
-        <a href="aplicaciones.proyectos.forms.ProyectoNuevoForm-class.html#Miembros" class="summary-name">Miembros</a> = <code title="forms.MultipleChoiceField(widget= FilteredSelectMultiple(('Miembros'),\
- False,), required= False, choices= (opcionMiembros()))">forms.MultipleChoiceField(widget= FilteredSelectMul<code class="variable-ellipsis">...</code></code>
+        <a name="forms.Form"></a><span class="summary-name">forms.Form</span>
     </td>
   </tr>
 </table>
-<!-- ==================== METHOD DETAILS ==================== -->
-<a name="section-MethodDetails"></a>
-<table class="details" border="1" cellpadding="3"
-       cellspacing="0" width="100%" bgcolor="white">
-<tr bgcolor="#70b0f0" class="table-header">
-  <td colspan="2" class="table-header">
-    <table border="0" cellpadding="0" cellspacing="0" width="100%">
-      <tr valign="top">
-        <td align="left"><span class="table-header">Method Details</span></td>
-        <td align="right" valign="top"
-         ><span class="options">[<a href="#section-MethodDetails"
-         class="privatelink" onclick="toggle_private();"
-         >hide private</a>]</span></td>
-      </tr>
-    </table>
-  </td>
-</tr>
-</table>
-<a name="__init__"></a>
-<div>
-<table class="details" border="1" cellpadding="3"
-       cellspacing="0" width="100%" bgcolor="white">
-<tr><td>
-  <table width="100%" cellpadding="0" cellspacing="0" border="0">
-  <tr valign="top"><td>
-  <h3 class="epydoc"><span class="sig"><span class="sig-name">__init__</span>(<span class="sig-arg">self</span>,
-        <span class="sig-arg">*args</span>,
-        <span class="sig-arg">**kwargs</span>)</span>
-    <br /><em class="fname">(Constructor)</em>
-  </h3>
-  </td><td align="right" valign="top"
-    ><span class="codelink"><a href="aplicaciones.proyectos.forms-pysrc.html#ProyectoNuevoForm.__init__">source&nbsp;code</a></span>&nbsp;
-    </td>
-  </tr></table>
-  
-  
-  <dl class="fields">
-    <dt>Parameters:</dt>
-    <dd><ul class="nomargin-top">
-        <li><strong class="pname"><code>forms.Form</code></strong> (django.forms) - Heredamos la clase forms.Form para hacer uso de sus 
-          funcionalidades en el formulario de registro</li>
-    </ul></dd>
-  </dl>
-</td></tr></table>
-</div>
-<br />
 <!-- ==================== CLASS VARIABLE DETAILS ==================== -->
 <a name="section-ClassVariableDetails"></a>
 <table class="details" border="1" cellpadding="3"
@@ -256,30 +164,10 @@ e la duracion del proyecto',})">forms.IntegerField(required= True, help_text= '*
     <dt>Value:</dt>
       <dd><table><tr><td><pre class="variable">
 forms.CharField(widget= forms.TextInput(), validators= [validate_nombr<span class="variable-linewrap"><img src="crarr.png" alt="\" /></span>
-eproyecto_unique], max_length= 15, min_length= 2, required= True, help<span class="variable-linewrap"><img src="crarr.png" alt="\" /></span>
+eproyecto_unique], max_length= 30, min_length= 2, required= True, help<span class="variable-linewrap"><img src="crarr.png" alt="\" /></span>
 _text= '*', error_messages= {'required': 'Ingrese un nombre para el pr<span class="variable-linewrap"><img src="crarr.png" alt="\" /></span>
 oyecto', 'max_length': 'Longitud maxima: 15', 'min_length': 'Longitud <span class="variable-linewrap"><img src="crarr.png" alt="\" /></span>
 minima: 2 caracteres'})
-</pre></td></tr></table>
-</dd>
-  </dl>
-</td></tr></table>
-</div>
-<a name="Lider"></a>
-<div>
-<table class="details" border="1" cellpadding="3"
-       cellspacing="0" width="100%" bgcolor="white">
-<tr><td>
-  <h3 class="epydoc">Lider</h3>
-  
-  <dl class="fields">
-  </dl>
-  <dl class="fields">
-    <dt>Value:</dt>
-      <dd><table><tr><td><pre class="variable">
-forms.ChoiceField(widget= forms.Select(), choices= (opcionLider()), re<span class="variable-linewrap"><img src="crarr.png" alt="\" /></span>
-quired= True, help_text= '*', error_messages= {'required': 'Seleccione<span class="variable-linewrap"><img src="crarr.png" alt="\" /></span>
- un lider para el proyecto',})
 </pre></td></tr></table>
 </dd>
   </dl>
@@ -297,7 +185,7 @@ quired= True, help_text= '*', error_messages= {'required': 'Seleccione<span clas
   <dl class="fields">
     <dt>Value:</dt>
       <dd><table><tr><td><pre class="variable">
-forms.DateField(input_formats= ['%d/%m/%Y'], widget= widgets.AdminDate<span class="variable-linewrap"><img src="crarr.png" alt="\" /></span>
+forms.DateField(input_formats= ['%Y-%m-%d'], widget= widgets.AdminDate<span class="variable-linewrap"><img src="crarr.png" alt="\" /></span>
 Widget, required= True, help_text= '* Ingrese en formato dia/mes/anho'<span class="variable-linewrap"><img src="crarr.png" alt="\" /></span>
 , error_messages= {'required': 'Ingrese una fecha de inicio de proyect<span class="variable-linewrap"><img src="crarr.png" alt="\" /></span>
 o'})
@@ -321,25 +209,6 @@ o'})
 forms.IntegerField(required= True, help_text= '* En semanas', validato<span class="variable-linewrap"><img src="crarr.png" alt="\" /></span>
 rs= [validate_duracion_proyecto], error_messages= {'required': 'Ingres<span class="variable-linewrap"><img src="crarr.png" alt="\" /></span>
 e la duracion del proyecto',})
-</pre></td></tr></table>
-</dd>
-  </dl>
-</td></tr></table>
-</div>
-<a name="Miembros"></a>
-<div>
-<table class="details" border="1" cellpadding="3"
-       cellspacing="0" width="100%" bgcolor="white">
-<tr><td>
-  <h3 class="epydoc">Miembros</h3>
-  
-  <dl class="fields">
-  </dl>
-  <dl class="fields">
-    <dt>Value:</dt>
-      <dd><table><tr><td><pre class="variable">
-forms.MultipleChoiceField(widget= FilteredSelectMultiple(('Miembros'),<span class="variable-linewrap"><img src="crarr.png" alt="\" /></span>
- False,), required= False, choices= (opcionMiembros()))
 </pre></td></tr></table>
 </dd>
   </dl>
@@ -377,7 +246,7 @@ forms.MultipleChoiceField(widget= FilteredSelectMultiple(('Miembros'),<span clas
 <table border="0" cellpadding="0" cellspacing="0" width="100%%">
   <tr>
     <td align="left" class="footer">
-    Generated by Epydoc 3.0.1 on Mon Apr 21 10:28:36 2014
+    Generated by Epydoc 3.0.1 on Sat May  3 06:01:18 2014
     </td>
     <td align="right" class="footer">
       <a target="mainFrame" href="http://epydoc.sourceforge.net"

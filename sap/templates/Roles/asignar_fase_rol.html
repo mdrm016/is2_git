@@ -1,0 +1,81 @@
+{% extends "base_general.html" %}
+
+{% block navegacion %}
+<nav class="navbar navbar-default">
+	<div class="navbar-header">
+		<a href="/" class="navbar-brand">SAP</a>
+	</div>
+
+	<div  class="collapse navbar-collapse navbar-ex1-collapse">
+		<ul class="nav navbar-nav">
+			<li><a href="/adm_roles/">Roles</a></li>
+			<li class="active"><a href="/adm_roles/asignar_fases/{{ id_rol }}/">Asignación de Fase-Rol</a></li>
+        </ul>
+
+		<ul class="nav navbar-nav navbar-right">
+			<li><a href="#">Acerca de</a></li>
+			<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Registro del Sistema<b class="caret"></b></a>
+				<ul class="dropdown-menu">
+				
+				</ul>
+			</li>
+		</ul>
+	</div>
+</nav>
+{% endblock %}
+
+{% block menu %}		
+<div class="menu">
+	<ul>
+		<li id="option1" class="active">
+			<a href="#">Asignar Fase a Rol</a>
+		</li>
+	</ul>
+</div>
+{% endblock %}
+
+{% block contenido %}
+<div class="content-secondary">
+	<form action="" method="post">
+	{% if errors %}
+		{% for error in errors %}
+		<font color="red"><h4><p align="center"><b>{{ error }}</b></p></h4></font>
+		{% endfor %}
+	{% endif %}
+	{% if Fases %}
+		<table align="center">
+			<tr>
+			<th> Fases: </th>
+			<td>
+			<select multiple="multiple" name="Fases">
+				{% for id_fase, nombre_fase in Fases %}
+					{% if id_fase in fases_rol %}
+						
+					{% else %}
+						<option  name="Fases" value="{{ id_fase }}">{{ nombre_fase }}</option>
+					{% endif %}
+				{% endfor %}
+			</select><br>
+			* Campo Obligatorio
+			</td>
+			</tr>
+		</table>
+		
+		{% csrf_token %}
+	<div align="center"><br>
+		<input class="btn btn-default" type="submit" value="Guardar"/>
+		<a href="/adm_roles/"><button type="button" class="btn btn-default">Cancelar</button></a>
+	</div>
+	<br>
+	</form>
+	{% else %}
+	<div class="jumbotron">
+	<div class="bs-example" align="center">
+		<h2>Notificacion</h2>
+			<p class="text-warning"><small>El Proyecto  de este Rol todavia no cuenta con Fases</small></p>
+			<a type="button" class="btn btn-default" href="/adm_roles/"><span class="glyphicon glyphicon-arrow-left"></span> Volver</a>
+	</div>
+	</div>
+	{% endif %}
+</div>
+{% endblock %}

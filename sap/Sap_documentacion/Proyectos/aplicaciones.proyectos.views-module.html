@@ -105,6 +105,26 @@
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
+          <td><span class="summary-sig"><a href="aplicaciones.proyectos.views-module.html#proyecto_finalizado" class="summary-sig-name">proyecto_finalizado</a>(<span class="summary-sig-arg">request</span>)</span><br />
+      Recibe un request, se verifica cual es el usuario registrado y se 
+      obtiene la lista de proyectos finalizados con los que esta 
+      relacionado desplegandolo en pantalla, ademas permite realizar 
+      busquedas avanzadas sobre los los proyectos que puede mostrar.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="aplicaciones.proyectos.views-pysrc.html#proyecto_finalizado">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">django.shortcuts.render_to_response.</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
           <td><span class="summary-sig"><a href="aplicaciones.proyectos.views-module.html#crear_proyecto" class="summary-sig-name">crear_proyecto</a>(<span class="summary-sig-arg">request</span>)</span><br />
       Recibe un request, se verifica si el usuario tiene permisos para 
       crear un proyecto y se lo redirige a una pagina para que rellene el 
@@ -172,7 +192,7 @@
         <span class="summary-sig-arg">id_proyecto</span>)</span><br />
       Recibe un request y el id del proyecto a ser eliminado, se verifica 
       si el usuario tiene permisos para eliminar un proyecto existente y le
-      brinda la opcion de eliminar elm proyecto.</td>
+      brinda la opcion de eliminar el proyecto.</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="aplicaciones.proyectos.views-pysrc.html#eliminar_proyecto">source&nbsp;code</a></span>
             
@@ -301,6 +321,45 @@
       </p>
 </div></td></tr></table>
 </div>
+<a name="proyecto_finalizado"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">proyecto_finalizado</span>(<span class="sig-arg">request</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="aplicaciones.proyectos.views-pysrc.html#proyecto_finalizado">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Recibe un request, se verifica cual es el usuario registrado y se 
+  obtiene la lista de proyectos finalizados con los que esta relacionado 
+  desplegandolo en pantalla, ademas permite realizar busquedas avanzadas 
+  sobre los los proyectos que puede mostrar. Si el usuario es el 
+  administrador despliega todos los proyectos.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>request</code></strong> (django.http.HttpRequest.) - Contiene informacion sobre la solicitud web actual que llamo a 
+          esta vista adm_proyectos.</li>
+    </ul></dd>
+    <dt>Returns: django.shortcuts.render_to_response.</dt>
+        <dd>index.html, donde se listan los proyectos, ademas de las 
+          funcionalidades para cada proyecto.</dd>
+    <dt>Decorators:</dt>
+    <dd><ul class="nomargin-top">
+        <li><code>@login_required(login_url= '/login/')</code></li>
+        <li><code>@permission_required('proyectos.consultar_proyectosfinalizados', raise_exception= True)</code></li>
+    </ul></dd>
+  </dl>
+<div class="fields">      <p><strong>Author:</strong>
+        Marcelo Denis.
+      </p>
+</div></td></tr></table>
+</div>
 <a name="crear_proyecto"></a>
 <div>
 <table class="details" border="1" cellpadding="3"
@@ -332,7 +391,7 @@
     <dt>Decorators:</dt>
     <dd><ul class="nomargin-top">
         <li><code>@login_required(login_url= '/login/')</code></li>
-        <li><code>@permission_required('proyectos.add_proyectos', raise_exception= True)</code></li>
+        <li><code>@permission_required('proyectos.crear_proyectos', raise_exception= True)</code></li>
     </ul></dd>
   </dl>
 <div class="fields">      <p><strong>Author:</strong>
@@ -374,7 +433,7 @@
     <dt>Decorators:</dt>
     <dd><ul class="nomargin-top">
         <li><code>@login_required(login_url= '/login/')</code></li>
-        <li><code>@permission_required('proyectos.change_proyectos', raise_exception= True)</code></li>
+        <li><code>@permission_required('proyectos.modificar_proyectos', raise_exception= True)</code></li>
     </ul></dd>
   </dl>
 <div class="fields">      <p><strong>Author:</strong>
@@ -413,6 +472,7 @@
     <dt>Decorators:</dt>
     <dd><ul class="nomargin-top">
         <li><code>@login_required(login_url= '/login/')</code></li>
+        <li><code>@permission_required('proyectos.consultar_proyectos', raise_exception= True)</code></li>
     </ul></dd>
   </dl>
 <div class="fields">      <p><strong>Author:</strong>
@@ -437,7 +497,7 @@
   
   <p>Recibe un request y el id del proyecto a ser eliminado, se verifica si
   el usuario tiene permisos para eliminar un proyecto existente y le brinda
-  la opcion de eliminar elm proyecto.</p>
+  la opcion de eliminar el proyecto.</p>
   <dl class="fields">
     <dt>Parameters:</dt>
     <dd><ul class="nomargin-top">
@@ -446,13 +506,13 @@
         <li><strong class="pname"><code>id_usuario</code></strong> (string.) - Contiene el id del proyecto a ser eliminado.</li>
     </ul></dd>
     <dt>Returns: django.shortcuts.render_to_response.</dt>
-        <dd>index.html, donde se redirige al usuario con actualizacion de la 
-          lista de proyectos o a proyectoalerta.html donde se notifica al 
-          usuario la razon por la cual no se puede eliminar un proyecto.</dd>
+        <dd>index.html, donde se redirige al usuario con la actualizacion de 
+          la lista de proyectos o a proyectoalerta.html donde se notifica 
+          al usuario la razon por la cual no se puede eliminar un proyecto.</dd>
     <dt>Decorators:</dt>
     <dd><ul class="nomargin-top">
         <li><code>@login_required(login_url= '/login/')</code></li>
-        <li><code>@permission_required('proyectos.delete_proyectos', raise_exception= True)</code></li>
+        <li><code>@permission_required('proyectos.eliminar_proyectos', raise_exception= True)</code></li>
     </ul></dd>
   </dl>
 <div class="fields">      <p><strong>Author:</strong>
@@ -528,7 +588,7 @@
     <dt>Decorators:</dt>
     <dd><ul class="nomargin-top">
         <li><code>@login_required(login_url= '/login/')</code></li>
-        <li><code>@permission_required('proyectos.importar_proyecto', raise_exception= True)</code></li>
+        <li><code>@permission_required('proyectos.importar_proyectos', raise_exception= True)</code></li>
     </ul></dd>
   </dl>
 <div class="fields">      <p><strong>Author:</strong>
@@ -611,7 +671,7 @@
 <table border="0" cellpadding="0" cellspacing="0" width="100%%">
   <tr>
     <td align="left" class="footer">
-    Generated by Epydoc 3.0.1 on Mon Apr 21 10:28:36 2014
+    Generated by Epydoc 3.0.1 on Sat May  3 06:01:18 2014
     </td>
     <td align="right" class="footer">
       <a target="mainFrame" href="http://epydoc.sourceforge.net"

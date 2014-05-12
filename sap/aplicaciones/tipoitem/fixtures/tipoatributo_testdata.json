@@ -1,0 +1,50 @@
+[
+{
+    "pk": 1, 
+    "model": "tipoatributo.tipoatributo", 
+    "fields": {
+        "tipo": "Numerico", 
+        "is_active": true, 
+        "precision": 5, 
+        "proyecto": [
+            1
+        ], 
+        "descripcion": "", 
+        "nombre": "cantidad", 
+        "obligatorio": true, 
+        "longitud": 5
+    }
+},
+{
+    "pk": 2, 
+    "model": "tipoatributo.tipoatributo", 
+    "fields": {
+        "tipo": "Fecha", 
+        "is_active": true, 
+        "precision": 0, 
+        "proyecto": [
+            1
+        ], 
+        "descripcion": "ninguna", 
+        "nombre": "fecha de inicio", 
+        "obligatorio": true, 
+        "longitud": 0
+    }
+},
+{
+    "pk": 3, 
+    "model": "tipoatributo.tipoatributo", 
+    "fields": {
+        "tipo": "Numerico", 
+        "is_active": true, 
+        "precision": 10, 
+        "proyecto": [
+            1
+        ], 
+        "descripcion": "", 
+        "nombre": "descripcion", 
+        "obligatorio": true, 
+        "longitud": 30
+    }
+}
+]

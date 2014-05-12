@@ -83,7 +83,7 @@ def administrarUsuarios(request):
 	
 
 @login_required(login_url='/login/')
-@permission_required('usuarios.add_usuarios',raise_exception=True)
+@permission_required('usuarios.crear_usuarios',raise_exception=True)
 def usuarionuevo(request):
 	""" Recibe un request, obtiene el formulario con los datos del usuario a crear
 	o la solicitud de envio de dicho formulario. Luego verifica los datos recibidos
@@ -156,7 +156,7 @@ def modificarUsuario(request, id_usuario):
 	
 	@author: eduardo gimenez"""
 	solicitante = User.objects.get(username=request.user.username)
-	if solicitante.has_perm('usuarios.change_usuarios') or solicitante.id == id_usuario:
+	if solicitante.has_perm('usuarios.modificar_usuarios') or solicitante.id == id_usuario:
 		usuario = User.objects.get(id=id_usuario)
 		perfil = usuario.get_profile()
 		if request.method == 'POST':
@@ -204,7 +204,7 @@ def modificarUsuario(request, id_usuario):
 			data = {'Nombre_de_Usuario': usuario.username, 'Contrasenha': '', 'Nueva_contrasenha': '', 'Email': usuario.email, 'Nombre':usuario.first_name,'Apellido':usuario.last_name, 'Telefono': perfil.telefono, 'Direccion':perfil.direccion, 'Especialidad':perfil.especialidad , 'Observaciones':perfil.observaciones}
 			form = UsuarioModificadoForm(data)
 		template_name='./Usuarios/modificar_usuario.html'
-		return render(request, template_name,{'form':form})
+		return render(request, template_name,{'form':form, 'id_usuario':id_usuario})
 	else:
 		raise PermissionDenied
 
@@ -225,11 +225,11 @@ def consultarUsuario(request, id_usuario):
 	template_name='./Usuarios/consultar_usuario.html'
 	usuario = User.objects.get(pk = id_usuario)
 	perfil = usuario.get_profile()
-	return render(request, template_name, {'usuario' : usuario, 'perfil':perfil})
+	return render(request, template_name, {'usuario' : usuario, 'perfil':perfil, 'id_usuario':id_usuario})
 
 		
 @login_required(login_url='/login/')
-@permission_required('usuarios.delete_usuarios',raise_exception=True)
+@permission_required('usuarios.eliminar_usuarios',raise_exception=True)
 def usuario_eliminar (request, id_usuario):
 	"""	
 		Comprueba que el id del usuario a eliminar no se sea del administrador o de algun lider de proyecto,

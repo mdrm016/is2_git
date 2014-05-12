@@ -1,9 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, render_to_response
 from django.contrib.auth.decorators import login_required, permission_required
 from models import Roles
+from django.template import RequestContext
 from aplicaciones.proyectos.models import Proyectos
+from aplicaciones.fases.models import Fases
 from django.contrib.auth.models import Group, Permission, User
-from forms import RolForm, RolModificadoForm, PermisosForm
+from forms import RolForm, RolModificadoForm
 from django.http import HttpResponseRedirect
 # Create your views here.
 
@@ -17,12 +19,17 @@ def administrarRoles(request):
     @rtype: django.http.HttpResponse
     @return: usuarios.html, donde se listan los Roles, ademas de las funcionalidades para un Rol
     
-    @author: eduardo gimenez
+    @author: Eduardo Gimenez
     
     """
     error = False
     usuario_logueado = User.objects.get(username=request.user.username)
-    mis_roles = usuario_logueado.groups.all()
+    mis_roles_todos = usuario_logueado.groups.all()
+    mis_roles = []
+    for mi_rol in mis_roles_todos:
+        rol = Roles.objects.get(id = mi_rol.id)
+        if rol.is_active:
+            mis_roles.append(rol)
     if 'busqueda' in request.GET:
         busqueda = request.GET['busqueda']
         if not busqueda:
@@ -51,7 +58,7 @@ def administrarRoles(request):
     return render(request, template_name, {'lista_roles': roles, 'mis_roles': mis_roles})
     
 @login_required(login_url='/login/')
-@permission_required('roles.add_roles',raise_exception=True)
+@permission_required('roles.crear_roles',raise_exception=True)
 def rolNuevo(request):
     """ Recibe un request, obtiene el formulario con los datos del rol a crear
     o la solicitud de envio de dicho formulario. Luego verifica los datos recibidos
@@ -78,14 +85,10 @@ def rolNuevo(request):
             rol = Roles.objects.create(name = nombreRol)
             for permiso in permisos:
                 rol.permissions.add(Permission.objects.get(codename=permiso))
-            
-            p = proyecto
             if proyecto:
-                try:
-                    p = Proyectos.objects.get(id=proyecto)
-                except Roles.DoesNotExist:
-                   p = ''
-                 
+                p = Proyectos.objects.get(id=proyecto) 
+            else:
+                p = '' 
             rol.proyecto = p
             rol.descripcion = descripcion
             rol.save()
@@ -99,7 +102,80 @@ def rolNuevo(request):
     return render(request, template_name, {'form': form})
 
 @login_required(login_url='/login/')
-@permission_required('roles.change_roles',raise_exception=True)
+def asignarFaseRol(request, id_rol):
+    """ Recibe un request, obtiene el formulario con las fases seleccionadas del proyecto al que
+    esta asignado el Rol o la solicitud de envio de dicho formulario. Luego verifica los datos recibidos
+    y registra las fases seleccionadas.  
+    
+    @type request: django.http.HttpRequest
+    @param request: Contiene informacion sobre la solic. web actual que llamo a esta vista
+    
+    @rtype: django.http.HttpResponse
+    @return: rol_alerta.html, mensaje de exito
+    
+    @author: Eduardo Gimenez
+    
+    """
+    errors = []
+    rol = Roles.objects.get(id=id_rol)
+    if request.method == 'POST':
+            fases = request.POST.get('Fases', '')
+            if fases:
+                for fase in fases:
+                    rol.fases.add(fase)
+            else:
+                errors.append('Debe escoger al menos una Fase')
+            if not errors:
+                rol.save()
+                template_name='./Roles/rol_alerta.html'
+                return render_to_response(template_name, {'mensaje': 'Las fases han sido asginadas correctamente'}, context_instance=RequestContext(request))
+       
+    fases= [(fase.id, fase.nombre) for fase in Fases.objects.filter(proyecto=rol.proyecto)]
+    fases_rol = []
+    for fase  in rol.fases.all():
+        fases_rol.append(fase.id)
+        
+    template_name='./Roles/asignar_fase_rol.html'
+    return render(request, template_name, {'Fases': fases, 'fases_rol':  fases_rol ,'errors': errors, 'id_rol':id_rol})
+
+def desasignarFaseRol(request, id_rol):
+    """ Recibe un request, obtiene el formulario con las fases seleccionadas del proyecto al que
+    esta asignado el Rol o la solicitud de envio de dicho formulario. Luego verifica los datos recibidos
+    y remueve las fases seleccionadas del Grupo de fases de ese Rol.  
+    
+    @type request: django.http.HttpRequest
+    @param request: Contiene informacion sobre la solic. web actual que llamo a esta vista
+    
+    @rtype: django.http.HttpResponse
+    @return: rol_alerta.html, mensaje de exito
+    
+    @author: Eduardo Gimenez
+    
+    """
+    errors = []
+    rol = Roles.objects.get(id=id_rol)
+    if request.method == 'POST':
+            fases = request.POST.get('Fases', '')
+            if fases:
+                for fase in fases:
+                    rol.fases.remove(fase)
+            else:
+                errors.append('Debe escoger al menos una Fase')
+            if not errors:
+                rol.save()
+                template_name='./Roles/rol_alerta.html'
+                return render_to_response(template_name, {'mensaje': 'Las fases han sido desasginadas correctamente'}, context_instance=RequestContext(request))
+       
+    fases= [(fase.id, fase.nombre) for fase in rol.fases.all()]
+        
+    template_name='./Roles/desasignar_fase_rol.html'
+    return render(request, template_name, {'Fases': fases,'errors': errors, 'id_rol':id_rol})
+
+    
+    
+
+@login_required(login_url='/login/')
+@permission_required('roles.modificar_roles',raise_exception=True)
 def modificarRol(request, id_rol):
     """ Busca en la base de datos el Rol cuyos datos se quieren modificar.
     Presenta esos datos en un formulario y luego se guardan los cambios realizados.
@@ -114,52 +190,55 @@ def modificarRol(request, id_rol):
     @rtype: django.HttpResponse
     @return: modificar_rol.html,un formulario donde se despliegan los datos que el usuario puede modificar ,usuario_modificado.html, donde se notifica al usuario el exito de la operacion 
     
-    @author: eduardo gimenez"""
+    @author: Eduardo Gimenez
+    """
     rol = Roles.objects.get(id=id_rol)
+    marcados = []
+    permisos = ()
     if request.method == 'POST':
         form = RolModificadoForm(request.POST)
-        #permisos_rol = PermisosForm(request.POST, prefix='perm')
-        if form.is_valid(): #and permisos_rol.is_valid():
+        if form.is_valid():
             form.clean()
-            permisos_rol.clean()
-            #nombreRol = form.cleaned_data['Nombre_de_Rol']
+            nombreRol = form.cleaned_data['Nombre_de_Rol']
             permisos = form.cleaned_data['Permisos']
-            #descripcion = form.cleaned_data['Descripcion']
-            
-            #rol.name = nombreRol
+            descripcion = form.cleaned_data['Descripcion']
+            rol.name = nombreRol
+            rol.permissions.clear()
             if permisos:
                 for permiso in permisos:
                     rol.permissions.add(Permission.objects.get(codename=permiso))
-            
-            #rol.descripcion = descripcion
+                    
+            rol.descripcion = descripcion
             rol.save()
                     
             template_name='./Roles/rol_modificado.html'
             return render(request, template_name)
     else:
-        marcados = []
-        permisos = rol.permissions.all()
-        for perm in permisos:
-            marcados.append(perm.name)
-        #initial = {'Nombre_de_Rol': rol.name, 'Descripcion': rol.descripcion}
-        #form = RolModificadoForm(initial, prefix='rol')
-        #initial = {'Permisos': marcados}
-        permisos_rol = PermisosForm(initial=marcados)
+        for perm in rol.permissions.all():
+            marcados.append(perm.codename)
+        data = {'Nombre_de_Rol': rol.name, 'Descripcion': rol.descripcion}
+        permisos = Permission.objects.filter(id__gt=18)  
+        parte1 = permisos.filter(id__range=(19,44))
+        parte2 = permisos.filter(id__gt=62)
+        permisos = []
+        permisos.extend(parte1)
+        permisos.extend(parte2)
+        permisos = [(permiso.codename, permiso.name) for permiso in permisos]
+        form = RolModificadoForm(data)
 
     template_name='./Roles/modificar_rol.html'
-    return render(request, template_name, {'permisos': permisos_rol})
+    return render(request, template_name, {'form': form, 'marcados': marcados, 'permisos': permisos, 'id_rol':id_rol})
 
 @login_required(login_url='/login/')
-@permission_required('roles.delete_roles',raise_exception=True)
+@permission_required('roles.eliminar_roles',raise_exception=True)
 def eliminarRol(request, id_rol):
-    """ Eliminar de manera logica los registros del rol.Tambien elimina la relacion entre 
-    los usuarios que posees este rol.
+    """ Eliminar de manera logica los registros del rol.
         
     @type request: django.http.HttpRequest
     @param request: Contiene informacion sobre la solicitud web actual que llamo a esta vista
         
-    @type id_usuario : string
-    @param id_usuario : Contiene el id del rol a ser eliminado.
+    @type id_rol : integer
+    @param id_rol : Contiene el id del rol a ser eliminado.
         
     @rtype: django.shortcuts.render_to_response
     @return: Se retorna al la administracion de Roles o se manda a la pagina de notificacion
@@ -169,10 +248,6 @@ def eliminarRol(request, id_rol):
     rol = Roles.objects.get(id=id_rol)
     rol.is_active = False
     rol.save()
-    grupos = Group.objects.filter(name=rol.name)
-    if grupos:
-        for grupo in grupos:
-            grupo.delete()
     
     return HttpResponseRedirect('/adm_roles/')
 
@@ -189,20 +264,26 @@ def consultarRol(request, id_rol):
     @rtype: django.HttpResponse
     @return: consultar_rol.html, donde se le despliega al usuario los datos
     
-    @author: eduardo gimenez"""
+    @author: Eduardo Gimenez"""
     template_name='./Roles/consultar_rol.html'
     rol = Roles.objects.get(id = id_rol)
     este_rol = rol
     permisos = rol.permissions.all()
+    fases = rol.fases.all()
     usuarios_con_rol = []
     usuarios_activos = User.objects.filter(is_active=True)
+    if rol.proyecto:
+        proyecto = Proyectos.objects.get(id=rol.proyecto)
+    else:
+        proyecto = ''
     for usuario in usuarios_activos:
         roles = usuario.groups.all()
         if roles:
             for rol in roles:
                 if rol.name == este_rol.name:
                     usuarios_con_rol.append(usuario)
-    return render(request, template_name, {'rol' : rol, 'permisos':permisos, 'usuarios': usuarios_con_rol}) 
+        
+    return render(request, template_name, {'rol' : rol, 'permisos':permisos, 'usuarios': usuarios_con_rol, 'fases':fases, 'proyecto': proyecto, 'id_rol':id_rol}) 
 
 @login_required(login_url='/login/')
 @permission_required('roles.asignar_rol',raise_exception=True)
@@ -248,7 +329,7 @@ def asignarRol(request, id_rol):
             usuarios_sin_rol.append(usuario)
     
     template_name='./Roles/asignar_rol.html'
-    return render(request, template_name, {'usuarios':usuarios_sin_rol})
+    return render(request, template_name, {'usuarios':usuarios_sin_rol, 'id_rol':id_rol})
 
 @login_required(login_url='/login/')
 @permission_required('roles.desasignar_rol',raise_exception=True)
@@ -265,6 +346,7 @@ def desasignarRol(request, id_rol):
     @return: desasignar_rol.html, donde se despliega un formulario con los usuarios que poseen el rol
     
     @author: Eduardo Gimenez"""
+    
     errors = []
     if request.method == 'POST':
         eleccion = request.POST.get('Usuario', '')
@@ -289,5 +371,40 @@ def desasignarRol(request, id_rol):
                 if rol.name == este_rol.name:
                     usuarios_con_rol.append(usuario)
     template_name='./Roles/desasignar_rol.html'
-    return render(request, template_name, {'usuarios':usuarios_con_rol})
+    return render(request, template_name, {'usuarios':usuarios_con_rol, 'id_rol':id_rol})
 
+@login_required(login_url='/login/')
+@permission_required('roles.asignar_proyecto_rol',raise_exception=True)
+def asignarProyectoRol(request, id_rol):
+    """ Asigna un Proyecto a un Rol, desplegando los proyectos existentes en el Sistema
+    
+    @type request: django.http.HttpRequest
+    @param request: Contiene informacion sobre la solic. web actual que llamo a esta vista
+    
+    @type id_rol: integer
+    @param id_rol: es el id del Rol al cual se le quiere asignar un proyecto
+    
+    @rtype: django.HttpResponse
+    @return: asignar_rol.html, donde se despliega un formulario con los usuarios que poseen el rol
+    
+    @author: Eduardo Gimenez"""
+    
+    errors = []
+    rol = Roles.objects.get(id=id_rol)
+    if request.method == 'POST':
+            proyecto = request.POST.get('Proyectos', '')
+            if proyecto:
+                rol.proyecto = proyecto
+            else:
+                errors.append('Debe escoger al menos un Proyecto')
+            if not errors:
+                rol.save()
+                template_name='./Roles/rol_alerta.html'
+                return render_to_response(template_name, {'mensaje': 'El proyecto ha sido asginado correctamente'}, context_instance=RequestContext(request))
+       
+    proyectos = [(proyecto.id, proyecto.nombre) for proyecto in Proyectos.objects.filter(is_active=True)]
+    
+    template_name='./Roles/asignar_proyecto_rol.html'
+    return render(request, template_name, {'Proyectos': proyectos,'errors': errors, 'id_rol':id_rol})
+
+    

@@ -33,8 +33,8 @@ ALLOWED_HOSTS = []
 #los usuarios del sistema
 
 MEDIA_ROOT = Path(__file__).ancestor(2) + '/aplicaciones/uploads/'
+MEDIA_URL = '/uploads/'
 
-# Application definition
 
 INSTALLED_APPS = (
     'django.contrib.admin',
@@ -49,6 +49,9 @@ INSTALLED_APPS = (
     'aplicaciones.fases',
     'aplicaciones.tipoatributo',
     'aplicaciones.tipoitem',
+    'aplicaciones.items',
+    'aplicaciones.relaciones',
+    'aplicaciones.lineabase',
 )
 
 MIDDLEWARE_CLASSES = (

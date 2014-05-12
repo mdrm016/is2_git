@@ -33,11 +33,8 @@ class TipoAtributo(models.Model):
     class Meta:
         ordering = ['nombre']
         permissions = (
-                      ("crear_tipo_de_atributo", "puede crear roles"),
-                      ("modificar_tipo_de_atributo", "puede modificar roles"),
-                      ("eliminar_tipo_de_atributo", "puede eliminar roles"),
-                      ("administrar_tipos_de_atributo", "puede listar los roles"),
-                      ("importar_tipo_de_atributo", "puede asignar un rol a un usuario"),
+                      ("administrar_tipos_de_atributo", "puede listar los tipos de atributo"),
+                      ("importar_tipo_de_atributo", "puede importar un tipo de atributo"),
         )
     
     def __unicode__(self):
@@ -64,7 +61,7 @@ class Fecha(models.Model):
     
     @author: Eduardo Gimenez
     """
-    valor = models.DateField()
+    valor = models.CharField(max_length=15)
     id_item = models.IntegerField()
     nombre_atributo = models.CharField(max_length=20)
     obligatorio = models.BooleanField(default=False)

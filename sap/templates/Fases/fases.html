@@ -1,5 +1,29 @@
 {% extends "base_general.html" %}
 
+{% block navegacion %}
+<nav class="navbar navbar-default">
+	<div class="navbar-header">
+		<a href="/" class="navbar-brand">SAP</a>
+	</div>
+
+	<div  class="collapse navbar-collapse navbar-ex1-collapse">
+		<ul class="nav navbar-nav">
+			<li><a href="/adm_proyectos/">Proyectos</a></li>
+			<li class="active"><a href="/adm_proyectos/gestionar/{{ proyecto.id }}/">Gestión de {{ proyecto.nombre }}</a></li>
+        </ul>
+
+		<ul class="nav navbar-nav navbar-right">
+			<li><a href="#">Acerca de</a></li>
+			<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Registro del Sistema<b class="caret"></b></a>
+				<ul class="dropdown-menu">
+				
+				</ul>
+			</li>
+		</ul>
+	</div>
+</nav>
+{% endblock %}
+
 {% block tipo_Item_y_Atributo %}
 <li><a href="adm_tipos_item/">Administrar Tipos de Item</a></li>
 <li><a href="adm_tipos_atributo/">Administrar Tipos de Atributo</a></li>
@@ -9,7 +33,7 @@
 <div class="menu">
 	<ul>
 		<li id="option1" class="active">
-			<a href="/">Proyectos</a>
+			<a href="/"><p>{{ proyecto.nombre }}</p> Fases</a>
 		</li>
 	</ul>
 </div>
@@ -21,7 +45,7 @@
 		<a href="nuevo/"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-folder-open"></span> Crear Fase</button></a>
 		<a href="importar_fase/"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-import"></span> Importar Fase</button></a>
 		<form action="" method="get">
-				<input type="text" name="busqueda" class="btn btn-default" placeholder="Busqueda de Fases..." value="{{ query|escape }}">
+				<input type="text" name="busqueda" class="form-control" placeholder="Busqueda de Fases..." value="{{ query|escape }}">
 				<span class="glyphicon glyphicon-search"></span>
 				<input class="btn btn-default" type="submit" value="Buscar Fase">
 		</form>
@@ -74,9 +98,9 @@
 				      <div class="panel-body">
 
 				      		<a href="consultar/{{ fase.id }}/"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-eye-open"></span> Consultar</button></a>
-				      		<a href="modificar/{{ fase.id }}"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-edit"></span> Modificar</button></a>
+				      		<a href="modificar/{{ fase.id }}/"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-edit"></span> Modificar</button></a>
 				      		<button class="btn btn-danger btn-sm fases" data-toggle="modal" data-target="#myModal" data-id="{{ fase.id }}"><span class="glyphicon glyphicon-trash"></span> Eliminar</button>
-				      		<a href="#"><button type="button" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-th"></span> Gestionar Fase</button></a>
+				      		<a href="adm_items/{{ fase.id }}/"><button type="button" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-th"></span> Gestionar Fase</button></a>
 				      </div>
 				    </div>
 				</div>

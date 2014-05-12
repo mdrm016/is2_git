@@ -25,7 +25,7 @@ class Proyectos(models.Model):
     )
     
     nombre = models.CharField(max_length=30)
-    lider = models.ForeignKey(User)
+    lider = models.ForeignKey(User, null=True)
     estado = models.CharField(max_length=15, choices=ESTADOS_PROYECTO, default='Inactivo')
     fecha_inicio = models.DateField()
     duracion = models.IntegerField()
@@ -37,6 +37,8 @@ class Proyectos(models.Model):
     class Meta:
         ordering = ["nombre"]
         permissions = (
-                      ("listar_miembros", "puede listar los miembros de un proyecto"),
-                      ("importar_proyecto", "puede importar proyectos"),
+                      ("listar_miembros", "Puede listar los miembros de un proyecto"),
+                      ("importar_proyectos", "Puede importar proyectos"),
+                      ("consultar_proyectos", "Puede consultar proyectos"),
+                      ("consultar_proyectosfinalizados", "Puede consultar proyectos finalizados"),
                       )

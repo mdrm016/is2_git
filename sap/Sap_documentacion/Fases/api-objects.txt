@@ -2,6 +2,7 @@ aplicaciones.fases	aplicaciones.fases-module.html
 aplicaciones.fases.__package__	aplicaciones.fases-module.html#__package__
 aplicaciones.fases.admin	aplicaciones.fases.admin-module.html
 aplicaciones.fases.forms	aplicaciones.fases.forms-module.html
+aplicaciones.fases.forms.ESTADOS_FASE_ACTIVO	aplicaciones.fases.forms-module.html#ESTADOS_FASE_ACTIVO
 aplicaciones.fases.forms.validar_fasenombre_unico	aplicaciones.fases.forms-module.html#validar_fasenombre_unico
 aplicaciones.fases.forms.validate_duracion_fase	aplicaciones.fases.forms-module.html#validate_duracion_fase
 aplicaciones.fases.forms.ESTADOS_FASE	aplicaciones.fases.forms-module.html#ESTADOS_FASE
@@ -23,6 +24,9 @@ aplicaciones.fases.forms.FaseModificadaForm.Duracion	aplicaciones.fases.forms.Fa
 aplicaciones.fases.forms.FaseModificadaForm.forms.Form	aplicaciones.fases.forms.FaseModificadaForm-class.html#forms.Form
 aplicaciones.fases.forms.FaseModificadaForm.Estado	aplicaciones.fases.forms.FaseModificadaForm-class.html#Estado
 aplicaciones.fases.forms.FaseModificadaForm.Nombre_de_Fase	aplicaciones.fases.forms.FaseModificadaForm-class.html#Nombre_de_Fase
+aplicaciones.fases.forms.FaseModificadaFormProyectoActivo	aplicaciones.fases.forms.FaseModificadaFormProyectoActivo-class.html
+aplicaciones.fases.forms.FaseModificadaFormProyectoActivo.Duracion	aplicaciones.fases.forms.FaseModificadaFormProyectoActivo-class.html#Duracion
+aplicaciones.fases.forms.FaseModificadaFormProyectoActivo.Estado	aplicaciones.fases.forms.FaseModificadaFormProyectoActivo-class.html#Estado
 aplicaciones.fases.forms.FaseNuevaForm	aplicaciones.fases.forms.FaseNuevaForm-class.html
 aplicaciones.fases.forms.FaseNuevaForm.Descripcion	aplicaciones.fases.forms.FaseNuevaForm-class.html#Descripcion
 aplicaciones.fases.forms.FaseNuevaForm.forms.Form	aplicaciones.fases.forms.FaseNuevaForm-class.html#forms.Form

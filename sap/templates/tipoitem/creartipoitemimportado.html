@@ -1,0 +1,96 @@
+{% extends "base_general.html" %}
+
+{% block navegacion %}
+<nav class="navbar navbar-default">
+	<div class="navbar-header">
+		<a href="/" class="navbar-brand">SAP</a>
+	</div>
+
+	<div  class="collapse navbar-collapse navbar-ex1-collapse">
+		<ul class="nav navbar-nav">
+			<li><a href="/adm_proyectos/">Proyectos</a></li>
+			<li><a href="/adm_proyectos/gestionar/{{ proyecto.id }}/">Gestion de {{ proyecto.nombre }}</a></li>
+			<li><a href="/adm_proyectos/gestionar/{{ proyecto.id }}/adm_tipos_item/">Tipo de Items</a></li>
+			<li class="active"><a href="/adm_proyectos/gestionar/{{ proyecto.id }}/adm_tipos_item/listar_proyectos/listar_tipoitem/{{ proyecto_select }}/importar_tipoitem/{{ id_tipoitem }}/">Importación de Tipo de Item</a></li>
+        </ul>
+
+		<ul class="nav navbar-nav navbar-right">
+			<li><a href="#">Acerca de</a></li>
+			<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Registro del Sistema<b class="caret"></b></a>
+				<ul class="dropdown-menu">
+				
+				</ul>
+			</li>
+		</ul>
+	</div>
+</nav>
+{% endblock %}
+
+
+{% block tipo_Item_y_Atributo %}
+<li><a href="/adm_proyectos/gestionar/{{ id_proyecto }}/adm_tipos_item/">Administrar Tipos de Item</a></li>
+<li><a href="/adm_proyectos/gestionar/{{ id_proyecto }}/adm_tipos_atributo">Administrar Tipos de Atributo</a></li>
+{% endblock %}
+
+{% block menu %}		
+<div class="menu">
+	<ul>
+		<li id="option1" class="active">
+			<a href="#">Importar {{ tipoitem.nombre }}</a>
+		</li>
+	</ul>
+</div>
+{% endblock %}
+
+{% block contenido %}
+<div class="content-secondary">
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+			</div>
+				
+			<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+				<form action="" method="post">{% csrf_token %}
+					<table class="table table-hover table-bordered table-condensed table-responsive">
+					
+						<tr><th><label for="id_Nombre_Tipo_de_Item"><h4><b>Nombre Tipo de Item *:</b></h4></label>
+						</th><td>
+							{% if form.Nombre_Tipo_de_Item.errors %}
+							<div class="form-group has-error">
+								  <label class="control-label" for="inputError1">{{ form.Nombre_Tipo_de_Item.errors }}</label>
+								  <input id="id_Nombre_Tipo_de_Item" maxlength="30" name="Nombre_Tipo_de_Item" class="form-control" type="text" value="{{ form.data.Nombre_Tipo_de_Item }}" /><br />
+								  
+							</div>
+							{% else %}
+							
+								<input id="id_Nombre_Tipo_de_Item" maxlength="30" name="Nombre_Tipo_de_Item" class="form-control" type="text" value="{{ form.data.Nombre_Tipo_de_Item }}" /><br />
+							{% endif %}
+						</td></tr>
+						
+						<tr><th><label for="id_Descripcion"><h4><b>Descripcion *:</b></h4></label>
+						</th><td>
+							{% if form.Descripcion.errors %}
+							<div class="form-group has-error">
+								  <label class="control-label" for="inputError1">{{ form.Descripcion.errors }}</label>
+								  <textarea class="form-control" id="id_Descripcion" name="Descripcion" rows="5">{{ form.data.Descripcion }}</textarea><br/>
+							</div>
+							{% else %}
+								<textarea class="form-control" id="id_Descripcion" name="Descripcion" rows="5">{{ form.data.Descripcion }}</textarea><br/>
+							{% endif %}
+						
+						</td></tr>
+
+					</table>
+					<div align="center"><br>
+						<input class="btn btn-default" type="submit" value="Importar"/>
+						<a class="btn btn-default" href="javascript:window.history.go(-1);"><span class="glyphicon glyphicon-remove"></span> Cancelar</a>
+					</div>
+				</form>
+			</div>
+				
+			<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

@@ -17,7 +17,13 @@ def listaProyectos():
     return proyectos
 
 def listaPermisos():
-    permisos = [(permiso.codename, permiso.name) for permiso in Permission.objects.all()]
+    permisos = Permission.objects.filter(id__gt=18)  
+    parte1 = permisos.filter(id__range=(19,44))
+    parte2 = permisos.filter(id__gt=62)
+    permisos = []
+    permisos.extend(parte1)
+    permisos.extend(parte2)
+    permisos = [(permiso.codename, permiso.name) for permiso in permisos]
     return permisos
 
 class RolForm (forms.Form):
@@ -32,10 +38,16 @@ class RolForm (forms.Form):
         @author: Eduardo Gimenez
         
     """
-    Nombre_de_Rol = forms.CharField(widget=forms.TextInput(), validators=[validarNombreRolUnico], max_length=20, required=True, error_messages={'required': 'Ingrese un nombre de Rol', 'max_length': 'Longitud maxima: 20 caracteres'})
-    Permisos = forms.MultipleChoiceField(required=True, widget=forms.CheckboxSelectMultiple(), choices=listaPermisos(), error_messages={'required': 'Debe escoger por lo menos  un Rol'})
+    Nombre_de_Rol = forms.CharField(widget=forms.TextInput(), validators=[validarNombreRolUnico], help_text='*', max_length=20, required=True, error_messages={'required': 'Ingrese un nombre de Rol', 'max_length': 'Longitud maxima: 20 caracteres'})
+    Permisos = forms.MultipleChoiceField(required=True, widget=forms.CheckboxSelectMultiple(), help_text='*', choices=listaPermisos(), error_messages={'required': 'Debe escoger por lo menos  un Rol'})
     Proyecto = forms.ChoiceField(widget=forms.Select() , choices=listaProyectos(),  required=False)
     Descripcion = forms.CharField(widget=forms.Textarea(), required=False, max_length= 300, error_messages={'max_length': 'Longitud maxima: 300 caracteres'})
+    
+    def __init__(self, *args, **kwargs):
+        self.Proyecto = listaProyectos()
+        super(RolForm, self).__init__(*args, **kwargs)
+        self.fields['Proyecto']= forms.ChoiceField(widget=forms.Select() , choices=listaProyectos(),  required=False)
+
     
 class RolModificadoForm (forms.Form):
     
@@ -50,13 +62,7 @@ class RolModificadoForm (forms.Form):
         
     """
                 
-    Nombre_de_Rol = forms.CharField(widget=forms.TextInput(), max_length=20, required=True, error_messages={'required': 'Ingrese un nombre de usuario', 'max_length': 'Longitud maxima: 14 caracteres'})
+    Nombre_de_Rol = forms.CharField(widget=forms.TextInput(), max_length=20, required=True, error_messages={'max_length': 'Longitud maxima: 14 caracteres'})
+    Permisos = forms.MultipleChoiceField(required=True, widget=forms.CheckboxSelectMultiple(), help_text='*', choices=listaPermisos(), error_messages={'required': 'Debe escoger por lo menos  un Rol'})
     Descripcion = forms.CharField(widget=forms.Textarea(), required=False, max_length= 300, error_messages={'max_length': 'Longitud maxima: 300 caracteres'})
-    
-class PermisosForm (forms.Form):
-    
-     Permisos = forms.MultipleChoiceField(required=False, widget=forms.CheckboxSelectMultiple(), choices=listaPermisos())
-     def __init__(self, list=None, *args, **kwargs):
-        super(PermisosForm, self).__init__(*args, **kwargs)
-        self.fields["Permisos"]=forms.MultipleChoiceField(initial=list)
-     
+

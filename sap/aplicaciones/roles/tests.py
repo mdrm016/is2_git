@@ -23,6 +23,7 @@ class test_user(TestCase):
         request.user = self.user
         response = administrarRoles(request)                                    #Pasamos a la pagina de administracion de roles
         self.assertEqual(response.status_code, 200) 
+        print 'Test de administracion de Roles ejecutado exitosamente.'
     
     def testRolNuevo(self):
         
@@ -32,30 +33,30 @@ class test_user(TestCase):
         response = rolNuevo(request) 
         self.assertEqual(response.status_code, 200)
         rol = Roles.objects.get(name='pruebaRol3')
-        print rol.permissions.all()
+        print 'Test de Crear un Rol Nuevo ejecutado exitosamente.'
+        
         
     def testModificarRol(self):
         
         self.user = User.objects.get(pk=1)
-        print Roles.objects.all()
-        request = self.factory.post('/adm_roles/modificar/2/', {'Nombre_de_Rol': 'pruebaRol3', 'Permisos': ['add_usuarios'], 'Descripcion':'Todos los permisos de Roles, agregamos crear usuarios'})
+        request = self.factory.post('/adm_roles/modificar/2/', {'Nombre_de_Rol': 'pruebaRol3', 'Permisos': ['crear_usuarios'], 'Descripcion':'Agregamos crear usuarios'})
         request.user = self.user
         response = modificarRol(request, 2)
         self.assertEqual(response.status_code, 200)
         rol = Roles.objects.get(name='pruebaRol3')
-        print rol
-        print Roles.objects.all()
+        print 'Test de Modificar Rol ejecutado exitosamente.'
     
     def testEliminarRol(self):
         
         self.user = User.objects.get(pk=1)
         request = self.factory.get('/adm_roles/eliminar/1/')
         request.user = self.user
-        rol = Roles.objects.filter(pk=1)
-        self.assertTrue(rol)
+        rol = Roles.objects.get(pk=1)
+        self.assertTrue(rol.is_active)
         response = eliminarRol(request, 1)
-        rol = Roles.objects.filter(pk=1)
-        self.assertFalse(rol)
+        rol = Roles.objects.get(pk=1)
+        self.assertFalse(rol.is_active)
+        print 'Test de Eliminar Rol ejecutado exitosamente.'
         
     def testConsultarRol(self):
         
@@ -64,6 +65,7 @@ class test_user(TestCase):
         request.user = self.user
         response = consultarRol(request, 2)
         self.assertEqual(response.status_code, 200)
+        print 'Test de Consultar un Rol ejecutado exitosamente.'
         
     def testBucarRol(self):
         
@@ -72,6 +74,7 @@ class test_user(TestCase):
         request.user = self.user
         response = administrarRoles(request)
         self.assertEqual(response.status_code, 200)
+        print 'Test de Buscar Rol ejecutado exitosamente.'
         
     def testAsignarRol(self):
         
@@ -80,6 +83,7 @@ class test_user(TestCase):
         request.user = self.user
         response = asignarRol(request, 2)
         self.assertEqual(response.status_code, 200)
+        print 'Test de Asignar Rol a Usuario ejecutado exitosamente.'
         
     def testDesasignarRol(self):
         
@@ -88,6 +92,7 @@ class test_user(TestCase):
         request.user = self.user
         response = desasignarRol(request, 2)
         self.assertEqual(response.status_code, 200)
+        print 'Test de Desasignar Rol a usuario ejecutado exitosamente.'
     
     if __name__ == '__main__':
         unittest.main()

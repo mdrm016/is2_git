@@ -21,6 +21,14 @@ ESTADOS_FASE=(
         ('FD', 'Finalizado'),
     )
 
+ESTADOS_FASE_ACTIVO=(
+        ('', '--seleccione un Estado--'),
+        ('DF', 'Definicion'),
+        ('DR', 'Desarrollo'),
+        ('FD', 'Finalizado'),
+    )
+
+
 class FaseNuevaForm(forms.Form):
 #, validators=[validar_fasenombre_unico]
     """ Atributos de Fase necesarios para el registro en la base de datos
@@ -57,3 +65,6 @@ class FaseModificadaForm(forms.Form):
     Estado = forms.ChoiceField(widget=forms.Select(), choices= (ESTADOS_FASE), required=False)
     Duracion = forms.IntegerField(required=True, help_text='En semanas', validators=[validate_duracion_fase], error_messages={'required': 'Ingrese una duracion aproximada de fase',})    
     
+class FaseModificadaFormProyectoActivo(forms.Form):
+    Estado = forms.ChoiceField(widget=forms.Select(), choices= (ESTADOS_FASE_ACTIVO), required=False)
+    Duracion = forms.IntegerField(required=True, help_text='En semanas', validators=[validate_duracion_fase], error_messages={'required': 'Ingrese una duracion aproximada de fase',})
