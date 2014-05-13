@@ -1,3 +1,6 @@
+import ho.pisa as pisa
+import cStringIO as StringIO
+import cgi
 from django.shortcuts import render, render_to_response
 from aplicaciones.proyectos.models import Proyectos
 from aplicaciones.fases.models import Fases
@@ -9,6 +12,9 @@ from django.template import RequestContext
 from django.contrib.auth.decorators import login_required, permission_required
 from django.db.models import Q
 from datetime import datetime
+from django.template import RequestContext
+from django.template.loader import render_to_string
+from django.conf import settings
 
 # Create your views here.
 def administrarLineaBase(request, id_proyecto, id_fase):
@@ -93,4 +99,40 @@ def generarLineaBase(request, id_proyecto, id_fase):
     else:
         raise PermissionDenied()
         
+def consultar_lineabase (request, id_proyecto, id_fase, id_lineabase):
+    
+    proyecto = Proyectos.objects.get(id=id_proyecto)
+    fase = Fases.objects.get(id=id_fase)
+    lineabase = LineaBase.objects.get(id=id_lineabase)
+    items = lineabase.items.all()
+    for item in items:
+        print item.proyecto.id, item.fase.id
+    template_name='lineaBase/consultarlineabase.html'
+    ctx = {'lineabase':lineabase, 'items':items, 'proyecto':proyecto, 'fase':fase}
+    return render_to_response(template_name, ctx, context_instance=RequestContext(request) )
+
+def informe_lineabase(request, id_proyecto, id_fase, id_lineabase):
+    
+    lineabase=LineaBase.objects.get(id=id_lineabase)
+    filename = 'linea_Base_%s.pdf' % lineabase.numero
+    html = render_to_string('lineaBase/informelineabase.html', {'pagesize':'A4', 'lineabase':lineabase}, context_instance=RequestContext(request))
+    return generar_pdf(html, filename)
+
+def generar_pdf(html, filename):
+    
+    #result = StringIO.StringIO()
+    STATICFILES_DIRS, = settings.STATICFILES_DIRS
+    path = '%s/aplicaciones/informes/%s' % (STATICFILES_DIRS, filename)
+    result = open(path, 'wb')
+    pdf = pisa.pisaDocument(StringIO.StringIO(html.encode("UTF-8")), result)
+    result.close()
+    #pdf = pisa.CreatePDF(html.encode('UTF-8'), result, link_callback=path, encoding='UTF-8')
+    #pdf = pisa.pisaDocument(StringIO.StringIO(html.encode("UTF-8")), result, link_callback='/static/aplicaciones/informes')
+    if not pdf.err:
+        return HttpResponseRedirect('/static/aplicaciones/informes/%s' % filename)
+        #response = http.HttpResponse(mimetype='application/pdf')
+        #response['Content-Disposition'] = 'attachment; filename=%s' % filename
+        #response.write(result.getvalue())
+        #return response
+    return HttpResponse('Error al generar el PDF: %s' % cgi.escape(html))
     
