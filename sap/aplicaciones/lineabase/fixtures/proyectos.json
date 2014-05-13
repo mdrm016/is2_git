@@ -1,0 +1,14 @@
+[
+{
+    "pk": 1, 
+    "model": "proyectos.proyectos", 
+    "fields": {
+        "fecha_inicio": "2014-05-21", 
+        "is_active": true, 
+        "lider": 2, 
+        "duracion": 5, 
+        "nombre": "Andromeda", 
+        "estado": "En Construccion"
+    }
+}
+]
