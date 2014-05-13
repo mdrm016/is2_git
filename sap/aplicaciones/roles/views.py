@@ -99,8 +99,8 @@ def rolNuevo(request):
         form = RolForm()
         
     permisos = Permission.objects.filter(id__gt=18)  
-    parte1 = permisos.filter(id__range=(19,44))
-    parte2 = permisos.filter(id__gt=62)
+    parte1 = permisos.filter(id__range=(19,46))
+    parte2 = permisos.filter(id__gt=65)
     permisos = []
     permisos.extend(parte1)
     permisos.extend(parte2)

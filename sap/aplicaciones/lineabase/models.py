@@ -24,6 +24,7 @@ class LineaBase(models.Model):
     items = models.ManyToManyField(Items)
     is_active = models.BooleanField(default=True)
     descripcion = models.CharField(max_length=300)
+    fecha_creacion = models.DateField()
     
     class Meta:
         ordering = ['id']

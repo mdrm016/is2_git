@@ -1,0 +1,18 @@
+[
+{
+    "pk": 1, 
+    "model": "tipoatributo.tipoatributo", 
+    "fields": {
+        "tipo": "Numerico", 
+        "is_active": true, 
+        "precision": 0, 
+        "proyecto": [
+            1
+        ], 
+        "descripcion": "", 
+        "nombre": "Edad", 
+        "obligatorio": true, 
+        "longitud": 2
+    }
+}
+]
