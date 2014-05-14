@@ -2,7 +2,7 @@
 
 #variables
 #ruta de instalacion
-rutainstalacion="/home/mdrm016/is2_git/is2_git/sap"
+rutainstalacion="/home/mdrm016/is2_git/is2_git"
 #nombre del superusuario a crear en la BD
 usuario='mdrm016'
 #password del super usuario a crear en la BD

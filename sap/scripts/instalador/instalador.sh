@@ -20,7 +20,7 @@ if [ ! -d "$rutainstalacion" ];
 	mkdir -p "$rutainstalacion"
 fi
 
-echo "###### INICIANDO LA INSTALACION ######"
+echo "###### INICIANDO LA INSTALACION DEL SISTEMA DE ADMINISTRACION DE PROYECTOS (SAP) ######"
 
 # instalamos python 2.7.4
 instalado=`grep python2.7 instalados.txt`
