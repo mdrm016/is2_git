@@ -16,7 +16,7 @@ apt-show-versions > instalados.txt
 
 if [ ! -d "$rutainstalacion" ];
 	then
-	echo "###### LA RUTA DE INSTALACION NO EXISTE, SE CREARA EL EL DIRECTORIO EN LA RUTA ESPECIFICADA ######"
+	echo "###### LA RUTA DE INSTALACION NO EXISTE, SE CREARA EL DIRECTORIO EN LA RUTA ESPECIFICADA ######"
 	mkdir -p "$rutainstalacion"
 fi
 
