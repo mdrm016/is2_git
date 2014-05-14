@@ -115,7 +115,8 @@ def informe_lineabase(request, id_proyecto, id_fase, id_lineabase):
     
     lineabase=LineaBase.objects.get(id=id_lineabase)
     filename = 'linea_Base_%s.pdf' % lineabase.numero
-    html = render_to_string('lineaBase/informelineabase.html', {'pagesize':'A4', 'lineabase':lineabase}, context_instance=RequestContext(request))
+    ctx ={'pagesize':'A4', 'lineabase':lineabase, 'fecha':datetime.now()}
+    html = render_to_string('lineaBase/informelineabase.html', ctx, context_instance=RequestContext(request))
     return generar_pdf(html, filename)
 
 def generar_pdf(html, filename):
