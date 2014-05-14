@@ -71,54 +71,33 @@
 				</div>
 			
 		{% endif %}
-		{% if lista_relaciones %}
+		{% if padre %}
 		<div class="row ">
 			<div class="panel-group" id="accordion">
 				<div class="panel panel-default">
 					<div class="row">
 				    	<div class="col-md-4">
 				   			<div class="panel-heading">
-				      			<h4 class="panel-title"><b>Nombre</b></h4>
+				      			<h4 class="panel-title"><b>Nombre (Padre/Antecesor)</b></h4>
 				    		</div>
 				    	</div>				    
 				    	<div class="col-md-4">
 				    		<div class="panel-heading">
-				      			<h4 class="panel-title"><b>Relacion (Item listado)</b></h4>
+				      			<h4 class="panel-title"><b>Fase</b></h4>
 				    		</div>
 				    	</div>
 				    </div>
 				</div>
 			<div class="panel-group" id="accordion">
 				<table align="center">
-		{% else %}
-			{% if padre %}
-			<div class="row ">
-			<div class="panel-group" id="accordion">
-				<div class="panel panel-default">
-					<div class="row">
-				    	<div class="col-md-4">
-				   			<div class="panel-heading">
-				      			<h4 class="panel-title"><b>Nombre</b></h4>
-				    		</div>
-				    	</div>				    
-				    	<div class="col-md-4">
-				    		<div class="panel-heading">
-				      			<h4 class="panel-title"><b>Relacion (Item listado)</b></h4>
-				    		</div>
-				    	</div>
-				    </div>
-				</div>
-			<div class="panel-group" id="accordion">
-				<table align="center">
-			{% endif %}
 		{% endif %}
 		{% if padre %}
 				<div class="panel panel-default">
 					<div class="col-md-4">
 				    	<div class="panel-heading">
 				      		<h4 class="panel-title">
-				        		<a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ padre.relacion }}">
-				          			{{ padre.nombreitem }}
+				        		<a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ relacion }}">
+				          			{{ padre.nombre }}
 				        		</a>
 				      		</h4>
 				    	</div>
@@ -126,15 +105,15 @@
 				    <div class="col-md-4">
 				    	<div class="panel-heading">
 				      		<h4 class="panel-title">
-				        		<a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ padre.relacion }}">
-				          			Padre
+				        		<a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ relacion }}">
+				          			{{ padre.fase_id.nombre }}
 				        		</a>
 				      		</h4>
 				    	</div>
 				    </div>
-				    <div id="collapse{{ padre.relacion }}" class="panel-collapse collapse pull-left">
+				    <div id="collapse{{ relacion }}" class="panel-collapse collapse pull-left">
 				      <div class="panel-body">
-				      		<button class="btn btn-danger btn-sm relaciones" data-toggle="modal" data-target="#myModal" data-id="{{ padre.relacion }}"><span class="glyphicon glyphicon-trash"></span> Eliminar</button>
+				      		<button class="btn btn-danger btn-sm relaciones" data-toggle="modal" data-target="#myModal" data-id="{{ relacion }}"><span class="glyphicon glyphicon-trash"></span> Eliminar</button>
 				      </div>
 				    </div>
 				    {% csrf_token %}
@@ -145,47 +124,6 @@
 						<p class="text-warning" align="center"><small>El item no posee padre/antecesor</small></p>
 					</div>
 				</div>
-		{% endif %}
-		{% if lista_relaciones %}
-			{% for relacion in lista_relaciones %}
-				<div class="panel panel-default">
-					<div class="col-md-4">
-				    	<div class="panel-heading">
-				      		<h4 class="panel-title">
-				        		<a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ relacion.relacion }}">
-				          			{{ relacion.nombreitem }}
-				        		</a>
-				      		</h4>
-				    	</div>
-				    </div>				    
-				    <div class="col-md-4">
-				    	<div class="panel-heading">
-				      		<h4 class="panel-title">
-				        		<a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ relacion.relacion }}">
-				          			Hijo
-				        		</a>
-				      		</h4>
-				    	</div>
-				    </div>
-				    
-				    <div id="collapse{{ relacion.relacion }}" class="panel-collapse collapse pull-left">
-				      <div class="panel-body">
-				      		<button class="btn btn-danger btn-sm relaciones" data-toggle="modal" data-target="#myModal" data-id="{{ relacion.relacion }}"><span class="glyphicon glyphicon-trash"></span> Eliminar</button>
-				      </div>
-				    </div>
-				</div>
-		{% endfor %}
-		</table>
-					{% csrf_token %}
-		</div>
-		
-		{% else %}	
-				<div class="jumbotron">
-					<div class="bs-example">
-						<p class="text-warning" align="center"><small>No se encontraron hijos/sucesores</small></p>
-					</div>
-				</div>
-			
 		{% endif %}
 		<div  align="center">
 			<a type="button" class="btn btn-default" href="/adm_proyectos/gestionar/{{ id_proyecto }}/adm_items/{{ id_fase }}/versiones/{{ id_item }}">Volver</a>
