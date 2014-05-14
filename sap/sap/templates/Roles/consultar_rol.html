@@ -1,0 +1,72 @@
+{% extends "base_general.html" %}
+
+{% block navegacion %}
+<nav class="navbar navbar-default">
+	<div class="navbar-header">
+		<a href="/" class="navbar-brand">SAP</a>
+	</div>
+
+	<div  class="collapse navbar-collapse navbar-ex1-collapse">
+		<ul class="nav navbar-nav">
+			<li><a href="/adm_roles/">Roles</a></li>
+			<li class="active"><a href="/adm_roles/consultar/{{ id_rol }}/">Consulta de Rol</a></li>
+        </ul>
+
+		<ul class="nav navbar-nav navbar-right">
+			<li><a href="#">Acerca de</a></li>
+			<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Registro del Sistema<b class="caret"></b></a>
+				<ul class="dropdown-menu">
+				
+				</ul>
+			</li>
+		</ul>
+	</div>
+</nav>
+{% endblock %}
+
+{% block menu %}		
+<div class="menu">
+	<ul>
+		<li id="option1" class="active">
+			<a href="#">{{ rol.name }}</a>
+	</ul>
+</div>
+{% endblock %}
+
+{% block contenido %}
+<div class="content-secondary">
+		<p><h4>Id: <span class="label label-default">{{ rol.id }}</span></h4></p>
+		<p><h4>Permisos: </h4></p>
+		<ul>
+		{% for permiso in permisos %}
+			<li><h4><span class="label label-default">{{ permiso.name }}</span></h4></li>
+		{% endfor %}
+		</ul>
+		<p><h4>Proyecto: <span class="label label-default">{{ proyecto }}</span></h4></p>
+		<p><h4>Fases:
+		<ul>
+		{% for fase in fases %}
+			 <li><h4><span class="label label-default">{{ fase.nombre }}</span></h4></li>
+		{% endfor %}
+		</ul>
+		</h4></p>
+		<p><h4>Descripcion: <span class="label label-default">{{ rol.descripcion }}</span></h4></p>
+		<p><h4>Usuarios con este Rol: </h4></p>
+		<p>
+		{% if usuarios %}
+			{% for usuario in usuarios %}
+				<h4><span class="label label-default">{{ usuario.username }} | </span></h4>
+			{% endfor %}
+		{% else %}
+			<h4><span class="label label-default"> No hay usuarios con este Rol</span></h4>
+		{% endif %}
+		</p>
+</div>
+<br>
+<div align="center">
+		<a href="/adm_roles/"><button type="button" class="btn btn-default">Volver</button></a>
+</div>
+	
+{% endblock %}
+
+

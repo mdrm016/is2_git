@@ -1,0 +1,17 @@
+[
+{
+    "pk": 1, 
+    "model": "fases.fases", 
+    "fields": {
+        "orden": 1, 
+        "estado": "DR", 
+        "is_active": true, 
+        "fechainicio": "2014-05-11", 
+        "duracion": 1, 
+        "descripcion": "gcvg", 
+        "nombre": "hhhhh", 
+        "proyecto": 1, 
+        "nombre_eliminado": null
+    }
+}
+]

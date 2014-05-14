@@ -1,0 +1,26 @@
+[
+{
+    "pk": 1, 
+    "model": "proyectos.proyectos", 
+    "fields": {
+        "fecha_inicio": "2014-04-29", 
+        "is_active": true, 
+        "lider": 2, 
+        "duracion": 2, 
+        "nombre": "Planta Nuclear", 
+        "estado": "Inactivo"
+    }
+},
+{
+    "pk": 2, 
+    "model": "proyectos.proyectos", 
+    "fields": {
+        "fecha_inicio": "2014-04-30", 
+        "is_active": true, 
+        "lider": 2, 
+        "duracion": 6, 
+        "nombre": "On the Fly", 
+        "estado": "Inactivo"
+    }
+}
+]

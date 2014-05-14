@@ -1,0 +1,126 @@
+{% extends "base_general.html" %}
+
+{% block navegacion %}
+<nav class="navbar navbar-default">
+	<div class="navbar-header">
+		<a href="/" class="navbar-brand">SAP</a>
+	</div>
+
+	<div  class="collapse navbar-collapse navbar-ex1-collapse">
+		<ul class="nav navbar-nav">
+			<li><a href="/adm_proyectos/">Proyectos</a></li>
+			<li class="active"><a href="/adm_proyectos/modificar/{{ proyecto.id }}/">Modificar de Proyecto</a></li>
+        </ul>
+
+		<ul class="nav navbar-nav navbar-right">
+			<li><a href="#">Acerca de</a></li>
+			<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Registro del Sistema<b class="caret"></b></a>
+				<ul class="dropdown-menu">
+				
+				</ul>
+			</li>
+		</ul>
+	</div>
+</nav>
+{% endblock %}
+
+{% block menu %}		
+<div class="menu">
+	<ul>
+		<li id="option1" class="active">
+			<a href="#">Modificar {{ proyecto.nombre }}</a>
+		</li>
+	</ul>
+</div>
+{% endblock %}
+
+{% block contenido %}
+<div class="content-secondary">
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+			</div>
+				
+			<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+				<form action="" method="post">{% csrf_token %}
+				
+					{% if mensaje %}
+    					<div class="panel panel-danger">
+    						<div class="panel-heading">
+    							<h3 class="panel-title">Por favor verifique:</h3>
+           					</div>
+            				<div class="panel-body">
+            					<br>
+            					<ul class="list-unstyled">
+            					{% if mensaje %}
+								<ul>
+									<li>{{ mensaje }}</li>
+								</ul>
+  								{% endif %}
+								</ul>
+            				</div>
+        				</div>
+        			{% endif %}
+        			
+					<table class="table table-hover table-bordered table-condensed table-responsive">
+
+						<tr><th><label for="id_Nombre_del_Proyecto"><h4><b>Nombre del proyecto *:</b></h4></label></th>
+						<td>
+							{% if form.Nombre_del_Proyecto.errors %}
+							<div class="form-group has-error">
+								  <label class="control-label" for="inputError1">{{ form.Nombre_del_Proyecto.errors }}</label>
+								  <input id="id_Nombre_del_Proyecto" maxlength="30" name="Nombre_del_Proyecto" type="text" class="form-control" value="{{ form.data.Nombre_del_Proyecto }}" /><br />
+								  
+							</div>
+							{% else %}
+							
+								<input id="id_Nombre_del_Proyecto" maxlength="30" name="Nombre_del_Proyecto" type="text" class="form-control" value="{{ proyecto.nombre }}" /><br />
+							{% endif %}
+							
+						</td></tr>
+						
+						<tr><th><label for="id_Nuevo_Lider"><h4><b>Lider:</b></h4></label></th><td><select id="id_Nuevo_Lider" name="Nuevo_Lider" class="form-control">
+						<option value="" selected="selected">{% if proyecto.lider %} {{ proyecto.lider }} {% else %} Ninguno {% endif %}</option>
+						{% for id, lider in choices_lider %}
+							{% if not lider == proyecto.lider.username %}
+								<option value="{{ id }}">{{ lider }}</option>
+							{% endif %}
+						{% endfor %}
+						</select></td></tr>
+						<tr><th><label for="id_Nuevo_Estado"><h4><b>Estado:</b></h4></label></th><td><select id="id_Nuevo_Estado" name="Nuevo_Estado" class="form-control">
+						<option value="" selected="selected">{{ proyecto.estado }}</option>
+							{% for estado, nombre in ESTADOS_PROYECTO %}
+								{% if not nombre == proyecto.estado %}
+									<option value="{{ estado }}">{{ nombre }}</option>
+								{% endif %}
+							{% endfor %}
+						</select></td></tr>
+						<tr><th><label for="id_Duracion"><h4><b>Duracion *:</b></h4></label></th>
+						<td>
+							{% if form.Duracion.errors %}
+							<div class="form-group has-error">
+								  <label class="control-label" for="inputError1">{{ form.Duracion.errors }}</label>
+								 <input id="id_Duracion" name="Duracion" type="number" class="form-control" value="{{ form.data.Duracion }}" /><br /><span class="helptext">* En semanas</span>
+								  
+							</div>
+							{% else %}
+							
+								<input id="id_Duracion" name="Duracion" type="number" class="form-control" value="{{ proyecto.duracion }}"" /><br /><span class="helptext">* En semanas</span>
+							{% endif %}
+							
+						</td></tr>
+
+					</table>
+					<div align="center"><br>
+						<input class="btn btn-default" type="submit" value="Guardar Cambios"/>
+						<a href="/"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-remove"></span> Cancelar</button></a>
+					</div>
+				</form>
+			</div>
+				
+			<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

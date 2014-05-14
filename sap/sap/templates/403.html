@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block titulo %}Permisos Insuficientes{% endblock %}
+
+{% block contenido %}
+	<div class="container">
+		<br><br>
+			<div class="panel panel-warning">
+  				<div class="panel-heading"><h1>Houston, tenemos un problema! <span>:(</span></h1></div>
+  				<div class="panel-body">
+   					<h2><b>Permisos Insuficientes</b></h2>
+					<h4>
+						<p>Lo sentimos pero usted carece de priviligios suficientes para realizar esta accion.</p>
+						<p>Puede seguir estos tips para solucionar el problema:</p>
+						<ul>
+							<li>Pongase en contacto con el Administrador.</li>
+							<li>Mande una solicitud a la administracion solicitando permisos.</li>
+						</ul>
+					</h4>
+  				</div>
+			</div>
+		<a class="btn btn-default" href="javascript:window.history.go(-1);"><span class="glyphicon glyphicon-arrow-left"></span> Volver a la página anterior</a>
+	</div>
+{% endblock %}
