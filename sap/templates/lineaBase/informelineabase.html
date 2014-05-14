@@ -20,13 +20,35 @@
 <div>
     <h2></h2>
     <div>
-    	<p>{{ fecha }}</p>
-        <h1>{{ lineabase.numero }}</h1>
-    	<p>{{ lineabase.descripcion }}</p>
+    	<strong><p align="right">{{ fecha }}</p></strong>
+    	<h1 align="center">Informe de Linea Base</h1>
+        <h2 align="left">Linea Base Numero: {{ lineabase.numero }}</h2>
+    	<p><big><b>Descripcion: </b> {{ lineabase.descripcion }}</big></p>
+    	<p align="center"><big><b>Items Relacionados</b></big></p><br>
+    	
+    	<div style="text-align:center;">
+    		<table border="1" style=" margin: 1px; padding: 1px;">
+						<tbody>
+						  	<tr class="active">
+						  		<td><p><h2><b>Nombre del Item</b></h2></p></td>
+						  		<td><p><h2><b>Descripcion</b></h2></p></td>
+						  		<td><p><h2><b>Estado</b></h2></p></td>
+						  	</tr>
+						  	
+						  	{% for item in items %}
+								<tr class="active">
+									<td><p><big>{{ item.nombre }}</big></p></td>
+									<td><p><big>{{ item.descripcion }}</big></p></td>
+									<td><p><big>{{ item.estado }}</big></p></td>
+								</tr>
+							{% endfor %}
+						<tbody>
+					</table>
+					</div>
     </div>
 </div>
 <div id="footerContent">
-	Pagina <pdf:pagenumber>    
+	<big>Pagina <pdf:pagenumber></big>
 </div>
 </body>
 </html>
