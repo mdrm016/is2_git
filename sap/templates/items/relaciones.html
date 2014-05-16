@@ -40,7 +40,7 @@
 {% block contenido %}
 <div class="content-secondary">
 <!-- Aca van la  lista de Proyectos.. o de Solicitudes.. o de credenciales -->
-		{% if lista_relaciones %}
+		{% if padre %}
 		<div class="row ">
 			<div class="panel-group" id="accordion">
 				<div class="panel panel-default">
@@ -57,31 +57,23 @@
 				    	</div>
 				    </div>
 				</div>
-			{% for relacion in lista_relaciones %}
-			{% ifequal relacion.itemrelacionado id_item %}
-			{% else %}
+			
 				<div class="panel panel-default">
 					<div class="col-md-4">
 				    	<div class="panel-heading">
 				      		<h4 class="panel-title">
-				        		<a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ relacion.relacionid }}">
-				          			{{ relacion.nombreitemrelacionado }}
-				        		</a>
+				          			{{ padre.nombre }}
 				      		</h4>
 				    	</div>
 				    </div>				    
 				    <div class="col-md-4">
 				    	<div class="panel-heading">
 				      		<h4 class="panel-title">
-				        		<a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ relacion.relacionid }}">
-				          			{{ relacion.tiporelacion }}
-				        		</a>
+				          			Padre
 				      		</h4>
 				    	</div>
 				    </div>
 				</div>
-			{% endifequal %}
-			{% endfor %}
 		</div>
 		</div>
 		{% else %}

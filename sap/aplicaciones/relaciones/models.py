@@ -19,16 +19,8 @@ class Relaciones(models.Model):
     """
     nombre = models.CharField(max_length=30, null=True)
     padre = models.ForeignKey(Items)
-    item = models.ForeignKey(Items)
+    item = models.IntegerField(null=True)
     version = models.IntegerField(null=True)
-    
-    def __unicode__(self):
-        return self.nombre
-    
-class ListaRelacion(models.Model):
-    nombre = models.CharField(max_length=30, null=True)
-    nombreitem = models.CharField(max_length=30, null=True)
-    relacion = models.IntegerField(null=True)
     
     def __unicode__(self):
         return self.nombre

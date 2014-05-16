@@ -65,7 +65,7 @@
         <ul class="list-unstyled">
            {% for campo, mensaje in lista_error %}
 		<ul>
-			<li><b>{{campo}}</b></li>
+			<li><b>{{ campo }}</b></li>
 			{{ mensaje }}
 		</ul>
   			{% endfor %}
@@ -156,6 +156,10 @@
 					<input action="adm_proyectos/gestionar/{{ id_proyecto }}/adm_items/{{ id_fase }}/atributos/" class="btn btn-default" type="submit" value="Guardar Cambios"/>
 		
 		</form>
+		{% else %}
+		El tipo de item no posee atributos.
+		<a type="button" class="btn btn-default" href="/adm_proyectos/gestionar/{{ id_proyecto }}/adm_items/{{ id_fase }}/">Volver</a>
+		
 		{% endif %}
 
 </div>

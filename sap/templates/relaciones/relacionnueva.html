@@ -24,10 +24,14 @@
 								<h4 class="panel-title"><b>Nombre</b></h4>
 							</div>
 						</div>
+						<div class="col-md-4">
+							<div class="panel-heading">
+								<h4 class="panel-title"><b>Fase</b></h4>
+							</div>
+						</div>
 					</div>
 				</div>
 				{% for importar in lista_items %}
-					{% if importar.is_active %}
 						<div class="panel panel-default">
 							<div class="col-md-4">
 								<div class="panel-heading">
@@ -38,6 +42,13 @@
 									</h4>
 								</div>
 							</div>
+							<div class="col-md-4">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										{{ importar.fase_id.nombre }}
+									</h4>
+								</div>
+							</div>
 
 							<div id="collapse{{ importar.id }}" class="panel-collapse collapse pull-left">
 								<div class="panel-body">
@@ -45,19 +56,92 @@
 								</div>
 							</div>
 						</div>
-					{% endif %}
 				{% endfor %}
+				{% if lista_items_ant %}
+				{% for importar in lista_items_ant %}
+						<div class="panel panel-default">
+							<div class="col-md-4">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+									<a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ importar.id }}">
+										{{ importar.nombre }}
+									</a>
+									</h4>
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										{{ importar.fase_id.nombre }}
+									</h4>
+								</div>
+							</div>
+
+							<div id="collapse{{ importar.id }}" class="panel-collapse collapse pull-left">
+								<div class="panel-body">
+									<a href="relacionnueva/{{ importar.id }}/"><button type="button" class="btn btn-default btn-sm">Relacionar</button></a>
+								</div>
+							</div>
+						</div>
+				{% endfor %}
+				{% endif %}
 				<div align="center"><br>
 					<a href="/adm_proyectos/gestionar/{{ id_proyecto }}/adm_items/{{ id_fase}}/relaciones/{{ id_item }}"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-remove"></span> Cancelar</button></a>
 				</div>
 			</div>
 		</div>
 		{% else %}
+		{% if lista_items_ant %}
+		 <div class="alert alert-info"><h2><p align="center"><b>Seleccione el item a relacionar</p></h2></div>
+		<div class="row ">
+			<div class="panel-group" id="accordion">
+				<div class="panel panel-default">
+					<div class="row">
+						<div class="col-md-4">
+							<div class="panel-heading">
+								<h4 class="panel-title"><b>Nombre</b></h4>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="panel-heading">
+								<h4 class="panel-title"><b>Fase</b></h4>
+							</div>
+						</div>
+					</div>
+				</div>
+			{% for importar in lista_items_ant %}
+						<div class="panel panel-default">
+							<div class="col-md-4">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+									<a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ importar.id }}">
+										{{ importar.nombre }}
+									</a>
+									</h4>
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										{{ importar.fase_id.nombre }}
+									</h4>
+								</div>
+							</div>
+
+							<div id="collapse{{ importar.id }}" class="panel-collapse collapse pull-left">
+								<div class="panel-body">
+									<a href="relacionnueva/{{ importar.id }}/"><button type="button" class="btn btn-default btn-sm">Relacionar</button></a>
+								</div>
+							</div>
+						</div>
+				{% endfor %}
+			{% else %}
 			<div class="jumbotron">
 				<div class="bs-example">
 					<p class="text-warning" align="center"><small>No se encontraron items</small></p>
 				</div>
 			</div>
+		{% endif %}
 		{% endif %}
 </div>
 {% endblock %}

@@ -8,14 +8,14 @@ from aplicaciones.proyectos.models import Proyectos
 from aplicaciones.fases.models import Fases
 from aplicaciones.tipoitem.models import TipoItem
 from aplicaciones.tipoatributo.models import TipoAtributo, Numerico, Fecha, Texto, ArchivoExterno, Logico, Imagen
-from aplicaciones.relaciones.models import Relaciones, ListaRelacion, VersionRelacion
+from aplicaciones.relaciones.models import Relaciones
 from .models import Items, ListaValores, ValorItem
 from datetime import datetime
 from django.contrib.auth.decorators import login_required, permission_required
 from django.db.models import Q
 from forms import ItemNuevoForm, ItemModificadoForm
 from aplicaciones.tipoitem.views import ordenar_mantener
-from aplicaciones.relaciones.views import cargar_atributos, aumentar_version
+from aplicaciones.relaciones.views import cargar_atributos
 
 # Create your views here.
 
@@ -402,22 +402,22 @@ def cargar_valores(request, id_proyecto, id_fase, id_item):
                 atrib_item.delete()
         else:
             try:
-                padre = Items.objects.get(id=item.padre)
+                padre = Items.objects.get(id=itemactual.padre)
             except Items.DoesNotExist:
                 padre = False
             if padre:
                 relacionnueva = Relaciones()
                 relacionnueva.padre_id = itemactual.padre
-                relacionnueva.item_id = itemactual.id
+                relacionnueva.item = itemactual.id
                 relacionnueva.version = itemactual.version + 1
                 relacionnueva.save()
                 
-            itemactual.version = itemactual.version + 1
-            itemactual.save()
-            mensaje = 'Atributos modificados con extito.'
-            template_name='./items/itemalerta.html'
-            ctx = {'mensaje': mensaje, 'id_proyecto':id_proyecto, 'id_fase': id_fase, 'proyecto':proyecto, 'fase':fase}
-            return render_to_response(template_name, ctx, context_instance=RequestContext(request))
+        itemactual.version = itemactual.version + 1
+        itemactual.save()
+        mensaje = 'Atributos modificados con extito.'
+        template_name='./items/itemalerta.html'
+        ctx = {'mensaje': mensaje, 'id_proyecto':id_proyecto, 'id_fase': id_fase, 'proyecto':proyecto, 'fase':fase}
+        return render_to_response(template_name, ctx, context_instance=RequestContext(request))
 
     idtipo = itemactual.tipo_item_id     
     lista_atributos = ordenar_mantener(idtipo)
@@ -647,14 +647,18 @@ def consultar_version(request, id_proyecto, id_fase, id_item, version):
                 lista_valores.append(valorfuturo)
     
     try:
-        relacionpadre = Relaciones.objects.get(item_id=item.id, version=item.version)
+        relacionpadre = Relaciones.objects.get(item=item.id, version=version)
     except Relaciones.DoesNotExist:
         relacionpadre = False
     if relacionpadre:
-        padre = Items.objects.get(id=item.padre)
-        
+        try:
+            padre = Items.objects.get(id=relacionpadre.padre_id, is_active=True)
+        except Items.DoesNotExist:
+            padre = False
+    else:
+        padre = False
     template_name='./items/mostraratributos.html'
-    return render(request, template_name, {'id_proyecto':id_proyecto, 'id_fase': id_fase, 'lista_valores': lista_valores,'id_item': id_item, 'padre':padre, 'proyecto':proyecto, 'fase':fase, 'relacion': relacionpadre.id})
+    return render(request, template_name, {'id_proyecto':id_proyecto, 'id_fase': id_fase, 'lista_valores': lista_valores,'id_item': id_item, 'padre':padre, 'proyecto':proyecto, 'fase':fase})
 
 def revertir_version(request, id_proyecto, id_fase, id_item, version):
     """ Recibe un request, se verifica cual es el usuario registrado y el proyecto del cual se solicita,
@@ -683,7 +687,7 @@ def revertir_version(request, id_proyecto, id_fase, id_item, version):
                 estamosenproblemas.append(sjetbg)
                 
     try:
-        relacionpadre = Relaciones.objects.get(item_id=item.id, version=version)
+        relacionpadre = Relaciones.objects.get(item=item.id, version=version)
     except Relaciones.DoesNotExist:
         relacionpadre = False
     if relacionpadre:
@@ -693,13 +697,15 @@ def revertir_version(request, id_proyecto, id_fase, id_item, version):
             itempadre = False
         if itempadre:
             padrenuevo = Relaciones()
-            padrenuevo.item_id = item.id
+            padrenuevo.item = item.id
             padrenuevo.padre_id = relacionpadre.padre_id
             padrenuevo.version = item.version + 1
             padrenuevo.save()
             item.padre = padrenuevo.padre_id
         else:
             item.padre = 0
+    else:
+        item.padre = 0
     item.version = item.version + 1
     if item.estado=='Terminado':
         item.estado = 'En Construccion'
@@ -877,7 +883,7 @@ def consultar_atributos(request, id_proyecto, id_fase, id_item):
     lista_atributos = ordenar_mantener(idtipo)
     lista_valores = []
     orden = 0
-    
+
     atributositem = ValorItem.objects.filter(proyecto_id=id_proyecto, fase_id=id_fase, item_id=id_item, version=itemactual.version).order_by('orden')
     if atributositem:
         for i in atributositem:
@@ -973,10 +979,14 @@ def eliminar_item(request, id_proyecto, id_fase, id_item):
     else:
         relacioneshijas = Relaciones.objects.filter(padre_id=item.id)
         hijos = []
-        for relacionhija in relacioneshijas:
-            hijo = Items.objects.get(id=relacionhija.item_id)
-            if hijo.version==relacionhija.version:
-                hijos.append(hijo)
+        if relacioneshijas:
+            for relacionhija in relacioneshijas:
+                try:
+                    hijo = Items.objects.get(id=relacionhija.item, is_active=True, version=relacionhija.version)
+                except Items.DoesNotExist:
+                    hijo = False
+                if hijo:
+                    hijos.append(hijo)
 
         for hijo in hijos:
             itemrelacionadovalores = ValorItem.objects.filter(proyecto=id_proyecto, fase=id_fase, item=hijo.id, version=hijo.version).order_by('orden')        
@@ -984,7 +994,8 @@ def eliminar_item(request, id_proyecto, id_fase, id_item):
                 for fila in itemrelacionadovalores:
                     if not cargar_atributos(fila.valor_id, fila.nombre_atributo, fila.orden, fila.tabla_valor_nombre, id_proyecto, id_fase, int(hijo.id)):
                         estamosenproblemas.append(sthwet)
-            hijo.version = itemrelacionado.version + 1
+            hijo.padre = 0
+            hijo.version = hijo.version + 1
             if hijo.estado=='Terminado':
                 hijo.estado = 'En Construccion'
             hijo.save()
@@ -1040,18 +1051,26 @@ def revivir_eliminado(request, id_proyecto, id_fase, id_item, version):
     fase = Fases.objects.get(id=id_fase)
     item = Items.objects.get(proyecto_id=id_proyecto, fase_id=id_fase, id=id_item)
     try:
-        relacionpadre = Relaciones.objects.get(item_id=item.id, version=version)
+        relacionpadre = Relaciones.objects.get(item=item.id, version=version)
     except Relaciones.DoesNotExist:
         relacionpadre = False
     if relacionpadre:
-        padre = Items.objects.get(id=relacionpadre.padre_id)
-        if padre.is_active==True:
-            item.padre = padre.id
-            relacionnueva = Relaciones()
-            relacionnueva.item_id = item.id
-            relacionnueva.padre_id = item.padre
-            relacionnueva.version = item.version + 1
-            relacionnueva.save()
+        try:
+            padre = Items.objects.get(id=relacionpadre.padre_id)
+        except Items.DoesNotExist:
+            padre = False
+        if padre:
+            if padre.is_active==True:
+                item.padre = padre.id
+                relacionnueva = Relaciones()
+                relacionnueva.item = item.id
+                relacionnueva.padre_id = padre.id
+                relacionnueva.version = item.version + 1
+                relacionnueva.save()
+            else:
+                item.padre = 0
+    else:
+        item.padre = 0
 
     nombres = Items.objects.filter(proyecto_id=id_proyecto, fase_id=id_fase, nombre=item.nombre, is_active=True)
     if nombres:
@@ -1186,15 +1205,16 @@ def consultar_version_eliminado(request, id_proyecto, id_fase, id_item, version)
                 lista_valores.append(valorfuturo)
                 
     try:
-        relacionpadre = Relaciones.objects.get(item_id=item.id, version=version)
-    except Relaciones.DoesNotExists:
+        relacionpadre = Relaciones.objects.get(item=item.id, version=version)
+    except Relaciones.DoesNotExist:
         relacionpadre = False 
-    
     if relacionpadre:
         try:
-            itempadre = Items.objects.get(id=relacionpadre.padre_id, is_active=True)
-        except Items.DoesNotExists:
-            itempadre = False
+            padre = Items.objects.get(id=relacionpadre.padre_id, is_active=True)
+        except Items.DoesNotExist:
+            padre = False
+    else:
+        padre = False
 
     template_name='./items/mostrareliminados.html'
     return render(request, template_name, {'id_proyecto':id_proyecto, 'id_fase': id_fase, 'lista_valores': lista_valores, 'id_item': id_item, 'padre': padre, 'proyecto':proyecto, 'fase':fase})
@@ -1220,14 +1240,16 @@ def consultar_relaciones(request, id_proyecto, id_fase, id_item):
     item = Items.objects.get(id=id_item)
     idpadre = item.padre
     try:
-        relacionpadre = Relaciones.objects.get(item_id=item.id, version=item.version) 
-    except Relaciones.DoesNotExists:
+        relacionpadre = Relaciones.objects.get(item=item.id, version=item.version) 
+    except Relaciones.DoesNotExist:
         relacionpadre = False
     if relacionpadre:
         try:
             padre = Items.objects.get(id=relacionpadre.padre_id, is_active=True)
-        except Items.DoesNotExists:
+        except Items.DoesNotExist:
             padre = False
+    else:
+        padre = False
     
     ctx = {'id_proyecto':id_proyecto, 'id_fase': id_fase, 'id_item': id_item, 'proyecto':proyecto, 'fase':fase, 'padre': padre}
     template_name = './items/relaciones.html'
