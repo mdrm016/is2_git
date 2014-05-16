@@ -1,5 +1,6 @@
 from django.conf.urls import patterns, url
 from .views import adm_items, listar_tipo_item, crear_item, cargar_valores, listar_versiones, consultar_version, revertir_version, modificar_item, consultar_item, consultar_atributos, eliminar_item, listar_eliminados, revivir_eliminado, consultar_eliminado, consultar_version_eliminado, consultar_relaciones
+from .views import costo_impacto
 
 urlpatterns = patterns('',
                        url(r'^adm_proyectos/gestionar/(?P<id_proyecto>\d+)/adm_items/(?P<id_fase>\d+)/$', adm_items),
@@ -18,4 +19,5 @@ urlpatterns = patterns('',
                        url(r'^adm_proyectos/gestionar/(?P<id_proyecto>\d+)/adm_items/(?P<id_fase>\d+)/nuevo/$', listar_tipo_item),
                        url(r'^adm_proyectos/gestionar/(?P<id_proyecto>\d+)/adm_items/(?P<id_fase>\d+)/eliminados/$', listar_eliminados), 
                        url(r'^adm_proyectos/gestionar/(?P<id_proyecto>\d+)/adm_items/(?P<id_fase>\d+)/nuevo/crear/(?P<id_tipoitem>\d+)/$', crear_item),
+                       url(r'^adm_proyectos/gestionar/(?P<id_proyecto>\d+)/adm_items/(?P<id_fase>\d+)/impacto/(?P<id_item>\d+)/$', costo_impacto),
                        )

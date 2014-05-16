@@ -131,8 +131,7 @@ def eliminar_relacion(request, id_proyecto, id_fase, id_item, id_padre):
         if not (cargar_atributos(itemvalor.valor_id, itemvalor.nombre_atributo, itemvalor.orden, itemvalor.tabla_valor_nombre, id_proyecto, id_fase, int(item1.id))):
             estamosenproblemas.append(gkcmt)
             
-    if item1.estado=='Terminado':
-        item1.estado='En Construccion'
+    pasar_construccion(id_item)
     
     item1.padre = 0
     item1.version = item1.version + 1
@@ -283,3 +282,11 @@ def recorrer_hijos(id_proyecto, id_fase, id_raiz, id_item, is_ciclo):
                 else:
                     is_ciclo = recorrer_hijos(id_proyecto, id_fase, id_raiz, hijo.id, is_ciclo)
     return is_ciclo
+
+def pasar_construccion(id_item):
+    item = Items.objects.get(id=id_item)
+    hijos = Items.objects.filter(padre=id_item)
+    for hijo in hijos:
+        hijo.estado = 'En Construccion'
+        hijo.save()
+        pasar_construccion(hijo.id)

@@ -301,12 +301,21 @@ def modificar_fase (request, id_proyecto, id_fase):
                         template_name='Fases/modificarfase.html'
                         return render_to_response(template_name, ctx, context_instance=RequestContext(request))
                     elif (estadoActual=='DR' and estadoNuevo=='FD'):
-                        mensaje = 'No se puede finalizar la fase. Todos los items deben pertenecer a una Linea Base.'
-                        data ={'Estado':fase.estado, 'Duracion':duracion}
-                        form = FaseModificadaFormProyectoActivo(data)
-                        ctx ={'form': form, 'mensaje':mensaje, 'id_proyecto':id_proyecto, 'id_fase':id_fase, 'proyecto':proyecto}      
-                        template_name='Fases/modificarfase.html'
-                        return render_to_response(template_name, ctx, context_instance=RequestContext(request))
+                        todositems = Items.objects.filter(fase_id=id_fase, is_active=True)
+                        enlb  = True
+                        for todoitem in todositems:
+                            if todoitem.estado!='Bloqueado':
+                                enlb = False
+                        if enlb==False:
+                            mensaje = 'No se puede finalizar la fase. Todos los items deben pertenecer a una Linea Base.'
+                            data ={'Estado':fase.estado, 'Duracion':duracion}
+                            form = FaseModificadaFormProyectoActivo(data)
+                            ctx ={'form': form, 'mensaje':mensaje, 'id_proyecto':id_proyecto, 'id_fase':id_fase, 'proyecto':proyecto}      
+                            template_name='Fases/modificarfase.html'
+                            return render_to_response(template_name, ctx, context_instance=RequestContext(request))
+                        else:
+                            fase.estado = 'FD'
+                            fase.save()
                     elif (estadoActual=='DR' and estadoNuevo=='DR'):
                         fase.duracion=duracion
                         fase.save()
