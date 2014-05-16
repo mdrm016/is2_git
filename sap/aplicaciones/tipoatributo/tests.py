@@ -8,7 +8,7 @@ from aplicaciones.roles.models import Roles
 
 class test_user(TestCase):
     """    Cargamos Proyectos, tipos de Item y Tipos de Atributo de prueba en la base de datos    """
-    fixtures = ['proyectos.json'] + ['tipos_item.json'] + ['tipos_atributo.json'] + ['users.json'] + ['lista_atributos.json']
+    fixtures = ['proyectos.json'] + ['tipos_item.json'] + ['tipos_atributo.json'] + ['users.json'] + ['lista_atributos.json'] + ['groups.json']
     
     def setUp(self):
         """ Inicializamos la variable factory que posteriormente nos permitira cargar

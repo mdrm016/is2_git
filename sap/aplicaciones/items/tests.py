@@ -9,7 +9,7 @@ from aplicaciones.proyectos.models import Proyectos
 
 class test_fase(TestCase):
     
-    fixtures = ['users.json']+ ['proyectos.json'] + ['fases.json']
+    fixtures = ['users.json']+ ['proyectos.json'] + ['fases.json'] + ['groups.json']
     
     def setUp(self):
         """ Inicializamos la variable factory que posteriormente nos permitira cargar

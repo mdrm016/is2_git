@@ -208,6 +208,8 @@ else
 	chmod -R 777 sap
 	cd sap/static
 	chmod -R a+w uploads
+	cd aplicaciones
+	chmod a+w informes
 	cd "$rutainstalador"
 	rm -rf proyecto
 	wsgi_conf="yes"

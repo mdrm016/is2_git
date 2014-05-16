@@ -28,7 +28,9 @@
         "is_superuser": false, 
         "is_staff": false, 
         "last_login": "2014-04-19T17:25:10.796Z", 
-        "groups": [], 
+        "groups": [
+            1
+        ],  
         "user_permissions": [], 
         "password": "pbkdf2_sha256$12000$xV2QlYhy7ICX$tkFoarM9ZPsKImo0NDSZlrPUNXYZlK6oQxwTKOxZzgU=", 
         "email": "mdrm016@gmail.com", 
