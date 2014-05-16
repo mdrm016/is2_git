@@ -31,10 +31,12 @@ def administrarLineaBase(request, id_proyecto, id_fase):
     @author: Eduardo Gimenez.
     
     """
+    proyecto = Proyectos.objects.get(id=id_proyecto)
+    fase = Fases.objects.get(id=id_fase)
     if request.user.has_perm('roles.administrar_roles'):
         lineasbase = LineaBase.objects.filter(is_active=True, proyecto=id_proyecto, fase=id_fase)
         template_name='./lineaBase/lineas_base.html'
-        return render(request, template_name, {'lista_lineas_base': lineasbase, 'id_proyecto': id_proyecto, 'id_fase': id_fase})
+        return render(request, template_name, {'lista_lineas_base': lineasbase, 'proyecto': proyecto, 'fase': fase})
     else:
         raise PermissionDenied()
         
@@ -63,6 +65,9 @@ def generarLineaBase(request, id_proyecto, id_fase):
     @author: Eduardo Gimenez.
     
     """
+    
+    proyecto = Proyectos.objects.get(id=id_proyecto)
+    fase = Fases.objects.get(id=id_fase)
     #Primero verificamos Si el usuario tiene permisos sobre esta Fase del Proyecto
     tiene_permiso = True
     if tiene_permiso:
@@ -84,34 +89,82 @@ def generarLineaBase(request, id_proyecto, id_fase):
                     item.save()
                 linea_base.save()
                 mensaje="Linea Base creada exitosamente"
-                ctx = {'mensaje':mensaje, 'id_proyecto':id_proyecto, 'id_fase':id_fase}
+                ctx = {'mensaje':mensaje, 'proyecto':proyecto, 'fase':fase}
                 return render_to_response('lineaBase/linea_base_alerta.html',ctx, context_instance=RequestContext(request))
         else:
             items = Items.objects.filter(Q(proyecto = id_proyecto), Q(is_active = True), Q(fase = id_fase), Q(estado = 'Validado') )  
             items = [(item.id, item.nombre) for item in items]
             if not items:
                  mensaje="Imposible generar Linea Base: No hay items en estado Validado!"
-                 ctx = {'mensaje':mensaje, 'id_proyecto':id_proyecto, 'id_fase':id_fase}
+                 ctx = {'mensaje':mensaje, 'proyecto':proyecto, 'fase':fase}
                  return render_to_response('lineaBase/linea_base_alerta.html',ctx, context_instance=RequestContext(request))
         
         template_name='./lineaBase/generar_linea_base.html'
-        return render(request, template_name, {'numero': numero, 'items': items, 'errors': errors})
+        return render(request, template_name, {'numero': numero, 'items': items, 'errors': errors, 'proyecto':proyecto, 'fase':fase})
     else:
         raise PermissionDenied()
-        
+
+@login_required(login_url='/login/')
+@permission_required('lineabase.consultar_linea_base',raise_exception=True)     
 def consultar_lineabase (request, id_proyecto, id_fase, id_lineabase):
+    
+    """ Recibe un request, el id de proyecto, el id de fase y el id de la linea base a ser consultada, se verifica
+    si el usuario tiene permisos para consultar los datos de una linea base y se lo redirige a una pagina que 
+    despliega los datos de la linea base solicitada.
+    
+    @type request: django.http.HttpRequest.
+    @param request: Contiene informacion sobre la solicitud web actual que llamo a esta vista consultar_tipoitem.
+    
+    @type id_proyecto: string.
+    @param id_proyecto: Contiene el id del proyecto al cual pertenece el tipo de item a consultar.
+    
+    @type id_fase: string.
+    @param id_fase: Contiene el id de la fase a la cual pertenece la linea base a consultar.
+    
+    @type id_lineabase: string.
+    @param id_lineabase: Contiene el id de la linea base a consultar.
+    
+    @rtype: django.shortcuts.render_to_response.
+    @return: consultarlineabase.html, donde se encuentra la pagina de consulta de linea base.
+    
+    @author: Marcelo Denis.
+    
+    """
     
     proyecto = Proyectos.objects.get(id=id_proyecto)
     fase = Fases.objects.get(id=id_fase)
     lineabase = LineaBase.objects.get(id=id_lineabase)
     items = lineabase.items.all()
-    for item in items:
-        print item.proyecto.id, item.fase.id
     template_name='lineaBase/consultarlineabase.html'
     ctx = {'lineabase':lineabase, 'items':items, 'proyecto':proyecto, 'fase':fase}
     return render_to_response(template_name, ctx, context_instance=RequestContext(request) )
 
+@login_required(login_url='/login/')
+@permission_required('lineabase.generar_informe_linea_base',raise_exception=True)
 def informe_lineabase(request, id_proyecto, id_fase, id_lineabase):
+    
+    """ Recibe un request, el id de proyecto, el id de fase y el id de la linea base de la cual se generara el
+    informe, se verifica si el usuario tiene permisos para empezar el procedimiento de generacion de informe de
+    una linea base y se lo redirige a un archivo pdf que contirne los datos de la linea base solicitada.
+    
+    @type request: django.http.HttpRequest.
+    @param request: Contiene informacion sobre la solicitud web actual que llamo a esta vista consultar_tipoitem.
+    
+    @type id_proyecto: string.
+    @param id_proyecto: Contiene el id del proyecto al cual pertenece el tipo de item a consultar.
+    
+    @type id_fase: string.
+    @param id_fase: Contiene el id de la fase a la cual pertenece la linea base a consultar.
+    
+    @type id_lineabase: string.
+    @param id_lineabase: Contiene el id de la linea base a consultar.
+    
+    @rtype: PDF.
+    @return: linea_base_numero.html, donde se encuentra el informe de linea base.
+    
+    @author: Marcelo Denis.
+    
+    """
     
     lineabase=LineaBase.objects.get(id=id_lineabase)
     filename = 'linea_Base_%s.pdf' % lineabase.numero
@@ -121,19 +174,29 @@ def informe_lineabase(request, id_proyecto, id_fase, id_lineabase):
 
 def generar_pdf(html, filename):
     
-    #result = StringIO.StringIO()
+    """ Recibe un template html y el nombre del archivo pdf a crear, se resuelve la ruta donde se alojara
+    el archivo pdf y se procede a la creacion del mismo a partir del template creado de la funcion llamadora.
+    
+    @type html: html.
+    @param request: Contiene el formato y los datos del informe, el cual, posteriormente se convertira en pdf.
+    
+    @type filename: string.
+    @param filename: Contiene el nombre del archivo pdf a crear.
+    
+    @rtype: PDF.
+    @return: linea_base_numero.html, donde se encuentra el informe de linea base.
+    
+    @author: Marcelo Denis.
+    
+    """
+    
     STATICFILES_DIRS, = settings.STATICFILES_DIRS
     path = '%s/aplicaciones/informes/%s' % (STATICFILES_DIRS, filename)
     result = open(path, 'wb')
     pdf = pisa.pisaDocument(StringIO.StringIO(html.encode("UTF-8")), result)
     result.close()
-    #pdf = pisa.CreatePDF(html.encode('UTF-8'), result, link_callback=path, encoding='UTF-8')
-    #pdf = pisa.pisaDocument(StringIO.StringIO(html.encode("UTF-8")), result, link_callback='/static/aplicaciones/informes')
+   
     if not pdf.err:
         return HttpResponseRedirect('/static/aplicaciones/informes/%s' % filename)
-        #response = http.HttpResponse(mimetype='application/pdf')
-        #response['Content-Disposition'] = 'attachment; filename=%s' % filename
-        #response.write(result.getvalue())
-        #return response
-    return HttpResponse('Error al generar el PDF: %s' % cgi.escape(html))
+    return HttpResponse('Error al generar el informe PDF: %s' % cgi.escape(html))
     

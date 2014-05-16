@@ -32,6 +32,7 @@ class LineaBase(models.Model):
                       ("administrar_lineas_base", "puede listar las Lineas Base"),
                       ("generar_linea_base", "puede generar Linea Base"),
                       ("generar_informe_linea_base", "puede generar informe de Linea Base"),
+                      ("consultar_linea_base", "puede consultar datos de linea base Linea Base"),
         )
     
     def __unicode__(self):

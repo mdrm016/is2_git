@@ -1,5 +1,10 @@
 {% extends "base_general.html" %}
 
+{% block tipo_Item_y_Atributo %}
+<li><a href="/adm_proyectos/gestionar/{{ proyecto.id }}/adm_tipos_item/">Administrar Tipos de Item</a></li>
+<li><a href="/adm_proyectos/gestionar/{{ proyecto.id }}/adm_tipos_atributo">Administrar Tipos de Atributo</a></li>
+{% endblock %}
+
 {% block navegacion %}
 <nav class="navbar navbar-default">
 	<div class="navbar-header">
@@ -25,11 +30,6 @@
 		</ul>
 	</div>
 </nav>
-{% endblock %}
-
-{% block tipo_Item_y_Atributo %}
-<li><a href="/adm_proyectos/gestionar/{{ id_proyecto }}/adm_tipos_item/">Administrar Tipos de Item</a></li>
-<li><a href="/adm_proyectos/gestionar/{{ id_proyecto }}/adm_tipos_atributo">Administrar Tipos de Atributo</a></li>
 {% endblock %}
 
 {% block menu %}		
@@ -91,8 +91,8 @@
 					</table>
 					{% endif %}
 					<div align="center">
-						<a class="btn btn-default" href="javascript:window.history.go(-1);"><span class="glyphicon glyphicon-arrow-left"></span> Volver</a>
-						<a class="btn btn-default" href="#"><span class="glyphicon glyphicon-tasks"></span> Informe</a>
+						<a class="btn btn-default" href="javascript:window.history.back();"><span class="glyphicon glyphicon-arrow-left"></span> Volver</a>
+						<a class="btn btn-default" href="/adm_proyectos/gestionar/{{ proyecto.id }}/adm_items/{{ fase.id }}/adm_lineas_base/informe_lineabase/{{ lineabase.id }}/"><span class="glyphicon glyphicon-tasks"></span> Informe</a>
 					</div>
 				</div>
 				
