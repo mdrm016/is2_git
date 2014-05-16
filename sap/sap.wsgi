@@ -1,6 +1,8 @@
 import os
 import sys
-sys.path = ['/home/mdrm016/is2_git/is2_git/sap'] + sys.path
+from unipath import Path
+p = Path(__file__)
+sys.path = [p.ancestor(1)] + sys.path
 os.environ['DJANGO_SETTINGS_MODULE'] = 'sap.settings'
 import django.core.handlers.wsgi
 application = django.core.handlers.wsgi.WSGIHandler()
