@@ -7,6 +7,7 @@ from django.template.context import RequestContext
 from forms import FaseNuevaForm, FaseModificadaForm, FaseModificadaFormProyectoActivo
 from .models import Fases
 from aplicaciones.proyectos.models import Proyectos
+from aplicaciones.items.models import Items
 from datetime import datetime
 from django.contrib.auth.decorators import login_required, permission_required
 from django.db.models import Q
@@ -31,7 +32,7 @@ def adm_fases(request, id_proyecto):
     
     """
     
-    fases = Fases.objects.filter(proyecto=id_proyecto, is_active=True)
+    fases = Fases.objects.filter(proyecto=id_proyecto, is_active=True).order_by('orden')
     busqueda = ''
     error=False
     if 'busqueda' in request.GET:
@@ -180,6 +181,15 @@ def eliminar_fase (request, id_fase, id_proyecto):
         fase.nombre_eliminado = fase.nombre
         fase.nombre = '/eliminado/'+fase.nombre_eliminado
         fase.save()
+        todas_las_fases = Fases.objects.filter(proyecto_id=id_proyecto, is_active=True)
+        fases_posteriores = []
+        for una_fase in todas_las_fases:
+            if una_fase.orden>fase.orden:
+                fases_posteriores.append(una_fase)
+        for fase_posterior in fases_posteriores:
+            fase_posterior.orden = fase_posterior.orden-1
+            fase_posterior.save()
+
         template_name='./Fases/faseeliminada.html'
         return render(request, template_name, {'id_proyecto': id_proyecto, 'proyecto':proyecto})
 
@@ -313,9 +323,18 @@ def modificar_fase (request, id_proyecto, id_fase):
                             ctx ={'form': form, 'mensaje':mensaje, 'id_proyecto':id_proyecto, 'id_fase':id_fase, 'proyecto':proyecto}      
                             template_name='Fases/modificarfase.html'
                             return render_to_response(template_name, ctx, context_instance=RequestContext(request))
-                        else:
-                            fase.estado = 'FD'
-                            fase.save()
+                        elif fase.orden!=1:
+                            faseant = Fases.objects.get(orden=fase.orden-1, is_active=True)
+                            if faseant.estado!='FD':
+                                mensaje = 'No se puede finalizar la fase. La fase anterior aun no se encuentra finalizada.'
+                                data ={'Estado':fase.estado, 'Duracion':duracion}
+                                form = FaseModificadaFormProyectoActivo(data)
+                                ctx ={'form': form, 'mensaje':mensaje, 'id_proyecto':id_proyecto, 'id_fase':id_fase, 'proyecto':proyecto}      
+                                template_name='Fases/modificarfase.html'
+                                return render_to_response(template_name, ctx, context_instance=RequestContext(request))
+                            
+                        fase.estado = 'FD'
+                        fase.save()
                     elif (estadoActual=='DR' and estadoNuevo=='DR'):
                         fase.duracion=duracion
                         fase.save()

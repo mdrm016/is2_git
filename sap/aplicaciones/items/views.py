@@ -810,25 +810,33 @@ def modificar_item(request, id_proyecto, id_fase, id_item):
                         template_name='./items/modificaritem.html'
                         return render_to_response(template_name, ctx, context_instance=RequestContext(request))
                     elif (item.estado=='Terminado') and (estadoNuevo=='Validado'):
-                        padreitem = Items.objects.get(id=item.padre)
-                        if padreitem.fase_id==item.fase_id:
-                            if padre.estado!='Validado':
-                                mensaje = 'No se puede validar el item. Su padre aun no ha sido validado.'
-                                data ={'Nombre_de_Item':nombre, 'Descripcion': descripcion, 'Prioridad': prioridad, 'Observaciones': observaciones, 'Costo_Monetario': costomonetario, 'Costo_Temporal': costotemporal, 'Complejidad': complejidad, 'Estado':estado}
-                                form = ItemModificadoForm(data)
-                                ctx ={'form': form, 'mensaje':mensaje, 'id_proyecto':id_proyecto, 'id_fase':id_fase, 'id_item': id_item, 'proyecto':proyecto, 'fase':fase}      
-                                template_name='./items/modificaritem.html'
-                                return render_to_response(template_name, ctx, context_instance=RequestContext(request))
+                        if fase.orden==1 and item.padre==0:
+                            padreitem = False
+                        else:
+                            padreitem = Items.objects.get(id=item.padre)
+                        if padreitem:
+                            if padreitem.fase_id==item.fase_id:
+                                if padreitem.estado=='En Construccion' or padreitem.estado=='Terminado':
+                                    mensaje = 'No se puede validar el item. Su padre aun no ha sido validado.'
+                                    data ={'Nombre_de_Item':nombre, 'Descripcion': descripcion, 'Prioridad': prioridad, 'Observaciones': observaciones, 'Costo_Monetario': costomonetario, 'Costo_Temporal': costotemporal, 'Complejidad': complejidad, 'Estado':estado}
+                                    form = ItemModificadoForm(data)
+                                    ctx ={'form': form, 'mensaje':mensaje, 'id_proyecto':id_proyecto, 'id_fase':id_fase, 'id_item': id_item, 'proyecto':proyecto, 'fase':fase}      
+                                    template_name='./items/modificaritem.html'
+                                    return render_to_response(template_name, ctx, context_instance=RequestContext(request))
                     elif (item.estado=='En Construccion') and (estadoNuevo=='Terminado'):
                         if fase.orden==1:
-                            itemstodos = Items.objects.filter(fase_id=id_fase, is_active=True, estado='Terminado', padre=0)
-                            if itemstodos:
-                                mensaje = 'El item no posee padre/antecesor. No puede pasar a estado terminado'
-                                data ={'Nombre_de_Item':nombre, 'Descripcion': descripcion, 'Prioridad': prioridad, 'Observaciones': observaciones, 'Costo_Monetario': costomonetario, 'Costo_Temporal': costotemporal, 'Complejidad': complejidad, 'Estado':estado}
-                                form = ItemModificadoForm(data)
-                                ctx ={'form': form, 'mensaje':mensaje, 'id_proyecto':id_proyecto, 'id_fase':id_fase, 'id_item': id_item, 'proyecto':proyecto, 'fase':fase}      
-                                template_name='./items/modificaritem.html'
-                                return render_to_response(template_name, ctx, context_instance=RequestContext(request))
+                            if item.padre==0:
+                                try:    
+                                    itemstodos = Items.objects.get(fase_id=id_fase, is_active=True, estado='Terminado', padre=0)
+                                except Items.DoesNotExist:
+                                    itemstodos = False
+                                if itemstodos:
+                                    mensaje = 'El item no posee padre/antecesor. No puede pasar a estado terminado'
+                                    data ={'Nombre_de_Item':nombre, 'Descripcion': descripcion, 'Prioridad': prioridad, 'Observaciones': observaciones, 'Costo_Monetario': costomonetario, 'Costo_Temporal': costotemporal, 'Complejidad': complejidad, 'Estado':estado}
+                                    form = ItemModificadoForm(data)
+                                    ctx ={'form': form, 'mensaje':mensaje, 'id_proyecto':id_proyecto, 'id_fase':id_fase, 'id_item': id_item, 'proyecto':proyecto, 'fase':fase}      
+                                    template_name='./items/modificaritem.html'
+                                    return render_to_response(template_name, ctx, context_instance=RequestContext(request))
                         else:
                             if item.padre==0:
                                 mensaje = 'El item no posee padre/antecesor. No puede pasar a estado terminado'
@@ -1290,9 +1298,9 @@ def consultar_relaciones(request, id_proyecto, id_fase, id_item):
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
  
 def consistente(id_item):
-    item = Items.objects.get(id=item_id)
+    item = Items.objects.get(id=id_item)
     try:
-        padre = Items.objects.get(item.padre)
+        padre = Items.objects.get(id=item.padre)
     except Items.DoesNotExist:
         padre = False
     if padre:
@@ -1308,8 +1316,13 @@ def costo_impacto(request, id_proyecto, id_fase, id_item):
     
     imonetario = impacto_monetario(id_item)
     itemporal = impacto_temporal(id_item)
+    items_afectado = calcular_items_afectados(id_item)
+    items_afectados = []
+    for items_af in items_afectado:
+        if items_af.id!=item.id:
+            items_afectados.append(items_af)
     
-    ctx = {'id_proyecto':id_proyecto, 'id_fase': id_fase, 'id_item': id_item, 'impacto_monetario': imonetario, 'impacto_temporal': itemporal}
+    ctx = {'id_proyecto':id_proyecto, 'id_fase': id_fase, 'id_item': id_item, 'impacto_monetario': imonetario, 'impacto_temporal': itemporal, 'items_afectados': items_afectados}
     template_name = './items/impacto.html'
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
 
@@ -1342,3 +1355,19 @@ def impacto_temporal(id_item):
         return costo
     else:
         return item.costoTemporal
+
+def calcular_items_afectados(id_item):
+    item = Items.objects.get(id=id_item)
+    lista_hijos = []
+    try:
+        hijos = Items.objects.filter(padre=id_item)
+    except Items.DoesNotExist:
+        hijos = False
+    if hijos:
+        for hijo in hijos:
+            lista_hijos.extend(calcular_items_afectados(hijo.id))
+        lista_hijos.append(item)
+        return lista_hijos
+    else:
+        lista_hijos.append(item)
+        return lista_hijos

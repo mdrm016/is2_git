@@ -82,6 +82,60 @@
 			</div>
 		</div>
 		
+		{% if items_afectados %}
+		<div class="row ">
+			<div class="panel-group" id="accordion">
+				<div class="panel panel-default">
+					<div class="row">
+				    	<div class="col-md-4">
+				   			<div class="panel-heading">
+				      			<h4 class="panel-title"><b>Items Afectados (Nombre)</b></h4>
+				    		</div>
+				    	</div>				    
+				    	<div class="col-md-4">
+				    		<div class="panel-heading">
+				      			<h4 class="panel-title"><b>Fase</b></h4>
+				    		</div>
+				    	</div>
+				    </div>
+				</div>
+				{% for item_afectado in items_afectados %}
+				<div class="panel panel-default">
+					<div class="col-md-4">
+				    	<div class="panel-heading">
+				      		<h4 class="panel-title">
+				          		{{ item_afectado.nombre }}
+				      		</h4>
+				    	</div>
+				    </div>				    
+				    <div class="col-md-4">
+				    	<div class="panel-heading">
+				      		<h4 class="panel-title">
+				          		{{ item_afectado.fase_id.nombre }}
+				      		</h4>
+				    	</div>
+				    </div>
+				 </div>
+				 {% endfor %}
+			</div>
+		</div>
+		{% else %}
+		<div class="row ">
+			<div class="panel-group" id="accordion">
+				<div class="panel panel-default">
+					<div class="col-md-4">
+						<div class="panel-heading">
+						<div  align="center">
+							<h4 class="panel-title"><b>El item no posee hijos/sucesores</b></h4>
+						</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>	
+		{% endif %}
+		
+		
 		<div  align="center">
 			<a type="button" class="btn btn-default" href="/adm_proyectos/gestionar/{{ id_proyecto }}/adm_items/{{ id_fase }}">Volver</a>
 		</div>
