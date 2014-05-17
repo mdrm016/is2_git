@@ -91,7 +91,7 @@ def crear_fase(request, id_proyecto):
             fase.duracion = duracion
             fase.proyecto_id = id_proyecto
             fase.is_active = True
-            fasesproyecto = Fases.objects.filter(is_active=True)
+            fasesproyecto = Fases.objects.filter(is_active=True, proyecto_id=id_proyecto)
             orden = 1
             if fasesproyecto:  
                 orden = 0  
@@ -99,6 +99,8 @@ def crear_fase(request, id_proyecto):
                     if faseorden.orden>orden:
                         orden = faseorden.orden
                 orden = orden + 1
+            else: 
+                orden = 1
             fase.orden = orden
             if (mismo_nombre):
                 mensaje = 'El nombre de fase ya existe'
@@ -335,6 +337,10 @@ def modificar_fase (request, id_proyecto, id_fase):
                             
                         fase.estado = 'FD'
                         fase.save()
+                        mensaje = 'Fase editada con exito'
+                        ctx ={'mensaje':mensaje, 'id_proyecto':id_proyecto, 'id_fase':id_fase, 'proyecto':proyecto}      
+                        template_name='Fases/fasealerta.html'
+                        return render_to_response(template_name, ctx, context_instance=RequestContext(request))
                     elif (estadoActual=='DR' and estadoNuevo=='DR'):
                         fase.duracion=duracion
                         fase.save()

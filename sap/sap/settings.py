@@ -32,7 +32,7 @@ ALLOWED_HOSTS = []
 #En este path se almacenaran los archivos externos y las imagenes que carguen
 #los usuarios del sistema
 
-MEDIA_ROOT = Path(__file__).ancestor(2) + '/aplicaciones/uploads/'
+MEDIA_ROOT = Path(__file__).ancestor(2) + '/static/uploads/'
 MEDIA_URL = '/uploads/'
 
 
@@ -88,7 +88,7 @@ DATABASES = {
 
 LANGUAGE_CODE = 'es-py'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Asuncion'
 
 USE_I18N = True
 

@@ -8,7 +8,7 @@ from aplicaciones.roles.models import Roles
 
 class test_user(TestCase):
     """    Cargamos Proyectos, tipos de Item y Tipos de Atributo de prueba en la base de datos    """
-    fixtures = ['proyectos.json'] + ['tipos_item.json'] + ['tipos_atributo.json'] + ['users.json'] + ['lista_atributos.json']
+    fixtures = ['proyectos.json'] + ['tipos_item.json'] + ['tipos_atributo.json'] + ['users.json'] + ['lista_atributos.json'] + ['groups.json']
     
     def setUp(self):
         """ Inicializamos la variable factory que posteriormente nos permitira cargar
@@ -16,7 +16,7 @@ class test_user(TestCase):
         """
         self.factory = RequestFactory()
     
-    def testadministrarTipoAtributo(self):
+    def testAdministrarTipoAtributo(self):
         
         self.user = User.objects.get(pk=1)  
         request = self.factory.get('/adm_proyectos/gestionar/1/adm_tipos_atributo/')
@@ -25,7 +25,7 @@ class test_user(TestCase):
         self.assertEqual(response.status_code, 200)
         print 'Test de adminitracion de tipo de Atributo ejecutado exitosamente.' 
     
-    def testtipoAtributoNuevo(self):
+    def testTipoAtributoNuevo(self):
         
         self.user = User.objects.get(pk=1) 
         request = self.factory.post('/adm_proyectos/gestionar/1/adm_tipos_atributo/nuevo/', {'Nombre_tipo_atributo': 'Detalle', 'Tipo_de_dato': 'Texto', 'Precision': '0', 'Longitud': '5', 'Obligatorio': 'N', 'Descripcion': ''})

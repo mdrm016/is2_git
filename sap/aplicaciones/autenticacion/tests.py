@@ -18,7 +18,7 @@ class TestLoguin(TestCase):
     p2 = 'xxxxx'
     
     """    Cargamos los usuarios de prueba en la base de datos    """
-    fixtures = ['users.json']
+    fixtures = ['users.json'] + ['groups.json']
         
     def test_loguin_admin(self):
         """ Test para loguear al administrador. """

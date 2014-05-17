@@ -28,7 +28,9 @@
             "is_superuser": false, 
             "is_staff": false, 
             "last_login": "2014-04-12T01:03:07.072Z", 
-            "groups": [], 
+            "groups": [
+            	1
+            ], 
             "user_permissions": [], 
             "password": "pbkdf2_sha256$12000$gULexfuHMraG$/TNSwjc866K+1zoMUr8LD2Sjy1AeSzMrtO2Xc2R5lOQ=", 
             "email": "ysapy@sap", 
@@ -46,7 +48,9 @@
             "is_superuser": false, 
             "is_staff": false, 
             "last_login": "2014-04-12T01:04:03.998Z", 
-            "groups": [], 
+            "groups": [
+            	1
+            ], 
             "user_permissions": [], 
             "password": "pbkdf2_sha256$12000$UCmegORW8ySR$wvVMGSrfzhtql6lAn+qeYbSBzLmDLjMeYMG0EPXXXXE=", 
             "email": "marce@sap", 
@@ -64,7 +68,9 @@
             "is_superuser": false, 
             "is_staff": false, 
             "last_login": "2014-04-12T01:06:12.966Z", 
-            "groups": [], 
+            "groups": [
+            	1
+            ], 
             "user_permissions": [], 
             "password": "pbkdf2_sha256$12000$dGjCymqRKdGn$WW9j1vK7JtXwiSN/84JAKpjjmNdkinoNFP3RNbf3a3Y=", 
             "email": "edu@sap", 
@@ -82,7 +88,9 @@
             "is_superuser": false, 
             "is_staff": false, 
             "last_login": "2014-04-12T01:07:16.557Z", 
-            "groups": [], 
+            "groups": [
+            	1
+            ], 
             "user_permissions": [], 
             "password": "pbkdf2_sha256$12000$ttLCHOXhtCSn$K0+0xgbB+b3Fq/Bm0cg7XaFr91sEe7pNZF0ZtoxZM7M=", 
             "email": "andru@sap", 
@@ -100,7 +108,9 @@
             "is_superuser": false, 
             "is_staff": false, 
             "last_login": "2014-04-12T01:10:02.310Z", 
-            "groups": [], 
+            "groups": [
+            	1
+            ], 
             "user_permissions": [], 
             "password": "pbkdf2_sha256$12000$mvUEbOWUZRgw$idjpkDia0wEge9Ge4Ghr4qly/BVUIoM0i3056z7OAWQ=", 
             "email": "gabi@sap", 

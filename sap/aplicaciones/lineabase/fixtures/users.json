@@ -1,0 +1,40 @@
+[
+{
+    "pk": 1, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "sap", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": true, 
+        "is_staff": true, 
+        "last_login": "2014-05-11T14:32:47.660Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$12000$SYT45RfuId8F$shIhqAVg9jA0PjMUREr6GTrF6t8aCz15tfalu/n++pM=", 
+        "email": "", 
+        "date_joined": "2014-05-10T17:44:19.754Z"
+    }
+},
+{
+    "pk": 2, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "edugimenez", 
+        "first_name": "Eduardo", 
+        "last_name": "Gimenez", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2014-05-11T14:33:45.062Z", 
+        "groups": [
+            1
+        ], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$12000$aqkkrIpvtJs1$t1Jcu6191gigcyDt2jM6MJrIMv9u606XazELtSlJ4Y8=", 
+        "email": "eduardogimenez8@gmail.com", 
+        "date_joined": "2014-05-11T14:23:55.529Z"
+    }
+}
+]

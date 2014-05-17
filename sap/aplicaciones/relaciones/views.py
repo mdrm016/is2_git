@@ -73,7 +73,7 @@ def listar_items(request, id_proyecto, id_fase, id_item):
             lista_items.append(itemhijo)
     
     if fase.orden!=1:
-        faseanterior = Fases.objects.get(orden=fase.orden-1, is_active=True)
+        faseanterior = Fases.objects.get(orden=fase.orden-1, is_active=True, proyecto_id=id_proyecto)
         lista_items_ant = Items.objects.filter(proyecto_id=id_proyecto, fase_id=faseanterior.id, is_active=True, estado='Bloqueado')
     else:
         lista_items_ant = False

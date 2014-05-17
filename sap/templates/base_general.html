@@ -23,16 +23,23 @@
 		<script type="text/javascript">
 	    function marcar(source) 
 	    {
-	        checkboxes=document.getElementsByTagName('input'); 
-	        for(i=0;i<checkboxes.length;i++)
+	        checkboxes=document.getElementsByName('Items'); 
+	        for(var i=0, n=checkboxes.length; i<n;i++)
 	        {
-	            if(checkboxes[i].type == "checkbox")
-	            {
-	                checkboxes[i].checked=.checked;
-	            }
+	        	checkboxes[i].checked = source.checked;
 	        }
 	    }
-	</script>
+		</script>
+		<script type="text/javascript">
+	    function marcar_permisos(source) 
+	    {
+	        checkboxes=document.getElementsByName('Permisos'); 
+	        for(var i=0, n=checkboxes.length; i<n;i++)
+	        {
+	        	checkboxes[i].checked = source.checked;
+	        }
+	    }
+		</script>
 	</head>
 	<!-- Fin de la cabecera -->
 	

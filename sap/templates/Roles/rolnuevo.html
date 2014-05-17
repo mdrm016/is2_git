@@ -37,12 +37,145 @@
 {% block contenido %}
 <div class="content-secondary">
 	{% if form.errors %}
-		Por favor verifique:error
+		<p style="color:red;">Por favor verifique:</p>
 	{% endif %}
 	
 	<form action="" method="post">
 		<table align="center">
-			{{ form.as_table }}
+			<div class="field">
+            {{ form.Nombre_de_Rol.errors }}
+	            <tr> 
+		            <th><label for="id_Nombre_de_Rol">Nombre de Rol:</label></th>
+		            <td>{{ form.Nombre_de_Rol }}</td>
+	            </tr>
+        	</div>
+        	<div class="field">
+            {{ form.Permisos.errors }}
+	            <tr>
+		            <th><label for="id_Permisos">Permisos:</label></th>
+		            <td>
+						<p style="color:white;"><input type="checkbox" onclick="marcar_permisos(this);"/> Seleccionar Todos</p>
+		            {% for id,permiso in permisos  %}
+		            	{% if forloop.counter <= 5 %}
+		            		{% if forloop.counter == 1 %}
+			            	 <div class="panel panel-default">
+							  <div class="panel-heading">
+							    <h3 class="panel-title">Fases</h3>
+							  </div>
+							  <div class="panel-body">
+							 {% endif %}
+							    <li><input type="checkbox" name="Permisos" value="{{ id }}" />{{ permiso }}</li>
+							 
+						{% elif forloop.counter <= 12 %}
+							{% if forloop.counter == 6 %}
+							  </div>
+							 </div>
+			            	 <div class="panel panel-default">
+							  <div class="panel-heading">
+							    <h3 class="panel-title">Proyectos</h3>
+							  </div>
+							  <div class="panel-body">
+							 {% endif %}
+							    <li><input type="checkbox" name="Permisos" value="{{ id }}" />{{ permiso }}</li>
+						{% elif forloop.counter <= 19 %}
+							{% if forloop.counter == 13 %}
+							  </div>
+							 </div>
+			            	 <div class="panel panel-default">
+							  <div class="panel-heading">
+							    <h3 class="panel-title">Roles</h3>
+							  </div>
+							  <div class="panel-body">
+							 {% endif %}
+							    <li><input type="checkbox" name="Permisos" value="{{ id }}" />{{ permiso }}</li>
+						{% elif forloop.counter <= 24 %}
+							{% if forloop.counter == 20 %}
+							  </div>
+							 </div>
+			            	 <div class="panel panel-default">
+							  <div class="panel-heading">
+							    <h3 class="panel-title">Tipo de Atributo</h3>
+							  </div>
+							  <div class="panel-body">
+							 {% endif %}
+							    <li><input type="checkbox" name="Permisos" value="{{ id }}" />{{ permiso }}</li>
+						{% elif forloop.counter <= 28 %}
+							{% if forloop.counter == 25 %}
+							  </div>
+							 </div>
+			            	 <div class="panel panel-default">
+							  <div class="panel-heading">
+							    <h3 class="panel-title">Usuarios</h3>
+							  </div>
+							  <div class="panel-body">
+							 {% endif %}
+							    <li><input type="checkbox" name="Permisos" value="{{ id }}" />{{ permiso }}</li>
+						{% elif forloop.counter <= 37 %}
+							{% if forloop.counter == 29 %}
+							  </div>
+							 </div>
+			            	 <div class="panel panel-default">
+							  <div class="panel-heading">
+							    <h3 class="panel-title">Items</h3>
+							  </div>
+							  <div class="panel-body">
+							 {% endif %}
+							    <li><input type="checkbox" name="Permisos" value="{{ id }}" />{{ permiso }}</li>
+						{% elif forloop.counter <= 43 %}
+							{% if forloop.counter == 38 %}
+							  </div>
+							 </div>
+			            	 <div class="panel panel-default">
+							  <div class="panel-heading">
+							    <h3 class="panel-title">Linea Base</h3>
+							  </div>
+							  <div class="panel-body">
+							 {% endif %}
+							    <li><input type="checkbox" name="Permisos" value="{{ id }}" />{{ permiso }}</li>
+						{% elif forloop.counter >= 55 %}
+							{% if forloop.counter == 55 %}
+							  </div>
+							 </div>
+			            	 <div class="panel panel-default">
+							  <div class="panel-heading">
+							    <h3 class="panel-title">Tipo de Item</h3>
+							  </div>
+							  <div class="panel-body">
+							 {% endif %}
+							    <li><input type="checkbox" name="Permisos" value="{{ id }}" />{{ permiso }}</li>
+						{% else %}
+							{% if forloop.counter == 44 %}
+							  </div>
+							 </div>
+			            	 <div class="panel panel-default">
+							  <div class="panel-heading">
+							    <h3 class="panel-title">Otros</h3>
+							  </div>
+							  <div class="panel-body">
+							 {% endif %}
+							    <li><input type="checkbox" name="Permisos" value="{{ id }}" />{{ permiso }}</li>
+						{% endif %}
+					{% endfor %}
+							</div>
+							 </div>
+		            </td>
+		            *
+	            </tr>
+        	</div>
+        	<div class="field">
+            {{ form.Proyecto.errors }}
+	            <tr>
+		            <th><label for="id_Proyecto">Proyecto:</label></th>
+		            <td>{{ form.Proyecto }}</td>
+	            </tr>
+        	</div>
+        	<div class="field">
+            {{ form.Descripcion.errors }}
+	            <tr>
+		            <th><label for="id_Descripcion">Descripcion:</label></th>
+		            <td>{{ form.Descripcion }}</td>
+	            </tr>
+        	</div>
 		</table>
 		{% csrf_token %}
 	<div align="center"><br>

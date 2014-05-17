@@ -9,7 +9,7 @@ from .views import adm_fases, crear_fase, consultar_fase, eliminar_fase, modific
 
 class test_fase(TestCase):
     
-    fixtures = ['users.json']+ ['proyectos.json'] + ['fases.json']
+    fixtures = ['users.json']+ ['proyectos.json'] + ['fases.json'] + ['groups.json']
     
     def setUp(self):
         """ Inicializamos la variable factory que posteriormente nos permitira cargar
@@ -30,10 +30,10 @@ class test_fase(TestCase):
     def test_crear_fase (self):
         
         self.user = User.objects.get(pk=1)
-        proyecto = Proyectos.objects.get(id=1)
-        request = self.factory.post('/adm_proyectos/gestionar/1/nuevo/', {'Nombre_de_Fase': 'Fase 20', 'Descripcion': 'La fase 10', 'Duracion_semanas': '2'})
+        id_proyecto = 2
+        request = self.factory.post('/adm_proyectos/gestionar/%s/nuevo/' % id_proyecto, {'Nombre_de_Fase': 'Fase 20', 'Descripcion': 'La fase 10', 'Duracion_semanas': '2'})
         request.user = self.user 
-        response = crear_fase(request, 1) 
+        response = crear_fase(request, id_proyecto) 
         self.assertEqual(response.status_code, 200)
         print response.status_code 
         faseNueva = Fases.objects.get(nombre='Fase 20')
@@ -54,13 +54,13 @@ class test_fase(TestCase):
                 
     def test_eliminar_fase (self):
         
-        request = self.factory.get('/adm_proyectos/gestionar/1/eliminar/1')
         self.user = User.objects.get(pk=1)
+        id_proyecto = 2
+        id_fase = 5
+        request = self.factory.get('/adm_proyectos/gestionar/%s/eliminar/%s/' % (id_proyecto, id_fase))
         request.user = self.user
-        proyecto = Proyectos.objects.get(id=1)
-        fase_id = '1'
-        response = eliminar_fase(request, fase_id, proyecto.id)
-        fase = Fases.objects.get(id=fase_id)
+        response = eliminar_fase(request, id_fase, id_proyecto)
+        fase = Fases.objects.get(id=id_fase)
         self.assertFalse(fase.is_active)
         self.assertTrue(fase) 
         print 'Test de eliminar de forma logica una fase ejecutado exitosamente.'
@@ -68,15 +68,14 @@ class test_fase(TestCase):
     def test_modificar_fase (self):
         
         self.user = User.objects.get(pk=1)
-        proyecto = Proyectos.objects.get(id=1)
-        request = self.factory.post('adm_proyectos/gestionar/1/modificar/1/', {'Nombre_de_Fase': 'Fase 12', 'Descripcion': 'La fase 12', 'Duracion': '3'})
+        id_proyecto = 2
+        id_fase = 6
+        request = self.factory.post('adm_proyectos/gestionar/%s/modificar/%s/' % (id_proyecto, id_fase), {'Nombre_de_Fase': 'Fase 12', 'Descripcion': 'La fase 12', 'Duracion': '3'})
         request.user = self.user
-        fase = Fases.objects.get(id=1)
-        fase_id = '1'
-        response = modificar_fase(request, proyecto.id, fase_id)
+        response = modificar_fase(request, id_proyecto, id_fase)
         self.assertEqual(response.status_code, 200)
         faseModificada = Fases.objects.get(nombre='Fase 12')
-        self.assertEqual(fase.id, faseModificada.id)
+        self.assertEqual(id_fase, faseModificada.id)
         print 'Test de modificar los datos de fase ejecutado exitosamente.'
     
     def test_importar_fase (self):
