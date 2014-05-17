@@ -249,8 +249,14 @@ def modificar_proyecto (request, id_proyecto):
                 elif estado == 'En Construccion' and not Fases.objects.filter(proyecto = id_proyecto):
                     mensaje="El proyecto no puede pasar a un estado En Construccion si aun no tiene fases"
                     
-                elif not lider and proyecto.lider == None:
+                elif estado == 'En Construccion' and not lider and proyecto.lider == None:
                     mensaje="El proyecto no puede pasar a un estado En Construccion si aun no tiene un lider"
+                    
+                elif proyecto.estado == 'En Construccion' and estado == 'Inactivo':
+                    mensaje="El proyecto no puede pasar de un estado En Construccion a Inactivo"
+                    
+                elif proyecto.estado == 'Inactivo' and estado == 'Finalizado':
+                    mensaje="El proyecto no puede pasar de un estado Inactivo a Finalizado"
                     
                 else:
                     proyecto.nombre=nombreNuevo
