@@ -30,7 +30,12 @@
       <th>&nbsp;&nbsp;&nbsp;<a
         href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
 
-      <th class="navbar" width="100%"></th>
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            >Sap_documentacion</th>
+          </tr></table></th>
   </tr>
 </table>
 <table width="100%" cellpadding="0" cellspacing="0">
@@ -441,14 +446,17 @@
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a href="aplicaciones.items.views-module.html#aumentar_relaciones" class="summary-sig-name">aumentar_relaciones</a>(<span class="summary-sig-arg">item</span>)</span><br />
+          <td><span class="summary-sig"><a href="aplicaciones.items.views-module.html#consultar_relaciones" class="summary-sig-name">consultar_relaciones</a>(<span class="summary-sig-arg">request</span>,
+        <span class="summary-sig-arg">id_proyecto</span>,
+        <span class="summary-sig-arg">id_fase</span>,
+        <span class="summary-sig-arg">id_item</span>)</span><br />
       Recibe un request, se verifica cual es el usuario registrado y el 
       proyecto del cual se solicita, se obtiene la lista de fases con las 
       que estan relacionados el usuario y el proyecto desplegandola en 
       pantalla, ademas permite realizar busquedas avanzadas sobre las fases
       que puede mostrar.</td>
           <td align="right" valign="top">
-            <span class="codelink"><a href="aplicaciones.items.views-pysrc.html#aumentar_relaciones">source&nbsp;code</a></span>
+            <span class="codelink"><a href="aplicaciones.items.views-pysrc.html#consultar_relaciones">source&nbsp;code</a></span>
             
           </td>
         </tr>
@@ -462,7 +470,28 @@
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a href="aplicaciones.items.views-module.html#consultar_relaciones" class="summary-sig-name">consultar_relaciones</a>(<span class="summary-sig-arg">request</span>,
+          <td><span class="summary-sig"><a href="aplicaciones.items.views-module.html#consistente" class="summary-sig-name">consistente</a>(<span class="summary-sig-arg">id_item</span>)</span><br />
+      Recibe un request, se verifica cual es el usuario registrado y el 
+      proyecto del cual se solicita, se obtiene la lista de fases con las 
+      que estan relacionados el usuario y el proyecto desplegandola en 
+      pantalla, ademas permite realizar busquedas avanzadas sobre las fases
+      que puede mostrar.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="aplicaciones.items.views-pysrc.html#consistente">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">django.shortcuts.render_to_response.</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="aplicaciones.items.views-module.html#costo_impacto" class="summary-sig-name">costo_impacto</a>(<span class="summary-sig-arg">request</span>,
         <span class="summary-sig-arg">id_proyecto</span>,
         <span class="summary-sig-arg">id_fase</span>,
         <span class="summary-sig-arg">id_item</span>)</span><br />
@@ -472,7 +501,70 @@
       pantalla, ademas permite realizar busquedas avanzadas sobre las fases
       que puede mostrar.</td>
           <td align="right" valign="top">
-            <span class="codelink"><a href="aplicaciones.items.views-pysrc.html#consultar_relaciones">source&nbsp;code</a></span>
+            <span class="codelink"><a href="aplicaciones.items.views-pysrc.html#costo_impacto">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">django.shortcuts.render_to_response.</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="aplicaciones.items.views-module.html#impacto_monetario" class="summary-sig-name">impacto_monetario</a>(<span class="summary-sig-arg">id_item</span>)</span><br />
+      Recibe un request, se verifica cual es el usuario registrado y el 
+      proyecto del cual se solicita, se obtiene la lista de fases con las 
+      que estan relacionados el usuario y el proyecto desplegandola en 
+      pantalla, ademas permite realizar busquedas avanzadas sobre las fases
+      que puede mostrar.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="aplicaciones.items.views-pysrc.html#impacto_monetario">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">django.shortcuts.render_to_response.</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="aplicaciones.items.views-module.html#impacto_temporal" class="summary-sig-name">impacto_temporal</a>(<span class="summary-sig-arg">id_item</span>)</span><br />
+      Recibe un request, se verifica cual es el usuario registrado y el 
+      proyecto del cual se solicita, se obtiene la lista de fases con las 
+      que estan relacionados el usuario y el proyecto desplegandola en 
+      pantalla, ademas permite realizar busquedas avanzadas sobre las fases
+      que puede mostrar.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="aplicaciones.items.views-pysrc.html#impacto_temporal">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">django.shortcuts.render_to_response.</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="aplicaciones.items.views-module.html#calcular_items_afectados" class="summary-sig-name">calcular_items_afectados</a>(<span class="summary-sig-arg">id_item</span>)</span><br />
+      Recibe un request, se verifica cual es el usuario registrado y el 
+      proyecto del cual se solicita, se obtiene la lista de fases con las 
+      que estan relacionados el usuario y el proyecto desplegandola en 
+      pantalla, ademas permite realizar busquedas avanzadas sobre las fases
+      que puede mostrar.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="aplicaciones.items.views-pysrc.html#calcular_items_afectados">source&nbsp;code</a></span>
             
           </td>
         </tr>
@@ -641,7 +733,7 @@
           funcionalidades para cada fase.</dd>
   </dl>
 <div class="fields">      <p><strong>Author:</strong>
-        Ysapy Ortiz.
+        Ysapy Ortiz
       </p>
 </div></td></tr></table>
 </div>
@@ -1055,17 +1147,20 @@
       </p>
 </div></td></tr></table>
 </div>
-<a name="aumentar_relaciones"></a>
+<a name="consultar_relaciones"></a>
 <div>
 <table class="details" border="1" cellpadding="3"
        cellspacing="0" width="100%" bgcolor="white">
 <tr><td>
   <table width="100%" cellpadding="0" cellspacing="0" border="0">
   <tr valign="top"><td>
-  <h3 class="epydoc"><span class="sig"><span class="sig-name">aumentar_relaciones</span>(<span class="sig-arg">item</span>)</span>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">consultar_relaciones</span>(<span class="sig-arg">request</span>,
+        <span class="sig-arg">id_proyecto</span>,
+        <span class="sig-arg">id_fase</span>,
+        <span class="sig-arg">id_item</span>)</span>
   </h3>
   </td><td align="right" valign="top"
-    ><span class="codelink"><a href="aplicaciones.items.views-pysrc.html#aumentar_relaciones">source&nbsp;code</a></span>&nbsp;
+    ><span class="codelink"><a href="aplicaciones.items.views-pysrc.html#consultar_relaciones">source&nbsp;code</a></span>&nbsp;
     </td>
   </tr></table>
   
@@ -1089,20 +1184,156 @@
       </p>
 </div></td></tr></table>
 </div>
-<a name="consultar_relaciones"></a>
+<a name="consistente"></a>
 <div>
 <table class="details" border="1" cellpadding="3"
        cellspacing="0" width="100%" bgcolor="white">
 <tr><td>
   <table width="100%" cellpadding="0" cellspacing="0" border="0">
   <tr valign="top"><td>
-  <h3 class="epydoc"><span class="sig"><span class="sig-name">consultar_relaciones</span>(<span class="sig-arg">request</span>,
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">consistente</span>(<span class="sig-arg">id_item</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="aplicaciones.items.views-pysrc.html#consistente">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Recibe un request, se verifica cual es el usuario registrado y el 
+  proyecto del cual se solicita, se obtiene la lista de fases con las que 
+  estan relacionados el usuario y el proyecto desplegandola en pantalla, 
+  ademas permite realizar busquedas avanzadas sobre las fases que puede 
+  mostrar.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>request</code></strong> (django.http.HttpRequest.) - Contiene informacion sobre la solicitud web actual que llamo a 
+          esta vista.</li>
+    </ul></dd>
+    <dt>Returns: django.shortcuts.render_to_response.</dt>
+        <dd>fases.html, donde se listan las fases, ademas de las 
+          funcionalidades para cada fase.</dd>
+  </dl>
+<div class="fields">      <p><strong>Author:</strong>
+        Ysapy Ortiz.
+      </p>
+</div></td></tr></table>
+</div>
+<a name="costo_impacto"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">costo_impacto</span>(<span class="sig-arg">request</span>,
         <span class="sig-arg">id_proyecto</span>,
         <span class="sig-arg">id_fase</span>,
         <span class="sig-arg">id_item</span>)</span>
   </h3>
   </td><td align="right" valign="top"
-    ><span class="codelink"><a href="aplicaciones.items.views-pysrc.html#consultar_relaciones">source&nbsp;code</a></span>&nbsp;
+    ><span class="codelink"><a href="aplicaciones.items.views-pysrc.html#costo_impacto">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Recibe un request, se verifica cual es el usuario registrado y el 
+  proyecto del cual se solicita, se obtiene la lista de fases con las que 
+  estan relacionados el usuario y el proyecto desplegandola en pantalla, 
+  ademas permite realizar busquedas avanzadas sobre las fases que puede 
+  mostrar.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>request</code></strong> (django.http.HttpRequest.) - Contiene informacion sobre la solicitud web actual que llamo a 
+          esta vista.</li>
+    </ul></dd>
+    <dt>Returns: django.shortcuts.render_to_response.</dt>
+        <dd>fases.html, donde se listan las fases, ademas de las 
+          funcionalidades para cada fase.</dd>
+  </dl>
+<div class="fields">      <p><strong>Author:</strong>
+        Ysapy Ortiz.
+      </p>
+</div></td></tr></table>
+</div>
+<a name="impacto_monetario"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">impacto_monetario</span>(<span class="sig-arg">id_item</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="aplicaciones.items.views-pysrc.html#impacto_monetario">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Recibe un request, se verifica cual es el usuario registrado y el 
+  proyecto del cual se solicita, se obtiene la lista de fases con las que 
+  estan relacionados el usuario y el proyecto desplegandola en pantalla, 
+  ademas permite realizar busquedas avanzadas sobre las fases que puede 
+  mostrar.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>request</code></strong> (django.http.HttpRequest.) - Contiene informacion sobre la solicitud web actual que llamo a 
+          esta vista.</li>
+    </ul></dd>
+    <dt>Returns: django.shortcuts.render_to_response.</dt>
+        <dd>fases.html, donde se listan las fases, ademas de las 
+          funcionalidades para cada fase.</dd>
+  </dl>
+<div class="fields">      <p><strong>Author:</strong>
+        Ysapy Ortiz.
+      </p>
+</div></td></tr></table>
+</div>
+<a name="impacto_temporal"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">impacto_temporal</span>(<span class="sig-arg">id_item</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="aplicaciones.items.views-pysrc.html#impacto_temporal">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Recibe un request, se verifica cual es el usuario registrado y el 
+  proyecto del cual se solicita, se obtiene la lista de fases con las que 
+  estan relacionados el usuario y el proyecto desplegandola en pantalla, 
+  ademas permite realizar busquedas avanzadas sobre las fases que puede 
+  mostrar.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>request</code></strong> (django.http.HttpRequest.) - Contiene informacion sobre la solicitud web actual que llamo a 
+          esta vista.</li>
+    </ul></dd>
+    <dt>Returns: django.shortcuts.render_to_response.</dt>
+        <dd>fases.html, donde se listan las fases, ademas de las 
+          funcionalidades para cada fase.</dd>
+  </dl>
+<div class="fields">      <p><strong>Author:</strong>
+        Ysapy Ortiz.
+      </p>
+</div></td></tr></table>
+</div>
+<a name="calcular_items_afectados"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">calcular_items_afectados</span>(<span class="sig-arg">id_item</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="aplicaciones.items.views-pysrc.html#calcular_items_afectados">source&nbsp;code</a></span>&nbsp;
     </td>
   </tr></table>
   
@@ -1147,13 +1378,18 @@
       <th>&nbsp;&nbsp;&nbsp;<a
         href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
 
-      <th class="navbar" width="100%"></th>
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            >Sap_documentacion</th>
+          </tr></table></th>
   </tr>
 </table>
 <table border="0" cellpadding="0" cellspacing="0" width="100%%">
   <tr>
     <td align="left" class="footer">
-    Generated by Epydoc 3.0.1 on Sat May  3 09:35:59 2014
+    Generated by Epydoc 3.0.1 on Sat May 17 00:53:00 2014
     </td>
     <td align="right" class="footer">
       <a target="mainFrame" href="http://epydoc.sourceforge.net"

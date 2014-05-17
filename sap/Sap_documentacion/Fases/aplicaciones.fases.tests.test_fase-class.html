@@ -111,7 +111,12 @@ django.test.TestCase --+
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="test_adm_fases"></a><span class="summary-sig-name">test_adm_fases</span>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td><span class="summary-sig"><a name="test_adm_fases"></a><span class="summary-sig-name">test_adm_fases</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      self.user = User.objects.get(pk=1) proyecto = 
+      Proyectos.objects.get(id=1) request = 
+      self.factory.get('/adm_proyectos/gestionar/1') request.user = 
+      self.user response = adm_fases(request, proyecto.id) 
+      self.assertEqual(response.status_code, 200)</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="aplicaciones.fases.tests-pysrc.html#test_fase.test_adm_fases">source&nbsp;code</a></span>
             
@@ -127,7 +132,15 @@ django.test.TestCase --+
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="test_crear_fase"></a><span class="summary-sig-name">test_crear_fase</span>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td><span class="summary-sig"><a name="test_crear_fase"></a><span class="summary-sig-name">test_crear_fase</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      self.user = User.objects.get(pk=1) id_proyecto = 1 request = 
+      self.factory.post('/adm_proyectos/gestionar/%s/nuevo/' % id_proyecto,
+      {'Nombre_de_Fase': 'Fase 20', 'Descripcion': 'La fase 10', 
+      'Duracion_semanas': '2'}) request.user = self.user response = 
+      crear_fase(request, id_proyecto) 
+      self.assertEqual(response.status_code, 200) print 
+      response.status_code faseNueva = Fases.objects.get(nombre='Fase 20') 
+      self.assertTrue(faseNueva)</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="aplicaciones.fases.tests-pysrc.html#test_fase.test_crear_fase">source&nbsp;code</a></span>
             
@@ -143,7 +156,12 @@ django.test.TestCase --+
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="test_consultar_fase"></a><span class="summary-sig-name">test_consultar_fase</span>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td><span class="summary-sig"><a name="test_consultar_fase"></a><span class="summary-sig-name">test_consultar_fase</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      self.user = User.objects.get(pk=1) proyecto = 
+      Proyectos.objects.get(id=1) fase = Fases.objects.get(id=1) request = 
+      self.factory.get('/adm_proyectos/gestionar/1/consultar/1') 
+      request.user = self.user response = consultar_fase(request, fase.id, 
+      proyecto.id) self.assertEqual(response.status_code, 200)</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="aplicaciones.fases.tests-pysrc.html#test_fase.test_consultar_fase">source&nbsp;code</a></span>
             
@@ -159,7 +177,13 @@ django.test.TestCase --+
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="test_eliminar_fase"></a><span class="summary-sig-name">test_eliminar_fase</span>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td><span class="summary-sig"><a name="test_eliminar_fase"></a><span class="summary-sig-name">test_eliminar_fase</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      self.user = User.objects.get(pk=1) id_proyecto = 1 id_fase = 1 
+      request = self.factory.get('/adm_proyectos/gestionar/%s/eliminar/%s/'
+      % (id_proyecto, id_fase)) request.user = self.user response = 
+      eliminar_fase(request, id_fase, id_proyecto) fase = 
+      Fases.objects.get(id=id_fase) self.assertFalse(fase.is_active) 
+      self.assertTrue(fase)</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="aplicaciones.fases.tests-pysrc.html#test_fase.test_eliminar_fase">source&nbsp;code</a></span>
             
@@ -175,7 +199,16 @@ django.test.TestCase --+
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="test_modificar_fase"></a><span class="summary-sig-name">test_modificar_fase</span>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td><span class="summary-sig"><a name="test_modificar_fase"></a><span class="summary-sig-name">test_modificar_fase</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      self.user = User.objects.get(pk=1) id_proyecto = 1 id_fase = 1 
+      request = 
+      self.factory.post('adm_proyectos/gestionar/%s/modificar/%s/' % 
+      (id_proyecto, id_fase), {'Nombre_de_Fase': 'Fase 12', 'Descripcion': 
+      'La fase 12', 'Duracion': '3'}) request.user = self.user response = 
+      modificar_fase(request, id_proyecto, id_fase) 
+      self.assertEqual(response.status_code, 200) faseModificada = 
+      Fases.objects.get(nombre='Fase 12') self.assertEqual(id_fase, 
+      faseModificada.id)</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="aplicaciones.fases.tests-pysrc.html#test_fase.test_modificar_fase">source&nbsp;code</a></span>
             
@@ -191,7 +224,11 @@ django.test.TestCase --+
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="test_importar_fase"></a><span class="summary-sig-name">test_importar_fase</span>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td><span class="summary-sig"><a name="test_importar_fase"></a><span class="summary-sig-name">test_importar_fase</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      request = self.factory.get('adm_proyectos/gestionar/1/importar_fase')
+      self.user = User.objects.get(pk=1) request.user = self.user proyecto 
+      = Proyectos.objects.get(id=1) response = importar_fase(request, 
+      proyecto.id) self.assertEqual(response.status_code, 200)</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="aplicaciones.fases.tests-pysrc.html#test_fase.test_importar_fase">source&nbsp;code</a></span>
             
@@ -207,7 +244,15 @@ django.test.TestCase --+
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="test_importarf"></a><span class="summary-sig-name">test_importarf</span>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td><span class="summary-sig"><a name="test_importarf"></a><span class="summary-sig-name">test_importarf</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      fase_id = '1' proyecto = Proyectos.objects.get(id=1) request = 
+      self.factory.post('adm_proyectos/gestionar/1/importar_fase/importarf/1',
+      {'Nombre_de_Fase': 'Fase 15 imp', 'Descripcion': 'La fase 15', 
+      'Duracion': '2'}) self.user = User.objects.get(pk=1) request.user = 
+      self.user response = importarf(request, 1, 1) 
+      self.assertEqual(response.status_code, 200) faseImportada = 
+      Fases.objects.get(nombre='Fase 15 imp') 
+      self.assertTrue(faseImportada)</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="aplicaciones.fases.tests-pysrc.html#test_fase.test_importarf">source&nbsp;code</a></span>
             
@@ -215,31 +260,6 @@ django.test.TestCase --+
         </tr>
       </table>
       
-    </td>
-  </tr>
-</table>
-<!-- ==================== CLASS VARIABLES ==================== -->
-<a name="section-ClassVariables"></a>
-<table class="summary" border="1" cellpadding="3"
-       cellspacing="0" width="100%" bgcolor="white">
-<tr bgcolor="#70b0f0" class="table-header">
-  <td colspan="2" class="table-header">
-    <table border="0" cellpadding="0" cellspacing="0" width="100%">
-      <tr valign="top">
-        <td align="left"><span class="table-header">Class Variables</span></td>
-        <td align="right" valign="top"
-         ><span class="options">[<a href="#section-ClassVariables"
-         class="privatelink" onclick="toggle_private();"
-         >hide private</a>]</span></td>
-      </tr>
-    </table>
-  </td>
-</tr>
-<tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-        <a name="fixtures"></a><span class="summary-name">fixtures</span> = <code title="['users.json']+ ['proyectos.json']+ ['fases.json']">['users.json']+ ['proyectos.json']+ ['fases.json']</code>
     </td>
   </tr>
 </table>
@@ -274,7 +294,7 @@ django.test.TestCase --+
 <table border="0" cellpadding="0" cellspacing="0" width="100%%">
   <tr>
     <td align="left" class="footer">
-    Generated by Epydoc 3.0.1 on Sat May  3 06:01:21 2014
+    Generated by Epydoc 3.0.1 on Sat May 17 00:52:51 2014
     </td>
     <td align="right" class="footer">
       <a target="mainFrame" href="http://epydoc.sourceforge.net"

@@ -51,6 +51,20 @@ def adm_relaciones(request, id_proyecto, id_fase, id_item):
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
 
 def listar_items(request, id_proyecto, id_fase, id_item):
+    """ Recibe un request, se verifica cual es el usuario registrado y el proyecto del cual se solicita,
+    se obtiene la lista de fases con las que estan relacionados el usuario y el proyecto 
+    desplegandola en pantalla, ademas permite realizar busquedas avanzadas sobre
+    las fases que puede mostrar.
+    
+    @type request: django.http.HttpRequest.
+    @param request: Contiene informacion sobre la solicitud web actual que llamo a esta vista.
+    
+    @rtype: django.shortcuts.render_to_response.
+    @return: fases.html, donde se listan las fases, ademas de las funcionalidades para cada fase.
+    
+    @author: Ysapy Ortiz.
+    
+    """
     proyecto = Proyectos.objects.get(id=id_proyecto)
     fase = Fases.objects.get(id=id_fase)
     item = Items.objects.get(id=id_item)
@@ -82,6 +96,20 @@ def listar_items(request, id_proyecto, id_fase, id_item):
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
 
 def crear_relacion(request, id_proyecto, id_fase, id_item, id_importar):
+    """ Recibe un request, se verifica cual es el usuario registrado y el proyecto del cual se solicita,
+    se obtiene la lista de fases con las que estan relacionados el usuario y el proyecto 
+    desplegandola en pantalla, ademas permite realizar busquedas avanzadas sobre
+    las fases que puede mostrar.
+    
+    @type request: django.http.HttpRequest.
+    @param request: Contiene informacion sobre la solicitud web actual que llamo a esta vista.
+    
+    @rtype: django.shortcuts.render_to_response.
+    @return: fases.html, donde se listan las fases, ademas de las funcionalidades para cada fase.
+    
+    @author: Ysapy Ortiz.
+    
+    """
     proyecto = Proyectos.objects.get(id=id_proyecto)    
     fase = Fases.objects.get(id=id_fase)
     item = Items.objects.get(id=id_item)
@@ -115,6 +143,20 @@ def crear_relacion(request, id_proyecto, id_fase, id_item, id_importar):
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
     
 def eliminar_relacion(request, id_proyecto, id_fase, id_item, id_padre):
+    """ Recibe un request, se verifica cual es el usuario registrado y el proyecto del cual se solicita,
+    se obtiene la lista de fases con las que estan relacionados el usuario y el proyecto 
+    desplegandola en pantalla, ademas permite realizar busquedas avanzadas sobre
+    las fases que puede mostrar.
+    
+    @type request: django.http.HttpRequest.
+    @param request: Contiene informacion sobre la solicitud web actual que llamo a esta vista.
+    
+    @rtype: django.shortcuts.render_to_response.
+    @return: fases.html, donde se listan las fases, ademas de las funcionalidades para cada fase.
+    
+    @author: Ysapy Ortiz.
+    
+    """
     proyecto = Proyectos.objects.get(id=id_proyecto)
     fase = Fases.objects.get(id=id_fase)
     item1 = Items.objects.get(id=id_item)
@@ -143,6 +185,20 @@ def eliminar_relacion(request, id_proyecto, id_fase, id_item, id_padre):
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
 
 def cargar_atributos(valor_id, nombreatributo, orden, nombretabla, id_proyecto, id_fase, id_item):
+    """ Recibe un request, se verifica cual es el usuario registrado y el proyecto del cual se solicita,
+    se obtiene la lista de fases con las que estan relacionados el usuario y el proyecto 
+    desplegandola en pantalla, ademas permite realizar busquedas avanzadas sobre
+    las fases que puede mostrar.
+    
+    @type request: django.http.HttpRequest.
+    @param request: Contiene informacion sobre la solicitud web actual que llamo a esta vista.
+    
+    @rtype: django.shortcuts.render_to_response.
+    @return: fases.html, donde se listan las fases, ademas de las funcionalidades para cada fase.
+    
+    @author: Ysapy Ortiz.
+    
+    """
     proyecto = Proyectos.objects.get(id=id_proyecto)
     fase = Fases.objects.get(id=id_fase)
     itemactual = Items.objects.get(id=id_item)
@@ -246,6 +302,20 @@ def cargar_atributos(valor_id, nombreatributo, orden, nombretabla, id_proyecto, 
     return (True)
 
 def control_ciclo(id_proyecto, id_fase, id_item, id_padre):
+    """ Recibe un request, se verifica cual es el usuario registrado y el proyecto del cual se solicita,
+    se obtiene la lista de fases con las que estan relacionados el usuario y el proyecto 
+    desplegandola en pantalla, ademas permite realizar busquedas avanzadas sobre
+    las fases que puede mostrar.
+    
+    @type request: django.http.HttpRequest.
+    @param request: Contiene informacion sobre la solicitud web actual que llamo a esta vista.
+    
+    @rtype: django.shortcuts.render_to_response.
+    @return: fases.html, donde se listan las fases, ademas de las funcionalidades para cada fase.
+    
+    @author: Ysapy Ortiz.
+    
+    """
     item = Items.objects.get(id=id_item)
     padre = Items.objects.get(id=id_padre)
     try:
@@ -261,6 +331,20 @@ def control_ciclo(id_proyecto, id_fase, id_item, id_padre):
     return False
 
 def recorrer_hijos(id_proyecto, id_fase, id_raiz, id_item, is_ciclo):
+    """ Recibe un request, se verifica cual es el usuario registrado y el proyecto del cual se solicita,
+    se obtiene la lista de fases con las que estan relacionados el usuario y el proyecto 
+    desplegandola en pantalla, ademas permite realizar busquedas avanzadas sobre
+    las fases que puede mostrar.
+    
+    @type request: django.http.HttpRequest.
+    @param request: Contiene informacion sobre la solicitud web actual que llamo a esta vista.
+    
+    @rtype: django.shortcuts.render_to_response.
+    @return: fases.html, donde se listan las fases, ademas de las funcionalidades para cada fase.
+    
+    @author: Ysapy Ortiz.
+    
+    """
     item = Items.objects.get(id=id_item)
     raiz = Items.objects.get(id=id_raiz)
     hijos = []
@@ -284,6 +368,20 @@ def recorrer_hijos(id_proyecto, id_fase, id_raiz, id_item, is_ciclo):
     return is_ciclo
 
 def pasar_construccion(id_item):
+    """ Recibe un request, se verifica cual es el usuario registrado y el proyecto del cual se solicita,
+    se obtiene la lista de fases con las que estan relacionados el usuario y el proyecto 
+    desplegandola en pantalla, ademas permite realizar busquedas avanzadas sobre
+    las fases que puede mostrar.
+    
+    @type request: django.http.HttpRequest.
+    @param request: Contiene informacion sobre la solicitud web actual que llamo a esta vista.
+    
+    @rtype: django.shortcuts.render_to_response.
+    @return: fases.html, donde se listan las fases, ademas de las funcionalidades para cada fase.
+    
+    @author: Ysapy Ortiz.
+    
+    """
     item = Items.objects.get(id=id_item)
     hijos = Items.objects.filter(padre=id_item)
     for hijo in hijos:

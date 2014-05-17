@@ -114,9 +114,15 @@ django.test.TestCase --+
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="testadministrarTipoAtributo"></a><span class="summary-sig-name">testadministrarTipoAtributo</span>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td><span class="summary-sig"><a name="testAdministrarTipoAtributo"></a><span class="summary-sig-name">testAdministrarTipoAtributo</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      self.user = User.objects.get(pk=1) request = 
+      self.factory.get('/adm_proyectos/gestionar/1/adm_tipos_atributo/') 
+      request.user = self.user response = administrarTipoAtributo(request, 
+      1)                                    #Pasamos a la pagina de 
+      administracion de Tipos de Atributo 
+      self.assertEqual(response.status_code, 200)</td>
           <td align="right" valign="top">
-            <span class="codelink"><a href="aplicaciones.tipoatributo.tests-pysrc.html#test_user.testadministrarTipoAtributo">source&nbsp;code</a></span>
+            <span class="codelink"><a href="aplicaciones.tipoatributo.tests-pysrc.html#test_user.testAdministrarTipoAtributo">source&nbsp;code</a></span>
             
           </td>
         </tr>
@@ -130,9 +136,15 @@ django.test.TestCase --+
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="testtipoAtributoNuevo"></a><span class="summary-sig-name">testtipoAtributoNuevo</span>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td><span class="summary-sig"><a name="testTipoAtributoNuevo"></a><span class="summary-sig-name">testTipoAtributoNuevo</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      self.user = User.objects.get(pk=1) request = 
+      self.factory.post('/adm_proyectos/gestionar/1/adm_tipos_atributo/nuevo/',
+      {'Nombre_tipo_atributo': 'Detalle', 'Tipo_de_dato': 'Texto', 
+      'Precision': '0', 'Longitud': '5', 'Obligatorio': 'N', 'Descripcion':
+      ''}) request.user = self.user response = tipoAtributoNuevo(request, 
+      1) self.assertEqual(response.status_code, 200)</td>
           <td align="right" valign="top">
-            <span class="codelink"><a href="aplicaciones.tipoatributo.tests-pysrc.html#test_user.testtipoAtributoNuevo">source&nbsp;code</a></span>
+            <span class="codelink"><a href="aplicaciones.tipoatributo.tests-pysrc.html#test_user.testTipoAtributoNuevo">source&nbsp;code</a></span>
             
           </td>
         </tr>
@@ -146,9 +158,101 @@ django.test.TestCase --+
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="testModificarRol"></a><span class="summary-sig-name">testModificarRol</span>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td><span class="summary-sig"><a name="testModificarTipoAtributo"></a><span class="summary-sig-name">testModificarTipoAtributo</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      self.user = User.objects.get(pk=1) request = 
+      self.factory.post('/adm_proyectos/gestionar/2/adm_tipos_atributo/modificar/3/',
+      {'Nombre_tipo_atributo': 'Foto Adjunta', 'Tipo_de_dato': 'Imagen', 
+      'Precision': 0, 'Longitud': 0, 'Obligatorio':'N', 'Descripcion': 
+      'Para publicidades de terceros'}) request.user = self.user response =
+      modificarTipoAtributo(request, 2, 3) 
+      self.assertEqual(response.status_code, 200)</td>
           <td align="right" valign="top">
-            <span class="codelink"><a href="aplicaciones.tipoatributo.tests-pysrc.html#test_user.testModificarRol">source&nbsp;code</a></span>
+            <span class="codelink"><a href="aplicaciones.tipoatributo.tests-pysrc.html#test_user.testModificarTipoAtributo">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="testEliminarTipoAtributo"></a><span class="summary-sig-name">testEliminarTipoAtributo</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      self.user = User.objects.get(pk=1) request = 
+      self.factory.get('/adm_proyectos/gestionar/1/adm_tipos_atributo/eliminar/2/')
+      request.user = self.user tipoAtributo = 
+      TipoAtributo.objects.get(pk=2) 
+      self.assertTrue(tipoAtributo.is_active) response = 
+      eliminarTipoAtributo(request, 1, 2) tipoAtributo = 
+      TipoAtributo.objects.get(pk=2) 
+      self.assertFalse(tipoAtributo.is_active)</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="aplicaciones.tipoatributo.tests-pysrc.html#test_user.testEliminarTipoAtributo">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="testConsultarTipoAtributo"></a><span class="summary-sig-name">testConsultarTipoAtributo</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      self.user = User.objects.get(pk=1) request = 
+      self.factory.get('adm_proyectos/gestionar/1/adm_tipos_atributo/consultar/1/')
+      request.user = self.user response = consultarTipoAtributo(request, 1,
+      1) self.assertEqual(response.status_code, 200)</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="aplicaciones.tipoatributo.tests-pysrc.html#test_user.testConsultarTipoAtributo">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="testBucarTipoAtributo"></a><span class="summary-sig-name">testBucarTipoAtributo</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      self.user = User.objects.get(pk=1) request = 
+      self.factory.get('/adm_proyectos/gestionar/1/adm_tipos_atributo/', 
+      {'busqueda': 'Foto'}) request.user = self.user response = 
+      administrarTipoAtributo(request, 1) 
+      self.assertEqual(response.status_code, 200)</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="aplicaciones.tipoatributo.tests-pysrc.html#test_user.testBucarTipoAtributo">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="testImportarTipoAtributo"></a><span class="summary-sig-name">testImportarTipoAtributo</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      self.user = User.objects.get(pk=1) request = 
+      self.factory.get('adm_proyectos/gestionar/2/adm_tipos_atributo/listar_proyectos/listar_tipo_atributo/1/importar_tipo_atributo/1/')
+      request.user = self.user response = importarTipoAtributo(request, 2, 
+      1, 1) self.assertEqual(response.status_code, 200)</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="aplicaciones.tipoatributo.tests-pysrc.html#test_user.testImportarTipoAtributo">source&nbsp;code</a></span>
             
           </td>
         </tr>
@@ -157,70 +261,6 @@ django.test.TestCase --+
     </td>
   </tr>
 </table>
-<!-- ==================== CLASS VARIABLES ==================== -->
-<a name="section-ClassVariables"></a>
-<table class="summary" border="1" cellpadding="3"
-       cellspacing="0" width="100%" bgcolor="white">
-<tr bgcolor="#70b0f0" class="table-header">
-  <td colspan="2" class="table-header">
-    <table border="0" cellpadding="0" cellspacing="0" width="100%">
-      <tr valign="top">
-        <td align="left"><span class="table-header">Class Variables</span></td>
-        <td align="right" valign="top"
-         ><span class="options">[<a href="#section-ClassVariables"
-         class="privatelink" onclick="toggle_private();"
-         >hide private</a>]</span></td>
-      </tr>
-    </table>
-  </td>
-</tr>
-<tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-        <a href="aplicaciones.tipoatributo.tests.test_user-class.html#fixtures" class="summary-name">fixtures</a> = <code title="['proyectos.json']+ ['tipos_item.json']+ ['tipos_atributo.json']+ ['us\
-ers.json']+ ['lista_atributos.json']">['proyectos.json']+ ['tipos_item.json']+ ['tipos_at<code class="variable-ellipsis">...</code></code>
-    </td>
-  </tr>
-</table>
-<!-- ==================== CLASS VARIABLE DETAILS ==================== -->
-<a name="section-ClassVariableDetails"></a>
-<table class="details" border="1" cellpadding="3"
-       cellspacing="0" width="100%" bgcolor="white">
-<tr bgcolor="#70b0f0" class="table-header">
-  <td colspan="2" class="table-header">
-    <table border="0" cellpadding="0" cellspacing="0" width="100%">
-      <tr valign="top">
-        <td align="left"><span class="table-header">Class Variable Details</span></td>
-        <td align="right" valign="top"
-         ><span class="options">[<a href="#section-ClassVariableDetails"
-         class="privatelink" onclick="toggle_private();"
-         >hide private</a>]</span></td>
-      </tr>
-    </table>
-  </td>
-</tr>
-</table>
-<a name="fixtures"></a>
-<div>
-<table class="details" border="1" cellpadding="3"
-       cellspacing="0" width="100%" bgcolor="white">
-<tr><td>
-  <h3 class="epydoc">fixtures</h3>
-  
-  <dl class="fields">
-  </dl>
-  <dl class="fields">
-    <dt>Value:</dt>
-      <dd><table><tr><td><pre class="variable">
-['proyectos.json']+ ['tipos_item.json']+ ['tipos_atributo.json']+ ['us<span class="variable-linewrap"><img src="crarr.png" alt="\" /></span>
-ers.json']+ ['lista_atributos.json']
-</pre></td></tr></table>
-</dd>
-  </dl>
-</td></tr></table>
-</div>
-<br />
 <!-- ==================== NAVIGATION BAR ==================== -->
 <table class="navbar" border="0" width="100%" cellpadding="0"
        bgcolor="#a0c0ff" cellspacing="0">
@@ -252,7 +292,7 @@ ers.json']+ ['lista_atributos.json']
 <table border="0" cellpadding="0" cellspacing="0" width="100%%">
   <tr>
     <td align="left" class="footer">
-    Generated by Epydoc 3.0.1 on Sat May  3 01:48:31 2014
+    Generated by Epydoc 3.0.1 on Sat May 17 00:52:59 2014
     </td>
     <td align="right" class="footer">
       <a target="mainFrame" href="http://epydoc.sourceforge.net"

@@ -26,7 +26,6 @@ aplicaciones.autenticacion.tests.TestLoguin.test_loguin_user	aplicaciones.autent
 aplicaciones.autenticacion.tests.TestLoguin.u1	aplicaciones.autenticacion.tests.TestLoguin-class.html#u1
 aplicaciones.autenticacion.tests.TestLoguin.u2	aplicaciones.autenticacion.tests.TestLoguin-class.html#u2
 aplicaciones.autenticacion.tests.TestLoguin.test_ingresar_sin_registrarse	aplicaciones.autenticacion.tests.TestLoguin-class.html#test_ingresar_sin_registrarse
-aplicaciones.autenticacion.tests.TestLoguin.fixtures	aplicaciones.autenticacion.tests.TestLoguin-class.html#fixtures
 aplicaciones.autenticacion.tests.TestLoguin.password	aplicaciones.autenticacion.tests.TestLoguin-class.html#password
 aplicaciones.autenticacion.views.Autenticacion	aplicaciones.autenticacion.views.Autenticacion-class.html
 aplicaciones.autenticacion.views.Autenticacion.TemplateView	aplicaciones.autenticacion.views.Autenticacion-class.html#TemplateView

@@ -30,7 +30,12 @@
       <th>&nbsp;&nbsp;&nbsp;<a
         href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
 
-      <th class="navbar" width="100%"></th>
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            >Sap_documentacion</th>
+          </tr></table></th>
   </tr>
 </table>
 <table width="100%" cellpadding="0" cellspacing="0">
@@ -57,91 +62,108 @@
 </table>
 <h1 class="epydoc">Source Code for <a href="aplicaciones.items.tests-module.html">Module aplicaciones.items.tests</a></h1>
 <pre class="py-src">
-<a name="L1"></a><tt class="py-lineno"> 1</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">django</tt><tt class="py-op">.</tt><tt class="py-name">test</tt> <tt class="py-keyword">import</tt> <tt class="py-name">TestCase</tt> </tt>
-<a name="L2"></a><tt class="py-lineno"> 2</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">django</tt><tt class="py-op">.</tt><tt class="py-name">test</tt><tt class="py-op">.</tt><tt class="py-name">client</tt> <tt class="py-keyword">import</tt> <tt class="py-name">RequestFactory</tt> </tt>
-<a name="L3"></a><tt class="py-lineno"> 3</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">django</tt><tt class="py-op">.</tt><tt class="py-name">contrib</tt><tt class="py-op">.</tt><tt class="py-name">auth</tt><tt class="py-op">.</tt><tt id="link-0" class="py-name" targets="Module aplicaciones.items.models=aplicaciones.items.models-module.html"><a title="aplicaciones.items.models" class="py-name" href="#" onclick="return doclink('link-0', 'models', 'link-0');">models</a></tt> <tt class="py-keyword">import</tt> <tt class="py-name">User</tt> </tt>
-<a name="L4"></a><tt class="py-lineno"> 4</tt>  <tt class="py-line"><tt class="py-comment">#from .models import Fases</tt> </tt>
-<a name="L5"></a><tt class="py-lineno"> 5</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">aplicaciones</tt><tt class="py-op">.</tt><tt class="py-name">proyectos</tt><tt class="py-op">.</tt><tt id="link-1" class="py-name"><a title="aplicaciones.items.models" class="py-name" href="#" onclick="return doclink('link-1', 'models', 'link-0');">models</a></tt> <tt class="py-keyword">import</tt> <tt class="py-name">Proyectos</tt> </tt>
-<a name="L6"></a><tt class="py-lineno"> 6</tt>  <tt class="py-line"><tt class="py-comment">#from .views import adm_fases, crear_fase, consultar_fase, eliminar_fase, modificar_fase, importar_fase, importarf</tt> </tt>
-<a name="L7"></a><tt class="py-lineno"> 7</tt>  <tt class="py-line"> </tt>
-<a name="L8"></a><tt class="py-lineno"> 8</tt>  <tt class="py-line"><tt class="py-comment"># Create your tests here.</tt> </tt>
-<a name="L9"></a><tt class="py-lineno"> 9</tt>  <tt class="py-line"> </tt>
-<a name="test_fase"></a><div id="test_fase-def"><a name="L10"></a><tt class="py-lineno">10</tt> <a class="py-toggle" href="#" id="test_fase-toggle" onclick="return toggle('test_fase');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="aplicaciones.items.tests.test_fase-class.html">test_fase</a><tt class="py-op">(</tt><tt class="py-base-class">TestCase</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
-</div><div id="test_fase-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="test_fase-expanded"><a name="L11"></a><tt class="py-lineno">11</tt>  <tt class="py-line">     </tt>
-<a name="L12"></a><tt class="py-lineno">12</tt>  <tt class="py-line">    <tt id="link-2" class="py-name" targets="Variable aplicaciones.items.tests.test_fase.fixtures=aplicaciones.items.tests.test_fase-class.html#fixtures"><a title="aplicaciones.items.tests.test_fase.fixtures" class="py-name" href="#" onclick="return doclink('link-2', 'fixtures', 'link-2');">fixtures</a></tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-string">'users.json'</tt><tt class="py-op">]</tt><tt class="py-op">+</tt> <tt class="py-op">[</tt><tt class="py-string">'proyectos.json'</tt><tt class="py-op">]</tt> <tt class="py-op">+</tt> <tt class="py-op">[</tt><tt class="py-string">'fases.json'</tt><tt class="py-op">]</tt> </tt>
-<a name="L13"></a><tt class="py-lineno">13</tt>  <tt class="py-line">     </tt>
-<a name="test_fase.setUp"></a><div id="test_fase.setUp-def"><a name="L14"></a><tt class="py-lineno">14</tt> <a class="py-toggle" href="#" id="test_fase.setUp-toggle" onclick="return toggle('test_fase.setUp');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="aplicaciones.items.tests.test_fase-class.html#setUp">setUp</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
-</div><div id="test_fase.setUp-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="test_fase.setUp-expanded"><a name="L15"></a><tt class="py-lineno">15</tt>  <tt class="py-line">        <tt class="py-docstring">""" Inicializamos la variable factory que posteriormente nos permitira cargar</tt> </tt>
-<a name="L16"></a><tt class="py-lineno">16</tt>  <tt class="py-line"><tt class="py-docstring">            un request para utilizarlo en las vista.</tt> </tt>
-<a name="L17"></a><tt class="py-lineno">17</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
-<a name="L18"></a><tt class="py-lineno">18</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">factory</tt> <tt class="py-op">=</tt> <tt class="py-name">RequestFactory</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
-</div><a name="L19"></a><tt class="py-lineno">19</tt>  <tt class="py-line">         </tt>
-<a name="test_fase.test_adm_items"></a><div id="test_fase.test_adm_items-def"><a name="L20"></a><tt class="py-lineno">20</tt> <a class="py-toggle" href="#" id="test_fase.test_adm_items-toggle" onclick="return toggle('test_fase.test_adm_items');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="aplicaciones.items.tests.test_fase-class.html#test_adm_items">test_adm_items</a> <tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
-</div><div id="test_fase.test_adm_items-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="test_fase.test_adm_items-expanded"><a name="L21"></a><tt class="py-lineno">21</tt>  <tt class="py-line">         </tt>
-<a name="L22"></a><tt class="py-lineno">22</tt>  <tt class="py-line">        <tt class="py-comment">#self.user = User.objects.get(pk=1)</tt> </tt>
-<a name="L23"></a><tt class="py-lineno">23</tt>  <tt class="py-line">        <tt class="py-comment">#proyecto = Proyectos.objects.get(id=1)</tt> </tt>
-<a name="L24"></a><tt class="py-lineno">24</tt>  <tt class="py-line">        <tt class="py-comment">#request = self.factory.get('/adm_proyectos/gestionar/1')</tt> </tt>
-<a name="L25"></a><tt class="py-lineno">25</tt>  <tt class="py-line">        <tt class="py-comment">#request.user = self.user</tt> </tt>
-<a name="L26"></a><tt class="py-lineno">26</tt>  <tt class="py-line">        <tt class="py-comment">#response = adm_fases(request, proyecto.id)</tt> </tt>
-<a name="L27"></a><tt class="py-lineno">27</tt>  <tt class="py-line">        <tt class="py-comment">#self.assertEqual(response.status_code, 200)</tt> </tt>
-<a name="L28"></a><tt class="py-lineno">28</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt> <tt class="py-string">'Test de administracion de items ejecutado exitosamente.'</tt> </tt>
-</div><a name="L29"></a><tt class="py-lineno">29</tt>  <tt class="py-line">         </tt>
-<a name="test_fase.test_crear_items"></a><div id="test_fase.test_crear_items-def"><a name="L30"></a><tt class="py-lineno">30</tt> <a class="py-toggle" href="#" id="test_fase.test_crear_items-toggle" onclick="return toggle('test_fase.test_crear_items');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="aplicaciones.items.tests.test_fase-class.html#test_crear_items">test_crear_items</a> <tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
-</div><div id="test_fase.test_crear_items-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="test_fase.test_crear_items-expanded"><a name="L31"></a><tt class="py-lineno">31</tt>  <tt class="py-line">         </tt>
-<a name="L32"></a><tt class="py-lineno">32</tt>  <tt class="py-line">        <tt class="py-comment">#self.user = User.objects.get(pk=1)</tt> </tt>
-<a name="L33"></a><tt class="py-lineno">33</tt>  <tt class="py-line">        <tt class="py-comment">#proyecto = Proyectos.objects.get(id=1)</tt> </tt>
-<a name="L34"></a><tt class="py-lineno">34</tt>  <tt class="py-line">        <tt class="py-comment">#request = self.factory.post('/adm_proyectos/gestionar/1/nuevo/', {'Nombre_de_Fase': 'Fase 20', 'Descripcion': 'La fase 10', 'Duracion_semanas': '2'})</tt> </tt>
-<a name="L35"></a><tt class="py-lineno">35</tt>  <tt class="py-line">        <tt class="py-comment">#request.user = self.user </tt> </tt>
-<a name="L36"></a><tt class="py-lineno">36</tt>  <tt class="py-line">        <tt class="py-comment">#response = crear_fase(request, 1) </tt> </tt>
-<a name="L37"></a><tt class="py-lineno">37</tt>  <tt class="py-line">        <tt class="py-comment">#self.assertEqual(response.status_code, 200)</tt> </tt>
-<a name="L38"></a><tt class="py-lineno">38</tt>  <tt class="py-line">        <tt class="py-comment">#print response.status_code </tt> </tt>
-<a name="L39"></a><tt class="py-lineno">39</tt>  <tt class="py-line">        <tt class="py-comment">#faseNueva = Fases.objects.get(nombre='Fase 20')</tt> </tt>
-<a name="L40"></a><tt class="py-lineno">40</tt>  <tt class="py-line">        <tt class="py-comment">#self.assertTrue(faseNueva)</tt> </tt>
-<a name="L41"></a><tt class="py-lineno">41</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt> <tt class="py-string">'Test de crear un item ejecutado exitosamente.'</tt> </tt>
-</div><a name="L42"></a><tt class="py-lineno">42</tt>  <tt class="py-line">         </tt>
-<a name="test_fase.test_consultar_item"></a><div id="test_fase.test_consultar_item-def"><a name="L43"></a><tt class="py-lineno">43</tt> <a class="py-toggle" href="#" id="test_fase.test_consultar_item-toggle" onclick="return toggle('test_fase.test_consultar_item');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="aplicaciones.items.tests.test_fase-class.html#test_consultar_item">test_consultar_item</a> <tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
-</div><div id="test_fase.test_consultar_item-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="test_fase.test_consultar_item-expanded"><a name="L44"></a><tt class="py-lineno">44</tt>  <tt class="py-line">         </tt>
-<a name="L45"></a><tt class="py-lineno">45</tt>  <tt class="py-line">        <tt class="py-comment">#self.user = User.objects.get(pk=1)</tt> </tt>
-<a name="L46"></a><tt class="py-lineno">46</tt>  <tt class="py-line">        <tt class="py-comment">#proyecto = Proyectos.objects.get(id=1)</tt> </tt>
-<a name="L47"></a><tt class="py-lineno">47</tt>  <tt class="py-line">        <tt class="py-comment">#fase = Fases.objects.get(id=1)</tt> </tt>
-<a name="L48"></a><tt class="py-lineno">48</tt>  <tt class="py-line">        <tt class="py-comment">#request = self.factory.get('/adm_proyectos/gestionar/1/consultar/1')</tt> </tt>
-<a name="L49"></a><tt class="py-lineno">49</tt>  <tt class="py-line">        <tt class="py-comment">#request.user = self.user</tt> </tt>
-<a name="L50"></a><tt class="py-lineno">50</tt>  <tt class="py-line">        <tt class="py-comment">#response = consultar_fase(request, fase.id, proyecto.id)</tt> </tt>
-<a name="L51"></a><tt class="py-lineno">51</tt>  <tt class="py-line">        <tt class="py-comment">#self.assertEqual(response.status_code, 200)</tt> </tt>
-<a name="L52"></a><tt class="py-lineno">52</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt> <tt class="py-string">'Nombre Item: Item 1'</tt> </tt>
-<a name="L53"></a><tt class="py-lineno">53</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt> <tt class="py-string">'Test de consultar un item ejecutado exitosamente'</tt> </tt>
-</div><a name="L54"></a><tt class="py-lineno">54</tt>  <tt class="py-line"> </tt>
-<a name="L55"></a><tt class="py-lineno">55</tt>  <tt class="py-line">                 </tt>
-<a name="test_fase.test_eliminar_item"></a><div id="test_fase.test_eliminar_item-def"><a name="L56"></a><tt class="py-lineno">56</tt> <a class="py-toggle" href="#" id="test_fase.test_eliminar_item-toggle" onclick="return toggle('test_fase.test_eliminar_item');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="aplicaciones.items.tests.test_fase-class.html#test_eliminar_item">test_eliminar_item</a> <tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
-</div><div id="test_fase.test_eliminar_item-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="test_fase.test_eliminar_item-expanded"><a name="L57"></a><tt class="py-lineno">57</tt>  <tt class="py-line">         </tt>
-<a name="L58"></a><tt class="py-lineno">58</tt>  <tt class="py-line">        <tt class="py-comment">#request = self.factory.get('/adm_proyectos/gestionar/1/eliminar/1')</tt> </tt>
-<a name="L59"></a><tt class="py-lineno">59</tt>  <tt class="py-line">        <tt class="py-comment">#self.user = User.objects.get(pk=1)</tt> </tt>
-<a name="L60"></a><tt class="py-lineno">60</tt>  <tt class="py-line">        <tt class="py-comment">#request.user = self.user</tt> </tt>
-<a name="L61"></a><tt class="py-lineno">61</tt>  <tt class="py-line">        <tt class="py-comment">#proyecto = Proyectos.objects.get(id=1)</tt> </tt>
-<a name="L62"></a><tt class="py-lineno">62</tt>  <tt class="py-line">        <tt class="py-comment">#fase_id = '1'</tt> </tt>
-<a name="L63"></a><tt class="py-lineno">63</tt>  <tt class="py-line">        <tt class="py-comment">#response = eliminar_fase(request, fase_id, proyecto.id)</tt> </tt>
-<a name="L64"></a><tt class="py-lineno">64</tt>  <tt class="py-line">        <tt class="py-comment">#fase = Fases.objects.get(id=fase_id)</tt> </tt>
-<a name="L65"></a><tt class="py-lineno">65</tt>  <tt class="py-line">        <tt class="py-comment">#self.assertFalse(fase.is_active)</tt> </tt>
-<a name="L66"></a><tt class="py-lineno">66</tt>  <tt class="py-line">        <tt class="py-comment">#self.assertTrue(fase) </tt> </tt>
-<a name="L67"></a><tt class="py-lineno">67</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt> <tt class="py-string">'Test de eliminar item ejecutado exitosamente.'</tt> </tt>
-</div><a name="L68"></a><tt class="py-lineno">68</tt>  <tt class="py-line">         </tt>
-<a name="test_fase.test_modificar_item"></a><div id="test_fase.test_modificar_item-def"><a name="L69"></a><tt class="py-lineno">69</tt> <a class="py-toggle" href="#" id="test_fase.test_modificar_item-toggle" onclick="return toggle('test_fase.test_modificar_item');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="aplicaciones.items.tests.test_fase-class.html#test_modificar_item">test_modificar_item</a> <tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
-</div><div id="test_fase.test_modificar_item-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="test_fase.test_modificar_item-expanded"><a name="L70"></a><tt class="py-lineno">70</tt>  <tt class="py-line">         </tt>
-<a name="L71"></a><tt class="py-lineno">71</tt>  <tt class="py-line">        <tt class="py-comment">#self.user = User.objects.get(pk=1)</tt> </tt>
-<a name="L72"></a><tt class="py-lineno">72</tt>  <tt class="py-line">        <tt class="py-comment">#proyecto = Proyectos.objects.get(id=1)</tt> </tt>
-<a name="L73"></a><tt class="py-lineno">73</tt>  <tt class="py-line">        <tt class="py-comment">#request = self.factory.post('adm_proyectos/gestionar/1/modificar/1/', {'Nombre_de_Fase': 'Fase 12', 'Descripcion': 'La fase 12', 'Duracion': '3'})</tt> </tt>
-<a name="L74"></a><tt class="py-lineno">74</tt>  <tt class="py-line">        <tt class="py-comment">#request.user = self.user</tt> </tt>
-<a name="L75"></a><tt class="py-lineno">75</tt>  <tt class="py-line">        <tt class="py-comment">#fase = Fases.objects.get(id=1)</tt> </tt>
-<a name="L76"></a><tt class="py-lineno">76</tt>  <tt class="py-line">        <tt class="py-comment">#fase_id = '1'</tt> </tt>
-<a name="L77"></a><tt class="py-lineno">77</tt>  <tt class="py-line">        <tt class="py-comment">#response = modificar_fase(request, proyecto.id, fase_id)</tt> </tt>
-<a name="L78"></a><tt class="py-lineno">78</tt>  <tt class="py-line">        <tt class="py-comment">#self.assertEqual(response.status_code, 200)</tt> </tt>
-<a name="L79"></a><tt class="py-lineno">79</tt>  <tt class="py-line">        <tt class="py-comment">#faseModificada = Fases.objects.get(nombre='Fase 12')</tt> </tt>
-<a name="L80"></a><tt class="py-lineno">80</tt>  <tt class="py-line">        <tt class="py-comment">#self.assertEqual(fase.id, faseModificada.id)</tt> </tt>
-<a name="L81"></a><tt class="py-lineno">81</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt> <tt class="py-string">'Test de modificar item ejecutado exitosamente.'</tt> </tt>
-</div><a name="L82"></a><tt class="py-lineno">82</tt>  <tt class="py-line">         </tt>
-<a name="L83"></a><tt class="py-lineno">83</tt>  <tt class="py-line">    <tt class="py-keyword">if</tt> <tt class="py-name">__name__</tt> <tt class="py-op">==</tt> <tt class="py-string">'__main__'</tt><tt class="py-op">:</tt> </tt>
-<a name="L84"></a><tt class="py-lineno">84</tt>  <tt class="py-line">        <tt class="py-name">unittest</tt><tt class="py-op">.</tt><tt class="py-name">main</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
-</div><a name="L85"></a><tt class="py-lineno">85</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<a name="L1"></a><tt class="py-lineno">  1</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">django</tt><tt class="py-op">.</tt><tt class="py-name">test</tt> <tt class="py-keyword">import</tt> <tt class="py-name">TestCase</tt> </tt>
+<a name="L2"></a><tt class="py-lineno">  2</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">django</tt><tt class="py-op">.</tt><tt class="py-name">test</tt><tt class="py-op">.</tt><tt class="py-name">client</tt> <tt class="py-keyword">import</tt> <tt class="py-name">RequestFactory</tt> </tt>
+<a name="L3"></a><tt class="py-lineno">  3</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">django</tt><tt class="py-op">.</tt><tt class="py-name">contrib</tt><tt class="py-op">.</tt><tt class="py-name">auth</tt><tt class="py-op">.</tt><tt id="link-0" class="py-name" targets="Module aplicaciones.items.models=aplicaciones.items.models-module.html"><a title="aplicaciones.items.models" class="py-name" href="#" onclick="return doclink('link-0', 'models', 'link-0');">models</a></tt> <tt class="py-keyword">import</tt> <tt class="py-name">User</tt> </tt>
+<a name="L4"></a><tt class="py-lineno">  4</tt>  <tt class="py-line"><tt class="py-comment">#from .models import Fases</tt> </tt>
+<a name="L5"></a><tt class="py-lineno">  5</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">aplicaciones</tt><tt class="py-op">.</tt><tt class="py-name">proyectos</tt><tt class="py-op">.</tt><tt id="link-1" class="py-name"><a title="aplicaciones.items.models" class="py-name" href="#" onclick="return doclink('link-1', 'models', 'link-0');">models</a></tt> <tt class="py-keyword">import</tt> <tt class="py-name">Proyectos</tt> </tt>
+<a name="L6"></a><tt class="py-lineno">  6</tt>  <tt class="py-line"><tt class="py-comment">#from .views import adm_fases, crear_fase, consultar_fase, eliminar_fase, modificar_fase, importar_fase, importarf</tt> </tt>
+<a name="L7"></a><tt class="py-lineno">  7</tt>  <tt class="py-line"> </tt>
+<a name="L8"></a><tt class="py-lineno">  8</tt>  <tt class="py-line"><tt class="py-comment"># Create your tests here.</tt> </tt>
+<a name="L9"></a><tt class="py-lineno">  9</tt>  <tt class="py-line"> </tt>
+<a name="test_fase"></a><div id="test_fase-def"><a name="L10"></a><tt class="py-lineno"> 10</tt> <a class="py-toggle" href="#" id="test_fase-toggle" onclick="return toggle('test_fase');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="aplicaciones.items.tests.test_fase-class.html">test_fase</a><tt class="py-op">(</tt><tt class="py-base-class">TestCase</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="test_fase-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="test_fase-expanded"><a name="L11"></a><tt class="py-lineno"> 11</tt>  <tt class="py-line">     </tt>
+<a name="L12"></a><tt class="py-lineno"> 12</tt>  <tt class="py-line">   <tt class="py-comment"># fixtures = ['users.json']+ ['proyectos.json'] + ['fases.json'] + ['groups.json']</tt> </tt>
+<a name="L13"></a><tt class="py-lineno"> 13</tt>  <tt class="py-line">     </tt>
+<a name="test_fase.setUp"></a><div id="test_fase.setUp-def"><a name="L14"></a><tt class="py-lineno"> 14</tt> <a class="py-toggle" href="#" id="test_fase.setUp-toggle" onclick="return toggle('test_fase.setUp');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="aplicaciones.items.tests.test_fase-class.html#setUp">setUp</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="test_fase.setUp-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="test_fase.setUp-expanded"><a name="L15"></a><tt class="py-lineno"> 15</tt>  <tt class="py-line">        <tt class="py-docstring">""" Inicializamos la variable factory que posteriormente nos permitira cargar</tt> </tt>
+<a name="L16"></a><tt class="py-lineno"> 16</tt>  <tt class="py-line"><tt class="py-docstring">            un request para utilizarlo en las vista.</tt> </tt>
+<a name="L17"></a><tt class="py-lineno"> 17</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L18"></a><tt class="py-lineno"> 18</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">factory</tt> <tt class="py-op">=</tt> <tt class="py-name">RequestFactory</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L19"></a><tt class="py-lineno"> 19</tt>  <tt class="py-line">         </tt>
+<a name="test_fase.test_adm_items"></a><div id="test_fase.test_adm_items-def"><a name="L20"></a><tt class="py-lineno"> 20</tt> <a class="py-toggle" href="#" id="test_fase.test_adm_items-toggle" onclick="return toggle('test_fase.test_adm_items');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="aplicaciones.items.tests.test_fase-class.html#test_adm_items">test_adm_items</a> <tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="test_fase.test_adm_items-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="test_fase.test_adm_items-expanded"><a name="L21"></a><tt class="py-lineno"> 21</tt>  <tt class="py-line">         </tt>
+<a name="L22"></a><tt class="py-lineno"> 22</tt>  <tt class="py-line">        <tt class="py-comment">#self.user = User.objects.get(pk=1)</tt> </tt>
+<a name="L23"></a><tt class="py-lineno"> 23</tt>  <tt class="py-line">        <tt class="py-comment">#proyecto = Proyectos.objects.get(id=1)</tt> </tt>
+<a name="L24"></a><tt class="py-lineno"> 24</tt>  <tt class="py-line">        <tt class="py-comment">#request = self.factory.get('/adm_proyectos/gestionar/1')</tt> </tt>
+<a name="L25"></a><tt class="py-lineno"> 25</tt>  <tt class="py-line">        <tt class="py-comment">#request.user = self.user</tt> </tt>
+<a name="L26"></a><tt class="py-lineno"> 26</tt>  <tt class="py-line">        <tt class="py-comment">#response = adm_fases(request, proyecto.id)</tt> </tt>
+<a name="L27"></a><tt class="py-lineno"> 27</tt>  <tt class="py-line">        <tt class="py-comment">#self.assertEqual(response.status_code, 200)</tt> </tt>
+<a name="L28"></a><tt class="py-lineno"> 28</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt> <tt class="py-string">'Test de administracion de items ejecutado exitosamente.'</tt> </tt>
+</div><a name="L29"></a><tt class="py-lineno"> 29</tt>  <tt class="py-line">         </tt>
+<a name="test_fase.test_crear_items"></a><div id="test_fase.test_crear_items-def"><a name="L30"></a><tt class="py-lineno"> 30</tt> <a class="py-toggle" href="#" id="test_fase.test_crear_items-toggle" onclick="return toggle('test_fase.test_crear_items');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="aplicaciones.items.tests.test_fase-class.html#test_crear_items">test_crear_items</a> <tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="test_fase.test_crear_items-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="test_fase.test_crear_items-expanded"><a name="L31"></a><tt class="py-lineno"> 31</tt>  <tt class="py-line">         </tt>
+<a name="L32"></a><tt class="py-lineno"> 32</tt>  <tt class="py-line">        <tt class="py-comment">#self.user = User.objects.get(pk=1)</tt> </tt>
+<a name="L33"></a><tt class="py-lineno"> 33</tt>  <tt class="py-line">        <tt class="py-comment">#proyecto = Proyectos.objects.get(id=1)</tt> </tt>
+<a name="L34"></a><tt class="py-lineno"> 34</tt>  <tt class="py-line">        <tt class="py-comment">#request = self.factory.post('/adm_proyectos/gestionar/1/nuevo/', {'Nombre_de_Fase': 'Fase 20', 'Descripcion': 'La fase 10', 'Duracion_semanas': '2'})</tt> </tt>
+<a name="L35"></a><tt class="py-lineno"> 35</tt>  <tt class="py-line">        <tt class="py-comment">#request.user = self.user </tt> </tt>
+<a name="L36"></a><tt class="py-lineno"> 36</tt>  <tt class="py-line">        <tt class="py-comment">#response = crear_fase(request, 1) </tt> </tt>
+<a name="L37"></a><tt class="py-lineno"> 37</tt>  <tt class="py-line">        <tt class="py-comment">#self.assertEqual(response.status_code, 200)</tt> </tt>
+<a name="L38"></a><tt class="py-lineno"> 38</tt>  <tt class="py-line">        <tt class="py-comment">#print response.status_code </tt> </tt>
+<a name="L39"></a><tt class="py-lineno"> 39</tt>  <tt class="py-line">        <tt class="py-comment">#faseNueva = Fases.objects.get(nombre='Fase 20')</tt> </tt>
+<a name="L40"></a><tt class="py-lineno"> 40</tt>  <tt class="py-line">        <tt class="py-comment">#self.assertTrue(faseNueva)</tt> </tt>
+<a name="L41"></a><tt class="py-lineno"> 41</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt> <tt class="py-string">'Test de crear un item ejecutado exitosamente.'</tt> </tt>
+</div><a name="L42"></a><tt class="py-lineno"> 42</tt>  <tt class="py-line">         </tt>
+<a name="test_fase.test_consultar_item"></a><div id="test_fase.test_consultar_item-def"><a name="L43"></a><tt class="py-lineno"> 43</tt> <a class="py-toggle" href="#" id="test_fase.test_consultar_item-toggle" onclick="return toggle('test_fase.test_consultar_item');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="aplicaciones.items.tests.test_fase-class.html#test_consultar_item">test_consultar_item</a> <tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="test_fase.test_consultar_item-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="test_fase.test_consultar_item-expanded"><a name="L44"></a><tt class="py-lineno"> 44</tt>  <tt class="py-line">         </tt>
+<a name="L45"></a><tt class="py-lineno"> 45</tt>  <tt class="py-line">        <tt class="py-comment">#self.user = User.objects.get(pk=1)</tt> </tt>
+<a name="L46"></a><tt class="py-lineno"> 46</tt>  <tt class="py-line">        <tt class="py-comment">#proyecto = Proyectos.objects.get(id=1)</tt> </tt>
+<a name="L47"></a><tt class="py-lineno"> 47</tt>  <tt class="py-line">        <tt class="py-comment">#fase = Fases.objects.get(id=1)</tt> </tt>
+<a name="L48"></a><tt class="py-lineno"> 48</tt>  <tt class="py-line">        <tt class="py-comment">#request = self.factory.get('/adm_proyectos/gestionar/1/consultar/1')</tt> </tt>
+<a name="L49"></a><tt class="py-lineno"> 49</tt>  <tt class="py-line">        <tt class="py-comment">#request.user = self.user</tt> </tt>
+<a name="L50"></a><tt class="py-lineno"> 50</tt>  <tt class="py-line">        <tt class="py-comment">#response = consultar_fase(request, fase.id, proyecto.id)</tt> </tt>
+<a name="L51"></a><tt class="py-lineno"> 51</tt>  <tt class="py-line">        <tt class="py-comment">#self.assertEqual(response.status_code, 200)</tt> </tt>
+<a name="L52"></a><tt class="py-lineno"> 52</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt> <tt class="py-string">'Nombre Item: Item 1'</tt> </tt>
+<a name="L53"></a><tt class="py-lineno"> 53</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt> <tt class="py-string">'Test de consultar un item ejecutado exitosamente'</tt> </tt>
+</div><a name="L54"></a><tt class="py-lineno"> 54</tt>  <tt class="py-line"> </tt>
+<a name="L55"></a><tt class="py-lineno"> 55</tt>  <tt class="py-line">                 </tt>
+<a name="test_fase.test_eliminar_item"></a><div id="test_fase.test_eliminar_item-def"><a name="L56"></a><tt class="py-lineno"> 56</tt> <a class="py-toggle" href="#" id="test_fase.test_eliminar_item-toggle" onclick="return toggle('test_fase.test_eliminar_item');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="aplicaciones.items.tests.test_fase-class.html#test_eliminar_item">test_eliminar_item</a> <tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="test_fase.test_eliminar_item-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="test_fase.test_eliminar_item-expanded"><a name="L57"></a><tt class="py-lineno"> 57</tt>  <tt class="py-line">         </tt>
+<a name="L58"></a><tt class="py-lineno"> 58</tt>  <tt class="py-line">        <tt class="py-comment">#request = self.factory.get('/adm_proyectos/gestionar/1/eliminar/1')</tt> </tt>
+<a name="L59"></a><tt class="py-lineno"> 59</tt>  <tt class="py-line">        <tt class="py-comment">#self.user = User.objects.get(pk=1)</tt> </tt>
+<a name="L60"></a><tt class="py-lineno"> 60</tt>  <tt class="py-line">        <tt class="py-comment">#request.user = self.user</tt> </tt>
+<a name="L61"></a><tt class="py-lineno"> 61</tt>  <tt class="py-line">        <tt class="py-comment">#proyecto = Proyectos.objects.get(id=1)</tt> </tt>
+<a name="L62"></a><tt class="py-lineno"> 62</tt>  <tt class="py-line">        <tt class="py-comment">#fase_id = '1'</tt> </tt>
+<a name="L63"></a><tt class="py-lineno"> 63</tt>  <tt class="py-line">        <tt class="py-comment">#response = eliminar_fase(request, fase_id, proyecto.id)</tt> </tt>
+<a name="L64"></a><tt class="py-lineno"> 64</tt>  <tt class="py-line">        <tt class="py-comment">#fase = Fases.objects.get(id=fase_id)</tt> </tt>
+<a name="L65"></a><tt class="py-lineno"> 65</tt>  <tt class="py-line">        <tt class="py-comment">#self.assertFalse(fase.is_active)</tt> </tt>
+<a name="L66"></a><tt class="py-lineno"> 66</tt>  <tt class="py-line">        <tt class="py-comment">#self.assertTrue(fase) </tt> </tt>
+<a name="L67"></a><tt class="py-lineno"> 67</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt> <tt class="py-string">'Test de eliminar item ejecutado exitosamente.'</tt> </tt>
+</div><a name="L68"></a><tt class="py-lineno"> 68</tt>  <tt class="py-line">         </tt>
+<a name="test_fase.test_modificar_item"></a><div id="test_fase.test_modificar_item-def"><a name="L69"></a><tt class="py-lineno"> 69</tt> <a class="py-toggle" href="#" id="test_fase.test_modificar_item-toggle" onclick="return toggle('test_fase.test_modificar_item');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="aplicaciones.items.tests.test_fase-class.html#test_modificar_item">test_modificar_item</a> <tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="test_fase.test_modificar_item-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="test_fase.test_modificar_item-expanded"><a name="L70"></a><tt class="py-lineno"> 70</tt>  <tt class="py-line">         </tt>
+<a name="L71"></a><tt class="py-lineno"> 71</tt>  <tt class="py-line">        <tt class="py-comment">#self.user = User.objects.get(pk=1)</tt> </tt>
+<a name="L72"></a><tt class="py-lineno"> 72</tt>  <tt class="py-line">        <tt class="py-comment">#proyecto = Proyectos.objects.get(id=1)</tt> </tt>
+<a name="L73"></a><tt class="py-lineno"> 73</tt>  <tt class="py-line">        <tt class="py-comment">#request = self.factory.post('adm_proyectos/gestionar/1/modificar/1/', {'Nombre_de_Fase': 'Fase 12', 'Descripcion': 'La fase 12', 'Duracion': '3'})</tt> </tt>
+<a name="L74"></a><tt class="py-lineno"> 74</tt>  <tt class="py-line">        <tt class="py-comment">#request.user = self.user</tt> </tt>
+<a name="L75"></a><tt class="py-lineno"> 75</tt>  <tt class="py-line">        <tt class="py-comment">#fase = Fases.objects.get(id=1)</tt> </tt>
+<a name="L76"></a><tt class="py-lineno"> 76</tt>  <tt class="py-line">        <tt class="py-comment">#fase_id = '1'</tt> </tt>
+<a name="L77"></a><tt class="py-lineno"> 77</tt>  <tt class="py-line">        <tt class="py-comment">#response = modificar_fase(request, proyecto.id, fase_id)</tt> </tt>
+<a name="L78"></a><tt class="py-lineno"> 78</tt>  <tt class="py-line">        <tt class="py-comment">#self.assertEqual(response.status_code, 200)</tt> </tt>
+<a name="L79"></a><tt class="py-lineno"> 79</tt>  <tt class="py-line">        <tt class="py-comment">#faseModificada = Fases.objects.get(nombre='Fase 12')</tt> </tt>
+<a name="L80"></a><tt class="py-lineno"> 80</tt>  <tt class="py-line">        <tt class="py-comment">#self.assertEqual(fase.id, faseModificada.id)</tt> </tt>
+<a name="L81"></a><tt class="py-lineno"> 81</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt> <tt class="py-string">'Test de modificar item ejecutado exitosamente.'</tt> </tt>
+</div><a name="L82"></a><tt class="py-lineno"> 82</tt>  <tt class="py-line">         </tt>
+<a name="test_fase.test_cargar_valores"></a><div id="test_fase.test_cargar_valores-def"><a name="L83"></a><tt class="py-lineno"> 83</tt> <a class="py-toggle" href="#" id="test_fase.test_cargar_valores-toggle" onclick="return toggle('test_fase.test_cargar_valores');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="aplicaciones.items.tests.test_fase-class.html#test_cargar_valores">test_cargar_valores</a> <tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="test_fase.test_cargar_valores-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="test_fase.test_cargar_valores-expanded"><a name="L84"></a><tt class="py-lineno"> 84</tt>  <tt class="py-line">         </tt>
+<a name="L85"></a><tt class="py-lineno"> 85</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt> <tt class="py-string">'32423 Disenho'</tt> </tt>
+<a name="L86"></a><tt class="py-lineno"> 86</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt> <tt class="py-string">'Test de modificar atributos ejecutado exitosamente.'</tt> </tt>
+</div><a name="L87"></a><tt class="py-lineno"> 87</tt>  <tt class="py-line">         </tt>
+<a name="test_fase.test_revertir_version"></a><div id="test_fase.test_revertir_version-def"><a name="L88"></a><tt class="py-lineno"> 88</tt> <a class="py-toggle" href="#" id="test_fase.test_revertir_version-toggle" onclick="return toggle('test_fase.test_revertir_version');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="aplicaciones.items.tests.test_fase-class.html#test_revertir_version">test_revertir_version</a> <tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="test_fase.test_revertir_version-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="test_fase.test_revertir_version-expanded"><a name="L89"></a><tt class="py-lineno"> 89</tt>  <tt class="py-line">         </tt>
+<a name="L90"></a><tt class="py-lineno"> 90</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt> <tt class="py-string">'Test de revertir version ejecutado exitosamente.'</tt> </tt>
+</div><a name="L91"></a><tt class="py-lineno"> 91</tt>  <tt class="py-line">         </tt>
+<a name="test_fase.test_revivir_item"></a><div id="test_fase.test_revivir_item-def"><a name="L92"></a><tt class="py-lineno"> 92</tt> <a class="py-toggle" href="#" id="test_fase.test_revivir_item-toggle" onclick="return toggle('test_fase.test_revivir_item');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="aplicaciones.items.tests.test_fase-class.html#test_revivir_item">test_revivir_item</a> <tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="test_fase.test_revivir_item-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="test_fase.test_revivir_item-expanded"><a name="L93"></a><tt class="py-lineno"> 93</tt>  <tt class="py-line">         </tt>
+<a name="L94"></a><tt class="py-lineno"> 94</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt> <tt class="py-string">'Test de revivir item ejecutado exitosamente.'</tt> </tt>
+</div><a name="L95"></a><tt class="py-lineno"> 95</tt>  <tt class="py-line">         </tt>
+<a name="test_fase.test_calculo_impacto"></a><div id="test_fase.test_calculo_impacto-def"><a name="L96"></a><tt class="py-lineno"> 96</tt> <a class="py-toggle" href="#" id="test_fase.test_calculo_impacto-toggle" onclick="return toggle('test_fase.test_calculo_impacto');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="aplicaciones.items.tests.test_fase-class.html#test_calculo_impacto">test_calculo_impacto</a> <tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="test_fase.test_calculo_impacto-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="test_fase.test_calculo_impacto-expanded"><a name="L97"></a><tt class="py-lineno"> 97</tt>  <tt class="py-line">         </tt>
+<a name="L98"></a><tt class="py-lineno"> 98</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt> <tt class="py-string">'Test de calculo de impacto ejecutado exitosamente.'</tt> </tt>
+</div><a name="L99"></a><tt class="py-lineno"> 99</tt>  <tt class="py-line">         </tt>
+<a name="L100"></a><tt class="py-lineno">100</tt>  <tt class="py-line">    <tt class="py-keyword">if</tt> <tt class="py-name">__name__</tt> <tt class="py-op">==</tt> <tt class="py-string">'__main__'</tt><tt class="py-op">:</tt> </tt>
+<a name="L101"></a><tt class="py-lineno">101</tt>  <tt class="py-line">        <tt class="py-name">unittest</tt><tt class="py-op">.</tt><tt class="py-name">main</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L102"></a><tt class="py-lineno">102</tt>  <tt class="py-line"> </tt><script type="text/javascript">
 <!--
 expandto(location.href);
 // -->
@@ -168,13 +190,18 @@ expandto(location.href);
       <th>&nbsp;&nbsp;&nbsp;<a
         href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
 
-      <th class="navbar" width="100%"></th>
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            >Sap_documentacion</th>
+          </tr></table></th>
   </tr>
 </table>
 <table border="0" cellpadding="0" cellspacing="0" width="100%%">
   <tr>
     <td align="left" class="footer">
-    Generated by Epydoc 3.0.1 on Sat May  3 09:35:59 2014
+    Generated by Epydoc 3.0.1 on Sat May 17 00:53:00 2014
     </td>
     <td align="right" class="footer">
       <a target="mainFrame" href="http://epydoc.sourceforge.net"

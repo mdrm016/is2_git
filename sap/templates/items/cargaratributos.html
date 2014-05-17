@@ -154,6 +154,7 @@
 		</table>
 					{% csrf_token %}
 					<input action="adm_proyectos/gestionar/{{ id_proyecto }}/adm_items/{{ id_fase }}/atributos/" class="btn btn-default" type="submit" value="Guardar Cambios"/>
+					<a type="button" class="btn btn-default" href="/adm_proyectos/gestionar/{{ id_proyecto }}/adm_items/{{ id_fase }}/">Cancelar</a>
 		
 		</form>
 		{% else %}
