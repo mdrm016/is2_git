@@ -15,9 +15,12 @@ aplicaciones.fases.views.crear_fase	aplicaciones.fases.views-module.html#crear_f
 aplicaciones.fases.views.modificar_fase	aplicaciones.fases.views-module.html#modificar_fase
 aplicaciones.fases.views.importarf	aplicaciones.fases.views-module.html#importarf
 aplicaciones.fases.views.eliminar_fase	aplicaciones.fases.views-module.html#eliminar_fase
-aplicaciones.fases.views.importar_fase	aplicaciones.fases.views-module.html#importar_fase
 aplicaciones.fases.views.adm_fases	aplicaciones.fases.views-module.html#adm_fases
+aplicaciones.fases.views.importar_fase	aplicaciones.fases.views-module.html#importar_fase
 aplicaciones.fases.views.consultar_fase	aplicaciones.fases.views-module.html#consultar_fase
+aplicaciones.fases.views.ordenar_fases	aplicaciones.fases.views-module.html#ordenar_fases
+aplicaciones.fases.views.subir_fase	aplicaciones.fases.views-module.html#subir_fase
+aplicaciones.fases.views.bajar_fase	aplicaciones.fases.views-module.html#bajar_fase
 aplicaciones.fases.forms.FaseModificadaForm	aplicaciones.fases.forms.FaseModificadaForm-class.html
 aplicaciones.fases.forms.FaseModificadaForm.Descripcion	aplicaciones.fases.forms.FaseModificadaForm-class.html#Descripcion
 aplicaciones.fases.forms.FaseModificadaForm.Duracion	aplicaciones.fases.forms.FaseModificadaForm-class.html#Duracion
@@ -33,6 +36,7 @@ aplicaciones.fases.forms.FaseNuevaForm.forms.Form	aplicaciones.fases.forms.FaseN
 aplicaciones.fases.forms.FaseNuevaForm.Duracion_semanas	aplicaciones.fases.forms.FaseNuevaForm-class.html#Duracion_semanas
 aplicaciones.fases.forms.FaseNuevaForm.Nombre_de_Fase	aplicaciones.fases.forms.FaseNuevaForm-class.html#Nombre_de_Fase
 aplicaciones.fases.models.Fases	aplicaciones.fases.models.Fases-class.html
+aplicaciones.fases.models.Fases.orden	aplicaciones.fases.models.Fases-class.html#orden
 aplicaciones.fases.models.Fases.estado	aplicaciones.fases.models.Fases-class.html#estado
 aplicaciones.fases.models.Fases.is_active	aplicaciones.fases.models.Fases-class.html#is_active
 aplicaciones.fases.models.Fases.fechainicio	aplicaciones.fases.models.Fases-class.html#fechainicio
@@ -53,5 +57,4 @@ aplicaciones.fases.tests.test_fase.setUp	aplicaciones.fases.tests.test_fase-clas
 aplicaciones.fases.tests.test_fase.test_importar_fase	aplicaciones.fases.tests.test_fase-class.html#test_importar_fase
 aplicaciones.fases.tests.test_fase.test_crear_fase	aplicaciones.fases.tests.test_fase-class.html#test_crear_fase
 aplicaciones.fases.tests.test_fase.test_eliminar_fase	aplicaciones.fases.tests.test_fase-class.html#test_eliminar_fase
-aplicaciones.fases.tests.test_fase.fixtures	aplicaciones.fases.tests.test_fase-class.html#fixtures
 aplicaciones.fases.tests.test_fase.test_consultar_fase	aplicaciones.fases.tests.test_fase-class.html#test_consultar_fase

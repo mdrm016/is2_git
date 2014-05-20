@@ -17,7 +17,7 @@ class test_user(TestCase):
         self.factory = RequestFactory()
     
     def testAdministrarTipoAtributo(self):
-        
+    
         self.user = User.objects.get(pk=1)  
         request = self.factory.get('/adm_proyectos/gestionar/1/adm_tipos_atributo/')
         request.user = self.user
@@ -74,6 +74,7 @@ class test_user(TestCase):
         print 'Test Buscar Tipo de Atributo ejecutado exitosamente'
         
     def testImportarTipoAtributo(self):
+        
         self.user = User.objects.get(pk=1)
         request = self.factory.get('adm_proyectos/gestionar/2/adm_tipos_atributo/listar_proyectos/listar_tipo_atributo/1/importar_tipo_atributo/1/')
         request.user = self.user

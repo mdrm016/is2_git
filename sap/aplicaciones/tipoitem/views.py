@@ -88,16 +88,19 @@ def crear_tipoitem (request, id_proyecto):
             form.clean()
             nombre = form.cleaned_data['Nombre_Tipo_de_Item'] 
             descripcion =  form.cleaned_data['Descripcion']
-            #tipoatributos= form.cleaned_data['Tipo_Atributo']
-            
-            tipoitem = TipoItem()
-            tipoitem.nombre=nombre
-            tipoitem.descripcion=descripcion
-            tipoitem.id_proyecto=id_proyecto
-            tipoitem.is_active='True'
-            tipoitem.save()
 
-            mensaje="Tipo Item creado exitosamente"
+            tipo_items_proyecto = TipoItem.objects.filter(nombre=nombre, id_proyecto=id_proyecto, is_active=True)
+            if(not tipo_items_proyecto):
+                tipoitem = TipoItem()
+                tipoitem.nombre=nombre
+                tipoitem.descripcion=descripcion
+                tipoitem.id_proyecto=id_proyecto
+                tipoitem.is_active='True'
+                tipoitem.save()
+                mensaje="Tipo Item creado exitosamente"
+            else:
+                mensaje="Imposible crear el Tipo de Item, ya existe un Tipo de Item con el mismo nombre en el proyecto"
+                
             ctx = {'mensaje':mensaje, 'id_proyecto':id_proyecto, 'proyecto':proyecto}
             return render_to_response('tipoitem/tipoitemalerta.html',ctx, context_instance=RequestContext(request))
     else:

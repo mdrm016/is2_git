@@ -55,9 +55,11 @@ class test_user(TestCase):
         """ Comprobamos que el administrador no puede ser eliminado.
         """
         usuarioname = User.objects.filter(pk=id)
-        self.assertTrue(usuarioname) 
+        self.assertTrue(usuarioname)
+        print 'Test de eliminacion de usuario ejecutado exitosamente.' 
         
     def testUsuarioNuevo(self): # Create an instance of a GET request. 
+        
         self.user = User.objects.get(pk=1) 
         request = self.factory.post('/adm_usuarios/nuevo/', {'Nombre_de_Usuario': 'usuario2', 'Contrasenha': 'ysapy', 'Confirmar_contrasenha': 'ysapy', 'Email': 'ysapy', 'Nombre': 'ysa', 'Apellido':'ortiz', 'Telefono': '021', 'Direccion': 'lambare'})
         request.user = self.user 
@@ -66,13 +68,16 @@ class test_user(TestCase):
         busco = User.objects.get(username='usuario2')
         perfil = busco.get_profile()
         print perfil.telefono 
+        print 'Test de creacion de usuario ejecutado exitosamente.'
         
-    def testUsuarioBuscar(self):  
+    def testUsuarioBuscar(self): 
+        
         self.user = User.objects.get(pk=1) 
         request = self.factory.get('/adm_usuarios/', {'busqueda': 'ysapy'})
         request.user = self.user
         response = administrarUsuarios(request) 
         self.assertEqual(response.status_code, 200)
+        print 'Test de busqueda de usuario ejecutado exitosamente.'
 
     def testAdministrarUsuario(self):
         
@@ -80,7 +85,8 @@ class test_user(TestCase):
         request = self.factory.get('/adm_usuarios/')
         request.user = self.user
         response = administrarUsuarios(request)                                    #Pasamos a la pagina de administracion de usuarios
-        self.assertEqual(response.status_code, 200)           
+        self.assertEqual(response.status_code, 200)  
+        print 'Test de administracion de usuarios ejecutado exitosamente.'         
         
     def testModificarUsuario(self):
         
@@ -92,6 +98,7 @@ class test_user(TestCase):
         response = modificarUsuario(request, 1)
         self.assertEqual(response.status_code, 200)
         print User.objects.all()
+        print 'Test de modificacion de usuario ejecutado exitosamente.'
 
 
     if __name__ == '__main__':

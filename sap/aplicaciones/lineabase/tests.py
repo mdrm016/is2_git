@@ -17,7 +17,8 @@ class test_user(TestCase):
         """
         self.factory = RequestFactory()
         
-    def testAdministrarLineaBase(self):    
+    def testAdministrarLineaBase(self): 
+           
         self.user = User.objects.get(pk=2)  
         request = self.factory.get('/adm_proyectos/gestionar/1/adm_items/1/adm_lineas_base/')
         request.user = self.user
@@ -26,6 +27,7 @@ class test_user(TestCase):
         print 'Test de adminitracion de Linea Base ejecutado exitosamente.'
         
     def testGenerarLineaBase(self):
+        
         self.user = User.objects.get(pk=2) 
         request = self.factory.post('/adm_proyectos/gestionar/1/adm_items/1/adm_lineas_base/nuevo/', {'Descripcion': 'Prueba', 'Items': ['3']})
         request.user = self.user 
@@ -34,7 +36,7 @@ class test_user(TestCase):
         print 'Test de Crear Linea Base ejecutado exitosamente'
         
     def test_buscar_lineabase(self):
-          
+        
         self.user = User.objects.get(pk=1)
         id_proyecto = 1
         id_fase = 1
@@ -46,7 +48,7 @@ class test_user(TestCase):
         print 'Test de buscar una linea base ejecutado exitosamente.'
         
     def test_consultar_lineabase(self):
-
+        
         self.user = User.objects.get(pk=1)
         id_proyecto = 1
         id_fase = 1

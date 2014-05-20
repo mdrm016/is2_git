@@ -62,14 +62,14 @@ class test_fase(TestCase):
         response = eliminar_fase(request, id_fase, id_proyecto)
         fase = Fases.objects.get(id=id_fase)
         self.assertFalse(fase.is_active)
-        self.assertTrue(fase) 
+        self.assertTrue(fase)
         print 'Test de eliminar de forma logica una fase ejecutado exitosamente.'
         
     def test_modificar_fase (self):
         
         self.user = User.objects.get(pk=1)
         id_proyecto = 2
-        id_fase = 6
+        id_fase = 5
         request = self.factory.post('adm_proyectos/gestionar/%s/modificar/%s/' % (id_proyecto, id_fase), {'Nombre_de_Fase': 'Fase 12', 'Descripcion': 'La fase 12', 'Duracion': '3'})
         request.user = self.user
         response = modificar_fase(request, id_proyecto, id_fase)

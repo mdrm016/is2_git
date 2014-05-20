@@ -37,12 +37,12 @@ class test_proyectos (TestCase):
 
         self.user = User.objects.get(pk=1) 
 
-        #request = self.factory.post('/adm_proyectos/crear/', {'Nombre_del_Proyecto': 'Proyecto 10', 'Lider': '2', 'Fecha_de_Inicio': '17/04/2014', 'Duracion': '2'})
-        #request.user = self.user 
-        #response = crear_proyecto(request) 
-        #self.assertEqual(response.status_code, 200)
-        #proyectoNuevo = Proyectos.objects.get(nombre='Proyecto 10')
-        #self.assertTrue(proyectoNuevo)
+        request = self.factory.post('/adm_proyectos/crear/', {'Nombre_del_Proyecto': 'Proyecto 10', 'Lider': '2', 'Fecha_de_Inicio': '2014-04-17', 'Duracion': '2'})
+        request.user = self.user 
+        response = crear_proyecto(request) 
+        self.assertEqual(response.status_code, 200)
+        proyectoNuevo = Proyectos.objects.get(nombre='Proyecto 10')
+        self.assertTrue(proyectoNuevo)
 
         print 'Test de crear un proyecto ejecutado exitosamente.'
         
@@ -94,15 +94,15 @@ class test_proyectos (TestCase):
         
         proyecto_id = '1'
 
-        #fases = Fases.objects.filter(proyecto=1)
-        #self.assertTrue(fases)
-        #request = self.factory.post('adm_proyectos/importar_proyecto/importar/1', {'Nombre_del_Proyecto': 'Proyecto 15 imp', 'Lider': '2', 'Fecha_de_Inicio': '17/04/2014', 'Duracion': '2'})
-        #self.user = User.objects.get(pk=1)
-        #request.user = self.user
-        #response = importar(request, proyecto_id)
-        #self.assertEqual(response.status_code, 200)
-        #proyectoImportado = Proyectos.objects.get(nombre='Proyecto 15 imp')
-        #self.assertTrue(proyectoImportado)
+        fases = Fases.objects.filter(proyecto=1)
+        self.assertTrue(fases)
+        request = self.factory.post('adm_proyectos/importar_proyecto/importar/1', {'Nombre_del_Proyecto': 'Proyecto 15 imp', 'Lider': '2', 'Fecha_de_Inicio': '2014-04-17', 'Duracion': '2'})
+        self.user = User.objects.get(pk=1)
+        request.user = self.user
+        response = importar(request, proyecto_id)
+        self.assertEqual(response.status_code, 200)
+        proyectoImportado = Proyectos.objects.get(nombre='Proyecto 15 imp')
+        self.assertTrue(proyectoImportado)
 
         print 'Test de Importar proyecto ejecutado exitosamente.'
         

@@ -36,6 +36,7 @@ class TestLoguin(TestCase):
         self.assertFalse(logout)                                                    #Probamos que efectivamente la sesion esta cerrada
         resp = self.client.get('/adm_usuarios/')                                                 #Pasamos a la pagina de inicio
         self.assertNotEqual(resp.status_code, 200)                                  #Probamos que ya no podemos acceder al sistema si no estamos logueados
+        print 'Test de login administrador ejecutado exitosamente.'
     
     def test_loguin_user(self):
         """ Test para loguear a un usuario. """
@@ -53,10 +54,11 @@ class TestLoguin(TestCase):
         self.assertFalse(logout)                                                    #Probamos que efectivamente la sesion esta cerrada
         resp = self.client.get('/adm_proyectos/')                                   #Pasamos a la pagina de inicio
         self.assertNotEqual(resp.status_code, 200)                                  #Probamos que ya no podemos acceder al sistema si no estamos logueados
+        print 'Test de login usuario ejecutado exitosamente.'
     
     def test_loguin_userAnonimo(self):
-        """ Test para loguear a un usuario no registardo.
-        """
+        """ Test para loguear a un usuario no registardo. """
+        
         
         resp = self.client.get('/login/')                                           #Solicitud de la pagina de autenticacion
         self.assertEqual(resp.status_code, 200)                                     #Pagina de login recibida con exito
@@ -66,20 +68,21 @@ class TestLoguin(TestCase):
         self.assertEqual(resp.status_code, 302)                                     #Pagina de inicio recibida con exito
         resp = self.client.get('/adm_usuarios/')                                    #Pasamos a la pagina de administracion de usuarios
         self.assertEqual(resp.status_code, 302)                                     #Pagina de adm_usuarios recibida con exito
-        
+        print 'Test de login usuario no registrado ejecutado exitosamente.'
         
     def test_ingresar_sin_registrarse(self):
         """ Error 302 "movido Temporalmente",
             al ingresar intentar ingresar a la pagina
             de inicio sin antes habernos logueado
-            el error 302 nos imposibilita el acceso
+            el error 302 nos imposibilita el acceso """
             
-        """ 
+         
         resp = self.client.get('/')                                                 #Pasamos a la pagina de inicio
         self.assertEqual(resp.status_code, 302)                                     #Ocurre el erro 302
         resp = self.client.get('/adm_usuarios/')                                    #Pasamos a la pagina de administracion de usuarios
         self.assertEqual(resp.status_code, 302)                                     #Ocurre el error 302
+        print 'Test de login usuario no registrado ejecutado exitosamente.'
         
-        if __name__ == '__main__':
-            unittest.main()
+    if __name__ == '__main__':
+        unittest.main()
     

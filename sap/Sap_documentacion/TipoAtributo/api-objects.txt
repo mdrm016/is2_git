@@ -85,8 +85,11 @@ aplicaciones.tipoatributo.models.TipoAtributo.Meta	aplicaciones.tipoatributo.mod
 aplicaciones.tipoatributo.models.TipoAtributo.Meta.ordering	aplicaciones.tipoatributo.models.TipoAtributo.Meta-class.html#ordering
 aplicaciones.tipoatributo.models.TipoAtributo.Meta.permissions	aplicaciones.tipoatributo.models.TipoAtributo.Meta-class.html#permissions
 aplicaciones.tipoatributo.tests.test_user	aplicaciones.tipoatributo.tests.test_user-class.html
-aplicaciones.tipoatributo.tests.test_user.fixtures	aplicaciones.tipoatributo.tests.test_user-class.html#fixtures
-aplicaciones.tipoatributo.tests.test_user.testModificarRol	aplicaciones.tipoatributo.tests.test_user-class.html#testModificarRol
+aplicaciones.tipoatributo.tests.test_user.testConsultarTipoAtributo	aplicaciones.tipoatributo.tests.test_user-class.html#testConsultarTipoAtributo
+aplicaciones.tipoatributo.tests.test_user.testTipoAtributoNuevo	aplicaciones.tipoatributo.tests.test_user-class.html#testTipoAtributoNuevo
 aplicaciones.tipoatributo.tests.test_user.setUp	aplicaciones.tipoatributo.tests.test_user-class.html#setUp
-aplicaciones.tipoatributo.tests.test_user.testtipoAtributoNuevo	aplicaciones.tipoatributo.tests.test_user-class.html#testtipoAtributoNuevo
-aplicaciones.tipoatributo.tests.test_user.testadministrarTipoAtributo	aplicaciones.tipoatributo.tests.test_user-class.html#testadministrarTipoAtributo
+aplicaciones.tipoatributo.tests.test_user.testEliminarTipoAtributo	aplicaciones.tipoatributo.tests.test_user-class.html#testEliminarTipoAtributo
+aplicaciones.tipoatributo.tests.test_user.testAdministrarTipoAtributo	aplicaciones.tipoatributo.tests.test_user-class.html#testAdministrarTipoAtributo
+aplicaciones.tipoatributo.tests.test_user.testBucarTipoAtributo	aplicaciones.tipoatributo.tests.test_user-class.html#testBucarTipoAtributo
+aplicaciones.tipoatributo.tests.test_user.testModificarTipoAtributo	aplicaciones.tipoatributo.tests.test_user-class.html#testModificarTipoAtributo
+aplicaciones.tipoatributo.tests.test_user.testImportarTipoAtributo	aplicaciones.tipoatributo.tests.test_user-class.html#testImportarTipoAtributo

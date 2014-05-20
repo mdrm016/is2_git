@@ -37,11 +37,6 @@ cd tipoatributo
 mkdir /home/"$Usuario"/workspace/is2_git/sap/Sap_documentacion/TipoAtributo
 epydoc --html --o /home/"$Usuario"/workspace/is2_git/sap/Sap_documentacion/TipoAtributo --name "Sap_documentacion" *.py
 
-cd /home/"$Usuario"/workspace/is2_git/sap
-mkdir /home/"$Usuario"/workspace/is2_git/sap/Sap_documentacion/Sap
-epydoc --html --o /home/"$Usuario"/workspace/is2_git/sap/Sap_documentacion/Sap --name "Sap_documentacion" *.py
-
-<<<<<<< HEAD
 cd ..
 cd items
 mkdir /home/"$Usuario"/workspace/is2_git/sap/Sap_documentacion/Items
@@ -51,6 +46,10 @@ cd ..
 cd relaciones
 mkdir /home/"$Usuario"/workspace/is2_git/sap/Sap_documentacion/Relaciones
 epydoc --html --o /home/"$Usuario"/workspace/is2_git/sap/Sap_documentacion/Relaciones --name "Sap_documentacion" *.py
+
+cd /home/"$Usuario"/workspace/is2_git/sap
+mkdir /home/"$Usuario"/workspace/is2_git/sap/Sap_documentacion/Sap
+epydoc --html --o /home/"$Usuario"/workspace/is2_git/sap/Sap_documentacion/Sap --name "Sap_documentacion" *.py
 
 cd /home/"$Usuario"/workspace/is2_git/sap/Sap_documentacion/Sap 
 sudo firefox -new-tab index.html
@@ -64,6 +63,8 @@ cd /home/"$Usuario"/workspace/is2_git/sap/Sap_documentacion/Roles
 sudo firefox -new-tab index.html
 cd /home/"$Usuario"/workspace/is2_git/sap/Sap_documentacion/Fases
 sudo firefox -new-tab index.html
-=======
->>>>>>> branch 'master' of git@github.com:mdrm016/is2_git.git
+cd /home/"$Usuario"/workspace/is2_git/sap/Sap_documentacion/Items
+sudo firefox -new-tab index.html
+cd /home/"$Usuario"/workspace/is2_git/sap/Sap_documentacion/Relaciones
+sudo firefox -new-tab index.html
 

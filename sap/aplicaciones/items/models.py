@@ -2,6 +2,7 @@ from django.db import models
 from aplicaciones.proyectos.models import Proyectos
 from aplicaciones.fases.models import Fases
 from aplicaciones.tipoitem.models import TipoItem
+#from aplicaciones.lineabase.models import LineaBase
 
 # Create your models here.
 
@@ -33,6 +34,7 @@ class Items(models.Model):
     is_active = models.BooleanField(default=True)
     tipo_item = models.ForeignKey(TipoItem)
     padre = models.IntegerField(null=True)
+    lb = models.IntegerField(null=True)
 
     def __unicode__(self):
         return self.nombre

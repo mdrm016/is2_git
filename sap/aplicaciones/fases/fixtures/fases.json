@@ -32,7 +32,7 @@
         "is_active": true, 
         "fechainicio": null, 
         "duracion": null, 
-        "proyecto": 4, 
+        "proyecto": 1, 
         "descripcion": null, 
         "nombre": "Fase 2", 
         "estado": "DF"
@@ -45,7 +45,7 @@
         "is_active": true, 
         "fechainicio": null, 
         "duracion": null, 
-        "proyecto": 4, 
+        "proyecto": 1, 
         "descripcion": null, 
         "nombre": "Fase 1", 
         "estado": "DF"

@@ -131,7 +131,15 @@ django.test.TestCase --+
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="testUsuarioNuevo"></a><span class="summary-sig-name">testUsuarioNuevo</span>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td><span class="summary-sig"><a name="testUsuarioNuevo"></a><span class="summary-sig-name">testUsuarioNuevo</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      self.user = User.objects.get(pk=1) request = 
+      self.factory.post('/adm_usuarios/nuevo/', {'Nombre_de_Usuario': 
+      'usuario2', 'Contrasenha': 'ysapy', 'Confirmar_contrasenha': 'ysapy',
+      'Email': 'ysapy', 'Nombre': 'ysa', 'Apellido':'ortiz', 'Telefono': 
+      '021', 'Direccion': 'lambare'}) request.user = self.user response = 
+      usuarionuevo(request) self.assertEqual(response.status_code, 200) 
+      busco = User.objects.get(username='usuario2') perfil = 
+      busco.get_profile() print perfil.telefono</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="aplicaciones.usuarios.tests-pysrc.html#test_user.testUsuarioNuevo">source&nbsp;code</a></span>
             
@@ -147,7 +155,11 @@ django.test.TestCase --+
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="testUsuarioBuscar"></a><span class="summary-sig-name">testUsuarioBuscar</span>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td><span class="summary-sig"><a name="testUsuarioBuscar"></a><span class="summary-sig-name">testUsuarioBuscar</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      self.user = User.objects.get(pk=1) request = 
+      self.factory.get('/adm_usuarios/', {'busqueda': 'ysapy'}) 
+      request.user = self.user response = administrarUsuarios(request) 
+      self.assertEqual(response.status_code, 200)</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="aplicaciones.usuarios.tests-pysrc.html#test_user.testUsuarioBuscar">source&nbsp;code</a></span>
             
@@ -163,7 +175,12 @@ django.test.TestCase --+
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="testAdministrarUsuario"></a><span class="summary-sig-name">testAdministrarUsuario</span>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td><span class="summary-sig"><a name="testAdministrarUsuario"></a><span class="summary-sig-name">testAdministrarUsuario</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      self.user = User.objects.get(pk=1) request = 
+      self.factory.get('/adm_usuarios/') request.user = self.user response 
+      = administrarUsuarios(request)                                    
+      #Pasamos a la pagina de administracion de usuarios 
+      self.assertEqual(response.status_code, 200)</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="aplicaciones.usuarios.tests-pysrc.html#test_user.testAdministrarUsuario">source&nbsp;code</a></span>
             
@@ -179,7 +196,16 @@ django.test.TestCase --+
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="testModificarUsuario"></a><span class="summary-sig-name">testModificarUsuario</span>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td><span class="summary-sig"><a name="testModificarUsuario"></a><span class="summary-sig-name">testModificarUsuario</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      self.user = User.objects.get(pk=1) print User.objects.all() usuario =
+      User.objects.get(username='sap') request = 
+      self.factory.post('/adm_roles/modificar/1/', {'Nombre_de_Usuario': 
+      'sapMod', 'Contrasenha': '', 'Nueva_contrasenha': '', 'Email': 
+      usuario.email, 'Nombre': usuario.first_name,'Apellido': 
+      usuario.last_name, 'Telefono': '2333443545', 'Direccion' : 
+      'xxxxxxxxxxx', 'Especialidad' : '' , 'Observaciones' : ''}) 
+      request.user = self.user response = modificarUsuario(request, 1) 
+      self.assertEqual(response.status_code, 200) print User.objects.all()</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="aplicaciones.usuarios.tests-pysrc.html#test_user.testModificarUsuario">source&nbsp;code</a></span>
             
@@ -190,91 +216,6 @@ django.test.TestCase --+
     </td>
   </tr>
 </table>
-<!-- ==================== CLASS VARIABLES ==================== -->
-<a name="section-ClassVariables"></a>
-<table class="summary" border="1" cellpadding="3"
-       cellspacing="0" width="100%" bgcolor="white">
-<tr bgcolor="#70b0f0" class="table-header">
-  <td colspan="2" class="table-header">
-    <table border="0" cellpadding="0" cellspacing="0" width="100%">
-      <tr valign="top">
-        <td align="left"><span class="table-header">Class Variables</span></td>
-        <td align="right" valign="top"
-         ><span class="options">[<a href="#section-ClassVariables"
-         class="privatelink" onclick="toggle_private();"
-         >hide private</a>]</span></td>
-      </tr>
-    </table>
-  </td>
-</tr>
-<tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-        <a name="fixtures"></a><span class="summary-name">fixtures</span> = <code title="['users.json']">['users.json']</code>
-    </td>
-  </tr>
-</table>
-<!-- ==================== INSTANCE VARIABLES ==================== -->
-<a name="section-InstanceVariables"></a>
-<table class="summary" border="1" cellpadding="3"
-       cellspacing="0" width="100%" bgcolor="white">
-<tr bgcolor="#70b0f0" class="table-header">
-  <td colspan="2" class="table-header">
-    <table border="0" cellpadding="0" cellspacing="0" width="100%">
-      <tr valign="top">
-        <td align="left"><span class="table-header">Instance Variables</span></td>
-        <td align="right" valign="top"
-         ><span class="options">[<a href="#section-InstanceVariables"
-         class="privatelink" onclick="toggle_private();"
-         >hide private</a>]</span></td>
-      </tr>
-    </table>
-  </td>
-</tr>
-<tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-        <a href="aplicaciones.usuarios.tests.test_user-class.html#user" class="summary-name">user</a><br />
-      Logueamos al usuario manualmente en el request ya que esta tecnica no
-      es compatible con el middleware.
-    </td>
-  </tr>
-</table>
-<!-- ==================== INSTANCE VARIABLE DETAILS ==================== -->
-<a name="section-InstanceVariableDetails"></a>
-<table class="details" border="1" cellpadding="3"
-       cellspacing="0" width="100%" bgcolor="white">
-<tr bgcolor="#70b0f0" class="table-header">
-  <td colspan="2" class="table-header">
-    <table border="0" cellpadding="0" cellspacing="0" width="100%">
-      <tr valign="top">
-        <td align="left"><span class="table-header">Instance Variable Details</span></td>
-        <td align="right" valign="top"
-         ><span class="options">[<a href="#section-InstanceVariableDetails"
-         class="privatelink" onclick="toggle_private();"
-         >hide private</a>]</span></td>
-      </tr>
-    </table>
-  </td>
-</tr>
-</table>
-<a name="user"></a>
-<div>
-<table class="details" border="1" cellpadding="3"
-       cellspacing="0" width="100%" bgcolor="white">
-<tr><td>
-  <h3 class="epydoc">user</h3>
-  <p>Logueamos al usuario manualmente en el request ya que esta tecnica no 
-  es compatible con el middleware. Atributos de sesion y autenticacion 
-  deben ser suministrados por la prueba en si, para que funcione 
-  correctamente.</p>
-  <dl class="fields">
-  </dl>
-</td></tr></table>
-</div>
-<br />
 <!-- ==================== NAVIGATION BAR ==================== -->
 <table class="navbar" border="0" width="100%" cellpadding="0"
        bgcolor="#a0c0ff" cellspacing="0">
@@ -306,7 +247,7 @@ django.test.TestCase --+
 <table border="0" cellpadding="0" cellspacing="0" width="100%%">
   <tr>
     <td align="left" class="footer">
-    Generated by Epydoc 3.0.1 on Sat May  3 06:01:17 2014
+    Generated by Epydoc 3.0.1 on Sat May 17 00:52:47 2014
     </td>
     <td align="right" class="footer">
       <a target="mainFrame" href="http://epydoc.sourceforge.net"
