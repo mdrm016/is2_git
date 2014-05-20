@@ -1,7 +1,7 @@
 from django.db import models
 from aplicaciones.proyectos.models import Proyectos
 from aplicaciones.fases.models import Fases
-from aplicaciones.item.models import Items
+from aplicaciones.items.models import Items
 from aplicaciones.usuarios.models import Usuarios
 #from aplicaciones.lineabase.models import LineaBase
 
