@@ -7,7 +7,7 @@ from aplicaciones.usuarios.models import Usuarios
 
 # Create your models here.
 
-class Solicitud(models.Model):
+class Solicitudes(models.Model):
     
     """ El modelo Solicitud describe la estructura de cada instancia de una fase, los campos
     que contiene el modelo son: 

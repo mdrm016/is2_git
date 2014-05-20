@@ -1,6 +1,6 @@
 from django import forms
 from django.forms.extras.widgets import Select
-from .models import Solicitud
+from .models import Solicitudes
 from django.forms import ModelForm
 from django.core import validators
 from django.core.exceptions import ValidationError
@@ -24,7 +24,7 @@ class SolicitudNuevaForm(forms.Form):
         
     """
 
-    Usuario = forms.CharField(max_length=20, required=True, error_messages={'required':'Ingrese nombre de usuario', 'max_length':'Longitud maxima 20'})
+    #Usuario = forms.CharField(max_length=20, required=True, error_messages={'required':'Ingrese nombre de usuario', 'max_length':'Longitud maxima 20'})
     Proyecto = forms.CharField(required=True, max_length=300, error_messages={'required':'Ingrese nombre de proyecto', 'max_length':'Longitud maxima 300'})
     Fase = forms.CharField(required=True, error_messages={'required': 'Ingrese nombre de fase'})
     Item = forms.CharField(required=True, max_length=300, error_messages={'required': 'Ingrese nombre de item', 'max_length':'Longitud maxima 300'})
@@ -47,7 +47,7 @@ class SolicitudPrimeraForm(forms.Form):
         
     """
 
-    Usuario = forms.CharField(required=False, max_length=20, error_messages={'max_length':'Longitud maxima 20'})
+    #Usuario = forms.CharField(required=False, max_length=20, error_messages={'max_length':'Longitud maxima 20'})
     Proyecto = forms.CharField(required=False, max_length=300, error_messages={'max_length':'Longitud maxima 300'})
     Fase = forms.CharField(required=False)
     Item = forms.CharField(required=False, max_length=300, error_messages={'max_length':'Longitud maxima 300'})

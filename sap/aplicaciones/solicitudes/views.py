@@ -7,7 +7,7 @@ from django.template.context import RequestContext
 from aplicaciones.proyectos.models import Proyectos
 from aplicaciones.fases.models import Fases
 from aplicaciones.items.models import Items
-from .models import Solicitud
+from .models import Solicitudes
 from .forms import SolicitudNuevaForm, SolicitudPrimeraForm
 from datetime import datetime
 from django.contrib.auth.decorators import login_required, permission_required
@@ -36,22 +36,22 @@ def crear_solicitud(request, id_proyecto, id_fase, id_item):
     if request.method == 'POST':
         form = SolicitudNuevaForm(request.POST)
         if form.is_valid():
-            usuarionuevo = form.cleaned_data['Usuario']
+            usuarionuevo = request.user
             proyectonuevo = proyecto
             fasenueva = fase
             itemnuevo = item
-            fechasolic = datetime.now()
+            fechasolic = datetime.today()
             tiemposolic = form.cleaned_data['Tiempo_Solicitado_en_Dias']
             descripcion = form.cleaned_data['Descripcion']
             observaciones = form.cleaned_data['Observaciones']
             estado = 'Pendiente'
             duracionsolic = form.cleaned_data['Duracion_Solicitud_en_Dias']
 
-            solicitud = Solicitud()
-            solicitud.usuario_id = usuarionuevo
-            solicitud.proyecto_id = proyectonuevo
-            solicitud.fase_id = fasenueva
-            solicitud.item_id = itemnuevo
+            solicitud = Solicitudes()
+            solicitud.usuario_id = usuarionuevo.id
+            solicitud.proyecto_id = proyectonuevo.id
+            solicitud.fase_id = fasenueva.id
+            solicitud.item_id = itemnuevo.id
             solicitud.fecha_solicitud = fechasolic
             solicitud.tiempo_solicitado = tiemposolic
             solicitud.descripcion = descripcion
@@ -66,12 +66,20 @@ def crear_solicitud(request, id_proyecto, id_fase, id_item):
             return render_to_response(template_name, ctx, context_instance=RequestContext(request))
                 
             #return render(request, template_name, {'id_proyecto': id_proyecto, 'id_fase': id_fase, 'id_item': id_item, 'id_tipoitem': id_tipoitem, 'lista_valores': lista_valores, 'lista_atributos': lista_atributos})
+    try:
+        solicitudexistente = Solicitudes.objects.get(item_id=id_item, estado='Pendiente')
+    except Solicitudes.DoesNotExist:
+        solicitudexistente = False
+    if solicitudexistente:
+        mensaje = 'Ya existe una solicitud pendiente para la modificacion del item seleccionado.'
+        template_name='./solicitudes/solicitudalerta.html'
+        ctx = {'mensaje': mensaje, 'id_proyecto':id_proyecto, 'id_fase': id_fase, 'id_item': id_item, 'proyecto':proyecto, 'fase':fase, 'item': item}
+        return render_to_response(template_name, ctx, context_instance=RequestContext(request))
     else:
-        fechasolic = datetime.now()
+        fechasolic = datetime.today()
         estado = 'Pendiente'
         data = {'Proyecto': proyecto, 'Fase': fase, 'Item': item, 'Fecha_de_Solicitud': fechasolic, 'Estado': estado}
         form = SolicitudPrimeraForm(data)  
         
     template_name='./solicitudes/solicitudnueva.html'
     return render(request, template_name, {'form': form, 'id_proyecto':id_proyecto, 'id_fase': id_fase, 'id_item': id_item, 'proyecto':proyecto, 'fase':fase, 'item': item})
-
