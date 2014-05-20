@@ -2,7 +2,7 @@ import os
 import sys
 from unipath import Path
 
-p = Path("/home/mdrm016/is2_git/is2_git/sap")
+p = Path("/home/ysapy/workspace/is2_git/sap")
 sys.path = [p] + sys.path
 os.environ['DJANGO_SETTINGS_MODULE'] = 'sap.settings'
 #os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")

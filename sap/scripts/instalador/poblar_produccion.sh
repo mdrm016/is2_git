@@ -14,6 +14,7 @@ python syncdb.py
 echo "############Poblando BD SAP############"
 cat poblacion_produccion.sql | psql sap
 echo "############LANZANDO EL NAVEGADOR############"
-#firefox -new-tab sap.com
+firefox -new-tab sap.com
+#chromium-browser -new-tab sap.com
 #google-chrome -new-tab sap.com
-chromium-browser -new-tab sap.com
+
