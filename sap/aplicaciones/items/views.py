@@ -824,20 +824,7 @@ def modificar_item(request, id_proyecto, id_fase, id_item):
                                     template_name='./items/modificaritem.html'
                                     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
                     elif (item.estado=='En Construccion') and (estadoNuevo=='Terminado'):
-                        if fase.orden==1:
-                            if item.padre==0:
-                                try:    
-                                    itemstodos = Items.objects.get(fase_id=id_fase, is_active=True, estado='Terminado', padre=0)
-                                except Items.DoesNotExist:
-                                    itemstodos = False
-                                if itemstodos:
-                                    mensaje = 'El item no posee padre/antecesor. No puede pasar a estado terminado'
-                                    data ={'Nombre_de_Item':nombre, 'Descripcion': descripcion, 'Prioridad': prioridad, 'Observaciones': observaciones, 'Costo_Monetario': costomonetario, 'Costo_Temporal': costotemporal, 'Complejidad': complejidad, 'Estado':estado}
-                                    form = ItemModificadoForm(data)
-                                    ctx ={'form': form, 'mensaje':mensaje, 'id_proyecto':id_proyecto, 'id_fase':id_fase, 'id_item': id_item, 'proyecto':proyecto, 'fase':fase}      
-                                    template_name='./items/modificaritem.html'
-                                    return render_to_response(template_name, ctx, context_instance=RequestContext(request))
-                        else:
+                        if fase.orden!=1:
                             if item.padre==0:
                                 mensaje = 'El item no posee padre/antecesor. No puede pasar a estado terminado'
                                 data ={'Nombre_de_Item':nombre, 'Descripcion': descripcion, 'Prioridad': prioridad, 'Observaciones': observaciones, 'Costo_Monetario': costomonetario, 'Costo_Temporal': costotemporal, 'Complejidad': complejidad, 'Estado':estado}

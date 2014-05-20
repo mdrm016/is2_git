@@ -97,14 +97,42 @@
 				    
 				    <div id="collapse{{ item.id }}" class="panel-collapse collapse pull-left">
 				      <div class="panel-body">
-
-				      		<a href="consultar/{{ item.id }}/"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-eye-open"></span> Consultar</button></a>
-				      		<a href="modificar/{{ item.id }}/"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-edit"></span> Modificar</button></a>
-				      		<a href="atributos/{{ item.id }}/"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-edit"></span> Atributos</button></a>
-				      		<a href="relaciones/{{ item.id }}"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-edit"></span> Relaciones</button></a>
-				      		<a href="versiones/{{ item.id }}"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-edit"></span> Versiones</button></a>
-				      		<a href="eliminar/{{ item.id }}"><button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> Eliminar</button></a>
-				      		<a href="impacto/{{ item.id }}"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-edit"></span> Impacto</button></a>
+							{% ifequal item.estado 'En Construccion' %}
+				      			<a href="consultar/{{ item.id }}/"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-eye-open"></span> Consultar</button></a>
+				      			<a href="modificar/{{ item.id }}/"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-edit"></span> Modificar</button></a>
+				      			<a href="atributos/{{ item.id }}/"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-edit"></span> Atributos</button></a>
+				      			<a href="relaciones/{{ item.id }}"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-edit"></span> Relaciones</button></a>
+				      			<a href="versiones/{{ item.id }}"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-edit"></span> Versiones</button></a>
+				      			<a href="eliminar/{{ item.id }}"><button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> Eliminar</button></a>
+				      			<a href="impacto/{{ item.id }}"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-edit"></span> Impacto</button></a>
+				      		{% endifequal %}
+				      		{% ifequal item.estado 'Terminado' %}
+				      			<a href="consultar/{{ item.id }}/"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-eye-open"></span> Consultar</button></a>
+				      			<a href="modificar/{{ item.id }}/"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-edit"></span> Modificar</button></a>
+				      			<a href="atributos/{{ item.id }}/"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-edit"></span> Atributos</button></a>
+				      			<a href="relaciones/{{ item.id }}/"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-edit"></span> Relaciones</button></a>
+				      			<a href="versiones/{{ item.id }}/"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-edit"></span> Versiones</button></a>
+				      			<a href="eliminar/{{ item.id }}/"><button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> Eliminar</button></a>
+				      			<a href="impacto/{{ item.id }}/"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-edit"></span> Impacto</button></a>
+				      		{% endifequal %}
+				      		{% ifequal item.estado 'Validado' %}
+				      			<a href="consultar/{{ item.id }}/"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-eye-open"></span> Consultar</button></a>
+				      			<a href="impacto/{{ item.id }}/"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-edit"></span> Impacto</button></a>
+				      		{% endifequal %}
+				      		{% ifequal item.estado 'Bloqueado' %}
+				      			<a href="consultar/{{ item.id }}/"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-eye-open"></span> Consultar</button></a>
+				      			<a href="impacto/{{ item.id }}/"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-edit"></span> Impacto</button></a>
+				      			<a href="solicitud/{{ item.id }}/"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-edit"></span> Solicitar Modificacion</button></a>
+				      		{% endifequal %}
+				      		{% ifequal item.estado 'En Revision' %}
+				      			<a href="consultar/{{ item.id }}/"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-eye-open"></span> Consultar</button></a>
+				      			<a href="modificar/{{ item.id }}/"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-edit"></span> Modificar</button></a>
+				      			<a href="atributos/{{ item.id }}/"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-edit"></span> Atributos</button></a>
+				      			<a href="relaciones/{{ item.id }}/"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-edit"></span> Relaciones</button></a>
+				      			<a href="versiones/{{ item.id }}/"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-edit"></span> Versiones</button></a>
+				      			<a href="impacto/{{ item.id }}/"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-edit"></span> Impacto</button></a>
+				      			<a href="modificar_solicitud/{{ item.id }}/"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-edit"></span> Modificar Solicitud</button></a>
+				      		{% endifequal %}
 				      </div>
 				    </div>
 				</div>
