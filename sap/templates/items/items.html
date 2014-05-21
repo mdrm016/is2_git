@@ -122,7 +122,7 @@
 				      		{% ifequal item.estado 'Bloqueado' %}
 				      			<a href="consultar/{{ item.id }}/"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-eye-open"></span> Consultar</button></a>
 				      			<a href="impacto/{{ item.id }}/"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-edit"></span> Impacto</button></a>
-				      			<a href="solicitud/{{ item.id }}/"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-edit"></span> Solicitar Modificacion</button></a>
+				      			<a href="crear_solicitud/{{ item.id }}/"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-edit"></span> Solicitar Modificacion</button></a>
 				      		{% endifequal %}
 				      		{% ifequal item.estado 'En Revision' %}
 				      			<a href="consultar/{{ item.id }}/"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-eye-open"></span> Consultar</button></a>
