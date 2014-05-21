@@ -1,10 +1,5 @@
 {% extends "base_general.html" %}
 
-{% block tipo_Item_y_Atributo %}
-<li><a href="/adm_proyectos/gestionar/{{ id_proyecto }}/adm_tipos_item/">Administrar Tipos de Item</a></li>
-<li><a href="/adm_proyectos/gestionar/{{ id_proyecto }}/adm_tipos_atributo">Administrar Tipos de Atributo</a></li>
-{% endblock %}
-
 {% block navegacion %}
 <nav class="navbar navbar-default">
 	<div class="navbar-header">
@@ -13,9 +8,7 @@
 
 	<div  class="collapse navbar-collapse navbar-ex1-collapse">
 		<ul class="nav navbar-nav">
-			<li><a href="/adm_proyectos/">Proyectos</a></li>
-			<li><a href="/adm_proyectos/gestionar/{{ proyecto.id }}/">Gestión de {{ proyecto.nombre }}</a></li>
-			<li class="active"><a href="/adm_proyectos/gestionar/{{ proyecto.id }}/adm_items/{{ fase.id }}/">Gestión de {{ fase.nombre }}</a></li>
+			<li class="active"><a href="/adm_proyectos/solicitudes_realizadas/">Solicitudes Realizadas</a></li>
         </ul>
 
 		<ul class="nav navbar-nav navbar-right">
@@ -35,7 +28,7 @@
 	<div class="bs-example">
 		<h2>Notificacion</h2>
 			<p class="text-warning"><small>{{ mensaje }}</small></p>
-			<a type="button" class="btn btn-default" href="/adm_proyectos/gestionar/{{ id_proyecto }}/adm_items/{{ id_fase }}/">Volver</a>
+			<a type="button" class="btn btn-default" href="/adm_proyectos/solicitudes_realizadas/">Volver</a>
         </form>
 	</div>
 </div>

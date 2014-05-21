@@ -42,3 +42,8 @@ $(document).on("click", ".relaciones", function () {
 	var id = $(this).data('id');
 	document.getElementById("relacion").setAttribute("href",'eliminar/'+id);
 });
+
+$(document).on("click", ".solicitudRealizada", function () {
+	var id = $(this).data('id');
+		document.getElementById("solicitudRealizada").setAttribute("href",'/adm_proyectos/solicitudes_realizadas/cancelar_solicitud/'+id);
+});

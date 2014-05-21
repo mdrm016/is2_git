@@ -8,10 +8,8 @@
 
 	<div  class="collapse navbar-collapse navbar-ex1-collapse">
 		<ul class="nav navbar-nav">
-			<li><a href="/adm_proyectos/">Proyectos</a></li>
-			<li><a href="/adm_proyectos/gestionar/{{ proyecto.id }}/">Gestión de {{ proyecto.nombre }}</a></li>
-			<li><a href="/adm_proyectos/gestionar/{{ proyecto.id }}/adm_items/{{ fase.id }}/">Gestión de {{ fase.nombre }}</a></li>
-			<li class="active"><a href="/adm_proyectos/gestionar/{{ proyecto.id }}/adm_items/{{ fase.id }}/nuevo/crear/{{ id_tipoitem }}/">Solicitud de Cambio {{ item.nombre }}</a></li>
+			<li><a href="/adm_proyectos/solicitudes_realizadas/">Solicitudes Realizadas</a></li>
+			<li class="active"><a href="/adm_proyectos/solicitudes_realizadas/listar_proyectos">Creación de Solicitud</a></li>
         </ul>
 
 		<ul class="nav navbar-nav navbar-right">
@@ -58,7 +56,7 @@
 		
 	<div align="center"><br>
 		<input class="btn btn-default" type="submit" value="Crear"/>
-		<a href="/adm_proyectos/gestionar/{{ id_proyecto }}/adm_items/{{ id_fase }}"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-remove"></span> Cancelar</button></a>
+		<a href="/adm_proyectos/solicitudes_realizadas/"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-remove"></span> Cancelar</button></a>
 	</div>
 	<br>
 	</form>

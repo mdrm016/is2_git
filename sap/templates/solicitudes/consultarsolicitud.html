@@ -53,19 +53,19 @@
 							</tr>
 						  	<tr class="active">
 						  		<td><p><h4>Usuario: </h4></p></td>
-						  		<td><p><h4><span class="label label-default">{{ solicitud.usuario_id.nombre }}</span></h4></h4></p></td>
+						  		<td><p><h4><span class="label label-default">{{ solicitud.usuario.user.username }}</span></h4></h4></p></td>
 							</tr>
 						  	<tr class="active">
 						  		<td><p><h4>Nombre: </h4></p></td>
-						  		<td><p><h4><span class="label label-default">{{ solicitud.proyecto_id.nombre }}</span></h4></h4></p></td>
+						  		<td><p><h4><span class="label label-default">{{ solicitud.proyecto.nombre }}</span></h4></h4></p></td>
 						  	</tr>
 						  	<tr class="active">
 						  		<td><p><h4>Fase: </h4></p></td>
-						  		<td><p><h4><span class="label label-default">{{ solicitud.fase_id.nombre }}</span></h4></h4></p></td>
+						  		<td><p><h4><span class="label label-default">{{ solicitud.fase.nombre }}</span></h4></h4></p></td>
 						  	</tr>
 						  	<tr class="active">
 						  		<td><p><h4>Item: </h4></p></td>
-						  		<td><p><h4><span class="label label-default">{{ solicitud.item_id.nombre }}</span></h4></h4></p></td>
+						  		<td><p><h4><span class="label label-default">{{ solicitud.item.nombre }}</span></h4></h4></p></td>
 						  	</tr>
 						  	<tr class="active">
 						  		<td><p><h4>Fecha de Solicitud: </h4></p></td>
@@ -96,7 +96,7 @@
 					</table>
 					{% ifequal solicitud.estado 'Pendiente' %}
 						<div align="center">
-							<a href="/adm_proyectos/gestionar/{{ id_proyecto }}/adm_items/{{ id_fase }}/cancelar_solicitud/{{ solicitud.id }}/"><button type="button" class="btn btn-default"> Cancelar Solicitud <br></button></a>
+							<button class="btn btn-danger btn-sm solicitudRealizada" data-toggle="modal" data-target="#myModal" data-id="{{ solicitud.id }}"><span class="glyphicon glyphicon-trash"></span> Cancelar Solicitud</button>
 						</div>
 					{% endifequal %}
 					<div align="center">
@@ -108,6 +108,27 @@
 				</div>
 		</div>
 	</div>
+	
+		<!-- Ininicia Modal -->
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		        <h4 class="modal-title" id="myModalLabel">Eliminar</h4>
+		      </div>
+		      <div class="modal-body">
+		        	Esta usted seguro de que desea Cancelar la Solicitud?
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancelar</button>
+		       <a id="solicitudRealizada" href=""><button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-ok"></span> Estoy Seguro</button></a>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		<!-- Finaliza el Modal -->
+	
 </div>
 
 	
