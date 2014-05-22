@@ -84,6 +84,18 @@ def crear_solicitud(request, id_proyecto, id_fase, id_item):
     template_name='./solicitudes/solicitudnueva.html'
     return render(request, template_name, {'form': form, 'id_proyecto':id_proyecto, 'id_fase': id_fase, 'id_item': id_item, 'proyecto':proyecto, 'fase':fase, 'item': item})
 
+def cancelar_solicitud(request, id_proyecto, id_fase, id_solicitud):
+    solicitud = Solicitudes.objects.get(id=id_solicitud)
+    solicitud.estado = 'Cancelado'
+    solicitud.save()
+    proyecto = Proyectos.objects.get(id=id_proyecto)
+    fase = Fases.objects.get(id=id_fase)
+    
+    mensaje = 'Solicitud eliminada con exito.'
+    template_name='./solicitudes/solicitudalerta.html'
+    ctx = {'mensaje': mensaje, 'id_proyecto':id_proyecto, 'id_fase': id_fase, 'proyecto':proyecto, 'fase':fase}
+    return render_to_response(template_name, ctx, context_instance=RequestContext(request))
+
 def consultar_solicitud(request, id_proyecto, id_fase, id_solicitud):
     """ Recibe un request, se verifica cual es el usuario registrado y el proyecto del cual se solicita,
     se obtiene la lista de fases con las que estan relacionados el usuario y el proyecto 
@@ -107,15 +119,3 @@ def consultar_solicitud(request, id_proyecto, id_fase, id_solicitud):
     #fases = Fases.objects.filter(id_proyecto = id_proyecto)
     template_name = './solicitudes/consultarsolicitud.html'
     return render(request, template_name, {'id_proyecto': id_proyecto, 'fase': fase, 'id_fase': id_fase, 'proyecto':proyecto, 'fase':fase, 'solicitud': solicitud})
-
-def cancelar_solicitud(request, id_proyecto, id_fase, id_solicitud):
-    solicitud = Solicitudes.objects.get(id=id_solicitud)
-    solicitud.estado = 'Cancelado'
-    solicitud.save()
-    proyecto = Proyectos.objects.get(id=id_proyecto)
-    fase = Fases.objects.get(id=id_fase)
-    
-    mensaje = 'Solicitud eliminada con exito.'
-    template_name='./solicitudes/solicitudalerta.html'
-    ctx = {'mensaje': mensaje, 'id_proyecto':id_proyecto, 'id_fase': id_fase, 'proyecto':proyecto, 'fase':fase}
-    return render_to_response(template_name, ctx, context_instance=RequestContext(request))
