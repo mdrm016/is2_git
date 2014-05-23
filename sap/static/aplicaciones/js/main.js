@@ -47,3 +47,19 @@ $(document).on("click", ".solicitudRealizada", function () {
 	var id = $(this).data('id');
 		document.getElementById("solicitudRealizada").setAttribute("href",'/adm_proyectos/solicitudes_realizadas/cancelar_solicitud/'+id);
 });
+
+$(document).ready(function() {
+    var posicion = $("#caja_flotante").offset();
+    var margenSuperior = 15;
+     $(window).scroll(function() {
+         if ($(window).scrollTop() > posicion.top) {
+             $("#caja_flotante").stop().animate({
+                 marginTop: $(window).scrollTop() - posicion.top + margenSuperior
+             });
+         } else {
+             $("#caja_flotante").stop().animate({
+                 marginTop: 0
+             });
+         };
+     });
+});
