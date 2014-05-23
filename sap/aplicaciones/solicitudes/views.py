@@ -12,14 +12,30 @@ from .forms import SolicitudNuevaForm, SolicitudPrimeraForm
 from datetime import datetime
 from django.contrib.auth.decorators import login_required, permission_required
 from django.db.models import Q
+from aplicaciones.comite.models import Comite
 
 # Create your views here.
-def administrar_solicitud_recibida (request):
-    pass
+
+def administrar_solicitud_recibidas (request):
+    
+    comites = Comite.objects.filter(miembros=request.user)
+    list_proyect = []
+    for comite in comites:
+        list_proyect.append(comite.proyecto)
+    solicitudes = Solicitudes.objects.filter(proyecto__in=list_proyect)
+    qset = (
+                Q(estado__icontains='Pendiente') 
+            )
+    pendientes=solicitudes.filter(qset).distinct().count()
+    
+    template_name='solicitudes/solicitudesrecibidas.html'
+    ctx = {'solicitudes':solicitudes, 'pendientes':pendientes}
+    return render_to_response(template_name, ctx, context_instance=RequestContext(request))
 
 def administrar_solicitud_realizadas (request):
-    template_name='solicitudes/solicitudesrealizadas.html'
+    
     solicitudes = Solicitudes.objects.filter(usuario=request.user)
+    template_name='solicitudes/solicitudesrealizadas.html'
     ctx = {'solicitudes':solicitudes}
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
     
