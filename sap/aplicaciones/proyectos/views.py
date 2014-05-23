@@ -10,6 +10,7 @@ from django.contrib.auth.decorators import login_required, permission_required
 from aplicaciones.roles.models import Roles
 from aplicaciones.tipoitem.models import TipoItem, ListaAtributo
 from aplicaciones.tipoitem.views import ordenar_mantener
+from aplicaciones.comite.models import Comite
 
 
 @login_required(login_url='/login/')
@@ -156,6 +157,10 @@ def crear_proyecto (request):
             proyecto.is_active='True'
             proyecto.save()
 
+            comite = Comite()
+            comite.proyecto_id = proyecto.id
+            comite.save()
+            
             mensaje="Proyecto creado exitosamente"
             ctx = {'mensaje':mensaje}
             return render_to_response('proyectos/proyectoalerta.html',ctx, context_instance=RequestContext(request))

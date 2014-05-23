@@ -23,7 +23,7 @@ def administrarRoles(request):
     
     """
     error = False
-    usuario_logueado = User.objects.get(username=request.user.username)
+    usuario_logueado = User.objects.get(id=request.user.id)
     mis_roles_todos = usuario_logueado.groups.all()
     mis_roles = []
     for mi_rol in mis_roles_todos:

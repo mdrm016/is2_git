@@ -53,6 +53,7 @@ INSTALLED_APPS = (
     'aplicaciones.relaciones',
     'aplicaciones.lineabase',
     'aplicaciones.solicitudes',
+    'aplicaciones.comite',
 )
 
 MIDDLEWARE_CLASSES = (
