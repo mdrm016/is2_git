@@ -325,7 +325,7 @@ else
 	echo "ALTER USER sap WITH PASSWORD 'sap';" > comandos.sql
 	echo "\q" >> comandos.sql
 	sudo -u postgres psql -a -f comandos.sql
-	sudo -u postgres createdb -O sap sap
+	sudo -u postgres createdb -O sap sap_desarrollo
 	rm comandos.sql
 	python syncdb.py	
 fi

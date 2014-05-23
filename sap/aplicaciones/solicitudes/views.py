@@ -127,3 +127,50 @@ def consultar_solicitud(request, id_solicitud):
     #fases = Fases.objects.filter(id_proyecto = id_proyecto)
     template_name = './solicitudes/consultarsolicitud.html'
     return render(request, template_name, {'fase': fase, 'proyecto':proyecto, 'fase':fase, 'solicitud': solicitud})
+
+def votar_solicitud(request, id_solicitud):
+    """ Recibe un request y el id de la solicitud  que se quiere  votar.
+    Se retorna un html que indica al usuario que proceda a aceptar, rechazar la solicitud o
+    cancelar la operacion de votar la solicitud
+
+    @type request: django.http.HttpRequest.
+    @param request: Contiene informacion sobre la solicitud web actual que llamo a esta vista.
+
+    @rtype: HttpRequest.HttpResponse
+    @return: votar.html, donde se solicita el voto a  favor o en contra del miembro del comite
+
+    @author: Eduardo Gimenez
+
+    """
+    if request.method == 'POST':
+            form.clean()
+            nombreRol = form.cleaned_data['Nombre_de_Rol']
+            permisos = form.cleaned_data['Permisos']
+            proyecto = form.cleaned_data['Proyecto']
+            descripcion = form.cleaned_data['Descripcion']
+
+            rol = Roles.objects.create(name = nombreRol)
+            for permiso in permisos:
+                rol.permissions.add(Permission.objects.get(codename=permiso))
+            if proyecto:
+                p = Proyectos.objects.get(id=proyecto)
+            else:
+                p = ''
+            rol.proyecto = p
+            rol.descripcion = descripcion
+            rol.save()
+
+            template_name='./Roles/rolcreado.html'
+            return render(request, template_name)
+    else:
+        form = RolForm()
+
+    permisos = Permission.objects.filter(id__gt=18)
+    parte1 = permisos.filter(id__range=(19,46))
+    parte2 = permisos.filter(id__gt=65)
+    permisos = []
+    permisos.extend(parte1)
+    permisos.extend(parte2)
+    permisos = [(permiso.codename, permiso.name) for permiso in permisos]
+    template_name='./Roles/rolnuevo.html'
+    return render(request, template_name, {'form': form, 'permisos': permisos})
