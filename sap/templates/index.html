@@ -170,5 +170,14 @@
 		  </div>
 		</div>
 		<!-- Finaliza el Modal -->
+		{% if pendientes > 0 %}
+ 			<div class="jumbotron" id="caja_flotante">
+				<div class="bs-example">
+					<h2>Notificacion</h2>
+					<p class="text-warning"><small><b><font color="red">{{ pendientes }}</font> Solicitudes Pendientes</b></small></p>
+                    <a href="solicitudes_recibidas/"><button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-hand-up"></span>Ir a votar</button></a>
+				</div>
+			</div>
+		{% endif %}
 </div>
 {% endblock %}

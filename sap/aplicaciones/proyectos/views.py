@@ -11,6 +11,7 @@ from aplicaciones.roles.models import Roles
 from aplicaciones.tipoitem.models import TipoItem, ListaAtributo
 from aplicaciones.tipoitem.views import ordenar_mantener
 from aplicaciones.comite.models import Comite
+from aplicaciones.solicitudes.models import Solicitudes
 
 
 @login_required(login_url='/login/')
@@ -62,8 +63,18 @@ def adm_proyectos (request):
             proyectos= proyectos.filter(qset).distinct()
             if not proyectos:
                 error = True
+                
+    comites = Comite.objects.filter(miembros=request.user)
+    list_proyect = []
+    for comite in comites:
+        list_proyect.append(comite.proyecto)
+    solicitudes = Solicitudes.objects.filter(proyecto__in=list_proyect)
+    qset = (
+                Q(estado__icontains='Pendiente') 
+            )
+    pendientes=solicitudes.filter(qset).distinct().count()
         
-    ctx = {'lista_proyectos':proyectos, 'query':busqueda, 'error':error}   
+    ctx = {'lista_proyectos':proyectos, 'query':busqueda, 'error':error, 'pendientes':pendientes}   
     template_name = 'index.html'
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
 
@@ -248,6 +259,9 @@ def modificar_proyecto (request, id_proyecto):
                 mensaje = 'El nombre del proyecto ya existe y no puede haber duplicados'
             
             else:
+                comite = Comite.objects.get(proyecto_id=id_proyecto)
+                miembroscomite = comite.miembros.all()
+                cantidadmiembros = len(miembroscomite)
                 if nombreNuevo == proyecto.nombre and  lideruser == proyecto.lider and estado == proyecto.estado and duracion == proyecto.duracion:
                       mensaje="Proyecto guardado sin modificaciones"
                       
@@ -262,7 +276,10 @@ def modificar_proyecto (request, id_proyecto):
                     
                 elif proyecto.estado == 'Inactivo' and estado == 'Finalizado':
                     mensaje="El proyecto no puede pasar de un estado Inactivo a Finalizado"
-                    
+                
+                elif proyecto.estado == 'Inactivo' and estado == 'En Construccion' and cantidadmiembros<3:
+                    mensaje="El comite de cambio del proyecto debe poseer al menos 3 miembros." 
+                
                 else:
                     proyecto.nombre=nombreNuevo
                     proyecto.lider=lideruser

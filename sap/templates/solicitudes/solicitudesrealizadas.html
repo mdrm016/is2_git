@@ -27,10 +27,10 @@
 <div class="menu">
 	<ul>
 		<li id="option1" class="active">
-			<a href="solicitudes_realizadas/">Solicitudes Realizadas</a>
+			<a href="/adm_proyectos/solicitudes_realizadas/">Solicitudes Realizadas</a>
 		</li>
 		<li id="option2" >
-			<a href="solicitudes_recibidas/">Solicitudes Recibidas</a>
+			<a href="/adm_proyectos/solicitudes_recibidas/">Solicitudes Recibidas {% if pendientes > 0 %} ({{ pendientes }}) {% endif %}</a>
 		</li>
 	</ul>
 </div>

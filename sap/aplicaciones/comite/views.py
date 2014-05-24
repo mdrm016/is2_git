@@ -70,21 +70,26 @@ def agregar_miembro(request, id_proyecto):
             mensaje = 'El comite debe estar conformado por al menos 3 miembros'
          elif (len(listamiembros)>2 and (len(miembrosid)%2)==0):
              mensaje = 'La cantidad de miembros debe ser impar'
-             
          else: 
-            for idmiembro in miembrosid:
-                user = User.objects.get(id=idmiembro)
-                usuario = Usuarios.objects.get(user_id=user.id)
-                comite.miembros.add(usuario)
-                comite.save()
-            mensaje = 'Cambios guardados.'
+             for miem in miembros:
+                 comite.miembros.remove(miem)
+             for idmiembro in miembrosid:
+                 user = User.objects.get(id=idmiembro)
+                 usuario = Usuarios.objects.get(user_id=user.id)
+                 comite.miembros.add(usuario)
+                 comite.save()
+             miembros = comite.miembros.all()
+             mensaje = 'Cambios guardados.'
     else:
         mensaje = ''
         
     miembros_id = []
     for miembro in miembros:
         miembros_id.append(miembro.id)
-
+    id_listamiembros = []
+    for listamiem in listamiembros:
+        id_listamiembros.append(listamiem.id)
+    
     proyecto = Proyectos.objects.get(id=id_proyecto)
     ctx = {'id_proyecto':id_proyecto, 'proyecto': proyecto, 'miembros': miembros, 'listamiembros': listamiembros, 'mensaje': mensaje}
     return ctx;

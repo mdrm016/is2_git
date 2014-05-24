@@ -204,6 +204,25 @@ body
 	float: left;
 }
 
+
+
+
+#caja_flotante{
+	position: absolute;
+	/*bottom:0;
+	right: 10px;*/
+	top:0;
+	left: 10px;
+	border: 1px solid #CCC;
+	background-color: #F2F2F2;
+	width:220px;
+	border-radius: 6px 6px 6px 6px;
+	text-align: center;
+
+}
+
+#caja_flotante div{margin: 10px;}
+
 /* ==========================================================================
    Media Queries
    ========================================================================== */

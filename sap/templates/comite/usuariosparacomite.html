@@ -37,19 +37,20 @@
 {% block contenido %}
 <div class="content-secondary">
 
-		{{ mensaje }}
+		<h4 class="form-group has-error">{{ mensaje }}</b></h4><br>
 	
 	<form action="" method="post">
 		<table>
 		<tbody>
+		<h4 class="panel-title"><b>Usuarios disponibles en el proyecto. Seleccione miembros: </b></h4><br>
 			<tr>
 				<td>
 				<ul>
 				{% for usuario in listamiembros %}
-						{% if usuario.id in miembros_id %}
-							<li><input type="checkbox" name="Miembro" value="{{ usuario.id }}" checked />{{ usuario.username }}</li>
+						{% if usuario.id in miembros_id|add:0 %}
+								<li><input type="checkbox" name="Miembro" value="{{ usuario.id }}" checked />{{ usuario.username }}</li>
 						{% else %}
-							<li><input type="checkbox" name="Miembro" value="{{ usuario.id }}" />{{ usuario.username }}</li>
+								<li><input type="checkbox" name="Miembro" value="{{ usuario.id }}" />{{ usuario.username }}</li>
 						{% endif %}
 				{% endfor %}
 				</ul>
@@ -58,12 +59,21 @@
 		</tbody>
 		</table>
 		{% csrf_token %}
-	<div align="center">
+		<br><h4 class="panel-title"><b>Miembros del comite: </b></h4><br>
+			<tr>
+				<td>
+					{% for miembro in miembros %}
+					<ul>
+				        <li> {{ miembro }} </li>
+				    </ul>
+				    {% endfor %}
+				</td>
+			</tr><br>
+	<div>
 		<input class="btn btn-default" type="submit" value="Guardar"/>
-		<a href="/adm_roles/"><button type="button" class="btn btn-default">Cancelar</button></a>
+		<a href="/adm_proyectos/gestionar/{{ id_proyecto }}/"><button type="button" class="btn btn-default">Cancelar</button></a>
 	</div>
 	<br>
 	</form>
-
 </div>
 {% endblock %}
