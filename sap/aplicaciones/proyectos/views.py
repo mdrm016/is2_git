@@ -72,7 +72,17 @@ def adm_proyectos (request):
     qset = (
                 Q(estado__icontains='Pendiente') 
             )
-    pendientes=solicitudes.filter(qset).distinct().count()
+    solicitudes=solicitudes.filter(qset).distinct()
+    
+    pendientes = 0
+    for solicitud in solicitudes:
+        votantes = solicitud.miembros_que_votaron.all()
+        Agregar = True
+        for votante in votantes:
+            if votante == request.user:
+                Agregar = False
+        if Agregar:
+            pendientes = pendientes + 1
         
     ctx = {'lista_proyectos':proyectos, 'query':busqueda, 'error':error, 'pendientes':pendientes}   
     template_name = 'index.html'

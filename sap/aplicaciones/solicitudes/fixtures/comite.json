@@ -1,0 +1,15 @@
+[
+{
+    "pk": 1, 
+    "model": "comite.comite", 
+    "fields": {
+        "nombre": null, 
+        "miembros": [
+            2, 
+            3, 
+            4
+        ], 
+        "proyecto": 1
+    }
+}
+]
