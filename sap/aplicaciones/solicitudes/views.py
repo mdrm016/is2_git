@@ -19,6 +19,19 @@ from aplicaciones.comite.models import Comite
 
 def administrar_solicitud_recibidas (request):
     
+    """ Recibe un request, se verifica cual es el usuario registrado y se obtiene la lista de solicitudes
+    recibidas con los que esta relacionado desplegandolo en pantalla.
+    
+    @type request: django.http.HttpRequest.
+    @param request: Contiene informacion sobre la solicitud web actual que llamo a esta vista administrar_solicitud_recibidas.
+    
+    @rtype: django.shortcuts.render_to_response.
+    @return: solicitudesrecibidas.html, donde se listan las solicitudes de modificacion de item recibidas.
+    
+    @author: Marcelo Denis.
+    
+    """
+    
     comites = Comite.objects.filter(miembros=request.user)
     list_proyect = []
     for comite in comites:
@@ -34,6 +47,19 @@ def administrar_solicitud_recibidas (request):
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
 
 def administrar_solicitud_realizadas (request):
+    
+    """ Recibe un request, se verifica cual es el usuario registrado y se obtiene la lista de solicitudes
+    realizadas con los que esta relacionado desplegandolo en pantalla.
+    
+    @type request: django.http.HttpRequest.
+    @param request: Contiene informacion sobre la solicitud web actual que llamo a esta vista administrar_solicitud_realizadas.
+    
+    @rtype: django.shortcuts.render_to_response.
+    @return: solicitudesrealizadas.html, donde se listan las solicitudes de modificacion de item realizadas.
+    
+    @author: Marcelo Denis.
+    
+    """
     
     solicitudes = Solicitudes.objects.filter(usuario=request.user)
     template_name='solicitudes/solicitudesrealizadas.html'
