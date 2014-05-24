@@ -246,3 +246,120 @@ def votar_solicitud(request, id_solicitud):
         form = votarSolicitudForm()
     template_name='./solicitudes/votarsolicitud.html'
     return render(request, template_name, {'form': form, 'id_solicitud':id_solicitud})
+
+def impacto(request, id_proyecto, id_fase, id_item):
+    """ Recibe un request, se verifica cual es el usuario registrado y el proyecto del cual se solicita,
+    se obtiene la lista de fases con las que estan relacionados el usuario y el proyecto 
+    desplegandola en pantalla, ademas permite realizar busquedas avanzadas sobre
+    las fases que puede mostrar.
+    
+    @type request: django.http.HttpRequest.
+    @param request: Contiene informacion sobre la solicitud web actual que llamo a esta vista.
+    
+    @rtype: django.shortcuts.render_to_response.
+    @return: fases.html, donde se listan las fases, ademas de las funcionalidades para cada fase.
+    
+    @author: Ysapy Ortiz.
+    
+    """
+    item = Items.objects.get(id=id_item)
+    
+    imonetario = impacto_monetario(id_item)
+    itemporal = impacto_temporal(id_item)
+    items_afectado = calcular_items_afectados(id_item)
+    items_afectados = []
+    for items_af in items_afectado:
+        if items_af.id!=item.id:
+            items_afectados.append(items_af)
+    
+    ctx = {'id_proyecto':id_proyecto, 'id_fase': id_fase, 'id_item': id_item, 'impacto_monetario': imonetario, 'impacto_temporal': itemporal, 'items_afectados': items_afectados}
+    template_name = './items/impacto.html'
+    return render_to_response(template_name, ctx, context_instance=RequestContext(request))
+
+def impacto_monetario(id_item):
+    """ Recibe un request, se verifica cual es el usuario registrado y el proyecto del cual se solicita,
+    se obtiene la lista de fases con las que estan relacionados el usuario y el proyecto 
+    desplegandola en pantalla, ademas permite realizar busquedas avanzadas sobre
+    las fases que puede mostrar.
+    
+    @type request: django.http.HttpRequest.
+    @param request: Contiene informacion sobre la solicitud web actual que llamo a esta vista.
+    
+    @rtype: django.shortcuts.render_to_response.
+    @return: fases.html, donde se listan las fases, ademas de las funcionalidades para cada fase.
+    
+    @author: Ysapy Ortiz.
+    
+    """
+    item = Items.objects.get(id=id_item)
+    costo = 0
+    try:
+        hijos = Items.objects.filter(padre=id_item)
+    except Items.DoesNotExist:
+        hijos = False
+    if hijos:
+        for hijo in hijos:
+            costo = costo + impacto_monetario(hijo.id)
+        costo = costo + item.costoMonetario
+        return costo
+    else:
+        return item.costoMonetario
+            
+def impacto_temporal(id_item):
+    """ Recibe un request, se verifica cual es el usuario registrado y el proyecto del cual se solicita,
+    se obtiene la lista de fases con las que estan relacionados el usuario y el proyecto 
+    desplegandola en pantalla, ademas permite realizar busquedas avanzadas sobre
+    las fases que puede mostrar.
+    
+    @type request: django.http.HttpRequest.
+    @param request: Contiene informacion sobre la solicitud web actual que llamo a esta vista.
+    
+    @rtype: django.shortcuts.render_to_response.
+    @return: fases.html, donde se listan las fases, ademas de las funcionalidades para cada fase.
+    
+    @author: Ysapy Ortiz.
+    
+    """
+    item = Items.objects.get(id=id_item)
+    costo = 0
+    try:
+        hijos = Items.objects.filter(padre=id_item)
+    except Items.DoesNotExist:
+        hijos = False
+    if hijos:
+        for hijo in hijos:
+            costo = costo + impacto_temporal(hijo.id)
+        costo = costo + item.costoTemporal
+        return costo
+    else:
+        return item.costoTemporal
+
+def calcular_items_afectados(id_item):
+    """ Recibe un request, se verifica cual es el usuario registrado y el proyecto del cual se solicita,
+    se obtiene la lista de fases con las que estan relacionados el usuario y el proyecto 
+    desplegandola en pantalla, ademas permite realizar busquedas avanzadas sobre
+    las fases que puede mostrar.
+    
+    @type request: django.http.HttpRequest.
+    @param request: Contiene informacion sobre la solicitud web actual que llamo a esta vista.
+    
+    @rtype: django.shortcuts.render_to_response.
+    @return: fases.html, donde se listan las fases, ademas de las funcionalidades para cada fase.
+    
+    @author: Ysapy Ortiz.
+    
+    """
+    item = Items.objects.get(id=id_item)
+    lista_hijos = []
+    try:
+        hijos = Items.objects.filter(padre=id_item)
+    except Items.DoesNotExist:
+        hijos = False
+    if hijos:
+        for hijo in hijos:
+            lista_hijos.extend(calcular_items_afectados(hijo.id))
+        lista_hijos.append(item)
+        return lista_hijos
+    else:
+        lista_hijos.append(item)
+        return lista_hijos

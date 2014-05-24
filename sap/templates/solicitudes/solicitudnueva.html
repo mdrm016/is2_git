@@ -53,10 +53,12 @@
 			{{ form.as_table }}
 		</table>
 		{% csrf_token %}
-		
+		<div align="center"><br>
+		<a href="impacto/"><button type="button" class="btn btn-default">Impacto</button></a>
+		</div>
 	<div align="center"><br>
 		<input class="btn btn-default" type="submit" value="Crear"/>
-		<a href="/adm_proyectos/solicitudes_realizadas/"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-remove"></span> Cancelar</button></a>
+		<a href="/adm_proyectos/gestionar/{{ id_proyecto }}/adm_items/{{ id_fase }}/"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-remove"></span> Cancelar</button></a>
 	</div>
 	<br>
 	</form>
