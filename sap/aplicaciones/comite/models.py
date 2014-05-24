@@ -22,8 +22,8 @@ class Comite(models.Model):
     """
     
     nombre = models.CharField(max_length=30, null=True)
-    proyecto = models.ForeignKey(Proyectos)
     miembros = models.ManyToManyField(Usuarios)
+    proyecto = models.ForeignKey(Proyectos)
 
     def __unicode__(self):
         return self.nombre

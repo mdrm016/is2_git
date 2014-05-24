@@ -70,7 +70,7 @@ def agregar_miembro(request, id_proyecto):
             mensaje = 'El comite debe estar conformado por al menos 3 miembros'
          elif (len(listamiembros)>2 and (len(miembrosid)%2)==0):
              mensaje = 'La cantidad de miembros debe ser impar'
-             hwoeti
+             
          else: 
             for idmiembro in miembrosid:
                 user = User.objects.get(id=idmiembro)
