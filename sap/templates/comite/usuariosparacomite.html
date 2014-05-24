@@ -62,16 +62,20 @@
 		<br><h4 class="panel-title"><b>Miembros del comite: </b></h4><br>
 			<tr>
 				<td>
+				{% if miembros %}
 					{% for miembro in miembros %}
 					<ul>
 				        <li> {{ miembro }} </li>
 				    </ul>
 				    {% endfor %}
+				 {% else %}
+				 	El comite de cambio del proyecto aun no posee miembros.
+				 {% endif %}
 				</td>
 			</tr><br>
 	<div>
 		<input class="btn btn-default" type="submit" value="Guardar"/>
-		<a href="/adm_proyectos/gestionar/{{ id_proyecto }}/"><button type="button" class="btn btn-default">Cancelar</button></a>
+		<a href="/adm_proyectos/gestionar/{{ id_proyecto }}/"><button type="button" class="btn btn-default">Volver</button></a>
 	</div>
 	<br>
 	</form>

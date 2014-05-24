@@ -47,6 +47,16 @@ cd relaciones
 mkdir /home/"$Usuario"/workspace/is2_git/sap/Sap_documentacion/Relaciones
 epydoc --html --o /home/"$Usuario"/workspace/is2_git/sap/Sap_documentacion/Relaciones --name "Sap_documentacion" *.py
 
+cd ..
+cd comite
+mkdir /home/"$Usuario"/workspace/is2_git/sap/Sap_documentacion/Comite
+epydoc --html --o /home/"$Usuario"/workspace/is2_git/sap/Sap_documentacion/Comite --name "Sap_documentacion" *.py
+
+cd ..
+cd solicitudes
+mkdir /home/"$Usuario"/workspace/is2_git/sap/Sap_documentacion/Solicitudes
+epydoc --html --o /home/"$Usuario"/workspace/is2_git/sap/Sap_documentacion/Solicitudes --name "Sap_documentacion" *.py
+
 cd /home/"$Usuario"/workspace/is2_git/sap
 mkdir /home/"$Usuario"/workspace/is2_git/sap/Sap_documentacion/Sap
 epydoc --html --o /home/"$Usuario"/workspace/is2_git/sap/Sap_documentacion/Sap --name "Sap_documentacion" *.py
@@ -67,4 +77,10 @@ cd /home/"$Usuario"/workspace/is2_git/sap/Sap_documentacion/Items
 sudo firefox -new-tab index.html
 cd /home/"$Usuario"/workspace/is2_git/sap/Sap_documentacion/Relaciones
 sudo firefox -new-tab index.html
+cd /home/"$Usuario"/workspace/is2_git/sap/Sap_documentacion/Comite
+sudo firefox -new-tab index.html
+cd /home/"$Usuario"/workspace/is2_git/sap/Sap_documentacion/Solicitudes
+sudo firefox -new-tab index.html
+
+
 

@@ -93,6 +93,11 @@ def crear_solicitud(request, id_proyecto, id_fase, id_item):
     proyecto = Proyectos.objects.get(id=id_proyecto)
     fase = Fases.objects.get(id=id_fase)
     item = Items.objects.get(id=id_item)
+    if fase.estado=='FD':
+        mensaje = 'La fase se encuentra en estado finalizado, no se puede solicitar modificaciones.'
+        template_name='./solicitudes/solicitudalerta.html'
+        ctx = {'mensaje': mensaje, 'id_proyecto':id_proyecto, 'id_fase': id_fase, 'id_item': id_item, 'proyecto':proyecto, 'fase':fase, 'item': item}
+        return render_to_response(template_name, ctx, context_instance=RequestContext(request))
     if request.method == 'POST':
         form = SolicitudNuevaForm(request.POST)
         if form.is_valid():
@@ -147,6 +152,20 @@ def crear_solicitud(request, id_proyecto, id_fase, id_item):
     return render(request, template_name, {'form': form, 'id_proyecto':id_proyecto, 'id_fase': id_fase, 'id_item': id_item, 'proyecto':proyecto, 'fase':fase, 'item': item})
 
 def cancelar_solicitud(request, id_solicitud):
+    """ Recibe un request, se verifica cual es el usuario registrado y el proyecto del cual se solicita,
+    se obtiene la lista de fases con las que estan relacionados el usuario y el proyecto 
+    desplegandola en pantalla, ademas permite realizar busquedas avanzadas sobre
+    las fases que puede mostrar.
+    
+    @type request: django.http.HttpRequest.
+    @param request: Contiene informacion sobre la solicitud web actual que llamo a esta vista.
+    
+    @rtype: django.shortcuts.render_to_response.
+    @return: fases.html, donde se listan las fases, ademas de las funcionalidades para cada fase.
+    
+    @author: Ysapy Ortiz.
+    
+    """
     solicitud = Solicitudes.objects.get(id=id_solicitud)
     solicitud.estado = 'Cancelado'
     solicitud.save()

@@ -37,10 +37,6 @@ cd tipoatributo
 mkdir /home/"$Usuario"/workspace/is2_git/sap/Sap_documentacion/TipoAtributo
 epydoc --html --o /home/"$Usuario"/workspace/is2_git/sap/Sap_documentacion/TipoAtributo --name "Sap_documentacion" *.py
 
-cd /home/"$Usuario"/workspace/is2_git/sap
-mkdir /home/"$Usuario"/workspace/is2_git/sap/Sap_documentacion/Sap
-epydoc --html --o /home/"$Usuario"/workspace/is2_git/sap/Sap_documentacion/Sap --name "Sap_documentacion" *.py
-
 cd ..
 cd items
 mkdir /home/"$Usuario"/workspace/is2_git/sap/Sap_documentacion/Items
@@ -50,6 +46,10 @@ cd ..
 cd relaciones
 mkdir /home/"$Usuario"/workspace/is2_git/sap/Sap_documentacion/Relaciones
 epydoc --html --o /home/"$Usuario"/workspace/is2_git/sap/Sap_documentacion/Relaciones --name "Sap_documentacion" *.py
+
+cd /home/"$Usuario"/workspace/is2_git/sap
+mkdir /home/"$Usuario"/workspace/is2_git/sap/Sap_documentacion/Sap
+epydoc --html --o /home/"$Usuario"/workspace/is2_git/sap/Sap_documentacion/Sap --name "Sap_documentacion" *.py
 
 cd /home/"$Usuario"/workspace/is2_git/sap/Sap_documentacion/Sap 
 sudo firefox -new-tab index.html

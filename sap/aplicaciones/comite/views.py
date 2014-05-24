@@ -44,6 +44,20 @@ def consultar_comite(request, id_proyecto):
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
 
 def agregar_miembro(request, id_proyecto):
+    """ Recibe un request, se verifica cual es el usuario registrado y el proyecto del cual se solicita,
+    se obtiene la lista de fases con las que estan relacionados el usuario y el proyecto 
+    desplegandola en pantalla, ademas permite realizar busquedas avanzadas sobre
+    las fases que puede mostrar.
+    
+    @type request: django.http.HttpRequest.
+    @param request: Contiene informacion sobre la solicitud web actual que llamo a esta vista.
+    
+    @rtype: django.shortcuts.render_to_response.
+    @return: fases.html, donde se listan las fases, ademas de las funcionalidades para cada fase.
+    
+    @author: Ysapy Ortiz.
+    
+    """
     comite = Comite.objects.get(proyecto_id=id_proyecto)
     miembros = comite.miembros.all()
     template_name = './comite/usuariosparacomite.html'
