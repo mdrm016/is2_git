@@ -37,13 +37,22 @@ def administrar_solicitud_recibidas (request):
     for comite in comites:
         list_proyect.append(comite.proyecto)
     solicitudes = Solicitudes.objects.filter(proyecto__in=list_proyect)
-    qset = (
-                Q(estado__icontains='Pendiente') 
-            )
-    pendientes=solicitudes.filter(qset).distinct().count()
+    
+    pendientes = 0
+    lista_solicitud=[]
+    for s in solicitudes:
+        votantes = s.miembros_que_votaron.all()
+        solic_votada = False
+        for votante in votantes:
+            if votante == request.user:
+                solic_votada = True
+        tupla = (s, solic_votada)
+        if not solic_votada:
+            pendientes = pendientes + 1
+        lista_solicitud.append(tupla)
     
     template_name='solicitudes/solicitudesrecibidas.html'
-    ctx = {'solicitudes':solicitudes, 'pendientes':pendientes}
+    ctx = {'lista_solicitud':lista_solicitud, 'pendientes':pendientes}
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
 
 def administrar_solicitud_realizadas (request):
@@ -109,6 +118,8 @@ def crear_solicitud(request, id_proyecto, id_fase, id_item):
             solicitud.observaciones = observaciones
             solicitud.estado = estado
             solicitud.tiempo_esperado = duracionsolic
+            solicitud.votos_rechazado = 0
+            solicitud.votos_aprobado = 0
             solicitud.save()
 
             mensaje = 'Solicitud creada con exito.'
@@ -206,6 +217,7 @@ def votar_solicitud(request, id_solicitud):
                 mensaje = 'La solicitud ha sido Reprobada'
             else:
                 mensaje = 'Su voto ha sido procesado'
+            solicitud.miembros_que_votaron.add(request.user)
             solicitud.save()
             template_name='./solicitudes/solicitudalerta.html'
             ctx = {'mensaje': mensaje}

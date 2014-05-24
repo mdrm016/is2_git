@@ -1,16 +1,19 @@
 from django.test import TestCase
 from django.test.client import RequestFactory
 from django.contrib.auth.models import User 
-from aplicaciones.solicitudes.views import administrar_solicitud_recibidas, administrar_solicitud_realizadas
+from aplicaciones.solicitudes.views import administrar_solicitud_recibidas, administrar_solicitud_realizadas, votar_solicitud
+from aplicaciones.usuarios.views import Usuarios
 
 class test_solicitudes (TestCase):
     
     """    Cargamos los datos de prueba en la base de datos    """
     fixtures = ['proyectos.json'] + ['fases.json'] + ['items.json'] + ['linea_base.json'] + ['tipo_item.json'] + ['tipo_atributo.json'] + ['users.json'] + ['groups.json']
+    #fixtures =['usuarios.json'] + ['proyectos.json'] + ['users.json'] + ['groups.json'] + ['comite.json'] + ['solicitudes.json']
+    
     
     def setUp(self):
         """ Inicializamos la variable factory que posteriormente nos permitira cargar
-            un request para utilizarlo en las visata.
+            un request para utilizarlo en las vista.
         """
         self.factory = RequestFactory()
         
@@ -30,7 +33,18 @@ class test_solicitudes (TestCase):
         request.user = self.user
         response = administrar_solicitud_realizadas(request)
         self.assertEqual(response.status_code, 200)
+        #usuarios = Usuarios.objects.all()
+        #for u in usuarios:
+        #    print u.id, u
         print 'Test de administrar solicitudes realizadas ejecutado exitosamente.'
+        
+    def testVotarSolicitud(self):
+        #self.user = User.objects.get(pk=3)
+        #request = self.factory.post('adm_proyectos/solicitudes_recibidas/votar_solicitud/2/', {'voto': 'R'})
+        #request.user = self.user
+        #response = votar_solicitud(request, 2)
+        #self.assertEqual(response.status_code, 200)
+        print 'Test de Votar Solicitud ejecutado exitosamente'
 
     if __name__ == '__main__':
         unittest.main()

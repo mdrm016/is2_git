@@ -1,0 +1,80 @@
+[
+{
+    "pk": 1, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "sap", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": true, 
+        "is_staff": true, 
+        "last_login": "2014-05-24T00:23:46.986Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$12000$KkhjXT8daxw9$8f4ZvUTGc4z2t0h9TuJBJByd9dM653BLegZAX5bVZdw=", 
+        "email": "", 
+        "date_joined": "2014-05-23T13:58:16.187Z"
+    }
+},
+{
+    "pk": 2, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "edugimenez", 
+        "first_name": "Eduardo", 
+        "last_name": "Gimenez", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2014-05-24T02:28:37.974Z", 
+        "groups": [
+            1
+        ], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$12000$R9shMnfzuZ1q$HQ/+F9UjxjE8joJ1dvn/jxU1bGKrh2SOa6PYnjWsBGo=", 
+        "email": "eduardogimenez8@gmail.com", 
+        "date_joined": "2014-05-23T17:50:56.894Z"
+    }
+},
+{
+    "pk": 3, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "ysapy", 
+        "first_name": "Ysapy", 
+        "last_name": "Ortiz", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2014-05-24T00:15:50.900Z", 
+        "groups": [
+            1
+        ], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$12000$HPY9Y4TnEhhq$jcl/DxamPJLqeAErohjjVU2cqX3txioAxHZf4+Vyi/Q=", 
+        "email": "ysa@gmail.com", 
+        "date_joined": "2014-05-23T18:29:20.840Z"
+    }
+},
+{
+    "pk": 4, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "Marcelo", 
+        "first_name": "Marcelo", 
+        "last_name": "Denis", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2014-05-24T00:24:31.223Z", 
+        "groups": [
+            1
+        ], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$12000$sfZCrOggXIiv$pPid7J9QO901d98TR6cY/98w4Lfi/0PJXpin0DuDE34=", 
+        "email": "marcelo@gmail.com", 
+        "date_joined": "2014-05-23T18:30:06.986Z"
+    }
+}
+]

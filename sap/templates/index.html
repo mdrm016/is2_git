@@ -171,13 +171,19 @@
 		</div>
 		<!-- Finaliza el Modal -->
 		{% if pendientes > 0 %}
- 			<div class="jumbotron" id="caja_flotante">
+
+ 			<div id="caja_flotante">
+ 			<a class='cerrar' href='javascript:void(0);' onclick='document.getElementById(&apos;caja_flotante&apos;).className = &apos;oculto&apos;'>X</a>
+				<div class="jumbotron">
 				<div class="bs-example">
 					<h2>Notificacion</h2>
 					<p class="text-warning"><small><b><font color="red">{{ pendientes }}</font> Solicitudes Pendientes</b></small></p>
                     <a href="solicitudes_recibidas/"><button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-hand-up"></span>Ir a votar</button></a>
 				</div>
+				</div>
 			</div>
+
 		{% endif %}
+
 </div>
 {% endblock %}

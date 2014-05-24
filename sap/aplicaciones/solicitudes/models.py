@@ -3,7 +3,7 @@ from aplicaciones.proyectos.models import Proyectos
 from aplicaciones.fases.models import Fases
 from aplicaciones.items.models import Items
 from aplicaciones.usuarios.models import Usuarios
-#from aplicaciones.lineabase.models import LineaBase
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -34,6 +34,7 @@ class Solicitudes(models.Model):
     tiempo_esperado = models.IntegerField(null=True)
     votos_aprobado = models.IntegerField(null=True, default=0)
     votos_rechazado = models.IntegerField(null=True, default=0)
+    miembros_que_votaron = models.ManyToManyField(User)
 
     def __unicode__(self):
         return self.nombre
