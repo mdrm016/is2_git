@@ -93,7 +93,6 @@
 				    <div id="collapse{{ solicitud.id }}" class="panel-collapse collapse pull-left">
 				      <div class="panel-body">
 				      		<a href="consultar_solicitud/{{ solicitud.id }}/"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-eye-open"></span> Consultar</button></a>
-                            <a href="votar_solicitud/{{ solicitud.id }}/"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-eye-open"></span> Votar</button></a>
 				      		{% ifequal solicitud.estado 'Pendiente' %}
 				      		<button class="btn btn-danger btn-sm solicitudRealizada" data-toggle="modal" data-target="#myModal" data-id="{{ solicitud.id }}"><span class="glyphicon glyphicon-trash"></span> Cancelar Solicitud</button>
 				      		{% endifequal %}

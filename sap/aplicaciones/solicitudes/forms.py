@@ -58,7 +58,7 @@ class SolicitudPrimeraForm(forms.Form):
     Estado = forms.CharField(required=False)
     Duracion_Solicitud_en_Dias = forms.IntegerField(required=False)
 
-class votarSolicitus(forms.Form):
+class votarSolicitudForm(forms.Form):
     """ Atributos de Fase necesarios para el registro en la base de datos
     enviados al template html encargado de tomar los datos de registro.
     Control de datos ingresados por el usuario.
@@ -68,6 +68,6 @@ class votarSolicitus(forms.Form):
     @author: Eduardo Gimenez
     """
 
-    OPCIONES = [('Aprobar', 'A'),
-                ('Rechazar', 'R')]
+    OPCIONES = [('A', 'Aprobar'),
+                ('R', 'Rechazar')]
     voto = forms.ChoiceField(choices=OPCIONES, widget=forms.RadioSelect())

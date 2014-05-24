@@ -32,6 +32,8 @@ class Solicitudes(models.Model):
     observaciones = models.CharField(null=True, max_length=500)
     estado = models.CharField(null=True, max_length=50)
     tiempo_esperado = models.IntegerField(null=True)
+    votos_aprobado = models.IntegerField(null=True, default=0)
+    votos_rechazado = models.IntegerField(null=True, default=0)
 
     def __unicode__(self):
         return self.nombre

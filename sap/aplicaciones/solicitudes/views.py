@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from math import ceil
 from django.views.generic import TemplateView
 from django.core.urlresolvers import reverse
 from django.shortcuts import render_to_response, render
@@ -8,7 +9,7 @@ from aplicaciones.proyectos.models import Proyectos
 from aplicaciones.fases.models import Fases
 from aplicaciones.items.models import Items
 from .models import Solicitudes
-from .forms import SolicitudNuevaForm, SolicitudPrimeraForm
+from .forms import SolicitudNuevaForm, SolicitudPrimeraForm, votarSolicitudForm
 from datetime import datetime
 from django.contrib.auth.decorators import login_required, permission_required
 from django.db.models import Q
@@ -159,34 +160,32 @@ def votar_solicitud(request, id_solicitud):
 
     """
     if request.method == 'POST':
-            form.clean()
-            nombreRol = form.cleaned_data['Nombre_de_Rol']
-            permisos = form.cleaned_data['Permisos']
-            proyecto = form.cleaned_data['Proyecto']
-            descripcion = form.cleaned_data['Descripcion']
+        form = votarSolicitudForm(request.POST)
+        if form.is_valid():
+            voto = form.cleaned_data['voto']
 
-            rol = Roles.objects.create(name = nombreRol)
-            for permiso in permisos:
-                rol.permissions.add(Permission.objects.get(codename=permiso))
-            if proyecto:
-                p = Proyectos.objects.get(id=proyecto)
+            solicitud = Solicitudes.objects.get(id = id_solicitud)
+            if voto == "A":
+                solicitud.votos_aprobado = solicitud.votos_aprobado + 1
             else:
-                p = ''
-            rol.proyecto = p
-            rol.descripcion = descripcion
-            rol.save()
+                solicitud.votos_rechazado = solicitud.votos_rechazado + 1
+            comite = Comite.objects.get(proyecto=solicitud.proyecto)
+            cantidad_miembros = comite.miembros.count()
+            promedio = int(ceil(cantidad_miembros/2)) + 1
+            if solicitud.votos_aprobado >= promedio:
+                solicitud.estado = 'Aprobada'
+                mensaje = 'Ejecutar Solicitud. Credencial Generada'
+            elif solicitud.votos_rechazado >= promedio:
+                solicitud.estado = 'Reprobada'
+                mensaje = 'La solicitud ha sido Reprobada'
+            else:
+                mensaje = 'Su voto ha sido procesado'
+            solicitud.save()
+            template_name='./solicitudes/solicitudalerta.html'
+            ctx = {'mensaje': mensaje}
+            return render_to_response(template_name, ctx, context_instance=RequestContext(request))
 
-            template_name='./Roles/rolcreado.html'
-            return render(request, template_name)
     else:
-        form = RolForm()
-
-    permisos = Permission.objects.filter(id__gt=18)
-    parte1 = permisos.filter(id__range=(19,46))
-    parte2 = permisos.filter(id__gt=65)
-    permisos = []
-    permisos.extend(parte1)
-    permisos.extend(parte2)
-    permisos = [(permiso.codename, permiso.name) for permiso in permisos]
-    template_name='./Roles/rolnuevo.html'
-    return render(request, template_name, {'form': form, 'permisos': permisos})
+        form = votarSolicitudForm()
+    template_name='./solicitudes/votarsolicitud.html'
+    return render(request, template_name, {'form': form, 'id_solicitud':id_solicitud})
