@@ -1,0 +1,52 @@
+{% extends "base_general.html" %}
+
+{% block navegacion %}
+<nav class="navbar navbar-default">
+	<div class="navbar-header">
+		<a href="/" class="navbar-brand">SAP</a>
+	</div>
+
+	<div  class="collapse navbar-collapse navbar-ex1-collapse">
+		<ul class="nav navbar-nav">
+			<li><a href="/adm_proyectos/solicitudes_recibidas/">Solicitudes Realizadas</a></li>
+			<li class="active"><a href="/adm_proyectos/solicitudes_recibidas/votar_solicitud/{{ id_solicitud }}/">Votar Solicitud</a></li>
+        </ul>
+
+		<ul class="nav navbar-nav navbar-right">
+			<li><a href="#">Acerca de</a></li>
+			<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Registro del Sistema<b class="caret"></b></a>
+				<ul class="dropdown-menu">
+				
+				</ul>
+			</li>
+		</ul>
+	</div>
+</nav>
+{% endblock %}
+
+{% block tipo_Item_y_Atributo %}
+<li><a href="/adm_proyectos/gestionar/{{ id_proyecto }}/adm_tipos_item/">Administrar Tipos de Item</a></li>
+<li><a href="/adm_proyectos/gestionar/{{ id_proyecto }}/adm_tipos_atributo">Administrar Tipos de Atributo</a></li>
+{% endblock %}
+
+{% block contenido %}
+<div class="content-secondary">
+<!-- Aca van la  lista de Proyectos.. o de Solicitudes.. o de credenciales -->
+	{% if form.errors %}
+		Por favor verifique:error
+	{% endif %}
+	<form action="" method="post">
+		<table align="center">
+			{{ form.as_table }}
+		</table>
+		{% csrf_token %}
+		
+	<div align="center"><br>
+		<input class="btn btn-default" type="submit" value="Guardar"/>
+		<a href="/adm_proyectos/solicitudes_recibidas/"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-remove"></span> Cancelar</button></a>
+	</div>
+	<br>
+	</form>
+
+</div>
+{% endblock %}

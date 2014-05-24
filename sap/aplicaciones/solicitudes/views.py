@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from math import ceil
 from django.views.generic import TemplateView
 from django.core.urlresolvers import reverse
 from django.shortcuts import render_to_response, render
@@ -8,7 +9,7 @@ from aplicaciones.proyectos.models import Proyectos
 from aplicaciones.fases.models import Fases
 from aplicaciones.items.models import Items
 from .models import Solicitudes
-from .forms import SolicitudNuevaForm, SolicitudPrimeraForm
+from .forms import SolicitudNuevaForm, SolicitudPrimeraForm, votarSolicitudForm
 from datetime import datetime
 from django.contrib.auth.decorators import login_required, permission_required
 from django.db.models import Q
@@ -143,3 +144,48 @@ def consultar_solicitud(request, id_solicitud):
     #fases = Fases.objects.filter(id_proyecto = id_proyecto)
     template_name = './solicitudes/consultarsolicitud.html'
     return render(request, template_name, {'fase': fase, 'proyecto':proyecto, 'fase':fase, 'solicitud': solicitud})
+
+def votar_solicitud(request, id_solicitud):
+    """ Recibe un request y el id de la solicitud  que se quiere  votar.
+    Se retorna un html que indica al usuario que proceda a aceptar, rechazar la solicitud o
+    cancelar la operacion de votar la solicitud
+
+    @type request: django.http.HttpRequest.
+    @param request: Contiene informacion sobre la solicitud web actual que llamo a esta vista.
+
+    @rtype: HttpRequest.HttpResponse
+    @return: votar.html, donde se solicita el voto a  favor o en contra del miembro del comite
+
+    @author: Eduardo Gimenez
+
+    """
+    if request.method == 'POST':
+        form = votarSolicitudForm(request.POST)
+        if form.is_valid():
+            voto = form.cleaned_data['voto']
+
+            solicitud = Solicitudes.objects.get(id = id_solicitud)
+            if voto == "A":
+                solicitud.votos_aprobado = solicitud.votos_aprobado + 1
+            else:
+                solicitud.votos_rechazado = solicitud.votos_rechazado + 1
+            comite = Comite.objects.get(proyecto=solicitud.proyecto)
+            cantidad_miembros = comite.miembros.count()
+            promedio = int(ceil(cantidad_miembros/2)) + 1
+            if solicitud.votos_aprobado >= promedio:
+                solicitud.estado = 'Aprobada'
+                mensaje = 'Ejecutar Solicitud. Credencial Generada'
+            elif solicitud.votos_rechazado >= promedio:
+                solicitud.estado = 'Reprobada'
+                mensaje = 'La solicitud ha sido Reprobada'
+            else:
+                mensaje = 'Su voto ha sido procesado'
+            solicitud.save()
+            template_name='./solicitudes/solicitudalerta.html'
+            ctx = {'mensaje': mensaje}
+            return render_to_response(template_name, ctx, context_instance=RequestContext(request))
+
+    else:
+        form = votarSolicitudForm()
+    template_name='./solicitudes/votarsolicitud.html'
+    return render(request, template_name, {'form': form, 'id_solicitud':id_solicitud})

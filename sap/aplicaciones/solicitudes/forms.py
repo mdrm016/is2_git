@@ -57,3 +57,17 @@ class SolicitudPrimeraForm(forms.Form):
     Observaciones = forms.CharField(required=False)
     Estado = forms.CharField(required=False)
     Duracion_Solicitud_en_Dias = forms.IntegerField(required=False)
+
+class votarSolicitudForm(forms.Form):
+    """ Atributos de Fase necesarios para el registro en la base de datos
+    enviados al template html encargado de tomar los datos de registro.
+    Control de datos ingresados por el usuario.
+
+    @type forms.Form: django.forms
+    @param forms.Form: Heredamos la clase forms.Form para hacer uso de sus funcionalidades en el formulario de registro
+    @author: Eduardo Gimenez
+    """
+
+    OPCIONES = [('A', 'Aprobar'),
+                ('R', 'Rechazar')]
+    voto = forms.ChoiceField(choices=OPCIONES, widget=forms.RadioSelect())
