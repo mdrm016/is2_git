@@ -227,13 +227,26 @@ def votar_solicitud(request, id_solicitud):
                 solicitud.votos_rechazado = solicitud.votos_rechazado + 1
             comite = Comite.objects.get(proyecto=solicitud.proyecto)
             cantidad_miembros = comite.miembros.count()
-            promedio = int(ceil(cantidad_miembros/2)) + 1
-            if solicitud.votos_aprobado >= promedio:
-                solicitud.estado = 'Aprobada'
-                mensaje = 'Ejecutar Solicitud. Credencial Generada'
-            elif solicitud.votos_rechazado >= promedio:
-                solicitud.estado = 'Reprobada'
-                mensaje = 'La solicitud ha sido Reprobada'
+            cantidad_votos = solicitud.votos_aprobado + solicitud.votos_rechazado
+            if cantidad_votos==cantidad_miembros:
+                if solicitud.votos_aprobado > solicitud.votos_rechazado:
+                    solicitud.estado = 'Aprobada'
+                    credencial = Credenciales()
+                    credencial.usuario = solicitud.usuario
+                    credencial.proyecto = solicitud.proyecto 
+                    credencial.fase = solicitud.fase
+                    credencial.item = solicitud.item
+                    credencial.fecha_aprobacion = date.today()
+                    credencial.fecha_expiracion = date.today()+timedelta(days=solicitud.tiempo_solicitado)
+                    credencial.estado = 'Habilitado'
+                    credencial.save()
+                    mensaje = 'Credencial Generada'
+                    template_name='./solicitudes/credencialcreada.html'
+                    ctx = {'mensaje': mensaje, 'credencial': credencial}
+                    return render_to_response(template_name, ctx, context_instance=RequestContext(request))
+                else:
+                    solicitud.estado = 'Reprobada'
+                    mensaje = 'La solicitud ha sido Reprobada'
             else:
                 mensaje = 'Su voto ha sido procesado'
             solicitud.miembros_que_votaron.add(request.user)
@@ -363,3 +376,10 @@ def calcular_items_afectados(id_item):
     else:
         lista_hijos.append(item)
         return lista_hijos
+
+def agregar_observacion(request, id_proyecto, id_credencial):
+    credencial.observaciones = request.observaciones
+    credencial.save()
+    ctx = {'id_proyecto': id_proyecto}
+    template_name = './solicitudes/credencialalerta.html'
+    return render_to_response(template_name, ctx, context_instance=RequestContext(request))

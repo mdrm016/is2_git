@@ -71,3 +71,19 @@ class votarSolicitudForm(forms.Form):
     OPCIONES = [('A', 'Aprobar'),
                 ('R', 'Rechazar')]
     voto = forms.ChoiceField(choices=OPCIONES, widget=forms.RadioSelect())
+    
+class CredencialNuevaForm(forms.Form):
+
+    """ Atributos de Fase necesarios para el registro en la base de datos
+    enviados al template html encargado de tomar los datos de registro.
+    Control de datos ingresados por el usuario.
+        
+    @type forms.Form: django.forms
+    @param forms.Form: Heredamos la clase forms.Form para hacer uso de sus funcionalidades en el formulario de registro
+    @author: Ysapy Ortiz
+        
+    """
+    
+    Observaciones = forms.CharField(required=False)
+    
+    

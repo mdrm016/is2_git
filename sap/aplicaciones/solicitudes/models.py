@@ -38,3 +38,18 @@ class Solicitudes(models.Model):
 
     def __unicode__(self):
         return self.nombre
+
+class Credenciales(models.Model):
+    
+    nombre = models.CharField(max_length=30, null=True)
+    usuario = models.ForeignKey(Usuarios)
+    proyecto = models.ForeignKey(Proyectos)
+    fase = models.ForeignKey(Fases)
+    item = models.ForeignKey(Items)
+    fecha_aprobacion = models.DateField(null=True)
+    fecha_expiracion = models.DateField(null=True)
+    estado = models.CharField(null=True, max_length=50)
+    observaciones = models.CharField(null=True, max_length=500)
+    
+    def __unicode__(self):
+        return self.nombre
