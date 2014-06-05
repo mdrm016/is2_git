@@ -32,9 +32,24 @@ class Solicitudes(models.Model):
     observaciones = models.CharField(null=True, max_length=500)
     estado = models.CharField(null=True, max_length=50)
     tiempo_esperado = models.IntegerField(null=True)
-    votos_aprobado = models.IntegerField(null=True, default=0)
-    votos_rechazado = models.IntegerField(null=True, default=0)
-    miembros_que_votaron = models.ManyToManyField(User)
+    miembros_que_votaron = models.ManyToManyField(User, through='Votos')
 
     def __unicode__(self):
         return self.nombre
+
+class Votos(models.Model):
+    """ El modelo Votos contiene los votos de cada miembro del comite del proyecto
+    al que pertenece ese comite y la solicitud, tambien se registra la fecha en la que
+    se realizo la votacion
+    miembro: id del usuario miembro del comite de cambio del proyecto
+    solicitud: id de la solicitud a votar
+    fechaDeVotacion: registra la fecha en la que fue votada la solicitud por el miembro de comite
+    voto: campo que indica si la solicitud fue aprobada o no por el miembro de comite
+    """
+    miembro = models.ForeignKey(User)
+    solicitud = models.ForeignKey(Solicitudes)
+    fechaDeVotacion = models.DateField()
+    voto = models.CharField(max_length=2)
+
+    def __unicode__(self):
+        return self.voto

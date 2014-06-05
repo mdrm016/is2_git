@@ -8,7 +8,7 @@ from django.template.context import RequestContext
 from aplicaciones.proyectos.models import Proyectos
 from aplicaciones.fases.models import Fases
 from aplicaciones.items.models import Items
-from .models import Solicitudes
+from .models import Solicitudes, Votos
 from .forms import SolicitudNuevaForm, SolicitudPrimeraForm, votarSolicitudForm
 from datetime import datetime
 from django.contrib.auth.decorators import login_required, permission_required
@@ -219,24 +219,34 @@ def votar_solicitud(request, id_solicitud):
         form = votarSolicitudForm(request.POST)
         if form.is_valid():
             voto = form.cleaned_data['voto']
-
             solicitud = Solicitudes.objects.get(id = id_solicitud)
+            #Registramos el voto del usuario miembro de comite
             if voto == "A":
-                solicitud.votos_aprobado = solicitud.votos_aprobado + 1
+                miVoto = Votos(miembro=request.user, solicitud=solicitud, fechaDeVotacion=datetime.today(), voto="A")
             else:
-                solicitud.votos_rechazado = solicitud.votos_rechazado + 1
+                miVoto = Votos(miembro=request.user, solicitud=solicitud, fechaDeVotacion=datetime.today(), voto="R")
+            miVoto.save()
             comite = Comite.objects.get(proyecto=solicitud.proyecto)
             cantidad_miembros = comite.miembros.count()
             promedio = int(ceil(cantidad_miembros/2)) + 1
-            if solicitud.votos_aprobado >= promedio:
+            #Calculamos la  cantidad de votos a favor  y en contra
+            votos = Votos.objects.filter(solicitud=solicitud)
+            votosAprobado = 0
+            votosRechazado = 0
+            for votoMiembro in votos:
+                if votoMiembro.voto == 'A':
+                    votosAprobado = votosAprobado + 1
+                if votoMiembro.voto == 'R':
+                    votosRechazado = votosRechazado + 1
+            #Verificamos los votos para rechazar o aprobar la  solicitud
+            if votosAprobado >= promedio:
                 solicitud.estado = 'Aprobada'
                 mensaje = 'Ejecutar Solicitud. Credencial Generada'
-            elif solicitud.votos_rechazado >= promedio:
+            elif votosRechazado >= promedio:
                 solicitud.estado = 'Reprobada'
                 mensaje = 'La solicitud ha sido Reprobada'
             else:
                 mensaje = 'Su voto ha sido procesado'
-            solicitud.miembros_que_votaron.add(request.user)
             solicitud.save()
             template_name='./solicitudes/solicitudalerta.html'
             ctx = {'mensaje': mensaje}
