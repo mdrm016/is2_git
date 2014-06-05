@@ -378,8 +378,10 @@ def calcular_items_afectados(id_item):
         return lista_hijos
 
 def agregar_observacion(request, id_proyecto, id_credencial):
+    credencial = Credenciales.objects.get(id=id_credencial)
     credencial.observaciones = request.observaciones
     credencial.save()
+    mensaje = 'Credencial creada con exito.'
     ctx = {'id_proyecto': id_proyecto}
-    template_name = './solicitudes/credencialalerta.html'
+    template_name = './solicitudes/solicitudalerta.html'
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
