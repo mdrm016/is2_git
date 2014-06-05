@@ -376,3 +376,23 @@ def calcular_items_afectados(id_item):
     else:
         lista_hijos.append(item)
         return lista_hijos
+    
+def administrar_credenciales (request):
+    
+    """ Recibe un request, se verifica cual es el usuario registrado y se obtiene la lista de credenciales
+    habilitadas con los que esta relacionado desplegandolo en pantalla.
+    
+    @type request: django.http.HttpRequest.
+    @param request: Contiene informacion sobre la solicitud web actual que llamo a esta vista administrar_credenciales.
+    
+    @rtype: django.shortcuts.render_to_response.
+    @return: credenciales.html, donde se listan las credenciales de modificacion de item habilitadas.
+    
+    @author: Marcelo Denis.
+    
+    """
+    
+    credenciales = Credenciales.objects.filter(usuario=request.user)
+    template_name='solicitudes/credenciales.html'
+    ctx = {'lista_credenciales':credenciales}
+    return render_to_response(template_name, ctx, context_instance=RequestContext(request))

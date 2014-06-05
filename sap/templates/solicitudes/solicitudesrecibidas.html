@@ -57,6 +57,12 @@
 				      			<h4 class="panel-title"><b>Estado</b></h4>
 				    		</div>
 				    	</div>
+				    	
+				    	<div class="col-md-4">
+				    		<div class="panel-heading">
+				      			<h4 class="panel-title"><b>Item</b></h4>
+				    		</div>
+				    	</div>
 				    
 				    	<div class="col-md-4">
 				    		<div class="panel-heading">
@@ -74,6 +80,16 @@
 				      		<h4 class="panel-title">
 				        		<a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ solicitud.id }}">
 				          		{{ solicitud.estado }}
+				        		</a>
+				      		</h4>
+				    	</div>
+				    </div>
+				    
+				     <div class="col-md-4">
+				    	<div class="panel-heading">
+				      		<h4 class="panel-title">
+				        		<a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ solicitud.id }}">
+				          		{{ solicitud.item.nombre }}
 				        		</a>
 				      		</h4>
 				    	</div>
