@@ -890,6 +890,31 @@ def consultar_item(request, id_proyecto, id_fase, id_item):
     template_name = './items/consultaritem.html'
     return render(request, template_name, {'item': item, 'id_proyecto': id_proyecto, 'fase': fase, 'id_fase': id_fase, 'id_item': id_item, 'proyecto':proyecto, 'fase':fase})
 
+def consultar_enrevision(request, id_proyecto, id_fase, id_item):
+    """ Recibe un request, se verifica cual es el usuario registrado y el proyecto del cual se solicita,
+    se obtiene la lista de fases con las que estan relacionados el usuario y el proyecto 
+    desplegandola en pantalla, ademas permite realizar busquedas avanzadas sobre
+    las fases que puede mostrar.
+    
+    @type request: django.http.HttpRequest.
+    @param request: Contiene informacion sobre la solicitud web actual que llamo a esta vista.
+    
+    @rtype: django.shortcuts.render_to_response.
+    @return: fases.html, donde se listan las fases, ademas de las funcionalidades para cada fase.
+    
+    @author: Ysapy Ortiz.
+    
+    """
+    proyecto = Proyectos.objects.get(id=id_proyecto)
+    fase = Fases.objects.get(id=id_fase, proyecto_id=id_proyecto)
+    item = Items.objects.get(proyecto_id=id_proyecto, fase_id=id_fase, id=id_item)
+    # conseguir el contexto de las fases y sus estados
+    #fases = Fases.objects.filter(id_proyecto = id_proyecto)
+    ctx = {'item':item}
+    template_name = './items/consultarenrevision.html'
+    return render(request, template_name, {'item': item, 'id_proyecto': id_proyecto, 'fase': fase, 'id_fase': id_fase, 'id_item': id_item, 'proyecto':proyecto, 'fase':fase})
+
+
 def consultar_atributos(request, id_proyecto, id_fase, id_item):
     """ Recibe un request, se verifica cual es el usuario registrado y el proyecto del cual se solicita,
     se obtiene la lista de fases con las que estan relacionados el usuario y el proyecto 
@@ -1428,3 +1453,30 @@ def calcular_items_afectados(id_item):
     else:
         lista_hijos.append(item)
         return lista_hijos
+
+def finrevision(request, id_proyecto, id_fase, id_item):
+    item = Items.objects.get(id=id_item)
+    items = Items.objects.filter(fase_id=id_fase)
+    eslb = False
+    for i in items:
+        if i.estado=='Habilitado':
+            eslb = True
+            itemhabilitado = i
+    if eslb:
+        lineasbase = LineaBase.objects.filter(fase_id=id_fase)
+        for lineab in lineasbase:
+            itemslb = lineab.items.all()
+            if (item in itemslb) and (itemhabilitado in itemslb):
+                esta = True
+            
+                
+            
+    item.estado = 'Bloqueado'
+    item.save()
+    lista_items = Items.objects.filter(proyecto_id=id_proyecto, fase_id=id_fase, is_active=True)
+    mensaje = ''
+    proyecto = Proyectos.objects.get(id=id_proyecto)
+    fase = Fases.objects.get(id=id_fase)
+    ctx = {'lista_items': lista_items, 'mensaje': mensaje, 'id_proyecto':id_proyecto, 'id_fase': id_fase, 'proyecto':proyecto, 'fase':fase}
+    template_name = './items/itemalerta.html'
+    return render_to_response(template_name, ctx, context_instance=RequestContext(request))

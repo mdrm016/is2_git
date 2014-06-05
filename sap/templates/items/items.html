@@ -125,13 +125,15 @@
 				      			<a href="crear_solicitud/{{ item.id }}/"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-edit"></span> Solicitar Modificacion</button></a>
 				      		{% endifequal %}
 				      		{% ifequal item.estado 'En Revision' %}
+				      			<a href="consultar_enrevision/{{ item.id }}/"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-eye-open"></span> Consultar</button></a>
+				      			<a href="impacto/{{ item.id }}/"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-edit"></span> Impacto</button></a>
+				      		{% endifequal %}
+				      		{% ifequal item.estado 'Habilitado' %}
 				      			<a href="consultar/{{ item.id }}/"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-eye-open"></span> Consultar</button></a>
-				      			<a href="modificar/{{ item.id }}/"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-edit"></span> Modificar</button></a>
 				      			<a href="atributos/{{ item.id }}/"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-edit"></span> Atributos</button></a>
 				      			<a href="relaciones/{{ item.id }}/"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-edit"></span> Relaciones</button></a>
 				      			<a href="versiones/{{ item.id }}/"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-edit"></span> Versiones</button></a>
 				      			<a href="impacto/{{ item.id }}/"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-edit"></span> Impacto</button></a>
-				      			<a href="modificar_solicitud/{{ item.id }}/"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-edit"></span> Modificar Solicitud</button></a>
 				      		{% endifequal %}
 
 				      </div>
