@@ -407,4 +407,3 @@ def administrar_credenciales (request):
     template_name='solicitudes/credenciales.html'
     ctx = {'lista_credenciales':credenciales}
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
-
