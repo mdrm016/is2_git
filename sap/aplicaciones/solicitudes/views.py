@@ -8,7 +8,7 @@ from django.template.context import RequestContext
 from aplicaciones.proyectos.models import Proyectos
 from aplicaciones.fases.models import Fases
 from aplicaciones.items.models import Items
-from .models import Solicitudes, Credenciales
+from .models import Solicitudes, Votos, Credenciales
 from .forms import SolicitudNuevaForm, SolicitudPrimeraForm, votarSolicitudForm
 from datetime import datetime, date, timedelta
 from django.contrib.auth.decorators import login_required, permission_required
@@ -227,13 +227,24 @@ def votar_solicitud(request, id_solicitud):
                 solicitud.votos_rechazado = solicitud.votos_rechazado + 1
             comite = Comite.objects.get(proyecto=solicitud.proyecto)
             cantidad_miembros = comite.miembros.count()
-            cantidad_votos = solicitud.votos_aprobado + solicitud.votos_rechazado
+            promedio = int(ceil(cantidad_miembros/2)) + 1
+            #Calculamos la  cantidad de votos a favor  y en contra
+            votos = Votos.objects.filter(solicitud=solicitud)
+            votosAprobado = 0
+            votosRechazado = 0
+            for votoMiembro in votos:
+                if votoMiembro.voto == 'A':
+                    votosAprobado = votosAprobado + 1
+                if votoMiembro.voto == 'R':
+                    votosRechazado = votosRechazado + 1
+            #Verificamos los votos para rechazar o aprobar la  solicitud
+            cantidad_votos = votosAprobado + votosRechazado
             if cantidad_votos==cantidad_miembros:
-                if solicitud.votos_aprobado > solicitud.votos_rechazado:
+                if votosAprobado > votosRechazado:
                     solicitud.estado = 'Aprobada'
                     credencial = Credenciales()
                     credencial.usuario = solicitud.usuario
-                    credencial.proyecto = solicitud.proyecto 
+                    credencial.proyecto = solicitud.proyecto
                     credencial.fase = solicitud.fase
                     credencial.item = solicitud.item
                     credencial.fecha_aprobacion = date.today()
@@ -396,3 +407,4 @@ def administrar_credenciales (request):
     template_name='solicitudes/credenciales.html'
     ctx = {'lista_credenciales':credenciales}
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
+
