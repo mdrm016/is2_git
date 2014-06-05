@@ -8,9 +8,9 @@ from django.template.context import RequestContext
 from aplicaciones.proyectos.models import Proyectos
 from aplicaciones.fases.models import Fases
 from aplicaciones.items.models import Items
-from .models import Solicitudes, Votos
+from .models import Solicitudes, Votos, Credenciales
 from .forms import SolicitudNuevaForm, SolicitudPrimeraForm, votarSolicitudForm
-from datetime import datetime
+from datetime import datetime, date, timedelta
 from django.contrib.auth.decorators import login_required, permission_required
 from django.db.models import Q
 from aplicaciones.comite.models import Comite
@@ -239,12 +239,26 @@ def votar_solicitud(request, id_solicitud):
                 if votoMiembro.voto == 'R':
                     votosRechazado = votosRechazado + 1
             #Verificamos los votos para rechazar o aprobar la  solicitud
-            if votosAprobado >= promedio:
-                solicitud.estado = 'Aprobada'
-                mensaje = 'Ejecutar Solicitud. Credencial Generada'
-            elif votosRechazado >= promedio:
-                solicitud.estado = 'Reprobada'
-                mensaje = 'La solicitud ha sido Reprobada'
+            cantidad_votos = votosAprobado + votosRechazado
+            if cantidad_votos==cantidad_miembros:
+                if votosAprobado > votosRechazado:
+                    solicitud.estado = 'Aprobada'
+                    credencial = Credenciales()
+                    credencial.usuario = solicitud.usuario
+                    credencial.proyecto = solicitud.proyecto
+                    credencial.fase = solicitud.fase
+                    credencial.item = solicitud.item
+                    credencial.fecha_aprobacion = date.today()
+                    credencial.fecha_expiracion = date.today()+timedelta(days=solicitud.tiempo_solicitado)
+                    credencial.estado = 'Habilitado'
+                    credencial.save()
+                    mensaje = 'Credencial Generada'
+                    template_name='./solicitudes/credencialcreada.html'
+                    ctx = {'mensaje': mensaje, 'credencial': credencial}
+                    return render_to_response(template_name, ctx, context_instance=RequestContext(request))
+                else:
+                    solicitud.estado = 'Reprobada'
+                    mensaje = 'La solicitud ha sido Reprobada'
             else:
                 mensaje = 'Su voto ha sido procesado'
             solicitud.save()
@@ -256,24 +270,19 @@ def votar_solicitud(request, id_solicitud):
         form = votarSolicitudForm()
     template_name='./solicitudes/votarsolicitud.html'
     return render(request, template_name, {'form': form, 'id_solicitud':id_solicitud})
-
 def impacto(request, id_proyecto, id_fase, id_item):
     """ Recibe un request, se verifica cual es el usuario registrado y el proyecto del cual se solicita,
-    se obtiene la lista de fases con las que estan relacionados el usuario y el proyecto 
+    se obtiene la lista de fases con las que estan relacionados el usuario y el proyecto
     desplegandola en pantalla, ademas permite realizar busquedas avanzadas sobre
     las fases que puede mostrar.
-    
     @type request: django.http.HttpRequest.
     @param request: Contiene informacion sobre la solicitud web actual que llamo a esta vista.
-    
     @rtype: django.shortcuts.render_to_response.
     @return: fases.html, donde se listan las fases, ademas de las funcionalidades para cada fase.
-    
     @author: Ysapy Ortiz.
-    
     """
     item = Items.objects.get(id=id_item)
-    
+
     imonetario = impacto_monetario(id_item)
     itemporal = impacto_temporal(id_item)
     items_afectado = calcular_items_afectados(id_item)
@@ -281,25 +290,21 @@ def impacto(request, id_proyecto, id_fase, id_item):
     for items_af in items_afectado:
         if items_af.id!=item.id:
             items_afectados.append(items_af)
-    
+
     ctx = {'id_proyecto':id_proyecto, 'id_fase': id_fase, 'id_item': id_item, 'impacto_monetario': imonetario, 'impacto_temporal': itemporal, 'items_afectados': items_afectados}
     template_name = './items/impacto.html'
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
 
 def impacto_monetario(id_item):
     """ Recibe un request, se verifica cual es el usuario registrado y el proyecto del cual se solicita,
-    se obtiene la lista de fases con las que estan relacionados el usuario y el proyecto 
+    se obtiene la lista de fases con las que estan relacionados el usuario y el proyecto
     desplegandola en pantalla, ademas permite realizar busquedas avanzadas sobre
     las fases que puede mostrar.
-    
     @type request: django.http.HttpRequest.
     @param request: Contiene informacion sobre la solicitud web actual que llamo a esta vista.
-    
     @rtype: django.shortcuts.render_to_response.
     @return: fases.html, donde se listan las fases, ademas de las funcionalidades para cada fase.
-    
     @author: Ysapy Ortiz.
-    
     """
     item = Items.objects.get(id=id_item)
     costo = 0
@@ -314,21 +319,17 @@ def impacto_monetario(id_item):
         return costo
     else:
         return item.costoMonetario
-            
+
 def impacto_temporal(id_item):
     """ Recibe un request, se verifica cual es el usuario registrado y el proyecto del cual se solicita,
-    se obtiene la lista de fases con las que estan relacionados el usuario y el proyecto 
+    se obtiene la lista de fases con las que estan relacionados el usuario y el proyecto
     desplegandola en pantalla, ademas permite realizar busquedas avanzadas sobre
     las fases que puede mostrar.
-    
     @type request: django.http.HttpRequest.
     @param request: Contiene informacion sobre la solicitud web actual que llamo a esta vista.
-    
     @rtype: django.shortcuts.render_to_response.
     @return: fases.html, donde se listan las fases, ademas de las funcionalidades para cada fase.
-    
     @author: Ysapy Ortiz.
-    
     """
     item = Items.objects.get(id=id_item)
     costo = 0
@@ -346,18 +347,14 @@ def impacto_temporal(id_item):
 
 def calcular_items_afectados(id_item):
     """ Recibe un request, se verifica cual es el usuario registrado y el proyecto del cual se solicita,
-    se obtiene la lista de fases con las que estan relacionados el usuario y el proyecto 
+    se obtiene la lista de fases con las que estan relacionados el usuario y el proyecto
     desplegandola en pantalla, ademas permite realizar busquedas avanzadas sobre
     las fases que puede mostrar.
-    
     @type request: django.http.HttpRequest.
     @param request: Contiene informacion sobre la solicitud web actual que llamo a esta vista.
-    
     @rtype: django.shortcuts.render_to_response.
     @return: fases.html, donde se listan las fases, ademas de las funcionalidades para cada fase.
-    
     @author: Ysapy Ortiz.
-    
     """
     item = Items.objects.get(id=id_item)
     lista_hijos = []
