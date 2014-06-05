@@ -8,9 +8,9 @@ from django.template.context import RequestContext
 from aplicaciones.proyectos.models import Proyectos
 from aplicaciones.fases.models import Fases
 from aplicaciones.items.models import Items
-from .models import Solicitudes
+from .models import Solicitudes, Credenciales
 from .forms import SolicitudNuevaForm, SolicitudPrimeraForm, votarSolicitudForm
-from datetime import datetime
+from datetime import datetime, date, timedelta
 from django.contrib.auth.decorators import login_required, permission_required
 from django.db.models import Q
 from aplicaciones.comite.models import Comite
@@ -376,12 +376,3 @@ def calcular_items_afectados(id_item):
     else:
         lista_hijos.append(item)
         return lista_hijos
-
-def agregar_observacion(request, id_proyecto, id_credencial):
-    credencial = Credenciales.objects.get(id=id_credencial)
-    credencial.observaciones = request.observaciones
-    credencial.save()
-    mensaje = 'Credencial creada con exito.'
-    ctx = {'id_proyecto': id_proyecto}
-    template_name = './solicitudes/solicitudalerta.html'
-    return render_to_response(template_name, ctx, context_instance=RequestContext(request))
