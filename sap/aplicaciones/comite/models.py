@@ -25,5 +25,5 @@ class Comite(models.Model):
     miembros = models.ManyToManyField(Usuarios)
     proyecto = models.ForeignKey(Proyectos)
 
-    def __unicode__ (self):
-        return unicode(self.id)
+    def __unicode__(self):
+        return self.id

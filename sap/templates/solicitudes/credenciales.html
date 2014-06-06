@@ -8,7 +8,7 @@
 
 	<div  class="collapse navbar-collapse navbar-ex1-collapse">
 		<ul class="nav navbar-nav">
-			<li class="active"><a href="/adm_proyectos/solicitudes_realizadas/">Solicitudes Realizadas</a></li>
+			<li class="active"><a href="/adm_proyectos/credenciales/">Credenciales</a></li>
         </ul>
 
 		<ul class="nav navbar-nav navbar-right">
@@ -27,10 +27,7 @@
 <div class="menu">
 	<ul>
 		<li id="option1" class="active">
-			<a href="/adm_proyectos/solicitudes_realizadas/">Solicitudes Realizadas</a>
-		</li>
-		<li id="option2" >
-			<a href="/adm_proyectos/solicitudes_recibidas/">Solicitudes Recibidas {% if pendientes > 0 %} ({{ pendientes }}) {% endif %}</a>
+			<a href="/adm_proyectos/credenciales/">Credenciales</a>
 		</li>
 	</ul>
 </div>
@@ -44,73 +41,87 @@
 
 {% block contenido %}
 <div class="content-secondary">
-<!-- Aca van la  lista de Proyectos.. o de Solicitudes.. o de credenciales -->
-		{% if solicitudes %}
+		{% if lista_credenciales %}
 		<div class="row ">
 			<div class="panel-group" id="accordion">
 				<div class="panel panel-default">
 					<div class="row">
 				    	
-				    
-				    	<div class="col-md-4">
+				    	<div class="col-md-3">
 				    		<div class="panel-heading">
-				      			<h4 class="panel-title"><b>Estado</b></h4>
+				      			<h4 class="panel-title"><b>ID</b></h4>
 				    		</div>
 				    	</div>
-				    	
-				    	<div class="col-md-4">
+				    
+				    	<div class="col-md-3">
 				    		<div class="panel-heading">
 				      			<h4 class="panel-title"><b>Item</b></h4>
 				    		</div>
 				    	</div>
 				    
-				    	<div class="col-md-4">
+				    	<div class="col-md-3">
 				    		<div class="panel-heading">
-				      			<h4 class="panel-title"><b>Descripcion</b></h4>
+				      			<h4 class="panel-title"><b>Estado</b></h4>
 				    		</div>
 				    	</div>
+				    	
+				    	<div class="col-md-3">
+				    		<div class="panel-heading">
+				      			<h4 class="panel-title"><b>Fecha de Expiracion</b></h4>
+				    		</div>
+				    	</div>
+				    	
 				    </div>
 				</div>
-			{% for solicitud in solicitudes %}
+			{% for credencial in lista_credenciales %}
 				<div class="panel panel-default">
 					
-				    
-				    <div class="col-md-4">
+					<div class="col-md-3">
 				    	<div class="panel-heading">
 				      		<h4 class="panel-title">
-				        		<a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ solicitud.id }}">
-				          		{{ solicitud.estado }}
+				        		<a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ credencial.id }}">
+				          		{{ credencial.id }}
 				        		</a>
 				      		</h4>
 				    	</div>
 				    </div>
 				    
-				    <div class="col-md-4">
+				    <div class="col-md-3">
 				    	<div class="panel-heading">
 				      		<h4 class="panel-title">
-				        		<a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ solicitud.id }}">
-				          		{{ solicitud.item.nombre }}
+				        		<a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ credencial.id }}">
+				          		{{ credencial.item.nombre }}
 				        		</a>
 				      		</h4>
 				    	</div>
 				    </div>
 				    
-				    <div class="col-md-4">
+				    <div class="col-md-3">
 				    	<div class="panel-heading">
 				      		<h4 class="panel-title">
-				        		<a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ solicitud.id }}">
-				          		{{ solicitud.descripcion }}
+				        		<a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ credencial.id }}">
+				          		{{ credencial.estado }}
+				        		</a>
+				      		</h4>
+				    	</div>
+				    </div>
+				    
+				    <div class="col-md-3">
+				    	<div class="panel-heading">
+				      		<h4 class="panel-title">
+				        		<a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ credencial.id }}">
+				          		{{ credencial.fecha_expiracion }}
 				        		</a>
 				      		</h4>
 				    	</div>
 				    </div>
 				    
 				    
-				    <div id="collapse{{ solicitud.id }}" class="panel-collapse collapse pull-left">
+				    <div id="collapse{{ credencial.id }}" class="panel-collapse collapse pull-left">
 				      <div class="panel-body">
-				      		<a href="consultar_solicitud/{{ solicitud.id }}/"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-eye-open"></span> Consultar</button></a>
-				      		{% ifequal solicitud.estado 'Pendiente' %}
-				      		<button class="btn btn-danger btn-sm solicitudRealizada" data-toggle="modal" data-target="#myModal" data-id="{{ solicitud.id }}"><span class="glyphicon glyphicon-trash"></span> Cancelar Solicitud</button>
+				      		<a href="consultar_credencial/{{ credencial.id }}/"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-eye-open"></span> Consultar</button></a>
+				      		{% ifequal credencial.estado 'Habilitado' %}
+				      		<button class="btn btn-danger btn-sm credencial" data-toggle="modal" data-target="#myModal" data-id="{{ credencial.id }}"><span class="glyphicon glyphicon-trash"></span> Cancelar Credencial</button>
 				      		{% endifequal %}
 				      </div>
 				    </div>
@@ -122,12 +133,12 @@
 		{% else %}
 			<div class="jumbotron">
 				<div class="bs-example">
-					<p class="text-warning" align="center"><small>Usted no ha realizado ninguna solicitud de modificacion de Item</small></p>
+					<p class="text-warning" align="center"><small>Usted no tiene aprobada ninguna credencial de modificacion de Item</small></p>
 				</div>
 			</div>
 		{% endif %}
 		
-		<!-- Ininicia Modal -->
+			<!-- Ininicia Modal -->
 		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		  <div class="modal-dialog">
 		    <div class="modal-content">
@@ -136,11 +147,11 @@
 		        <h4 class="modal-title" id="myModalLabel">Eliminar</h4>
 		      </div>
 		      <div class="modal-body">
-		        	Esta usted seguro de que desea Cancelar la Solicitud?
+		        	Esta usted seguro de que desea Cancelar la Credencial?
 		      </div>
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancelar</button>
-		       <a id="solicitudRealizada" href=""><button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-ok"></span> Estoy Seguro</button></a>
+		       <a id="credencial" href=""><button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-ok"></span> Estoy Seguro</button></a>
 		      </div>
 		    </div>
 		  </div>

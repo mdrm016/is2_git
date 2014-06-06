@@ -9,7 +9,7 @@ from aplicaciones.proyectos.models import Proyectos
 from aplicaciones.fases.models import Fases
 from aplicaciones.items.models import Items
 from aplicaciones.lineabase.models import LineaBase
-from .models import Solicitudes, Credenciales
+from .models import Solicitudes, Votos, Credenciales
 from .forms import SolicitudNuevaForm, SolicitudPrimeraForm, votarSolicitudForm
 from datetime import datetime, date, timedelta
 from django.contrib.auth.decorators import login_required, permission_required
@@ -224,28 +224,40 @@ def votar_solicitud(request, id_solicitud):
         form = votarSolicitudForm(request.POST)
         if form.is_valid():
             voto = form.cleaned_data['voto']
-
             solicitud = Solicitudes.objects.get(id = id_solicitud)
+            #Registramos el voto del usuario miembro de comite
             if voto == "A":
-                solicitud.votos_aprobado = solicitud.votos_aprobado + 1
+                miVoto = Votos(miembro=request.user, solicitud=solicitud, fechaDeVotacion=datetime.today(), voto="A")
             else:
-                solicitud.votos_rechazado = solicitud.votos_rechazado + 1
+                miVoto = Votos(miembro=request.user, solicitud=solicitud, fechaDeVotacion=datetime.today(), voto="R")
+            miVoto.save()
             comite = Comite.objects.get(proyecto=solicitud.proyecto)
             cantidad_miembros = comite.miembros.count()
-            cantidad_votos = solicitud.votos_aprobado + solicitud.votos_rechazado
+            promedio = int(ceil(cantidad_miembros/2)) + 1
+            #Calculamos la  cantidad de votos a favor  y en contra
+            votos = Votos.objects.filter(solicitud=solicitud)
+            votosAprobado = 0
+            votosRechazado = 0
+            for votoMiembro in votos:
+                if votoMiembro.voto == 'A':
+                    votosAprobado = votosAprobado + 1
+                if votoMiembro.voto == 'R':
+                    votosRechazado = votosRechazado + 1
+            #Verificamos los votos para rechazar o aprobar la  solicitud
+            cantidad_votos = votosAprobado + votosRechazado
             if cantidad_votos==cantidad_miembros:
-                if solicitud.votos_aprobado > solicitud.votos_rechazado:
+                if votosAprobado > votosRechazado:
                     solicitud.estado = 'Cancelado'
                     credencial = Credenciales()
                     credencial.usuario = solicitud.usuario
-                    credencial.proyecto = solicitud.proyecto 
+                    credencial.proyecto = solicitud.proyecto
                     credencial.fase = solicitud.fase
                     credencial.item = solicitud.item
                     credencial.fecha_aprobacion = date.today()
                     credencial.fecha_expiracion = date.today()+timedelta(days=solicitud.tiempo_solicitado)
                     credencial.estado = 'Habilitado'
-                    credencial.save()
                     solicitud.save()
+                    credencial.save()
                     habilitar_items(credencial)
                     mensaje = 'Credencial Generada'
                     template_name='./solicitudes/credencialcreada.html'
@@ -256,7 +268,6 @@ def votar_solicitud(request, id_solicitud):
                     mensaje = 'La solicitud ha sido Reprobada'
             else:
                 mensaje = 'Su voto ha sido procesado'
-            solicitud.miembros_que_votaron.add(request.user)
             solicitud.save()
             template_name='./solicitudes/solicitudalerta.html'
             ctx = {'mensaje': mensaje}
@@ -407,3 +418,42 @@ def habilitar_items(credencial):
     item.estado = 'Habilitado'
     item.save()
     
+def administrar_credenciales (request):
+    
+    """ Recibe un request, se verifica cual es el usuario registrado y se obtiene la lista de credenciales
+    habilitadas con los que esta relacionado desplegandolo en pantalla.
+    
+    @type request: django.http.HttpRequest.
+    @param request: Contiene informacion sobre la solicitud web actual que llamo a esta vista administrar_credenciales.
+    
+    @rtype: django.shortcuts.render_to_response.
+    @return: credenciales.html, donde se listan las credenciales de modificacion de item habilitadas.
+    
+    @author: Marcelo Denis.
+    
+    """
+    
+    credenciales = Credenciales.objects.filter(usuario=request.user)
+    template_name='solicitudes/credenciales.html'
+    ctx = {'lista_credenciales':credenciales}
+    return render_to_response(template_name, ctx, context_instance=RequestContext(request))
+
+def consultarCredencial(request, id_credencial):
+
+    """ Recibe un request, se verifica cual es el usuario registrado y despliega los
+     datos que pertenece a la credencial que se consulta
+
+    @type request: django.http.HttpRequest.
+    @param request: Contiene informacion sobre la solicitud web actual que llamo a esta vista administrar_credenciales.
+
+    @rtype: django.shortcuts.render_to_response.
+    @return: consultar_credencial.html, donde se despliega los datos de la credencial.
+
+    @author: Eduardo Gimenez.
+
+    """
+
+    credencial = Credenciales.objects.get(id=id_credencial)
+    template_name='solicitudes/consultar_credencial.html'
+    ctx = {'credencial':credencial}
+    return render_to_response(template_name, ctx, context_instance=RequestContext(request))
