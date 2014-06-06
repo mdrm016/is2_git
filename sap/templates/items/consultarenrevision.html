@@ -1,0 +1,119 @@
+{% extends "base_general.html" %}
+
+{% block navegacion %}
+<nav class="navbar navbar-default">
+	<div class="navbar-header">
+		<a href="/" class="navbar-brand">SAP</a>
+	</div>
+
+	<div  class="collapse navbar-collapse navbar-ex1-collapse">
+		<ul class="nav navbar-nav">
+			<li><a href="/adm_proyectos/">Proyectos</a></li>
+			<li><a href="/adm_proyectos/gestionar/{{ proyecto.id }}/">Gestión de {{ proyecto.nombre }}</a></li>
+			<li><a href="/adm_proyectos/gestionar/{{ proyecto.id }}/adm_items/{{ fase.id }}/">Gestión de {{ fase.nombre }}</a></li>
+			<li class="active"><a href="/adm_proyectos/gestionar/{{ proyecto.id }}/adm_items/{{ fase.id }}/consultar/{{ id_item }}/">Consulta de Item</a></li>
+        </ul>
+
+		<ul class="nav navbar-nav navbar-right">
+			<li><a href="#">Acerca de</a></li>
+			<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Registro del Sistema<b class="caret"></b></a>
+				<ul class="dropdown-menu">
+				
+				</ul>
+			</li>
+		</ul>
+	</div>
+</nav>
+{% endblock %}
+
+
+{% block menu %}		
+<div class="menu">
+	<ul>
+		<li id="option1" class="active">
+			<a href="/adm_proyectos/gestionar/{{ id_proyecto }}/adm_items/{{ id_fase }}/">Items - {{ item.nombre }}</a>
+	</ul>
+</div>
+{% endblock %}
+
+{% block contenido %}
+<div class="content-secondary">
+	<div class="container">
+		<div class="row">
+				<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+				</div>
+				
+				<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+					<table class="table table-hover table-bordered table-condensed table-responsive">
+						<tbody>
+						  	<!-- Aplicadas en las filas -->
+						  	<tr class="active">
+						  		<td><p><h4>Id</h4></p></td>
+						  		<td><p><h4><span class="label label-default">{{ item.id }}</span></h4></h4></p></td>
+							</tr>
+						  	<tr class="active">
+						  		<td><p><h4>Nombre:</h4></p></td>
+						  		<td><p><h4><span class="label label-default">{{ item.nombre }}</span></h4></h4></p></td>
+						  	</tr>
+						  	<tr class="active">
+						  		<td><p><h4>Version Actual:</h4></p></td>
+						  		<td><p><h4><span class="label label-default">{{ item.version }}</span></h4></h4></p></td>
+						  	</tr>
+						  	<tr class="active">
+						  		<td><p><h4>Prioridad:</h4></p></td>
+						  		<td><p><h4><span class="label label-default">{{ item.prioridad }}</span></h4></h4></p></td>
+						  	</tr>
+						  	<tr class="active">
+						  		<td><p><h4>Estado:</h4></p></td>
+						  		<td><p><h4><span class="label label-default">{{ item.estado }}</span></h4></h4></p></td>
+						  	</tr>
+						  	<tr class="active">
+						  		<td><p><h4>Descripcion:</h4></p></td>
+						  		<td><p><h4><span class="label label-default">{{ item.descripcion }}</span></h4></h4></p></td>
+						  	</tr>
+						  	<tr class="active">
+						  		<td><p><h4>Observaciones:</h4></p></td>
+						  		<td><p><h4><span class="label label-default">{{ item.observaciones }}</span></h4></h4></p></td>
+						  	</tr>
+						  	<tr class="active">
+						  		<td><p><h4>Costo Monetario:</h4></p></td>
+						  		<td><p><h4><span class="label label-default">{{ item.costoMonetario }}</span></h4></h4></p></td>
+						  	</tr>
+						  	<tr class="active">
+						  		<td><p><h4>Costo Temporal:</h4></p></td>
+						  		<td><p><h4><span class="label label-default">{{ item.costoTemporal }}</span></h4></h4></p></td>
+						  	</tr>
+						  	<tr class="active">
+						  		<td><p><h4>Complejidad:</h4></p></td>
+						  		<td><p><h4><span class="label label-default">{{ item.complejidad }}</span></h4></h4></p></td>
+						  	</tr>
+						  	<tr class="active">
+						  		<td><p><h4>Tipo de Item:</h4></p></td>
+						  		<td><p><h4><span class="label label-default">{{ item.tipo_item.nombre }}</span></h4></h4></p></td>
+						  	</tr>
+						  	<br>
+						</tbody>	
+					</table>
+					<div align="center">
+						<a href="/adm_proyectos/gestionar/{{ id_proyecto }}/adm_items/{{ id_fase }}/consul_atrib/{{ id_item }}/"><button type="button" class="btn btn-default"> Atributos <br></button></a>
+					</div>
+					<div align="center">
+						<a href="/adm_proyectos/gestionar/{{ id_proyecto }}/adm_items/{{ id_fase }}/consul_relac/{{ id_item }}/"><button type="button" class="btn btn-default"> Relaciones <br></button></a>
+					</div><br>
+					<div align="center">
+						<a href="crear_solicitud/{{ id_item }}/"><button type="button" class="btn btn-default"> Crear Solicitud de Cambio <br></button></a>
+						<a href="/adm_proyectos/gestionar/{{ id_proyecto }}/adm_items/{{ id_fase }}/finrevision/{{ id_item }}/"><button type="button" class="btn btn-default"> Revision finalizada <br></button></a>
+					</div>
+				
+				</div>
+				
+				<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+				</div>
+		</div>
+	</div>
+</div>
+
+	
+{% endblock %}
+
+

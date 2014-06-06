@@ -1,0 +1,119 @@
+[
+{
+    "pk": 1, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "sap", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": true, 
+        "is_staff": true, 
+        "last_login": "2014-06-06T16:47:08.798Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$12000$OPrFVcEcuWPc$sINgwifb6fVcK6qcQVE18R7g68gVUhn2QADH5wFu4P4=", 
+        "email": "", 
+        "date_joined": "2014-06-06T15:59:59.009Z"
+    }
+},
+{
+    "pk": 2, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "ysapy", 
+        "first_name": "ysa", 
+        "last_name": "ortiz", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2014-06-06T16:45:50.112Z", 
+        "groups": [
+            1, 
+            3
+        ], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$12000$VbzbNMLJKMvL$Dg3+SPNpzE6nx0BDHTIF9MGVsQiDuLx6AgvhSePw3OY=", 
+        "email": "ysapy@sap", 
+        "date_joined": "2014-06-06T16:02:56.768Z"
+    }
+},
+{
+    "pk": 3, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "marcelo", 
+        "first_name": "marcelo", 
+        "last_name": "denis", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2014-06-06T16:40:23.669Z", 
+        "groups": [
+            1, 
+            3
+        ], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$12000$CIwgZZlJd8Zu$S8ML1JT6vvYjnO3hH7AhMRUDGImL7QIByHN4dvJ+prA=", 
+        "email": "mdrm016@gmail.com", 
+        "date_joined": "2014-06-06T16:03:29.667Z"
+    }
+},
+{
+    "pk": 4, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "eduardo", 
+        "first_name": "edu", 
+        "last_name": "gimenez", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2014-06-06T16:04:21.038Z", 
+        "groups": [
+            1, 
+            3
+        ], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$12000$beVexbOLG3YC$tx4mUW7RrRJEwshQAkOnUNcpFRYSY60CBi6R2AOTClg=", 
+        "email": "edu@sap", 
+        "date_joined": "2014-06-06T16:04:21.038Z"
+    }
+},
+{
+    "pk": 5, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "andru", 
+        "first_name": "andrea", 
+        "last_name": "benitez", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2014-06-06T16:05:37.240Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$12000$GUDIKhKEeyLA$irVvNRcQ548dlnZbOTb3gvUc6hRR6vTFFGgQcWEoUBg=", 
+        "email": "andru@sap", 
+        "date_joined": "2014-06-06T16:05:37.240Z"
+    }
+},
+{
+    "pk": 6, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "gabita", 
+        "first_name": "gabi", 
+        "last_name": "vazquez", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2014-06-06T16:06:16.851Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$12000$yuEK10X4lDoW$s0XOQXHHHJw96p9/HXg1jI7rJQFbGCwdts0p58DTyIs=", 
+        "email": "gabi@sap", 
+        "date_joined": "2014-06-06T16:06:16.851Z"
+    }
+}
+]

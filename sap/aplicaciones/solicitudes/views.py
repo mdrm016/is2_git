@@ -8,6 +8,7 @@ from django.template.context import RequestContext
 from aplicaciones.proyectos.models import Proyectos
 from aplicaciones.fases.models import Fases
 from aplicaciones.items.models import Items
+from aplicaciones.lineabase.models import LineaBase
 from .models import Solicitudes, Votos, Credenciales
 from .forms import SolicitudNuevaForm, SolicitudPrimeraForm, votarSolicitudForm
 from datetime import datetime, date, timedelta
@@ -137,8 +138,12 @@ def crear_solicitud(request, id_proyecto, id_fase, id_item):
         solicitudexistente = Solicitudes.objects.get(item_id=id_item, estado='Pendiente')
     except Solicitudes.DoesNotExist:
         solicitudexistente = False
-    if solicitudexistente:
-        mensaje = 'Ya existe una solicitud pendiente para la modificacion del item seleccionado.'
+    try:
+        solicitudcreada = Solicitudes.objects.get(item_id=id_item, estado='Aprobado')
+    except Solicitudes.DoesNotExist:
+        solicitudcreada = False
+    if solicitudexistente or solicitudcreada:
+        mensaje = 'Ya existe una solicitud para la modificacion del item seleccionado.'
         template_name='./solicitudes/solicitudalerta.html'
         ctx = {'mensaje': mensaje, 'id_proyecto':id_proyecto, 'id_fase': id_fase, 'id_item': id_item, 'proyecto':proyecto, 'fase':fase, 'item': item}
         return render_to_response(template_name, ctx, context_instance=RequestContext(request))
@@ -242,7 +247,7 @@ def votar_solicitud(request, id_solicitud):
             cantidad_votos = votosAprobado + votosRechazado
             if cantidad_votos==cantidad_miembros:
                 if votosAprobado > votosRechazado:
-                    solicitud.estado = 'Aprobada'
+                    solicitud.estado = 'Cancelado'
                     credencial = Credenciales()
                     credencial.usuario = solicitud.usuario
                     credencial.proyecto = solicitud.proyecto
@@ -253,6 +258,7 @@ def votar_solicitud(request, id_solicitud):
                     credencial.estado = 'Habilitado'
                     solicitud.save()
                     credencial.save()
+                    habilitar_items(credencial)
                     mensaje = 'Credencial Generada'
                     template_name='./solicitudes/credencialcreada.html'
                     ctx = {'mensaje': mensaje, 'credencial': credencial}
@@ -388,6 +394,29 @@ def calcular_items_afectados(id_item):
     else:
         lista_hijos.append(item)
         return lista_hijos
+
+def habilitar_items(credencial):
+    item = Items.objects.get(id=credencial.item_id)
+    fase = Items.objects.get(id=credencial.fase_id)
+    lineasbase = LineaBase.objects.filter(fase_id=credencial.fase_id)
+    for lb in lineasbase:
+        items = lb.items.all()
+        if item in items:
+            lineabase = lb
+    items = lineabase.items.all()
+    
+    for itemhijo in items:
+        if itemhijo.estado=='Bloqueado' or itemhijo.estado=='Validado':
+            itemhijo.estado='En Revision'
+            itemhijo.save()
+    
+    lista_hijos = calcular_items_afectados(item.id)
+    for hijo in lista_hijos:
+        if hijo.estado=='Bloqueado' or hijo.estado=='Validado':
+            hijo.estado = 'En Revision'
+            hijo.save()
+    item.estado = 'Habilitado'
+    item.save()
     
 def administrar_credenciales (request):
     
@@ -428,4 +457,3 @@ def consultarCredencial(request, id_credencial):
     template_name='solicitudes/consultar_credencial.html'
     ctx = {'credencial':credencial}
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
-

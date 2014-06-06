@@ -9,7 +9,7 @@ from aplicaciones.fases.views import adm_fases, crear_fase, consultar_fase, elim
 
 class test_fase(TestCase):
     
-    fixtures = ['users.json']+ ['proyectos.json'] + ['fases.json'] + ['groups.json']
+    fixtures = ['user.json'] + ['roles.json'] + ['group.json'] + ['proyectos.json'] + ['comite.json'] + ['fases.json'] + ['tipoatributo.json'] + ['listaatributo.json'] + ['tipoitem.json'] + ['items.json'] + ['linea_base.json'] + ['solicitudes.json']
     
     def setUp(self):
         """ Inicializamos la variable factory que posteriormente nos permitira cargar
@@ -53,7 +53,7 @@ class test_fase(TestCase):
         print 'Test de consultar un item ejecutado exitosamente'
 
                 
-    def test_eliminar_item (self):
+    """def test_eliminar_item (self):
         
         request = self.factory.get('/adm_proyectos/gestionar/2/eliminar/6')
         self.user = User.objects.get(pk=1)
@@ -64,9 +64,9 @@ class test_fase(TestCase):
         fase = Fases.objects.get(id=fase_id)
         self.assertFalse(fase.is_active)
         self.assertTrue(fase) 
-        print 'Test de eliminar item ejecutado exitosamente.'
+        print 'Test de eliminar item ejecutado exitosamente.'"""
         
-    def test_modificar_item (self):
+    """def test_modificar_item (self):
         
         self.user = User.objects.get(pk=1)
         proyecto = Proyectos.objects.get(id=2)
@@ -78,7 +78,7 @@ class test_fase(TestCase):
         self.assertEqual(response.status_code, 200)
         faseModificada = Fases.objects.get(nombre='Fase 12')
         self.assertEqual(fase.id, faseModificada.id)
-        print 'Test de modificar item ejecutado exitosamente.'
+        print 'Test de modificar item ejecutado exitosamente.'"""
         
     def test_cargar_valores (self):
         
