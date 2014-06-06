@@ -1,0 +1,167 @@
+[
+{
+    "pk": 1, 
+    "model": "tipoitem.listaatributo", 
+    "fields": {
+        "id_atributo": 1, 
+        "nombre": "cantidad", 
+        "is_active": true, 
+        "id_tipoitem": 1, 
+        "orden": 1
+    }
+},
+{
+    "pk": 2, 
+    "model": "tipoitem.listaatributo", 
+    "fields": {
+        "id_atributo": 3, 
+        "nombre": "descripcion", 
+        "is_active": true, 
+        "id_tipoitem": 1, 
+        "orden": 2
+    }
+},
+{
+    "pk": 3, 
+    "model": "tipoitem.listaatributo", 
+    "fields": {
+        "id_atributo": 2, 
+        "nombre": "fecha de inicio", 
+        "is_active": true, 
+        "id_tipoitem": 1, 
+        "orden": 3
+    }
+},
+{
+    "pk": 4, 
+    "model": "tipoitem.listaatributo", 
+    "fields": {
+        "id_atributo": 1, 
+        "nombre": "cantidad", 
+        "is_active": true, 
+        "id_tipoitem": 1, 
+        "orden": 4
+    }
+},
+{
+    "pk": 5, 
+    "model": "tipoitem.listaatributo", 
+    "fields": {
+        "id_atributo": 1, 
+        "nombre": "cantidad", 
+        "is_active": true, 
+        "id_tipoitem": 2, 
+        "orden": 1
+    }
+},
+{
+    "pk": 6, 
+    "model": "tipoitem.listaatributo", 
+    "fields": {
+        "id_atributo": 3, 
+        "nombre": "descripcion", 
+        "is_active": true, 
+        "id_tipoitem": 2, 
+        "orden": 2
+    }
+},
+{
+    "pk": 7, 
+    "model": "tipoitem.listaatributo", 
+    "fields": {
+        "id_atributo": 2, 
+        "nombre": "fecha de inicio", 
+        "is_active": true, 
+        "id_tipoitem": 2, 
+        "orden": 3
+    }
+},
+{
+    "pk": 8, 
+    "model": "tipoitem.listaatributo", 
+    "fields": {
+        "id_atributo": 1, 
+        "nombre": "cantidad", 
+        "is_active": true, 
+        "id_tipoitem": 3, 
+        "orden": 1
+    }
+},
+{
+    "pk": 9, 
+    "model": "tipoitem.listaatributo", 
+    "fields": {
+        "id_atributo": 2, 
+        "nombre": "descripcion", 
+        "is_active": true, 
+        "id_tipoitem": 3, 
+        "orden": 2
+    }
+},
+{
+    "pk": 10, 
+    "model": "tipoitem.listaatributo", 
+    "fields": {
+        "id_atributo": 3, 
+        "nombre": "fecha de inicio", 
+        "is_active": true, 
+        "id_tipoitem": 3, 
+        "orden": 3
+    }
+},
+{
+    "pk": 11, 
+    "model": "tipoitem.listaatributo", 
+    "fields": {
+        "id_atributo": 4, 
+        "nombre": "cantidad", 
+        "is_active": true, 
+        "id_tipoitem": 3, 
+        "orden": 4
+    }
+},
+{
+    "pk": 12, 
+    "model": "tipoitem.listaatributo", 
+    "fields": {
+        "id_atributo": 7, 
+        "nombre": "atributo_Nulo", 
+        "is_active": true, 
+        "id_tipoitem": 4, 
+        "orden": 1
+    }
+},
+{
+    "pk": 13, 
+    "model": "tipoitem.listaatributo", 
+    "fields": {
+        "id_atributo": 1, 
+        "nombre": "cantidad", 
+        "is_active": true, 
+        "id_tipoitem": 4, 
+        "orden": 2
+    }
+},
+{
+    "pk": 14, 
+    "model": "tipoitem.listaatributo", 
+    "fields": {
+        "id_atributo": 3, 
+        "nombre": "descripcion", 
+        "is_active": true, 
+        "id_tipoitem": 4, 
+        "orden": 3
+    }
+},
+{
+    "pk": 15, 
+    "model": "tipoitem.listaatributo", 
+    "fields": {
+        "id_atributo": 2, 
+        "nombre": "fecha de inicio", 
+        "is_active": true, 
+        "id_tipoitem": 4, 
+        "orden": 4
+    }
+}
+]

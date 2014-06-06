@@ -1,0 +1,65 @@
+[
+{
+    "pk": 1, 
+    "model": "tipoitem.tipoitem", 
+    "fields": {
+        "descripcion": "ninguna", 
+        "nombre": "Tipo de item 1", 
+        "listaAtributo": [
+            4, 
+            3, 
+            1, 
+            2
+        ], 
+        "is_active": true, 
+        "id_proyecto": 6
+    }
+},
+{
+    "pk": 2, 
+    "model": "tipoitem.tipoitem", 
+    "fields": {
+        "descripcion": "ninguna", 
+        "nombre": "Tipo de item 2", 
+        "listaAtributo": [
+            5, 
+            6, 
+            7
+        ], 
+        "is_active": true, 
+        "id_proyecto": 6
+    }
+},
+{
+    "pk": 3, 
+    "model": "tipoitem.tipoitem", 
+    "fields": {
+        "descripcion": "ninguna", 
+        "nombre": "Tipo de item 1", 
+        "listaAtributo": [
+            8, 
+            9, 
+            10, 
+            11
+        ], 
+        "is_active": true, 
+        "id_proyecto": 1
+    }
+},
+{
+    "pk": 4, 
+    "model": "tipoitem.tipoitem", 
+    "fields": {
+        "descripcion": "ninguna", 
+        "nombre": "Tipo de item 3", 
+        "listaAtributo": [
+            12, 
+            13, 
+            14, 
+            15
+        ], 
+        "is_active": true, 
+        "id_proyecto": 6
+    }
+}
+]

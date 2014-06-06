@@ -3,21 +3,21 @@
     "pk": 1, 
     "model": "proyectos.proyectos", 
     "fields": {
-        "fecha_inicio": "2014-04-19", 
+        "fecha_inicio": "2014-06-06", 
         "is_active": true, 
-        "lider": 2, 
+        "lider": 3, 
         "duracion": 8, 
         "nombre": "Proyecto 1", 
-        "estado": "Inactivo"
+        "estado": "En Construccion"
     }
 },
 {
     "pk": 2, 
     "model": "proyectos.proyectos", 
     "fields": {
-        "fecha_inicio": "2014-04-19", 
+        "fecha_inicio": "2014-06-06", 
         "is_active": true, 
-        "lider": 2, 
+        "lider": null, 
         "duracion": 6, 
         "nombre": "Proyecto 2", 
         "estado": "Inactivo"
@@ -26,49 +26,49 @@
 {
     "pk": 3, 
     "model": "proyectos.proyectos", 
-    "fields": { 
-        "fecha_inicio": "2014-04-19", 
+    "fields": {
+        "fecha_inicio": "2014-06-06", 
         "is_active": true, 
-        "lider": 3, 
+        "lider": null, 
         "duracion": 6, 
-        "nombre": "Proyecto 3", 
+        "nombre": "proyecto 3", 
         "estado": "Inactivo"
     }
 },
 {
     "pk": 4, 
     "model": "proyectos.proyectos", 
-    "fields": { 
-        "fecha_inicio": "2014-04-19", 
+    "fields": {
+        "fecha_inicio": "2014-06-06", 
         "is_active": true, 
-        "lider": 4, 
-        "duracion": 3, 
-        "nombre": "Proyecto 1 impo", 
+        "lider": null, 
+        "duracion": 6, 
+        "nombre": "proyecto 4", 
         "estado": "Inactivo"
     }
 },
 {
     "pk": 5, 
     "model": "proyectos.proyectos", 
-    "fields": { 
-        "fecha_inicio": "2014-04-19", 
+    "fields": {
+        "fecha_inicio": "2014-06-06", 
         "is_active": true, 
-        "lider": 3, 
-        "duracion": 6, 
-        "nombre": "Proyecto 4", 
+        "lider": null, 
+        "duracion": 5, 
+        "nombre": "proyecto 5", 
         "estado": "Inactivo"
     }
 },
 {
     "pk": 6, 
     "model": "proyectos.proyectos", 
-    "fields": { 
-        "fecha_inicio": "2014-04-19", 
+    "fields": {
+        "fecha_inicio": "2014-06-06", 
         "is_active": true, 
         "lider": 2, 
-        "duracion": 8, 
-        "nombre": "Proyecto 5", 
-        "estado": "Inactivo"
+        "duracion": 5, 
+        "nombre": "andromeda", 
+        "estado": "En Construccion"
     }
 }
 ]

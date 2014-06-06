@@ -1,0 +1,68 @@
+[
+{
+    "pk": 1, 
+    "model": "usuarios.usuarios", 
+    "fields": {
+        "observaciones": "", 
+        "telefono": "", 
+        "user": 1, 
+        "especialidad": "", 
+        "direccion": ""
+    }
+},
+{
+    "pk": 2, 
+    "model": "usuarios.usuarios", 
+    "fields": {
+        "observaciones": "ninguna", 
+        "telefono": "123456", 
+        "user": 2, 
+        "especialidad": "ninguna", 
+        "direccion": "ninguna"
+    }
+},
+{
+    "pk": 3, 
+    "model": "usuarios.usuarios", 
+    "fields": {
+        "observaciones": "ninguna", 
+        "telefono": "123456", 
+        "user": 3, 
+        "especialidad": "ninguna", 
+        "direccion": "ninguna"
+    }
+},
+{
+    "pk": 4, 
+    "model": "usuarios.usuarios", 
+    "fields": {
+        "observaciones": "ninguna", 
+        "telefono": "123456", 
+        "user": 4, 
+        "especialidad": "ninguna", 
+        "direccion": "ninguna"
+    }
+},
+{
+    "pk": 5, 
+    "model": "usuarios.usuarios", 
+    "fields": {
+        "observaciones": "ninguna", 
+        "telefono": "123456", 
+        "user": 5, 
+        "especialidad": "ninguna", 
+        "direccion": "ninguna"
+    }
+},
+{
+    "pk": 6, 
+    "model": "usuarios.usuarios", 
+    "fields": {
+        "observaciones": "ninguna", 
+        "telefono": "123456", 
+        "user": 6, 
+        "especialidad": "ninguna", 
+        "direccion": "ninguna"
+    }
+}
+]

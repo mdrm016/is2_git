@@ -7,7 +7,7 @@ from aplicaciones.usuarios.views import usuario_eliminar, usuarionuevo
 
 class test_user(TestCase):
     """    Cargamos los usuarios de prueba en la base de datos    """
-    fixtures = ['users.json'] + ['groups.json']
+    fixtures = ['user.json'] + ['roles.json'] + ['group.json'] + ['proyectos.json'] + ['comite.json'] + ['fases.json'] + ['tipoatributo.json'] + ['listaatributo.json'] + ['tipoitem.json'] + ['items.json'] + ['linea_base.json'] + ['solicitudes.json']
     
     def setUp(self):
         """ Inicializamos la variable factory que posteriormente nos permitira cargar

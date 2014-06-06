@@ -1,0 +1,32 @@
+[
+{
+    "pk": 1, 
+    "model": "solicitudes.credenciales", 
+    "fields": {
+        "usuario": 1, 
+        "observaciones": null, 
+        "fecha_aprobacion": "2014-06-06", 
+        "item": 4, 
+        "fecha_expiracion": "2014-06-21", 
+        "proyecto": 6, 
+        "nombre": null, 
+        "estado": "Habilitado", 
+        "fase": 5
+    }
+},
+{
+    "pk": 2, 
+    "model": "solicitudes.credenciales", 
+    "fields": {
+        "usuario": 1, 
+        "observaciones": null, 
+        "fecha_aprobacion": "2014-06-06", 
+        "item": 5, 
+        "fecha_expiracion": "2014-06-21", 
+        "proyecto": 6, 
+        "nombre": null, 
+        "estado": "Habilitado", 
+        "fase": 5
+    }
+}
+]
