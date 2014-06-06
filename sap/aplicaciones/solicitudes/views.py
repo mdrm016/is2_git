@@ -219,12 +219,13 @@ def votar_solicitud(request, id_solicitud):
         form = votarSolicitudForm(request.POST)
         if form.is_valid():
             voto = form.cleaned_data['voto']
-
             solicitud = Solicitudes.objects.get(id = id_solicitud)
+            #Registramos el voto del usuario miembro de comite
             if voto == "A":
-                solicitud.votos_aprobado = solicitud.votos_aprobado + 1
+                miVoto = Votos(miembro=request.user, solicitud=solicitud, fechaDeVotacion=datetime.today(), voto="A")
             else:
-                solicitud.votos_rechazado = solicitud.votos_rechazado + 1
+                miVoto = Votos(miembro=request.user, solicitud=solicitud, fechaDeVotacion=datetime.today(), voto="R")
+            miVoto.save()
             comite = Comite.objects.get(proyecto=solicitud.proyecto)
             cantidad_miembros = comite.miembros.count()
             promedio = int(ceil(cantidad_miembros/2)) + 1
@@ -250,6 +251,7 @@ def votar_solicitud(request, id_solicitud):
                     credencial.fecha_aprobacion = date.today()
                     credencial.fecha_expiracion = date.today()+timedelta(days=solicitud.tiempo_solicitado)
                     credencial.estado = 'Habilitado'
+                    solicitud.save()
                     credencial.save()
                     mensaje = 'Credencial Generada'
                     template_name='./solicitudes/credencialcreada.html'
@@ -260,7 +262,6 @@ def votar_solicitud(request, id_solicitud):
                     mensaje = 'La solicitud ha sido Reprobada'
             else:
                 mensaje = 'Su voto ha sido procesado'
-            solicitud.miembros_que_votaron.add(request.user)
             solicitud.save()
             template_name='./solicitudes/solicitudalerta.html'
             ctx = {'mensaje': mensaje}
@@ -407,3 +408,24 @@ def administrar_credenciales (request):
     template_name='solicitudes/credenciales.html'
     ctx = {'lista_credenciales':credenciales}
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
+
+def consultarCredencial(request, id_credencial):
+
+    """ Recibe un request, se verifica cual es el usuario registrado y despliega los
+     datos que pertenece a la credencial que se consulta
+
+    @type request: django.http.HttpRequest.
+    @param request: Contiene informacion sobre la solicitud web actual que llamo a esta vista administrar_credenciales.
+
+    @rtype: django.shortcuts.render_to_response.
+    @return: consultar_credencial.html, donde se despliega los datos de la credencial.
+
+    @author: Eduardo Gimenez.
+
+    """
+
+    credencial = Credenciales.objects.get(id=id_credencial)
+    template_name='solicitudes/consultar_credencial.html'
+    ctx = {'credencial':credencial}
+    return render_to_response(template_name, ctx, context_instance=RequestContext(request))
+
