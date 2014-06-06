@@ -1460,9 +1460,9 @@ def finrevision(request, id_proyecto, id_fase, id_item):
     lista_items = Items.objects.filter(proyecto_id=id_proyecto, fase_id=id_fase, is_active=True)
     proyecto = Proyectos.objects.get(id=id_proyecto)
     fase = Fases.objects.get(id=id_fase)
-    ctx = {'lista_items': lista_items, 'mensaje': mensaje, 'id_proyecto':id_proyecto, 'id_fase': id_fase, 'proyecto':proyecto, 'fase':fase}
     template_name = './items/itemalerta.html'
     estaenlb = False
+    
     for i in items:
         if i.estado=='Habilitado':
             estaenlb = True
@@ -1473,9 +1473,11 @@ def finrevision(request, id_proyecto, id_fase, id_item):
             itemslb = lineab.items.all()
             if (item in itemslb) and (itemhabilitado in itemslb):
                 mensaje = 'No olvide generar una Linea Base con todos los items afectados y el modificado.'
+                ctx = {'lista_items': lista_items, 'mensaje': mensaje, 'id_proyecto':id_proyecto, 'id_fase': id_fase, 'proyecto':proyecto, 'fase':fase}
                 return render_to_response(template_name, ctx, context_instance=RequestContext(request))
     else:         
         item.estado = 'Bloqueado'
         item.save()
     mensaje = ''
+    ctx = {'lista_items': lista_items, 'mensaje': mensaje, 'id_proyecto':id_proyecto, 'id_fase': id_fase, 'proyecto':proyecto, 'fase':fase}
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
