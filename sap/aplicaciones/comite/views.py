@@ -58,6 +58,14 @@ def agregar_miembro(request, id_proyecto):
     @author: Ysapy Ortiz.
     
     """
+    
+    solicitudes = Solicitudes.objects.filter(proyecto_id=id_proyecto, estado='Pendiente')
+    if solicitudes:
+        mensaje = 'Existen solicitudes pendientes. No se puede modificar el comite.'
+        template_name = './comite/comitealerta.html'
+        ctx = {'id_proyecto':id_proyecto, 'proyecto': proyecto, 'mensaje': mensaje}
+        return render_to_response(template_name, ctx, context_instance=RequestContext(request))
+    
     comite = Comite.objects.get(proyecto_id=id_proyecto)
     miembros = comite.miembros.all()
     template_name = './comite/usuariosparacomite.html'
