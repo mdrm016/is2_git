@@ -8,8 +8,7 @@ from .views import adm_fases, crear_fase, consultar_fase, eliminar_fase, modific
 # Create your tests here.
 
 class test_fase(TestCase):
-    
-    fixtures = ['users.json']+ ['proyectos.json'] + ['fases.json'] + ['groups.json']
+    fixtures = ['user.json'] + ['roles.json'] + ['group.json'] + ['proyectos.json'] + ['comite.json'] + ['fases.json'] + ['tipoatributo.json'] + ['listaatributo.json'] + ['tipoitem.json'] + ['items.json'] + ['linea_base.json'] + ['solicitudes.json']
     
     def setUp(self):
         """ Inicializamos la variable factory que posteriormente nos permitira cargar
@@ -56,7 +55,7 @@ class test_fase(TestCase):
         
         self.user = User.objects.get(pk=1)
         id_proyecto = 2
-        id_fase = 5
+        id_fase = 4
         request = self.factory.get('/adm_proyectos/gestionar/%s/eliminar/%s/' % (id_proyecto, id_fase))
         request.user = self.user
         response = eliminar_fase(request, id_fase, id_proyecto)
@@ -69,7 +68,7 @@ class test_fase(TestCase):
         
         self.user = User.objects.get(pk=1)
         id_proyecto = 2
-        id_fase = 5
+        id_fase = 3
         request = self.factory.post('adm_proyectos/gestionar/%s/modificar/%s/' % (id_proyecto, id_fase), {'Nombre_de_Fase': 'Fase 12', 'Descripcion': 'La fase 12', 'Duracion': '3'})
         request.user = self.user
         response = modificar_fase(request, id_proyecto, id_fase)

@@ -1,14 +1,13 @@
 from django.test import TestCase
 from django.test.client import RequestFactory
 from django.contrib.auth.models import User 
-from aplicaciones.solicitudes.views import administrar_solicitud_recibidas, administrar_solicitud_realizadas, votar_solicitud
+from aplicaciones.solicitudes.views import administrar_solicitud_recibidas, administrar_solicitud_realizadas, votar_solicitud, administrar_credenciales, consultarCredencial
 from aplicaciones.usuarios.views import Usuarios
 
 class test_solicitudes (TestCase):
     
     """    Cargamos los datos de prueba en la base de datos    """
-    fixtures = ['proyectos.json'] + ['fases.json'] + ['items.json'] + ['linea_base.json'] + ['tipo_item.json'] + ['tipo_atributo.json'] + ['users.json'] + ['groups.json']
-    #fixtures =['usuarios.json'] + ['proyectos.json'] + ['users.json'] + ['groups.json'] + ['comite.json'] + ['solicitudes.json']
+    fixtures = ['user.json'] + ['roles.json'] + ['group.json'] + ['proyectos.json'] + ['comite.json'] + ['fases.json'] + ['tipoatributo.json'] + ['listaatributo.json'] + ['tipoitem.json'] + ['items.json'] + ['linea_base.json'] + ['solicitudes.json'] + ['credenciales.json']
     
     
     def setUp(self):
@@ -33,18 +32,31 @@ class test_solicitudes (TestCase):
         request.user = self.user
         response = administrar_solicitud_realizadas(request)
         self.assertEqual(response.status_code, 200)
-        #usuarios = Usuarios.objects.all()
-        #for u in usuarios:
-        #    print u.id, u
         print 'Test de administrar solicitudes realizadas ejecutado exitosamente.'
         
     def testVotarSolicitud(self):
-        #self.user = User.objects.get(pk=3)
-        #request = self.factory.post('adm_proyectos/solicitudes_recibidas/votar_solicitud/2/', {'voto': 'R'})
-        #request.user = self.user
-        #response = votar_solicitud(request, 2)
-        #self.assertEqual(response.status_code, 200)
+        self.user = User.objects.get(pk=3)
+        request = self.factory.post('adm_proyectos/solicitudes_recibidas/votar_solicitud/2/', {'voto': 'R'})
+        request.user = self.user
+        response = votar_solicitud(request, 2)
+        self.assertEqual(response.status_code, 200)
         print 'Test de Votar Solicitud ejecutado exitosamente'
+        
+    def test_administrar_credenciales (self):
+        self.user = User.objects.get(pk=1)  
+        request = self.factory.get('/adm_proyectos/admin_credenciales/')
+        request.user = self.user
+        response = administrar_credenciales (request)
+        self.assertEqual(response.status_code, 200)
+        print 'Test de administrar credenciales ejecutado exitosamente.'
+
+    def testConsultarCredencial(self):
+        self.user = User.objects.get(pk=1)
+        request = self.factory.get('adm_proyectos/admin_credenciales/consultar_credencial/1/')
+        request.user = self.user
+        response = consultarCredencial(request, 1)
+        self.assertEqual(response.status_code, 200)
+        print 'Test de consultar credencial ejecutado exitosamente'
 
     if __name__ == '__main__':
         unittest.main()

@@ -1,16 +1,87 @@
 #! /bin/bash
 
 #variables
+
 #ruta de instalacion
 rutainstalacion="/home/mdrm016/is2_git/is2_git"
 #nombre del superusuario a crear en la BD
-usuario='mdrm016'
+usuario=`whoami`
 #password del super usuario a crear en la BD
 password='444444666666'
 #ruta actual del instalador
 rutainstalador=`pwd`
-#localizacion del codigo fuente del proyecto
-fuente="https://github.com/mdrm016/is2_git/archive/master.zip"
+#localizacion de las iteraciones del codigo fuente del proyecto
+iteracion1="https://github.com/mdrm016/is2_git/archive/Iteracion1.zip"
+iteracion2="https://github.com/mdrm016/is2_git/archive/tag-iteracion2.zip"
+iteracion3="https://github.com/mdrm016/is2_git/archive/iteracion3.zip"
+iteracion4="https://github.com/mdrm016/is2_git/archive/iteracion4.zip"
+iteracion5="https://github.com/mdrm016/is2_git/archive/iteracion5.zip"
+iteracion6=""
+actual="https://github.com/mdrm016/is2_git/archive/master.zip"
+
+function iteracion
+{
+	echo ' 1 Iteracion1'
+	echo ' 2 Iteracion2'
+	echo ' 3 Iteracion3'
+	echo ' 4 Iteracion4'
+	echo ' 5 Iteracion5'
+	echo ' 6 Iteracion6'
+	echo ' 7 Actual'
+	echo 'Pulse el numero de Iteracion que desea instalar'
+}
+
+function alerta
+{
+	echo 'Opcion no valida, porfavor ingrese una opcion valida'
+}
+
+clear
+continuar=true
+while [ $continuar == true ]
+do
+	iteracion
+	read OPT
+	case $OPT in
+		1 )
+			fuente="$iteracion1"
+			echo 'Iteracion 1 seleccionado'
+			nombre_fichero='Iteracion1'
+			continuar=false ;;
+		2 )
+			fuente="$iteracion2"
+			echo 'Iteracion 2 seleccionado'
+			nombre_fichero='tag-iteracion2'
+			continuar=false ;;
+		3 )
+			fuente="$iteracion3"
+			echo 'Iteracion 3 seleccionado'
+			nombre_fichero='iteracion3'
+			continuar=false ;;
+		4 )
+			fuente="$iteracion4"
+			echo 'Iteracion 4 seleccionado'
+			nombre_fichero='iteracion4'
+			continuar=false ;;
+		5 )
+			fuente="$iteracion5"
+			echo 'Iteracion 5 seleccionado'
+			nombre_fichero='iteracion5'
+			continuar=false ;;
+		6 )
+			fuente="$iteracion6"
+			echo 'Iteracion 6 seleccionado'
+			nombre_fichero='master'
+			continuar=false ;;
+		7 )
+			fuente="$actual"
+			echo 'Ultima version del proyecto seleccionada'
+			nombre_fichero='master'
+			continuar=false ;;
+		? ) clear && alerta;;
+	esac
+done
+
 #paquetes instalados actualmente
 apt-show-versions > instalados.txt
 
@@ -190,97 +261,94 @@ else
 	cd ..
 fi
 
+# instalamos django-cron-0.3.3
+if [ -d /usr/local/lib/python2.7/dist-packages/django_cron-0.3.3-py2.7.egg ];
+	then
+	echo "pisa ya esta instalado"
+else
+	echo "Instalamos django-cron-0.3.3..."
+	cd paquetes
+	tar xzvf django-cron-0.3.3.tar.gz
+	cd django-cron-0.3.3
+	python setup.py install
+	cd ..
+	rm -rf pisa-3.0.33
+	cd ..
+fi
+
 #proyecto
 if [ -d "$rutainstalacion/sap" ];
 	then
-	echo "El proyecto ya se encuentra instalado"
-else 
+	echo "Eliminando proyecto existente"
+	rm -rf "$rutainstalacion/sap"
+	rm "$rutainstalacion/README.md"
+fi
 	if [ ! -d proyecto ];
 		then
+		rm -rf proyecto
 		wget "$fuente" -P proyecto
 	fi
 	cd proyecto
-	unzip master.zip
-	cd is2_git-master
+	unzip "$nombre_fichero".zip
+	cd is2_git-"$nombre_fichero"
 	mv * "$rutainstalacion"
 	cd "$rutainstalacion"
-	chown mdrm016 sap README.md
+	chown "$usuario" sap README.md
 	chmod -R 777 sap
-	cd sap/static
-	chmod -R a+w uploads
-	cd aplicaciones
-	chmod a+w informes
 	cd "$rutainstalador"
 	rm -rf proyecto
-	wsgi_conf="yes"
-fi
 
 #archivo sap.wsgi
 ruta_sap_wsgi="$rutainstalacion/sap"
 instalado=`ls "$ruta_sap_wsgi" | grep sap.wsgi`
 if [ -n "$instalado" ];
-	then
-	if [ -n "$wsgi_conf" ];
-	then
-		echo "borrando el archivo sap.wsgi existente en el proyecto"
-		rm "$ruta_sap_wsgi/sap.wsgi"
-	else
-		echo "el archivo sap.wsgi ya existe en el proyecto"
-	fi
+then
+	echo "borrando el archivo sap.wsgi existente en el proyecto"
+	rm "$ruta_sap_wsgi/sap.wsgi"
 fi
-if [ -n "$wsgi_conf" ];
-	then
-	echo "creando el archivo sap.wsgi"
-	echo "import os" > sap.wsgi
-	echo "import sys" >> sap.wsgi
-	echo "sys.path = ['"$ruta_sap_wsgi"'] + sys.path" >> sap.wsgi
-	echo "os.environ['DJANGO_SETTINGS_MODULE'] = 'sap.settings'" >> sap.wsgi
-	echo "import django.core.handlers.wsgi" >> sap.wsgi
-	echo "application = django.core.handlers.wsgi.WSGIHandler()" >> sap.wsgi
-	echo "moviendo el archivo sap.wsgi al proyecto..."
-	mv sap.wsgi "$ruta_sap_wsgi"
-	chown mdrm016 "$ruta_sap_wsgi/sap.wsgi"
-	chmod +x "$ruta_sap_wsgi/sap.wsgi"
-	echo "archivo sap.wsgi movido"
-fi
+echo "creando el archivo sap.wsgi"
+echo "import os" > sap.wsgi
+echo "import sys" >> sap.wsgi
+echo "sys.path = ['"$ruta_sap_wsgi"'] + sys.path" >> sap.wsgi
+echo "os.environ['DJANGO_SETTINGS_MODULE'] = 'sap.settings'" >> sap.wsgi
+echo "import django.core.handlers.wsgi" >> sap.wsgi
+echo "application = django.core.handlers.wsgi.WSGIHandler()" >> sap.wsgi
+echo "moviendo el archivo sap.wsgi al proyecto..."
+mv sap.wsgi "$ruta_sap_wsgi"
+chown mdrm016 "$ruta_sap_wsgi/sap.wsgi"
+chmod +x "$ruta_sap_wsgi/sap.wsgi"
+echo "archivo sap.wsgi movido"
 
 #archivo sap.conf
 ruta_sap_conf="/etc/apache2/sites-available"
 instalado=`ls "$ruta_sap_conf" | grep sap.conf`
 if [ -n "$instalado" ];
-	then
-	if [ -n "$wsgi_conf" ];
-	then
-		echo "borrando el archivo sap.conf existente en $ruta_sap_conf"
-		rm "$ruta_sap_conf/sap.conf"
-	else 
-		echo "el archivo sap.conf ya existe en $ruta_sap_conf"
-	fi
+then
+	
+	echo "borrando el archivo sap.conf existente en $ruta_sap_conf"
+	rm "$ruta_sap_conf/sap.conf"
 fi
-if [ -n "$wsgi_conf" ];
-	then
-	echo "creando el archivo sap.conf"
-	echo "<VirtualHost *:80>" > sap.conf
-	echo "WSGIScriptAlias / $ruta_sap_wsgi/sap.wsgi" >> sap.conf
-	echo "" >> sap.conf
-	echo "ServerName sap.com" >> sap.conf
-	echo "Alias /static $ruta_sap_wsgi/static/" >> sap.conf
-	echo "" >> sap.conf
-	echo "<Directory $ruta_sap_wsgi>" >> sap.conf
-	echo "Order allow,deny" >> sap.conf
-	echo "Allow from all" >> sap.conf
-	echo "</Directory>" >> sap.conf
-	echo "</VirtualHost>" >> sap.conf
-	echo "moviendo el archivo sap.conf en $ruta_sap_conf"
-	mv sap.conf "$ruta_sap_conf"
-	echo "archivo sap.conf movido"
-	echo "activando el servidor apache con django..."
-	cd /etc/apache2/sites-available/
-	a2ensite sap.conf
-	/etc/init.d/apache2 restart
-	cd "$rutainstalador"
-	echo "servidor apache activado"
-fi
+echo "creando el archivo sap.conf"
+echo "<VirtualHost *:80>" > sap.conf
+echo "WSGIScriptAlias / $ruta_sap_wsgi/sap.wsgi" >> sap.conf
+echo "" >> sap.conf
+echo "ServerName sap.com" >> sap.conf
+echo "Alias /static $ruta_sap_wsgi/static/" >> sap.conf
+echo "" >> sap.conf
+echo "<Directory $ruta_sap_wsgi>" >> sap.conf
+echo "Order allow,deny" >> sap.conf
+echo "Allow from all" >> sap.conf
+echo "</Directory>" >> sap.conf
+echo "</VirtualHost>" >> sap.conf
+echo "moviendo el archivo sap.conf en $ruta_sap_conf"
+mv sap.conf "$ruta_sap_conf"
+echo "archivo sap.conf movido"
+echo "activando el servidor apache con django..."
+cd /etc/apache2/sites-available/
+a2ensite sap.conf
+/etc/init.d/apache2 restart
+cd "$rutainstalador"
+echo "servidor apache activado"
 
 #archivo hosts
 instalado=`grep sap.com /etc/hosts`

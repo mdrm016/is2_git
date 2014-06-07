@@ -1,0 +1,2411 @@
+[
+{
+    "pk": 1, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "crear_logentry", 
+        "name": "Puede crear log entry", 
+        "content_type": 1
+    }
+},
+{
+    "pk": 2, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "modificar_logentry", 
+        "name": "Puede modificar log entry", 
+        "content_type": 1
+    }
+},
+{
+    "pk": 3, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "eliminar_logentry", 
+        "name": "Puede eliminar log entry", 
+        "content_type": 1
+    }
+},
+{
+    "pk": 4, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "crear_permission", 
+        "name": "Puede crear permission", 
+        "content_type": 2
+    }
+},
+{
+    "pk": 5, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "modificar_permission", 
+        "name": "Puede modificar permission", 
+        "content_type": 2
+    }
+},
+{
+    "pk": 6, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "eliminar_permission", 
+        "name": "Puede eliminar permission", 
+        "content_type": 2
+    }
+},
+{
+    "pk": 7, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "crear_group", 
+        "name": "Puede crear group", 
+        "content_type": 3
+    }
+},
+{
+    "pk": 8, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "modificar_group", 
+        "name": "Puede modificar group", 
+        "content_type": 3
+    }
+},
+{
+    "pk": 9, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "eliminar_group", 
+        "name": "Puede eliminar group", 
+        "content_type": 3
+    }
+},
+{
+    "pk": 10, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "crear_user", 
+        "name": "Puede crear user", 
+        "content_type": 4
+    }
+},
+{
+    "pk": 11, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "modificar_user", 
+        "name": "Puede modificar user", 
+        "content_type": 4
+    }
+},
+{
+    "pk": 12, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "eliminar_user", 
+        "name": "Puede eliminar user", 
+        "content_type": 4
+    }
+},
+{
+    "pk": 13, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "crear_contenttype", 
+        "name": "Puede crear content type", 
+        "content_type": 5
+    }
+},
+{
+    "pk": 14, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "modificar_contenttype", 
+        "name": "Puede modificar content type", 
+        "content_type": 5
+    }
+},
+{
+    "pk": 15, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "eliminar_contenttype", 
+        "name": "Puede eliminar content type", 
+        "content_type": 5
+    }
+},
+{
+    "pk": 16, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "crear_session", 
+        "name": "Puede crear session", 
+        "content_type": 6
+    }
+},
+{
+    "pk": 17, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "modificar_session", 
+        "name": "Puede modificar session", 
+        "content_type": 6
+    }
+},
+{
+    "pk": 18, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "eliminar_session", 
+        "name": "Puede eliminar session", 
+        "content_type": 6
+    }
+},
+{
+    "pk": 19, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "crear_cronjoblog", 
+        "name": "Puede crear cron job log", 
+        "content_type": 7
+    }
+},
+{
+    "pk": 20, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "modificar_cronjoblog", 
+        "name": "Puede modificar cron job log", 
+        "content_type": 7
+    }
+},
+{
+    "pk": 21, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "eliminar_cronjoblog", 
+        "name": "Puede eliminar cron job log", 
+        "content_type": 7
+    }
+},
+{
+    "pk": 22, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "crear_usuarios", 
+        "name": "Puede crear usuarios", 
+        "content_type": 8
+    }
+},
+{
+    "pk": 23, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "modificar_usuarios", 
+        "name": "Puede modificar usuarios", 
+        "content_type": 8
+    }
+},
+{
+    "pk": 24, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "eliminar_usuarios", 
+        "name": "Puede eliminar usuarios", 
+        "content_type": 8
+    }
+},
+{
+    "pk": 25, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "administrar_usuario", 
+        "name": "puede listar usuarios", 
+        "content_type": 8
+    }
+},
+{
+    "pk": 26, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "crear_roles", 
+        "name": "Puede crear roles", 
+        "content_type": 9
+    }
+},
+{
+    "pk": 27, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "modificar_roles", 
+        "name": "Puede modificar roles", 
+        "content_type": 9
+    }
+},
+{
+    "pk": 28, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "eliminar_roles", 
+        "name": "Puede eliminar roles", 
+        "content_type": 9
+    }
+},
+{
+    "pk": 29, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "administrar_roles", 
+        "name": "puede listar los roles", 
+        "content_type": 9
+    }
+},
+{
+    "pk": 30, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "asignar_rol", 
+        "name": "puede asignar un rol a un usuario", 
+        "content_type": 9
+    }
+},
+{
+    "pk": 31, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "desasignar_rol", 
+        "name": "puede desasignar un rol de un usuario", 
+        "content_type": 9
+    }
+},
+{
+    "pk": 32, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "asignar_proyecto_rol", 
+        "name": "puede asignar un proyecto a un rol", 
+        "content_type": 9
+    }
+},
+{
+    "pk": 33, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "crear_proyectos", 
+        "name": "Puede crear proyectos", 
+        "content_type": 10
+    }
+},
+{
+    "pk": 34, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "modificar_proyectos", 
+        "name": "Puede modificar proyectos", 
+        "content_type": 10
+    }
+},
+{
+    "pk": 35, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "eliminar_proyectos", 
+        "name": "Puede eliminar proyectos", 
+        "content_type": 10
+    }
+},
+{
+    "pk": 36, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "listar_miembros", 
+        "name": "Puede listar los miembros de un proyecto", 
+        "content_type": 10
+    }
+},
+{
+    "pk": 37, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "importar_proyectos", 
+        "name": "Puede importar proyectos", 
+        "content_type": 10
+    }
+},
+{
+    "pk": 38, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "consultar_proyectos", 
+        "name": "Puede consultar proyectos", 
+        "content_type": 10
+    }
+},
+{
+    "pk": 39, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "consultar_proyectosfinalizados", 
+        "name": "Puede consultar proyectos finalizados", 
+        "content_type": 10
+    }
+},
+{
+    "pk": 40, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "crear_fases", 
+        "name": "Puede crear fases", 
+        "content_type": 11
+    }
+},
+{
+    "pk": 41, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "modificar_fases", 
+        "name": "Puede modificar fases", 
+        "content_type": 11
+    }
+},
+{
+    "pk": 42, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "eliminar_fases", 
+        "name": "Puede eliminar fases", 
+        "content_type": 11
+    }
+},
+{
+    "pk": 43, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "administrar_fases", 
+        "name": "puede listar las Fases", 
+        "content_type": 11
+    }
+},
+{
+    "pk": 44, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "importar_fase", 
+        "name": "puede importar fases", 
+        "content_type": 11
+    }
+},
+{
+    "pk": 45, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "crear_tipoatributo", 
+        "name": "Puede crear tipo atributo", 
+        "content_type": 12
+    }
+},
+{
+    "pk": 46, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "modificar_tipoatributo", 
+        "name": "Puede modificar tipo atributo", 
+        "content_type": 12
+    }
+},
+{
+    "pk": 47, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "eliminar_tipoatributo", 
+        "name": "Puede eliminar tipo atributo", 
+        "content_type": 12
+    }
+},
+{
+    "pk": 48, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "administrar_tipos_de_atributo", 
+        "name": "puede listar los tipos de atributo", 
+        "content_type": 12
+    }
+},
+{
+    "pk": 49, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "importar_tipo_de_atributo", 
+        "name": "puede importar un tipo de atributo", 
+        "content_type": 12
+    }
+},
+{
+    "pk": 50, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "crear_numerico", 
+        "name": "Puede crear numerico", 
+        "content_type": 13
+    }
+},
+{
+    "pk": 51, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "modificar_numerico", 
+        "name": "Puede modificar numerico", 
+        "content_type": 13
+    }
+},
+{
+    "pk": 52, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "eliminar_numerico", 
+        "name": "Puede eliminar numerico", 
+        "content_type": 13
+    }
+},
+{
+    "pk": 53, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "crear_fecha", 
+        "name": "Puede crear fecha", 
+        "content_type": 14
+    }
+},
+{
+    "pk": 54, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "modificar_fecha", 
+        "name": "Puede modificar fecha", 
+        "content_type": 14
+    }
+},
+{
+    "pk": 55, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "eliminar_fecha", 
+        "name": "Puede eliminar fecha", 
+        "content_type": 14
+    }
+},
+{
+    "pk": 56, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "crear_texto", 
+        "name": "Puede crear texto", 
+        "content_type": 15
+    }
+},
+{
+    "pk": 57, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "modificar_texto", 
+        "name": "Puede modificar texto", 
+        "content_type": 15
+    }
+},
+{
+    "pk": 58, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "eliminar_texto", 
+        "name": "Puede eliminar texto", 
+        "content_type": 15
+    }
+},
+{
+    "pk": 59, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "crear_logico", 
+        "name": "Puede crear logico", 
+        "content_type": 16
+    }
+},
+{
+    "pk": 60, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "modificar_logico", 
+        "name": "Puede modificar logico", 
+        "content_type": 16
+    }
+},
+{
+    "pk": 61, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "eliminar_logico", 
+        "name": "Puede eliminar logico", 
+        "content_type": 16
+    }
+},
+{
+    "pk": 62, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "crear_archivoexterno", 
+        "name": "Puede crear archivo externo", 
+        "content_type": 17
+    }
+},
+{
+    "pk": 63, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "modificar_archivoexterno", 
+        "name": "Puede modificar archivo externo", 
+        "content_type": 17
+    }
+},
+{
+    "pk": 64, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "eliminar_archivoexterno", 
+        "name": "Puede eliminar archivo externo", 
+        "content_type": 17
+    }
+},
+{
+    "pk": 65, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "crear_imagen", 
+        "name": "Puede crear imagen", 
+        "content_type": 18
+    }
+},
+{
+    "pk": 66, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "modificar_imagen", 
+        "name": "Puede modificar imagen", 
+        "content_type": 18
+    }
+},
+{
+    "pk": 67, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "eliminar_imagen", 
+        "name": "Puede eliminar imagen", 
+        "content_type": 18
+    }
+},
+{
+    "pk": 68, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "crear_listaatributo", 
+        "name": "Puede crear lista atributo", 
+        "content_type": 19
+    }
+},
+{
+    "pk": 69, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "modificar_listaatributo", 
+        "name": "Puede modificar lista atributo", 
+        "content_type": 19
+    }
+},
+{
+    "pk": 70, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "eliminar_listaatributo", 
+        "name": "Puede eliminar lista atributo", 
+        "content_type": 19
+    }
+},
+{
+    "pk": 71, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "crear_tipoitem", 
+        "name": "Puede crear tipo item", 
+        "content_type": 20
+    }
+},
+{
+    "pk": 72, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "modificar_tipoitem", 
+        "name": "Puede modificar tipo item", 
+        "content_type": 20
+    }
+},
+{
+    "pk": 73, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "eliminar_tipoitem", 
+        "name": "Puede eliminar tipo item", 
+        "content_type": 20
+    }
+},
+{
+    "pk": 74, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "consultar_tipoitem", 
+        "name": "Puede consultar los datos de un Tipo de Item", 
+        "content_type": 20
+    }
+},
+{
+    "pk": 75, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "gestionar_tipoitem", 
+        "name": "Puede gestionar un Tipo de Item", 
+        "content_type": 20
+    }
+},
+{
+    "pk": 76, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "importar_tipoitem", 
+        "name": "Puede Importar un Tipo de Item", 
+        "content_type": 20
+    }
+},
+{
+    "pk": 77, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "administrar_tipoitem", 
+        "name": "Puede administrar los Tipos de Item", 
+        "content_type": 20
+    }
+},
+{
+    "pk": 78, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "crear_items", 
+        "name": "Puede crear items", 
+        "content_type": 21
+    }
+},
+{
+    "pk": 79, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "modificar_items", 
+        "name": "Puede modificar items", 
+        "content_type": 21
+    }
+},
+{
+    "pk": 80, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "eliminar_items", 
+        "name": "Puede eliminar items", 
+        "content_type": 21
+    }
+},
+{
+    "pk": 81, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "crear_valoritem", 
+        "name": "Puede crear valor item", 
+        "content_type": 22
+    }
+},
+{
+    "pk": 82, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "modificar_valoritem", 
+        "name": "Puede modificar valor item", 
+        "content_type": 22
+    }
+},
+{
+    "pk": 83, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "eliminar_valoritem", 
+        "name": "Puede eliminar valor item", 
+        "content_type": 22
+    }
+},
+{
+    "pk": 84, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "crear_listavalores", 
+        "name": "Puede crear lista valores", 
+        "content_type": 23
+    }
+},
+{
+    "pk": 85, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "modificar_listavalores", 
+        "name": "Puede modificar lista valores", 
+        "content_type": 23
+    }
+},
+{
+    "pk": 86, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "eliminar_listavalores", 
+        "name": "Puede eliminar lista valores", 
+        "content_type": 23
+    }
+},
+{
+    "pk": 87, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "crear_relaciones", 
+        "name": "Puede crear relaciones", 
+        "content_type": 24
+    }
+},
+{
+    "pk": 88, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "modificar_relaciones", 
+        "name": "Puede modificar relaciones", 
+        "content_type": 24
+    }
+},
+{
+    "pk": 89, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "eliminar_relaciones", 
+        "name": "Puede eliminar relaciones", 
+        "content_type": 24
+    }
+},
+{
+    "pk": 90, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "crear_lineabase", 
+        "name": "Puede crear linea base", 
+        "content_type": 25
+    }
+},
+{
+    "pk": 91, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "modificar_lineabase", 
+        "name": "Puede modificar linea base", 
+        "content_type": 25
+    }
+},
+{
+    "pk": 92, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "eliminar_lineabase", 
+        "name": "Puede eliminar linea base", 
+        "content_type": 25
+    }
+},
+{
+    "pk": 93, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "administrar_lineas_base", 
+        "name": "puede listar las Lineas Base", 
+        "content_type": 25
+    }
+},
+{
+    "pk": 94, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "generar_linea_base", 
+        "name": "puede generar Linea Base", 
+        "content_type": 25
+    }
+},
+{
+    "pk": 95, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "generar_informe_linea_base", 
+        "name": "puede generar informe de Linea Base", 
+        "content_type": 25
+    }
+},
+{
+    "pk": 96, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "consultar_linea_base", 
+        "name": "puede consultar datos de linea base Linea Base", 
+        "content_type": 25
+    }
+},
+{
+    "pk": 97, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "crear_solicitudes", 
+        "name": "Puede crear solicitudes", 
+        "content_type": 26
+    }
+},
+{
+    "pk": 98, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "modificar_solicitudes", 
+        "name": "Puede modificar solicitudes", 
+        "content_type": 26
+    }
+},
+{
+    "pk": 99, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "eliminar_solicitudes", 
+        "name": "Puede eliminar solicitudes", 
+        "content_type": 26
+    }
+},
+{
+    "pk": 100, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "crear_credenciales", 
+        "name": "Puede crear credenciales", 
+        "content_type": 27
+    }
+},
+{
+    "pk": 101, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "modificar_credenciales", 
+        "name": "Puede modificar credenciales", 
+        "content_type": 27
+    }
+},
+{
+    "pk": 102, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "eliminar_credenciales", 
+        "name": "Puede eliminar credenciales", 
+        "content_type": 27
+    }
+},
+{
+    "pk": 103, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "crear_votos", 
+        "name": "Puede crear votos", 
+        "content_type": 28
+    }
+},
+{
+    "pk": 104, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "modificar_votos", 
+        "name": "Puede modificar votos", 
+        "content_type": 28
+    }
+},
+{
+    "pk": 105, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "eliminar_votos", 
+        "name": "Puede eliminar votos", 
+        "content_type": 28
+    }
+},
+{
+    "pk": 106, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "crear_comite", 
+        "name": "Puede crear comite", 
+        "content_type": 29
+    }
+},
+{
+    "pk": 107, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "modificar_comite", 
+        "name": "Puede modificar comite", 
+        "content_type": 29
+    }
+},
+{
+    "pk": 108, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "eliminar_comite", 
+        "name": "Puede eliminar comite", 
+        "content_type": 29
+    }
+},
+{
+    "pk": 1, 
+    "model": "auth.group", 
+    "fields": {
+        "name": "jefe supremo", 
+        "permissions": [
+            106, 
+            108, 
+            107, 
+            19, 
+            21, 
+            20, 
+            43, 
+            40, 
+            42, 
+            44, 
+            41, 
+            78, 
+            80, 
+            79, 
+            84, 
+            86, 
+            85, 
+            81, 
+            83, 
+            82, 
+            93, 
+            96, 
+            90, 
+            92, 
+            95, 
+            94, 
+            91, 
+            38, 
+            39, 
+            33, 
+            35, 
+            37, 
+            36, 
+            34, 
+            87, 
+            89, 
+            88, 
+            29, 
+            32, 
+            30, 
+            26, 
+            31, 
+            28, 
+            27, 
+            100, 
+            102, 
+            101, 
+            97, 
+            99, 
+            98, 
+            103, 
+            105, 
+            104, 
+            67, 
+            66, 
+            45, 
+            46, 
+            68, 
+            70, 
+            69, 
+            77, 
+            74, 
+            71, 
+            73, 
+            75, 
+            76, 
+            72, 
+            25, 
+            22, 
+            24, 
+            23
+        ]
+    }
+},
+{
+    "pk": 2, 
+    "model": "auth.group", 
+    "fields": {
+        "name": "sistema", 
+        "permissions": [
+            37, 
+            36, 
+            34, 
+            29, 
+            32, 
+            30, 
+            26, 
+            25, 
+            22, 
+            24, 
+            23
+        ]
+    }
+},
+{
+    "pk": 3, 
+    "model": "auth.group", 
+    "fields": {
+        "name": "desarrolador", 
+        "permissions": [
+            106, 
+            108, 
+            107, 
+            19, 
+            21, 
+            20, 
+            43, 
+            40, 
+            42, 
+            44, 
+            41, 
+            78, 
+            80, 
+            79, 
+            84, 
+            86, 
+            85, 
+            81, 
+            83, 
+            82, 
+            93, 
+            96, 
+            90, 
+            92, 
+            95, 
+            94, 
+            91, 
+            38, 
+            39, 
+            33, 
+            35, 
+            87, 
+            89, 
+            88, 
+            31, 
+            28, 
+            27, 
+            100, 
+            102, 
+            101, 
+            97, 
+            99, 
+            98, 
+            103, 
+            105, 
+            104, 
+            67, 
+            66, 
+            45, 
+            46, 
+            68, 
+            70, 
+            69, 
+            77, 
+            74, 
+            71, 
+            73, 
+            75, 
+            76, 
+            72
+        ]
+    }
+},
+{
+    "pk": 1, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "sap", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": true, 
+        "is_staff": true, 
+        "last_login": "2014-06-06T22:39:39.484Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$12000$OPrFVcEcuWPc$sINgwifb6fVcK6qcQVE18R7g68gVUhn2QADH5wFu4P4=", 
+        "email": "", 
+        "date_joined": "2014-06-06T15:59:59.009Z"
+    }
+},
+{
+    "pk": 2, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "ysapy", 
+        "first_name": "ysa", 
+        "last_name": "ortiz", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2014-06-06T22:31:27.068Z", 
+        "groups": [
+            1, 
+            3
+        ], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$12000$VbzbNMLJKMvL$Dg3+SPNpzE6nx0BDHTIF9MGVsQiDuLx6AgvhSePw3OY=", 
+        "email": "ysapy@sap", 
+        "date_joined": "2014-06-06T16:02:56.768Z"
+    }
+},
+{
+    "pk": 3, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "marcelo", 
+        "first_name": "marcelo", 
+        "last_name": "denis", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2014-06-06T22:29:56.663Z", 
+        "groups": [
+            1, 
+            3
+        ], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$12000$CIwgZZlJd8Zu$S8ML1JT6vvYjnO3hH7AhMRUDGImL7QIByHN4dvJ+prA=", 
+        "email": "mdrm016@gmail.com", 
+        "date_joined": "2014-06-06T16:03:29.667Z"
+    }
+},
+{
+    "pk": 4, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "eduardo", 
+        "first_name": "edu", 
+        "last_name": "gimenez", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2014-06-06T22:30:53.474Z", 
+        "groups": [
+            1, 
+            3
+        ], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$12000$beVexbOLG3YC$tx4mUW7RrRJEwshQAkOnUNcpFRYSY60CBi6R2AOTClg=", 
+        "email": "edu@sap", 
+        "date_joined": "2014-06-06T16:04:21.038Z"
+    }
+},
+{
+    "pk": 5, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "andru", 
+        "first_name": "andrea", 
+        "last_name": "benitez", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2014-06-06T16:05:37.240Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$12000$GUDIKhKEeyLA$irVvNRcQ548dlnZbOTb3gvUc6hRR6vTFFGgQcWEoUBg=", 
+        "email": "andru@sap", 
+        "date_joined": "2014-06-06T16:05:37.240Z"
+    }
+},
+{
+    "pk": 6, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "gabita", 
+        "first_name": "gabi", 
+        "last_name": "vazquez", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2014-06-06T16:06:16.851Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$12000$yuEK10X4lDoW$s0XOQXHHHJw96p9/HXg1jI7rJQFbGCwdts0p58DTyIs=", 
+        "email": "gabi@sap", 
+        "date_joined": "2014-06-06T16:06:16.851Z"
+    }
+},
+{
+    "pk": 1, 
+    "model": "usuarios.usuarios", 
+    "fields": {
+        "observaciones": "", 
+        "telefono": "", 
+        "especialidad": "", 
+        "direccion": ""
+    }
+},
+{
+    "pk": 2, 
+    "model": "usuarios.usuarios", 
+    "fields": {
+        "observaciones": "ninguna", 
+        "telefono": "123456", 
+        "especialidad": "ninguna", 
+        "direccion": "ninguna"
+    }
+},
+{
+    "pk": 3, 
+    "model": "usuarios.usuarios", 
+    "fields": {
+        "observaciones": "ninguna", 
+        "telefono": "123456", 
+        "especialidad": "ninguna", 
+        "direccion": "ninguna"
+    }
+},
+{
+    "pk": 4, 
+    "model": "usuarios.usuarios", 
+    "fields": {
+        "observaciones": "ninguna", 
+        "telefono": "123456", 
+        "especialidad": "ninguna", 
+        "direccion": "ninguna"
+    }
+},
+{
+    "pk": 5, 
+    "model": "usuarios.usuarios", 
+    "fields": {
+        "observaciones": "ninguna", 
+        "telefono": "123456", 
+        "especialidad": "ninguna", 
+        "direccion": "ninguna"
+    }
+},
+{
+    "pk": 6, 
+    "model": "usuarios.usuarios", 
+    "fields": {
+        "observaciones": "ninguna", 
+        "telefono": "123456", 
+        "especialidad": "ninguna", 
+        "direccion": "ninguna"
+    }
+},
+{
+    "pk": 1, 
+    "model": "roles.roles", 
+    "fields": {
+        "descripcion": "rol con todos los permisos", 
+        "proyecto": "1", 
+        "fases": [], 
+        "is_active": true, 
+        "permissions": [
+            106, 
+            108, 
+            107, 
+            19, 
+            21, 
+            20, 
+            43, 
+            40, 
+            42, 
+            44, 
+            41, 
+            78, 
+            80, 
+            79, 
+            84, 
+            86, 
+            85, 
+            81, 
+            83, 
+            82, 
+            93, 
+            96, 
+            90, 
+            92, 
+            95, 
+            94, 
+            91, 
+            38, 
+            39, 
+            33, 
+            35, 
+            37, 
+            36, 
+            34, 
+            87, 
+            89, 
+            88, 
+            29, 
+            32, 
+            30, 
+            26, 
+            31, 
+            28, 
+            27, 
+            100, 
+            102, 
+            101, 
+            97, 
+            99, 
+            98, 
+            103, 
+            105, 
+            104, 
+            67, 
+            66, 
+            45, 
+            46, 
+            68, 
+            70, 
+            69, 
+            77, 
+            74, 
+            71, 
+            73, 
+            75, 
+            76, 
+            72, 
+            25, 
+            22, 
+            24, 
+            23
+        ]
+    }
+},
+{
+    "pk": 2, 
+    "model": "roles.roles", 
+    "fields": {
+        "descripcion": "permisos para crear usuarios y roles", 
+        "proyecto": "2", 
+        "fases": [], 
+        "is_active": true, 
+        "permissions": [
+            37, 
+            36, 
+            34, 
+            29, 
+            32, 
+            30, 
+            26, 
+            25, 
+            22, 
+            24, 
+            23
+        ]
+    }
+},
+{
+    "pk": 3, 
+    "model": "roles.roles", 
+    "fields": {
+        "descripcion": "rol con permisos de proyecto", 
+        "proyecto": "6", 
+        "fases": [], 
+        "is_active": true, 
+        "permissions": [
+            106, 
+            108, 
+            107, 
+            19, 
+            21, 
+            20, 
+            43, 
+            40, 
+            42, 
+            44, 
+            41, 
+            78, 
+            80, 
+            79, 
+            84, 
+            86, 
+            85, 
+            81, 
+            83, 
+            82, 
+            93, 
+            96, 
+            90, 
+            92, 
+            95, 
+            94, 
+            91, 
+            38, 
+            39, 
+            33, 
+            35, 
+            87, 
+            89, 
+            88, 
+            31, 
+            28, 
+            27, 
+            100, 
+            102, 
+            101, 
+            97, 
+            99, 
+            98, 
+            103, 
+            105, 
+            104, 
+            67, 
+            66, 
+            45, 
+            46, 
+            68, 
+            70, 
+            69, 
+            77, 
+            74, 
+            71, 
+            73, 
+            75, 
+            76, 
+            72
+        ]
+    }
+},
+{
+    "pk": 1, 
+    "model": "proyectos.proyectos", 
+    "fields": {
+        "fecha_inicio": "2014-06-06", 
+        "is_active": true, 
+        "lider": 3, 
+        "duracion": 8, 
+        "nombre": "Proyecto 1", 
+        "estado": "En Construccion"
+    }
+},
+{
+    "pk": 2, 
+    "model": "proyectos.proyectos", 
+    "fields": {
+        "fecha_inicio": "2014-06-06", 
+        "is_active": true, 
+        "lider": null, 
+        "duracion": 6, 
+        "nombre": "Proyecto 2", 
+        "estado": "Inactivo"
+    }
+},
+{
+    "pk": 3, 
+    "model": "proyectos.proyectos", 
+    "fields": {
+        "fecha_inicio": "2014-06-06", 
+        "is_active": true, 
+        "lider": null, 
+        "duracion": 6, 
+        "nombre": "proyecto 3", 
+        "estado": "Inactivo"
+    }
+},
+{
+    "pk": 4, 
+    "model": "proyectos.proyectos", 
+    "fields": {
+        "fecha_inicio": "2014-06-06", 
+        "is_active": true, 
+        "lider": null, 
+        "duracion": 6, 
+        "nombre": "proyecto 4", 
+        "estado": "Inactivo"
+    }
+},
+{
+    "pk": 5, 
+    "model": "proyectos.proyectos", 
+    "fields": {
+        "fecha_inicio": "2014-06-06", 
+        "is_active": true, 
+        "lider": null, 
+        "duracion": 5, 
+        "nombre": "proyecto 5", 
+        "estado": "Inactivo"
+    }
+},
+{
+    "pk": 6, 
+    "model": "proyectos.proyectos", 
+    "fields": {
+        "fecha_inicio": "2014-06-06", 
+        "is_active": true, 
+        "lider": 2, 
+        "duracion": 5, 
+        "nombre": "andromeda", 
+        "estado": "En Construccion"
+    }
+},
+{
+    "pk": 1, 
+    "model": "fases.fases", 
+    "fields": {
+        "orden": 1, 
+        "estado": "DR", 
+        "is_active": true, 
+        "fechainicio": "2014-06-06", 
+        "duracion": 2, 
+        "descripcion": "ninguna", 
+        "nombre": "Fase 1", 
+        "proyecto": 1, 
+        "nombre_eliminado": null
+    }
+},
+{
+    "pk": 2, 
+    "model": "fases.fases", 
+    "fields": {
+        "orden": 2, 
+        "estado": "DF", 
+        "is_active": true, 
+        "fechainicio": "2014-06-06", 
+        "duracion": 3, 
+        "descripcion": "ninguna", 
+        "nombre": "Fase 2", 
+        "proyecto": 1, 
+        "nombre_eliminado": null
+    }
+},
+{
+    "pk": 3, 
+    "model": "fases.fases", 
+    "fields": {
+        "orden": 1, 
+        "estado": "DF", 
+        "is_active": true, 
+        "fechainicio": "2014-06-06", 
+        "duracion": 5, 
+        "descripcion": "ninguna", 
+        "nombre": "Fase 1", 
+        "proyecto": 2, 
+        "nombre_eliminado": null
+    }
+},
+{
+    "pk": 4, 
+    "model": "fases.fases", 
+    "fields": {
+        "orden": 2, 
+        "estado": "DF", 
+        "is_active": true, 
+        "fechainicio": "2014-06-06", 
+        "duracion": 4, 
+        "descripcion": "ninguna", 
+        "nombre": "Fase 2", 
+        "proyecto": 2, 
+        "nombre_eliminado": null
+    }
+},
+{
+    "pk": 5, 
+    "model": "fases.fases", 
+    "fields": {
+        "orden": 1, 
+        "estado": "DR", 
+        "is_active": true, 
+        "fechainicio": "2014-06-06", 
+        "duracion": 3, 
+        "descripcion": "ninguna", 
+        "nombre": "Fase 1", 
+        "proyecto": 6, 
+        "nombre_eliminado": null
+    }
+},
+{
+    "pk": 6, 
+    "model": "fases.fases", 
+    "fields": {
+        "orden": 2, 
+        "estado": "DF", 
+        "is_active": true, 
+        "fechainicio": "2014-06-06", 
+        "duracion": 2, 
+        "descripcion": "ninguna", 
+        "nombre": "Fase 2", 
+        "proyecto": 6, 
+        "nombre_eliminado": null
+    }
+},
+{
+    "pk": 1, 
+    "model": "tipoatributo.tipoatributo", 
+    "fields": {
+        "tipo": "Numerico", 
+        "is_active": true, 
+        "precision": 5, 
+        "proyecto": [
+            6
+        ], 
+        "descripcion": "", 
+        "nombre": "cantidad", 
+        "obligatorio": true, 
+        "longitud": 5
+    }
+},
+{
+    "pk": 2, 
+    "model": "tipoatributo.tipoatributo", 
+    "fields": {
+        "tipo": "Numerico", 
+        "is_active": true, 
+        "precision": 0, 
+        "proyecto": [
+            6
+        ], 
+        "descripcion": "", 
+        "nombre": "fecha de inicio", 
+        "obligatorio": true, 
+        "longitud": 0
+    }
+},
+{
+    "pk": 3, 
+    "model": "tipoatributo.tipoatributo", 
+    "fields": {
+        "tipo": "Texto", 
+        "is_active": true, 
+        "precision": 0, 
+        "proyecto": [
+            6
+        ], 
+        "descripcion": "", 
+        "nombre": "descripcion", 
+        "obligatorio": true, 
+        "longitud": 30
+    }
+},
+{
+    "pk": 4, 
+    "model": "tipoatributo.tipoatributo", 
+    "fields": {
+        "tipo": "Numerico", 
+        "is_active": true, 
+        "precision": 5, 
+        "proyecto": [
+            1
+        ], 
+        "descripcion": "", 
+        "nombre": "cantidad 2", 
+        "obligatorio": true, 
+        "longitud": 5
+    }
+},
+{
+    "pk": 5, 
+    "model": "tipoatributo.tipoatributo", 
+    "fields": {
+        "tipo": "Fecha", 
+        "is_active": true, 
+        "precision": 0, 
+        "proyecto": [
+            1
+        ], 
+        "descripcion": "", 
+        "nombre": "fecha inicio", 
+        "obligatorio": true, 
+        "longitud": 0
+    }
+},
+{
+    "pk": 6, 
+    "model": "tipoatributo.tipoatributo", 
+    "fields": {
+        "tipo": "Numerico", 
+        "is_active": false, 
+        "precision": 5, 
+        "proyecto": [
+            1
+        ], 
+        "descripcion": "", 
+        "nombre": "atributoNulo", 
+        "obligatorio": true, 
+        "longitud": 5
+    }
+},
+{
+    "pk": 7, 
+    "model": "tipoatributo.tipoatributo", 
+    "fields": {
+        "tipo": "Numerico", 
+        "is_active": true, 
+        "precision": 5, 
+        "proyecto": [
+            6
+        ], 
+        "descripcion": "", 
+        "nombre": "atributo_Nulo", 
+        "obligatorio": true, 
+        "longitud": 5
+    }
+},
+{
+    "pk": 1, 
+    "model": "tipoitem.listaatributo", 
+    "fields": {
+        "id_atributo": 1, 
+        "nombre": "cantidad", 
+        "is_active": true, 
+        "id_tipoitem": 1, 
+        "orden": 1
+    }
+},
+{
+    "pk": 2, 
+    "model": "tipoitem.listaatributo", 
+    "fields": {
+        "id_atributo": 3, 
+        "nombre": "descripcion", 
+        "is_active": true, 
+        "id_tipoitem": 1, 
+        "orden": 2
+    }
+},
+{
+    "pk": 3, 
+    "model": "tipoitem.listaatributo", 
+    "fields": {
+        "id_atributo": 2, 
+        "nombre": "fecha de inicio", 
+        "is_active": true, 
+        "id_tipoitem": 1, 
+        "orden": 3
+    }
+},
+{
+    "pk": 4, 
+    "model": "tipoitem.listaatributo", 
+    "fields": {
+        "id_atributo": 1, 
+        "nombre": "cantidad", 
+        "is_active": true, 
+        "id_tipoitem": 1, 
+        "orden": 4
+    }
+},
+{
+    "pk": 5, 
+    "model": "tipoitem.listaatributo", 
+    "fields": {
+        "id_atributo": 1, 
+        "nombre": "cantidad", 
+        "is_active": true, 
+        "id_tipoitem": 2, 
+        "orden": 1
+    }
+},
+{
+    "pk": 6, 
+    "model": "tipoitem.listaatributo", 
+    "fields": {
+        "id_atributo": 3, 
+        "nombre": "descripcion", 
+        "is_active": true, 
+        "id_tipoitem": 2, 
+        "orden": 2
+    }
+},
+{
+    "pk": 7, 
+    "model": "tipoitem.listaatributo", 
+    "fields": {
+        "id_atributo": 2, 
+        "nombre": "fecha de inicio", 
+        "is_active": true, 
+        "id_tipoitem": 2, 
+        "orden": 3
+    }
+},
+{
+    "pk": 8, 
+    "model": "tipoitem.listaatributo", 
+    "fields": {
+        "id_atributo": 1, 
+        "nombre": "cantidad", 
+        "is_active": true, 
+        "id_tipoitem": 3, 
+        "orden": 1
+    }
+},
+{
+    "pk": 9, 
+    "model": "tipoitem.listaatributo", 
+    "fields": {
+        "id_atributo": 2, 
+        "nombre": "descripcion", 
+        "is_active": true, 
+        "id_tipoitem": 3, 
+        "orden": 2
+    }
+},
+{
+    "pk": 10, 
+    "model": "tipoitem.listaatributo", 
+    "fields": {
+        "id_atributo": 3, 
+        "nombre": "fecha de inicio", 
+        "is_active": true, 
+        "id_tipoitem": 3, 
+        "orden": 3
+    }
+},
+{
+    "pk": 11, 
+    "model": "tipoitem.listaatributo", 
+    "fields": {
+        "id_atributo": 4, 
+        "nombre": "cantidad", 
+        "is_active": true, 
+        "id_tipoitem": 3, 
+        "orden": 4
+    }
+},
+{
+    "pk": 12, 
+    "model": "tipoitem.listaatributo", 
+    "fields": {
+        "id_atributo": 7, 
+        "nombre": "atributo_Nulo", 
+        "is_active": true, 
+        "id_tipoitem": 4, 
+        "orden": 1
+    }
+},
+{
+    "pk": 13, 
+    "model": "tipoitem.listaatributo", 
+    "fields": {
+        "id_atributo": 1, 
+        "nombre": "cantidad", 
+        "is_active": true, 
+        "id_tipoitem": 4, 
+        "orden": 2
+    }
+},
+{
+    "pk": 14, 
+    "model": "tipoitem.listaatributo", 
+    "fields": {
+        "id_atributo": 3, 
+        "nombre": "descripcion", 
+        "is_active": true, 
+        "id_tipoitem": 4, 
+        "orden": 3
+    }
+},
+{
+    "pk": 15, 
+    "model": "tipoitem.listaatributo", 
+    "fields": {
+        "id_atributo": 2, 
+        "nombre": "fecha de inicio", 
+        "is_active": true, 
+        "id_tipoitem": 4, 
+        "orden": 4
+    }
+},
+{
+    "pk": 1, 
+    "model": "tipoitem.tipoitem", 
+    "fields": {
+        "descripcion": "ninguna", 
+        "nombre": "Tipo de item 1", 
+        "listaAtributo": [
+            4, 
+            3, 
+            1, 
+            2
+        ], 
+        "is_active": true, 
+        "id_proyecto": 6
+    }
+},
+{
+    "pk": 2, 
+    "model": "tipoitem.tipoitem", 
+    "fields": {
+        "descripcion": "ninguna", 
+        "nombre": "Tipo de item 2", 
+        "listaAtributo": [
+            5, 
+            6, 
+            7
+        ], 
+        "is_active": true, 
+        "id_proyecto": 6
+    }
+},
+{
+    "pk": 3, 
+    "model": "tipoitem.tipoitem", 
+    "fields": {
+        "descripcion": "ninguna", 
+        "nombre": "Tipo de item 1", 
+        "listaAtributo": [
+            8, 
+            9, 
+            10, 
+            11
+        ], 
+        "is_active": true, 
+        "id_proyecto": 1
+    }
+},
+{
+    "pk": 4, 
+    "model": "tipoitem.tipoitem", 
+    "fields": {
+        "descripcion": "ninguna", 
+        "nombre": "Tipo de item 3", 
+        "listaAtributo": [
+            12, 
+            13, 
+            14, 
+            15
+        ], 
+        "is_active": true, 
+        "id_proyecto": 6
+    }
+},
+{
+    "pk": 1, 
+    "model": "items.items", 
+    "fields": {
+        "lb": null, 
+        "padre": 0, 
+        "costoTemporal": 9, 
+        "observaciones": "jkbkjb", 
+        "is_active": true, 
+        "tipo_item": 3, 
+        "costoMonetario": 9, 
+        "version": 1, 
+        "complejidad": 6, 
+        "proyecto": 1, 
+        "descripcion": "jbkjbj", 
+        "nombre": "Requerimientos", 
+        "estado": "Bloqueado", 
+        "prioridad": 7, 
+        "fase": 1
+    }
+},
+{
+    "pk": 2, 
+    "model": "items.items", 
+    "fields": {
+        "lb": null, 
+        "padre": 0, 
+        "costoTemporal": 7, 
+        "observaciones": "kajjnkjv", 
+        "is_active": true, 
+        "tipo_item": 3, 
+        "costoMonetario": 9, 
+        "version": 1, 
+        "complejidad": 2, 
+        "proyecto": 1, 
+        "descripcion": "ksnbsn", 
+        "nombre": "analisis", 
+        "estado": "Bloqueado", 
+        "prioridad": 9, 
+        "fase": 1
+    }
+},
+{
+    "pk": 3, 
+    "model": "items.items", 
+    "fields": {
+        "lb": null, 
+        "padre": 0, 
+        "costoTemporal": 4, 
+        "observaciones": "sdgdsrg", 
+        "is_active": true, 
+        "tipo_item": 3, 
+        "costoMonetario": 5, 
+        "version": 1, 
+        "complejidad": 2, 
+        "proyecto": 1, 
+        "descripcion": "skdnsj", 
+        "nombre": "Construccion", 
+        "estado": "Validado", 
+        "prioridad": 1, 
+        "fase": 1
+    }
+},
+{
+    "pk": 4, 
+    "model": "items.items", 
+    "fields": {
+        "lb": null, 
+        "padre": 0, 
+        "costoTemporal": 5, 
+        "observaciones": "5", 
+        "is_active": true, 
+        "tipo_item": 1, 
+        "costoMonetario": 5, 
+        "version": 1, 
+        "complejidad": 5, 
+        "proyecto": 6, 
+        "descripcion": "ninguna", 
+        "nombre": "item 1", 
+        "estado": "Habilitado", 
+        "prioridad": 5, 
+        "fase": 5
+    }
+},
+{
+    "pk": 5, 
+    "model": "items.items", 
+    "fields": {
+        "lb": null, 
+        "padre": 0, 
+        "costoTemporal": 5, 
+        "observaciones": "5", 
+        "is_active": true, 
+        "tipo_item": 2, 
+        "costoMonetario": 5, 
+        "version": 1, 
+        "complejidad": 5, 
+        "proyecto": 6, 
+        "descripcion": "55", 
+        "nombre": "item 2", 
+        "estado": "Habilitado", 
+        "prioridad": 5, 
+        "fase": 5
+    }
+},
+{
+    "pk": 1, 
+    "model": "lineabase.lineabase", 
+    "fields": {
+        "items": [
+            2
+        ], 
+        "fecha_creacion": "2014-06-06", 
+        "is_active": true, 
+        "numero": 1, 
+        "descripcion": "", 
+        "proyecto": 1, 
+        "fase": 1
+    }
+},
+{
+    "pk": 2, 
+    "model": "lineabase.lineabase", 
+    "fields": {
+        "items": [
+            1
+        ], 
+        "fecha_creacion": "2014-06-06", 
+        "is_active": true, 
+        "numero": 2, 
+        "descripcion": "", 
+        "proyecto": 1, 
+        "fase": 1
+    }
+},
+{
+    "pk": 3, 
+    "model": "lineabase.lineabase", 
+    "fields": {
+        "items": [
+            5
+        ], 
+        "fecha_creacion": "2014-06-06", 
+        "is_active": true, 
+        "numero": 1, 
+        "descripcion": "", 
+        "proyecto": 6, 
+        "fase": 5
+    }
+},
+{
+    "pk": 4, 
+    "model": "lineabase.lineabase", 
+    "fields": {
+        "items": [
+            4
+        ], 
+        "fecha_creacion": "2014-06-06", 
+        "is_active": true, 
+        "numero": 2, 
+        "descripcion": "", 
+        "proyecto": 6, 
+        "fase": 5
+    }
+},
+{
+    "pk": 1, 
+    "model": "solicitudes.solicitudes", 
+    "fields": {
+        "tiempo_esperado": 4, 
+        "fecha_solicitud": "2014-06-06", 
+        "observaciones": "jjvhfh", 
+        "usuario": 1, 
+        "item": 2, 
+        "tiempo_solicitado": 2, 
+        "proyecto": 1, 
+        "descripcion": "fvdvdvd", 
+        "nombre": null, 
+        "estado": "Pendiente", 
+        "fase": 1
+    }
+},
+{
+    "pk": 2, 
+    "model": "solicitudes.solicitudes", 
+    "fields": {
+        "tiempo_esperado": 4, 
+        "fecha_solicitud": "2014-06-06", 
+        "observaciones": "dndyhdh", 
+        "usuario": 1, 
+        "item": 1, 
+        "tiempo_solicitado": 6, 
+        "proyecto": 1, 
+        "descripcion": "sdtbh", 
+        "nombre": null, 
+        "estado": "Pendiente", 
+        "fase": 1
+    }
+},
+{
+    "pk": 3, 
+    "model": "solicitudes.solicitudes", 
+    "fields": {
+        "tiempo_esperado": 15, 
+        "fecha_solicitud": "2014-06-06", 
+        "observaciones": "5", 
+        "usuario": 1, 
+        "item": 4, 
+        "tiempo_solicitado": 15, 
+        "proyecto": 6, 
+        "descripcion": "5", 
+        "nombre": null, 
+        "estado": "Cancelado", 
+        "fase": 5
+    }
+},
+{
+    "pk": 4, 
+    "model": "solicitudes.solicitudes", 
+    "fields": {
+        "tiempo_esperado": 15, 
+        "fecha_solicitud": "2014-06-06", 
+        "observaciones": "ninguna", 
+        "usuario": 1, 
+        "item": 5, 
+        "tiempo_solicitado": 15, 
+        "proyecto": 6, 
+        "descripcion": "ninguna", 
+        "nombre": null, 
+        "estado": "Cancelado", 
+        "fase": 5
+    }
+},
+{
+    "pk": 1, 
+    "model": "solicitudes.credenciales", 
+    "fields": {
+        "usuario": 1, 
+        "observaciones": null, 
+        "fecha_aprobacion": "2014-06-06", 
+        "item": 4, 
+        "fecha_expiracion": "2014-06-21", 
+        "proyecto": 6, 
+        "nombre": null, 
+        "estado": "Habilitado", 
+        "fase": 5
+    }
+},
+{
+    "pk": 2, 
+    "model": "solicitudes.credenciales", 
+    "fields": {
+        "usuario": 1, 
+        "observaciones": null, 
+        "fecha_aprobacion": "2014-06-06", 
+        "item": 5, 
+        "fecha_expiracion": "2014-06-21", 
+        "proyecto": 6, 
+        "nombre": null, 
+        "estado": "Habilitado", 
+        "fase": 5
+    }
+},
+{
+    "pk": 1, 
+    "model": "solicitudes.votos", 
+    "fields": {
+        "fechaDeVotacion": "2014-06-06", 
+        "miembro": 3, 
+        "voto": "A", 
+        "solicitud": 3
+    }
+},
+{
+    "pk": 2, 
+    "model": "solicitudes.votos", 
+    "fields": {
+        "fechaDeVotacion": "2014-06-06", 
+        "miembro": 3, 
+        "voto": "R", 
+        "solicitud": 4
+    }
+},
+{
+    "pk": 3, 
+    "model": "solicitudes.votos", 
+    "fields": {
+        "fechaDeVotacion": "2014-06-06", 
+        "miembro": 4, 
+        "voto": "A", 
+        "solicitud": 3
+    }
+},
+{
+    "pk": 4, 
+    "model": "solicitudes.votos", 
+    "fields": {
+        "fechaDeVotacion": "2014-06-06", 
+        "miembro": 4, 
+        "voto": "A", 
+        "solicitud": 4
+    }
+},
+{
+    "pk": 5, 
+    "model": "solicitudes.votos", 
+    "fields": {
+        "fechaDeVotacion": "2014-06-06", 
+        "miembro": 2, 
+        "voto": "A", 
+        "solicitud": 3
+    }
+},
+{
+    "pk": 6, 
+    "model": "solicitudes.votos", 
+    "fields": {
+        "fechaDeVotacion": "2014-06-06", 
+        "miembro": 2, 
+        "voto": "A", 
+        "solicitud": 4
+    }
+},
+{
+    "pk": 1, 
+    "model": "comite.comite", 
+    "fields": {
+        "nombre": null, 
+        "miembros": [
+            2, 
+            3, 
+            4
+        ], 
+        "proyecto": 1
+    }
+},
+{
+    "pk": 2, 
+    "model": "comite.comite", 
+    "fields": {
+        "nombre": null, 
+        "miembros": [], 
+        "proyecto": 2
+    }
+},
+{
+    "pk": 3, 
+    "model": "comite.comite", 
+    "fields": {
+        "nombre": null, 
+        "miembros": [], 
+        "proyecto": 3
+    }
+},
+{
+    "pk": 4, 
+    "model": "comite.comite", 
+    "fields": {
+        "nombre": null, 
+        "miembros": [], 
+        "proyecto": 4
+    }
+},
+{
+    "pk": 5, 
+    "model": "comite.comite", 
+    "fields": {
+        "nombre": null, 
+        "miembros": [], 
+        "proyecto": 5
+    }
+},
+{
+    "pk": 6, 
+    "model": "comite.comite", 
+    "fields": {
+        "nombre": null, 
+        "miembros": [
+            2, 
+            3, 
+            4
+        ], 
+        "proyecto": 6
+    }
+},
+{
+    "pk": 1, 
+    "model": "admin.logentry", 
+    "fields": {
+        "action_flag": 2, 
+        "action_time": "2014-06-06T16:34:47.248Z", 
+        "object_repr": "desarrolador", 
+        "object_id": "3", 
+        "change_message": "Modificado/a proyecto y descripcion.", 
+        "user": 1, 
+        "content_type": 9
+    }
+},
+{
+    "pk": 2, 
+    "model": "admin.logentry", 
+    "fields": {
+        "action_flag": 2, 
+        "action_time": "2014-06-06T16:34:47.340Z", 
+        "object_repr": "sistema", 
+        "object_id": "2", 
+        "change_message": "Modificado/a proyecto.", 
+        "user": 1, 
+        "content_type": 9
+    }
+}
+]

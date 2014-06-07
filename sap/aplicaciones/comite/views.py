@@ -108,7 +108,7 @@ def agregar_miembro(request, id_proyecto):
         
     miembros_id = []
     for miembro in miembros:
-        miembros_id.append(miembro.id)
+        miembros_id.append(miembro.user.id)
     id_listamiembros = []
     for listamiem in listamiembros:
         id_listamiembros.append(listamiem.id)

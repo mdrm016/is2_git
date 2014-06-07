@@ -8,9 +8,9 @@ from aplicaciones.lineabase.models import LineaBase
 
 # Create your tests here.
 class test_user(TestCase):
-    """    Cargamos Proyectos, Fases, items, Lineas Base y Usuarios de prueba en la base de datos    """
-    fixtures = ['proyectos.json'] + ['fases.json'] + ['items.json'] + ['linea_base.json'] + ['tipo_item.json'] + ['tipo_atributo.json'] + ['users.json'] + ['groups.json']
     
+    fixtures = ['user.json'] + ['roles.json'] + ['group.json'] + ['proyectos.json'] + ['comite.json'] + ['fases.json'] + ['tipoatributo.json'] + ['listaatributo.json'] + ['tipoitem.json'] + ['items.json'] + ['linea_base.json'] + ['solicitudes.json']
+   
     def setUp(self):
         """ Inicializamos la variable factory que posteriormente nos permitira cargar
             un request para utilizarlo en las visata.

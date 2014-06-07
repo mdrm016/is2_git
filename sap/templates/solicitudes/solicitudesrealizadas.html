@@ -52,13 +52,25 @@
 					<div class="row">
 				    	
 				    
-				    	<div class="col-md-4">
+				    	<div class="col-md-2">
 				    		<div class="panel-heading">
 				      			<h4 class="panel-title"><b>Estado</b></h4>
 				    		</div>
 				    	</div>
 				    	
-				    	<div class="col-md-4">
+				    	<div class="col-md-2">
+				    		<div class="panel-heading">
+				      			<h4 class="panel-title"><b>Proyecto</b></h4>
+				    		</div>
+				    	</div>
+				    	
+				    	<div class="col-md-2">
+				    		<div class="panel-heading">
+				      			<h4 class="panel-title"><b>Fase</b></h4>
+				    		</div>
+				    	</div>
+				    	
+				    	<div class="col-md-2">
 				    		<div class="panel-heading">
 				      			<h4 class="panel-title"><b>Item</b></h4>
 				    		</div>
@@ -75,7 +87,7 @@
 				<div class="panel panel-default">
 					
 				    
-				    <div class="col-md-4">
+				    <div class="col-md-2">
 				    	<div class="panel-heading">
 				      		<h4 class="panel-title">
 				        		<a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ solicitud.id }}">
@@ -85,7 +97,27 @@
 				    	</div>
 				    </div>
 				    
-				    <div class="col-md-4">
+				    <div class="col-md-2">
+				    	<div class="panel-heading">
+				      		<h4 class="panel-title">
+				        		<a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ solicitud.id }}">
+				          		{{ solicitud.item.proyecto }}
+				        		</a>
+				      		</h4>
+				    	</div>
+				    </div>
+				    
+				    <div class="col-md-2">
+				    	<div class="panel-heading">
+				      		<h4 class="panel-title">
+				        		<a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ solicitud.id }}">
+				          		{{ solicitud.item.fase }}
+				        		</a>
+				      		</h4>
+				    	</div>
+				    </div>
+				    
+				    <div class="col-md-2">
 				    	<div class="panel-heading">
 				      		<h4 class="panel-title">
 				        		<a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ solicitud.id }}">

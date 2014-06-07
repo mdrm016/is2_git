@@ -8,7 +8,7 @@ from aplicaciones.roles.models import Roles
 
 class test_user(TestCase):
     """    Cargamos Proyectos, tipos de Item y Tipos de Atributo de prueba en la base de datos    """
-    fixtures = ['proyectos.json'] + ['tipos_item.json'] + ['tipos_atributo.json'] + ['users.json'] + ['lista_atributos.json'] + ['groups.json']
+    fixtures = ['user.json'] + ['roles.json'] + ['group.json'] + ['proyectos.json'] + ['comite.json'] + ['fases.json'] + ['tipoatributo.json'] + ['listaatributo.json'] + ['tipoitem.json'] + ['items.json'] + ['linea_base.json'] + ['solicitudes.json']
     
     def setUp(self):
         """ Inicializamos la variable factory que posteriormente nos permitira cargar
@@ -46,12 +46,12 @@ class test_user(TestCase):
     def testEliminarTipoAtributo(self):
         
         self.user = User.objects.get(pk=1)
-        request = self.factory.get('/adm_proyectos/gestionar/1/adm_tipos_atributo/eliminar/2/')
+        request = self.factory.get('/adm_proyectos/gestionar/1/adm_tipos_atributo/eliminar/6/')
         request.user = self.user
-        tipoAtributo = TipoAtributo.objects.get(pk=2)
+        tipoAtributo = TipoAtributo.objects.get(pk=6)
         self.assertTrue(tipoAtributo.is_active)
-        response = eliminarTipoAtributo(request, 1, 2)
-        tipoAtributo = TipoAtributo.objects.get(pk=2)
+        response = eliminarTipoAtributo(request, 1, 6)
+        tipoAtributo = TipoAtributo.objects.get(pk=6)
         self.assertFalse(tipoAtributo.is_active)
         print 'Test de Eliminar Tipo de Atributo ejecutado exitosamente'
         

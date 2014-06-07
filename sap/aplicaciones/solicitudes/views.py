@@ -484,8 +484,3 @@ def cancelar_credencial(request, id_credencial):
     template_name='./solicitudes/solicitudalerta.html'
     ctx = {'mensaje': mensaje}
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
-
-def reactivarLineaBase(request, id_proyecto, id_fase, credencial_id):
-    credencial = Credenciales.objects.get(id=id_credencial)
-    
-   

@@ -1,0 +1,64 @@
+[
+{
+    "pk": 1, 
+    "model": "comite.comite", 
+    "fields": {
+        "nombre": null, 
+        "miembros": [
+            2, 
+            3, 
+            4
+        ], 
+        "proyecto": 1
+    }
+},
+{
+    "pk": 2, 
+    "model": "comite.comite", 
+    "fields": {
+        "nombre": null, 
+        "miembros": [], 
+        "proyecto": 2
+    }
+},
+{
+    "pk": 3, 
+    "model": "comite.comite", 
+    "fields": {
+        "nombre": null, 
+        "miembros": [], 
+        "proyecto": 3
+    }
+},
+{
+    "pk": 4, 
+    "model": "comite.comite", 
+    "fields": {
+        "nombre": null, 
+        "miembros": [], 
+        "proyecto": 4
+    }
+},
+{
+    "pk": 5, 
+    "model": "comite.comite", 
+    "fields": {
+        "nombre": null, 
+        "miembros": [], 
+        "proyecto": 5
+    }
+},
+{
+    "pk": 6, 
+    "model": "comite.comite", 
+    "fields": {
+        "nombre": null, 
+        "miembros": [
+            2, 
+            3, 
+            4
+        ], 
+        "proyecto": 6
+    }
+}
+]

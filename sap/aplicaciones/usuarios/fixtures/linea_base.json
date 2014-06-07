@@ -1,0 +1,62 @@
+[
+{
+    "pk": 1, 
+    "model": "lineabase.lineabase", 
+    "fields": {
+        "items": [
+            2
+        ], 
+        "fecha_creacion": "2014-06-06", 
+        "is_active": true, 
+        "numero": 1, 
+        "descripcion": "", 
+        "proyecto": 1, 
+        "fase": 1
+    }
+},
+{
+    "pk": 2, 
+    "model": "lineabase.lineabase", 
+    "fields": {
+        "items": [
+            1
+        ], 
+        "fecha_creacion": "2014-06-06", 
+        "is_active": true, 
+        "numero": 2, 
+        "descripcion": "", 
+        "proyecto": 1, 
+        "fase": 1
+    }
+},
+{
+    "pk": 3, 
+    "model": "lineabase.lineabase", 
+    "fields": {
+        "items": [
+            5
+        ], 
+        "fecha_creacion": "2014-06-06", 
+        "is_active": true, 
+        "numero": 1, 
+        "descripcion": "", 
+        "proyecto": 6, 
+        "fase": 5
+    }
+},
+{
+    "pk": 4, 
+    "model": "lineabase.lineabase", 
+    "fields": {
+        "items": [
+            4
+        ], 
+        "fecha_creacion": "2014-06-06", 
+        "is_active": true, 
+        "numero": 2, 
+        "descripcion": "", 
+        "proyecto": 6, 
+        "fase": 5
+    }
+}
+]

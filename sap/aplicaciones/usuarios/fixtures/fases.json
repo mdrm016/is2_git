@@ -1,0 +1,92 @@
+[
+{
+    "pk": 1, 
+    "model": "fases.fases", 
+    "fields": {
+        "orden": 1, 
+        "estado": "DR", 
+        "is_active": true, 
+        "fechainicio": "2014-06-06", 
+        "duracion": 2, 
+        "descripcion": "ninguna", 
+        "nombre": "Fase 1", 
+        "proyecto": 1, 
+        "nombre_eliminado": null
+    }
+},
+{
+    "pk": 2, 
+    "model": "fases.fases", 
+    "fields": {
+        "orden": 2, 
+        "estado": "DF", 
+        "is_active": true, 
+        "fechainicio": "2014-06-06", 
+        "duracion": 3, 
+        "descripcion": "ninguna", 
+        "nombre": "Fase 2", 
+        "proyecto": 1, 
+        "nombre_eliminado": null
+    }
+},
+{
+    "pk": 3, 
+    "model": "fases.fases", 
+    "fields": {
+        "orden": 1, 
+        "estado": "DF", 
+        "is_active": true, 
+        "fechainicio": "2014-06-06", 
+        "duracion": 5, 
+        "descripcion": "ninguna", 
+        "nombre": "Fase 1", 
+        "proyecto": 2, 
+        "nombre_eliminado": null
+    }
+},
+{
+    "pk": 4, 
+    "model": "fases.fases", 
+    "fields": {
+        "orden": 2, 
+        "estado": "DF", 
+        "is_active": true, 
+        "fechainicio": "2014-06-06", 
+        "duracion": 4, 
+        "descripcion": "ninguna", 
+        "nombre": "Fase 2", 
+        "proyecto": 2, 
+        "nombre_eliminado": null
+    }
+},
+{
+    "pk": 5, 
+    "model": "fases.fases", 
+    "fields": {
+        "orden": 1, 
+        "estado": "DF", 
+        "is_active": true, 
+        "fechainicio": "2014-06-06", 
+        "duracion": 3, 
+        "descripcion": "ninguna", 
+        "nombre": "Fase 1", 
+        "proyecto": 6, 
+        "nombre_eliminado": null
+    }
+},
+{
+    "pk": 6, 
+    "model": "fases.fases", 
+    "fields": {
+        "orden": 2, 
+        "estado": "DF", 
+        "is_active": true, 
+        "fechainicio": "2014-06-06", 
+        "duracion": 2, 
+        "descripcion": "ninguna", 
+        "nombre": "Fase 2", 
+        "proyecto": 6, 
+        "nombre_eliminado": null
+    }
+}
+]

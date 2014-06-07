@@ -1,0 +1,98 @@
+[
+{
+    "pk": 1, 
+    "model": "tipoatributo.tipoatributo", 
+    "fields": {
+        "tipo": "Numerico", 
+        "is_active": true, 
+        "precision": 5, 
+        "proyecto": [
+            6
+        ], 
+        "descripcion": "", 
+        "nombre": "cantidad", 
+        "obligatorio": true, 
+        "longitud": 5
+    }
+},
+{
+    "pk": 2, 
+    "model": "tipoatributo.tipoatributo", 
+    "fields": {
+        "tipo": "Numerico", 
+        "is_active": true, 
+        "precision": 0, 
+        "proyecto": [
+            6
+        ], 
+        "descripcion": "", 
+        "nombre": "fecha de inicio", 
+        "obligatorio": true, 
+        "longitud": 0
+    }
+},
+{
+    "pk": 3, 
+    "model": "tipoatributo.tipoatributo", 
+    "fields": {
+        "tipo": "Texto", 
+        "is_active": true, 
+        "precision": 0, 
+        "proyecto": [
+            6
+        ], 
+        "descripcion": "", 
+        "nombre": "descripcion", 
+        "obligatorio": true, 
+        "longitud": 30
+    }
+},
+{
+    "pk": 4, 
+    "model": "tipoatributo.tipoatributo", 
+    "fields": {
+        "tipo": "Numerico", 
+        "is_active": true, 
+        "precision": 5, 
+        "proyecto": [
+            1
+        ], 
+        "descripcion": "", 
+        "nombre": "cantidad 2", 
+        "obligatorio": true, 
+        "longitud": 5
+    }
+},
+{
+    "pk": 5, 
+    "model": "tipoatributo.tipoatributo", 
+    "fields": {
+        "tipo": "Fecha", 
+        "is_active": true, 
+        "precision": 0, 
+        "proyecto": [
+            1
+        ], 
+        "descripcion": "", 
+        "nombre": "fecha inicio", 
+        "obligatorio": true, 
+        "longitud": 0
+    }
+},
+{
+    "pk": 6, 
+    "model": "tipoatributo.tipoatributo", 
+    "fields": {
+        "tipo": "Numerico", 
+        "is_active": true, 
+        "precision": 5, 
+        "proyecto": [
+            1
+        ], 
+        "descripcion": "", 
+        "nombre": "atributoNulo", 
+        "obligatorio": true, 
+        "longitud": 5
+    }
+}
+]

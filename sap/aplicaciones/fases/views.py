@@ -326,7 +326,7 @@ def modificar_fase (request, id_proyecto, id_fase):
                             template_name='Fases/modificarfase.html'
                             return render_to_response(template_name, ctx, context_instance=RequestContext(request))
                         elif fase.orden!=1:
-                            faseant = Fases.objects.get(orden=fase.orden-1, is_active=True)
+                            faseant = Fases.objects.get(orden=fase.orden-1, is_active=True, proyecto=proyecto)
                             if faseant.estado!='FD':
                                 mensaje = 'No se puede finalizar la fase. La fase anterior aun no se encuentra finalizada.'
                                 data ={'Estado':fase.estado, 'Duracion':duracion}

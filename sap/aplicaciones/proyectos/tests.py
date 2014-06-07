@@ -7,8 +7,8 @@ from django.test.client import RequestFactory
 from .views import adm_proyectos, crear_proyecto, modificar_proyecto, consultar_proyecto, eliminar_proyecto, listar_miembros, importar_proyecto, importar
 
 class test_proyectos (TestCase):
+    fixtures = ['user.json'] + ['roles.json'] + ['group.json'] + ['proyectos.json'] + ['comite.json'] + ['fases.json'] + ['tipoatributo.json'] + ['listaatributo.json'] + ['tipoitem.json'] + ['items.json'] + ['linea_base.json'] + ['solicitudes.json']
     
-    fixtures = ['user_views_testdata.json']+ ['proyectos_views_testdata.json'] + ['fases_views_testdata.json']  
     
     def setUp(self):
         """ Inicializamos la variable factory que posteriormente nos permitira cargar
@@ -61,10 +61,10 @@ class test_proyectos (TestCase):
         
     def test_proyecto_eliminar(self):
 
-        request = self.factory.get('/adm_proyectos/eliminar/1')
+        request = self.factory.get('/adm_proyectos/eliminar/5')
         self.user = User.objects.get(pk=1)
         request.user = self.user
-        proyecto_id = '1'
+        proyecto_id = '5'
         response = eliminar_proyecto(request, proyecto_id)
         proyecto = Proyectos.objects.get(pk=proyecto_id)
         self.assertFalse(proyecto.is_active)

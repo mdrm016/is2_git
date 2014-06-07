@@ -3,11 +3,12 @@
     "pk": 1, 
     "model": "items.items", 
     "fields": {
+        "lb": null, 
         "padre": 0, 
         "costoTemporal": 9, 
         "observaciones": "jkbkjb", 
         "is_active": true, 
-        "tipo_item": 1, 
+        "tipo_item": 3, 
         "costoMonetario": 9, 
         "version": 1, 
         "complejidad": 6, 
@@ -23,17 +24,18 @@
     "pk": 2, 
     "model": "items.items", 
     "fields": {
+        "lb": null, 
         "padre": 0, 
         "costoTemporal": 7, 
         "observaciones": "kajjnkjv", 
         "is_active": true, 
-        "tipo_item": 1, 
+        "tipo_item": 3, 
         "costoMonetario": 9, 
         "version": 1, 
         "complejidad": 2, 
         "proyecto": 1, 
         "descripcion": "ksnbsn", 
-        "nombre": "Analisis", 
+        "nombre": "analisis", 
         "estado": "Bloqueado", 
         "prioridad": 9, 
         "fase": 1
@@ -43,11 +45,12 @@
     "pk": 3, 
     "model": "items.items", 
     "fields": {
+        "lb": null, 
         "padre": 0, 
         "costoTemporal": 4, 
         "observaciones": "sdgdsrg", 
         "is_active": true, 
-        "tipo_item": 1, 
+        "tipo_item": 3, 
         "costoMonetario": 5, 
         "version": 1, 
         "complejidad": 2, 
@@ -55,8 +58,50 @@
         "descripcion": "skdnsj", 
         "nombre": "Construccion", 
         "estado": "Validado", 
-        "prioridad": 4, 
+        "prioridad": 1, 
         "fase": 1
+    }
+},
+{
+    "pk": 4, 
+    "model": "items.items", 
+    "fields": {
+        "lb": null, 
+        "padre": 0, 
+        "costoTemporal": 5, 
+        "observaciones": "5", 
+        "is_active": true, 
+        "tipo_item": 1, 
+        "costoMonetario": 5, 
+        "version": 1, 
+        "complejidad": 5, 
+        "proyecto": 6, 
+        "descripcion": "ninguna", 
+        "nombre": "item 1", 
+        "estado": "Habilitado", 
+        "prioridad": 5, 
+        "fase": 5
+    }
+},
+{
+    "pk": 5, 
+    "model": "items.items", 
+    "fields": {
+        "lb": null, 
+        "padre": 0, 
+        "costoTemporal": 5, 
+        "observaciones": "5", 
+        "is_active": true, 
+        "tipo_item": 2, 
+        "costoMonetario": 5, 
+        "version": 1, 
+        "complejidad": 5, 
+        "proyecto": 6, 
+        "descripcion": "55", 
+        "nombre": "item 2", 
+        "estado": "Habilitado", 
+        "prioridad": 5, 
+        "fase": 5
     }
 }
 ]

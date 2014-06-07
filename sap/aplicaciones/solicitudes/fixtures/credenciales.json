@@ -1,0 +1,17 @@
+[
+{
+    "pk": 1, 
+    "model": "solicitudes.credenciales", 
+    "fields": {
+        "usuario": 4, 
+        "observaciones": null, 
+        "fecha_aprobacion": "2014-06-05", 
+        "item": 4, 
+        "fecha_expiracion": "2014-06-08", 
+        "proyecto": 3, 
+        "nombre": null, 
+        "estado": "Habilitado", 
+        "fase": 4
+    }
+}
+]

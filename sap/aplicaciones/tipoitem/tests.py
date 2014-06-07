@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 
 class test_tipoitem (TestCase):
     
-    fixtures = ['user_views_testdata_tipoitem.json'] + ['proyectos_testdata.json'] + ['tipoatributo_testdata.json'] + ['tipoitem_testdata.json'] + ['groups.json']
+    fixtures = ['user.json'] + ['roles.json'] + ['group.json'] + ['proyectos.json'] + ['comite.json'] + ['fases.json'] + ['tipoatributo.json'] + ['listaatributo.json'] + ['tipoitem.json'] + ['items.json'] + ['linea_base.json'] + ['solicitudes.json']
     
     def setUp(self):
         """ Inicializamos la variable factory que posteriormente nos permitira cargar
@@ -51,17 +51,17 @@ class test_tipoitem (TestCase):
         
     def test_modificar_tipoitem(self):
         
-        """
+    
         self.user = User.objects.get(pk=2)
-        id_proyecto = 1
-        id_tipoitem = 1
+        id_proyecto = 6
+        id_tipoitem = 4
         tipoitem = TipoItem.objects.get(id=id_tipoitem, id_proyecto=id_proyecto )
-        request = self.factory.post('/adm_proyectos/gestionar/1/adm_tipos_item/modificar/1/', {'Nombre_Tipo_de_Item': 'Tipo de Item 3', 'Descripcion': '********'})
+        request = self.factory.post('/adm_proyectos/gestionar/6/adm_tipos_item/modificar/4/', {'Nombre_Tipo_de_Item': 'Tipo de Item 10', 'Descripcion': '********'})
         request.user = self.user
         response = modificar_tipoitem (request, id_tipoitem, id_proyecto)
         self.assertEqual(response.status_code, 200)
-        tipoitemModificado = TipoItem.objects.get(nombre='Tipo de Item 3')
-        self.assertEqual(tipoitem.id, tipoitemModificado.id)"""
+        tipoitemModificado = TipoItem.objects.get(nombre='Tipo de Item 10')
+        self.assertEqual(tipoitem.id, tipoitemModificado.id)
         print 'Test de modificar los datos de un tipo de item ejecutado exitosamente.'
         
     def test_consultar_tipoitem(self):
@@ -78,10 +78,10 @@ class test_tipoitem (TestCase):
         
     def test_eliminar_tipoitem(self):
         
-        id_proyecto = 1
-        id_tipoitem = 3
+        id_proyecto = 6
+        id_tipoitem = 4
 
-        request = self.factory.get('adm_proyectos/gestionar/1/adm_tipos_item/eliminar/3/')
+        request = self.factory.get('adm_proyectos/gestionar/6/adm_tipos_item/eliminar/4/')
         self.user = User.objects.get(pk=2)
         request.user = self.user
         response = eliminar_tipoitem (request, id_tipoitem, id_proyecto)
@@ -135,9 +135,9 @@ class test_tipoitem (TestCase):
     def test_quitar_tipo_atributo(self):
         
         self.user = User.objects.get(pk=1)
-        id_proyecto = 1
+        id_proyecto = 6
         id_tipoitem = 1
-        id_tipoatributo = 1
+        id_tipoatributo = 3
         request = self.factory.get('/adm_proyectos/gestionar/1/adm_tipos_item/gestionar_tipoitem/1/quitar_tipo_atributo/1/')
         request.user = self.user
         response = quitar_tipo_atributo (request, id_tipoitem, id_proyecto, id_tipoatributo)
@@ -147,9 +147,9 @@ class test_tipoitem (TestCase):
     def test_subir_tipo_atributo(self):
         
         self.user = User.objects.get(pk=1)
-        id_proyecto = 1
+        id_proyecto = 6
         id_tipoitem = 1
-        id_tipoatributo = 1
+        id_tipoatributo = 2
         request = self.factory.get('adm_proyectos/gestionar/1/adm_tipos_item/gestionar_tipoitem/1/subir_tipo_atributo/1/')
         request.user = self.user
         ordenInicial = ListaAtributo.objects.get(id=id_tipoatributo).orden
@@ -161,7 +161,7 @@ class test_tipoitem (TestCase):
     def test_bajar_tipo_atributo(self):
         
         self.user = User.objects.get(pk=1)
-        id_proyecto = 1
+        id_proyecto = 6
         id_tipoitem = 1
         id_tipoatributo = 2
         request = self.factory.get('adm_proyectos/gestionar/1/adm_tipos_item/gestionar_tipoitem/1/bajar_tipo_atributo/2/')

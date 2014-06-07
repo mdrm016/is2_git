@@ -16,7 +16,7 @@ class Usuarios(models.Model):
     @author: Ysapy Ortiz
     """  
     
-    user = models.OneToOneField(User)
+    user = models.OneToOneField(User, primary_key=True)
     telefono = models.CharField(max_length=30)
     direccion = models.CharField(max_length=50)
     especialidad = models.CharField(max_length=50)

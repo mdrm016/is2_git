@@ -1,0 +1,70 @@
+[
+{
+    "pk": 1, 
+    "model": "solicitudes.solicitudes", 
+    "fields": {
+        "tiempo_esperado": 4, 
+        "fecha_solicitud": "2014-06-06", 
+        "observaciones": "jjvhfh", 
+        "usuario": 1, 
+        "item": 2, 
+        "tiempo_solicitado": 2, 
+        "proyecto": 1, 
+        "descripcion": "fvdvdvd", 
+        "nombre": null, 
+        "estado": "Pendiente", 
+        "fase": 1
+    }
+},
+{
+    "pk": 2, 
+    "model": "solicitudes.solicitudes", 
+    "fields": {
+        "tiempo_esperado": 4, 
+        "fecha_solicitud": "2014-06-06", 
+        "observaciones": "dndyhdh", 
+        "usuario": 1, 
+        "item": 1, 
+        "tiempo_solicitado": 6, 
+        "proyecto": 1, 
+        "descripcion": "sdtbh", 
+        "nombre": null, 
+        "estado": "Pendiente", 
+        "fase": 1
+    }
+},
+{
+    "pk": 3, 
+    "model": "solicitudes.solicitudes", 
+    "fields": {
+        "tiempo_esperado": 15, 
+        "fecha_solicitud": "2014-06-06", 
+        "observaciones": "5", 
+        "usuario": 1, 
+        "item": 4, 
+        "tiempo_solicitado": 15, 
+        "proyecto": 6, 
+        "descripcion": "5", 
+        "nombre": null, 
+        "estado": "Cancelado", 
+        "fase": 5
+    }
+},
+{
+    "pk": 4, 
+    "model": "solicitudes.solicitudes", 
+    "fields": {
+        "tiempo_esperado": 15, 
+        "fecha_solicitud": "2014-06-06", 
+        "observaciones": "ninguna", 
+        "usuario": 1, 
+        "item": 5, 
+        "tiempo_solicitado": 15, 
+        "proyecto": 6, 
+        "descripcion": "ninguna", 
+        "nombre": null, 
+        "estado": "Cancelado", 
+        "fase": 5
+    }
+}
+]
