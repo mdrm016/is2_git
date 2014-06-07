@@ -67,6 +67,10 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
+CRON_CLASSES = [
+    'aplicaciones.solicitudes.cron.CronExpirador'
+]
+
 ROOT_URLCONF = 'sap.urls'
 
 WSGI_APPLICATION = 'sap.wsgi.application'

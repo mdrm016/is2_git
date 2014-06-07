@@ -1,7 +1,7 @@
 from django.test import TestCase
 from django.test.client import RequestFactory
 from django.contrib.auth.models import User 
-from aplicaciones.solicitudes.views import administrar_solicitud_recibidas, administrar_solicitud_realizadas, votar_solicitud, administrar_credenciales
+from aplicaciones.solicitudes.views import administrar_solicitud_recibidas, administrar_solicitud_realizadas, votar_solicitud, administrar_credenciales, consultarCredencial
 from aplicaciones.usuarios.views import Usuarios
 
 class test_solicitudes (TestCase):
@@ -49,6 +49,14 @@ class test_solicitudes (TestCase):
         response = administrar_credenciales (request)
         self.assertEqual(response.status_code, 200)
         print 'Test de administrar credenciales ejecutado exitosamente.'
+
+    def testConsultarCredencial(self):
+        self.user = User.objects.get(pk=1)
+        request = self.factory.get('adm_proyectos/admin_credenciales/consultar_credencial/1/')
+        request.user = self.user
+        response = consultarCredencial(request, 1)
+        self.assertEqual(response.status_code, 200)
+        print 'Test de consultar credencial ejecutado exitosamente'
 
     if __name__ == '__main__':
         unittest.main()
