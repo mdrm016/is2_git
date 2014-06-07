@@ -93,3 +93,4 @@ aplicaciones.tipoatributo.tests.test_user.testAdministrarTipoAtributo	aplicacion
 aplicaciones.tipoatributo.tests.test_user.testBucarTipoAtributo	aplicaciones.tipoatributo.tests.test_user-class.html#testBucarTipoAtributo
 aplicaciones.tipoatributo.tests.test_user.testModificarTipoAtributo	aplicaciones.tipoatributo.tests.test_user-class.html#testModificarTipoAtributo
 aplicaciones.tipoatributo.tests.test_user.testImportarTipoAtributo	aplicaciones.tipoatributo.tests.test_user-class.html#testImportarTipoAtributo
+aplicaciones.tipoatributo.tests.test_user.fixtures	aplicaciones.tipoatributo.tests.test_user-class.html#fixtures

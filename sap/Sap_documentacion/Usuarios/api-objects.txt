@@ -58,3 +58,5 @@ aplicaciones.usuarios.tests.test_user.setUp	aplicaciones.usuarios.tests.test_use
 aplicaciones.usuarios.tests.test_user.test_usuario_eliminar	aplicaciones.usuarios.tests.test_user-class.html#test_usuario_eliminar
 aplicaciones.usuarios.tests.test_user.testUsuarioNuevo	aplicaciones.usuarios.tests.test_user-class.html#testUsuarioNuevo
 aplicaciones.usuarios.tests.test_user.testUsuarioBuscar	aplicaciones.usuarios.tests.test_user-class.html#testUsuarioBuscar
+aplicaciones.usuarios.tests.test_user.fixtures	aplicaciones.usuarios.tests.test_user-class.html#fixtures
+aplicaciones.usuarios.tests.test_user.user	aplicaciones.usuarios.tests.test_user-class.html#user

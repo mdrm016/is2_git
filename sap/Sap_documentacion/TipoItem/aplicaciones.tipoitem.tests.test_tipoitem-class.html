@@ -111,12 +111,7 @@ django.test.TestCase --+
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="test_adm_tipoitem"></a><span class="summary-sig-name">test_adm_tipoitem</span>(<span class="summary-sig-arg">self</span>)</span><br />
-      self.user = User.objects.get(id=2) request = 
-      self.factory.get('/adm_proyectos/gestionar/1/adm_tipos_item/') 
-      id_proyecto = 1 request.user = self.user response = 
-      adm_tipoitem(request, id_proyecto) 
-      self.assertEqual(response.status_code, 200)</td>
+          <td><span class="summary-sig"><a name="test_adm_tipoitem"></a><span class="summary-sig-name">test_adm_tipoitem</span>(<span class="summary-sig-arg">self</span>)</span></td>
           <td align="right" valign="top">
             <span class="codelink"><a href="aplicaciones.tipoitem.tests-pysrc.html#test_tipoitem.test_adm_tipoitem">source&nbsp;code</a></span>
             
@@ -132,12 +127,7 @@ django.test.TestCase --+
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="test_buscar_tipoitem"></a><span class="summary-sig-name">test_buscar_tipoitem</span>(<span class="summary-sig-arg">self</span>)</span><br />
-      self.user = User.objects.get(pk=2) request = 
-      self.factory.get('/adm_proyectos/gestionar/1/adm_tipos_item/', 
-      {'busqueda': 'Tipo de Item 1'}) request.user = self.user id_proyecto 
-      = 1 response = adm_tipoitem(request, id_proyecto) 
-      self.assertEqual(response.status_code, 200)</td>
+          <td><span class="summary-sig"><a name="test_buscar_tipoitem"></a><span class="summary-sig-name">test_buscar_tipoitem</span>(<span class="summary-sig-arg">self</span>)</span></td>
           <td align="right" valign="top">
             <span class="codelink"><a href="aplicaciones.tipoitem.tests-pysrc.html#test_tipoitem.test_buscar_tipoitem">source&nbsp;code</a></span>
             
@@ -153,15 +143,7 @@ django.test.TestCase --+
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="test_crear_tipoitem"></a><span class="summary-sig-name">test_crear_tipoitem</span>(<span class="summary-sig-arg">self</span>)</span><br />
-      self.user = User.objects.get(pk=2) request = 
-      self.factory.post('/adm_proyectos/gestionar/1/adm_tipos_item/crear_tipoitem/',
-      {'Nombre_Tipo_de_Item': 'Tipo de Item 3', 'Descripcion': 'ninguna'}) 
-      request.user = self.user id_proyecto = 1 response = 
-      crear_tipoitem(request, id_proyecto) 
-      self.assertEqual(response.status_code, 200) tipoItemNuevo = 
-      TipoItem.objects.get(nombre='Tipo de Item 3') 
-      self.assertTrue(tipoItemNuevo)</td>
+          <td><span class="summary-sig"><a name="test_crear_tipoitem"></a><span class="summary-sig-name">test_crear_tipoitem</span>(<span class="summary-sig-arg">self</span>)</span></td>
           <td align="right" valign="top">
             <span class="codelink"><a href="aplicaciones.tipoitem.tests-pysrc.html#test_tipoitem.test_crear_tipoitem">source&nbsp;code</a></span>
             
@@ -177,16 +159,7 @@ django.test.TestCase --+
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="test_modificar_tipoitem"></a><span class="summary-sig-name">test_modificar_tipoitem</span>(<span class="summary-sig-arg">self</span>)</span><br />
-      self.user = User.objects.get(pk=2) id_proyecto = 1 id_tipoitem = 1 
-      tipoitem = TipoItem.objects.get(id=id_tipoitem, 
-      id_proyecto=id_proyecto ) request = 
-      self.factory.post('/adm_proyectos/gestionar/1/adm_tipos_item/modificar/1/',
-      {'Nombre_Tipo_de_Item': 'Tipo de Item 3', 'Descripcion': '********'})
-      request.user = self.user response = modificar_tipoitem (request, 
-      id_tipoitem, id_proyecto) self.assertEqual(response.status_code, 200)
-      tipoitemModificado = TipoItem.objects.get(nombre='Tipo de Item 3') 
-      self.assertEqual(tipoitem.id, tipoitemModificado.id)</td>
+          <td><span class="summary-sig"><a name="test_modificar_tipoitem"></a><span class="summary-sig-name">test_modificar_tipoitem</span>(<span class="summary-sig-arg">self</span>)</span></td>
           <td align="right" valign="top">
             <span class="codelink"><a href="aplicaciones.tipoitem.tests-pysrc.html#test_tipoitem.test_modificar_tipoitem">source&nbsp;code</a></span>
             
@@ -202,13 +175,7 @@ django.test.TestCase --+
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="test_consultar_tipoitem"></a><span class="summary-sig-name">test_consultar_tipoitem</span>(<span class="summary-sig-arg">self</span>)</span><br />
-      self.user = User.objects.get(pk=2) id_proyecto = 1 id_tipoitem = 1 
-      request = 
-      self.factory.get('/adm_proyectos/gestionar/%s/adm_tipos_item/consultar/%s/'
-      % (id_proyecto, id_tipoitem)) request.user = self.user response = 
-      consultar_tipoitem (request, id_tipoitem, id_proyecto) 
-      self.assertEqual(response.status_code, 200)</td>
+          <td><span class="summary-sig"><a name="test_consultar_tipoitem"></a><span class="summary-sig-name">test_consultar_tipoitem</span>(<span class="summary-sig-arg">self</span>)</span></td>
           <td align="right" valign="top">
             <span class="codelink"><a href="aplicaciones.tipoitem.tests-pysrc.html#test_tipoitem.test_consultar_tipoitem">source&nbsp;code</a></span>
             
@@ -224,8 +191,7 @@ django.test.TestCase --+
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a href="aplicaciones.tipoitem.tests.test_tipoitem-class.html#test_eliminar_tipoitem" class="summary-sig-name">test_eliminar_tipoitem</a>(<span class="summary-sig-arg">self</span>)</span><br />
-      id_proyecto = 1 id_tipoitem = 3</td>
+          <td><span class="summary-sig"><a name="test_eliminar_tipoitem"></a><span class="summary-sig-name">test_eliminar_tipoitem</span>(<span class="summary-sig-arg">self</span>)</span></td>
           <td align="right" valign="top">
             <span class="codelink"><a href="aplicaciones.tipoitem.tests-pysrc.html#test_tipoitem.test_eliminar_tipoitem">source&nbsp;code</a></span>
             
@@ -241,13 +207,7 @@ django.test.TestCase --+
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="test_gestionar_tipoitem"></a><span class="summary-sig-name">test_gestionar_tipoitem</span>(<span class="summary-sig-arg">self</span>)</span><br />
-      self.user = User.objects.get(pk=2) id_tipoitem = 1 id_proyecto = 1 
-      request = 
-      self.factory.get('/adm_proyectos/gestionar/%s/adm_tipos_item/gestionar_tipoitem/%s/'
-      % (id_proyecto, id_tipoitem)) request.user = self.user response = 
-      gestionar_tipoitem (request, id_tipoitem, id_proyecto) 
-      self.assertEqual(response.status_code, 200)</td>
+          <td><span class="summary-sig"><a name="test_gestionar_tipoitem"></a><span class="summary-sig-name">test_gestionar_tipoitem</span>(<span class="summary-sig-arg">self</span>)</span></td>
           <td align="right" valign="top">
             <span class="codelink"><a href="aplicaciones.tipoitem.tests-pysrc.html#test_tipoitem.test_gestionar_tipoitem">source&nbsp;code</a></span>
             
@@ -263,13 +223,7 @@ django.test.TestCase --+
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="test_agregar_tipo_atributo"></a><span class="summary-sig-name">test_agregar_tipo_atributo</span>(<span class="summary-sig-arg">self</span>)</span><br />
-      self.user = User.objects.get(pk=1) id_proyecto = 1 id_tipoitem = 3 
-      id_tipoatributo = 1 request = 
-      self.factory.get('/adm_proyectos/gestionar/1/adm_tipos_item/gestionar_tipoitem/3/agregar_tipo_atributo/1/')
-      request.user = self.user response = agregar_tipo_atributo (request, 
-      id_tipoitem, id_proyecto, id_tipoatributo) 
-      self.assertEqual(response.status_code, 302)</td>
+          <td><span class="summary-sig"><a name="test_agregar_tipo_atributo"></a><span class="summary-sig-name">test_agregar_tipo_atributo</span>(<span class="summary-sig-arg">self</span>)</span></td>
           <td align="right" valign="top">
             <span class="codelink"><a href="aplicaciones.tipoitem.tests-pysrc.html#test_tipoitem.test_agregar_tipo_atributo">source&nbsp;code</a></span>
             
@@ -285,9 +239,7 @@ django.test.TestCase --+
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="test_ordenar_mantener"></a><span class="summary-sig-name">test_ordenar_mantener</span>(<span class="summary-sig-arg">self</span>)</span><br />
-      id_tipoitem = 1 lista = ordenar_mantener (id_tipoitem) 
-      self.assertTrue(lista)</td>
+          <td><span class="summary-sig"><a name="test_ordenar_mantener"></a><span class="summary-sig-name">test_ordenar_mantener</span>(<span class="summary-sig-arg">self</span>)</span></td>
           <td align="right" valign="top">
             <span class="codelink"><a href="aplicaciones.tipoitem.tests-pysrc.html#test_tipoitem.test_ordenar_mantener">source&nbsp;code</a></span>
             
@@ -303,13 +255,7 @@ django.test.TestCase --+
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="test_quitar_tipo_atributo"></a><span class="summary-sig-name">test_quitar_tipo_atributo</span>(<span class="summary-sig-arg">self</span>)</span><br />
-      self.user = User.objects.get(pk=1) id_proyecto = 1 id_tipoitem = 1 
-      id_tipoatributo = 1 request = 
-      self.factory.get('/adm_proyectos/gestionar/1/adm_tipos_item/gestionar_tipoitem/1/quitar_tipo_atributo/1/')
-      request.user = self.user response = quitar_tipo_atributo (request, 
-      id_tipoitem, id_proyecto, id_tipoatributo) 
-      self.assertEqual(response.status_code, 302)</td>
+          <td><span class="summary-sig"><a name="test_quitar_tipo_atributo"></a><span class="summary-sig-name">test_quitar_tipo_atributo</span>(<span class="summary-sig-arg">self</span>)</span></td>
           <td align="right" valign="top">
             <span class="codelink"><a href="aplicaciones.tipoitem.tests-pysrc.html#test_tipoitem.test_quitar_tipo_atributo">source&nbsp;code</a></span>
             
@@ -325,16 +271,7 @@ django.test.TestCase --+
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="test_subir_tipo_atributo"></a><span class="summary-sig-name">test_subir_tipo_atributo</span>(<span class="summary-sig-arg">self</span>)</span><br />
-      self.user = User.objects.get(pk=1) id_proyecto = 1 id_tipoitem = 1 
-      id_tipoatributo = 1 request = 
-      self.factory.get('adm_proyectos/gestionar/1/adm_tipos_item/gestionar_tipoitem/1/subir_tipo_atributo/1/')
-      request.user = self.user ordenInicial = 
-      ListaAtributo.objects.get(id=id_tipoatributo).orden response = 
-      subir_tipo_atributo (request, id_tipoitem, id_proyecto, 
-      id_tipoatributo) ordenFinal = 
-      ListaAtributo.objects.get(id=id_tipoatributo).orden 
-      self.assertGreater(ordenInicial, ordenFinal)</td>
+          <td><span class="summary-sig"><a name="test_subir_tipo_atributo"></a><span class="summary-sig-name">test_subir_tipo_atributo</span>(<span class="summary-sig-arg">self</span>)</span></td>
           <td align="right" valign="top">
             <span class="codelink"><a href="aplicaciones.tipoitem.tests-pysrc.html#test_tipoitem.test_subir_tipo_atributo">source&nbsp;code</a></span>
             
@@ -350,16 +287,7 @@ django.test.TestCase --+
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="test_bajar_tipo_atributo"></a><span class="summary-sig-name">test_bajar_tipo_atributo</span>(<span class="summary-sig-arg">self</span>)</span><br />
-      self.user = User.objects.get(pk=1) id_proyecto = 1 id_tipoitem = 1 
-      id_tipoatributo = 2 request = 
-      self.factory.get('adm_proyectos/gestionar/1/adm_tipos_item/gestionar_tipoitem/1/bajar_tipo_atributo/2/')
-      request.user = self.user ordenInicial = 
-      ListaAtributo.objects.get(id=id_tipoatributo).orden response = 
-      bajar_tipo_atributo (request, id_tipoitem, id_proyecto, 
-      id_tipoatributo) ordenFinal = 
-      ListaAtributo.objects.get(id=id_tipoatributo).orden 
-      self.assertLess(ordenInicial, ordenFinal)</td>
+          <td><span class="summary-sig"><a name="test_bajar_tipo_atributo"></a><span class="summary-sig-name">test_bajar_tipo_atributo</span>(<span class="summary-sig-arg">self</span>)</span></td>
           <td align="right" valign="top">
             <span class="codelink"><a href="aplicaciones.tipoitem.tests-pysrc.html#test_tipoitem.test_bajar_tipo_atributo">source&nbsp;code</a></span>
             
@@ -375,12 +303,7 @@ django.test.TestCase --+
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="test_listar_proyectos"></a><span class="summary-sig-name">test_listar_proyectos</span>(<span class="summary-sig-arg">self</span>)</span><br />
-      id_proyecto = 1 self.user = User.objects.get(pk=2) id_proyecto = 1 
-      request = 
-      self.factory.get('/adm_proyectos/gestionar/%s/adm_tipos_item/listar_proyectos/'
-      % id_proyecto) request.user = self.user response =listar_proyectos 
-      (request, id_proyecto) self.assertEqual(response.status_code, 200)</td>
+          <td><span class="summary-sig"><a name="test_listar_proyectos"></a><span class="summary-sig-name">test_listar_proyectos</span>(<span class="summary-sig-arg">self</span>)</span></td>
           <td align="right" valign="top">
             <span class="codelink"><a href="aplicaciones.tipoitem.tests-pysrc.html#test_tipoitem.test_listar_proyectos">source&nbsp;code</a></span>
             
@@ -396,13 +319,7 @@ django.test.TestCase --+
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="test_listar_tipoitem"></a><span class="summary-sig-name">test_listar_tipoitem</span>(<span class="summary-sig-arg">self</span>)</span><br />
-      self.user = User.objects.get(pk=1) id_proyecto = 1 proyecto_select = 
-      1 request = 
-      self.factory.get('/adm_proyectos/gestionar/1/adm_tipos_item/listar_proyectos/listar_tipoitem/1/')
-      request.user = self.user response =listar_tipoitem(request, 
-      id_proyecto, proyecto_select) self.assertEqual(response.status_code, 
-      200)</td>
+          <td><span class="summary-sig"><a name="test_listar_tipoitem"></a><span class="summary-sig-name">test_listar_tipoitem</span>(<span class="summary-sig-arg">self</span>)</span></td>
           <td align="right" valign="top">
             <span class="codelink"><a href="aplicaciones.tipoitem.tests-pysrc.html#test_tipoitem.test_listar_tipoitem">source&nbsp;code</a></span>
             
@@ -418,16 +335,7 @@ django.test.TestCase --+
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="test_importar_tipoitem"></a><span class="summary-sig-name">test_importar_tipoitem</span>(<span class="summary-sig-arg">self</span>)</span><br />
-      id_proyecto = 1 proyecto_select = 1 id_tipoitem = 1 request = 
-      self.factory.post('/adm_proyectos/gestionar/1/adm_tipos_item/listar_proyectos/listar_tipoitem/1/importar_tipoitem/1/',
-      {'Nombre_Tipo_de_Item': 'Tipo de Item 1 importado', 'Descripcion': 
-      'ninguna'}) self.user = User.objects.get(pk=1) request.user = 
-      self.user response = importar_tipoitem(request, id_proyecto, 
-      proyecto_select, id_tipoitem) self.assertEqual(response.status_code, 
-      200) tipoItemImportado = TipoItem.objects.get(nombre='Tipo de Item 1 
-      importado', id_proyecto=id_proyecto) 
-      self.assertTrue(tipoItemImportado)</td>
+          <td><span class="summary-sig"><a name="test_importar_tipoitem"></a><span class="summary-sig-name">test_importar_tipoitem</span>(<span class="summary-sig-arg">self</span>)</span></td>
           <td align="right" valign="top">
             <span class="codelink"><a href="aplicaciones.tipoitem.tests-pysrc.html#test_tipoitem.test_importar_tipoitem">source&nbsp;code</a></span>
             
@@ -438,17 +346,45 @@ django.test.TestCase --+
     </td>
   </tr>
 </table>
-<!-- ==================== METHOD DETAILS ==================== -->
-<a name="section-MethodDetails"></a>
+<!-- ==================== CLASS VARIABLES ==================== -->
+<a name="section-ClassVariables"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Class Variables</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-ClassVariables"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="aplicaciones.tipoitem.tests.test_tipoitem-class.html#fixtures" class="summary-name">fixtures</a> = <code title="['user.json']+ ['roles.json']+ ['group.json']+ ['proyectos.json']+ ['c\
+omite.json']+ ['fases.json']+ ['tipoatributo.json']+ ['listaatributo.j\
+son']+ ['tipoitem.json']+ ['items.json']+ ['linea_base.json']+ ['solic\
+itudes.json']">['user.json']+ ['roles.json']+ ['group.json']+ ['pr<code class="variable-ellipsis">...</code></code>
+    </td>
+  </tr>
+</table>
+<!-- ==================== CLASS VARIABLE DETAILS ==================== -->
+<a name="section-ClassVariableDetails"></a>
 <table class="details" border="1" cellpadding="3"
        cellspacing="0" width="100%" bgcolor="white">
 <tr bgcolor="#70b0f0" class="table-header">
   <td colspan="2" class="table-header">
     <table border="0" cellpadding="0" cellspacing="0" width="100%">
       <tr valign="top">
-        <td align="left"><span class="table-header">Method Details</span></td>
+        <td align="left"><span class="table-header">Class Variable Details</span></td>
         <td align="right" valign="top"
-         ><span class="options">[<a href="#section-MethodDetails"
+         ><span class="options">[<a href="#section-ClassVariableDetails"
          class="privatelink" onclick="toggle_private();"
          >hide private</a>]</span></td>
       </tr>
@@ -456,28 +392,24 @@ django.test.TestCase --+
   </td>
 </tr>
 </table>
-<a name="test_eliminar_tipoitem"></a>
+<a name="fixtures"></a>
 <div>
 <table class="details" border="1" cellpadding="3"
        cellspacing="0" width="100%" bgcolor="white">
 <tr><td>
-  <table width="100%" cellpadding="0" cellspacing="0" border="0">
-  <tr valign="top"><td>
-  <h3 class="epydoc"><span class="sig"><span class="sig-name">test_eliminar_tipoitem</span>(<span class="sig-arg">self</span>)</span>
-  </h3>
-  </td><td align="right" valign="top"
-    ><span class="codelink"><a href="aplicaciones.tipoitem.tests-pysrc.html#test_tipoitem.test_eliminar_tipoitem">source&nbsp;code</a></span>&nbsp;
-    </td>
-  </tr></table>
+  <h3 class="epydoc">fixtures</h3>
   
-  <p>id_proyecto = 1 id_tipoitem = 3</p>
-  <p>request = 
-  self.factory.get('adm_proyectos/gestionar/1/adm_tipos_item/eliminar/3/') 
-  self.user = User.objects.get(pk=2) request.user = self.user response = 
-  eliminar_tipoitem (request, id_tipoitem, id_proyecto) tipoitem = 
-  TipoItem.objects.get(pk=id_tipoitem) self.assertFalse(tipoitem.is_active)
-  self.assertTrue(tipoitem)</p>
   <dl class="fields">
+  </dl>
+  <dl class="fields">
+    <dt>Value:</dt>
+      <dd><table><tr><td><pre class="variable">
+['user.json']+ ['roles.json']+ ['group.json']+ ['proyectos.json']+ ['c<span class="variable-linewrap"><img src="crarr.png" alt="\" /></span>
+omite.json']+ ['fases.json']+ ['tipoatributo.json']+ ['listaatributo.j<span class="variable-linewrap"><img src="crarr.png" alt="\" /></span>
+son']+ ['tipoitem.json']+ ['items.json']+ ['linea_base.json']+ ['solic<span class="variable-linewrap"><img src="crarr.png" alt="\" /></span>
+itudes.json']
+</pre></td></tr></table>
+</dd>
   </dl>
 </td></tr></table>
 </div>
@@ -513,7 +445,7 @@ django.test.TestCase --+
 <table border="0" cellpadding="0" cellspacing="0" width="100%%">
   <tr>
     <td align="left" class="footer">
-    Generated by Epydoc 3.0.1 on Sat May 17 00:52:52 2014
+    Generated by Epydoc 3.0.1 on Sat Jun  7 03:37:14 2014
     </td>
     <td align="right" class="footer">
       <a target="mainFrame" href="http://epydoc.sourceforge.net"

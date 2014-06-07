@@ -53,6 +53,11 @@ mkdir /home/"$Usuario"/workspace/is2_git/sap/Sap_documentacion/Comite
 epydoc --html --o /home/"$Usuario"/workspace/is2_git/sap/Sap_documentacion/Comite --name "Sap_documentacion" *.py
 
 cd ..
+cd lineabase
+mkdir /home/"$Usuario"/workspace/is2_git/sap/Sap_documentacion/LineaBase
+epydoc --html --o /home/"$Usuario"/workspace/is2_git/sap/Sap_documentacion/LineaBase --name "Sap_documentacion" *.py
+
+cd ..
 cd solicitudes
 mkdir /home/"$Usuario"/workspace/is2_git/sap/Sap_documentacion/Solicitudes
 epydoc --html --o /home/"$Usuario"/workspace/is2_git/sap/Sap_documentacion/Solicitudes --name "Sap_documentacion" *.py

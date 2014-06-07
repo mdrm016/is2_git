@@ -21,9 +21,9 @@ aplicaciones.relaciones.models.Relaciones.padre	aplicaciones.relaciones.models.R
 aplicaciones.relaciones.models.Relaciones.__unicode__	aplicaciones.relaciones.models.Relaciones-class.html#__unicode__
 aplicaciones.relaciones.models.Relaciones.item	aplicaciones.relaciones.models.Relaciones-class.html#item
 aplicaciones.relaciones.tests.test_relaciones	aplicaciones.relaciones.tests.test_relaciones-class.html
-aplicaciones.relaciones.tests.test_relaciones.test_eliminar_relacion	aplicaciones.relaciones.tests.test_relaciones-class.html#test_eliminar_relacion
 aplicaciones.relaciones.tests.test_relaciones.test_crear_relacion	aplicaciones.relaciones.tests.test_relaciones-class.html#test_crear_relacion
 aplicaciones.relaciones.tests.test_relaciones.setUp	aplicaciones.relaciones.tests.test_relaciones-class.html#setUp
 aplicaciones.relaciones.tests.test_relaciones.test_control_ciclo	aplicaciones.relaciones.tests.test_relaciones-class.html#test_control_ciclo
 aplicaciones.relaciones.tests.test_relaciones.test_adm_relaciones	aplicaciones.relaciones.tests.test_relaciones-class.html#test_adm_relaciones
+aplicaciones.relaciones.tests.test_relaciones.fixtures	aplicaciones.relaciones.tests.test_relaciones-class.html#fixtures
 aplicaciones.relaciones.tests.test_relaciones.test_consultar_relaciones	aplicaciones.relaciones.tests.test_relaciones-class.html#test_consultar_relaciones

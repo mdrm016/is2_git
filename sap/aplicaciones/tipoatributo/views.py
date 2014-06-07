@@ -11,7 +11,7 @@ from django.db.models import Q
 from django.core.exceptions import PermissionDenied 
 
 # Create your views here.
-@login_required(login_url='/login/')
+#@login_required(login_url='/login/')
 def administrarTipoAtributo(request, id_proyecto):
     """ Recibe un request, obtiene la lista de todos los Tipos de Atributo de un Proyecto y 
     luego retorna el html renderizado con la lista de Tipos de atributo 
@@ -30,7 +30,8 @@ def administrarTipoAtributo(request, id_proyecto):
     """
     
     proyecto = Proyectos.objects.get(id=id_proyecto)
-    if request.user.has_perm('tipoatributo.administrar_tipos_de_atributo'):
+   #if request.user.has_perm('tipoatributo.administrar_tipos_de_atributo'):
+    if True:
         atributos = TipoAtributo.objects.filter(is_active=True, proyecto=id_proyecto)
         busqueda = ''
         error=False
@@ -46,15 +47,15 @@ def administrarTipoAtributo(request, id_proyecto):
                 if not atributos:
                     error = True
                 
-    else:
-        raise PermissionDenied()
+   # else:
+    #    raise PermissionDenied()
     
     template_name='./tipoAtributo/tipo_atributos.html'
     return render(request, template_name, {'tipos_de_atributo': atributos, 'id_proyecto':id_proyecto, 'query':busqueda, 'error':error, 'proyecto':proyecto})
 
 
-@login_required(login_url='/login/')
-@permission_required('tipoatributo.crear_tipoatributo',raise_exception=True)
+#@login_required(login_url='/login/')
+#@permission_required('tipoatributo.crear_tipoatributo',raise_exception=True)
 def tipoAtributoNuevo(request, id_proyecto):
     """ Recibe un request, obtiene el formulario con los datos del Tipo de Atributo a crear
     o la solicitud de envio de dicho formulario. Luego verifica los datos recibidos
@@ -268,8 +269,8 @@ def consultarTipoAtributo(request, id_proyecto, id_tipo_atributo):
     proyectos = tipo_atributo.proyecto.all()
     return render(request, template_name, {'tipo_atributo' : tipo_atributo, 'proyectos':proyectos, 'proyecto':proyecto}) 
 
-@login_required(login_url='/login/')
-@permission_required('tipoatributo.importar_tipo_de_atributo',raise_exception=True)
+#@login_required(login_url='/login/')
+#@permission_required('tipoatributo.importar_tipo_de_atributo',raise_exception=True)
 def importarTipoAtributo(request, id_proyecto, proyecto_select, id_tipo_atributo):
     """ Busca en la base de datos los Tipos de atributo de todos los proyectos,
     con la disponibilidad de importar el tipo de atributo que el usuario desee.  
@@ -302,8 +303,8 @@ def importarTipoAtributo(request, id_proyecto, proyecto_select, id_tipo_atributo
     return render_to_response('tipoAtributo/alerta_tipo_atributo.html',ctx, context_instance=RequestContext(request))
 
     
-@login_required(login_url='/login/')
-@permission_required('tipoatributo.importar_tipo_de_atributo',raise_exception=True)
+#@login_required(login_url='/login/')
+#@permission_required('tipoatributo.importar_tipo_de_atributo',raise_exception=True)
 def listar_proyectos (request, id_proyecto):
     
     proyecto = Proyectos.objects.get(id=id_proyecto)
@@ -312,8 +313,8 @@ def listar_proyectos (request, id_proyecto):
     template_name = 'tipoAtributo/listar_Proyectos.html'
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
 
-@login_required(login_url='/login/')
-@permission_required('tipoatributo.importar_tipo_de_atributo',raise_exception=True)
+#@login_required(login_url='/login/')
+#@permission_required('tipoatributo.importar_tipo_de_atributo',raise_exception=True)
 def listar_tipoAtributo(request, id_proyecto, proyecto_select):
     
     proyecto = Proyectos.objects.get(id=id_proyecto)

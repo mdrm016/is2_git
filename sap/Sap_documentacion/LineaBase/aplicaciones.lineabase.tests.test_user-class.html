@@ -30,7 +30,12 @@
       <th>&nbsp;&nbsp;&nbsp;<a
         href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
 
-      <th class="navbar" width="100%"></th>
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            >Sap_documentacion</th>
+          </tr></table></th>
   </tr>
 </table>
 <table width="100%" cellpadding="0" cellspacing="0">
@@ -65,9 +70,6 @@ django.test.TestCase --+
 </pre>
 
 <hr />
-<p>Cargamos Proyectos, Fases, items, Lineas Base y Usuarios de prueba en 
-  la base de datos</p>
-
 <!-- ==================== INSTANCE METHODS ==================== -->
 <a name="section-InstanceMethods"></a>
 <table class="summary" border="1" cellpadding="3"
@@ -109,11 +111,7 @@ django.test.TestCase --+
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="testAdministrarLineaBase"></a><span class="summary-sig-name">testAdministrarLineaBase</span>(<span class="summary-sig-arg">self</span>)</span><br />
-      self.user = User.objects.get(pk=2) request = 
-      self.factory.get('/adm_proyectos/gestionar/1/adm_items/1/adm_lineas_base/')
-      request.user = self.user response = administrarLineaBase(request, 1, 
-      1) self.assertEqual(response.status_code, 200)</td>
+          <td><span class="summary-sig"><a name="testAdministrarLineaBase"></a><span class="summary-sig-name">testAdministrarLineaBase</span>(<span class="summary-sig-arg">self</span>)</span></td>
           <td align="right" valign="top">
             <span class="codelink"><a href="aplicaciones.lineabase.tests-pysrc.html#test_user.testAdministrarLineaBase">source&nbsp;code</a></span>
             
@@ -129,12 +127,7 @@ django.test.TestCase --+
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="testGenerarLineaBase"></a><span class="summary-sig-name">testGenerarLineaBase</span>(<span class="summary-sig-arg">self</span>)</span><br />
-      self.user = User.objects.get(pk=2) request = 
-      self.factory.post('/adm_proyectos/gestionar/1/adm_items/1/adm_lineas_base/nuevo/',
-      {'Descripcion': 'Prueba', 'Items': ['3']}) request.user = self.user 
-      response = generarLineaBase(request, 1, 1) 
-      self.assertEqual(response.status_code, 200)</td>
+          <td><span class="summary-sig"><a name="testGenerarLineaBase"></a><span class="summary-sig-name">testGenerarLineaBase</span>(<span class="summary-sig-arg">self</span>)</span></td>
           <td align="right" valign="top">
             <span class="codelink"><a href="aplicaciones.lineabase.tests-pysrc.html#test_user.testGenerarLineaBase">source&nbsp;code</a></span>
             
@@ -150,13 +143,7 @@ django.test.TestCase --+
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="test_buscar_lineabase"></a><span class="summary-sig-name">test_buscar_lineabase</span>(<span class="summary-sig-arg">self</span>)</span><br />
-      self.user = User.objects.get(pk=1) id_proyecto = 1 id_fase = 1 
-      id_lineabase = 1 request = 
-      self.factory.get('/adm_proyectos/gestionar/%s/adm_items/%s/adm_lineas_base/'
-      % (id_proyecto, id_fase), {'busqueda': '1'}) request.user = self.user
-      response = administrarLineaBase(request, id_proyecto, id_fase) 
-      self.assertEqual(response.status_code, 200)</td>
+          <td><span class="summary-sig"><a name="test_buscar_lineabase"></a><span class="summary-sig-name">test_buscar_lineabase</span>(<span class="summary-sig-arg">self</span>)</span></td>
           <td align="right" valign="top">
             <span class="codelink"><a href="aplicaciones.lineabase.tests-pysrc.html#test_user.test_buscar_lineabase">source&nbsp;code</a></span>
             
@@ -172,13 +159,7 @@ django.test.TestCase --+
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="test_consultar_lineabase"></a><span class="summary-sig-name">test_consultar_lineabase</span>(<span class="summary-sig-arg">self</span>)</span><br />
-      self.user = User.objects.get(pk=1) id_proyecto = 1 id_fase = 1 
-      id_lineabase = 1 request = 
-      self.factory.get('/adm_proyectos/gestionar/%s/adm_items/%s/adm_lineas_base/consultar/%s/'
-      % (id_proyecto, id_fase, id_lineabase)) request.user = self.user 
-      response = consultar_lineabase (request, id_proyecto, id_fase, 
-      id_lineabase) self.assertEqual(response.status_code, 200)</td>
+          <td><span class="summary-sig"><a name="test_consultar_lineabase"></a><span class="summary-sig-name">test_consultar_lineabase</span>(<span class="summary-sig-arg">self</span>)</span></td>
           <td align="right" valign="top">
             <span class="codelink"><a href="aplicaciones.lineabase.tests-pysrc.html#test_user.test_consultar_lineabase">source&nbsp;code</a></span>
             
@@ -194,13 +175,7 @@ django.test.TestCase --+
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="test_informe_lineabase"></a><span class="summary-sig-name">test_informe_lineabase</span>(<span class="summary-sig-arg">self</span>)</span><br />
-      self.user = User.objects.get(pk=1) id_proyecto = 1 id_fase = 1 
-      id_lineabase = 1 request = 
-      self.factory.get('/adm_proyectos/gestionar/%s/adm_items/%s/adm_lineas_base/informe_lineabase/%s)/'
-      % (id_proyecto, id_fase, id_lineabase)) request.user = self.user 
-      response = informe_lineabase(request, id_proyecto, id_fase, 
-      id_lineabase) self.assertEqual(response.status_code, 302)</td>
+          <td><span class="summary-sig"><a name="test_informe_lineabase"></a><span class="summary-sig-name">test_informe_lineabase</span>(<span class="summary-sig-arg">self</span>)</span></td>
           <td align="right" valign="top">
             <span class="codelink"><a href="aplicaciones.lineabase.tests-pysrc.html#test_user.test_informe_lineabase">source&nbsp;code</a></span>
             
@@ -211,6 +186,74 @@ django.test.TestCase --+
     </td>
   </tr>
 </table>
+<!-- ==================== CLASS VARIABLES ==================== -->
+<a name="section-ClassVariables"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Class Variables</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-ClassVariables"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="aplicaciones.lineabase.tests.test_user-class.html#fixtures" class="summary-name">fixtures</a> = <code title="['user.json']+ ['roles.json']+ ['group.json']+ ['proyectos.json']+ ['c\
+omite.json']+ ['fases.json']+ ['tipoatributo.json']+ ['listaatributo.j\
+son']+ ['tipoitem.json']+ ['items.json']+ ['linea_base.json']+ ['solic\
+itudes.json']">['user.json']+ ['roles.json']+ ['group.json']+ ['pr<code class="variable-ellipsis">...</code></code>
+    </td>
+  </tr>
+</table>
+<!-- ==================== CLASS VARIABLE DETAILS ==================== -->
+<a name="section-ClassVariableDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Class Variable Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-ClassVariableDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="fixtures"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">fixtures</h3>
+  
+  <dl class="fields">
+  </dl>
+  <dl class="fields">
+    <dt>Value:</dt>
+      <dd><table><tr><td><pre class="variable">
+['user.json']+ ['roles.json']+ ['group.json']+ ['proyectos.json']+ ['c<span class="variable-linewrap"><img src="crarr.png" alt="\" /></span>
+omite.json']+ ['fases.json']+ ['tipoatributo.json']+ ['listaatributo.j<span class="variable-linewrap"><img src="crarr.png" alt="\" /></span>
+son']+ ['tipoitem.json']+ ['items.json']+ ['linea_base.json']+ ['solic<span class="variable-linewrap"><img src="crarr.png" alt="\" /></span>
+itudes.json']
+</pre></td></tr></table>
+</dd>
+  </dl>
+</td></tr></table>
+</div>
+<br />
 <!-- ==================== NAVIGATION BAR ==================== -->
 <table class="navbar" border="0" width="100%" cellpadding="0"
        bgcolor="#a0c0ff" cellspacing="0">
@@ -231,13 +274,18 @@ django.test.TestCase --+
       <th>&nbsp;&nbsp;&nbsp;<a
         href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
 
-      <th class="navbar" width="100%"></th>
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            >Sap_documentacion</th>
+          </tr></table></th>
   </tr>
 </table>
 <table border="0" cellpadding="0" cellspacing="0" width="100%%">
   <tr>
     <td align="left" class="footer">
-    Generated by Epydoc 3.0.1 on Sat May 17 07:46:30 2014
+    Generated by Epydoc 3.0.1 on Sat Jun  7 03:37:21 2014
     </td>
     <td align="right" class="footer">
       <a target="mainFrame" href="http://epydoc.sourceforge.net"

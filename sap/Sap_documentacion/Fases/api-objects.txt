@@ -57,4 +57,5 @@ aplicaciones.fases.tests.test_fase.setUp	aplicaciones.fases.tests.test_fase-clas
 aplicaciones.fases.tests.test_fase.test_importar_fase	aplicaciones.fases.tests.test_fase-class.html#test_importar_fase
 aplicaciones.fases.tests.test_fase.test_crear_fase	aplicaciones.fases.tests.test_fase-class.html#test_crear_fase
 aplicaciones.fases.tests.test_fase.test_eliminar_fase	aplicaciones.fases.tests.test_fase-class.html#test_eliminar_fase
+aplicaciones.fases.tests.test_fase.fixtures	aplicaciones.fases.tests.test_fase-class.html#fixtures
 aplicaciones.fases.tests.test_fase.test_consultar_fase	aplicaciones.fases.tests.test_fase-class.html#test_consultar_fase

@@ -20,6 +20,11 @@ aplicaciones.roles.views.rolNuevo	aplicaciones.roles.views-module.html#rolNuevo
 aplicaciones.roles.views.asignarProyectoRol	aplicaciones.roles.views-module.html#asignarProyectoRol
 aplicaciones.roles.views.asignarFaseRol	aplicaciones.roles.views-module.html#asignarFaseRol
 aplicaciones.roles.views.eliminarRol	aplicaciones.roles.views-module.html#eliminarRol
+aplicaciones.roles.admin.RolesAdmin	aplicaciones.roles.admin.RolesAdmin-class.html
+aplicaciones.roles.admin.RolesAdmin.list_display	aplicaciones.roles.admin.RolesAdmin-class.html#list_display
+aplicaciones.roles.admin.RolesAdmin.list_editable	aplicaciones.roles.admin.RolesAdmin-class.html#list_editable
+aplicaciones.roles.admin.RolesAdmin.search_fields	aplicaciones.roles.admin.RolesAdmin-class.html#search_fields
+aplicaciones.roles.admin.RolesAdmin.list_filter	aplicaciones.roles.admin.RolesAdmin-class.html#list_filter
 aplicaciones.roles.forms.RolForm	aplicaciones.roles.forms.RolForm-class.html
 aplicaciones.roles.forms.RolForm.Descripcion	aplicaciones.roles.forms.RolForm-class.html#Descripcion
 aplicaciones.roles.forms.RolForm.Permisos	aplicaciones.roles.forms.RolForm-class.html#Permisos

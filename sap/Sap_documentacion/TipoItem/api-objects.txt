@@ -53,7 +53,7 @@ aplicaciones.tipoitem.tests.test_tipoitem.test_consultar_tipoitem	aplicaciones.t
 aplicaciones.tipoitem.tests.test_tipoitem.test_subir_tipo_atributo	aplicaciones.tipoitem.tests.test_tipoitem-class.html#test_subir_tipo_atributo
 aplicaciones.tipoitem.tests.test_tipoitem.test_quitar_tipo_atributo	aplicaciones.tipoitem.tests.test_tipoitem-class.html#test_quitar_tipo_atributo
 aplicaciones.tipoitem.tests.test_tipoitem.test_modificar_tipoitem	aplicaciones.tipoitem.tests.test_tipoitem-class.html#test_modificar_tipoitem
-aplicaciones.tipoitem.tests.test_tipoitem.setUp	aplicaciones.tipoitem.tests.test_tipoitem-class.html#setUp
+aplicaciones.tipoitem.tests.test_tipoitem.test_adm_tipoitem	aplicaciones.tipoitem.tests.test_tipoitem-class.html#test_adm_tipoitem
 aplicaciones.tipoitem.tests.test_tipoitem.test_eliminar_tipoitem	aplicaciones.tipoitem.tests.test_tipoitem-class.html#test_eliminar_tipoitem
 aplicaciones.tipoitem.tests.test_tipoitem.test_gestionar_tipoitem	aplicaciones.tipoitem.tests.test_tipoitem-class.html#test_gestionar_tipoitem
 aplicaciones.tipoitem.tests.test_tipoitem.test_bajar_tipo_atributo	aplicaciones.tipoitem.tests.test_tipoitem-class.html#test_bajar_tipo_atributo
@@ -61,6 +61,7 @@ aplicaciones.tipoitem.tests.test_tipoitem.test_buscar_tipoitem	aplicaciones.tipo
 aplicaciones.tipoitem.tests.test_tipoitem.test_ordenar_mantener	aplicaciones.tipoitem.tests.test_tipoitem-class.html#test_ordenar_mantener
 aplicaciones.tipoitem.tests.test_tipoitem.test_crear_tipoitem	aplicaciones.tipoitem.tests.test_tipoitem-class.html#test_crear_tipoitem
 aplicaciones.tipoitem.tests.test_tipoitem.test_agregar_tipo_atributo	aplicaciones.tipoitem.tests.test_tipoitem-class.html#test_agregar_tipo_atributo
-aplicaciones.tipoitem.tests.test_tipoitem.test_adm_tipoitem	aplicaciones.tipoitem.tests.test_tipoitem-class.html#test_adm_tipoitem
+aplicaciones.tipoitem.tests.test_tipoitem.fixtures	aplicaciones.tipoitem.tests.test_tipoitem-class.html#fixtures
+aplicaciones.tipoitem.tests.test_tipoitem.setUp	aplicaciones.tipoitem.tests.test_tipoitem-class.html#setUp
 aplicaciones.tipoitem.tests.test_tipoitem.test_listar_proyectos	aplicaciones.tipoitem.tests.test_tipoitem-class.html#test_listar_proyectos
 aplicaciones.tipoitem.tests.test_tipoitem.test_importar_tipoitem	aplicaciones.tipoitem.tests.test_tipoitem-class.html#test_importar_tipoitem

@@ -8,6 +8,7 @@ aplicaciones.items.tests	aplicaciones.items.tests-module.html
 aplicaciones.items.urls	aplicaciones.items.urls-module.html
 aplicaciones.items.urls.urlpatterns	aplicaciones.items.urls-module.html#urlpatterns
 aplicaciones.items.views	aplicaciones.items.views-module.html
+aplicaciones.items.views.finrevision	aplicaciones.items.views-module.html#finrevision
 aplicaciones.items.views.consultar_version_eliminado	aplicaciones.items.views-module.html#consultar_version_eliminado
 aplicaciones.items.views.listar_versiones	aplicaciones.items.views-module.html#listar_versiones
 aplicaciones.items.views.adm_items	aplicaciones.items.views-module.html#adm_items
@@ -15,6 +16,7 @@ aplicaciones.items.views.listar_eliminados	aplicaciones.items.views-module.html#
 aplicaciones.items.views.consultar_relaciones	aplicaciones.items.views-module.html#consultar_relaciones
 aplicaciones.items.views.listar_tipo_item	aplicaciones.items.views-module.html#listar_tipo_item
 aplicaciones.items.views.calcular_items_afectados	aplicaciones.items.views-module.html#calcular_items_afectados
+aplicaciones.items.views.consultar_enrevision	aplicaciones.items.views-module.html#consultar_enrevision
 aplicaciones.items.views.crear_item	aplicaciones.items.views-module.html#crear_item
 aplicaciones.items.views.modificar_item	aplicaciones.items.views-module.html#modificar_item
 aplicaciones.items.views.costo_impacto	aplicaciones.items.views-module.html#costo_impacto
@@ -93,8 +95,7 @@ aplicaciones.items.tests.test_fase.test_adm_items	aplicaciones.items.tests.test_
 aplicaciones.items.tests.test_fase.setUp	aplicaciones.items.tests.test_fase-class.html#setUp
 aplicaciones.items.tests.test_fase.test_revivir_item	aplicaciones.items.tests.test_fase-class.html#test_revivir_item
 aplicaciones.items.tests.test_fase.test_revertir_version	aplicaciones.items.tests.test_fase-class.html#test_revertir_version
-aplicaciones.items.tests.test_fase.test_eliminar_item	aplicaciones.items.tests.test_fase-class.html#test_eliminar_item
-aplicaciones.items.tests.test_fase.test_calculo_impacto	aplicaciones.items.tests.test_fase-class.html#test_calculo_impacto
 aplicaciones.items.tests.test_fase.test_crear_items	aplicaciones.items.tests.test_fase-class.html#test_crear_items
+aplicaciones.items.tests.test_fase.fixtures	aplicaciones.items.tests.test_fase-class.html#fixtures
 aplicaciones.items.tests.test_fase.test_consultar_item	aplicaciones.items.tests.test_fase-class.html#test_consultar_item
-aplicaciones.items.tests.test_fase.test_modificar_item	aplicaciones.items.tests.test_fase-class.html#test_modificar_item
+aplicaciones.items.tests.test_fase.test_calculo_impacto	aplicaciones.items.tests.test_fase-class.html#test_calculo_impacto

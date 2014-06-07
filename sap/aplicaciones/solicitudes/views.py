@@ -396,6 +396,20 @@ def calcular_items_afectados(id_item):
         return lista_hijos
 
 def habilitar_items(credencial):
+    """ Recibe un request, se verifica cual es el usuario registrado y el proyecto del cual se solicita,
+    se obtiene la lista de fases con las que estan relacionados el usuario y el proyecto 
+    desplegandola en pantalla, ademas permite realizar busquedas avanzadas sobre
+    las fases que puede mostrar.
+    
+    @type request: django.http.HttpRequest.
+    @param request: Contiene informacion sobre la solicitud web actual que llamo a esta vista.
+    
+    @rtype: django.shortcuts.render_to_response.
+    @return: fases.html, donde se listan las fases, ademas de las funcionalidades para cada fase.
+    
+    @author: Ysapy Ortiz.
+    
+    """
     item = Items.objects.get(id=credencial.item_id)
     fase = Items.objects.get(id=credencial.fase_id)
     lineasbase = LineaBase.objects.filter(fase_id=credencial.fase_id)
@@ -461,6 +475,20 @@ def consultarCredencial(request, id_credencial):
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
 
 def cancelar_credencial(request, id_credencial):
+    """ Recibe un request, se verifica cual es el usuario registrado y el proyecto del cual se solicita,
+    se obtiene la lista de fases con las que estan relacionados el usuario y el proyecto 
+    desplegandola en pantalla, ademas permite realizar busquedas avanzadas sobre
+    las fases que puede mostrar.
+    
+    @type request: django.http.HttpRequest.
+    @param request: Contiene informacion sobre la solicitud web actual que llamo a esta vista.
+    
+    @rtype: django.shortcuts.render_to_response.
+    @return: fases.html, donde se listan las fases, ademas de las funcionalidades para cada fase.
+    
+    @author: Ysapy Ortiz.
+    
+    """
     credencial = Credenciales.objects.get(id=id_credencial)
     credencial.estado='Finalizado'
     credencial.save()

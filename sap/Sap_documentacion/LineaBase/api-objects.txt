@@ -10,6 +10,7 @@ aplicaciones.lineabase.views.consultar_lineabase	aplicaciones.lineabase.views-mo
 aplicaciones.lineabase.views.generar_pdf	aplicaciones.lineabase.views-module.html#generar_pdf
 aplicaciones.lineabase.views.informe_lineabase	aplicaciones.lineabase.views-module.html#informe_lineabase
 aplicaciones.lineabase.views.generarLineaBase	aplicaciones.lineabase.views-module.html#generarLineaBase
+aplicaciones.lineabase.views.reactivarLineaBase	aplicaciones.lineabase.views-module.html#reactivarLineaBase
 aplicaciones.lineabase.views.administrarLineaBase	aplicaciones.lineabase.views-module.html#administrarLineaBase
 aplicaciones.lineabase.models.LineaBase	aplicaciones.lineabase.models.LineaBase-class.html
 aplicaciones.lineabase.models.LineaBase.items	aplicaciones.lineabase.models.LineaBase-class.html#items
@@ -28,6 +29,7 @@ aplicaciones.lineabase.tests.test_user	aplicaciones.lineabase.tests.test_user-cl
 aplicaciones.lineabase.tests.test_user.test_consultar_lineabase	aplicaciones.lineabase.tests.test_user-class.html#test_consultar_lineabase
 aplicaciones.lineabase.tests.test_user.setUp	aplicaciones.lineabase.tests.test_user-class.html#setUp
 aplicaciones.lineabase.tests.test_user.testGenerarLineaBase	aplicaciones.lineabase.tests.test_user-class.html#testGenerarLineaBase
-aplicaciones.lineabase.tests.test_user.testAdministrarLineaBase	aplicaciones.lineabase.tests.test_user-class.html#testAdministrarLineaBase
-aplicaciones.lineabase.tests.test_user.test_buscar_lineabase	aplicaciones.lineabase.tests.test_user-class.html#test_buscar_lineabase
 aplicaciones.lineabase.tests.test_user.test_informe_lineabase	aplicaciones.lineabase.tests.test_user-class.html#test_informe_lineabase
+aplicaciones.lineabase.tests.test_user.test_buscar_lineabase	aplicaciones.lineabase.tests.test_user-class.html#test_buscar_lineabase
+aplicaciones.lineabase.tests.test_user.fixtures	aplicaciones.lineabase.tests.test_user-class.html#fixtures
+aplicaciones.lineabase.tests.test_user.testAdministrarLineaBase	aplicaciones.lineabase.tests.test_user-class.html#testAdministrarLineaBase
