@@ -272,6 +272,7 @@ def modificar_proyecto (request, id_proyecto):
                 comite = Comite.objects.get(proyecto_id=id_proyecto)
                 miembroscomite = comite.miembros.all()
                 cantidadmiembros = len(miembroscomite)
+                fasesNoFinalizadas = Fases.objects.filter(proyecto=proyecto).exclude(estado='FD').count()
                 if nombreNuevo == proyecto.nombre and  lideruser == proyecto.lider and estado == proyecto.estado and duracion == proyecto.duracion:
                       mensaje="Proyecto guardado sin modificaciones"
                       
@@ -289,6 +290,9 @@ def modificar_proyecto (request, id_proyecto):
                 
                 elif proyecto.estado == 'Inactivo' and estado == 'En Construccion' and cantidadmiembros<3:
                     mensaje="El comite de cambio del proyecto debe poseer al menos 3 miembros." 
+                    
+                elif proyecto.estado == 'En Construccion' and estado == 'Finalizado' and fasesNoFinalizadas!=0:
+                    mensaje="El proyecto no puede pasar de un estado En Construccion a Finalizado si sus fases aun no estan finalizadas" 
                 
                 else:
                     proyecto.nombre=nombreNuevo
