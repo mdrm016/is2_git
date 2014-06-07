@@ -15,7 +15,6 @@ from django.contrib.auth.models import User
 from aplicaciones.roles.models import Roles
 from aplicaciones.solicitudes.models import Solicitudes
 
-
 # Create your views here.
     
 def consultar_comite(request, id_proyecto):

@@ -50,7 +50,8 @@
 			<p style="color:red;"> {{ error }}</p>
 		{% endfor %}
 	{% endif %}
-
+	
+	{% if items %}
 	<form action="" method="post">
 		<table>
 		<tbody>
@@ -89,6 +90,60 @@
 	</div>
 	<br>
 	</form>
-
+	{% endif %}
+	
+	{% if lineasbase %}
+	<div class="row ">
+			<div class="panel-group" id="accordion">
+				<div class="panel panel-default">
+					<div class="row">
+				    	<div class="col-md-4">
+				    		<div class="panel-heading">
+				      			<h4 class="panel-title"><b>Numero de Linea Base</b></h4>
+				    		</div>
+				    	</div>
+				    	
+				    	<div class="col-md-4">
+				    		<div class="panel-heading">
+				      			<h4 class="panel-title"><b>Descripcion</b></h4>
+				    		</div>
+				    	</div>
+				    </div>
+				</div>
+			{% for linea_base in lineasbase %}
+				<div class="panel panel-default">
+					<div class="col-md-4">
+				    	<div class="panel-heading">
+				      		<h4 class="panel-title">
+				        		<a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ linea_base.id }}">
+				          	 	{{ linea_base.numero }}
+				        		</a>
+				      		</h4>
+				    	</div>
+				  	</div>
+				  	
+				  	<div class="col-md-8">
+				  		<div class="panel-heading">
+				      		<h4 class="panel-title">
+				        		<a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ linea_base.id }}">
+				          	 	{{ linea_base.descripcion }}
+				        		</a>
+				      		</h4>
+				    	</div>
+				  	</div>
+				  
+				    <div id="collapse{{ linea_base.id }}" class="panel-collapse collapse pull-left">
+				      <div class="panel-body">
+				      	<a href="consultar/{{ linea_base.id }}/"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-eye-open"></span> Consultar</button></a>
+				      	<a href="reactivar_lineabase/{{ linea_base.id }}/"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-tasks"></span> Reactivar</button></a>
+				      </div>
+				    </div>
+				</div>
+				
+			{% endfor %}
+		</div>
+	</div>
+</div>
+{% endif %}
 </div>
 {% endblock %}

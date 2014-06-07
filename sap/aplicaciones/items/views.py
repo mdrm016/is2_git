@@ -16,6 +16,8 @@ from django.db.models import Q
 from forms import ItemNuevoForm, ItemModificadoForm
 from aplicaciones.tipoitem.views import ordenar_mantener
 from aplicaciones.relaciones.views import cargar_atributos, pasar_construccion
+from aplicaciones.solicitudes.models import Credenciales
+from aplicaciones.lineabase.models import LineaBase
 
 # Create your views here.
 
@@ -179,6 +181,14 @@ def cargar_valores(request, id_proyecto, id_fase, id_item):
         ctx = {'mensaje':mensaje, 'id_proyecto': id_proyecto}
         template_name = './items/itemalerta.html'
         return render_to_response(template_name, ctx, context_instance=RequestContext(request))
+    if itemactual.estado=='Habilitado':
+        credencial = Credenciales.objects.get(item_id=itemactual.id, estado='Habilitado')
+        if credencial.usuario.user.id!=request.user.id:
+            mensaje = 'No posee credencial sobre este item.'
+            ctx = {'mensaje':mensaje, 'id_proyecto': id_proyecto}
+            template_name = './items/itemalerta.html'
+            return render_to_response(template_name, ctx, context_instance=RequestContext(request))
+            
     if request.method=='POST': 
         idtipoitem = itemactual.tipo_item_id
         versionitem = itemactual.version + 1
@@ -559,6 +569,14 @@ def listar_versiones(request, id_proyecto, id_fase, id_item):
         ctx = {'mensaje':mensaje, 'id_proyecto': id_proyecto, 'id_fase': id_fase, 'proyecto':proyecto, 'fase':fase}
         template_name = './items/itemalerta.html'
         return render_to_response(template_name, ctx, context_instance=RequestContext(request))
+    if itemactual.estado=='Habilitado':
+        credencial = Credenciales.objects.get(item_id=itemactual.id, estado='Habilitado')
+        if credencial.usuario.user.id!=request.user.id:
+            mensaje = 'No posee credencial sobre este item.'
+            ctx = {'mensaje':mensaje, 'id_proyecto': id_proyecto}
+            template_name = './items/itemalerta.html'
+            return render_to_response(template_name, ctx, context_instance=RequestContext(request))
+    
     else:
         lista_versiones = []
         versionactual = itemactual.version
@@ -1456,27 +1474,44 @@ def calcular_items_afectados(id_item):
 
 def finrevision(request, id_proyecto, id_fase, id_item):
     item = Items.objects.get(id=id_item)
-    items = Items.objects.filter(fase_id=id_fase)
-    eslb = False
+    items = Items.objects.filter(fase_id=id_fase).exclude(id=item.id)
+    lista_items = Items.objects.filter(proyecto_id=id_proyecto, fase_id=id_fase, is_active=True)
+    proyecto = Proyectos.objects.get(id=id_proyecto)
+    fase = Fases.objects.get(id=id_fase)
+    template_name = './items/itemalerta.html'
+    estaenlb = False
+    estoy = False
+    todaslbdefase = LineaBase.objects.filter(fase_id=id_fase, is_active=True)
     for i in items:
         if i.estado=='Habilitado':
-            eslb = True
+            estaenlb = True
             itemhabilitado = i
-    if eslb:
+    if estaenlb:
         lineasbase = LineaBase.objects.filter(fase_id=id_fase)
         for lineab in lineasbase:
             itemslb = lineab.items.all()
             if (item in itemslb) and (itemhabilitado in itemslb):
-                esta = True
-            
-                
-            
-    item.estado = 'Bloqueado'
-    item.save()
-    lista_items = Items.objects.filter(proyecto_id=id_proyecto, fase_id=id_fase, is_active=True)
-    mensaje = ''
-    proyecto = Proyectos.objects.get(id=id_proyecto)
-    fase = Fases.objects.get(id=id_fase)
+                credencial = Credenciales.objects.get(item_id=itemhabilitado.id, estado='Habilitado')
+                if credencial.usuario.user.id==request.user.id:
+                    mensaje = 'No olvide generar una Linea Base con todos los items afectados y el modificado.'
+                    ctx = {'lista_items': lista_items, 'mensaje': mensaje, 'id_proyecto':id_proyecto, 'id_fase': id_fase, 'proyecto':proyecto, 'fase':fase}
+                    return render_to_response(template_name, ctx, context_instance=RequestContext(request))
+                else: 
+                    mensaje = 'Revision Finalizada.'
+                    ctx = {'lista_items': lista_items, 'mensaje': mensaje, 'id_proyecto':id_proyecto, 'id_fase': id_fase, 'proyecto':proyecto, 'fase':fase}
+                    return render_to_response(template_name, ctx, context_instance=RequestContext(request))
+        item.estado = 'Bloqueado'
+        item.save()
+    else:  
+        for lineab in todaslbdefase:
+            itemslbf = lineab.items.all()
+            if item in itemslbf:
+                estoy = True
+                item.estado='Bloqueado'
+                item.save()
+        if estoy==False:   
+            item.estado = 'Validado'
+            item.save()
+    mensaje = 'Revision Finalizada.'
     ctx = {'lista_items': lista_items, 'mensaje': mensaje, 'id_proyecto':id_proyecto, 'id_fase': id_fase, 'proyecto':proyecto, 'fase':fase}
-    template_name = './items/itemalerta.html'
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
