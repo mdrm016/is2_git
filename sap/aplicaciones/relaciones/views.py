@@ -14,6 +14,7 @@ from django.contrib.auth.decorators import login_required, permission_required
 from django.db.models import Q
 from aplicaciones.tipoitem.views import ordenar_mantener
 from .models import Relaciones
+from aplicaciones.solicitudes.models import Credenciales
 
 # Create your views here.
 def adm_relaciones(request, id_proyecto, id_fase, id_item):
@@ -40,6 +41,13 @@ def adm_relaciones(request, id_proyecto, id_fase, id_item):
         ctx = {'mensaje': mensaje, 'id_proyecto':id_proyecto, 'id_fase': id_fase, 'proyecto':proyecto, 'fase':fase}
         template_name = './items/itemalerta.html'
         return render_to_response(template_name, ctx, context_instance=RequestContext(request))
+    if item.estado=='Habilitado':
+        credencial = Credenciales.objects.get(item_id=item.id, estado='Habilitado')
+        if credencial.usuario.user.id!=request.user.id:
+            mensaje = 'No posee credencial sobre este item.'
+            ctx = {'mensaje':mensaje, 'id_proyecto': id_proyecto}
+            template_name = './relaciones/relacionalerta.html'
+            return render_to_response(template_name, ctx, context_instance=RequestContext(request))
     
     try:
         padre = Items.objects.get(id=item.padre)

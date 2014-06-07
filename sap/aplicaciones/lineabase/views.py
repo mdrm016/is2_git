@@ -15,6 +15,7 @@ from datetime import datetime
 from django.template import RequestContext
 from django.template.loader import render_to_string
 from django.conf import settings
+from aplicaciones.solicitudes.models import Credenciales
 
 # Create your views here.
 def administrarLineaBase(request, id_proyecto, id_fase):
@@ -92,15 +93,25 @@ def generarLineaBase(request, id_proyecto, id_fase):
                 ctx = {'mensaje':mensaje, 'proyecto':proyecto, 'fase':fase}
                 return render_to_response('lineaBase/linea_base_alerta.html',ctx, context_instance=RequestContext(request))
         else:
-            items = Items.objects.filter(Q(proyecto = id_proyecto), Q(is_active = True), Q(fase = id_fase), Q(estado = 'Validado') )  
-            items = [(item.id, item.nombre) for item in items]
-            if not items:
+            items = Items.objects.filter(Q(proyecto = id_proyecto), Q(is_active = True), Q(fase = id_fase), Q(estado = 'Validado') )
+            items = [(item.id, item.nombre) for item in items]  
+            itemshabilitados = Items.objects.filter(proyecto_id=id_proyecto, fase_id=id_fase, is_active=True, estado='Habilitado')
+            lsb = []
+            if itemshabilitados:
+                todaslaslineasbase = LineaBase.objects.filter(fase_id=id_fase, is_active=False)
+                for lineab in todaslaslineasbase:
+                    itemslb = lineab.items.all()
+                    for itemh in itemshabilitados:
+                        if itemh in itemslb:
+                            lsb.append(lineab)
+            
+            if (not items) and (not lsb):
                  mensaje="Imposible generar Linea Base: No hay items en estado Validado!"
                  ctx = {'mensaje':mensaje, 'proyecto':proyecto, 'fase':fase}
                  return render_to_response('lineaBase/linea_base_alerta.html',ctx, context_instance=RequestContext(request))
-        
-        template_name='./lineaBase/generar_linea_base.html'
-        return render(request, template_name, {'numero': numero, 'items': items, 'errors': errors, 'proyecto':proyecto, 'fase':fase})
+
+            template_name='./lineaBase/generar_linea_base.html'
+            return render(request, template_name, {'lineasbase': lsb, 'numero': numero, 'items': items, 'errors': errors, 'proyecto':proyecto, 'fase':fase, 'id_fase': id_fase, 'id_proyecto': id_proyecto})
     else:
         raise PermissionDenied()
 
@@ -200,3 +211,25 @@ def generar_pdf(html, filename):
         return HttpResponseRedirect('/static/aplicaciones/informes/%s' % filename)
     return HttpResponse('Error al generar el informe PDF: %s' % cgi.escape(html))
     
+def reactivarLineaBase(request, id_proyecto, id_fase, id_lineabase):
+    lb = LineaBase.objects.get(id=id_lineabase)
+    proyecto = Proyectos.objects.get(id=id_proyecto)
+    fase = Fases.objects.get(id=id_fase)        
+    items = lb.items.all()
+    for item in items:
+        if item.estado=='Habilitado':
+            credencial = Credenciales.objects.get(item_id=item.id, estado='Habilitado')
+            if request.user.id!=credencial.usuario.user.id:
+                mensaje = 'No posee credencial.'
+                ctx = {'mensaje':mensaje, 'proyecto':proyecto, 'fase':fase}
+                return render_to_response('lineaBase/linea_base_alerta.html',ctx, context_instance=RequestContext(request))
+            credencial.estado='Finalizado'
+            credencial.save()
+    for item in items:
+        item.estado = 'Bloqueado'
+        item.save()
+    lb.is_active=True
+    lb.save()
+    mensaje="Linea Base creada exitosamente"
+    ctx = {'mensaje':mensaje, 'proyecto':proyecto, 'fase':fase}
+    return render_to_response('lineaBase/linea_base_alerta.html',ctx, context_instance=RequestContext(request))

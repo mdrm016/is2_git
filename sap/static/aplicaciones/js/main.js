@@ -48,6 +48,11 @@ $(document).on("click", ".solicitudRealizada", function () {
 		document.getElementById("solicitudRealizada").setAttribute("href",'/adm_proyectos/solicitudes_realizadas/cancelar_solicitud/'+id);
 });
 
+$(document).on("click", ".credencial", function () {
+	var id = $(this).data('id');
+		document.getElementById("credencial").setAttribute("href",'/adm_proyectos/admin_credenciales/cancelar_credencial/'+id);
+});
+
 $(document).ready(function() {
     var posicion = $("#caja_flotante").offset();
     var margenSuperior = 15;

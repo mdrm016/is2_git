@@ -37,7 +37,7 @@ def administrar_solicitud_recibidas (request):
     list_proyect = []
     for comite in comites:
         list_proyect.append(comite.proyecto)
-    solicitudes = Solicitudes.objects.filter(proyecto__in=list_proyect)
+    solicitudes = Solicitudes.objects.filter(proyecto__in=list_proyect, estado='Pendiente')
     
     pendientes = 0
     lista_solicitud=[]
@@ -403,7 +403,9 @@ def habilitar_items(credencial):
         items = lb.items.all()
         if item in items:
             lineabase = lb
-    items = lineabase.items.all()
+            items = lineabase.items.all()
+            lineabase.is_active = False
+            lineabase.save()
     
     for itemhijo in items:
         if itemhijo.estado=='Bloqueado' or itemhijo.estado=='Validado':
@@ -457,3 +459,33 @@ def consultarCredencial(request, id_credencial):
     template_name='solicitudes/consultar_credencial.html'
     ctx = {'credencial':credencial}
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
+
+def cancelar_credencial(request, id_credencial):
+    credencial = Credenciales.objects.get(id=id_credencial)
+    credencial.estado='Finalizado'
+    credencial.save()
+    
+    lbs = LineaBase.objects.filter(fase_id=credencial.fase.id)
+    eslb = False
+    for lb in lbs:
+        items = lb.items.all()
+        for item in items:
+            if credencial.item_id==item.id:
+                eslb = lb
+    if eslb:
+        items = eslb.items.all()
+        for item in items:
+            item.estado = 'Bloqueado'
+            item.save()
+        eslb.is_active = True
+        eslb.save()
+
+    mensaje = 'Credencial cancelada.'
+    template_name='./solicitudes/solicitudalerta.html'
+    ctx = {'mensaje': mensaje}
+    return render_to_response(template_name, ctx, context_instance=RequestContext(request))
+
+def reactivarLineaBase(request, id_proyecto, id_fase, credencial_id):
+    credencial = Credenciales.objects.get(id=id_credencial)
+    
+   
