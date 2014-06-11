@@ -421,7 +421,8 @@ def cargar_valores(request, id_proyecto, id_fase, id_item):
                 relacionnueva.item = itemactual.id
                 relacionnueva.version = itemactual.version + 1
                 relacionnueva.save()
-        itemactual.estado = 'En Construccion'    
+        if itemactual.estado=='Terminado':
+            itemactual.estado = 'En Construccion'    
         itemactual.version = itemactual.version + 1
         itemactual.save()
         mensaje = 'Atributos modificados con extito.'
@@ -564,6 +565,7 @@ def listar_versiones(request, id_proyecto, id_fase, id_item):
     fase = Fases.objects.get(id=id_fase)
     proyecto = Proyectos.objects.get(id=id_proyecto)
     itemactual = Items.objects.get(id=id_item)
+    lista_versiones = []
     if fase.estado =='FD' or proyecto.estado=='Inactivo' or itemactual.estado=='En Revision' or itemactual.estado=='Bloqueado' or itemactual.estado=='Validado':
         mensaje ='No se puede consultar esta opcion. Dirijase a consultar item.'
         ctx = {'mensaje':mensaje, 'id_proyecto': id_proyecto, 'id_fase': id_fase, 'proyecto':proyecto, 'fase':fase}
@@ -576,9 +578,7 @@ def listar_versiones(request, id_proyecto, id_fase, id_item):
             ctx = {'mensaje':mensaje, 'id_proyecto': id_proyecto}
             template_name = './items/itemalerta.html'
             return render_to_response(template_name, ctx, context_instance=RequestContext(request))
-    
     else:
-        lista_versiones = []
         versionactual = itemactual.version
         versiones = int(versionactual)
         i=1

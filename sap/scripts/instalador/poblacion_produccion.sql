@@ -18,12 +18,16 @@ ALTER TABLE ONLY public."tipoitem_tipoitem_listaAtributo" DROP CONSTRAINT "tipoi
 ALTER TABLE ONLY public."tipoitem_tipoitem_listaAtributo" DROP CONSTRAINT tipoitem_id_refs_id_e4d37b53;
 ALTER TABLE ONLY public.tipoatributo_tipoatributo_proyecto DROP CONSTRAINT tipoatributo_tipoatributo_proyecto_proyectos_id_fkey;
 ALTER TABLE ONLY public.tipoatributo_tipoatributo_proyecto DROP CONSTRAINT tipoatributo_id_refs_id_58907e1e;
+ALTER TABLE ONLY public.solicitudes_votos DROP CONSTRAINT solicitudes_votos_solicitud_id_fkey;
+ALTER TABLE ONLY public.solicitudes_votos DROP CONSTRAINT solicitudes_votos_miembro_id_fkey;
 ALTER TABLE ONLY public.solicitudes_solicitudes DROP CONSTRAINT solicitudes_solicitudes_usuario_id_fkey;
 ALTER TABLE ONLY public.solicitudes_solicitudes DROP CONSTRAINT solicitudes_solicitudes_proyecto_id_fkey;
-ALTER TABLE ONLY public.solicitudes_solicitudes_miembros_que_votaron DROP CONSTRAINT solicitudes_solicitudes_miembros_que_votaron_user_id_fkey;
 ALTER TABLE ONLY public.solicitudes_solicitudes DROP CONSTRAINT solicitudes_solicitudes_item_id_fkey;
 ALTER TABLE ONLY public.solicitudes_solicitudes DROP CONSTRAINT solicitudes_solicitudes_fase_id_fkey;
-ALTER TABLE ONLY public.solicitudes_solicitudes_miembros_que_votaron DROP CONSTRAINT solicitudes_id_refs_id_e2c6bdc7;
+ALTER TABLE ONLY public.solicitudes_credenciales DROP CONSTRAINT solicitudes_credenciales_usuario_id_fkey;
+ALTER TABLE ONLY public.solicitudes_credenciales DROP CONSTRAINT solicitudes_credenciales_proyecto_id_fkey;
+ALTER TABLE ONLY public.solicitudes_credenciales DROP CONSTRAINT solicitudes_credenciales_item_id_fkey;
+ALTER TABLE ONLY public.solicitudes_credenciales DROP CONSTRAINT solicitudes_credenciales_fase_id_fkey;
 ALTER TABLE ONLY public.roles_roles DROP CONSTRAINT roles_roles_group_ptr_id_fkey;
 ALTER TABLE ONLY public.roles_roles_fases DROP CONSTRAINT roles_id_refs_group_ptr_id_11e17ff0;
 ALTER TABLE ONLY public.relaciones_relaciones DROP CONSTRAINT relaciones_relaciones_padre_id_fkey;
@@ -54,12 +58,16 @@ DROP INDEX public."tipoitem_tipoitem_listaAtributo_listaatributo_id";
 DROP INDEX public.tipoatributo_tipoatributo_proyecto_tipoatributo_id;
 DROP INDEX public.tipoatributo_tipoatributo_proyecto_proyectos_id;
 DROP INDEX public.tipoatributo_tipoatributo_nombre_like;
+DROP INDEX public.solicitudes_votos_solicitud_id;
+DROP INDEX public.solicitudes_votos_miembro_id;
 DROP INDEX public.solicitudes_solicitudes_usuario_id;
 DROP INDEX public.solicitudes_solicitudes_proyecto_id;
-DROP INDEX public.solicitudes_solicitudes_miembros_que_votaron_user_id;
-DROP INDEX public.solicitudes_solicitudes_miembros_que_votaron_solicitudes_id;
 DROP INDEX public.solicitudes_solicitudes_item_id;
 DROP INDEX public.solicitudes_solicitudes_fase_id;
+DROP INDEX public.solicitudes_credenciales_usuario_id;
+DROP INDEX public.solicitudes_credenciales_proyecto_id;
+DROP INDEX public.solicitudes_credenciales_item_id;
+DROP INDEX public.solicitudes_credenciales_fase_id;
 DROP INDEX public.roles_roles_fases_roles_id;
 DROP INDEX public.roles_roles_fases_fases_id;
 DROP INDEX public.relaciones_relaciones_padre_id;
@@ -77,6 +85,14 @@ DROP INDEX public.items_items_fase_id;
 DROP INDEX public.fases_fases_proyecto_id;
 DROP INDEX public.django_session_session_key_like;
 DROP INDEX public.django_session_expire_date;
+DROP INDEX public.django_cron_cronjoblog_start_time;
+DROP INDEX public.django_cron_cronjoblog_ran_at_time;
+DROP INDEX public.django_cron_cronjoblog_end_time;
+DROP INDEX public.django_cron_cronjoblog_code_like;
+DROP INDEX public.django_cron_cronjoblog_code;
+DROP INDEX public.django_cron_cronjoblog_63e2740d;
+DROP INDEX public.django_cron_cronjoblog_495fb183;
+DROP INDEX public.django_cron_cronjoblog_1fe0e40b;
 DROP INDEX public.django_admin_log_user_id;
 DROP INDEX public.django_admin_log_content_type_id;
 DROP INDEX public.comite_comite_proyecto_id;
@@ -91,7 +107,6 @@ DROP INDEX public.auth_permission_content_type_id;
 DROP INDEX public.auth_group_permissions_permission_id;
 DROP INDEX public.auth_group_permissions_group_id;
 DROP INDEX public.auth_group_name_like;
-ALTER TABLE ONLY public.usuarios_usuarios DROP CONSTRAINT usuarios_usuarios_user_id_key;
 ALTER TABLE ONLY public.usuarios_usuarios DROP CONSTRAINT usuarios_usuarios_pkey;
 ALTER TABLE ONLY public.tipoitem_tipoitem DROP CONSTRAINT tipoitem_tipoitem_pkey;
 ALTER TABLE ONLY public."tipoitem_tipoitem_listaAtributo" DROP CONSTRAINT "tipoitem_tipoitem_listaAtributo_pkey";
@@ -107,9 +122,9 @@ ALTER TABLE ONLY public.tipoatributo_logico DROP CONSTRAINT tipoatributo_logico_
 ALTER TABLE ONLY public.tipoatributo_imagen DROP CONSTRAINT tipoatributo_imagen_pkey;
 ALTER TABLE ONLY public.tipoatributo_fecha DROP CONSTRAINT tipoatributo_fecha_pkey;
 ALTER TABLE ONLY public.tipoatributo_archivoexterno DROP CONSTRAINT tipoatributo_archivoexterno_pkey;
+ALTER TABLE ONLY public.solicitudes_votos DROP CONSTRAINT solicitudes_votos_pkey;
 ALTER TABLE ONLY public.solicitudes_solicitudes DROP CONSTRAINT solicitudes_solicitudes_pkey;
-ALTER TABLE ONLY public.solicitudes_solicitudes_miembros_que_votaron DROP CONSTRAINT solicitudes_solicitudes_miembros_que_votaron_pkey;
-ALTER TABLE ONLY public.solicitudes_solicitudes_miembros_que_votaron DROP CONSTRAINT solicitudes_solicitudes_miembros_que_solicitudes_id_user_id_key;
+ALTER TABLE ONLY public.solicitudes_credenciales DROP CONSTRAINT solicitudes_credenciales_pkey;
 ALTER TABLE ONLY public.roles_roles DROP CONSTRAINT roles_roles_pkey;
 ALTER TABLE ONLY public.roles_roles_fases DROP CONSTRAINT roles_roles_fases_roles_id_fases_id_key;
 ALTER TABLE ONLY public.roles_roles_fases DROP CONSTRAINT roles_roles_fases_pkey;
@@ -123,6 +138,7 @@ ALTER TABLE ONLY public.items_listavalores DROP CONSTRAINT items_listavalores_pk
 ALTER TABLE ONLY public.items_items DROP CONSTRAINT items_items_pkey;
 ALTER TABLE ONLY public.fases_fases DROP CONSTRAINT fases_fases_pkey;
 ALTER TABLE ONLY public.django_session DROP CONSTRAINT django_session_pkey;
+ALTER TABLE ONLY public.django_cron_cronjoblog DROP CONSTRAINT django_cron_cronjoblog_pkey;
 ALTER TABLE ONLY public.django_content_type DROP CONSTRAINT django_content_type_pkey;
 ALTER TABLE ONLY public.django_content_type DROP CONSTRAINT django_content_type_app_label_model_key;
 ALTER TABLE ONLY public.django_admin_log DROP CONSTRAINT django_admin_log_pkey;
@@ -141,7 +157,6 @@ ALTER TABLE ONLY public.auth_group DROP CONSTRAINT auth_group_pkey;
 ALTER TABLE ONLY public.auth_group_permissions DROP CONSTRAINT auth_group_permissions_pkey;
 ALTER TABLE ONLY public.auth_group_permissions DROP CONSTRAINT auth_group_permissions_group_id_permission_id_key;
 ALTER TABLE ONLY public.auth_group DROP CONSTRAINT auth_group_name_key;
-ALTER TABLE public.usuarios_usuarios ALTER COLUMN id DROP DEFAULT;
 ALTER TABLE public."tipoitem_tipoitem_listaAtributo" ALTER COLUMN id DROP DEFAULT;
 ALTER TABLE public.tipoitem_tipoitem ALTER COLUMN id DROP DEFAULT;
 ALTER TABLE public.tipoitem_listaatributo ALTER COLUMN id DROP DEFAULT;
@@ -153,8 +168,9 @@ ALTER TABLE public.tipoatributo_logico ALTER COLUMN id DROP DEFAULT;
 ALTER TABLE public.tipoatributo_imagen ALTER COLUMN id DROP DEFAULT;
 ALTER TABLE public.tipoatributo_fecha ALTER COLUMN id DROP DEFAULT;
 ALTER TABLE public.tipoatributo_archivoexterno ALTER COLUMN id DROP DEFAULT;
-ALTER TABLE public.solicitudes_solicitudes_miembros_que_votaron ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.solicitudes_votos ALTER COLUMN id DROP DEFAULT;
 ALTER TABLE public.solicitudes_solicitudes ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.solicitudes_credenciales ALTER COLUMN id DROP DEFAULT;
 ALTER TABLE public.roles_roles_fases ALTER COLUMN id DROP DEFAULT;
 ALTER TABLE public.relaciones_relaciones ALTER COLUMN id DROP DEFAULT;
 ALTER TABLE public.proyectos_proyectos ALTER COLUMN id DROP DEFAULT;
@@ -164,6 +180,7 @@ ALTER TABLE public.items_valoritem ALTER COLUMN id DROP DEFAULT;
 ALTER TABLE public.items_listavalores ALTER COLUMN id DROP DEFAULT;
 ALTER TABLE public.items_items ALTER COLUMN id DROP DEFAULT;
 ALTER TABLE public.fases_fases ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.django_cron_cronjoblog ALTER COLUMN id DROP DEFAULT;
 ALTER TABLE public.django_content_type ALTER COLUMN id DROP DEFAULT;
 ALTER TABLE public.django_admin_log ALTER COLUMN id DROP DEFAULT;
 ALTER TABLE public.comite_comite_miembros ALTER COLUMN id DROP DEFAULT;
@@ -174,7 +191,6 @@ ALTER TABLE public.auth_user ALTER COLUMN id DROP DEFAULT;
 ALTER TABLE public.auth_permission ALTER COLUMN id DROP DEFAULT;
 ALTER TABLE public.auth_group_permissions ALTER COLUMN id DROP DEFAULT;
 ALTER TABLE public.auth_group ALTER COLUMN id DROP DEFAULT;
-DROP SEQUENCE public.usuarios_usuarios_id_seq;
 DROP TABLE public.usuarios_usuarios;
 DROP SEQUENCE public."tipoitem_tipoitem_listaAtributo_id_seq";
 DROP TABLE public."tipoitem_tipoitem_listaAtributo";
@@ -198,10 +214,12 @@ DROP SEQUENCE public.tipoatributo_fecha_id_seq;
 DROP TABLE public.tipoatributo_fecha;
 DROP SEQUENCE public.tipoatributo_archivoexterno_id_seq;
 DROP TABLE public.tipoatributo_archivoexterno;
-DROP SEQUENCE public.solicitudes_solicitudes_miembros_que_votaron_id_seq;
-DROP TABLE public.solicitudes_solicitudes_miembros_que_votaron;
+DROP SEQUENCE public.solicitudes_votos_id_seq;
+DROP TABLE public.solicitudes_votos;
 DROP SEQUENCE public.solicitudes_solicitudes_id_seq;
 DROP TABLE public.solicitudes_solicitudes;
+DROP SEQUENCE public.solicitudes_credenciales_id_seq;
+DROP TABLE public.solicitudes_credenciales;
 DROP SEQUENCE public.roles_roles_fases_id_seq;
 DROP TABLE public.roles_roles_fases;
 DROP TABLE public.roles_roles;
@@ -222,6 +240,8 @@ DROP TABLE public.items_items;
 DROP SEQUENCE public.fases_fases_id_seq;
 DROP TABLE public.fases_fases;
 DROP TABLE public.django_session;
+DROP SEQUENCE public.django_cron_cronjoblog_id_seq;
+DROP TABLE public.django_cron_cronjoblog;
 DROP SEQUENCE public.django_content_type_id_seq;
 DROP TABLE public.django_content_type;
 DROP SEQUENCE public.django_admin_log_id_seq;
@@ -636,6 +656,44 @@ ALTER SEQUENCE django_content_type_id_seq OWNED BY django_content_type.id;
 
 
 --
+-- Name: django_cron_cronjoblog; Type: TABLE; Schema: public; Owner: sap; Tablespace: 
+--
+
+CREATE TABLE django_cron_cronjoblog (
+    id integer NOT NULL,
+    code character varying(64) NOT NULL,
+    start_time timestamp with time zone NOT NULL,
+    end_time timestamp with time zone NOT NULL,
+    is_success boolean NOT NULL,
+    message text NOT NULL,
+    ran_at_time time without time zone
+);
+
+
+ALTER TABLE public.django_cron_cronjoblog OWNER TO sap;
+
+--
+-- Name: django_cron_cronjoblog_id_seq; Type: SEQUENCE; Schema: public; Owner: sap
+--
+
+CREATE SEQUENCE django_cron_cronjoblog_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.django_cron_cronjoblog_id_seq OWNER TO sap;
+
+--
+-- Name: django_cron_cronjoblog_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: sap
+--
+
+ALTER SEQUENCE django_cron_cronjoblog_id_seq OWNED BY django_cron_cronjoblog.id;
+
+
+--
 -- Name: django_session; Type: TABLE; Schema: public; Owner: sap; Tablespace: 
 --
 
@@ -1014,6 +1072,47 @@ ALTER SEQUENCE roles_roles_fases_id_seq OWNED BY roles_roles_fases.id;
 
 
 --
+-- Name: solicitudes_credenciales; Type: TABLE; Schema: public; Owner: sap; Tablespace: 
+--
+
+CREATE TABLE solicitudes_credenciales (
+    id integer NOT NULL,
+    nombre character varying(30),
+    usuario_id integer NOT NULL,
+    proyecto_id integer NOT NULL,
+    fase_id integer NOT NULL,
+    item_id integer NOT NULL,
+    fecha_aprobacion date,
+    fecha_expiracion date,
+    estado character varying(50),
+    observaciones character varying(500)
+);
+
+
+ALTER TABLE public.solicitudes_credenciales OWNER TO sap;
+
+--
+-- Name: solicitudes_credenciales_id_seq; Type: SEQUENCE; Schema: public; Owner: sap
+--
+
+CREATE SEQUENCE solicitudes_credenciales_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.solicitudes_credenciales_id_seq OWNER TO sap;
+
+--
+-- Name: solicitudes_credenciales_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: sap
+--
+
+ALTER SEQUENCE solicitudes_credenciales_id_seq OWNED BY solicitudes_credenciales.id;
+
+
+--
 -- Name: solicitudes_solicitudes; Type: TABLE; Schema: public; Owner: sap; Tablespace: 
 --
 
@@ -1029,9 +1128,7 @@ CREATE TABLE solicitudes_solicitudes (
     descripcion character varying(500),
     observaciones character varying(500),
     estado character varying(50),
-    tiempo_esperado integer,
-    votos_aprobado integer,
-    votos_rechazado integer
+    tiempo_esperado integer
 );
 
 
@@ -1059,23 +1156,25 @@ ALTER SEQUENCE solicitudes_solicitudes_id_seq OWNED BY solicitudes_solicitudes.i
 
 
 --
--- Name: solicitudes_solicitudes_miembros_que_votaron; Type: TABLE; Schema: public; Owner: sap; Tablespace: 
+-- Name: solicitudes_votos; Type: TABLE; Schema: public; Owner: sap; Tablespace: 
 --
 
-CREATE TABLE solicitudes_solicitudes_miembros_que_votaron (
+CREATE TABLE solicitudes_votos (
     id integer NOT NULL,
-    solicitudes_id integer NOT NULL,
-    user_id integer NOT NULL
+    miembro_id integer NOT NULL,
+    solicitud_id integer NOT NULL,
+    "fechaDeVotacion" date NOT NULL,
+    voto character varying(2) NOT NULL
 );
 
 
-ALTER TABLE public.solicitudes_solicitudes_miembros_que_votaron OWNER TO sap;
+ALTER TABLE public.solicitudes_votos OWNER TO sap;
 
 --
--- Name: solicitudes_solicitudes_miembros_que_votaron_id_seq; Type: SEQUENCE; Schema: public; Owner: sap
+-- Name: solicitudes_votos_id_seq; Type: SEQUENCE; Schema: public; Owner: sap
 --
 
-CREATE SEQUENCE solicitudes_solicitudes_miembros_que_votaron_id_seq
+CREATE SEQUENCE solicitudes_votos_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1083,13 +1182,13 @@ CREATE SEQUENCE solicitudes_solicitudes_miembros_que_votaron_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.solicitudes_solicitudes_miembros_que_votaron_id_seq OWNER TO sap;
+ALTER TABLE public.solicitudes_votos_id_seq OWNER TO sap;
 
 --
--- Name: solicitudes_solicitudes_miembros_que_votaron_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: sap
+-- Name: solicitudes_votos_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: sap
 --
 
-ALTER SEQUENCE solicitudes_solicitudes_miembros_que_votaron_id_seq OWNED BY solicitudes_solicitudes_miembros_que_votaron.id;
+ALTER SEQUENCE solicitudes_votos_id_seq OWNED BY solicitudes_votos.id;
 
 
 --
@@ -1496,7 +1595,6 @@ ALTER SEQUENCE "tipoitem_tipoitem_listaAtributo_id_seq" OWNED BY "tipoitem_tipoi
 --
 
 CREATE TABLE usuarios_usuarios (
-    id integer NOT NULL,
     user_id integer NOT NULL,
     telefono character varying(30) NOT NULL,
     direccion character varying(50) NOT NULL,
@@ -1506,27 +1604,6 @@ CREATE TABLE usuarios_usuarios (
 
 
 ALTER TABLE public.usuarios_usuarios OWNER TO sap;
-
---
--- Name: usuarios_usuarios_id_seq; Type: SEQUENCE; Schema: public; Owner: sap
---
-
-CREATE SEQUENCE usuarios_usuarios_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE public.usuarios_usuarios_id_seq OWNER TO sap;
-
---
--- Name: usuarios_usuarios_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: sap
---
-
-ALTER SEQUENCE usuarios_usuarios_id_seq OWNED BY usuarios_usuarios.id;
-
 
 --
 -- Name: id; Type: DEFAULT; Schema: public; Owner: sap
@@ -1602,6 +1679,13 @@ ALTER TABLE ONLY django_content_type ALTER COLUMN id SET DEFAULT nextval('django
 -- Name: id; Type: DEFAULT; Schema: public; Owner: sap
 --
 
+ALTER TABLE ONLY django_cron_cronjoblog ALTER COLUMN id SET DEFAULT nextval('django_cron_cronjoblog_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: sap
+--
+
 ALTER TABLE ONLY fases_fases ALTER COLUMN id SET DEFAULT nextval('fases_fases_id_seq'::regclass);
 
 
@@ -1665,6 +1749,13 @@ ALTER TABLE ONLY roles_roles_fases ALTER COLUMN id SET DEFAULT nextval('roles_ro
 -- Name: id; Type: DEFAULT; Schema: public; Owner: sap
 --
 
+ALTER TABLE ONLY solicitudes_credenciales ALTER COLUMN id SET DEFAULT nextval('solicitudes_credenciales_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: sap
+--
+
 ALTER TABLE ONLY solicitudes_solicitudes ALTER COLUMN id SET DEFAULT nextval('solicitudes_solicitudes_id_seq'::regclass);
 
 
@@ -1672,7 +1763,7 @@ ALTER TABLE ONLY solicitudes_solicitudes ALTER COLUMN id SET DEFAULT nextval('so
 -- Name: id; Type: DEFAULT; Schema: public; Owner: sap
 --
 
-ALTER TABLE ONLY solicitudes_solicitudes_miembros_que_votaron ALTER COLUMN id SET DEFAULT nextval('solicitudes_solicitudes_miembros_que_votaron_id_seq'::regclass);
+ALTER TABLE ONLY solicitudes_votos ALTER COLUMN id SET DEFAULT nextval('solicitudes_votos_id_seq'::regclass);
 
 
 --
@@ -1753,23 +1844,14 @@ ALTER TABLE ONLY "tipoitem_tipoitem_listaAtributo" ALTER COLUMN id SET DEFAULT n
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: sap
---
-
-ALTER TABLE ONLY usuarios_usuarios ALTER COLUMN id SET DEFAULT nextval('usuarios_usuarios_id_seq'::regclass);
-
-
---
 -- Data for Name: auth_group; Type: TABLE DATA; Schema: public; Owner: sap
 --
 
 COPY auth_group (id, name) FROM stdin;
-1	liderproyecto1
-2	liderproyecto2
-3	liderproyecto3
-4	desarrollador1
-5	desarrollador2
-6	desarrollador3
+1	todo rol
+2	desarrollador1
+3	desarrollador2
+4	desarrollador3
 \.
 
 
@@ -1777,7 +1859,7 @@ COPY auth_group (id, name) FROM stdin;
 -- Name: auth_group_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sap
 --
 
-SELECT pg_catalog.setval('auth_group_id_seq', 6, true);
+SELECT pg_catalog.setval('auth_group_id_seq', 4, true);
 
 
 --
@@ -1785,360 +1867,170 @@ SELECT pg_catalog.setval('auth_group_id_seq', 6, true);
 --
 
 COPY auth_group_permissions (id, group_id, permission_id) FROM stdin;
-1	1	40
-2	1	37
-3	1	39
-4	1	41
-5	1	38
-6	1	35
-7	1	36
-8	1	30
-9	1	32
-10	1	34
+1	1	19
+2	1	21
+3	1	20
+4	1	43
+5	1	40
+6	1	42
+7	1	44
+8	1	41
+9	1	38
+10	1	39
 11	1	33
-12	1	31
-13	1	26
-14	1	29
-15	1	27
-16	1	23
-17	1	28
-18	1	25
-19	1	24
-20	1	45
-21	1	42
-22	1	44
-23	1	46
-24	1	43
-25	1	22
-26	1	19
-27	1	21
-28	1	20
-29	1	75
-30	1	77
-31	1	76
-32	1	81
-33	1	83
-34	1	82
-35	1	78
-36	1	80
-37	1	79
-38	1	90
-39	1	93
-40	1	87
-41	1	89
-42	1	92
-43	1	91
-44	1	88
-45	1	84
-46	1	86
-47	1	85
-48	1	94
-49	1	96
-50	1	95
-51	1	67
-52	1	66
-53	1	74
-54	1	71
-55	1	68
-56	1	70
-57	1	72
-58	1	73
-59	1	69
-60	2	40
-61	2	37
-62	2	39
-63	2	41
-64	2	38
-65	2	35
-66	2	36
-67	2	30
-68	2	32
-69	2	34
-70	2	33
-71	2	31
-72	2	26
-73	2	29
-74	2	27
-75	2	23
-76	2	28
-77	2	25
-78	2	24
-79	2	45
-80	2	42
-81	2	44
-82	2	46
-83	2	43
-84	2	22
-85	2	19
-86	2	21
-87	2	20
-88	2	75
-89	2	77
-90	2	76
-91	2	81
-92	2	83
-93	2	82
-94	2	78
-95	2	80
-96	2	79
-97	2	90
-98	2	93
-99	2	87
-100	2	89
-101	2	92
-102	2	91
-103	2	88
-104	2	84
-105	2	86
-106	2	85
-107	2	94
-108	2	96
-109	2	95
-110	2	67
-111	2	66
-112	2	74
-113	2	71
-114	2	68
-115	2	70
-116	2	72
-117	2	73
-118	2	69
-119	3	40
-120	3	37
-121	3	39
-122	3	41
-123	3	38
-124	3	35
-125	3	36
-126	3	30
-127	3	32
-128	3	34
-129	3	33
-130	3	31
-131	3	26
-132	3	29
-133	3	27
-134	3	23
-135	3	28
-136	3	25
-137	3	24
-138	3	45
-139	3	42
-140	3	44
-141	3	46
-142	3	43
-143	3	22
-144	3	19
-145	3	21
-146	3	20
-147	3	75
-148	3	77
-149	3	76
-150	3	81
-151	3	83
-152	3	82
-153	3	78
-154	3	80
-155	3	79
-156	3	90
-157	3	93
-158	3	87
-159	3	89
-160	3	92
-161	3	91
-162	3	88
-163	3	84
-164	3	86
-165	3	85
-166	3	94
-167	3	96
-168	3	95
-169	3	67
-170	3	66
-171	3	74
-172	3	71
-173	3	68
-174	3	70
-175	3	72
-176	3	73
-177	3	69
-178	4	40
-179	4	37
-180	4	39
-181	4	41
-182	4	38
-183	4	35
-184	4	36
-185	4	30
-186	4	32
-187	4	34
-188	4	33
-189	4	31
-190	4	26
-191	4	29
-192	4	27
-193	4	23
-194	4	28
-195	4	25
-196	4	24
-197	4	45
-198	4	42
-199	4	44
-200	4	46
-201	4	43
-202	4	22
-203	4	19
-204	4	21
-205	4	20
-206	4	75
-207	4	77
-208	4	76
-209	4	81
-210	4	83
-211	4	82
-212	4	78
-213	4	80
-214	4	79
-215	4	90
-216	4	93
-217	4	87
-218	4	89
-219	4	92
-220	4	91
-221	4	88
-222	4	84
-223	4	86
-224	4	85
-225	4	94
-226	4	96
-227	4	95
-228	4	67
-229	4	66
-230	4	74
-231	4	71
-232	4	68
-233	4	70
-234	4	72
-235	4	73
-236	4	69
-237	5	40
-238	5	37
-239	5	39
-240	5	41
-241	5	38
-242	5	35
-243	5	36
-244	5	30
-245	5	32
-246	5	34
-247	5	33
-248	5	31
-249	5	26
-250	5	29
-251	5	27
-252	5	23
-253	5	28
-254	5	25
-255	5	24
-256	5	45
-257	5	42
-258	5	44
-259	5	46
-260	5	43
-261	5	22
-262	5	19
-263	5	21
-264	5	20
-265	5	75
-266	5	77
-267	5	76
-268	5	81
-269	5	83
-270	5	82
-271	5	78
-272	5	80
-273	5	79
-274	5	90
-275	5	93
-276	5	87
-277	5	89
-278	5	92
-279	5	91
-280	5	88
-281	5	84
-282	5	86
-283	5	85
-284	5	94
-285	5	96
-286	5	95
-287	5	67
-288	5	66
-289	5	74
-290	5	71
-291	5	68
-292	5	70
-293	5	72
-294	5	73
-295	5	69
-296	6	40
-297	6	37
-298	6	39
-299	6	41
-300	6	38
-301	6	35
-302	6	36
-303	6	30
-304	6	32
-305	6	34
-306	6	33
-307	6	31
-308	6	26
-309	6	29
-310	6	27
-311	6	23
-312	6	28
-313	6	25
-314	6	24
-315	6	45
-316	6	42
-317	6	44
-318	6	46
-319	6	43
-320	6	22
-321	6	19
-322	6	21
-323	6	20
-324	6	75
-325	6	77
-326	6	76
-327	6	81
-328	6	83
-329	6	82
-330	6	78
-331	6	80
-332	6	79
-333	6	90
-334	6	93
-335	6	87
-336	6	89
-337	6	92
-338	6	91
-339	6	88
-340	6	84
-341	6	86
-342	6	85
-343	6	94
-344	6	96
-345	6	95
-346	6	67
-347	6	66
-348	6	74
-349	6	71
-350	6	68
-351	6	70
-352	6	72
-353	6	73
-354	6	69
+12	1	35
+13	1	37
+14	1	36
+15	1	34
+16	1	29
+17	1	32
+18	1	30
+19	1	26
+20	1	31
+21	1	28
+22	1	27
+23	1	45
+24	1	46
+25	1	25
+26	1	22
+27	1	24
+28	1	23
+29	1	98
+30	1	103
+31	1	105
+32	1	104
+33	1	70
+34	1	69
+35	1	77
+36	1	74
+37	1	71
+38	1	73
+39	1	75
+40	1	76
+41	1	72
+42	2	19
+43	2	21
+44	2	20
+45	2	43
+46	2	40
+47	2	42
+48	2	44
+49	2	41
+50	2	38
+51	2	39
+52	2	33
+53	2	35
+54	2	37
+55	2	36
+56	2	34
+57	2	29
+58	2	32
+59	2	30
+60	2	26
+61	2	31
+62	2	28
+63	2	27
+64	2	45
+65	2	46
+66	2	25
+67	2	22
+68	2	24
+69	2	23
+70	2	98
+71	2	103
+72	2	105
+73	2	104
+74	2	70
+75	2	69
+76	2	77
+77	2	74
+78	2	71
+79	2	73
+80	2	75
+81	2	76
+82	2	72
+83	3	19
+84	3	21
+85	3	20
+86	3	43
+87	3	40
+88	3	42
+89	3	44
+90	3	41
+91	3	38
+92	3	39
+93	3	33
+94	3	35
+95	3	37
+96	3	36
+97	3	34
+98	3	29
+99	3	32
+100	3	30
+101	3	26
+102	3	31
+103	3	28
+104	3	27
+105	3	45
+106	3	46
+107	3	25
+108	3	22
+109	3	24
+110	3	23
+111	3	98
+112	3	103
+113	3	105
+114	3	104
+115	3	70
+116	3	69
+117	3	77
+118	3	74
+119	3	71
+120	3	73
+121	3	75
+122	3	76
+123	3	72
+124	4	19
+125	4	21
+126	4	20
+127	4	43
+128	4	40
+129	4	42
+130	4	44
+131	4	41
+132	4	38
+133	4	39
+134	4	33
+135	4	35
+136	4	37
+137	4	36
+138	4	34
+139	4	29
+140	4	32
+141	4	30
+142	4	26
+143	4	31
+144	4	28
+145	4	27
+146	4	45
+147	4	46
+148	4	25
+149	4	22
+150	4	24
+151	4	23
+152	4	98
+153	4	103
+154	4	105
+155	4	104
+156	4	70
+157	4	69
+158	4	77
+159	4	74
+160	4	71
+161	4	73
+162	4	75
+163	4	76
+164	4	72
 \.
 
 
@@ -2146,7 +2038,7 @@ COPY auth_group_permissions (id, group_id, permission_id) FROM stdin;
 -- Name: auth_group_permissions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sap
 --
 
-SELECT pg_catalog.setval('auth_group_permissions_id_seq', 354, true);
+SELECT pg_catalog.setval('auth_group_permissions_id_seq', 164, true);
 
 
 --
@@ -2172,87 +2064,96 @@ COPY auth_permission (id, name, content_type_id, codename) FROM stdin;
 16	Puede crear session	6	crear_session
 17	Puede modificar session	6	modificar_session
 18	Puede eliminar session	6	eliminar_session
-19	Puede crear usuarios	7	crear_usuarios
-20	Puede modificar usuarios	7	modificar_usuarios
-21	Puede eliminar usuarios	7	eliminar_usuarios
-22	puede listar usuarios	7	administrar_usuario
-23	Puede crear roles	8	crear_roles
-24	Puede modificar roles	8	modificar_roles
-25	Puede eliminar roles	8	eliminar_roles
-26	puede listar los roles	8	administrar_roles
-27	puede asignar un rol a un usuario	8	asignar_rol
-28	puede desasignar un rol de un usuario	8	desasignar_rol
-29	puede asignar un proyecto a un rol	8	asignar_proyecto_rol
-30	Puede crear proyectos	9	crear_proyectos
-31	Puede modificar proyectos	9	modificar_proyectos
-32	Puede eliminar proyectos	9	eliminar_proyectos
-33	Puede listar los miembros de un proyecto	9	listar_miembros
-34	Puede importar proyectos	9	importar_proyectos
-35	Puede consultar proyectos	9	consultar_proyectos
-36	Puede consultar proyectos finalizados	9	consultar_proyectosfinalizados
-37	Puede crear fases	10	crear_fases
-38	Puede modificar fases	10	modificar_fases
-39	Puede eliminar fases	10	eliminar_fases
-40	puede listar las Fases	10	administrar_fases
-41	puede importar fases	10	importar_fase
-42	Puede crear tipo atributo	11	crear_tipoatributo
-43	Puede modificar tipo atributo	11	modificar_tipoatributo
-44	Puede eliminar tipo atributo	11	eliminar_tipoatributo
-45	puede listar los tipos de atributo	11	administrar_tipos_de_atributo
-46	puede importar un tipo de atributo	11	importar_tipo_de_atributo
-47	Puede crear numerico	12	crear_numerico
-48	Puede modificar numerico	12	modificar_numerico
-49	Puede eliminar numerico	12	eliminar_numerico
-50	Puede crear fecha	13	crear_fecha
-51	Puede modificar fecha	13	modificar_fecha
-52	Puede eliminar fecha	13	eliminar_fecha
-53	Puede crear texto	14	crear_texto
-54	Puede modificar texto	14	modificar_texto
-55	Puede eliminar texto	14	eliminar_texto
-56	Puede crear logico	15	crear_logico
-57	Puede modificar logico	15	modificar_logico
-58	Puede eliminar logico	15	eliminar_logico
-59	Puede crear archivo externo	16	crear_archivoexterno
-60	Puede modificar archivo externo	16	modificar_archivoexterno
-61	Puede eliminar archivo externo	16	eliminar_archivoexterno
-62	Puede crear imagen	17	crear_imagen
-63	Puede modificar imagen	17	modificar_imagen
-64	Puede eliminar imagen	17	eliminar_imagen
-65	Puede crear lista atributo	18	crear_listaatributo
-66	Puede modificar lista atributo	18	modificar_listaatributo
-67	Puede eliminar lista atributo	18	eliminar_listaatributo
-68	Puede crear tipo item	19	crear_tipoitem
-69	Puede modificar tipo item	19	modificar_tipoitem
-70	Puede eliminar tipo item	19	eliminar_tipoitem
-71	Puede consultar los datos de un Tipo de Item	19	consultar_tipoitem
-72	Puede gestionar un Tipo de Item	19	gestionar_tipoitem
-73	Puede Importar un Tipo de Item	19	importar_tipoitem
-74	Puede administrar los Tipos de Item	19	administrar_tipoitem
-75	Puede crear items	20	crear_items
-76	Puede modificar items	20	modificar_items
-77	Puede eliminar items	20	eliminar_items
-78	Puede crear valor item	21	crear_valoritem
-79	Puede modificar valor item	21	modificar_valoritem
-80	Puede eliminar valor item	21	eliminar_valoritem
-81	Puede crear lista valores	22	crear_listavalores
-82	Puede modificar lista valores	22	modificar_listavalores
-83	Puede eliminar lista valores	22	eliminar_listavalores
-84	Puede crear relaciones	23	crear_relaciones
-85	Puede modificar relaciones	23	modificar_relaciones
-86	Puede eliminar relaciones	23	eliminar_relaciones
-87	Puede crear linea base	24	crear_lineabase
-88	Puede modificar linea base	24	modificar_lineabase
-89	Puede eliminar linea base	24	eliminar_lineabase
-90	puede listar las Lineas Base	24	administrar_lineas_base
-91	puede generar Linea Base	24	generar_linea_base
-92	puede generar informe de Linea Base	24	generar_informe_linea_base
-93	puede consultar datos de linea base Linea Base	24	consultar_linea_base
-94	Puede crear solicitudes	25	crear_solicitudes
-95	Puede modificar solicitudes	25	modificar_solicitudes
-96	Puede eliminar solicitudes	25	eliminar_solicitudes
-97	Puede crear comite	26	crear_comite
-98	Puede modificar comite	26	modificar_comite
-99	Puede eliminar comite	26	eliminar_comite
+19	Puede crear cron job log	7	crear_cronjoblog
+20	Puede modificar cron job log	7	modificar_cronjoblog
+21	Puede eliminar cron job log	7	eliminar_cronjoblog
+22	Puede crear usuarios	8	crear_usuarios
+23	Puede modificar usuarios	8	modificar_usuarios
+24	Puede eliminar usuarios	8	eliminar_usuarios
+25	puede listar usuarios	8	administrar_usuario
+26	Puede crear roles	9	crear_roles
+27	Puede modificar roles	9	modificar_roles
+28	Puede eliminar roles	9	eliminar_roles
+29	puede listar los roles	9	administrar_roles
+30	puede asignar un rol a un usuario	9	asignar_rol
+31	puede desasignar un rol de un usuario	9	desasignar_rol
+32	puede asignar un proyecto a un rol	9	asignar_proyecto_rol
+33	Puede crear proyectos	10	crear_proyectos
+34	Puede modificar proyectos	10	modificar_proyectos
+35	Puede eliminar proyectos	10	eliminar_proyectos
+36	Puede listar los miembros de un proyecto	10	listar_miembros
+37	Puede importar proyectos	10	importar_proyectos
+38	Puede consultar proyectos	10	consultar_proyectos
+39	Puede consultar proyectos finalizados	10	consultar_proyectosfinalizados
+40	Puede crear fases	11	crear_fases
+41	Puede modificar fases	11	modificar_fases
+42	Puede eliminar fases	11	eliminar_fases
+43	puede listar las Fases	11	administrar_fases
+44	puede importar fases	11	importar_fase
+45	Puede crear tipo atributo	12	crear_tipoatributo
+46	Puede modificar tipo atributo	12	modificar_tipoatributo
+47	Puede eliminar tipo atributo	12	eliminar_tipoatributo
+48	puede listar los tipos de atributo	12	administrar_tipos_de_atributo
+49	puede importar un tipo de atributo	12	importar_tipo_de_atributo
+50	Puede crear numerico	13	crear_numerico
+51	Puede modificar numerico	13	modificar_numerico
+52	Puede eliminar numerico	13	eliminar_numerico
+53	Puede crear fecha	14	crear_fecha
+54	Puede modificar fecha	14	modificar_fecha
+55	Puede eliminar fecha	14	eliminar_fecha
+56	Puede crear texto	15	crear_texto
+57	Puede modificar texto	15	modificar_texto
+58	Puede eliminar texto	15	eliminar_texto
+59	Puede crear logico	16	crear_logico
+60	Puede modificar logico	16	modificar_logico
+61	Puede eliminar logico	16	eliminar_logico
+62	Puede crear archivo externo	17	crear_archivoexterno
+63	Puede modificar archivo externo	17	modificar_archivoexterno
+64	Puede eliminar archivo externo	17	eliminar_archivoexterno
+65	Puede crear imagen	18	crear_imagen
+66	Puede modificar imagen	18	modificar_imagen
+67	Puede eliminar imagen	18	eliminar_imagen
+68	Puede crear lista atributo	19	crear_listaatributo
+69	Puede modificar lista atributo	19	modificar_listaatributo
+70	Puede eliminar lista atributo	19	eliminar_listaatributo
+71	Puede crear tipo item	20	crear_tipoitem
+72	Puede modificar tipo item	20	modificar_tipoitem
+73	Puede eliminar tipo item	20	eliminar_tipoitem
+74	Puede consultar los datos de un Tipo de Item	20	consultar_tipoitem
+75	Puede gestionar un Tipo de Item	20	gestionar_tipoitem
+76	Puede Importar un Tipo de Item	20	importar_tipoitem
+77	Puede administrar los Tipos de Item	20	administrar_tipoitem
+78	Puede crear items	21	crear_items
+79	Puede modificar items	21	modificar_items
+80	Puede eliminar items	21	eliminar_items
+81	Puede crear valor item	22	crear_valoritem
+82	Puede modificar valor item	22	modificar_valoritem
+83	Puede eliminar valor item	22	eliminar_valoritem
+84	Puede crear lista valores	23	crear_listavalores
+85	Puede modificar lista valores	23	modificar_listavalores
+86	Puede eliminar lista valores	23	eliminar_listavalores
+87	Puede crear relaciones	24	crear_relaciones
+88	Puede modificar relaciones	24	modificar_relaciones
+89	Puede eliminar relaciones	24	eliminar_relaciones
+90	Puede crear linea base	25	crear_lineabase
+91	Puede modificar linea base	25	modificar_lineabase
+92	Puede eliminar linea base	25	eliminar_lineabase
+93	puede listar las Lineas Base	25	administrar_lineas_base
+94	puede generar Linea Base	25	generar_linea_base
+95	puede generar informe de Linea Base	25	generar_informe_linea_base
+96	puede consultar datos de linea base Linea Base	25	consultar_linea_base
+97	Puede crear solicitudes	26	crear_solicitudes
+98	Puede modificar solicitudes	26	modificar_solicitudes
+99	Puede eliminar solicitudes	26	eliminar_solicitudes
+100	Puede crear credenciales	27	crear_credenciales
+101	Puede modificar credenciales	27	modificar_credenciales
+102	Puede eliminar credenciales	27	eliminar_credenciales
+103	Puede crear votos	28	crear_votos
+104	Puede modificar votos	28	modificar_votos
+105	Puede eliminar votos	28	eliminar_votos
+106	Puede crear comite	29	crear_comite
+107	Puede modificar comite	29	modificar_comite
+108	Puede eliminar comite	29	eliminar_comite
 \.
 
 
@@ -2260,7 +2161,7 @@ COPY auth_permission (id, name, content_type_id, codename) FROM stdin;
 -- Name: auth_permission_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sap
 --
 
-SELECT pg_catalog.setval('auth_permission_id_seq', 99, true);
+SELECT pg_catalog.setval('auth_permission_id_seq', 108, true);
 
 
 --
@@ -2268,13 +2169,13 @@ SELECT pg_catalog.setval('auth_permission_id_seq', 99, true);
 --
 
 COPY auth_user (id, password, last_login, is_superuser, username, first_name, last_name, email, is_staff, is_active, date_joined) FROM stdin;
-2	pbkdf2_sha256$12000$iAXvTU7Fjpp2$U5/zLGbhBxU7Cw23WrMSOkdD/nEGx4hNpi0ZddfKWAY=	2014-05-24 02:19:08.475991-04	f	ysapy	ysapy	ortiz	usuario1@sap	f	t	2014-05-24 02:19:08.475991-04
-5	pbkdf2_sha256$12000$XZdbo3NkHNmZ$+LqjN1o3XR3k9GyOD+CPcP/fx3kVR35w/Fl6WxUfuAY=	2014-05-24 02:20:34.691677-04	f	usuario1	ysapy	ortiz	usuario1@sap	f	t	2014-05-24 02:20:34.691677-04
-6	pbkdf2_sha256$12000$xIyA1nsfM9pr$SZgvyftmpdVmrYMDO47ZcFtWRbL1QYEKAN8DVuq4Mac=	2014-05-24 02:20:48.819724-04	f	usuario2	ysapy	ortiz	usuario1@sap	f	t	2014-05-24 02:20:48.819724-04
-7	pbkdf2_sha256$12000$o48eLwB4kCkY$DlShC4Bra4VLxWLAq5fu3SPzdaVdMuJ9lkbhFAaKlyw=	2014-05-24 02:21:22.24037-04	f	usuario3	ysapy	ortiz	usuario1@sap	f	t	2014-05-24 02:21:22.24037-04
-3	pbkdf2_sha256$12000$lxcwArRbnTIR$ukJ2pNrJomLH9L1EUVuPPbVlkp4zp4ya8xb9WVVBheA=	2014-05-24 02:31:48.609316-04	f	eduardo	ysapy	ortiz	ysapy@sap	f	t	2014-05-24 02:19:48.291595-04
-1	pbkdf2_sha256$12000$1YKDtdIZAOe2$JJ4vCZ/NMpwF1EcTCtp7VD3rVo6LqyAPnUV9vZoprHk=	2014-05-24 02:34:02.089292-04	t	sap				t	t	2014-05-24 02:16:44.292721-04
-4	pbkdf2_sha256$12000$blwHFnZP4HJ9$GUVw1Qczeu2gQO467ExnH4y6BUZLhUlOU640B1sRO9U=	2014-05-24 02:50:20.614863-04	f	marcelo	ysapy	ortiz	usuario1@sap	f	t	2014-05-24 02:20:09.047639-04
+1	pbkdf2_sha256$12000$4ItH6aDKjvwT$l1yJ2YpUKjDHJyVqI/q2ZqJBgGV6AkPkkrDc8dJxAiU=	2014-06-07 02:38:32.50144-04	t	sap				t	t	2014-06-07 02:37:27.892924-04
+3	pbkdf2_sha256$12000$VJzqftNpt0q2$2VTGJ17Jg0hw2MP7xtBc+o3LuUh6dg0RgH5Bflp9+QQ=	2014-06-07 02:39:29.482071-04	f	marcelo	ysapy	ortiz	marce@sap	f	t	2014-06-07 02:39:29.482071-04
+5	pbkdf2_sha256$12000$rFURMHdoMEh2$5wp5s0RRahoftBq5FsS5SVL25mwAmGw+5dEjf+JqAL8=	2014-06-07 02:40:27.992253-04	f	usuario1	ysapy	ortiz	usuario1@sap	f	t	2014-06-07 02:40:27.992253-04
+6	pbkdf2_sha256$12000$bVxc0kk18YMX$iSX3vhS3Y2DLSrd617i36Zbs2gb09Y7e2NKCoOw6TYg=	2014-06-07 02:40:48.509592-04	f	usuario2	ysapy	ortiz	usuario1@sap	f	t	2014-06-07 02:40:48.509592-04
+7	pbkdf2_sha256$12000$CDIxuY6kaBZf$ZTsthhj2d7qnmE/G8tz+p2/8ug/wuU4AVrFrOJxuYNo=	2014-06-07 02:41:04.824345-04	f	usuario3	ysapy	ortiz	usuario1@sap	f	t	2014-06-07 02:41:04.824345-04
+4	pbkdf2_sha256$12000$CIK1SNElrBcK$rY+bqGoOzWenZnO1kAyh1feC/Jqr0oRtjbRDxX5OPpY=	2014-06-07 03:14:36.067658-04	f	eduardo	ysapy	ortiz	usuario1@sap	f	t	2014-06-07 02:40:09.012051-04
+2	pbkdf2_sha256$12000$9NgvPRLtbwLb$7fKpzV3gj4JUhhEAq66Yjv5XMiZcSYRfssChEmogFoY=	2014-06-07 03:15:07.393009-04	f	ysapy	ysapy	ortiz	usuario1@sap	f	t	2014-06-07 02:38:52.618174-04
 \.
 
 
@@ -2284,17 +2185,18 @@ COPY auth_user (id, password, last_login, is_superuser, username, first_name, la
 
 COPY auth_user_groups (id, user_id, group_id) FROM stdin;
 1	2	1
-2	3	2
-3	4	3
-4	5	4
-5	6	4
-6	7	4
-7	5	5
-8	6	5
-9	7	5
-10	5	6
-11	6	6
-12	7	6
+2	2	2
+3	4	2
+4	3	2
+5	5	2
+6	2	3
+7	3	3
+8	4	3
+9	6	3
+10	2	4
+11	3	4
+12	4	4
+13	7	4
 \.
 
 
@@ -2302,7 +2204,7 @@ COPY auth_user_groups (id, user_id, group_id) FROM stdin;
 -- Name: auth_user_groups_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sap
 --
 
-SELECT pg_catalog.setval('auth_user_groups_id_seq', 12, true);
+SELECT pg_catalog.setval('auth_user_groups_id_seq', 13, true);
 
 
 --
@@ -2350,11 +2252,11 @@ SELECT pg_catalog.setval('comite_comite_id_seq', 3, true);
 --
 
 COPY comite_comite_miembros (id, comite_id, usuarios_id) FROM stdin;
-1	2	6
-2	2	7
-3	2	3
-4	3	5
-5	3	6
+1	2	3
+2	2	4
+3	2	2
+4	3	3
+5	3	2
 6	3	4
 \.
 
@@ -2392,26 +2294,29 @@ COPY django_content_type (id, name, app_label, model) FROM stdin;
 4	user	auth	user
 5	content type	contenttypes	contenttype
 6	session	sessions	session
-7	usuarios	usuarios	usuarios
-8	roles	roles	roles
-9	proyectos	proyectos	proyectos
-10	fases	fases	fases
-11	tipo atributo	tipoatributo	tipoatributo
-12	numerico	tipoatributo	numerico
-13	fecha	tipoatributo	fecha
-14	texto	tipoatributo	texto
-15	logico	tipoatributo	logico
-16	archivo externo	tipoatributo	archivoexterno
-17	imagen	tipoatributo	imagen
-18	lista atributo	tipoitem	listaatributo
-19	tipo item	tipoitem	tipoitem
-20	items	items	items
-21	valor item	items	valoritem
-22	lista valores	items	listavalores
-23	relaciones	relaciones	relaciones
-24	linea base	lineabase	lineabase
-25	solicitudes	solicitudes	solicitudes
-26	comite	comite	comite
+7	cron job log	django_cron	cronjoblog
+8	usuarios	usuarios	usuarios
+9	roles	roles	roles
+10	proyectos	proyectos	proyectos
+11	fases	fases	fases
+12	tipo atributo	tipoatributo	tipoatributo
+13	numerico	tipoatributo	numerico
+14	fecha	tipoatributo	fecha
+15	texto	tipoatributo	texto
+16	logico	tipoatributo	logico
+17	archivo externo	tipoatributo	archivoexterno
+18	imagen	tipoatributo	imagen
+19	lista atributo	tipoitem	listaatributo
+20	tipo item	tipoitem	tipoitem
+21	items	items	items
+22	valor item	items	valoritem
+23	lista valores	items	listavalores
+24	relaciones	relaciones	relaciones
+25	linea base	lineabase	lineabase
+26	solicitudes	solicitudes	solicitudes
+27	credenciales	solicitudes	credenciales
+28	votos	solicitudes	votos
+29	comite	comite	comite
 \.
 
 
@@ -2419,7 +2324,22 @@ COPY django_content_type (id, name, app_label, model) FROM stdin;
 -- Name: django_content_type_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sap
 --
 
-SELECT pg_catalog.setval('django_content_type_id_seq', 26, true);
+SELECT pg_catalog.setval('django_content_type_id_seq', 29, true);
+
+
+--
+-- Data for Name: django_cron_cronjoblog; Type: TABLE DATA; Schema: public; Owner: sap
+--
+
+COPY django_cron_cronjoblog (id, code, start_time, end_time, is_success, message, ran_at_time) FROM stdin;
+\.
+
+
+--
+-- Name: django_cron_cronjoblog_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sap
+--
+
+SELECT pg_catalog.setval('django_cron_cronjoblog_id_seq', 1, false);
 
 
 --
@@ -2427,7 +2347,7 @@ SELECT pg_catalog.setval('django_content_type_id_seq', 26, true);
 --
 
 COPY django_session (session_key, session_data, expire_date) FROM stdin;
-fquuqplhipm1vv7vhcrj56uee3jgi4jd	NTMwOTM4YmIyYWZmM2VlMTZmOTE5MmJiYjZjOGU2YWRiODRiM2U4NDp7fQ==	2014-06-07 02:50:24.781991-04
+d8iw1j1kgapymzz5osgixhid7tdmrt7x	ZTVhODExMDk3MDI5MTRiNmNmZGYzOWUyNWYxZTFmM2I4NzljODZlNTp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6Mn0=	2014-06-21 03:15:07.404596-04
 \.
 
 
@@ -2436,10 +2356,12 @@ fquuqplhipm1vv7vhcrj56uee3jgi4jd	NTMwOTM4YmIyYWZmM2VlMTZmOTE5MmJiYjZjOGU2YWRiODR
 --
 
 COPY fases_fases (id, nombre, nombre_eliminado, descripcion, estado, fechainicio, duracion, proyecto_id, is_active, orden) FROM stdin;
-1	Fase 1	\N	Fase 4 del proyecto 1	DF	2014-05-24	4	2	t	1
-2	Fase 2	\N	Fase 4 del proyecto 1	DF	2014-05-24	4	2	t	2
-3	Fase 1	\N	Fase 4 del proyecto 1	DR	2014-05-24	4	3	t	1
-4	Fase 2	\N	Fase 4 del proyecto 1	DR	2014-05-24	4	3	t	2
+1	Fase 1	\N	Fase 4 del proyecto 1	DR	2014-06-07	16	2	t	1
+2	Fase 2	\N	Fase 2 del proyecto 1	DR	2014-06-07	36	2	t	2
+3	Fase 3	\N	Fase 1 del proyecto 1	DR	2014-06-07	16	2	t	3
+4	Fase 1	\N	Fase 4 del proyecto 1	FD	2014-06-07	8	3	t	1
+5	Fase 2	\N	Fase 4 del proyecto 1	FD	2014-06-07	6	3	t	2
+6	Fase 3	\N	Fase 4 del proyecto 1	DR	2014-06-07	5	3	t	3
 \.
 
 
@@ -2447,7 +2369,7 @@ COPY fases_fases (id, nombre, nombre_eliminado, descripcion, estado, fechainicio
 -- Name: fases_fases_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sap
 --
 
-SELECT pg_catalog.setval('fases_fases_id_seq', 4, true);
+SELECT pg_catalog.setval('fases_fases_id_seq', 6, true);
 
 
 --
@@ -2455,10 +2377,24 @@ SELECT pg_catalog.setval('fases_fases_id_seq', 4, true);
 --
 
 COPY items_items (id, nombre, version, prioridad, estado, descripcion, observaciones, "costoMonetario", "costoTemporal", complejidad, fase_id, proyecto_id, is_active, tipo_item_id, padre, lb) FROM stdin;
-2	item2fase1	1	1	Bloqueado	Fase 1 del proyecto 1	ninguna	43434	45	1	3	3	t	1	0	\N
-1	item1fase1	1	1	Bloqueado	Fase 4 del proyecto 1	ninguna	8	45	1	3	3	t	1	0	\N
-3	item1fase2	1	1	En Construccion	Fase 4 del proyecto 1	ninguna	43434	45	1	4	3	t	1	0	\N
-4	item2fase2	2	1	Terminado	Fase 4 del proyecto 1	ninguna	43434	3	1	4	3	t	1	2	\N
+15	item223	2	2	Bloqueado	Fase 4 del proyecto 1	ninguna	2	2	2	5	3	t	2	14	\N
+2	item212	1	2	Bloqueado	Fase 4 del proyecto 1	ninguna	2	3	4	1	2	t	1	0	\N
+1	item112	1	2	Bloqueado	Fase 4 del proyecto 1	ninguna	2	3	3	1	2	t	1	0	\N
+3	item312	1	5	Bloqueado	Fase 4 del proyecto 1	ninguna	4	2	2	1	2	t	1	0	\N
+7	item422	1	2	En Construccion	Fase 4 del proyecto 1	ninguna	2	2	3	2	2	t	1	0	\N
+5	item222	2	3	Bloqueado	Fase 4 del proyecto 1	ninguna	4	3	3	2	2	t	1	4	\N
+4	item122	2	5	Bloqueado	Fase 4 del proyecto 1	ninguna	2	3	4	2	2	t	1	1	\N
+6	item322	2	4	Validado	Fase 4 del proyecto 1	ninguna	2	2	1	2	2	t	1	4	\N
+9	item232	1	2	En Construccion	Fase 4 del proyecto 1	ninguna	2	2	2	3	2	t	1	0	\N
+16	item133	2	2	Bloqueado	Fase 4 del proyecto 1	ninguna	2	3	2	6	3	t	2	14	\N
+10	item332	2	3	En Construccion	Fase 4 del proyecto 1	btip	4	2	3	3	2	t	1	9	\N
+8	item132	2	3	En Construccion	Fase 4 del proyecto 1	ninguna	2	2	2	3	2	t	1	4	\N
+17	item233	2	1	Bloqueado	Fase 4 del proyecto 1	ninguna	2	2	2	6	3	t	2	15	\N
+18	item333	2	2	Bloqueado	Fase 4 del proyecto 1	ninguna	2	2	2	6	3	t	2	15	\N
+12	item213	1	3	Bloqueado	Fase 4 del proyecto 1	ninguna	2	3	2	4	3	t	2	0	\N
+11	item113	1	2	Bloqueado	Fase 4 del proyecto 1	ninguna	1	4	3	4	3	t	2	0	\N
+13	item313	1	2	Bloqueado	Fase 4 del proyecto 1	ninguna	2	2	2	4	3	t	2	0	\N
+14	item123	2	3	Bloqueado	Fase 4 del proyecto 1	ninguna	2	2	2	5	3	t	2	11	\N
 \.
 
 
@@ -2466,7 +2402,7 @@ COPY items_items (id, nombre, version, prioridad, estado, descripcion, observaci
 -- Name: items_items_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sap
 --
 
-SELECT pg_catalog.setval('items_items_id_seq', 4, true);
+SELECT pg_catalog.setval('items_items_id_seq', 18, true);
 
 
 --
@@ -2504,7 +2440,13 @@ SELECT pg_catalog.setval('items_valoritem_id_seq', 1, false);
 --
 
 COPY lineabase_lineabase (id, numero, proyecto_id, fase_id, is_active, descripcion, fecha_creacion) FROM stdin;
-1	1	3	3	t		2014-05-24
+1	1	2	1	t		2014-06-07
+2	2	2	1	t		2014-06-07
+3	1	2	2	t		2014-06-07
+4	1	3	4	t		2014-06-07
+5	2	3	4	t		2014-06-07
+6	1	3	5	t		2014-06-07
+7	1	3	6	t		2014-06-07
 \.
 
 
@@ -2512,7 +2454,7 @@ COPY lineabase_lineabase (id, numero, proyecto_id, fase_id, is_active, descripci
 -- Name: lineabase_lineabase_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sap
 --
 
-SELECT pg_catalog.setval('lineabase_lineabase_id_seq', 1, true);
+SELECT pg_catalog.setval('lineabase_lineabase_id_seq', 7, true);
 
 
 --
@@ -2522,6 +2464,17 @@ SELECT pg_catalog.setval('lineabase_lineabase_id_seq', 1, true);
 COPY lineabase_lineabase_items (id, lineabase_id, items_id) FROM stdin;
 1	1	2
 2	1	1
+3	2	3
+4	3	5
+5	3	4
+6	4	12
+7	4	11
+8	5	13
+9	6	14
+10	6	15
+11	7	16
+12	7	17
+13	7	18
 \.
 
 
@@ -2529,7 +2482,7 @@ COPY lineabase_lineabase_items (id, lineabase_id, items_id) FROM stdin;
 -- Name: lineabase_lineabase_items_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sap
 --
 
-SELECT pg_catalog.setval('lineabase_lineabase_items_id_seq', 2, true);
+SELECT pg_catalog.setval('lineabase_lineabase_items_id_seq', 13, true);
 
 
 --
@@ -2537,9 +2490,9 @@ SELECT pg_catalog.setval('lineabase_lineabase_items_id_seq', 2, true);
 --
 
 COPY proyectos_proyectos (id, nombre, lider_id, estado, fecha_inicio, duracion, is_active) FROM stdin;
-1	Proyecto 1	2	Inactivo	2014-04-04	4	t
-2	Proyecto 2	3	En Construccion	2014-04-04	4	t
-3	Proyecto 3	4	En Construccion	2014-04-04	3	t
+1	Proyecto 1	3	Inactivo	2014-04-04	74	t
+2	Proyecto 2	2	En Construccion	2014-04-04	53	t
+3	Proyecto 3	4	En Construccion	2014-04-04	26	t
 \.
 
 
@@ -2555,7 +2508,17 @@ SELECT pg_catalog.setval('proyectos_proyectos_id_seq', 3, true);
 --
 
 COPY relaciones_relaciones (id, nombre, padre_id, item, version) FROM stdin;
-1	\N	2	4	2
+1	\N	1	4	2
+2	\N	4	5	2
+3	\N	4	6	2
+4	\N	9	10	2
+5	\N	4	8	2
+6	\N	11	14	2
+7	\N	14	15	2
+8	\N	14	16	2
+9	\N	15	17	2
+10	\N	15	18	2
+11	\N	15	18	2
 \.
 
 
@@ -2563,7 +2526,7 @@ COPY relaciones_relaciones (id, nombre, padre_id, item, version) FROM stdin;
 -- Name: relaciones_relaciones_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sap
 --
 
-SELECT pg_catalog.setval('relaciones_relaciones_id_seq', 1, true);
+SELECT pg_catalog.setval('relaciones_relaciones_id_seq', 11, true);
 
 
 --
@@ -2571,12 +2534,10 @@ SELECT pg_catalog.setval('relaciones_relaciones_id_seq', 1, true);
 --
 
 COPY roles_roles (group_ptr_id, proyecto, descripcion, is_active) FROM stdin;
-1	1		t
-2	2		t
-3	3		t
-4	1		t
-5	2		t
-6	3		t
+1			t
+2	1		t
+3	2		t
+4	3		t
 \.
 
 
@@ -2596,11 +2557,26 @@ SELECT pg_catalog.setval('roles_roles_fases_id_seq', 1, false);
 
 
 --
+-- Data for Name: solicitudes_credenciales; Type: TABLE DATA; Schema: public; Owner: sap
+--
+
+COPY solicitudes_credenciales (id, nombre, usuario_id, proyecto_id, fase_id, item_id, fecha_aprobacion, fecha_expiracion, estado, observaciones) FROM stdin;
+\.
+
+
+--
+-- Name: solicitudes_credenciales_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sap
+--
+
+SELECT pg_catalog.setval('solicitudes_credenciales_id_seq', 1, false);
+
+
+--
 -- Data for Name: solicitudes_solicitudes; Type: TABLE DATA; Schema: public; Owner: sap
 --
 
-COPY solicitudes_solicitudes (id, nombre, usuario_id, proyecto_id, fase_id, item_id, fecha_solicitud, tiempo_solicitado, descripcion, observaciones, estado, tiempo_esperado, votos_aprobado, votos_rechazado) FROM stdin;
-1	\N	4	3	3	2	2014-05-24	4	se necesita cargar atributos	ninguna	Pendiente	2	1	0
+COPY solicitudes_solicitudes (id, nombre, usuario_id, proyecto_id, fase_id, item_id, fecha_solicitud, tiempo_solicitado, descripcion, observaciones, estado, tiempo_esperado) FROM stdin;
+1	\N	2	2	1	1	2014-06-07	8	se necesita cargar atributos	ninguna	Pendiente	2
 \.
 
 
@@ -2612,19 +2588,18 @@ SELECT pg_catalog.setval('solicitudes_solicitudes_id_seq', 1, true);
 
 
 --
--- Data for Name: solicitudes_solicitudes_miembros_que_votaron; Type: TABLE DATA; Schema: public; Owner: sap
+-- Data for Name: solicitudes_votos; Type: TABLE DATA; Schema: public; Owner: sap
 --
 
-COPY solicitudes_solicitudes_miembros_que_votaron (id, solicitudes_id, user_id) FROM stdin;
-1	1	4
+COPY solicitudes_votos (id, miembro_id, solicitud_id, "fechaDeVotacion", voto) FROM stdin;
 \.
 
 
 --
--- Name: solicitudes_solicitudes_miembros_que_votaron_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sap
+-- Name: solicitudes_votos_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sap
 --
 
-SELECT pg_catalog.setval('solicitudes_solicitudes_miembros_que_votaron_id_seq', 1, true);
+SELECT pg_catalog.setval('solicitudes_votos_id_seq', 1, false);
 
 
 --
@@ -2723,8 +2698,6 @@ SELECT pg_catalog.setval('tipoatributo_texto_id_seq', 1, false);
 
 COPY tipoatributo_tipoatributo (id, nombre, tipo, "precision", longitud, obligatorio, descripcion, is_active) FROM stdin;
 1	cantidad	Numerico	2	3	f		t
-2	nombre	Texto	0	10	f		t
-3	fecha	Fecha	0	0	f		t
 \.
 
 
@@ -2732,7 +2705,7 @@ COPY tipoatributo_tipoatributo (id, nombre, tipo, "precision", longitud, obligat
 -- Name: tipoatributo_tipoatributo_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sap
 --
 
-SELECT pg_catalog.setval('tipoatributo_tipoatributo_id_seq', 3, true);
+SELECT pg_catalog.setval('tipoatributo_tipoatributo_id_seq', 1, true);
 
 
 --
@@ -2740,9 +2713,8 @@ SELECT pg_catalog.setval('tipoatributo_tipoatributo_id_seq', 3, true);
 --
 
 COPY tipoatributo_tipoatributo_proyecto (id, tipoatributo_id, proyectos_id) FROM stdin;
-1	1	3
-2	2	3
-3	3	3
+1	1	2
+2	1	3
 \.
 
 
@@ -2750,7 +2722,7 @@ COPY tipoatributo_tipoatributo_proyecto (id, tipoatributo_id, proyectos_id) FROM
 -- Name: tipoatributo_tipoatributo_proyecto_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sap
 --
 
-SELECT pg_catalog.setval('tipoatributo_tipoatributo_proyecto_id_seq', 3, true);
+SELECT pg_catalog.setval('tipoatributo_tipoatributo_proyecto_id_seq', 2, true);
 
 
 --
@@ -2759,8 +2731,8 @@ SELECT pg_catalog.setval('tipoatributo_tipoatributo_proyecto_id_seq', 3, true);
 
 COPY tipoitem_listaatributo (id, id_atributo, id_tipoitem, orden, nombre, is_active) FROM stdin;
 1	1	1	1	cantidad	t
-2	3	1	2	fecha	t
-3	2	1	3	nombre	t
+2	1	1	2	cantidad	t
+3	1	2	1	cantidad	t
 \.
 
 
@@ -2776,7 +2748,8 @@ SELECT pg_catalog.setval('tipoitem_listaatributo_id_seq', 3, true);
 --
 
 COPY tipoitem_tipoitem (id, nombre, descripcion, id_proyecto, is_active) FROM stdin;
-1	requerimiento	requerimientos	3	t
+1	Requerimiento	REQUERIMIENTOS 	2	t
+2	Desarrollo	DESARROLLO	3	t
 \.
 
 
@@ -2784,7 +2757,7 @@ COPY tipoitem_tipoitem (id, nombre, descripcion, id_proyecto, is_active) FROM st
 -- Name: tipoitem_tipoitem_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sap
 --
 
-SELECT pg_catalog.setval('tipoitem_tipoitem_id_seq', 1, true);
+SELECT pg_catalog.setval('tipoitem_tipoitem_id_seq', 2, true);
 
 
 --
@@ -2794,7 +2767,7 @@ SELECT pg_catalog.setval('tipoitem_tipoitem_id_seq', 1, true);
 COPY "tipoitem_tipoitem_listaAtributo" (id, tipoitem_id, listaatributo_id) FROM stdin;
 1	1	1
 2	1	2
-3	1	3
+3	2	3
 \.
 
 
@@ -2809,22 +2782,15 @@ SELECT pg_catalog.setval('"tipoitem_tipoitem_listaAtributo_id_seq"', 3, true);
 -- Data for Name: usuarios_usuarios; Type: TABLE DATA; Schema: public; Owner: sap
 --
 
-COPY usuarios_usuarios (id, user_id, telefono, direccion, especialidad, observaciones) FROM stdin;
-1	1				
-2	2	021	lambare	desarrollador	ninguna
-3	3	021	lambare	desarrollador	ninguna
-4	4	021	lambare	desarrollador	ninguna
-5	5	021	lambare	desarrollador	ninguna
-6	6	021	lambare	desarrollador	ninguna
-7	7	021	lambare	desarrollador	ninguna
+COPY usuarios_usuarios (user_id, telefono, direccion, especialidad, observaciones) FROM stdin;
+1				
+2	021	lambare	desarrollador	ninguna
+3	021	lambare	desarrollador	ninguna
+4	j	lambare	desarrollador	ninguna
+5	021	lambare	desarrollador	ninguna
+6	021	k	desarrollador	ninguna
+7	021	lambare	desarrollador	ninguna
 \.
-
-
---
--- Name: usuarios_usuarios_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sap
---
-
-SELECT pg_catalog.setval('usuarios_usuarios_id_seq', 7, true);
 
 
 --
@@ -2972,6 +2938,14 @@ ALTER TABLE ONLY django_content_type
 
 
 --
+-- Name: django_cron_cronjoblog_pkey; Type: CONSTRAINT; Schema: public; Owner: sap; Tablespace: 
+--
+
+ALTER TABLE ONLY django_cron_cronjoblog
+    ADD CONSTRAINT django_cron_cronjoblog_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: django_session_pkey; Type: CONSTRAINT; Schema: public; Owner: sap; Tablespace: 
 --
 
@@ -3076,19 +3050,11 @@ ALTER TABLE ONLY roles_roles
 
 
 --
--- Name: solicitudes_solicitudes_miembros_que_solicitudes_id_user_id_key; Type: CONSTRAINT; Schema: public; Owner: sap; Tablespace: 
+-- Name: solicitudes_credenciales_pkey; Type: CONSTRAINT; Schema: public; Owner: sap; Tablespace: 
 --
 
-ALTER TABLE ONLY solicitudes_solicitudes_miembros_que_votaron
-    ADD CONSTRAINT solicitudes_solicitudes_miembros_que_solicitudes_id_user_id_key UNIQUE (solicitudes_id, user_id);
-
-
---
--- Name: solicitudes_solicitudes_miembros_que_votaron_pkey; Type: CONSTRAINT; Schema: public; Owner: sap; Tablespace: 
---
-
-ALTER TABLE ONLY solicitudes_solicitudes_miembros_que_votaron
-    ADD CONSTRAINT solicitudes_solicitudes_miembros_que_votaron_pkey PRIMARY KEY (id);
+ALTER TABLE ONLY solicitudes_credenciales
+    ADD CONSTRAINT solicitudes_credenciales_pkey PRIMARY KEY (id);
 
 
 --
@@ -3097,6 +3063,14 @@ ALTER TABLE ONLY solicitudes_solicitudes_miembros_que_votaron
 
 ALTER TABLE ONLY solicitudes_solicitudes
     ADD CONSTRAINT solicitudes_solicitudes_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: solicitudes_votos_pkey; Type: CONSTRAINT; Schema: public; Owner: sap; Tablespace: 
+--
+
+ALTER TABLE ONLY solicitudes_votos
+    ADD CONSTRAINT solicitudes_votos_pkey PRIMARY KEY (id);
 
 
 --
@@ -3216,15 +3190,7 @@ ALTER TABLE ONLY tipoitem_tipoitem
 --
 
 ALTER TABLE ONLY usuarios_usuarios
-    ADD CONSTRAINT usuarios_usuarios_pkey PRIMARY KEY (id);
-
-
---
--- Name: usuarios_usuarios_user_id_key; Type: CONSTRAINT; Schema: public; Owner: sap; Tablespace: 
---
-
-ALTER TABLE ONLY usuarios_usuarios
-    ADD CONSTRAINT usuarios_usuarios_user_id_key UNIQUE (user_id);
+    ADD CONSTRAINT usuarios_usuarios_pkey PRIMARY KEY (user_id);
 
 
 --
@@ -3323,6 +3289,62 @@ CREATE INDEX django_admin_log_content_type_id ON django_admin_log USING btree (c
 --
 
 CREATE INDEX django_admin_log_user_id ON django_admin_log USING btree (user_id);
+
+
+--
+-- Name: django_cron_cronjoblog_1fe0e40b; Type: INDEX; Schema: public; Owner: sap; Tablespace: 
+--
+
+CREATE INDEX django_cron_cronjoblog_1fe0e40b ON django_cron_cronjoblog USING btree (code, start_time, ran_at_time);
+
+
+--
+-- Name: django_cron_cronjoblog_495fb183; Type: INDEX; Schema: public; Owner: sap; Tablespace: 
+--
+
+CREATE INDEX django_cron_cronjoblog_495fb183 ON django_cron_cronjoblog USING btree (code, start_time);
+
+
+--
+-- Name: django_cron_cronjoblog_63e2740d; Type: INDEX; Schema: public; Owner: sap; Tablespace: 
+--
+
+CREATE INDEX django_cron_cronjoblog_63e2740d ON django_cron_cronjoblog USING btree (code, is_success, ran_at_time);
+
+
+--
+-- Name: django_cron_cronjoblog_code; Type: INDEX; Schema: public; Owner: sap; Tablespace: 
+--
+
+CREATE INDEX django_cron_cronjoblog_code ON django_cron_cronjoblog USING btree (code);
+
+
+--
+-- Name: django_cron_cronjoblog_code_like; Type: INDEX; Schema: public; Owner: sap; Tablespace: 
+--
+
+CREATE INDEX django_cron_cronjoblog_code_like ON django_cron_cronjoblog USING btree (code varchar_pattern_ops);
+
+
+--
+-- Name: django_cron_cronjoblog_end_time; Type: INDEX; Schema: public; Owner: sap; Tablespace: 
+--
+
+CREATE INDEX django_cron_cronjoblog_end_time ON django_cron_cronjoblog USING btree (end_time);
+
+
+--
+-- Name: django_cron_cronjoblog_ran_at_time; Type: INDEX; Schema: public; Owner: sap; Tablespace: 
+--
+
+CREATE INDEX django_cron_cronjoblog_ran_at_time ON django_cron_cronjoblog USING btree (ran_at_time);
+
+
+--
+-- Name: django_cron_cronjoblog_start_time; Type: INDEX; Schema: public; Owner: sap; Tablespace: 
+--
+
+CREATE INDEX django_cron_cronjoblog_start_time ON django_cron_cronjoblog USING btree (start_time);
 
 
 --
@@ -3445,6 +3467,34 @@ CREATE INDEX roles_roles_fases_roles_id ON roles_roles_fases USING btree (roles_
 
 
 --
+-- Name: solicitudes_credenciales_fase_id; Type: INDEX; Schema: public; Owner: sap; Tablespace: 
+--
+
+CREATE INDEX solicitudes_credenciales_fase_id ON solicitudes_credenciales USING btree (fase_id);
+
+
+--
+-- Name: solicitudes_credenciales_item_id; Type: INDEX; Schema: public; Owner: sap; Tablespace: 
+--
+
+CREATE INDEX solicitudes_credenciales_item_id ON solicitudes_credenciales USING btree (item_id);
+
+
+--
+-- Name: solicitudes_credenciales_proyecto_id; Type: INDEX; Schema: public; Owner: sap; Tablespace: 
+--
+
+CREATE INDEX solicitudes_credenciales_proyecto_id ON solicitudes_credenciales USING btree (proyecto_id);
+
+
+--
+-- Name: solicitudes_credenciales_usuario_id; Type: INDEX; Schema: public; Owner: sap; Tablespace: 
+--
+
+CREATE INDEX solicitudes_credenciales_usuario_id ON solicitudes_credenciales USING btree (usuario_id);
+
+
+--
 -- Name: solicitudes_solicitudes_fase_id; Type: INDEX; Schema: public; Owner: sap; Tablespace: 
 --
 
@@ -3459,20 +3509,6 @@ CREATE INDEX solicitudes_solicitudes_item_id ON solicitudes_solicitudes USING bt
 
 
 --
--- Name: solicitudes_solicitudes_miembros_que_votaron_solicitudes_id; Type: INDEX; Schema: public; Owner: sap; Tablespace: 
---
-
-CREATE INDEX solicitudes_solicitudes_miembros_que_votaron_solicitudes_id ON solicitudes_solicitudes_miembros_que_votaron USING btree (solicitudes_id);
-
-
---
--- Name: solicitudes_solicitudes_miembros_que_votaron_user_id; Type: INDEX; Schema: public; Owner: sap; Tablespace: 
---
-
-CREATE INDEX solicitudes_solicitudes_miembros_que_votaron_user_id ON solicitudes_solicitudes_miembros_que_votaron USING btree (user_id);
-
-
---
 -- Name: solicitudes_solicitudes_proyecto_id; Type: INDEX; Schema: public; Owner: sap; Tablespace: 
 --
 
@@ -3484,6 +3520,20 @@ CREATE INDEX solicitudes_solicitudes_proyecto_id ON solicitudes_solicitudes USIN
 --
 
 CREATE INDEX solicitudes_solicitudes_usuario_id ON solicitudes_solicitudes USING btree (usuario_id);
+
+
+--
+-- Name: solicitudes_votos_miembro_id; Type: INDEX; Schema: public; Owner: sap; Tablespace: 
+--
+
+CREATE INDEX solicitudes_votos_miembro_id ON solicitudes_votos USING btree (miembro_id);
+
+
+--
+-- Name: solicitudes_votos_solicitud_id; Type: INDEX; Schema: public; Owner: sap; Tablespace: 
+--
+
+CREATE INDEX solicitudes_votos_solicitud_id ON solicitudes_votos USING btree (solicitud_id);
 
 
 --
@@ -3550,7 +3600,7 @@ ALTER TABLE ONLY auth_user_user_permissions
 --
 
 ALTER TABLE ONLY comite_comite_miembros
-    ADD CONSTRAINT comite_comite_miembros_usuarios_id_fkey FOREIGN KEY (usuarios_id) REFERENCES usuarios_usuarios(id) DEFERRABLE INITIALLY DEFERRED;
+    ADD CONSTRAINT comite_comite_miembros_usuarios_id_fkey FOREIGN KEY (usuarios_id) REFERENCES usuarios_usuarios(user_id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
@@ -3722,11 +3772,35 @@ ALTER TABLE ONLY roles_roles
 
 
 --
--- Name: solicitudes_id_refs_id_e2c6bdc7; Type: FK CONSTRAINT; Schema: public; Owner: sap
+-- Name: solicitudes_credenciales_fase_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: sap
 --
 
-ALTER TABLE ONLY solicitudes_solicitudes_miembros_que_votaron
-    ADD CONSTRAINT solicitudes_id_refs_id_e2c6bdc7 FOREIGN KEY (solicitudes_id) REFERENCES solicitudes_solicitudes(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY solicitudes_credenciales
+    ADD CONSTRAINT solicitudes_credenciales_fase_id_fkey FOREIGN KEY (fase_id) REFERENCES fases_fases(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: solicitudes_credenciales_item_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: sap
+--
+
+ALTER TABLE ONLY solicitudes_credenciales
+    ADD CONSTRAINT solicitudes_credenciales_item_id_fkey FOREIGN KEY (item_id) REFERENCES items_items(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: solicitudes_credenciales_proyecto_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: sap
+--
+
+ALTER TABLE ONLY solicitudes_credenciales
+    ADD CONSTRAINT solicitudes_credenciales_proyecto_id_fkey FOREIGN KEY (proyecto_id) REFERENCES proyectos_proyectos(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: solicitudes_credenciales_usuario_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: sap
+--
+
+ALTER TABLE ONLY solicitudes_credenciales
+    ADD CONSTRAINT solicitudes_credenciales_usuario_id_fkey FOREIGN KEY (usuario_id) REFERENCES usuarios_usuarios(user_id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
@@ -3746,14 +3820,6 @@ ALTER TABLE ONLY solicitudes_solicitudes
 
 
 --
--- Name: solicitudes_solicitudes_miembros_que_votaron_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: sap
---
-
-ALTER TABLE ONLY solicitudes_solicitudes_miembros_que_votaron
-    ADD CONSTRAINT solicitudes_solicitudes_miembros_que_votaron_user_id_fkey FOREIGN KEY (user_id) REFERENCES auth_user(id) DEFERRABLE INITIALLY DEFERRED;
-
-
---
 -- Name: solicitudes_solicitudes_proyecto_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: sap
 --
 
@@ -3766,7 +3832,23 @@ ALTER TABLE ONLY solicitudes_solicitudes
 --
 
 ALTER TABLE ONLY solicitudes_solicitudes
-    ADD CONSTRAINT solicitudes_solicitudes_usuario_id_fkey FOREIGN KEY (usuario_id) REFERENCES usuarios_usuarios(id) DEFERRABLE INITIALLY DEFERRED;
+    ADD CONSTRAINT solicitudes_solicitudes_usuario_id_fkey FOREIGN KEY (usuario_id) REFERENCES usuarios_usuarios(user_id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: solicitudes_votos_miembro_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: sap
+--
+
+ALTER TABLE ONLY solicitudes_votos
+    ADD CONSTRAINT solicitudes_votos_miembro_id_fkey FOREIGN KEY (miembro_id) REFERENCES auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: solicitudes_votos_solicitud_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: sap
+--
+
+ALTER TABLE ONLY solicitudes_votos
+    ADD CONSTRAINT solicitudes_votos_solicitud_id_fkey FOREIGN KEY (solicitud_id) REFERENCES solicitudes_solicitudes(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --

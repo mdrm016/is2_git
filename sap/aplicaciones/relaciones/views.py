@@ -180,8 +180,9 @@ def eliminar_relacion(request, id_proyecto, id_fase, id_item, id_padre):
     for itemvalor in itemvalor1:
         if not (cargar_atributos(itemvalor.valor_id, itemvalor.nombre_atributo, itemvalor.orden, itemvalor.tabla_valor_nombre, id_proyecto, id_fase, int(item1.id))):
             estamosenproblemas.append(gkcmt)
-            
-    pasar_construccion(id_item)
+
+    if item1.estado!='Habilitado':            
+        pasar_construccion(id_item)
     
     item1.padre = 0
     item1.version = item1.version + 1
