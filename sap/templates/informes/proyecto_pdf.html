@@ -1,0 +1,125 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>Informe de Linea Base</title>
+<style type="text/css">
+            @page {
+                size: {{ pagesize }};
+                margin: 2cm;
+                @frame footer {
+                    -pdf-frame-content: footerContent;
+                    bottom: 0cm;
+                    margin-left: 10cm;
+                    margin-right: 9cm;
+                    height: 1cm;
+                }
+            }
+        </style>
+</head>
+<body>
+<h1 align="center">SISTEMA DE ADMINITRACION DE PROYECTOS</h1>
+<div>
+    <h2></h2>
+    <div>
+    	<strong><p align="right">{{ fecha }}</p></strong>
+    	<h1 align="center">Informe de Proyectos</h1>
+
+    	<h2>Proyectos en estado Inicializado: {{ cantidad_pi }}</h2>
+    	<div style="text-align:center;">
+    		<table border="1" style=" margin: 1px; padding: 1px;">
+						<tbody>
+						  	<tr class="active">
+						  		<td><p><h2><b>Nombre del Proyecto</b></h2></p></td>
+						  		<td><p><h2><b>Estado</b></h2></p></td>
+						  		<td><p><h2><b>Cant. Tipo de Item</b></h2></p></td>
+						  		<td><p><h2><b>Fases</b></h2></p></td>
+						  		<td><p><h2><b>Items</b></h2></p></td>
+						  		<td><p><h2><b>Linea Base</b></h2></p></td>
+						  		<td><p><h2><b>Cant. Participantes</b></h2></p></td>
+						  		<td><p><h2><b>Progreso</b></h2></p></td>
+						  	</tr>
+						  	
+						  	{% for proyecto, usuarios, fases, items, lineabase, tipoitem, progreso in lista_P_I %}
+								<tr class="active">
+									<td><p><big>{{ proyecto.nombre }}</big></p></td>
+									<td><p><big>{{ proyecto.estado }}</big></p></td>
+									<td><p><big>{{ tipoitem }}</big></p></td>
+									<td><p><big>{{ fases }}</big></p></td>
+									<td><p><big>{{ items }}</big></p></td>
+									<td><p><big>{{ lineabase }}</big></p></td>
+									<td><p><big>{{ usuarios }}</big></p></td>
+									<td><p><big>{{ progreso }}%</big></p></td>
+								</tr>
+							{% endfor %}
+						<tbody>
+					</table>
+					</div>
+					
+		<h2>Proyectos en estado En Construccion: {{ cantidad_pc }}</h2>
+    	<div style="text-align:center;">
+    		<table border="1" style=" margin: 1px; padding: 1px;">
+						<tbody>
+						  	<tr class="active">
+						  		<td><p><h2><b>Nombre del Proyecto</b></h2></p></td>
+						  		<td><p><h2><b>Estado</b></h2></p></td>
+						  		<td><p><h2><b>Cant. Tipo de Item</b></h2></p></td>
+						  		<td><p><h2><b>Fases</b></h2></p></td>
+						  		<td><p><h2><b>Items</b></h2></p></td>
+						  		<td><p><h2><b>Linea Base</b></h2></p></td>
+						  		<td><p><h2><b>Cant. Participantes</b></h2></p></td>
+						  		<td><p><h2><b>Progreso</b></h2></p></td>
+						  	</tr>
+						  	
+						  	{% for proyecto, usuarios, fases, items, lineabase, tipoitem, progreso in lista_P_C %}
+								<tr class="active">
+									<td><p><big>{{ proyecto.nombre }}</big></p></td>
+									<td><p><big>{{ proyecto.estado }}</big></p></td>
+									<td><p><big>{{ tipoitem }}</big></p></td>
+									<td><p><big>{{ fases }}</big></p></td>
+									<td><p><big>{{ items }}</big></p></td>
+									<td><p><big>{{ lineabase }}</big></p></td>
+									<td><p><big>{{ usuarios }}</big></p></td>
+									<td><p><big>{{ progreso }}%</big></p></td>
+								</tr>
+							{% endfor %}
+						<tbody>
+					</table>
+					</div>
+					
+		<h2>Proyectos en estado Finalizado: {{ cantidad_pf }}</h2>
+    	<div style="text-align:center;">
+    		<table border="1" style=" margin: 1px; padding: 1px;">
+						<tbody>
+						  	<tr class="active">
+						  		<td><p><h2><b>Nombre del Proyecto</b></h2></p></td>
+						  		<td><p><h2><b>Estado</b></h2></p></td>
+						  		<td><p><h2><b>Cant. Tipo de Item</b></h2></p></td>
+						  		<td><p><h2><b>Fases</b></h2></p></td>
+						  		<td><p><h2><b>Items</b></h2></p></td>
+						  		<td><p><h2><b>Linea Base</b></h2></p></td>
+						  		<td><p><h2><b>Cant. Participantes</b></h2></p></td>
+						  		<td><p><h2><b>Progreso</b></h2></p></td>
+						  	</tr>
+						  	
+						  	{% for proyecto, usuarios, fases, items, lineabase, tipoitem, progreso in lista_P_F %}
+								<tr class="active">
+									<td><p><big>{{ proyecto.nombre }}</big></p></td>
+									<td><p><big>{{ proyecto.estado }}</big></p></td>
+									<td><p><big>{{ tipoitem }}</big></p></td>
+									<td><p><big>{{ fases }}</big></p></td>
+									<td><p><big>{{ items }}</big></p></td>
+									<td><p><big>{{ lineabase }}</big></p></td>
+									<td><p><big>{{ usuarios }}</big></p></td>
+									<td><p><big>{{ progreso }}%</big></p></td>
+								</tr>
+							{% endfor %}
+						<tbody>
+					</table>
+					</div>
+    </div>
+</div>
+<div id="footerContent">
+	<big>Pagina <pdf:pagenumber></big>
+</div>
+</body>
+</html>

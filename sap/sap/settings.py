@@ -55,6 +55,7 @@ INSTALLED_APPS = (
     'aplicaciones.lineabase',
     'aplicaciones.solicitudes',
     'aplicaciones.comite',
+    'aplicaciones.informes',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -82,7 +83,7 @@ WSGI_APPLICATION = 'sap.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE':'django.db.backends.postgresql_psycopg2',
-        'NAME': 'sap_desarrollo',
+        'NAME': 'sap',
         'USER': 'sap',
         'PASSWORD': 'sap',
         'HOST': '127.0.0.1',
