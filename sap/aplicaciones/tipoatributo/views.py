@@ -33,8 +33,7 @@ def administrarTipoAtributo(request, id_proyecto):
     """
     
     proyecto = Proyectos.objects.get(id=id_proyecto)
-   #if request.user.has_perm('tipoatributo.administrar_tipos_de_atributo'):
-    if True:
+    if request.user.has_perm('tipoatributo.administrar_tipos_de_atributo'):
         atributos = TipoAtributo.objects.filter(is_active=True, proyecto=id_proyecto)
         busqueda = ''
         error=False
@@ -49,9 +48,9 @@ def administrarTipoAtributo(request, id_proyecto):
                 atributos = atributos.filter(qset).distinct()
                 if not atributos:
                     error = True
-                
-   # else:
-    #    raise PermissionDenied()
+
+    else:
+        raise PermissionDenied()
     logger.info('Listado de Tipos de Atributo de Proyecto %s, hecho por %s' % (proyecto.nombre, request.user.username))
     template_name='./tipoAtributo/tipo_atributos.html'
     return render(request, template_name, {'tipos_de_atributo': atributos, 'id_proyecto':id_proyecto, 'query':busqueda, 'error':error, 'proyecto':proyecto})
@@ -308,8 +307,8 @@ def importarTipoAtributo(request, id_proyecto, proyecto_select, id_tipo_atributo
     return render_to_response('tipoAtributo/alerta_tipo_atributo.html',ctx, context_instance=RequestContext(request))
 
     
-#@login_required(login_url='/login/')
-#@permission_required('tipoatributo.importar_tipo_de_atributo',raise_exception=True)
+@login_required(login_url='/login/')
+@permission_required('tipoatributo.importar_tipo_de_atributo',raise_exception=True)
 def listar_proyectos (request, id_proyecto):
     
     proyecto = Proyectos.objects.get(id=id_proyecto)
@@ -318,8 +317,8 @@ def listar_proyectos (request, id_proyecto):
     template_name = 'tipoAtributo/listar_Proyectos.html'
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
 
-#@login_required(login_url='/login/')
-#@permission_required('tipoatributo.importar_tipo_de_atributo',raise_exception=True)
+@login_required(login_url='/login/')
+@permission_required('tipoatributo.importar_tipo_de_atributo',raise_exception=True)
 def listar_tipoAtributo(request, id_proyecto, proyecto_select):
     
     proyecto = Proyectos.objects.get(id=id_proyecto)

@@ -1,0 +1,129 @@
+{% extends "base_general.html" %}
+
+{% block navegacion %}
+<nav class="navbar navbar-default">
+	<div class="navbar-header">
+		<a href="/" class="navbar-brand">SAP</a>
+	</div>
+
+	<div  class="collapse navbar-collapse navbar-ex1-collapse">
+		<ul class="nav navbar-nav">
+			<li><a href="/informes/">Informes</a></li>
+			<li class="active"><a href="/informes/proyectos">Informe de Proyectos</a></li>
+        </ul>
+
+		<ul class="nav navbar-nav navbar-right">
+			<li><a href="/informes/">Informes</a><li><li><a href="#">Acerca de</a></li>
+			<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Registro del Sistema<b class="caret"></b></a>
+				<ul class="dropdown-menu">
+				
+				</ul>
+			</li>
+		</ul>
+	</div>
+</nav>
+{% endblock %}
+
+{% block contenido %}
+<div class="row ">
+    	<strong><p align="right"><b>{{ fecha }}</b></p></strong>
+    	<h1 align="center">Informe de Proyectos</h1>
+
+    	<td><p><h2><span class="label label-default">Proyectos en estado Inicializado: {{ cantidad_pi }}</span></h2></h4></p></td>
+    	{% if lista_P_I %}
+    	<table class="table table-hover table-bordered table-condensed table-responsive">
+						<tbody>
+						  	<tr class="active">
+						  		<td><p><h4><b>Nombre del Proyecto</b></h4></p></td>
+						  		<td><p><h4><b>Estado</b></h2></p></td>
+						  		<td><p><h4><b>Cant. Tipo de Item</b></h2></p></td>
+						  		<td><p><h4><b>Fases</b></h2></p></td>
+						  		<td><p><h4><b>Items</b></h2></p></td>
+						  		<td><p><h4><b>Linea Base</b></h2></p></td>
+						  		<td><p><h4><b>Cant. Participantes</b></h2></p></td>
+						  		<td><p><h4><b>Progreso</b></h2></p></td>
+						  	</tr>
+						  	
+						  	{% for proyecto, usuarios, fases, items, lineabase, tipoitem, progreso in lista_P_I %}
+								<tr class="active">
+									<td><p><h4>{{ proyecto.nombre }}</h4></p></td>
+									<td><p><h4>{{ proyecto.estado }}</h4></p></td>
+									<td><p><h4>{{ tipoitem }}</h4></p></td>
+									<td><p><h4>{{ fases }}</h4></p></td>
+									<td><p><h4>{{ items }}</h4></p></td>
+									<td><p><h4>{{ lineabase }}</h4></p></td>
+									<td><p><h4>{{ usuarios }}</h4></p></td>
+									<td><p><h4>{{ progreso }}%</h4></p></td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				{% endif %}
+					
+		<td><p><h2><span class="label label-default">Proyectos en estado En Construccion: {{ cantidad_pc }}</span></h2></h4></p></td>
+    	{% if lista_P_C %}
+    	<table class="table table-hover table-bordered table-condensed table-responsive">
+						<tbody>
+						  	<tr class="active">
+						  		<td><p><h4><b>Nombre del Proyecto</b></h2></p></td>
+						  		<td><p><h4><b>Estado</b></h2></p></td>
+						  		<td><p><h4><b>Cant. Tipo de Item</b></h2></p></td>
+						  		<td><p><h4><b>Fases</b></h2></p></td>
+						  		<td><p><h4><b>Items</b></h2></p></td>
+						  		<td><p><h4><b>Linea Base</b></h2></p></td>
+						  		<td><p><h4><b>Cant. Participantes</b></h2></p></td>
+						  		<td><p><h4><b>Progreso</b></h2></p></td>
+						  	</tr>
+						  	
+						  	{% for proyecto, usuarios, fases, items, lineabase, tipoitem, progreso in lista_P_C %}
+								<tr class="active">
+									<td><p><h4>{{ proyecto.nombre }}</h4></p></td>
+									<td><p><h4>{{ proyecto.estado }}</h4></p></td>
+									<td><p><h4>{{ tipoitem }}</h4></p></td>
+									<td><p><h4>{{ fases }}</h4></p></td>
+									<td><p><h4>{{ items }}</h4></p></td>
+									<td><p><h4>{{ lineabase }}</h4></p></td>
+									<td><p><h4>{{ usuarios }}</h4></p></td>
+									<td><p><h4>{{ progreso }}%</h4></p></td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				{% endif %}
+					
+		<td><p><h2><span class="label label-default">Proyectos en estado Finalizado: {{ cantidad_pf }}</span></h2></h4></p></td>
+    	{% if lista_P_F %}
+    	<table class="table table-hover table-bordered table-condensed table-responsive">
+						<tbody>
+						  	<tr class="active">
+						  		<td><p><h4><b>Nombre del Proyecto</b></h2></p></td>
+						  		<td><p><h4><b>Estado</b></h2></p></td>
+						  		<td><p><h4><b>Cant. Tipo de Item</b></h2></p></td>
+						  		<td><p><h4><b>Fases</b></h2></p></td>
+						  		<td><p><h4><b>Items</b></h2></p></td>
+						  		<td><p><h4><b>Linea Base</b></h2></p></td>
+						  		<td><p><h4><b>Cant. Participantes</b></h2></p></td>
+						  		<td><p><h4><b>Progreso</b></h2></p></td>
+						  	</tr>
+						  	
+						  	{% for proyecto, usuarios, fases, items, lineabase, tipoitem, progreso in lista_P_F %}
+								<tr class="active">
+									<td><p><h4>{{ proyecto.nombre }}</h4></p></td>
+									<td><p><h4>{{ proyecto.estado }}</h4></p></td>
+									<td><p><h4>{{ tipoitem }}</h4></p></td>
+									<td><p><h4>{{ fases }}</h4></p></td>
+									<td><p><h4>{{ items }}</h4></p></td>
+									<td><p><h4>{{ lineabase }}</h4></p></td>
+									<td><p><h4>{{ usuarios }}</h4></p></td>
+									<td><p><h4>{{ progreso }}%</h4></p></td>
+								</tr>
+							{% endfor %}
+						</tbody>
+						</table>
+					{% endif %}
+</div>
+<div align="center">
+	<a class="btn btn-default" href="javascript:window.history.go(-1);"><span class="glyphicon glyphicon-arrow-left"></span> Volver</a>
+	<a href="/informes/proyectos_pdf/"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-tasks"></span> Generar PDF</button></a>
+</div>
+{% endblock %}

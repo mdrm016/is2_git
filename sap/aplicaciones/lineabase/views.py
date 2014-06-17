@@ -46,7 +46,7 @@ def administrarLineaBase(request, id_proyecto, id_fase):
         raise PermissionDenied()
         
 @login_required(login_url='/login/')
-#@permission_required('lineabase.generar_linea_base',raise_exception=True)
+@permission_required('lineabase.generar_linea_base',raise_exception=True)
 def generarLineaBase(request, id_proyecto, id_fase):
     """ Recibe un request, se verifica cual es el usuario registrado, el proyecto del cual se solicita,
     la fase en la que se esta trabajando, de acuerdo a si el rol del usuario esta o no relacionado con el proyecto
@@ -157,7 +157,7 @@ def consultar_lineabase (request, id_proyecto, id_fase, id_lineabase):
     return render_to_response(template_name, ctx, context_instance=RequestContext(request) )
 
 @login_required(login_url='/login/')
-#@permission_required('lineabase.generar_informe_linea_base',raise_exception=True)
+@permission_required('lineabase.generar_informe_linea_base',raise_exception=True)
 def informe_lineabase(request, id_proyecto, id_fase, id_lineabase):
     
     """ Recibe un request, el id de proyecto, el id de fase y el id de la linea base de la cual se generara el

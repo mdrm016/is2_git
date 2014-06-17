@@ -48,5 +48,8 @@ urlpatterns = patterns('',
     
     #""" Incluimos la urls.py de la aplicacion comite"""
     url(r'^', include('aplicaciones.comite.urls')),
+    
+    #""" Incluimos la urls.py de la aplicacion informes"""
+    url(r'^', include('aplicaciones.informes.urls')),
 
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
