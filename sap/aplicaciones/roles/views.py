@@ -7,7 +7,9 @@ from aplicaciones.fases.models import Fases
 from django.contrib.auth.models import Group, Permission, User
 from forms import RolForm, RolModificadoForm
 from django.http import HttpResponseRedirect
+import logging
 # Create your views here.
+logger = logging.getLogger(__name__)
 
 @login_required(login_url='/login/')
 def administrarRoles(request):
@@ -32,6 +34,7 @@ def administrarRoles(request):
             mis_roles.append(rol)
     if 'busqueda' in request.GET:
         busqueda = request.GET['busqueda']
+        logger.info('Busqueda de Rol con el patron %s, hecho por %s' % (busqueda, request.user.username))
         if not busqueda:
             error = True
             template_name= './Roles/roles.html'
@@ -53,7 +56,7 @@ def administrarRoles(request):
     roles = []
     if request.user.has_perm('roles.administrar_roles'):
         roles = Roles.objects.filter(is_active=True)
-    
+    logger.info('Administracion de Roles, hecho por %s' % request.user.username)
     template_name='./Roles/roles.html'
     return render(request, template_name, {'lista_roles': roles, 'mis_roles': mis_roles})
     
@@ -92,7 +95,8 @@ def rolNuevo(request):
             rol.proyecto = p
             rol.descripcion = descripcion
             rol.save()
-                    
+
+            logger.info('Creacion de Rol %s , hecho por %s' % (rol.name, request.user.username))
             template_name='./Roles/rolcreado.html'
             return render(request, template_name)
     else:
@@ -134,6 +138,7 @@ def asignarFaseRol(request, id_rol):
                 errors.append('Debe escoger al menos una Fase')
             if not errors:
                 rol.save()
+                logger.info('Asignacion de Fases a Rol %s, hecho por %s' % (rol.nombre, request.user.username))
                 template_name='./Roles/rol_alerta.html'
                 return render_to_response(template_name, {'mensaje': 'Las fases han sido asginadas correctamente'}, context_instance=RequestContext(request))
        
@@ -141,7 +146,7 @@ def asignarFaseRol(request, id_rol):
     fases_rol = []
     for fase  in rol.fases.all():
         fases_rol.append(fase.id)
-        
+
     template_name='./Roles/asignar_fase_rol.html'
     return render(request, template_name, {'Fases': fases, 'fases_rol':  fases_rol ,'errors': errors, 'id_rol':id_rol})
 
@@ -169,6 +174,7 @@ def desasignarFaseRol(request, id_rol):
             else:
                 errors.append('Debe escoger al menos una Fase')
             if not errors:
+                logger.info('Desasignacion de Fases de Rol %s, hecho por %s' % (rol.name, request.user.username))
                 rol.save()
                 template_name='./Roles/rol_alerta.html'
                 return render_to_response(template_name, {'mensaje': 'Las fases han sido desasginadas correctamente'}, context_instance=RequestContext(request))
@@ -217,7 +223,8 @@ def modificarRol(request, id_rol):
                     
             rol.descripcion = descripcion
             rol.save()
-                    
+
+            logger.info('Modificacion de Rol %s, hecho por %s' % (rol.name, request.user.username))
             template_name='./Roles/rol_modificado.html'
             return render(request, template_name)
     else:
@@ -255,7 +262,8 @@ def eliminarRol(request, id_rol):
     rol = Roles.objects.get(id=id_rol)
     rol.is_active = False
     rol.save()
-    
+
+    logger.info('Eliminacion logica de Rol %s, hecho por %s' % (rol.nombre, request.user.username))
     return HttpResponseRedirect('/adm_roles/')
 
 @login_required(login_url='/login/')
@@ -289,7 +297,8 @@ def consultarRol(request, id_rol):
             for rol in roles:
                 if rol.name == este_rol.name:
                     usuarios_con_rol.append(usuario)
-        
+
+    logger.info('Consulta de Rol %s, hecho por %s' % (rol.name, request.user.username))
     return render(request, template_name, {'rol' : rol, 'permisos':permisos, 'usuarios': usuarios_con_rol, 'fases':fases, 'proyecto': proyecto, 'id_rol':id_rol}) 
 
 @login_required(login_url='/login/')
@@ -318,7 +327,7 @@ def asignarRol(request, id_rol):
             eleccion_rol = Roles.objects.get(id=id_rol)
             usuario_elegido  = User.objects.get(username=eleccion)
             usuario_elegido.groups.add(eleccion_rol)
-            
+            logger.info('Asignacion del Rol %s al usuario %s, hecho por %s' % (eleccion_rol.name, usuario_elegido.username, request.user.username))
             return render(request, './Roles/rol_asignado.html')
     
     usuarios_sin_rol = []
@@ -365,7 +374,7 @@ def desasignarRol(request, id_rol):
             eleccion_rol = Roles.objects.get(id=id_rol)
             usuario_elegido  = User.objects.get(username=eleccion)
             usuario_elegido.groups.remove(eleccion_rol)
-            
+            logger.info('Desasignacion de Rol %s de usuario %s, hecho por %s' % (eleccion_rol.name, usuario_elegido.username, request.user.username))
             return render(request, './Roles/rol_desasignado.html')
     
     usuarios_con_rol = []
@@ -406,6 +415,7 @@ def asignarProyectoRol(request, id_rol):
                 errors.append('Debe escoger al menos un Proyecto')
             if not errors:
                 rol.save()
+                logger.info('Asignacion de Proyecto %s a Rol %s, hecho por %s' % (rol.name, proyecto.nombre, request.user.username))
                 template_name='./Roles/rol_alerta.html'
                 return render_to_response(template_name, {'mensaje': 'El proyecto ha sido asginado correctamente'}, context_instance=RequestContext(request))
        

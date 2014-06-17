@@ -18,8 +18,10 @@ from aplicaciones.tipoitem.views import ordenar_mantener
 from aplicaciones.relaciones.views import cargar_atributos, pasar_construccion
 from aplicaciones.solicitudes.models import Credenciales
 from aplicaciones.lineabase.models import LineaBase
+import logging
 
 # Create your views here.
+logger = logging.getLogger(__name__)
 
 def adm_items(request, id_proyecto, id_fase):
     
@@ -43,6 +45,7 @@ def adm_items(request, id_proyecto, id_fase):
     fase = Fases.objects.get(id=id_fase)
     lista_items = Items.objects.filter(proyecto_id=id_proyecto, fase_id=id_fase, is_active=True)
     mensaje = ''
+    logger.info('Administracion de items Fase %s Proyecto %s, hecho por %s', (fase.nombre, proyecto.nombre, request.user.username))
     ctx = {'lista_items': lista_items, 'mensaje': mensaje, 'id_proyecto':id_proyecto, 'id_fase': id_fase, 'proyecto':proyecto, 'fase':fase}
     template_name = './items/items.html'
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
@@ -72,20 +75,10 @@ def listar_tipo_item(request, id_proyecto, id_fase):
     else:
         lista_tipo_item = TipoItem.objects.filter(id_proyecto=id_proyecto, is_active=True)
     ctx={'lista_tipo_item':lista_tipo_item, 'id_proyecto':id_proyecto, 'id_fase':id_fase, 'proyecto':proyecto, 'fase':fase}
+    logger.info('Lita de tipos de Item del proyecto %s, hecho por %s' % proyecto.nombre, request.user.username)
     template_name = './items/listartipos.html'
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
 
-"""def elegir_tipo_item (request, id_proyecto, id_fase, id_tipoitem):
-    cantidad = len(ordenar_mantener (id_tipoitem))
-    lista_atributos = ordenar_mantener(id_tipoitem)
-    if request.method == 'POST':
-        for lista in lista_atributos:
-            atributo = TipoAtributo.objects.get(id=lista.id_atributo)
-            tipodato = atributo.tipo
-            if (tipodato=='Numerico'):
-                form = AtributoNumericoForm(request.POST)
-                if form.is_valid():
-"""
 def crear_item(request, id_proyecto, id_fase, id_tipoitem):
     """ Recibe un request, se verifica cual es el usuario registrado y el proyecto del cual se solicita,
     se obtiene la lista de fases con las que estan relacionados el usuario y el proyecto 
@@ -146,6 +139,7 @@ def crear_item(request, id_proyecto, id_fase, id_tipoitem):
                 fase.save()
 
             mensaje = 'Item creado con exito.'
+            logger.info('Creacion de Item %s de la fase % del proyecto %s, hecho por %s', (item.nombre, fase.nombre, proyecto.nombre, request.user.username))
             template_name='./items/itemalerta.html'
             ctx = {'mensaje': mensaje, 'id_proyecto':id_proyecto, 'id_fase': id_fase, 'proyecto':proyecto, 'fase':fase}
             return render_to_response(template_name, ctx, context_instance=RequestContext(request))
@@ -425,6 +419,7 @@ def cargar_valores(request, id_proyecto, id_fase, id_item):
             itemactual.estado = 'En Construccion'    
         itemactual.version = itemactual.version + 1
         itemactual.save()
+        logger.info('Carga de atributos de item %s de fase %s de proyecto %s, hecho por %s', (itemactual.nombre, fase.nombre, proyecto.nombre, request.user.username))
         mensaje = 'Atributos modificados con extito.'
         template_name='./items/itemalerta.html'
         ctx = {'mensaje': mensaje, 'id_proyecto':id_proyecto, 'id_fase': id_fase, 'proyecto':proyecto, 'fase':fase}
@@ -585,7 +580,8 @@ def listar_versiones(request, id_proyecto, id_fase, id_item):
         while i<versiones:
             lista_versiones.append(i)
             i = i+1
-             
+
+    logger.info('Lista de las versiones del item % de la fase %s del proyecto %s, hecho por %s', (itemactual.nombre, fase.nombre, proyecto.nombre, request.user.username))
     ctx={'lista_versiones':lista_versiones, 'id_proyecto':id_proyecto, 'id_fase':id_fase, 'id_item': id_item, 'proyecto':proyecto, 'fase':fase, 'item':itemactual}
     template_name = './items/listarversiones.html'
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
@@ -675,6 +671,7 @@ def consultar_version(request, id_proyecto, id_fase, id_item, version):
             padre = False
     else:
         padre = False
+    logger.info('COnsulta de version del item %s de la fase %s del proyecto %s, hecho por %s', (item.nombre, fase.nombre, proyecto.nombre, request.user.username))
     template_name='./items/mostraratributos.html'
     return render(request, template_name, {'id_proyecto':id_proyecto, 'id_fase': id_fase, 'lista_valores': lista_valores,'id_item': id_item, 'padre':padre, 'proyecto':proyecto, 'fase':fase})
 
@@ -728,6 +725,7 @@ def revertir_version(request, id_proyecto, id_fase, id_item, version):
     if item.estado=='Terminado':
         item.estado = 'En Construccion'
     item.save()
+    logger.info('Reversion de item %s de la fase %s del proyecto %s, hecho por %s' % (item.nombre, fase.nombre, proyecto.nombre, request.user.username))
     mensaje = 'Version Revertida con exito.'
     template_name='./items/itemalerta.html'
     ctx = {'mensaje': mensaje, 'id_proyecto':id_proyecto, 'id_fase': id_fase, 'proyecto':proyecto, 'fase':fase}
@@ -869,6 +867,7 @@ def modificar_item(request, id_proyecto, id_fase, id_item):
                 item.estado = estado
                 item.save()
                 mensaje="Item modificado exitosamente"
+                logger.info('Modificacion de item %s de la fase %s del proyecto %s, hecho por %s', (item.nombre, fase.nombre, proyecto.nombre, request.user.username))
                 ctx = {'mensaje':mensaje, 'id_proyecto': id_proyecto, 'id_fase':id_fase, 'id_item': id_item, 'proyecto':proyecto, 'fase':fase}
                 template_name='./items/itemalerta.html'
                 return render_to_response(template_name, ctx, context_instance=RequestContext(request))
@@ -905,6 +904,7 @@ def consultar_item(request, id_proyecto, id_fase, id_item):
     # conseguir el contexto de las fases y sus estados
     #fases = Fases.objects.filter(id_proyecto = id_proyecto)
     ctx = {'item':item}
+    logger.info('Consulta de item %s de la fase %s del proyecto %s, hecho por %s' % (item.nombre, fase.nombre, proyecto.nombre, request.user.username))
     template_name = './items/consultaritem.html'
     return render(request, template_name, {'item': item, 'id_proyecto': id_proyecto, 'fase': fase, 'id_fase': id_fase, 'id_item': id_item, 'proyecto':proyecto, 'fase':fase})
 
@@ -929,6 +929,7 @@ def consultar_enrevision(request, id_proyecto, id_fase, id_item):
     # conseguir el contexto de las fases y sus estados
     #fases = Fases.objects.filter(id_proyecto = id_proyecto)
     ctx = {'item':item}
+    logger.info('Consulta de item %s en revision de fase %s de proyecto %s, hecho por %s' % (item.nombre, fase.nombre, proyecto.nombre, request.user.username))
     template_name = './items/consultarenrevision.html'
     return render(request, template_name, {'item': item, 'id_proyecto': id_proyecto, 'fase': fase, 'id_fase': id_fase, 'id_item': id_item, 'proyecto':proyecto, 'fase':fase})
 
@@ -1023,6 +1024,7 @@ def consultar_atributos(request, id_proyecto, id_fase, id_item):
             valorfuturo.valor_fecha = ""
             
             lista_valores.append(valorfuturo)
+    logger.info('Consulta de atributos de item % de la fase %s del proyecto %s, hecho por %s' % (itemactual.nombre, fase.nombre, proyecto.nombre, request.user.username))
     template_name='./items/consultaratributos.html'
     return render(request, template_name, {'id_proyecto':id_proyecto, 'id_fase': id_fase, 'lista_valores': lista_valores, 'id_item': id_item, 'proyecto':proyecto, 'fase':fase})        
 
@@ -1074,6 +1076,7 @@ def eliminar_item(request, id_proyecto, id_fase, id_item):
             
         item.is_active = False
         item.save()
+        logger.info('ELiminacion logica de item %s de la fase %s del proyecto %s, hecho por %s' % (item.nombre, fase.nombre, proyecto.nombre, request.user.username))
         mensaje ='Eliminacion exitosa.'
     template_name = './items/itemalerta.html'
     return render(request, template_name, {'id_proyecto':id_proyecto, 'id_fase': id_fase, 'mensaje': mensaje, 'id_item': id_item, 'proyecto':proyecto, 'fase':fase})
@@ -1101,6 +1104,7 @@ def listar_eliminados(request, id_proyecto, id_fase):
         template_name = './items.itemalerta.html'
         return render(request, template_name, {'id_proyecto':id_proyecto, 'id_fase': id_fase, 'mensaje': mensaje, 'proyecto':proyecto, 'fase':fase})
     lista_eliminados = Items.objects.filter(proyecto_id=id_proyecto, fase_id=id_fase, is_active=False)
+    logger.info('Lista de items eliminados de Fase %s de proyecto %s, hecho por %s' % (fase.nombre, proyecto, request.user.username))
     template_name='./items/listareliminados.html'
     return render(request, template_name, {'id_proyecto':id_proyecto, 'id_fase': id_fase, 'lista_eliminados': lista_eliminados, 'proyecto':proyecto, 'fase':fase})
 
@@ -1163,6 +1167,7 @@ def revivir_eliminado(request, id_proyecto, id_fase, id_item, version):
     item.save()
     
     mensaje = 'Item revivido con exito.'
+    logger.info('Recuperacion(Revivir) de item %s de la fase %s del proyecto %s, hecho por %s' % (item.nombre, fase.nombre, proyecto.nombre, request.user.username))
     template_name='./items/itemalerta.html'
     ctx = {'mensaje': mensaje, 'id_proyecto':id_proyecto, 'id_fase': id_fase, 'proyecto':proyecto, 'fase':fase}
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
@@ -1199,6 +1204,7 @@ def consultar_eliminado(request, id_proyecto, id_fase, id_item):
             lista_versiones.append(i)
             i = i+1
         lista_versiones.append(i)
+    logger.info('Consulta de item %s eliminado de la fase %s del proyecto %s, hecho por %s', (itemactual.nombre, fase.nombre, proyecto.nombre, request.user.username))
     ctx={'lista_versiones':lista_versiones, 'id_proyecto':id_proyecto, 'id_fase':id_fase, 'id_item': id_item, 'proyecto':proyecto, 'fase':fase}
     template_name = './items/eliminadoversiones.html'
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
@@ -1288,6 +1294,7 @@ def consultar_version_eliminado(request, id_proyecto, id_fase, id_item, version)
     else:
         padre = False
 
+    logger.info('Consulta de version de item %s eliminado de la fase %s del proyecto %s, hecho por %s' % (item.nombre, fase.nombre, proyecto.nombre, request.user.username))
     template_name='./items/mostrareliminados.html'
     return render(request, template_name, {'id_proyecto':id_proyecto, 'id_fase': id_fase, 'lista_valores': lista_valores, 'id_item': id_item, 'padre': padre, 'proyecto':proyecto, 'fase':fase})
 
@@ -1324,6 +1331,7 @@ def consultar_relaciones(request, id_proyecto, id_fase, id_item):
         padre = False
     
     ctx = {'id_proyecto':id_proyecto, 'id_fase': id_fase, 'id_item': id_item, 'proyecto':proyecto, 'fase':fase, 'padre': padre}
+    logger.info('Consulta de relaciones de item %s de la fase %s del proyecto %s, hecho por %s' % (item.nombre, fase.nombre, proyecto.nombre, request.user.username))
     template_name = './items/relaciones.html'
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
  
@@ -1371,7 +1379,8 @@ def costo_impacto(request, id_proyecto, id_fase, id_item):
     
     """
     item = Items.objects.get(id=id_item)
-    
+    fase = Fases.objects.get(id=id_fase)
+    proyecto = Proyectos.objects.get(id=id_proyecto)
     imonetario = impacto_monetario(id_item)
     itemporal = impacto_temporal(id_item)
     items_afectado = calcular_items_afectados(id_item)
@@ -1381,6 +1390,7 @@ def costo_impacto(request, id_proyecto, id_fase, id_item):
             items_afectados.append(items_af)
     
     ctx = {'id_proyecto':id_proyecto, 'id_fase': id_fase, 'id_item': id_item, 'impacto_monetario': imonetario, 'impacto_temporal': itemporal, 'items_afectados': items_afectados}
+    logger.info('Calculo del impacto del item %s de la fase %s del proyecto %s, hecho por %s' % (item.nombre, fase.nombre, proyecto.nombre, request.user.username))
     template_name = './items/impacto.html'
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
 
@@ -1498,6 +1508,7 @@ def finrevision(request, id_proyecto, id_fase, id_item):
                     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
                 else: 
                     mensaje = 'Revision Finalizada.'
+                    logger.info('Revision finalizada de item %s de la fase %s del proyecto %s, hecho por %s' % (item.nombre, fase.nombre, proyecto.nombre, request.user.username))
                     ctx = {'lista_items': lista_items, 'mensaje': mensaje, 'id_proyecto':id_proyecto, 'id_fase': id_fase, 'proyecto':proyecto, 'fase':fase}
                     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
         item.estado = 'Bloqueado'
@@ -1513,5 +1524,6 @@ def finrevision(request, id_proyecto, id_fase, id_item):
             item.estado = 'Validado'
             item.save()
     mensaje = 'Revision Finalizada.'
+    logger.info('Revision finalizada de item %s de la fase %s del proyecto %s, hecho por %s' % (item.nombre, fase.nombre, proyecto.nombre, request.user.username))
     ctx = {'lista_items': lista_items, 'mensaje': mensaje, 'id_proyecto':id_proyecto, 'id_fase': id_fase, 'proyecto':proyecto, 'fase':fase}
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))

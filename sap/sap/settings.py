@@ -7,7 +7,7 @@ https://docs.djangoproject.com/en/1.6/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.6/ref/settings/
 """
-
+from __future__ import absolute_import
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
@@ -15,6 +15,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 from unipath import Path
 RUTA_PROYECTO = Path(__file__).ancestor(2)
 
+
+CELERY_RESULT_BACKEND='djcelery.backends.database:DatabaseBackend'
+CELERY_BEAT_SCHEDULER = 'djcelery.schedulers.DatabaseScheduler'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
@@ -35,6 +38,8 @@ ALLOWED_HOSTS = []
 MEDIA_ROOT = Path(__file__).ancestor(2) + '/static/uploads/'
 MEDIA_URL = '/uploads/'
 
+#Ruta de configuraciones de Celery
+BROKER_URL = "amqp://sap:sap@localhost:5672/sap"
 
 INSTALLED_APPS = (
     'django.contrib.admin',
@@ -43,7 +48,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django_cron',
+    'djcelery',
     'aplicaciones.usuarios',
     'aplicaciones.roles',
     'aplicaciones.proyectos',
@@ -67,14 +72,10 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-CRON_CLASSES = [
-    'aplicaciones.solicitudes.cron.CronExpirador'
-]
 
 ROOT_URLCONF = 'sap.urls'
 
 WSGI_APPLICATION = 'sap.wsgi.application'
-
 
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
@@ -122,3 +123,33 @@ TEMPLATE_DIRS = (
 """ Esta variable nos permite identificar o definir el perfil de los usuarios """
 AUTH_PROFILE_MODULE = 'usuarios.Usuarios'
 
+""" Esta variable traza la ruta del directorio donde se almacenaran los logs del sistema"""
+RUTA_LOGS = Path(__file__).ancestor(2) + "/static/logs/"
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': True,
+    'formatters': {
+        'verbose': {
+            'format': '%(levelname)s %(asctime)s %(process)d %(message)s',
+            'datefmt' : "%d/%b/%Y %H:%M:%S",
+
+        },
+    },
+    'handlers': {
+        'applogfile': {
+            'level':'INFO',
+            'class':'logging.handlers.RotatingFileHandler',
+            'filename': os.path.join(RUTA_LOGS, 'sap.log'),
+            'maxBytes': 1024*1024*15, # 15MB
+            'backupCount': 1000,
+            'formatter': 'verbose',
+        },
+    },
+    'loggers': {
+        'aplicaciones': {
+            'handlers': ['applogfile',],
+            'level': 'INFO',
+        },
+    },
+}

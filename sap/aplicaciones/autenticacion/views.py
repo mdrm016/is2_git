@@ -6,6 +6,9 @@ from django.contrib.auth import login, logout, authenticate
 from django.http import HttpResponseRedirect
 from aplicaciones.proyectos.models import Proyectos
 from django.contrib.auth.models import User
+import logging
+
+logger = logging.getLogger(__name__)
 
 class Autenticacion(TemplateView):
     """"Verificacion de autenticacion de usuario
@@ -56,6 +59,7 @@ def login_view(request):
                 usuario = authenticate(username=username, password=password)
                 if usuario is not None and usuario.is_active:
                     login(request, usuario)
+                    logger.info('Login de Usuario %s' % request.user.username)
                     return HttpResponseRedirect('/')
                 else:
                     mensaje = 'Disculpa, el Nombre de Usuario o la Clave no coinciden.'
@@ -73,5 +77,6 @@ def logout_view (request):
     @author: Marcelo Denis
     """  
     logout(request)
+    logger.info('Logout de Usuario %s' % request.user.username)
     return HttpResponseRedirect('/')
               

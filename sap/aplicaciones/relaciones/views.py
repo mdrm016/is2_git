@@ -15,6 +15,9 @@ from django.db.models import Q
 from aplicaciones.tipoitem.views import ordenar_mantener
 from .models import Relaciones
 from aplicaciones.solicitudes.models import Credenciales
+import logging
+
+logger = logging.getLogger(__name__)
 
 # Create your views here.
 def adm_relaciones(request, id_proyecto, id_fase, id_item):
@@ -53,7 +56,7 @@ def adm_relaciones(request, id_proyecto, id_fase, id_item):
         padre = Items.objects.get(id=item.padre)
     except Items.DoesNotExist:
         padre = False
-
+    logger.info('Administracion de Relaciones del item %s, hecho por %s' % (item.nombre, request.user.username))
     ctx = {'id_proyecto':id_proyecto, 'id_fase': id_fase, 'id_item': id_item, 'padre': padre, 'proyecto':proyecto, 'fase':fase}
     template_name = './relaciones/relaciones.html'
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
@@ -99,6 +102,7 @@ def listar_items(request, id_proyecto, id_fase, id_item):
         lista_items_ant = Items.objects.filter(proyecto_id=id_proyecto, fase_id=faseanterior.id, is_active=True, estado='Bloqueado')
     else:
         lista_items_ant = False
+    logger.info('Lista de items relacionados con el item %s, hecho por %s' % (item.nombre, request.user.username))
     ctx = {'lista_items_ant': lista_items_ant, 'lista_items': lista_items, 'id_proyecto': id_proyecto, 'id_fase': id_fase, 'id_item': id_item}
     template_name = './relaciones/relacionnueva.html'
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
@@ -145,6 +149,7 @@ def crear_relacion(request, id_proyecto, id_fase, id_item, id_importar):
     item.version = item.version + 1
     item.save()
     mensaje = 'La relacion ha sido creada con exito.'
+    logger.info('Crear relacion de item %s con el item %s, hecho por %s' % (item.nombre, itemrelacionado.nombre, request.user.username))
         
     ctx = {'mensaje': mensaje, 'id_proyecto': id_proyecto, 'id_fase': id_fase, 'id_item': id_item}
     template_name = './relaciones/relacionalerta.html'
@@ -187,7 +192,8 @@ def eliminar_relacion(request, id_proyecto, id_fase, id_item, id_padre):
     item1.padre = 0
     item1.version = item1.version + 1
     item1.save()
-    
+
+    logger.info('Eliminacion de la relacion entre el item %s y el item %s, hecho por %s' % (item1.nombre, item1.padre, request.user.username))
     mensaje = 'Relacion eliminada con exito.'
     ctx = {'mensaje': mensaje, 'id_proyecto': id_proyecto, 'id_fase': id_fase, 'id_item': id_item}
     template_name = './relaciones/relacionalerta.html'
