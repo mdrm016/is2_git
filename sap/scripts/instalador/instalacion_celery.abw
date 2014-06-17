@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE abiword PUBLIC "-//ABISOURCE//DTD AWML 1.0 Strict//EN" "http://www.abisource.com/awml.dtd">
+<abiword template="false" xmlns:ct="http://www.abisource.com/changetracking.dtd" xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:math="http://www.w3.org/1998/Math/MathML" xid-max="33" xmlns:dc="http://purl.org/dc/elements/1.1/" styles="unlocked" fileformat="1.0" xmlns:svg="http://www.w3.org/2000/svg" xmlns:awml="http://www.abisource.com/awml.dtd" xmlns="http://www.abisource.com/awml.dtd" xmlns:xlink="http://www.w3.org/1999/xlink" version="0.99.2" xml:space="preserve" props="dom-dir:ltr; document-footnote-restart-section:0; document-endnote-type:numeric; document-endnote-place-enddoc:1; document-endnote-initial:1; lang:en-US; document-endnote-restart-section:0; document-footnote-restart-page:0; document-footnote-type:numeric; document-footnote-initial:1; document-endnote-place-endsection:0">
+<!-- ======================================================================== -->
+<!-- This file is an AbiWord document.                                        -->
+<!-- AbiWord is a free, Open Source word processor.                           -->
+<!-- More information about AbiWord is available at http://www.abisource.com/ -->
+<!-- You should not edit this file by hand.                                   -->
+<!-- ======================================================================== -->
+
+<metadata>
+<m key="abiword.date_last_changed">Tue Jun 17 15:02:04 2014
+</m>
+<m key="abiword.generator">AbiWord</m>
+<m key="dc.creator">eduardo</m>
+<m key="dc.date">Sat Jun 14 15:22:55 2014
+</m>
+<m key="dc.format">application/x-abiword</m>
+</metadata>
+<rdf>
+</rdf>
+<history version="7" edit-time="4919" last-saved="1403031724" uid="e1d68128-f3f6-11e3-8d8d-f3430e85006d">
+<version id="1" started="1402773775" uid="4963b25a-f3f9-11e3-8d8d-f3430e85006d" auto="0" top-xid="23"/>
+<version id="4" started="1402783771" uid="75ebc624-f416-11e3-9130-ce6e46195ce3" auto="0" top-xid="24"/>
+<version id="7" started="1403030481" uid="defb00d4-f651-11e3-9fa3-88130490c9e4" auto="0" top-xid="32"/>
+</history>
+<styles>
+<s type="P" name="Normal" followedby="Current Settings" props="font-family:Times New Roman; margin-top:0pt; color:000000; margin-left:0pt; widows:2; font-style:normal; text-indent:0in; text-position:normal; margin-right:0pt; text-decoration:none; bgcolor:transparent; line-height:1.0; font-size:12pt; margin-bottom:0pt; font-variant:normal; font-weight:normal; text-align:left; font-stretch:normal"/>
+</styles>
+<pagesize pagetype="Letter" orientation="portrait" width="8.500000" height="11.000000" units="in" page-scale="1.000000"/>
+<section xid="2" props="page-margin-footer:0.5in; page-margin-header:0.5in">
+<p style="Normal" xid="3">Comandos utilizados para instalar Celery<c></c></p>
+<p style="Normal" xid="1" props="text-align:left; dom-dir:ltr">#instalamos Erlnag, tienen que fijarse en “paquetes”</p>
+<p style="Normal" xid="5" props="text-align:left; dom-dir:ltr"><c></c>sudo dpkg -i erlang-solutions_1.0_all.deb</p>
+<p style="Normal" xid="4" props="text-align:left; dom-dir:ltr">sudo  apt-get update <c></c></p>
+<p style="Normal" xid="7" props="text-align:left; dom-dir:ltr">sudo apt-get install erlang<c></c></p>
+<p style="Normal" xid="8" props="text-align:left; dom-dir:ltr"><c></c><c></c></p>
+<p style="Normal" xid="9" props="text-align:left; dom-dir:ltr">#instalamos  RabbitMQ-Server, t<c props="font-family:Times New Roman; font-size:12pt; color:000000; text-decoration:none; text-position:normal; font-weight:normal; font-style:normal; lang:en-US">ienen que fijarse en “paquetes”</c></p>
+<p style="Normal" xid="10" props="text-align:left; dom-dir:ltr">sudo dpkg -i rabbitmq-server_3.3.2-1_all.deb<c></c></p>
+<p style="Normal" xid="12" props="text-align:left; dom-dir:ltr"><c></c>sudo apt-get -f install rabbitmq-server -y</p>
+<p style="Normal" xid="13" props="text-align:left; dom-dir:ltr">sudo apt-get -f install<c></c></p>
+<p style="Normal" xid="15" props="text-align:left; dom-dir:ltr"><c></c><c></c></p>
+<p style="Normal" xid="16" props="text-align:left; dom-dir:ltr">#instalamos Celery<c></c></p>
+<p style="Normal" xid="17" props="text-align:left; dom-dir:ltr">sudo pip install celery<c></c></p>
+<p style="Normal" xid="18" props="text-align:left; dom-dir:ltr"><c></c><c></c></p>
+<p style="Normal" xid="20" props="text-align:left; dom-dir:ltr">#instalamos Django - Celery<c></c></p>
+<p style="Normal" xid="21" props="text-align:left; dom-dir:ltr">sudo pip install django-celery<c></c></p>
+<p style="Normal" xid="22" props="text-align:left; dom-dir:ltr"><c></c><c></c></p>
+<p style="Normal" xid="23" props="text-align:left; dom-dir:ltr">HASTA ACA LA PARTE DE INSTALACION DESPUES HAY QUE HACER SYNCDB PARA LA TABLA DEL CELERY EN LA BD</p>
+<p style="Normal" xid="24" props="text-align:left; dom-dir:ltr">Bueno, a partir de aca se tienen que abrir 2 terminales aparte con path en el manage.py del directorio del proyecto</p>
+<p style="Normal" xid="25" props="text-align:left; dom-dir:ltr"><c></c><c></c></p>
+<p style="Normal" xid="26" props="text-align:left; dom-dir:ltr">Terminal 1 (el &amp; es para que corra en segundo plano</p>
+<p style="Normal" xid="27" props="text-align:left; dom-dir:ltr">python manage.py celeryd --verbosity=2 --loglevel=DEBUG &amp;</p>
+<p style="Normal" xid="28" props="text-align:left; dom-dir:ltr"><c></c><c></c></p>
+<p style="Normal" xid="29" props="text-align:left; dom-dir:ltr">Terminal 2<c props="font-family:Times New Roman; font-size:12pt; color:000000; text-decoration:none; text-position:normal; font-weight:normal; font-style:normal; lang:en-US">(el &amp; es para que corra en segundo plano</c></p>
+<p style="Normal" xid="30" props="text-align:left; dom-dir:ltr">python manage.py celerybeat --verbosity=2 --loglevel=DEBUG &amp;</p>
+<p style="Normal" xid="31" props="text-align:left; dom-dir:ltr"><c></c><c></c></p>
+<p style="Normal" xid="32" props="text-align:left; dom-dir:ltr">y finalmente, hacer correr el servidor, apache o el de Django</p>
+<p style="Normal" xid="19" props="text-align:left; dom-dir:ltr"><c></c></p>
+</section>
+</abiword>
