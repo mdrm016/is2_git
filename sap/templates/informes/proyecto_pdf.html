@@ -25,6 +25,7 @@
     	<h1 align="center">Informe de Proyectos</h1>
 
     	<h2>Proyectos en estado Inicializado: {{ cantidad_pi }}</h2>
+    	{% if lista_P_I %}
     	<div style="text-align:center;">
     		<table border="1" style=" margin: 1px; padding: 1px;">
 						<tbody>
@@ -54,8 +55,10 @@
 						<tbody>
 					</table>
 					</div>
+				{% endif %}
 					
 		<h2>Proyectos en estado En Construccion: {{ cantidad_pc }}</h2>
+		{% if lista_P_C %}
     	<div style="text-align:center;">
     		<table border="1" style=" margin: 1px; padding: 1px;">
 						<tbody>
@@ -85,8 +88,10 @@
 						<tbody>
 					</table>
 					</div>
+				{% endif %}
 					
 		<h2>Proyectos en estado Finalizado: {{ cantidad_pf }}</h2>
+		{% if lista_P_F %}
     	<div style="text-align:center;">
     		<table border="1" style=" margin: 1px; padding: 1px;">
 						<tbody>
@@ -116,6 +121,7 @@
 						<tbody>
 					</table>
 					</div>
+				{% endif %}
     </div>
 </div>
 <div id="footerContent">
