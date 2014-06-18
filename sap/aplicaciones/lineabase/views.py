@@ -16,6 +16,9 @@ from django.template import RequestContext
 from django.template.loader import render_to_string
 from django.conf import settings
 from aplicaciones.solicitudes.models import Credenciales
+import logging
+
+logger = logging.getLogger(__name__)
 
 # Create your views here.
 def administrarLineaBase(request, id_proyecto, id_fase):
@@ -35,6 +38,7 @@ def administrarLineaBase(request, id_proyecto, id_fase):
     proyecto = Proyectos.objects.get(id=id_proyecto)
     fase = Fases.objects.get(id=id_fase)
     if request.user.has_perm('roles.administrar_roles'):
+        logger.info('Administracion de Lineas Base de fase % del proyecto %s, hecho por %s' % (fase.nombre, proyecto.nombre, request.user.username))
         lineasbase = LineaBase.objects.filter(is_active=True, proyecto=id_proyecto, fase=id_fase)
         template_name='./lineaBase/lineas_base.html'
         return render(request, template_name, {'lista_lineas_base': lineasbase, 'proyecto': proyecto, 'fase': fase})
@@ -89,6 +93,7 @@ def generarLineaBase(request, id_proyecto, id_fase):
                     item.estado = 'Bloqueado'
                     item.save()
                 linea_base.save()
+                logger.info('Generacion de Linea Base %s de la fase % del proyecto %s, hecho por %s' % (linea_base.numero, fase.nombre, proyecto.nombre, request.user.username))
                 mensaje="Linea Base creada exitosamente"
                 ctx = {'mensaje':mensaje, 'proyecto':proyecto, 'fase':fase}
                 return render_to_response('lineaBase/linea_base_alerta.html',ctx, context_instance=RequestContext(request))
@@ -146,6 +151,7 @@ def consultar_lineabase (request, id_proyecto, id_fase, id_lineabase):
     fase = Fases.objects.get(id=id_fase)
     lineabase = LineaBase.objects.get(id=id_lineabase)
     items = lineabase.items.all()
+    logger.info('Consulta de Linea Base % de la fase %s del proyecto %s, hecho por %s' % (lineabase.numero, fase.nombre, proyecto.nombre, request.user.username))
     template_name='lineaBase/consultarlineabase.html'
     ctx = {'lineabase':lineabase, 'items':items, 'proyecto':proyecto, 'fase':fase}
     return render_to_response(template_name, ctx, context_instance=RequestContext(request) )
@@ -176,11 +182,13 @@ def informe_lineabase(request, id_proyecto, id_fase, id_lineabase):
     @author: Marcelo Denis.
     
     """
-    
+    proyecto = Proyectos.objects.get(id=id_proyecto)
+    fase = Fases.objects.get(id=id_fase)
     lineabase=LineaBase.objects.get(id=id_lineabase)
     filename = 'linea_Base_%s.pdf' % lineabase.numero
     ctx ={'pagesize':'A4', 'lineabase':lineabase, 'fecha':datetime.now(), 'items':lineabase.items.all()}
     html = render_to_string('lineaBase/informelineabase.html', ctx, context_instance=RequestContext(request))
+    logger.info('Generacion de  informe de linea base %s de la fase %s del proyecto %s, hecho por %s' % (lineabase.numero, fase.nombre, proyecto.nombre, request.user.username))
     return generar_pdf(html, filename)
 
 def generar_pdf(html, filename):
@@ -244,6 +252,7 @@ def reactivarLineaBase(request, id_proyecto, id_fase, id_lineabase):
         item.save()
     lb.is_active=True
     lb.save()
+    logger.info('Reactivacion de Linea Base %s de la fase %s del proyecto %s, hecho por %s' % (lb.numero, fase.nombre, proyecto.nombre, request.user.username))
     mensaje="Linea Base creada exitosamente"
     ctx = {'mensaje':mensaje, 'proyecto':proyecto, 'fase':fase}
     return render_to_response('lineaBase/linea_base_alerta.html',ctx, context_instance=RequestContext(request))

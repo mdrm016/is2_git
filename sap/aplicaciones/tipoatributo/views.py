@@ -8,9 +8,12 @@ from aplicaciones.proyectos.models import Proyectos
 from aplicaciones.tipoitem.models import TipoItem
 from django.contrib.auth.decorators import login_required, permission_required
 from django.db.models import Q
-from django.core.exceptions import PermissionDenied 
+from django.core.exceptions import PermissionDenied
+import logging
 
 # Create your views here.
+logger = logging.getLogger(__name__)
+
 @login_required(login_url='/login/')
 def administrarTipoAtributo(request, id_proyecto):
     """ Recibe un request, obtiene la lista de todos los Tipos de Atributo de un Proyecto y 
@@ -45,10 +48,10 @@ def administrarTipoAtributo(request, id_proyecto):
                 atributos = atributos.filter(qset).distinct()
                 if not atributos:
                     error = True
-                
+
     else:
         raise PermissionDenied()
-    
+    logger.info('Listado de Tipos de Atributo de Proyecto %s, hecho por %s' % (proyecto.nombre, request.user.username))
     template_name='./tipoAtributo/tipo_atributos.html'
     return render(request, template_name, {'tipos_de_atributo': atributos, 'id_proyecto':id_proyecto, 'query':busqueda, 'error':error, 'proyecto':proyecto})
 
@@ -111,9 +114,8 @@ def tipoAtributoNuevo(request, id_proyecto):
                 tipo_atributo.descripcion = descripcion
                 tipo_atributo.save()
                 tipo_atributo.proyecto.add(id_proyecto)
-                
-            
-                        
+
+                logger.info('Creacion de Tipos de Atributo %s de Proyecto %s, hecho por %s' % (tipo_atributo.nombre, proyecto.nombre, request.user.username))
                 template_name='./tipoAtributo/tipo_atributo_creado.html'
                 return render(request, template_name, {'id_proyecto': id_proyecto, 'proyecto':proyecto})
     else: 
@@ -186,7 +188,7 @@ def modificarTipoAtributo(request, id_proyecto, id_tipo_atributo):
                 tipo_atributo.save()
                 
                 
-                        
+                logger.info('Modificacion de datos de tipo de atributo %s de proyecto %s, hecho por %s' % (tipo_atributo.nombre, proyecto.nombre, request.user.username))
                 template_name='./tipoAtributo/tipo_atributo_modificado.html'
                 return render(request, template_name, {'id_proyecto': id_proyecto, 'proyecto':proyecto})
     else: 
@@ -234,6 +236,7 @@ def eliminarTipoAtributo(request, id_proyecto, id_tipo_atributo):
         if len(tipo_atributo.proyecto.all()) <= 1: 
             tipo_atributo.is_active = False
             tipo_atributo.save()
+            logger.info('Eliminacion de tipo de atributo %s de proyecto %s, hecho por %s' % (tipo_atributo.nombre, proyecto.nombre, request.user.username))
         else:
             tipo_atributo.proyecto.remove(id_proyecto)
     else:
@@ -265,6 +268,7 @@ def consultarTipoAtributo(request, id_proyecto, id_tipo_atributo):
     proyecto = Proyectos.objects.get(id=id_proyecto)
     template_name='./tipoAtributo/consultar_tipo_atributo.html'
     tipo_atributo = TipoAtributo.objects.get(id = id_tipo_atributo)
+    logger.info('Consulta de tipo de atributo %s de proyecto %s, hecho por %s' % (tipo_atributo.nombre, proyecto.nombre, request.user.username))
     proyectos = tipo_atributo.proyecto.all()
     return render(request, template_name, {'tipo_atributo' : tipo_atributo, 'proyectos':proyectos, 'proyecto':proyecto}) 
 
@@ -297,6 +301,7 @@ def importarTipoAtributo(request, id_proyecto, proyecto_select, id_tipo_atributo
     else:
         tipo_atributo.proyecto.add(id_proyecto)
         mensaje="Tipo de Atributo importado exitosamente"
+        logger.info('Tipo de Atributo %s importdo al proyecto %s, hecho por %s' % (tipo_atributo.nombre, proyecto.nombre, request.user.username))
         
     ctx = {'mensaje':mensaje, 'id_proyecto':id_proyecto, 'proyecto':proyecto}
     return render_to_response('tipoAtributo/alerta_tipo_atributo.html',ctx, context_instance=RequestContext(request))

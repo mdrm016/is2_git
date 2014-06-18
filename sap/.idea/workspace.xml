@@ -2,9 +2,66 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ab56f5de-e7af-4abc-bfab-b27c4de6804e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aplicaciones/solicitudes/cron.py" afterPath="$PROJECT_DIR$/aplicaciones/solicitudes/cron.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/aplicaciones/informes/informe_proyecto.pdf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/aplicaciones/informes/__init__.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/aplicaciones/informes/admin.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/informes/informes.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/aplicaciones/informes/models.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/informes/proyecto_html.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/informes/proyecto_pdf.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/aplicaciones/informes/tests.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/aplicaciones/informes/urls.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/aplicaciones/informes/views.py" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/instalador/paquetes/django-cron-0.3.3.tar.gz" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/instalador/paquetes/django-cron-0.3.3/AUTHORS" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/instalador/paquetes/django-cron-0.3.3/LICENSE" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/instalador/paquetes/django-cron-0.3.3/MANIFEST.in" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/instalador/paquetes/django-cron-0.3.3/PKG-INFO" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/instalador/paquetes/django-cron-0.3.3/README.rst" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/instalador/paquetes/django-cron-0.3.3/build/lib.linux-x86_64-2.7/django_cron/__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/instalador/paquetes/django-cron-0.3.3/build/lib.linux-x86_64-2.7/django_cron/admin.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/instalador/paquetes/django-cron-0.3.3/build/lib.linux-x86_64-2.7/django_cron/cron.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/instalador/paquetes/django-cron-0.3.3/build/lib.linux-x86_64-2.7/django_cron/management/__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/instalador/paquetes/django-cron-0.3.3/build/lib.linux-x86_64-2.7/django_cron/management/commands/__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/instalador/paquetes/django-cron-0.3.3/build/lib.linux-x86_64-2.7/django_cron/management/commands/runcrons.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/instalador/paquetes/django-cron-0.3.3/build/lib.linux-x86_64-2.7/django_cron/migrations/0001_initial.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/instalador/paquetes/django-cron-0.3.3/build/lib.linux-x86_64-2.7/django_cron/migrations/0002_auto__add_field_cronjoblog_ran_at_time.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/instalador/paquetes/django-cron-0.3.3/build/lib.linux-x86_64-2.7/django_cron/migrations/0003_auto__add_index_cronjoblog_end_time__add_index_cronjoblog_ran_at_time_.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/instalador/paquetes/django-cron-0.3.3/build/lib.linux-x86_64-2.7/django_cron/migrations/__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/instalador/paquetes/django-cron-0.3.3/build/lib.linux-x86_64-2.7/django_cron/models.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/instalador/paquetes/django-cron-0.3.3/build/lib.linux-x86_64-2.7/django_cron/test_settings.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/instalador/paquetes/django-cron-0.3.3/build/lib.linux-x86_64-2.7/django_cron/tests.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/instalador/paquetes/django-cron-0.3.3/build/lib.linux-x86_64-2.7/django_cron/timezone.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/instalador/paquetes/django-cron-0.3.3/dist/django_cron-0.3.3-py2.7.egg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/instalador/paquetes/django-cron-0.3.3/django_cron.egg-info/PKG-INFO" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/instalador/paquetes/django-cron-0.3.3/django_cron.egg-info/SOURCES.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/instalador/paquetes/django-cron-0.3.3/django_cron.egg-info/dependency_links.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/instalador/paquetes/django-cron-0.3.3/django_cron.egg-info/not-zip-safe" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/instalador/paquetes/django-cron-0.3.3/django_cron.egg-info/requires.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/instalador/paquetes/django-cron-0.3.3/django_cron.egg-info/top_level.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/instalador/paquetes/django-cron-0.3.3/django_cron/__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/instalador/paquetes/django-cron-0.3.3/django_cron/admin.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/instalador/paquetes/django-cron-0.3.3/django_cron/cron.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/instalador/paquetes/django-cron-0.3.3/django_cron/management/__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/instalador/paquetes/django-cron-0.3.3/django_cron/management/commands/__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/instalador/paquetes/django-cron-0.3.3/django_cron/management/commands/runcrons.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/instalador/paquetes/django-cron-0.3.3/django_cron/migrations/0001_initial.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/instalador/paquetes/django-cron-0.3.3/django_cron/migrations/0002_auto__add_field_cronjoblog_ran_at_time.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/instalador/paquetes/django-cron-0.3.3/django_cron/migrations/0003_auto__add_index_cronjoblog_end_time__add_index_cronjoblog_ran_at_time_.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/instalador/paquetes/django-cron-0.3.3/django_cron/migrations/__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/instalador/paquetes/django-cron-0.3.3/django_cron/models.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/instalador/paquetes/django-cron-0.3.3/django_cron/test_settings.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/instalador/paquetes/django-cron-0.3.3/django_cron/tests.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/instalador/paquetes/django-cron-0.3.3/django_cron/timezone.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/instalador/paquetes/django-cron-0.3.3/setup.cfg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/instalador/paquetes/django-cron-0.3.3/setup.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/logs/sap.log" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/index.html" afterPath="$PROJECT_DIR$/templates/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sap/settings.py" afterPath="$PROJECT_DIR$/sap/settings.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sap/urls.py" afterPath="$PROJECT_DIR$/sap/urls.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aplicaciones/lineabase/views.py" afterPath="$PROJECT_DIR$/aplicaciones/lineabase/views.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aplicaciones/tipoatributo/views.py" afterPath="$PROJECT_DIR$/aplicaciones/tipoatributo/views.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="sap.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -27,92 +84,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/aplicaciones/solicitudes/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="73" column="52" selection-start="3012" selection-end="3012" vertical-scroll-proportion="238.18518" vertical-offset="7745" max-vertical-offset="8370">
-              <folding>
-                <element signature="e#0#35#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/aplicaciones/solicitudes/models.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="43" column="43" selection-start="1849" selection-end="1849" vertical-scroll-proportion="0.0" vertical-offset="827" max-vertical-offset="1368">
-              <folding>
-                <element signature="e#0#28#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="urls.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/sap/urls.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="0" selection-start="162" selection-end="162" vertical-scroll-proportion="0.0" vertical-offset="1" max-vertical-offset="1044">
-              <folding>
-                <element signature="e#1#52#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="cron.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/aplicaciones/solicitudes/cron.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="36" column="37" selection-start="1836" selection-end="1836" vertical-scroll-proportion="0.0" vertical-offset="286" max-vertical-offset="1080">
-              <folding>
-                <element signature="e#23#68#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="rolnuevo.html" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/templates/Roles/rolnuevo.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="43" column="25" selection-start="1041" selection-end="1041" vertical-scroll-proportion="0.3800539" vertical-offset="633" max-vertical-offset="2916">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="tests.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/aplicaciones/solicitudes/tests.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="56" column="23" selection-start="2807" selection-end="2807" vertical-scroll-proportion="0.0" vertical-offset="808" max-vertical-offset="1224">
-              <folding>
-                <element signature="e#0#32#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="credenciales.json" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/aplicaciones/usuarios/fixtures/credenciales.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="684">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="urls.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/aplicaciones/solicitudes/urls.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="61" selection-start="1328" selection-end="1405" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="342">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="settings.py" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="settings.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/sap/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="71" column="1" selection-start="2066" selection-end="2066" vertical-scroll-proportion="0.0" vertical-offset="1026" max-vertical-offset="2340">
+            <state line="156" column="0" selection-start="4242" selection-end="4242" vertical-scroll-proportion="0.74285716" vertical-offset="2496" max-vertical-offset="2916">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/aplicaciones/tipoatributo/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="9" column="30" selection-start="504" selection-end="504" vertical-scroll-proportion="0.0" vertical-offset="2" max-vertical-offset="6048">
               <folding />
             </state>
           </provider>
@@ -136,21 +120,55 @@
         <option value="$PROJECT_DIR$/aplicaciones/solicitudes/urls.py" />
         <option value="$PROJECT_DIR$/templates/solicitudes/consultarsolicitud.html" />
         <option value="$PROJECT_DIR$/templates/solicitudes/consultar_credencial.html" />
-        <option value="$PROJECT_DIR$/aplicaciones/solicitudes/views.py" />
         <option value="$PROJECT_DIR$/sap/urls.py" />
         <option value="$PROJECT_DIR$/aplicaciones/solicitudes/models.py" />
-        <option value="$PROJECT_DIR$/sap/settings.py" />
-        <option value="$PROJECT_DIR$/aplicaciones/solicitudes/cron.py" />
         <option value="$PROJECT_DIR$/aplicaciones/solicitudes/tests.py" />
         <option value="$PROJECT_DIR$/templates/Roles/rolnuevo.html" />
+        <option value="$PROJECT_DIR$/aplicaciones/solicitudes/cron.py" />
+        <option value="$PROJECT_DIR$/celery.py" />
+        <option value="$PROJECT_DIR$/sap/.settings/celery.py" />
+        <option value="$PROJECT_DIR$/sap/__init__.py" />
+        <option value="$PROJECT_DIR$/aplicaciones/solicitudes/tasks.py" />
+        <option value="$PROJECT_DIR$/aplicaciones/solicitudes/expiraciones.py" />
+        <option value="$PROJECT_DIR$/aplicaciones/autenticacion/views.py" />
+        <option value="$PROJECT_DIR$/aplicaciones/comite/views.py" />
+        <option value="$PROJECT_DIR$/aplicaciones/fases/views.py" />
+        <option value="$PROJECT_DIR$/aplicaciones/items/views.py" />
+        <option value="$PROJECT_DIR$/aplicaciones/lineabase/views.py" />
+        <option value="$PROJECT_DIR$/aplicaciones/proyectos/views.py" />
+        <option value="$PROJECT_DIR$/aplicaciones/relaciones/views.py" />
+        <option value="$PROJECT_DIR$/aplicaciones/roles/views.py" />
+        <option value="$PROJECT_DIR$/aplicaciones/solicitudes/views.py" />
+        <option value="$PROJECT_DIR$/aplicaciones/tipoitem/views.py" />
+        <option value="$PROJECT_DIR$/aplicaciones/usuarios/views.py" />
+        <option value="$PROJECT_DIR$/sap/settings.py" />
+        <option value="$PROJECT_DIR$/aplicaciones/tipoatributo/views.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-1" />
     <option name="y" value="25" />
-    <option name="width" value="1026" />
-    <option name="height" value="576" />
+    <option name="width" value="1024" />
+    <option name="height" value="575" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+          <State>
+            <id>Python</id>
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>PyUnreachableCodeInspection</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -206,56 +224,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sap" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sap" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="solicitudes" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sap" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sap" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Roles" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sap" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sap" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="sap" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -297,11 +265,18 @@
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="760" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
     <property name="DefaultHtmlFileTemplate" value="Html5" />
+    <property name="FullScreen" value="false" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
       <console-settings />
     </option>
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/sap" />
+      <recent name="$PROJECT_DIR$/sap/.settings" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration default="true" type="tests" factoryName="py.test">
@@ -491,10 +466,9 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1" y="25" width="1026" height="576" extended-state="6" />
+    <frame x="0" y="25" width="1024" height="575" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32826087" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32826087" sideWeight="0.4995015" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32826087" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -507,11 +481,12 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32826087" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32826087" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32826087" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -529,9 +504,9 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24925224" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout-to-restore>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -560,29 +535,83 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/sap/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="29" selection-start="29" selection-end="29" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="126" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/aplicaciones/solicitudes/tasks.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="42" selection-start="367" selection-end="367" vertical-scroll-proportion="0.0" vertical-offset="198" max-vertical-offset="396" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sap/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="38" selection-start="279" selection-end="279" vertical-scroll-proportion="0.0" vertical-offset="162" max-vertical-offset="2358">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/aplicaciones/solicitudes/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="228" column="25" selection-start="10839" selection-end="10839" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="6840">
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-          </folding>
-        </state>
+        <state line="73" column="52" selection-start="3012" selection-end="3012" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="8370" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/aplicaciones/solicitudes/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="51" column="41" selection-start="2364" selection-end="2364" vertical-scroll-proportion="0.0" vertical-offset="660" max-vertical-offset="1080">
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
+        <state line="43" column="43" selection-start="1849" selection-end="1849" vertical-scroll-proportion="0.0" vertical-offset="827" max-vertical-offset="1368" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sap/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="0" selection-start="162" selection-end="162" vertical-scroll-proportion="0.0" vertical-offset="1" max-vertical-offset="1044" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/aplicaciones/solicitudes/expiraciones.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="36" column="37" selection-start="1836" selection-end="1836" vertical-scroll-proportion="0.0" vertical-offset="286" max-vertical-offset="1080" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/Roles/rolnuevo.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="43" column="25" selection-start="1041" selection-end="1041" vertical-scroll-proportion="0.0" vertical-offset="633" max-vertical-offset="2916" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/aplicaciones/solicitudes/tests.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="56" column="23" selection-start="2807" selection-end="2807" vertical-scroll-proportion="0.0" vertical-offset="808" max-vertical-offset="1224" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/aplicaciones/usuarios/fixtures/credenciales.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="684" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/aplicaciones/solicitudes/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="61" selection-start="1328" selection-end="1405" vertical-scroll-proportion="0.0" vertical-offset="216" max-vertical-offset="360" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sap/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="71" column="1" selection-start="2066" selection-end="2066" vertical-scroll-proportion="0.0" vertical-offset="1026" max-vertical-offset="2340">
+          <folding />
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/aplicaciones/solicitudes/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="228" column="25" selection-start="10839" selection-end="10839" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="6840" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/aplicaciones/solicitudes/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="51" column="41" selection-start="2364" selection-end="2364" vertical-scroll-proportion="0.0" vertical-offset="660" max-vertical-offset="1080" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/aplicaciones/solicitudes/forms.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="72" column="57" selection-start="3840" selection-end="3840" vertical-scroll-proportion="0.0" vertical-offset="984" max-vertical-offset="1404">
-          <folding />
-        </state>
+        <state line="72" column="57" selection-start="3840" selection-end="3840" vertical-scroll-proportion="0.0" vertical-offset="984" max-vertical-offset="1404" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/sap/wsgi.py">
@@ -595,131 +624,180 @@
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="433" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/aplicaciones/proyectos/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="79" column="22" selection-start="3185" selection-end="3185" vertical-scroll-proportion="0.6130653" vertical-offset="1178" max-vertical-offset="9990" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/aplicaciones/comite/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="53" selection-start="946" selection-end="946" vertical-scroll-proportion="0.34285715" vertical-offset="180" max-vertical-offset="630">
-          <folding>
-            <element signature="e#0#28#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/aplicaciones/solicitudes/forms.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="88" column="4" selection-start="4369" selection-end="4369" vertical-scroll-proportion="0.7839196" vertical-offset="1182" max-vertical-offset="1602">
-          <folding />
-        </state>
+        <state line="88" column="4" selection-start="4369" selection-end="4369" vertical-scroll-proportion="0.7839196" vertical-offset="1182" max-vertical-offset="1602" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/solicitudes/consultarsolicitud.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="133" column="0" selection-start="0" selection-end="5330" vertical-scroll-proportion="-9.740741" vertical-offset="2131" max-vertical-offset="2502">
-          <folding />
-        </state>
+        <state line="133" column="0" selection-start="0" selection-end="5330" vertical-scroll-proportion="-9.740741" vertical-offset="2131" max-vertical-offset="2502" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/solicitudes/consultar_credencial.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="83" column="28" selection-start="3288" selection-end="3288" vertical-scroll-proportion="-30.37037" vertical-offset="674" max-vertical-offset="2268">
-          <folding />
-        </state>
+        <state line="83" column="28" selection-start="3288" selection-end="3288" vertical-scroll-proportion="-30.37037" vertical-offset="674" max-vertical-offset="2268" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/solicitudes/credenciales.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="121" column="78" selection-start="3381" selection-end="3422" vertical-scroll-proportion="-7.4814816" vertical-offset="1976" max-vertical-offset="3006">
-          <folding />
-        </state>
+        <state line="121" column="78" selection-start="3381" selection-end="3422" vertical-scroll-proportion="-7.4814816" vertical-offset="1976" max-vertical-offset="3006" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/solicitudes/solicitudesrealizadas.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="119" column="14" selection-start="3698" selection-end="3698" vertical-scroll-proportion="5.773585" vertical-offset="0" max-vertical-offset="2808">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sap/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="0" selection-start="162" selection-end="162" vertical-scroll-proportion="0.0" vertical-offset="1" max-vertical-offset="1044">
-          <folding>
-            <element signature="e#1#52#0" expanded="true" />
-          </folding>
-        </state>
+        <state line="119" column="14" selection-start="3698" selection-end="3698" vertical-scroll-proportion="5.773585" vertical-offset="0" max-vertical-offset="2808" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/aplicaciones/solicitudes/fixtures/credenciales.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="17" selection-start="336" selection-end="336" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="414">
-          <folding />
-        </state>
+        <state line="13" column="17" selection-start="336" selection-end="336" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="414" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/Roles/rolnuevo.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="44" column="31" selection-start="1069" selection-end="1069" vertical-scroll-proportion="0.4555874" vertical-offset="633" max-vertical-offset="2916" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sap/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="0" selection-start="162" selection-end="162" vertical-scroll-proportion="0.23136246" vertical-offset="0" max-vertical-offset="1044" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/aplicaciones/solicitudes/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="61" selection-start="1328" selection-end="1405" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="342">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/aplicaciones/usuarios/fixtures/credenciales.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="684">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/aplicaciones/solicitudes/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="73" column="52" selection-start="3012" selection-end="3012" vertical-scroll-proportion="238.18518" vertical-offset="7745" max-vertical-offset="8370">
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-          </folding>
-        </state>
+        <state line="13" column="61" selection-start="1513" selection-end="1513" vertical-scroll-proportion="0.5427136" vertical-offset="0" max-vertical-offset="398" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/aplicaciones/solicitudes/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="43" column="43" selection-start="1849" selection-end="1849" vertical-scroll-proportion="0.0" vertical-offset="827" max-vertical-offset="1368">
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
+        <state line="43" column="43" selection-start="1849" selection-end="1849" vertical-scroll-proportion="-0.35929647" vertical-offset="827" max-vertical-offset="1278" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/aplicaciones/solicitudes/cron.py">
+    <entry file="file://$PROJECT_DIR$/aplicaciones/usuarios/fixtures/credenciales.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="36" column="37" selection-start="1836" selection-end="1836" vertical-scroll-proportion="0.0" vertical-offset="286" max-vertical-offset="1080">
-          <folding>
-            <element signature="e#23#68#0" expanded="true" />
-          </folding>
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="684" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/aplicaciones/solicitudes/tests.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="56" column="23" selection-start="2807" selection-end="2807" vertical-scroll-proportion="0.0" vertical-offset="808" max-vertical-offset="1224">
+        <state line="25" column="81" selection-start="1371" selection-end="1371" vertical-scroll-proportion="0.11809045" vertical-offset="403" max-vertical-offset="1224" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/aplicaciones/solicitudes/tasks.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="40" selection-start="462" selection-end="462" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="396" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manage.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="433" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sap/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="29" selection-start="29" selection-end="29" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="433" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/aplicaciones/autenticacion/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="26" selection-start="510" selection-end="510" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="396" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/aplicaciones/comite/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="53" selection-start="946" selection-end="946" vertical-scroll-proportion="0.34285715" vertical-offset="108" max-vertical-offset="558" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/aplicaciones/lineabase/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="792" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/aplicaciones/roles/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="774" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/aplicaciones/comite/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="6" selection-start="807" selection-end="813" vertical-scroll-proportion="0.33333334" vertical-offset="229" max-vertical-offset="2322" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/aplicaciones/fases/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="6" selection-start="657" selection-end="663" vertical-scroll-proportion="0.091603056" vertical-offset="0" max-vertical-offset="9324" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/aplicaciones/items/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="23" column="6" selection-start="1137" selection-end="1143" vertical-scroll-proportion="0.33333334" vertical-offset="283" max-vertical-offset="27630" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/aplicaciones/lineabase/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="6" selection-start="791" selection-end="797" vertical-scroll-proportion="0.33333334" vertical-offset="229" max-vertical-offset="4734" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/aplicaciones/proyectos/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="6" selection-start="744" selection-end="750" vertical-scroll-proportion="0.33333334" vertical-offset="157" max-vertical-offset="10224" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/aplicaciones/relaciones/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="6" selection-start="915" selection-end="921" vertical-scroll-proportion="0.33333334" vertical-offset="211" max-vertical-offset="7398" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/aplicaciones/roles/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="6" selection-start="493" selection-end="499" vertical-scroll-proportion="0.33333334" vertical-offset="67" max-vertical-offset="7776" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/aplicaciones/solicitudes/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="6" selection-start="885" selection-end="891" vertical-scroll-proportion="0.33333334" vertical-offset="229" max-vertical-offset="9594" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/aplicaciones/tipoitem/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="6" selection-start="506" selection-end="512" vertical-scroll-proportion="0.33333334" vertical-offset="67" max-vertical-offset="11430" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/aplicaciones/usuarios/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="6" selection-start="684" selection-end="690" vertical-scroll-proportion="0.33333334" vertical-offset="139" max-vertical-offset="5670" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sap/celery.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="0" selection-start="175" selection-end="175" vertical-scroll-proportion="0.16628176" vertical-offset="0" max-vertical-offset="433" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/aplicaciones/solicitudes/expiraciones.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="39" column="0" selection-start="2317" selection-end="2317" vertical-scroll-proportion="0.5285714" vertical-offset="426" max-vertical-offset="846" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/aplicaciones/autenticacion/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="79" column="10" selection-start="3516" selection-end="3522" vertical-scroll-proportion="0.6571429" vertical-offset="1146" max-vertical-offset="1566">
           <folding>
-            <element signature="e#0#32#0" expanded="true" />
+            <element signature="e#0#47#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/aplicaciones/tipoatributo/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="30" selection-start="504" selection-end="504" vertical-scroll-proportion="0.0" vertical-offset="2" max-vertical-offset="6048">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/sap/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="71" column="1" selection-start="2066" selection-end="2066" vertical-scroll-proportion="0.0" vertical-offset="1026" max-vertical-offset="2340">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/Roles/rolnuevo.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="43" column="25" selection-start="1041" selection-end="1041" vertical-scroll-proportion="0.3800539" vertical-offset="633" max-vertical-offset="2916">
+        <state line="156" column="0" selection-start="4242" selection-end="4242" vertical-scroll-proportion="0.74285716" vertical-offset="2496" max-vertical-offset="2916">
           <folding />
         </state>
       </provider>

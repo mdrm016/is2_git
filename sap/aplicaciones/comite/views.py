@@ -14,9 +14,12 @@ from django.db.models import Q
 from django.contrib.auth.models import User
 from aplicaciones.roles.models import Roles
 from aplicaciones.solicitudes.models import Solicitudes
+import logging
 
 # Create your views here.
-    
+
+logger = logging.getLogger(__name__)
+
 def consultar_comite(request, id_proyecto):
     """ Recibe un request, se verifica cual es el usuario registrado y el proyecto del cual se solicita,
     se obtiene la lista de fases con las que estan relacionados el usuario y el proyecto 
@@ -39,7 +42,7 @@ def consultar_comite(request, id_proyecto):
         return render_to_response(template_name, ctx, context_instance=RequestContext(request))
     comite = Comite.objects.get(proyecto_id=id_proyecto)
     miembros = comite.miembros.all()
-
+    logger.info('Consulta de Comite %s, hecho por %s' % (comite.nombre, request.user.username))
     template_name='./comite/miembroscomite.html'
     ctx = {'id_proyecto':id_proyecto, 'proyecto': proyecto, 'miembros': miembros}
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
@@ -64,6 +67,7 @@ def agregar_miembro(request, id_proyecto):
     if solicitudes:
         mensaje = 'Existen solicitudes pendientes. No se puede modificar el comite.'
         template_name = './comite/comitealerta.html'
+        proyecto = Proyectos.objects.get(id=id_proyecto)
         ctx = {'id_proyecto':id_proyecto, 'proyecto': proyecto, 'mensaje': mensaje}
         return render_to_response(template_name, ctx, context_instance=RequestContext(request))
     
@@ -102,6 +106,7 @@ def agregar_miembro(request, id_proyecto):
                  comite.miembros.add(usuario)
                  comite.save()
              miembros = comite.miembros.all()
+             logger.info('Agregacion de miembros de comite %s, hecho por %s ' % (comite.nombre, request.user.username))
              mensaje = 'Cambios guardados.'
     else:
         mensaje = ''

@@ -7,6 +7,9 @@ from aplicaciones.tipoatributo.models import TipoAtributo
 from aplicaciones.proyectos.models import Proyectos
 from django.contrib.auth.decorators import login_required, permission_required
 from aplicaciones.items.models import Items
+import logging
+
+logger = logging.getLogger(__name__)
 
 @login_required(login_url='/login/')
 @permission_required('tipoitem.administrar_tipoitem',raise_exception=True)
@@ -36,6 +39,7 @@ def adm_tipoitem (request, id_proyecto):
     error=False
     if 'busqueda' in request.GET:
         busqueda = request.GET.get('busqueda', '')
+        logger.info('Busqueda de tipo de item de proyecto %s con patron %s, hecho por %s' % (proyecto.nombre, busqueda, request.user.username))
         if busqueda:
             qset = (
                 Q(nombre__icontains=busqueda) |
@@ -55,7 +59,7 @@ def adm_tipoitem (request, id_proyecto):
         tupla=(TA, usado)
         lista_tipoitem.append(tupla)
         
-                
+    logger.info('Listado de tipo de item de proyecto %s, hecho por %s' % proyecto.nombre, request.user.username)
     ctx = {'lista_tipoitem':lista_tipoitem, 'query':busqueda, 'error':error, 'id_proyecto':id_proyecto, 'proyecto':proyecto}   
     template_name = 'tipoitem/tipoitem.html'
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
@@ -97,6 +101,7 @@ def crear_tipoitem (request, id_proyecto):
                 tipoitem.id_proyecto=id_proyecto
                 tipoitem.is_active='True'
                 tipoitem.save()
+                logger.info('Creacion de tipo de atributo %s de proyecto, hecho por %s' % (tipoitem.nombre, proyecto.nombre, request.user.username))
                 mensaje="Tipo Item creado exitosamente"
             else:
                 mensaje="Imposible crear el Tipo de Item, ya existe un Tipo de Item con el mismo nombre en el proyecto"
@@ -146,8 +151,6 @@ def modificar_tipoitem (request, id_tipoitem, id_proyecto):
             nombre = form.cleaned_data['Nombre_Tipo_de_Item'] 
             descripcion =  form.cleaned_data['Descripcion']
             #tipoatributos= form.cleaned_data['Tipo_Atributo']
-            
-            
             # Comprobar cantidad miembros de comite para pasar a un estado en construccion con un elif
             #si exite ya un proyecto con el nombre suministrado y el nombre suminitrado es distinto al del proyecto que esta siendo modificado
             if TipoItem.objects.filter(nombre=nombre, is_active=True) and nombre != tipoitem.nombre:
@@ -157,13 +160,12 @@ def modificar_tipoitem (request, id_tipoitem, id_proyecto):
             
             else:
                 if nombre == tipoitem.nombre and  descripcion == tipoitem.descripcion:
-                      mensaje="Tipo de Item guardado sin modificaciones"
-                      
+                    mensaje="Tipo de Item guardado sin modificaciones"
                 else:
                     tipoitem.nombre=nombre
                     tipoitem.descripcion=descripcion
                     tipoitem.save()
-                        
+                    logger.info('Modificacion de tipo de item %s de proyecto %s, hecho por %s' % (tipoitem.nombre, proyecto.nombre, request.user.username))
                     mensaje="Tipo de Item modificado exitosamente"
                     
                 ctx = {'mensaje':mensaje, 'id_proyecto':id_proyecto, 'proyecto':proyecto}
@@ -226,9 +228,10 @@ def eliminar_tipoitem (request, id_tipoitem, id_proyecto):
             elemento.is_active = False
             elemento.orden = 0
             elemento.save()
-            
+
         tipoitem.is_active = False
         tipoitem.save()
+        logger.info('Eliminacion de tipo de item %s de proyecto %s, hecho por %s' % (tipoitem.nombre, proyecto.nombre, request.user.username))
         return HttpResponseRedirect('/adm_proyectos/gestionar/%s/adm_tipos_item/' % id_proyecto)
 
 @login_required(login_url='/login/')
@@ -263,7 +266,8 @@ def consultar_tipoitem (request, id_tipoitem, id_proyecto):
     for elemento in elementos_existentes:
         tupla = (elemento.nombre, TipoAtributo.objects.get(id=elemento.id_atributo).descripcion)
         consulta.append(tupla)
-        
+
+    logger.info('Consulta de tipo de item %s de proyecto %s, hecho por %s' % (tipoitem.nombre, proyecto.nombre, request.user.username))
     ctx = {'tipoitem':tipoitem, 'atributos':consulta, 'id_proyecto':id_proyecto, 'proyecto':proyecto}
     template_name = 'tipoitem/consultartipoitem.html'
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
@@ -297,7 +301,8 @@ def gestionar_tipoitem (request, id_tipoitem, id_proyecto):
     tipoitem = TipoItem.objects.get(id=id_tipoitem)
     tablaTipoAtributo = TipoAtributo.objects.filter(is_active=True, proyecto=id_proyecto)
     lista_atributos = tipoitem.listaAtributo.all().filter(is_active=True).order_by('orden')
-                
+
+    logger.info('Gestion de tipo de item %s de proyecto %s, hecho por %s' % (tipoitem.nombre, proyecto.nombre, request.user.username))
     ctx = {'tipoatributos_dispon':tablaTipoAtributo, 'tipoatributo_selec':lista_atributos, 'id_proyecto':id_proyecto, 'tipoitem':tipoitem, 'proyecto':proyecto}
     template_name = 'tipoitem/gestionartipoitem.html'
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
@@ -492,6 +497,7 @@ def listar_proyectos (request, id_proyecto):
     error=False
     if 'busqueda' in request.GET:
         busqueda = request.GET.get('busqueda', '')
+
         if busqueda:
             qset = (
                 Q(nombre__icontains=busqueda) |
@@ -612,6 +618,7 @@ def importar_tipoitem(request, id_proyecto, proyecto_select, id_tipoitem):
             
             
             mensaje="Tipo Item Importado exitosamente"
+            logger.info('Tipo de item %s importado al proyecto %s como el tipo de item %s, hecho por %s' % (tipoI.nombre, proyecto.nombre, tipoitem.nombre, request.user.username))
             ctx = {'mensaje':mensaje, 'id_proyecto':id_proyecto, 'proyecto':proyecto}
             return render_to_response('tipoitem/tipoitemalerta.html',ctx, context_instance=RequestContext(request))
     else:

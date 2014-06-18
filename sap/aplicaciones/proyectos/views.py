@@ -12,7 +12,9 @@ from aplicaciones.tipoitem.models import TipoItem, ListaAtributo
 from aplicaciones.tipoitem.views import ordenar_mantener
 from aplicaciones.comite.models import Comite
 from aplicaciones.solicitudes.models import Solicitudes
+import logging
 
+logger = logging.getLogger(__name__)
 
 @login_required(login_url='/login/')
 def adm_proyectos (request):
@@ -83,7 +85,8 @@ def adm_proyectos (request):
                 Agregar = False
         if Agregar:
             pendientes = pendientes + 1
-        
+
+    logger.info('Administracion de Proyectos, hecho por %s' % request.user.username)
     ctx = {'lista_proyectos':proyectos, 'query':busqueda, 'error':error, 'pendientes':pendientes}   
     template_name = 'index.html'
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
@@ -125,6 +128,7 @@ def proyecto_finalizado (request):
     error=False
     if 'busqueda' in request.GET:
         busqueda = request.GET.get('busqueda', '')
+        logger.info('Busqueda de proyecto con el patron %s, hecho por %s' % (busqueda, request.user.username))
         if busqueda:
             qset = (
                 Q(nombre__icontains=busqueda) |
@@ -135,7 +139,7 @@ def proyecto_finalizado (request):
             proyectos= proyectos.filter(qset).distinct()
             if not proyectos:
                 error = True
-    
+    logger.info('Listado de Proyectos Finalizados, hecho por %s' % request.user.username)
     ctx = {'lista_proyectos':proyectos, 'query':busqueda, 'error':error}
     template_name = 'proyectos/proyectofinalizado.html'
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
@@ -181,7 +185,8 @@ def crear_proyecto (request):
             comite = Comite()
             comite.proyecto_id = proyecto.id
             comite.save()
-            
+
+            logger.info('Creacion de proyecto %s, hecho por %s' % (proyecto.nombre, request.user.username))
             mensaje="Proyecto creado exitosamente"
             ctx = {'mensaje':mensaje}
             return render_to_response('proyectos/proyectoalerta.html',ctx, context_instance=RequestContext(request))
@@ -300,7 +305,8 @@ def modificar_proyecto (request, id_proyecto):
                     proyecto.estado = estado
                     proyecto.duracion=duracion
                     proyecto.save()
-                        
+
+                    logger.info('Modificacion de proyecto %s, hecho por %s' % (proyecto.nombre, request.user.username))
                     mensaje="Proyecto modificado exitosamente"
                     
                 ctx = {'mensaje':mensaje}
@@ -336,6 +342,7 @@ def consultar_proyecto (request, id_proyecto):
     
     proyecto = Proyectos.objects.get(id=id_proyecto)
     fases = Fases.objects.filter(proyecto = id_proyecto, is_active=True)
+    logger.info('Consulta de Proyecto %s, hecho por %s' % (proyecto, request.user.username))
     ctx = {'proyecto':proyecto, 'fases':fases}
     template_name = 'proyectos/consultarproyecto.html'
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
@@ -375,6 +382,7 @@ def eliminar_proyecto (request, id_proyecto):
     else:
         proyecto.is_active = False
         proyecto.save()
+        logger.info('Eliminacion logica del Proyecto %s, hecho por %s' % (proyecto.nombre, request.user.username))
         return HttpResponseRedirect('/')
 
 @login_required(login_url='/login/')      
@@ -441,7 +449,8 @@ def listar_miembros (request, id_proyecto):
                     rls.append(rp)
         tupla = (miembro, rls)
         lista.append(tupla)                       
-        
+
+    logger.info('Listado de miembros del Proyecto %, hecho por %s' % (proyecto.nombre, request.user.username))
     ctx ={'miembros':lista, 'proyecto':proyecto}
     template_name = 'proyectos/listarmiembrosproyecto.html'
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
@@ -540,7 +549,7 @@ def importar (request, id_proyecto):
                     lista_atributo.save()
                         
                     TI.listaAtributo.add(lista_atributo)
-            
+            logger.info('Proyecto %s importado, hecho por %s' % (proyectoImportado.nombre, request.user.username))
             mensaje="Proyecto importado exitosamente"
             ctx = {'mensaje':mensaje}
             return render_to_response('proyectos/proyectoalerta.html',ctx, context_instance=RequestContext(request))

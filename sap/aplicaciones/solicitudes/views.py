@@ -15,8 +15,10 @@ from datetime import datetime, date, timedelta
 from django.contrib.auth.decorators import login_required, permission_required
 from django.db.models import Q
 from aplicaciones.comite.models import Comite
+import logging
 
 # Create your views here.
+logger = logging.getLogger(__name__)
 
 def administrar_solicitud_recibidas (request):
     
@@ -51,7 +53,7 @@ def administrar_solicitud_recibidas (request):
         if not solic_votada:
             pendientes = pendientes + 1
         lista_solicitud.append(tupla)
-    
+    logger.info('Listado de Solicitudes recibidas, hecho por %s' % request.user.username)
     template_name='solicitudes/solicitudesrecibidas.html'
     ctx = {'lista_solicitud':lista_solicitud, 'pendientes':pendientes}
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
@@ -72,6 +74,7 @@ def administrar_solicitud_realizadas (request):
     """
     
     solicitudes = Solicitudes.objects.filter(usuario=request.user)
+    logger.info('Listado de solicitudes realizadas, hecho por %s' % request.user.username)
     template_name='solicitudes/solicitudesrealizadas.html'
     ctx = {'solicitudes':solicitudes}
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
@@ -127,7 +130,7 @@ def crear_solicitud(request, id_proyecto, id_fase, id_item):
             solicitud.votos_rechazado = 0
             solicitud.votos_aprobado = 0
             solicitud.save()
-
+            logger.info('Creacion de Solicitud de cambio id %s, hecho por %s' % (solicitud.id, request.user.username))
             mensaje = 'Solicitud creada con exito.'
             template_name='./solicitudes/solicitudcreada.html'
             ctx = {'mensaje': mensaje, 'id_proyecto':id_proyecto, 'id_fase': id_fase, 'id_item': id_item, 'proyecto':proyecto, 'fase':fase, 'item': item}
@@ -178,6 +181,7 @@ def cancelar_solicitud(request, id_solicitud):
     fase = solicitud.fase
     
     mensaje = 'Solicitud eliminada con exito.'
+    logger.info('Cancelacion de solicitud id %s, hecho por %s' % (solicitud.id, request.user.username))
     template_name='./solicitudes/solicitudalerta.html'
     ctx = {'mensaje': mensaje, 'proyecto':proyecto, 'fase':fase}
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
@@ -203,6 +207,7 @@ def consultar_solicitud(request, id_solicitud):
     #item = Items.objects.get(proyecto_id=id_proyecto, fase_id=id_fase, id=id_item)
     # conseguir el contexto de las fases y sus estados
     #fases = Fases.objects.filter(id_proyecto = id_proyecto)
+    logger.info('Consultad de solicitud con id %s, hecho por %s' % (solicitud.id, request.user.username))
     template_name = './solicitudes/consultarsolicitud.html'
     return render(request, template_name, {'fase': fase, 'proyecto':proyecto, 'fase':fase, 'solicitud': solicitud})
 
@@ -220,6 +225,7 @@ def votar_solicitud(request, id_solicitud):
     @author: Eduardo Gimenez
 
     """
+
     if request.method == 'POST':
         form = votarSolicitudForm(request.POST)
         if form.is_valid():
@@ -259,6 +265,7 @@ def votar_solicitud(request, id_solicitud):
                     credencial.estado = 'Habilitado'
                     solicitud.save()
                     credencial.save()
+                    logger.info('Generacion de credencial id %s, hecho por %s' % (credencial.id, request.user.username))
                     habilitar_items(credencial)
                     mensaje = 'Credencial Generada'
                     template_name='./solicitudes/credencialcreada.html'
@@ -269,6 +276,8 @@ def votar_solicitud(request, id_solicitud):
                     mensaje = 'La solicitud ha sido Reprobada'
             else:
                 mensaje = 'Su voto ha sido procesado'
+
+            logger.info('Votacion de solicitud con id %d, hecho por %s' % (solicitud.id, request.user.username))
             solicitud.save()
             template_name='./solicitudes/solicitudalerta.html'
             ctx = {'mensaje': mensaje}
@@ -303,7 +312,8 @@ def impacto(request, id_proyecto, id_fase, id_item):
     for items_af in items_afectado:
         if items_af.id!=item.id:
             items_afectados.append(items_af)
-    
+
+    logger.info('Calculo de impacto para item %s para la Solicitud de cambio, hecho por %s' % (item.nombre, request.user.username))
     ctx = {'id_proyecto':id_proyecto, 'id_fase': id_fase, 'id_item': id_item, 'impacto_monetario': imonetario, 'impacto_temporal': itemporal, 'items_afectados': items_afectados}
     template_name = './items/impacto.html'
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
@@ -451,6 +461,7 @@ def administrar_credenciales (request):
     """
     
     credenciales = Credenciales.objects.filter(usuario=request.user)
+    logger.info('Listado de Credenciales, hecho por %s' % request.user.username)
     template_name='solicitudes/credenciales.html'
     ctx = {'lista_credenciales':credenciales}
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
@@ -471,6 +482,7 @@ def consultarCredencial(request, id_credencial):
     """
 
     credencial = Credenciales.objects.get(id=id_credencial)
+    logger.info('Consulta de credncial con id %s, hecho por %s' % (credencial.id, request.user.username))
     template_name='solicitudes/consultar_credencial.html'
     ctx = {'credencial':credencial}
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
@@ -511,6 +523,7 @@ def cancelar_credencial(request, id_credencial):
 
     
     mensaje = 'Credencial cancelada.'
+    logger.info('Cancelacion de Credencial con id %s, hecho por %s' % (credencial.id, request.user.username))
     template_name='./solicitudes/solicitudalerta.html'
     ctx = {'mensaje': mensaje}
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))

@@ -11,7 +11,9 @@ from aplicaciones.items.models import Items
 from datetime import datetime
 from django.contrib.auth.decorators import login_required, permission_required
 from django.db.models import Q
+import logging
 
+logger = logging.getLogger(__name__)
 # Create your views here.
 @login_required(login_url='/login/')
 @permission_required('fases.administrar_fases',raise_exception=True)
@@ -47,7 +49,8 @@ def adm_fases(request, id_proyecto):
             fases= Fases.objects.filter(qset).distinct()
             if not fases:
                 error = True
-    proyecto = Proyectos.objects.get(id=id_proyecto)    
+    proyecto = Proyectos.objects.get(id=id_proyecto)
+    logger.info('Ingreso a Administracion de Fases, proyecto %s, hecho por %s' % (proyecto.nombre, request.user.username))
     ctx = {'lista_fases':fases, 'query':busqueda, 'error':error, 'id_proyecto':id_proyecto, 'proyecto':proyecto}
     template_name = './Fases/fases.html'
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
@@ -111,7 +114,7 @@ def crear_fase(request, id_proyecto):
                 return render_to_response(template_name, ctx, context_instance=RequestContext(request))
             
             fase.save()
-      
+            logger.info('Creacion de Fase %s proyecto %s, hecho por %s' % (fase.nombre, proyecto.nombre, request.user.username))
             template_name='./Fases/fasecreada.html'
             return render(request, template_name, {'id_proyecto': id_proyecto, 'proyecto':proyecto})
     else: 
@@ -144,6 +147,7 @@ def consultar_fase (request, id_fase, id_proyecto):
     # conseguir el contexto de las fases y sus estados
     #fases = Fases.objects.filter(id_proyecto = id_proyecto)
     proyecto = Proyectos.objects.get(id=id_proyecto)
+    logger.info('Consulta de Fase %s proyecto %s, hecho por %s', (fase.nombre, proyecto.nombre, request.user.username))
     ctx = {'fase':fase}
     template_name = './Fases/consultarfase.html'
     return render(request, template_name, {'id_proyecto': id_proyecto, 'fase': fase, 'id_fase': id_fase, 'proyecto':proyecto})
@@ -191,7 +195,7 @@ def eliminar_fase (request, id_fase, id_proyecto):
         for fase_posterior in fases_posteriores:
             fase_posterior.orden = fase_posterior.orden-1
             fase_posterior.save()
-
+        logger.info('Eliminacion de Fase %s proyecto %s, hecho por %s',(fase.nombre, proyecto.nombre, request.user.username))
         template_name='./Fases/faseeliminada.html'
         return render(request, template_name, {'id_proyecto': id_proyecto, 'proyecto':proyecto})
 
@@ -263,6 +267,7 @@ def modificar_fase (request, id_proyecto, id_fase):
                         fase.estado = estadoNuevo
                 fase.save()
                 mensaje="Fase modificada exitosamente"
+                logger.info('Modificacion de Fase %s proyecto %s, hecho por %s', (fase.nombre, proyecto.nombre, request.user.username))
                 ctx = {'mensaje':mensaje, 'id_proyecto': id_proyecto, 'id_fase':id_fase, 'proyecto':proyecto}
                 template_name='Fases/fasealerta.html'
                 return render_to_response(template_name, ctx, context_instance=RequestContext(request))
@@ -302,6 +307,7 @@ def modificar_fase (request, id_proyecto, id_fase):
                         fase.duracion=duracion
                         fase.save()
                         mensaje = 'Fase editada con exito'
+                        logger.info('Modificacion de estado de Fase %s proyecto %s, hecho por %s', (fase.nombre, proyecto.nombre, request.user.username))
                         ctx ={'mensaje':mensaje, 'id_proyecto':id_proyecto, 'id_fase':id_fase, 'proyecto':proyecto}      
                         template_name='Fases/fasealerta.html'
                         return render_to_response(template_name, ctx, context_instance=RequestContext(request))
@@ -338,6 +344,7 @@ def modificar_fase (request, id_proyecto, id_fase):
                         fase.estado = 'FD'
                         fase.save()
                         mensaje = 'Fase editada con exito'
+                        logger.info('Modificacion de Fase %s proyecto %s, hecho por %s', (fase.nombre, proyecto.nombre, request.user.username))
                         ctx ={'mensaje':mensaje, 'id_proyecto':id_proyecto, 'id_fase':id_fase, 'proyecto':proyecto}      
                         template_name='Fases/fasealerta.html'
                         return render_to_response(template_name, ctx, context_instance=RequestContext(request))
@@ -352,6 +359,7 @@ def modificar_fase (request, id_proyecto, id_fase):
                     fase.duracion = duracion
                     fase.save()
                     mensaje = 'Fase editada con exito'
+                    logger.info('Modificacion de Fase %s proyecto %s, hecho por %s', (fase.nombre, proyecto.nombre, request.user.username))
                     ctx ={'mensaje':mensaje, 'id_proyecto':id_proyecto, 'id_fase':id_fase, 'proyecto':proyecto}      
                     template_name='Fases/fasealerta.html'
                     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
@@ -467,6 +475,7 @@ def importarf (request, id_proyecto, id_fase):
             fase.save()
                 
             mensaje="Fase importada exitosamente"
+            logger.info('Importacion de Fase %s proyecto %s, hecho por %s', (fase.nombre, proyecto.nombre, request.user.username))
             ctx = {'mensaje':mensaje, 'id_proyecto':id_proyecto, 'proyecto':proyecto}
             return render_to_response('Fases/fasealerta.html',ctx, context_instance=RequestContext(request))
     else:
@@ -480,6 +489,7 @@ def importarf (request, id_proyecto, id_fase):
 def ordenar_fases(request, id_proyecto):
     lista_fases = Fases.objects.filter(proyecto=id_proyecto, is_active=True).order_by('orden')
     ctx ={'lista_fases': lista_fases, 'id_proyecto': id_proyecto}
+    logger.info('Ordenacion de Fase %s proyecto %s, hecho por %s', (fase.nombre, proyecto.nombre, request.user.username))
     template_name='Fases/ordenarfases.html'
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
 
