@@ -253,6 +253,7 @@ def votar_solicitud(request, id_solicitud):
                     credencial.proyecto = solicitud.proyecto
                     credencial.fase = solicitud.fase
                     credencial.item = solicitud.item
+                    credencial.version = credencial.item.version
                     credencial.fecha_aprobacion = date.today()
                     credencial.fecha_expiracion = date.today()+timedelta(days=solicitud.tiempo_solicitado)
                     credencial.estado = 'Habilitado'
@@ -508,6 +509,7 @@ def cancelar_credencial(request, id_credencial):
         eslb.is_active = True
         eslb.save()
 
+    
     mensaje = 'Credencial cancelada.'
     template_name='./solicitudes/solicitudalerta.html'
     ctx = {'mensaje': mensaje}

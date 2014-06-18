@@ -44,6 +44,7 @@ class Credenciales(models.Model):
     proyecto = models.ForeignKey(Proyectos)
     fase = models.ForeignKey(Fases)
     item = models.ForeignKey(Items)
+    version = models.IntegerField(null=True)
     fecha_aprobacion = models.DateField(null=True)
     fecha_expiracion = models.DateField(null=True)
     estado = models.CharField(null=True, max_length=50)
