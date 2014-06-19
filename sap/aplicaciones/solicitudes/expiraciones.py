@@ -38,8 +38,8 @@ def expiracionDeCredencial():
                       administradorSistema.email, [credencial.usuario.user.email], fail_silently=False)
 
 
-            #def pruebaDeFuncionamientoCelery():
-            #    listaSolicitudesRechazadas = Solicitudes.objects.filter(estado='Pendiente')
-            #    for solicitud in listaSolicitudesRechazadas:
-            #        solicitud.estado = 'Reprobada'
-            #        solicitud.save()
+#def pruebaDeFuncionamientoCelery():
+#    listaSolicitudesRechazadas = Solicitudes.objects.filter(estado='Pendiente')
+#    for solicitud in listaSolicitudesRechazadas:
+#        solicitud.estado = 'Reprobada'
+#        solicitud.save()

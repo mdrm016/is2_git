@@ -125,15 +125,16 @@ TEMPLATE_DIRS = (
 AUTH_PROFILE_MODULE = 'usuarios.Usuarios'
 
 """ Esta variable traza la ruta del directorio donde se almacenaran los logs del sistema"""
-RUTA_LOGS = Path(__file__).ancestor(2) + "/static/logs/"
+
+LOG_FILES_DIR = Path(__file__).ancestor(2) + "/static/logs/"
 
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': True,
     'formatters': {
         'verbose': {
-            'format': '%(levelname)s %(asctime)s %(process)d %(message)s',
-            'datefmt' : "%d/%b/%Y %H:%M:%S",
+            'format': '%(asctime)s %(levelname)s %(message)s',
+            'datefmt' : "%d/%m/%Y %H:%M:%S",
 
         },
     },
@@ -141,7 +142,7 @@ LOGGING = {
         'applogfile': {
             'level':'INFO',
             'class':'logging.handlers.RotatingFileHandler',
-            'filename': os.path.join(RUTA_LOGS, 'sap.log'),
+            'filename': os.path.join(LOG_FILES_DIR, 'sap.log'),
             'maxBytes': 1024*1024*15, # 15MB
             'backupCount': 1000,
             'formatter': 'verbose',
