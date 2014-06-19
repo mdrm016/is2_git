@@ -20,7 +20,6 @@ def expiracionDeSolicitud():
                       'Su solicitud ha experido sin respuestas por parte del miembro de comite, favor comunicarse con el lider del proyecto o realizar una nueva solicitud de cambio',
                       administradorSistema.email, [solicitud.usuario.user.email], fail_silently=False)
 
-
 def expiracionDeCredencial():
     administradorSistema = User.objects.get(id=1)
     listaCredencialesHabilitadas = Credenciales.objects.filter(estado='Habilitado')
@@ -36,7 +35,6 @@ def expiracionDeCredencial():
             send_mail(credencial.usuario.user.username,
                       'Su credencial ha sido revocada debido a que si credencial expiro, favor comunicarse con el lider del proyecto o realizar una nueva solicitud de cambio',
                       administradorSistema.email, [credencial.usuario.user.email], fail_silently=False)
-
 
 def pruebaDeFuncionamientoCelery():
     listaSolicitudesRechazadas = Solicitudes.objects.filter(estado='Pendiente')

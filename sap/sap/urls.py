@@ -12,7 +12,7 @@ urlpatterns = patterns('',
     # url(r'^blog/', include('blog.urls')),
 
      url(r'^admin/', include(admin.site.urls)),
-    
+
     #""" Incluimos la urls.py de la aplicacion Autenticacion """
     url(r'^', include('aplicaciones.autenticacion.urls')),
     
@@ -51,5 +51,8 @@ urlpatterns = patterns('',
     
     #""" Incluimos la urls.py de la aplicacion informes"""
     url(r'^', include('aplicaciones.informes.urls')),
+
+    #""" Incluimos la urls.py de la aplicacion de logs """
+    url(r'^', include('aplicaciones.logs.urls')),
 
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
