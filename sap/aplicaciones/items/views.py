@@ -573,13 +573,12 @@ def listar_versiones(request, id_proyecto, id_fase, id_item):
             ctx = {'mensaje':mensaje, 'id_proyecto': id_proyecto}
             template_name = './items/itemalerta.html'
             return render_to_response(template_name, ctx, context_instance=RequestContext(request))
-    else:
-        versionactual = itemactual.version
-        versiones = int(versionactual)
-        i=1
-        while i<versiones:
-            lista_versiones.append(i)
-            i = i+1
+    versionactual = itemactual.version
+    versiones = int(versionactual)
+    i=1
+    while i<versiones:
+        lista_versiones.append(i)
+        i = i+1
 
     logger.info('Lista de las versiones del item % de la fase %s del proyecto %s, hecho por %s', (itemactual.nombre, fase.nombre, proyecto.nombre, request.user.username))
     ctx={'lista_versiones':lista_versiones, 'id_proyecto':id_proyecto, 'id_fase':id_fase, 'id_item': id_item, 'proyecto':proyecto, 'fase':fase, 'item':itemactual}
@@ -1024,7 +1023,7 @@ def consultar_atributos(request, id_proyecto, id_fase, id_item):
             valorfuturo.valor_fecha = ""
             
             lista_valores.append(valorfuturo)
-    logger.info('Consulta de atributos de item % de la fase %s del proyecto %s, hecho por %s' % (itemactual.nombre, fase.nombre, proyecto.nombre, request.user.username))
+    logger.info('Consulta de atributos de item %s de la fase %s del proyecto %s, hecho por %s' % (itemactual.nombre, fase.nombre, proyecto.nombre, request.user.username))
     template_name='./items/consultaratributos.html'
     return render(request, template_name, {'id_proyecto':id_proyecto, 'id_fase': id_fase, 'lista_valores': lista_valores, 'id_item': id_item, 'proyecto':proyecto, 'fase':fase})        
 

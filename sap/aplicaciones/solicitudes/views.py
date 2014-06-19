@@ -7,7 +7,8 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.template.context import RequestContext
 from aplicaciones.proyectos.models import Proyectos
 from aplicaciones.fases.models import Fases
-from aplicaciones.items.models import Items
+from aplicaciones.items.models import Items, ValorItem
+from aplicaciones.relaciones.models import Relaciones
 from aplicaciones.lineabase.models import LineaBase
 from .models import Solicitudes, Votos, Credenciales
 from .forms import SolicitudNuevaForm, SolicitudPrimeraForm, votarSolicitudForm
@@ -97,11 +98,21 @@ def crear_solicitud(request, id_proyecto, id_fase, id_item):
     proyecto = Proyectos.objects.get(id=id_proyecto)
     fase = Fases.objects.get(id=id_fase)
     item = Items.objects.get(id=id_item)
-    if fase.estado=='FD':
-        mensaje = 'La fase se encuentra en estado finalizado, no se puede solicitar modificaciones.'
+    if proyecto.estado=='Finalizado':
+        mensaje = 'El proyecto se encuentra finalizado, no se puede solicitar modificaciones.'
         template_name='./solicitudes/solicitudalerta.html'
         ctx = {'mensaje': mensaje, 'id_proyecto':id_proyecto, 'id_fase': id_fase, 'id_item': id_item, 'proyecto':proyecto, 'fase':fase, 'item': item}
         return render_to_response(template_name, ctx, context_instance=RequestContext(request))
+    try:
+        credencial = Credenciales.objects.get(item_id=item.id, estado='Habilitado')
+    except Credenciales.DoesNotExist:
+        credencial = False
+    if credencial:
+        mensaje = 'Ya existe una solicitud aprobada en proceso para el item seleccionado.'
+        template_name='./solicitudes/solicitudalerta.html'
+        ctx = {'mensaje': mensaje, 'id_proyecto':id_proyecto, 'id_fase': id_fase, 'id_item': id_item, 'proyecto':proyecto, 'fase':fase, 'item': item}
+        return render_to_response(template_name, ctx, context_instance=RequestContext(request))
+        
     if request.method == 'POST':
         form = SolicitudNuevaForm(request.POST)
         if form.is_valid():
@@ -137,19 +148,6 @@ def crear_solicitud(request, id_proyecto, id_fase, id_item):
             return render_to_response(template_name, ctx, context_instance=RequestContext(request))
                 
             #return render(request, template_name, {'id_proyecto': id_proyecto, 'id_fase': id_fase, 'id_item': id_item, 'id_tipoitem': id_tipoitem, 'lista_valores': lista_valores, 'lista_atributos': lista_atributos})
-    try:
-        solicitudexistente = Solicitudes.objects.get(item_id=id_item, estado='Pendiente')
-    except Solicitudes.DoesNotExist:
-        solicitudexistente = False
-    try:
-        solicitudcreada = Solicitudes.objects.get(item_id=id_item, estado='Aprobado')
-    except Solicitudes.DoesNotExist:
-        solicitudcreada = False
-    if solicitudexistente or solicitudcreada:
-        mensaje = 'Ya existe una solicitud para la modificacion del item seleccionado.'
-        template_name='./solicitudes/solicitudalerta.html'
-        ctx = {'mensaje': mensaje, 'id_proyecto':id_proyecto, 'id_fase': id_fase, 'id_item': id_item, 'proyecto':proyecto, 'fase':fase, 'item': item}
-        return render_to_response(template_name, ctx, context_instance=RequestContext(request))
     else:
         fechasolic = datetime.today()
         estado = 'Pendiente'
@@ -252,6 +250,17 @@ def votar_solicitud(request, id_solicitud):
             #Verificamos los votos para rechazar o aprobar la  solicitud
             cantidad_votos = votosAprobado + votosRechazado
             if cantidad_votos==cantidad_miembros:
+                try:
+                    credencialitem = Credenciales.objects.get(item_id=solicitud.item_id, estado='Habilitado')
+                except Credenciales.DoesNotExist:
+                    credencialitem = False
+                if credencialitem:
+                    solicitud.estado = 'Cancelado'
+                    solicitud.save()
+                    mensaje = 'Ya existe una solicitud aprobada en proceso para el item. Esta solicitud ha sido descartada.'
+                    template_name='./solicitudes/solicitudalerta.html'
+                    ctx = {'mensaje': mensaje}
+                    return render_to_response(template_name, ctx, context_instance=RequestContext(request))
                 if votosAprobado > votosRechazado:
                     solicitud.estado = 'Cancelado'
                     credencial = Credenciales()
@@ -259,7 +268,7 @@ def votar_solicitud(request, id_solicitud):
                     credencial.proyecto = solicitud.proyecto
                     credencial.fase = solicitud.fase
                     credencial.item = solicitud.item
-                    credencial.version = credencial.item.version
+                    credencial.version = solicitud.item.version
                     credencial.fecha_aprobacion = date.today()
                     credencial.fecha_expiracion = date.today()+timedelta(days=solicitud.tiempo_solicitado)
                     credencial.estado = 'Habilitado'
@@ -424,9 +433,10 @@ def habilitar_items(credencial):
     item = Items.objects.get(id=credencial.item_id)
     fase = Items.objects.get(id=credencial.fase_id)
     lineasbase = LineaBase.objects.filter(fase_id=credencial.fase_id)
+    items = []
     for lb in lineasbase:
-        items = lb.items.all()
-        if item in items:
+        itemslb = lb.items.all()
+        if item in itemslb:
             lineabase = lb
             items = lineabase.items.all()
             lineabase.is_active = False
@@ -503,8 +513,6 @@ def cancelar_credencial(request, id_credencial):
     
     """
     credencial = Credenciales.objects.get(id=id_credencial)
-    credencial.estado='Finalizado'
-    credencial.save()
     
     lbs = LineaBase.objects.filter(fase_id=credencial.fase.id)
     eslb = False
@@ -520,10 +528,32 @@ def cancelar_credencial(request, id_credencial):
             item.save()
         eslb.is_active = True
         eslb.save()
+    credencial.estado='Finalizado'
+    credencial.save()
 
+    revertir_credencial(credencial.proyecto_id, credencial.fase_id, credencial)
     
     mensaje = 'Credencial cancelada.'
     logger.info('Cancelacion de Credencial con id %s, hecho por %s' % (credencial.id, request.user.username))
     template_name='./solicitudes/solicitudalerta.html'
     ctx = {'mensaje': mensaje}
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
+
+def revertir_credencial(id_proyecto, id_fase, credencial):
+    version_anterior = credencial.version
+    item = Items.objects.get(id=credencial.item_id)
+    version_actual = item.version
+    if version_actual>version_anterior:
+        for i in range(version_anterior+1,version_actual+1):
+            atributositem = ValorItem.objects.filter(proyecto_id=id_proyecto, fase_id=id_fase, item_id=item.id, version=i)
+            if atributositem:
+                for atrib in atributositem:
+                    atrib.version=0
+                    atrib.save()
+            try:
+                relacionitem = Relaciones.objects.get(item=item.id, version=i)
+            except Relaciones.DoesNotExist:
+                relacionitem = False
+            if relacionitem:
+                relacionitem.version = 0
+                relacionitem.save()

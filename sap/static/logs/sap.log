@@ -1,3 +1,198 @@
 INFO 17/Jun/2014 13:15:20 16299 Administracion de Proyectos
 INFO 17/Jun/2014 14:22:47 19589 Listado de solicitudes realizadas, hecho por sap
 INFO 17/Jun/2014 14:22:52 19589 Listado de Solicitudes recibidas, hecho por sap
+INFO 17/Jun/2014 23:19:38 18769 Administracion de Proyectos, hecho por ysapy
+INFO 17/Jun/2014 23:31:55 18770 Administracion de Proyectos, hecho por ysapy
+INFO 18/Jun/2014 22:03:37 1980 Administracion de Proyectos, hecho por ysapy
+INFO 18/Jun/2014 22:04:31 1980 Listado de Solicitudes recibidas, hecho por ysapy
+INFO 18/Jun/2014 22:04:44 1980 Votacion de solicitud con id 1, hecho por ysapy
+INFO 18/Jun/2014 22:04:48 1980 Logout de Usuario 
+INFO 18/Jun/2014 22:04:48 1980 Logout de Usuario 
+INFO 18/Jun/2014 22:04:56 1980 Login de Usuario marcelo
+INFO 18/Jun/2014 22:04:56 1980 Administracion de Proyectos, hecho por marcelo
+INFO 18/Jun/2014 22:04:58 1980 Listado de Solicitudes recibidas, hecho por marcelo
+INFO 18/Jun/2014 22:05:07 1980 Votacion de solicitud con id 1, hecho por marcelo
+INFO 18/Jun/2014 22:05:11 1980 Logout de Usuario 
+INFO 18/Jun/2014 22:05:11 1980 Logout de Usuario 
+INFO 18/Jun/2014 22:05:18 1979 Login de Usuario eduardo
+INFO 18/Jun/2014 22:05:19 1979 Administracion de Proyectos, hecho por eduardo
+INFO 18/Jun/2014 22:05:21 1979 Listado de Solicitudes recibidas, hecho por eduardo
+INFO 18/Jun/2014 22:07:32 6086 Votacion de solicitud con id 1, hecho por eduardo
+INFO 18/Jun/2014 22:07:47 6086 Logout de Usuario 
+INFO 18/Jun/2014 22:07:59 6087 Login de Usuario ysapy
+INFO 18/Jun/2014 22:07:59 6087 Administracion de Proyectos, hecho por ysapy
+INFO 18/Jun/2014 22:08:02 6087 Listado de Credenciales, hecho por ysapy
+INFO 18/Jun/2014 22:08:10 6087 Administracion de Proyectos, hecho por ysapy
+INFO 18/Jun/2014 22:08:12 6087 Listado de solicitudes realizadas, hecho por ysapy
+INFO 18/Jun/2014 22:08:12 6086 Listado de solicitudes realizadas, hecho por ysapy
+INFO 18/Jun/2014 22:08:19 6086 Consultad de solicitud con id 1, hecho por ysapy
+INFO 18/Jun/2014 22:08:28 6086 Administracion de Proyectos, hecho por ysapy
+INFO 18/Jun/2014 22:08:35 6086 Ingreso a Administracion de Fases, proyecto Proyecto 2, hecho por ysapy
+INFO 18/Jun/2014 22:09:04 6087 Creacion de Solicitud de cambio id 2, hecho por ysapy
+INFO 18/Jun/2014 22:09:08 6087 Administracion de Proyectos, hecho por ysapy
+INFO 18/Jun/2014 22:09:10 6087 Listado de Solicitudes recibidas, hecho por ysapy
+INFO 18/Jun/2014 22:09:15 6087 Votacion de solicitud con id 2, hecho por ysapy
+INFO 18/Jun/2014 22:09:19 6087 Logout de Usuario 
+INFO 18/Jun/2014 22:09:26 6086 Login de Usuario marcelo
+INFO 18/Jun/2014 22:09:27 6086 Administracion de Proyectos, hecho por marcelo
+INFO 18/Jun/2014 22:09:29 6086 Listado de Solicitudes recibidas, hecho por marcelo
+INFO 18/Jun/2014 22:09:34 6086 Votacion de solicitud con id 2, hecho por marcelo
+INFO 18/Jun/2014 22:09:38 6086 Logout de Usuario 
+INFO 18/Jun/2014 22:09:46 6087 Login de Usuario eduardo
+INFO 18/Jun/2014 22:09:46 6087 Administracion de Proyectos, hecho por eduardo
+INFO 18/Jun/2014 22:09:48 6087 Listado de Solicitudes recibidas, hecho por eduardo
+INFO 18/Jun/2014 22:09:54 6087 Generacion de credencial id 1, hecho por eduardo
+INFO 18/Jun/2014 22:10:12 6086 Logout de Usuario 
+INFO 18/Jun/2014 22:10:17 6086 Login de Usuario ysapy
+INFO 18/Jun/2014 22:10:17 6086 Administracion de Proyectos, hecho por ysapy
+INFO 18/Jun/2014 22:10:20 6086 Listado de Credenciales, hecho por ysapy
+INFO 18/Jun/2014 22:10:26 6086 Consulta de credncial con id 1, hecho por ysapy
+INFO 18/Jun/2014 22:10:36 6086 Administracion de Proyectos, hecho por ysapy
+INFO 18/Jun/2014 22:10:40 6086 Ingreso a Administracion de Fases, proyecto Proyecto 2, hecho por ysapy
+INFO 18/Jun/2014 22:10:49 6086 Consulta de item item112 de la fase Fase 1 del proyecto Proyecto 2, hecho por ysapy
+INFO 18/Jun/2014 22:16:24 6631 Reversion de item item112 de la fase Fase 1 del proyecto Proyecto 2, hecho por ysapy
+INFO 18/Jun/2014 22:16:32 6631 Consulta de item item112 de la fase Fase 1 del proyecto Proyecto 2, hecho por ysapy
+INFO 18/Jun/2014 22:18:55 6920 Consulta de atributos de item item112 de la fase Fase 1 del proyecto Proyecto 2, hecho por ysapy
+INFO 18/Jun/2014 22:19:09 6919 Administracion de Proyectos, hecho por ysapy
+INFO 18/Jun/2014 22:19:12 6919 Listado de Credenciales, hecho por ysapy
+INFO 18/Jun/2014 22:19:41 6920 Consulta de credncial con id 1, hecho por ysapy
+INFO 18/Jun/2014 22:23:04 7429 Cancelacion de Credencial con id 1, hecho por ysapy
+INFO 18/Jun/2014 22:23:06 7429 Listado de solicitudes realizadas, hecho por ysapy
+INFO 18/Jun/2014 22:23:12 7429 Administracion de Proyectos, hecho por ysapy
+INFO 18/Jun/2014 22:23:17 7429 Listado de Credenciales, hecho por ysapy
+INFO 18/Jun/2014 22:23:20 7429 Administracion de Proyectos, hecho por ysapy
+INFO 18/Jun/2014 22:23:22 7429 Ingreso a Administracion de Fases, proyecto Proyecto 2, hecho por ysapy
+INFO 18/Jun/2014 22:23:35 7430 Consulta de item item312 en revision de fase Fase 1 de proyecto Proyecto 2, hecho por ysapy
+INFO 18/Jun/2014 22:23:42 7429 Consulta de relaciones de item item312 de la fase Fase 1 del proyecto Proyecto 2, hecho por ysapy
+INFO 18/Jun/2014 22:28:49 7681 Administracion de Lineas Base de fase Fase 1 del proyecto Proyecto 2, hecho por ysapy
+INFO 18/Jun/2014 23:05:25 7681 Consulta de item item112 de la fase Fase 1 del proyecto Proyecto 2, hecho por ysapy
+INFO 18/Jun/2014 23:16:02 8778 Login de Usuario ysapy
+INFO 18/Jun/2014 23:16:02 8778 Administracion de Proyectos, hecho por ysapy
+INFO 18/Jun/2014 23:16:07 8778 Listado de Solicitudes recibidas, hecho por ysapy
+INFO 18/Jun/2014 23:16:29 8778 Votacion de solicitud con id 1, hecho por ysapy
+INFO 18/Jun/2014 23:16:32 8778 Administracion de Proyectos, hecho por ysapy
+INFO 18/Jun/2014 23:16:40 8777 Ingreso a Administracion de Fases, proyecto Proyecto 2, hecho por ysapy
+INFO 18/Jun/2014 23:16:47 8777 Logout de Usuario 
+INFO 18/Jun/2014 23:16:59 8777 Login de Usuario marcelo
+INFO 18/Jun/2014 23:16:59 8777 Administracion de Proyectos, hecho por marcelo
+INFO 18/Jun/2014 23:17:02 8777 Listado de Solicitudes recibidas, hecho por marcelo
+INFO 18/Jun/2014 23:17:10 8777 Votacion de solicitud con id 1, hecho por marcelo
+INFO 18/Jun/2014 23:17:13 8777 Logout de Usuario 
+INFO 18/Jun/2014 23:17:21 8778 Login de Usuario eduardo
+INFO 18/Jun/2014 23:17:21 8778 Administracion de Proyectos, hecho por eduardo
+INFO 18/Jun/2014 23:17:25 8778 Ingreso a Administracion de Fases, proyecto Proyecto 2, hecho por eduardo
+INFO 18/Jun/2014 23:17:35 8777 Administracion de Lineas Base de fase Fase 1 del proyecto Proyecto 2, hecho por eduardo
+INFO 18/Jun/2014 23:18:33 9015 Consulta de Linea Base 2 de la fase Fase 1 del proyecto Proyecto 2, hecho por eduardo
+INFO 18/Jun/2014 23:18:42 9016 Consulta de Linea Base 1 de la fase Fase 1 del proyecto Proyecto 2, hecho por eduardo
+INFO 18/Jun/2014 23:18:56 9016 Administracion de Proyectos, hecho por eduardo
+INFO 18/Jun/2014 23:19:01 9016 Listado de Solicitudes recibidas, hecho por eduardo
+INFO 18/Jun/2014 23:19:13 9016 Generacion de credencial id 1, hecho por eduardo
+INFO 18/Jun/2014 23:19:34 9016 Administracion de Proyectos, hecho por eduardo
+INFO 18/Jun/2014 23:19:42 9016 Ingreso a Administracion de Fases, proyecto Proyecto 2, hecho por eduardo
+INFO 18/Jun/2014 23:19:51 9016 Administracion de Lineas Base de fase Fase 1 del proyecto Proyecto 2, hecho por eduardo
+INFO 18/Jun/2014 23:20:06 9015 Administracion de Lineas Base de fase Fase 1 del proyecto Proyecto 2, hecho por eduardo
+INFO 18/Jun/2014 23:20:09 9015 Consulta de Linea Base 2 de la fase Fase 1 del proyecto Proyecto 2, hecho por eduardo
+INFO 18/Jun/2014 23:29:29 9429 Login de Usuario ysapy
+INFO 18/Jun/2014 23:29:29 9429 Administracion de Proyectos, hecho por ysapy
+INFO 18/Jun/2014 23:29:31 9429 Listado de Solicitudes recibidas, hecho por ysapy
+INFO 18/Jun/2014 23:29:36 9429 Votacion de solicitud con id 1, hecho por ysapy
+INFO 18/Jun/2014 23:29:40 9429 Logout de Usuario 
+INFO 18/Jun/2014 23:29:51 9429 Login de Usuario marcelo
+INFO 18/Jun/2014 23:29:52 9429 Administracion de Proyectos, hecho por marcelo
+INFO 18/Jun/2014 23:29:54 9429 Listado de Solicitudes recibidas, hecho por marcelo
+INFO 18/Jun/2014 23:30:03 9429 Votacion de solicitud con id 1, hecho por marcelo
+INFO 18/Jun/2014 23:30:08 9429 Logout de Usuario 
+INFO 18/Jun/2014 23:30:15 9429 Login de Usuario eduardo
+INFO 18/Jun/2014 23:30:15 9429 Administracion de Proyectos, hecho por eduardo
+INFO 18/Jun/2014 23:30:17 9429 Listado de Solicitudes recibidas, hecho por eduardo
+INFO 18/Jun/2014 23:30:23 9429 Generacion de credencial id 1, hecho por eduardo
+INFO 18/Jun/2014 23:30:28 9429 Administracion de Proyectos, hecho por eduardo
+INFO 18/Jun/2014 23:30:37 9430 Ingreso a Administracion de Fases, proyecto Proyecto 2, hecho por eduardo
+INFO 18/Jun/2014 23:30:54 9430 Consulta de item item122 en revision de fase Fase 2 de proyecto Proyecto 2, hecho por eduardo
+INFO 18/Jun/2014 23:31:01 9430 Consulta de relaciones de item item122 de la fase Fase 2 del proyecto Proyecto 2, hecho por eduardo
+INFO 18/Jun/2014 23:31:10 9430 Consulta de item item222 en revision de fase Fase 2 de proyecto Proyecto 2, hecho por eduardo
+INFO 18/Jun/2014 23:31:14 9430 Consulta de relaciones de item item222 de la fase Fase 2 del proyecto Proyecto 2, hecho por eduardo
+INFO 18/Jun/2014 23:31:23 9430 Consulta de item item322 en revision de fase Fase 2 de proyecto Proyecto 2, hecho por eduardo
+INFO 18/Jun/2014 23:31:29 9430 Consulta de relaciones de item item322 de la fase Fase 2 del proyecto Proyecto 2, hecho por eduardo
+INFO 18/Jun/2014 23:31:37 9430 Consulta de item item122 en revision de fase Fase 2 de proyecto Proyecto 2, hecho por eduardo
+INFO 18/Jun/2014 23:31:41 9430 Revision finalizada de item item122 de la fase Fase 2 del proyecto Proyecto 2, hecho por eduardo
+INFO 18/Jun/2014 23:31:49 9429 Consulta de item item322 en revision de fase Fase 2 de proyecto Proyecto 2, hecho por eduardo
+INFO 18/Jun/2014 23:31:53 9429 Revision finalizada de item item322 de la fase Fase 2 del proyecto Proyecto 2, hecho por eduardo
+INFO 18/Jun/2014 23:32:15 9429 Consulta de item item222 en revision de fase Fase 2 de proyecto Proyecto 2, hecho por eduardo
+INFO 18/Jun/2014 23:32:22 9430 Revision finalizada de item item222 de la fase Fase 2 del proyecto Proyecto 2, hecho por eduardo
+INFO 18/Jun/2014 23:32:30 9429 Ingreso a Administracion de Fases, proyecto Proyecto 2, hecho por eduardo
+INFO 18/Jun/2014 23:32:37 9429 Ingreso a Administracion de Fases, proyecto Proyecto 2, hecho por eduardo
+INFO 18/Jun/2014 23:32:52 9430 Consulta de item item212 en revision de fase Fase 1 de proyecto Proyecto 2, hecho por eduardo
+INFO 18/Jun/2014 23:32:54 9430 Revision finalizada de item item212 de la fase Fase 1 del proyecto Proyecto 2, hecho por eduardo
+INFO 18/Jun/2014 23:33:20 9430 Logout de Usuario 
+INFO 18/Jun/2014 23:33:28 9429 Login de Usuario ysapy
+INFO 18/Jun/2014 23:33:28 9429 Administracion de Proyectos, hecho por ysapy
+INFO 18/Jun/2014 23:33:32 9429 Ingreso a Administracion de Fases, proyecto Proyecto 2, hecho por ysapy
+INFO 18/Jun/2014 23:33:35 9429 Listado de Credenciales, hecho por ysapy
+INFO 18/Jun/2014 23:33:40 9429 Ingreso a Administracion de Fases, proyecto Proyecto 2, hecho por ysapy
+INFO 18/Jun/2014 23:34:16 9429 Reversion de item item112 de la fase Fase 1 del proyecto Proyecto 2, hecho por ysapy
+INFO 18/Jun/2014 23:34:19 9429 Consulta de item item112 de la fase Fase 1 del proyecto Proyecto 2, hecho por ysapy
+INFO 18/Jun/2014 23:34:22 9429 Consulta de atributos de item item112 de la fase Fase 1 del proyecto Proyecto 2, hecho por ysapy
+INFO 18/Jun/2014 23:34:48 9429 Reversion de item item112 de la fase Fase 1 del proyecto Proyecto 2, hecho por ysapy
+INFO 18/Jun/2014 23:34:52 9429 Consulta de item item112 de la fase Fase 1 del proyecto Proyecto 2, hecho por ysapy
+INFO 18/Jun/2014 23:34:55 9429 Consulta de atributos de item item112 de la fase Fase 1 del proyecto Proyecto 2, hecho por ysapy
+INFO 18/Jun/2014 23:35:03 9429 Administracion de Relaciones del item item112, hecho por ysapy
+INFO 18/Jun/2014 23:35:22 9429 Consulta de item item112 de la fase Fase 1 del proyecto Proyecto 2, hecho por ysapy
+INFO 18/Jun/2014 23:35:25 9429 Consulta de atributos de item item112 de la fase Fase 1 del proyecto Proyecto 2, hecho por ysapy
+INFO 18/Jun/2014 23:35:49 9429 Consulta de item item112 de la fase Fase 1 del proyecto Proyecto 2, hecho por ysapy
+INFO 18/Jun/2014 23:35:51 9429 Consulta de relaciones de item item112 de la fase Fase 1 del proyecto Proyecto 2, hecho por ysapy
+INFO 18/Jun/2014 23:35:59 9429 Consulta de atributos de item item112 de la fase Fase 1 del proyecto Proyecto 2, hecho por ysapy
+INFO 18/Jun/2014 23:36:12 9429 Reversion de item item112 de la fase Fase 1 del proyecto Proyecto 2, hecho por ysapy
+INFO 18/Jun/2014 23:36:15 9429 Consulta de item item112 de la fase Fase 1 del proyecto Proyecto 2, hecho por ysapy
+INFO 18/Jun/2014 23:36:19 9429 Consulta de atributos de item item112 de la fase Fase 1 del proyecto Proyecto 2, hecho por ysapy
+INFO 18/Jun/2014 23:36:34 9430 Administracion de Proyectos, hecho por ysapy
+INFO 18/Jun/2014 23:36:36 9430 Listado de Credenciales, hecho por ysapy
+INFO 18/Jun/2014 23:36:42 9430 Cancelacion de Credencial con id 1, hecho por ysapy
+INFO 18/Jun/2014 23:36:43 9430 Listado de solicitudes realizadas, hecho por ysapy
+INFO 18/Jun/2014 23:36:45 9430 Administracion de Proyectos, hecho por ysapy
+INFO 18/Jun/2014 23:36:48 9430 Ingreso a Administracion de Fases, proyecto Proyecto 2, hecho por ysapy
+INFO 18/Jun/2014 23:36:54 9430 Consulta de item item112 de la fase Fase 1 del proyecto Proyecto 2, hecho por ysapy
+INFO 18/Jun/2014 23:36:59 9430 Consulta de atributos de item item112 de la fase Fase 1 del proyecto Proyecto 2, hecho por ysapy
+INFO 18/Jun/2014 23:52:15 9429 Administracion de Lineas Base de fase Fase 1 del proyecto Proyecto 2, hecho por ysapy
+INFO 18/Jun/2014 23:52:20 9429 Consulta de Linea Base 1 de la fase Fase 1 del proyecto Proyecto 2, hecho por ysapy
+INFO 18/Jun/2014 23:52:27 9430 Administracion de Proyectos, hecho por ysapy
+INFO 18/Jun/2014 23:52:31 9430 Listado de Credenciales, hecho por ysapy
+INFO 18/Jun/2014 23:52:38 9430 Consulta de credncial con id 1, hecho por ysapy
+INFO 18/Jun/2014 23:52:47 9430 Administracion de Proyectos, hecho por ysapy
+INFO 18/Jun/2014 23:55:04 10977 Login de Usuario ysapy
+INFO 18/Jun/2014 23:55:04 10977 Administracion de Proyectos, hecho por ysapy
+INFO 18/Jun/2014 23:55:12 10978 Listado de Solicitudes recibidas, hecho por ysapy
+INFO 18/Jun/2014 23:55:20 10978 Votacion de solicitud con id 1, hecho por ysapy
+INFO 18/Jun/2014 23:55:24 10978 Logout de Usuario 
+INFO 18/Jun/2014 23:55:35 10977 Login de Usuario marcelo
+INFO 18/Jun/2014 23:55:36 10977 Administracion de Proyectos, hecho por marcelo
+INFO 18/Jun/2014 23:55:40 10977 Ingreso a Administracion de Fases, proyecto Proyecto 2, hecho por marcelo
+INFO 18/Jun/2014 23:56:08 10978 Creacion de Solicitud de cambio id 2, hecho por marcelo
+INFO 18/Jun/2014 23:56:10 10978 Administracion de Proyectos, hecho por marcelo
+INFO 18/Jun/2014 23:56:12 10978 Listado de Solicitudes recibidas, hecho por marcelo
+INFO 18/Jun/2014 23:56:23 10978 Votacion de solicitud con id 1, hecho por marcelo
+INFO 18/Jun/2014 23:56:27 10978 Logout de Usuario 
+INFO 18/Jun/2014 23:56:34 10978 Login de Usuario eduardo
+INFO 18/Jun/2014 23:56:35 10978 Administracion de Proyectos, hecho por eduardo
+INFO 18/Jun/2014 23:56:37 10978 Listado de Solicitudes recibidas, hecho por eduardo
+INFO 18/Jun/2014 23:56:46 10977 Generacion de credencial id 1, hecho por eduardo
+INFO 18/Jun/2014 23:56:49 10977 Listado de Solicitudes recibidas, hecho por eduardo
+INFO 18/Jun/2014 23:56:57 10977 Votacion de solicitud con id 2, hecho por eduardo
+INFO 18/Jun/2014 23:57:00 10977 Logout de Usuario 
+INFO 18/Jun/2014 23:57:08 10978 Login de Usuario marcelo
+INFO 18/Jun/2014 23:57:08 10978 Administracion de Proyectos, hecho por marcelo
+INFO 18/Jun/2014 23:57:12 10978 Logout de Usuario 
+INFO 18/Jun/2014 23:57:16 10978 Login de Usuario ysapy
+INFO 18/Jun/2014 23:57:17 10978 Administracion de Proyectos, hecho por ysapy
+INFO 18/Jun/2014 23:57:18 10978 Listado de Solicitudes recibidas, hecho por ysapy
+INFO 18/Jun/2014 23:57:24 10978 Votacion de solicitud con id 2, hecho por ysapy
+INFO 18/Jun/2014 23:57:28 10978 Logout de Usuario 
+INFO 18/Jun/2014 23:57:35 10978 Login de Usuario marcelo
+INFO 18/Jun/2014 23:57:36 10978 Administracion de Proyectos, hecho por marcelo
+INFO 18/Jun/2014 23:57:37 10978 Listado de Solicitudes recibidas, hecho por marcelo
+INFO 18/Jun/2014 23:57:51 10977 Listado de solicitudes realizadas, hecho por marcelo
+INFO 18/Jun/2014 23:58:02 10977 Listado de Solicitudes recibidas, hecho por marcelo
+INFO 19/Jun/2014 00:00:46 10978 Logout de Usuario 
+INFO 19/Jun/2014 00:00:54 10978 Login de Usuario eduardo
+INFO 19/Jun/2014 00:00:54 10978 Administracion de Proyectos, hecho por eduardo
+INFO 19/Jun/2014 00:01:06 10978 Ingreso a Administracion de Fases, proyecto Proyecto 2, hecho por eduardo
