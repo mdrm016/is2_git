@@ -64,12 +64,12 @@
 							{% if form.Fecha_de_Inicio.errors %}
 							<div class="form-group has-error">
 								  <label class="control-label" for="inputError1">{{ form.Fecha_de_Inicio.errors }}</label>
-								 <input class="vDateField" id="id_Fecha_de_Inicio" name="Fecha_de_Inicio" size="10" type="date" class="form-control" value="{{ form.data.Fecha_de_Inicio }}" /><br /><span class="helptext"> Ingrese en formato Dia/Des/año</span>
+								 <input class="vDateField" id="id_Fecha_de_Inicio" name="Fecha_de_Inicio" size="10" type="date" class="form-control" value="{{ form.data.Fecha_de_Inicio }}" /><br /><span class="helptext"> Ingrese en formato Dia/Mes/año</span>
 								  
 							</div>
 							{% else %}
 							
-								<input class="vDateField" id="id_Fecha_de_Inicio" name="Fecha_de_Inicio" size="10" type="date" class="form-control" value="{{ form.data.Fecha_de_Inicio }}" /><br /><span class="helptext"> Ingrese en formato Dia/Des/año</span>
+								<input class="vDateField" id="id_Fecha_de_Inicio" name="Fecha_de_Inicio" size="10" type="date" class="form-control" value="{{ form.data.Fecha_de_Inicio }}" /><br /><span class="helptext"> Ingrese en formato Dia/Mes/año</span>
 							{% endif %}
 						</td></tr>
 						

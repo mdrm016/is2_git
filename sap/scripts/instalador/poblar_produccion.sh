@@ -8,12 +8,12 @@ sudo -u postgres createuser -d -a sap
 echo "ALTER USER sap WITH PASSWORD 'sap';" > comandos.sql
 echo "\q" >> comandos.sql
 sudo -u postgres psql -a -f comandos.sql
-sudo -u postgres createdb -O sap sap_desarrollo
+sudo -u postgres createdb -O sap sap
 rm comandos.sql
 python syncdb.py
 echo "############Poblando BD SAP############"
-cat poblacion_produccion.sql | psql sap_desarrollo
+cat poblacion_produccion.sql | psql sap
 echo "############LANZANDO EL NAVEGADOR############"
-firefox -new-tab sap.com
+#firefox -new-tab sap.com
 #google-chrome -new-tab sap.com
-#chromium-browser -new-tab sap.com
+chromium-browser -new-tab sap.com
