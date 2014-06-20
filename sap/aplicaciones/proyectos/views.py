@@ -11,6 +11,8 @@ from aplicaciones.roles.models import Roles
 from aplicaciones.tipoitem.models import TipoItem, ListaAtributo
 from aplicaciones.tipoitem.views import ordenar_mantener
 from aplicaciones.comite.models import Comite
+from aplicaciones.items.models import Items
+from aplicaciones.solicitudes.models import Solicitudes, Credenciales
 from aplicaciones.solicitudes.models import Solicitudes
 import logging
 
@@ -198,7 +200,7 @@ def crear_proyecto (request):
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
 
 @login_required(login_url='/login/')
-@permission_required('proyectos.modificar_proyectos',raise_exception=True)
+#@permission_required('proyectos.modificar_proyectos',raise_exception=True)
 def modificar_proyecto (request, id_proyecto):
     
     """ Recibe un request y el id del proyecto a ser modificado, se verifica si el usuario tiene
@@ -278,6 +280,9 @@ def modificar_proyecto (request, id_proyecto):
                 miembroscomite = comite.miembros.all()
                 cantidadmiembros = len(miembroscomite)
                 fasesNoFinalizadas = Fases.objects.filter(proyecto=proyecto).exclude(estado='FD').count()
+                itemsNoBloqueados = Items.objects.filter(proyecto=proyecto, is_active=True).exclude(estado='Bloqueado')
+                solicitudesPendientes = Solicitudes.objects.filter(proyecto=proyecto, estado='Pendiente')
+                credencialesHabilitadas = Credenciales.objects.filter(proyecto=proyecto, estado='Habilitado')
                 if nombreNuevo == proyecto.nombre and  lideruser == proyecto.lider and estado == proyecto.estado and duracion == proyecto.duracion:
                       mensaje="Proyecto guardado sin modificaciones"
                       
@@ -296,8 +301,8 @@ def modificar_proyecto (request, id_proyecto):
                 elif proyecto.estado == 'Inactivo' and estado == 'En Construccion' and cantidadmiembros<3:
                     mensaje="El comite de cambio del proyecto debe poseer al menos 3 miembros." 
                     
-                elif proyecto.estado == 'En Construccion' and estado == 'Finalizado' and fasesNoFinalizadas!=0:
-                    mensaje="El proyecto no puede pasar de un estado En Construccion a Finalizado si sus fases aun no estan finalizadas" 
+                elif (proyecto.estado == 'En Construccion' and estado == 'Finalizado') and (fasesNoFinalizadas!=0 or itemsNoBloqueados or solicitudesPendientes or credencialesHabilitadas):
+                    mensaje="El proyecto no puede ser finalizado. Verifique fases, items, solicitudes, credenciales." 
                 
                 else:
                     proyecto.nombre=nombreNuevo
@@ -320,7 +325,7 @@ def modificar_proyecto (request, id_proyecto):
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
 
 @login_required(login_url='/login/')
-@permission_required('proyectos.consultar_proyectos',raise_exception=True)
+#@permission_required('proyectos.consultar_proyectos',raise_exception=True)
 def consultar_proyecto (request, id_proyecto):
     
     """ Recibe un request y el id del proyecto a ser consultado, se verifica si el usuario tiene
@@ -386,7 +391,7 @@ def eliminar_proyecto (request, id_proyecto):
         return HttpResponseRedirect('/')
 
 @login_required(login_url='/login/')      
-@permission_required('proyectos.listar_miembros',raise_exception=True)
+#@permission_required('proyectos.listar_miembros',raise_exception=True)
 def listar_miembros (request, id_proyecto):
     
     """ Recibe un request y el id del proyecto cuyos miembros se desea que se liste, se verifica

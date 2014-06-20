@@ -59,7 +59,7 @@ def adm_tipoitem (request, id_proyecto):
         tupla=(TA, usado)
         lista_tipoitem.append(tupla)
         
-    logger.info('Listado de tipo de item de proyecto %s, hecho por %s' % proyecto.nombre, request.user.username)
+    #logger.info('Listado de tipo de item de proyecto %s, hecho por %s' % proyecto.nombre, request.user.username)
     ctx = {'lista_tipoitem':lista_tipoitem, 'query':busqueda, 'error':error, 'id_proyecto':id_proyecto, 'proyecto':proyecto}   
     template_name = 'tipoitem/tipoitem.html'
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
@@ -101,7 +101,7 @@ def crear_tipoitem (request, id_proyecto):
                 tipoitem.id_proyecto=id_proyecto
                 tipoitem.is_active='True'
                 tipoitem.save()
-                logger.info('Creacion de tipo de atributo %s de proyecto, hecho por %s' % (tipoitem.nombre, proyecto.nombre, request.user.username))
+                logger.info('Creacion de tipo de atributo %s de proyecto %s, hecho por %s' % (tipoitem.nombre, proyecto.nombre, request.user.username))
                 mensaje="Tipo Item creado exitosamente"
             else:
                 mensaje="Imposible crear el Tipo de Item, ya existe un Tipo de Item con el mismo nombre en el proyecto"

@@ -175,10 +175,10 @@ def preparar_solicitudes(solicitudes):
         votos = Votos.objects.filter(solicitud=solic)
         usuario = solic.usuario
         ya_voto = False
+        usu = User.objects.get(id=usuario.user_id)
         for voto in votos:
             if usuario.user_id==voto.miembro.id:
                 ya_voto=True
-                usu = voto.miembro
         tupla=(solic, usu, lineabase, ya_voto)
         lista_SP.append(tupla)
         

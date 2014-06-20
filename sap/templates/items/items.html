@@ -46,10 +46,16 @@
 {% block botones %}
 <div class="row">
 	<form class="navbar-form navbar-left">
+		{% ifequal fase.estado 'DR' %}
 		<a href="nuevo/"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-folder-open"></span> Crear Item</button></a>
 		<a href="eliminados/"><button type="button" class="btn btn-default"> Items Eliminados</button></a>
 <!-- 		<a href="#"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-import"></span> Importar Fase</button></a>-->
-
+		{% endifequal %}
+		{% ifequal fase.estado 'DF' %}
+		<a href="nuevo/"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-folder-open"></span> Crear Item</button></a>
+		<a href="eliminados/"><button type="button" class="btn btn-default"> Items Eliminados</button></a>
+<!-- 		<a href="#"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-import"></span> Importar Fase</button></a>-->
+		{% endifequal %}
 	</form>
 </div>
 {% endblock %}

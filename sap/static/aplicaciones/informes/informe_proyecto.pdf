@@ -1,0 +1,318 @@
+%PDF-1.4
+%“Œ‹ž ReportLab Generated PDF document http://www.reportlab.com
+% 'BasicFonts': class PDFDictionary 
+1 0 obj
+% The standard fonts dictionary
+<< /F1 2 0 R
+ /F2 3 0 R >>
+endobj
+% 'F1': class PDFType1Font 
+2 0 obj
+% Font Helvetica
+<< /BaseFont /Helvetica
+ /Encoding /WinAnsiEncoding
+ /Name /F1
+ /Subtype /Type1
+ /Type /Font >>
+endobj
+% 'F2': class PDFType1Font 
+3 0 obj
+% Font Helvetica-Bold
+<< /BaseFont /Helvetica-Bold
+ /Encoding /WinAnsiEncoding
+ /Name /F2
+ /Subtype /Type1
+ /Type /Font >>
+endobj
+% 'Page1': class PDFPage 
+4 0 obj
+% Page dictionary
+<< /Contents 30 0 R
+ /MediaBox [ 0
+ 0
+ 595.2756
+ 841.8898 ]
+ /Parent 29 0 R
+ /Resources << /Font 1 0 R
+ /ProcSet [ /PDF
+ /Text
+ /ImageB
+ /ImageC
+ /ImageI ] >>
+ /Rotate 0
+ /Trans <<  >>
+ /Type /Page >>
+endobj
+% 'R5': class PDFCatalog 
+5 0 obj
+% Document Root
+<< /Outlines 7 0 R
+ /PageMode /UseNone
+ /Pages 29 0 R
+ /Type /Catalog >>
+endobj
+% 'R6': class PDFInfo 
+6 0 obj
+<< /Author ()
+ /CreationDate (D:20140620010414+04'00')
+ /Creator (\(unspecified\))
+ /Keywords ()
+ /Producer (pisa HTML to PDF <http://www.htmltopdf.org>)
+ /Subject ()
+ /Title (Informe de Linea Base) >>
+endobj
+% 'R7': class PDFOutlines 
+7 0 obj
+<< /Count 3
+ /First 8 0 R
+ /Last 9 0 R
+ /Type /Outlines >>
+endobj
+% 'Outline.0': class OutlineEntryObject 
+8 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 9 0 R
+ /Parent 7 0 R
+ /Title (SISTEMA DE ADMINITRACION DE PROYECTOS) >>
+endobj
+% 'Outline.1': class OutlineEntryObject 
+9 0 obj
+<< /Count -19
+ /Dest [ 4 0 R
+ /Fit ]
+ /First 10 0 R
+ /Last 28 0 R
+ /Parent 7 0 R
+ /Prev 8 0 R
+ /Title (Informe de Proyectos) >>
+endobj
+% 'Outline.3.0': class OutlineEntryObject 
+10 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 11 0 R
+ /Parent 9 0 R
+ /Title (Proyectos en estado Inicializado: 2) >>
+endobj
+% 'Outline.3.1': class OutlineEntryObject 
+11 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 12 0 R
+ /Parent 9 0 R
+ /Prev 10 0 R
+ /Title (Nombre del Proyecto) >>
+endobj
+% 'Outline.3.2': class OutlineEntryObject 
+12 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 13 0 R
+ /Parent 9 0 R
+ /Prev 11 0 R
+ /Title (Estado) >>
+endobj
+% 'Outline.3.3': class OutlineEntryObject 
+13 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 14 0 R
+ /Parent 9 0 R
+ /Prev 12 0 R
+ /Title (Cant. Tipo de Item) >>
+endobj
+% 'Outline.3.4': class OutlineEntryObject 
+14 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 15 0 R
+ /Parent 9 0 R
+ /Prev 13 0 R
+ /Title (Fases) >>
+endobj
+% 'Outline.3.5': class OutlineEntryObject 
+15 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 16 0 R
+ /Parent 9 0 R
+ /Prev 14 0 R
+ /Title (Items) >>
+endobj
+% 'Outline.3.6': class OutlineEntryObject 
+16 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 17 0 R
+ /Parent 9 0 R
+ /Prev 15 0 R
+ /Title (Linea Base) >>
+endobj
+% 'Outline.3.7': class OutlineEntryObject 
+17 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 18 0 R
+ /Parent 9 0 R
+ /Prev 16 0 R
+ /Title (Cant. Participantes) >>
+endobj
+% 'Outline.3.8': class OutlineEntryObject 
+18 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 19 0 R
+ /Parent 9 0 R
+ /Prev 17 0 R
+ /Title (Progreso) >>
+endobj
+% 'Outline.3.9': class OutlineEntryObject 
+19 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 20 0 R
+ /Parent 9 0 R
+ /Prev 18 0 R
+ /Title (Proyectos en estado En Construccion: 1) >>
+endobj
+% 'Outline.3.10': class OutlineEntryObject 
+20 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 21 0 R
+ /Parent 9 0 R
+ /Prev 19 0 R
+ /Title (Nombre del Proyecto) >>
+endobj
+% 'Outline.3.11': class OutlineEntryObject 
+21 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 22 0 R
+ /Parent 9 0 R
+ /Prev 20 0 R
+ /Title (Estado) >>
+endobj
+% 'Outline.3.12': class OutlineEntryObject 
+22 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 23 0 R
+ /Parent 9 0 R
+ /Prev 21 0 R
+ /Title (Cant. Tipo de Item) >>
+endobj
+% 'Outline.3.13': class OutlineEntryObject 
+23 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 24 0 R
+ /Parent 9 0 R
+ /Prev 22 0 R
+ /Title (Fases) >>
+endobj
+% 'Outline.3.14': class OutlineEntryObject 
+24 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 25 0 R
+ /Parent 9 0 R
+ /Prev 23 0 R
+ /Title (Items) >>
+endobj
+% 'Outline.3.15': class OutlineEntryObject 
+25 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 26 0 R
+ /Parent 9 0 R
+ /Prev 24 0 R
+ /Title (Linea Base) >>
+endobj
+% 'Outline.3.16': class OutlineEntryObject 
+26 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 27 0 R
+ /Parent 9 0 R
+ /Prev 25 0 R
+ /Title (Cant. Participantes) >>
+endobj
+% 'Outline.3.17': class OutlineEntryObject 
+27 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 28 0 R
+ /Parent 9 0 R
+ /Prev 26 0 R
+ /Title (Progreso) >>
+endobj
+% 'Outline.3.18': class OutlineEntryObject 
+28 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Parent 9 0 R
+ /Prev 27 0 R
+ /Title (Proyectos en estado Finalizado: 0) >>
+endobj
+% 'R29': class PDFPages 
+29 0 obj
+% page tree
+<< /Count 1
+ /Kids [ 4 0 R ]
+ /Type /Pages >>
+endobj
+% 'R30': class PDFStream 
+30 0 obj
+% page stream
+<< /Filter [ /ASCII85Decode
+ /FlateDecode ]
+ /Length 2294 >>
+stream
+Gb"/*?#SIU'R_X]s1js%h10PD(6u?eFU&`]NaMMD\SgB#Q<P`mYl4E)aq?-qZ?2qAEBQ,f$HKa@giH'OORZmA@IT?@s0&ka4C4-,T5qdP=hH+e;+28Ha_YtshO"/0(ZE5'Wf/]dCW]QL@^V0s3-iTgpS^f&ape+/r]Qq;5,4g?gI.7EQ>fSFf1*>f/q6Ki]C8"FARtgl4F"R;YfW2as%4%Ko9b3n&S1E90(;U7rM=o3-Bb,525s+IA.iW";lAJ/O]L+h?Hsr8P0$t5i%u1c]tJ[R7R:62oKg31Oj_eg\=-bVAhP3f-St>Wac#u<q;Ue:bPA3*mZ#h:?i<!s>eIYjX+Q9N`X,fUCopH(&8ui,FU=7,C;%33>*I9d9J+dK"@[$pL:W6c%lFY_SpejA4!GMCK^fGI0"COB`)PA5\=nkXlIJmE%COX<!E1i$hXC0m20lYXYP5YYf;kCsFdS;I%p=jr.8:H.4X2ZM=s]/;;CZp+q;D@:e>cdB5sAP;UAfh1P0#a0lg(&%],d;PS(2-HC%EGEE'Zlp$s#OHKMiQMb=&n`ga$!>&u&hI,m+=I,'A*)X_pTL172ABC(,s:^r8^NN(a$Zj]M`:`p1JOP+X:%S>X>b,DPRHDYr&Bc1e,VA2H0$1L851+&dY*=N\2:8TOGULkjD4RT^p=ObRn$4Hgpgf1NG-$29(Q2:3%Dl7B[n.fN<lke8./(C;87$)U[#Of#uDI%?VIm"U\Bk-M8A:rO'HFYT`^E6iIRgFs6[/C>;cS5F/a<SAd`c`!Srgh]6P:RB]!MEOE'mKjVc_\93$a_T8Q8MKoXge:[^M"'4X8-THtjF$52?t5B]b<qWcI$:\!j=s=t=SJg8m:Cf",S63HPcpnqPT*^WiAjhuVbtldIFPcJrD\W)O'7p`KIZ*RY[?/B^tSAt@_uCX3HO`#7nnOs`MB)OMI?n67$7tW'UF:\qt5*9c^:I(:3GfH__t`+[r%=7!:5K`NA?FuQTFKXH?[Wh99,\$MZ'P4Q#,Wg>br4<H_)fj2k.R+O\5o`jE`]:W5CB$@/l"JcbcVNclV$)dW/s2rGlpj])<7^DS"#6iafXF.,Eb+-e$<hr1[j;r-85SKLa[D#H+do_q0`]>i*WC-e3Yi0;!Fcn(?"5;7q,GEtn)Fr@GpSrdJ&@[l!np`IDNu(Z_!Jpp'aalg5e^8!&tO%m$OLK`kVSi.8<PS?%&''=g0B0Y#9jDu4M)Mlh[/pG$rIV7JI*&^\]4"'ROsC*KHX:!ae@U'TsoL]MXa+GC1m<<A)qaFkUA`*rIN>b.sjcb^.:_"U@]p%U9Pb89.&A3lhaYVUf:f#QqGp`^3k(ZXdk6(`4:=?H?2]H1Fu@JOA;SZJR3^q.h-TL\/;pbE?&(ZFXi'tXIh1E&B#A6t<M]`H4kj6C1RG)"8"27Ecs]>o&$jiW#8]e/:0'$AB\kZU*kq2XS1_<'c"F=hrt\`$G3BGlNaWken-)ChM;qC!=b$l`Yf\;VJ47cCjlYTY?JbNPX2'TT3u)e<9RN#q8ZE*P,6LhYg'HDl>9;-Z!2&@95b`0jPfl\J((>sI\(j'l29^+Hk'I;cT5[H@(SX9Vf5*+hj"$m*K//=$!]<n*b_!u[7J`"00r6m<.P30m270Zua-nj%q>WPf=SRJoSqaH.qrI[IMc&pYV;YuK_<fa/i7_E;:nRYN^`POJf\FDBSY)3#.QmcldW/0gLnm.t>oFg]riZ4"MST#f<B;(IP+b$=-D3TfL]SB?[.q0tAdF6?Ku,G3&FGXbJL,%omR:3%Okg)>Er'0.C(O^im4a=0mF9KU3@30@^LbSq6DC?UPeDWi,p")\c\7b0<;WbiN8&'"]TRPSn%G6;NIlMTR#A9h#-"F1&<2:"XF/:\C0iuRlJ:TRmYXtb<iA+*Kuo2K'L81.GfbMMa,l;-+R2U/CZBl=KNp*L"0`O7[[&U@f&FD'k_TU-f+ZtK`9<ih&&8C/'i&-Eiq@4ro`<Q?BoSHMZBnAVn,F#`CT:"=6/6UsGk6$s9Id2_lV6;r#3hU#EPF9l64CG^g[^<fh"QT'"'1`aFLiu62$T[,Psa5mc$##,?m7CYg.37rq'WfG7A3Y%SgiJV]8k&@Mp@ImsQXhiWWESX\,c5p!8C?nSnS#:Hj?!FK*SjX7BdIcWXYC??A7`8/aNeU'%8bH\0DaGH,38X#c18Fh"m1"lH*$($!0%9(2db]@2b0eVtkVSX_/FAFPiuH)Y**jo>T;B6cE0R,m\^=snrE9!A@;KG+C%k1ocem]2^W+:B:$2JuR!&$XaSgJC!#f(e=o~>endstream
+endobj
+xref
+0 31
+0000000000 65535 f
+0000000113 00000 n
+0000000221 00000 n
+0000000386 00000 n
+0000000559 00000 n
+0000000838 00000 n
+0000000973 00000 n
+0000001227 00000 n
+0000001349 00000 n
+0000001517 00000 n
+0000001714 00000 n
+0000001884 00000 n
+0000002053 00000 n
+0000002209 00000 n
+0000002377 00000 n
+0000002532 00000 n
+0000002687 00000 n
+0000002847 00000 n
+0000003016 00000 n
+0000003174 00000 n
+0000003363 00000 n
+0000003533 00000 n
+0000003690 00000 n
+0000003859 00000 n
+0000004015 00000 n
+0000004171 00000 n
+0000004332 00000 n
+0000004502 00000 n
+0000004661 00000 n
+0000004811 00000 n
+0000004918 00000 n
+trailer
+<< /ID 
+ % ReportLab generated PDF document -- digest (http://www.reportlab.com) 
+ [(\225\021"{\364\257\2130\011\204\244\373`EK\235) (\225\021"{\364\257\2130\011\204\244\373`EK\235)] 
+
+ /Info 6 0 R
+ /Root 5 0 R
+ /Size 31 >>
+startxref
+7328
+%%EOF

@@ -75,7 +75,7 @@ def listar_tipo_item(request, id_proyecto, id_fase):
     else:
         lista_tipo_item = TipoItem.objects.filter(id_proyecto=id_proyecto, is_active=True)
     ctx={'lista_tipo_item':lista_tipo_item, 'id_proyecto':id_proyecto, 'id_fase':id_fase, 'proyecto':proyecto, 'fase':fase}
-    logger.info('Lita de tipos de Item del proyecto %s, hecho por %s' % proyecto.nombre, request.user.username)
+    logger.info('Lita de tipos de Item del proyecto %s, hecho por %s' % (proyecto.nombre, request.user.username))
     template_name = './items/listartipos.html'
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
 
@@ -171,16 +171,16 @@ def cargar_valores(request, id_proyecto, id_fase, id_item):
     fase = Fases.objects.get(id=id_fase)
     itemactual = Items.objects.get(id=id_item)
     lista_error = []
-    if fase.estado == 'FD' or proyecto.estado=='Inactivo' or itemactual.estado=='En Revision' or itemactual.estado=='Bloqueado' or itemactual.estado=='Validado':
+    if itemactual.estado=='En Revision':
         mensaje = 'No se pueden modificar atributos. Dirijase a consultar item.'
-        ctx = {'mensaje':mensaje, 'id_proyecto': id_proyecto}
+        ctx = {'mensaje':mensaje, 'id_proyecto': id_proyecto, 'id_fase': id_fase}
         template_name = './items/itemalerta.html'
         return render_to_response(template_name, ctx, context_instance=RequestContext(request))
     if itemactual.estado=='Habilitado':
         credencial = Credenciales.objects.get(item_id=itemactual.id, estado='Habilitado')
         if credencial.usuario.user.id!=request.user.id:
             mensaje = 'No posee credencial sobre este item.'
-            ctx = {'mensaje':mensaje, 'id_proyecto': id_proyecto}
+            ctx = {'mensaje':mensaje, 'id_proyecto': id_proyecto, 'id_fase': id_fase}
             template_name = './items/itemalerta.html'
             return render_to_response(template_name, ctx, context_instance=RequestContext(request))
             
@@ -562,7 +562,7 @@ def listar_versiones(request, id_proyecto, id_fase, id_item):
     proyecto = Proyectos.objects.get(id=id_proyecto)
     itemactual = Items.objects.get(id=id_item)
     lista_versiones = []
-    if fase.estado =='FD' or proyecto.estado=='Inactivo' or itemactual.estado=='En Revision' or itemactual.estado=='Bloqueado' or itemactual.estado=='Validado':
+    if itemactual.estado=='En Revision':
         mensaje ='No se puede consultar esta opcion. Dirijase a consultar item.'
         ctx = {'mensaje':mensaje, 'id_proyecto': id_proyecto, 'id_fase': id_fase, 'proyecto':proyecto, 'fase':fase}
         template_name = './items/itemalerta.html'
@@ -571,7 +571,7 @@ def listar_versiones(request, id_proyecto, id_fase, id_item):
         credencial = Credenciales.objects.get(item_id=itemactual.id, estado='Habilitado')
         if credencial.usuario.user.id!=request.user.id:
             mensaje = 'No posee credencial sobre este item.'
-            ctx = {'mensaje':mensaje, 'id_proyecto': id_proyecto}
+            ctx = {'mensaje':mensaje, 'id_proyecto': id_proyecto, 'id_fase': id_fase}
             template_name = './items/itemalerta.html'
             return render_to_response(template_name, ctx, context_instance=RequestContext(request))
     versionactual = itemactual.version

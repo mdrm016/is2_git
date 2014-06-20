@@ -10,6 +10,7 @@ from aplicaciones.fases.models import Fases
 from aplicaciones.items.models import Items, ValorItem
 from aplicaciones.relaciones.models import Relaciones
 from aplicaciones.lineabase.models import LineaBase
+from aplicaciones.usuarios.models import Usuarios
 from .models import Solicitudes, Votos, Credenciales
 from .forms import SolicitudNuevaForm, SolicitudPrimeraForm, votarSolicitudForm
 from datetime import datetime, date, timedelta
@@ -109,6 +110,13 @@ def crear_solicitud(request, id_proyecto, id_fase, id_item):
         credencial = False
     if credencial:
         mensaje = 'Ya existe una solicitud aprobada en proceso para el item seleccionado.'
+        template_name='./solicitudes/solicitudalerta.html'
+        ctx = {'mensaje': mensaje, 'id_proyecto':id_proyecto, 'id_fase': id_fase, 'id_item': id_item, 'proyecto':proyecto, 'fase':fase, 'item': item}
+        return render_to_response(template_name, ctx, context_instance=RequestContext(request))
+    usuariosolic = Usuarios.objects.get(user_id=request.user.id)
+    solicituditem = Solicitudes.objects.filter(item=item, estado='Pendiente', usuario=usuariosolic)
+    if solicituditem:
+        mensaje = 'Ya existe una solicitud pendiente para el item seleccionado.'
         template_name='./solicitudes/solicitudalerta.html'
         ctx = {'mensaje': mensaje, 'id_proyecto':id_proyecto, 'id_fase': id_fase, 'id_item': id_item, 'proyecto':proyecto, 'fase':fase, 'item': item}
         return render_to_response(template_name, ctx, context_instance=RequestContext(request))
