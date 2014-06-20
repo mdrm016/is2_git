@@ -1,4 +1,5 @@
 from .models import Solicitudes, Credenciales
+from .views import revertir_credencial
 from django.core.mail import send_mail
 from django.contrib.auth.models import User
 from datetime import date, timedelta
@@ -20,7 +21,6 @@ def expiracionDeSolicitud():
                       'Su solicitud ha experido sin respuestas por parte del miembro de comite, favor comunicarse con el lider del proyecto o realizar una nueva solicitud de cambio',
                       administradorSistema.email, [solicitud.usuario.user.email], fail_silently=False)
 
-
 def expiracionDeCredencial():
     administradorSistema = User.objects.get(id=1)
     listaCredencialesHabilitadas = Credenciales.objects.filter(estado='Habilitado')
@@ -31,9 +31,10 @@ def expiracionDeCredencial():
             #para el cambio vuelve a la version en la que estaba antes de generar la
             #credencial
 
-            ### Ysa aca tenes que poner tu codigo que regresa al item a su 'version' anterior a la generacion de la credencial
-            credencial.estado = 'Revocado'
+            revertir_credencial(credencial.proyecto, credencial.fase, credencial)
+            credencial.estado = 'Expirada'
             send_mail(credencial.usuario.user.username,
                       'Su credencial ha sido revocada debido a que si credencial expiro, favor comunicarse con el lider del proyecto o realizar una nueva solicitud de cambio',
                       administradorSistema.email, [credencial.usuario.user.email], fail_silently=False)
+
 

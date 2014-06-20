@@ -1,0 +1,86 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>Informe de Items</title>
+<style type="text/css">
+            @page {
+                size: {{ pagesize }};
+                margin: 2cm;
+                @frame footer {
+                    -pdf-frame-content: footerContent;
+                    bottom: 0cm;
+                    margin-left: 10cm;
+                    margin-right: 9cm;
+                    height: 1cm;
+                }
+            }
+        </style>
+</head>
+<body>
+<h1 align="center">SISTEMA DE ADMINITRACION DE PROYECTOS</h1>
+<div>
+    <h2></h2>
+    <div>
+    	<strong><p align="right">{{ fecha }}</p></strong>
+    	<h1 align="center">Informe de Items</h1>
+
+    	<h2>Items del Proyecto "{{ proyecto.nombre }}"</h2>
+    	{% if lista_fases %}
+	    	{% for fase, lista_items in lista_fases %}
+	    		
+    			<div style="text-align:left;">
+					<p><h4><b>Fase: {{ fase.nombre }} - Estado: {{ fase.estado }}</b></h4></p></td>
+					{% if lista_items %}
+					<table border="1" style=" margin: 1px; padding: 1px;">
+						<tbody>
+						  	<tr class="active">
+						  		<td><p><h5><b>Id de Item</b></h5></p></td>
+						  		<td><p><h5><b>Nombre</b></h5></p></td>
+						  		<td><p><h5><b>Tipo de Item</b></h5></p></td>
+						  		<td><p><h5><b>Padre</b></h5></p></td>
+						  		<td><p><h5><b>Version</b></h5></p></td>
+						  		<td><p><h5><b>Costo Monetario</b></h5></p></td>
+						  		<td><p><h5><b>Costo Temporal</b></h5></p></td>
+						  	</tr>
+						  	
+						  	{% for id, nombre, tipoitem, padre, version, costoM, costoT in lista_items %}
+								<tr class="active">
+									<td><p><h5>{{ id }}</h5></p></td>
+									<td><p><h5>{{ nombre }}</h5></p></td>
+									<td><p><h5>{{ tipoitem }}</h5></p></td>
+									<td><p><h5>{{ padre }}</h5></p></td>
+									<td><p><h5>{{ version }}</h5></p></td>
+									<td><p><h5>{{ costoM }}</h5></p></td>
+									<td><p><h5>{{ costoT }}</h5></p></td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+				{% else %}
+					<table class="table table-hover table-bordered table-condensed table-responsive">
+						<tbody>
+							<tr class="active" align="left">
+						  			<td><p><h5>No se encontraron items en la fase</h5></p></td>
+						  		</tr>
+						</tbody>
+					</table>
+				{% endif %}
+			{% endfor %}
+		{% else %}
+			<table class="table table-hover table-bordered table-condensed table-responsive">
+				<tbody>
+					<tr class="active" align="left">
+						<td><p><h5>No se encontraron fases en el proyecto</h5></p></td>
+					</tr>
+				</tbody>
+			</table>
+		{% endif %}
+
+    </div>
+</div>
+<div id="footerContent">
+	<big>Pagina <pdf:pagenumber></big>
+</div>
+</body>
+</html>

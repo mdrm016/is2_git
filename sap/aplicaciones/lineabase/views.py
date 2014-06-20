@@ -90,6 +90,7 @@ def generarLineaBase(request, id_proyecto, id_fase):
                 for id_item in request.POST.getlist('Items'):
                     item = Items.objects.get(id=id_item)
                     linea_base.items.add(item)
+                    item.lb = linea_base.id
                     item.estado = 'Bloqueado'
                     item.save()
                 linea_base.save()
@@ -121,7 +122,7 @@ def generarLineaBase(request, id_proyecto, id_fase):
         raise PermissionDenied()
 
 @login_required(login_url='/login/')
-@permission_required('lineabase.consultar_linea_base',raise_exception=True)     
+#@permission_required('lineabase.consultar_linea_base',raise_exception=True)     
 def consultar_lineabase (request, id_proyecto, id_fase, id_lineabase):
     
     """ Recibe un request, el id de proyecto, el id de fase y el id de la linea base a ser consultada, se verifica
@@ -151,7 +152,7 @@ def consultar_lineabase (request, id_proyecto, id_fase, id_lineabase):
     fase = Fases.objects.get(id=id_fase)
     lineabase = LineaBase.objects.get(id=id_lineabase)
     items = lineabase.items.all()
-    logger.info('Consulta de Linea Base %s de la fase %s del proyecto %s, hecho por %s' % (lineabase.numero, fase.nombre, proyecto.nombre, request.user.username))
+    logger.info('Consulta de Linea Base %d de la fase %s del proyecto %s, hecho por %s' % (lineabase.numero, fase.nombre, proyecto.nombre, request.user.username))
     template_name='lineaBase/consultarlineabase.html'
     ctx = {'lineabase':lineabase, 'items':items, 'proyecto':proyecto, 'fase':fase}
     return render_to_response(template_name, ctx, context_instance=RequestContext(request) )
