@@ -1,0 +1,89 @@
+{% extends "base_general.html" %}
+
+{% block navegacion %}
+<nav class="navbar navbar-default">
+	<div class="navbar-header">
+		<a href="/" class="navbar-brand">SAP</a>
+	</div>
+
+	<div  class="collapse navbar-collapse navbar-ex1-collapse">
+		<ul class="nav navbar-nav">
+			<li><a href="/informes/">Informes</a></li>
+			<li class="active"><a href="/informes/proyectos">Informe de Proyectos</a></li>
+        </ul>
+
+		<ul class="nav navbar-nav navbar-right">
+			<li><a href="/informes/">Informes</a><li><li><a href="#">Acerca de</a></li>
+			<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Registro del Sistema<b class="caret"></b></a>
+				<ul class="dropdown-menu">
+				
+				</ul>
+			</li>
+		</ul>
+	</div>
+</nav>
+{% endblock %}
+
+{% block contenido %}
+<div class="row ">
+    	<strong><p align="right"><b>{{ fecha }}</b></p></strong>
+    	<h1 align="center">Informe de Items</h1>
+
+    	<td><p><h2><span class="label label-default">Items del Proyecto "{{ proyecto.nombre }}" </span></h2></h4></p></td>
+    		<br><br>
+    		{% if lista_fases %}
+    			{% for fase, lista_items in lista_fases %}
+							<div class="active" align="left">
+								<h4><b>Fase: {{ fase.nombre }} - Estado: {{ fase.estado }}</b></h4>
+							</div>
+					{% if lista_items %}
+					<table class="table table-hover table-bordered table-condensed table-responsive">
+						<tbody>
+						  	<tr class="active">
+						  		<td><p><h5><b>Id de Item</b></h5></p></td>
+						  		<td><p><h5><b>Nombre</b></h5></p></td>
+						  		<td><p><h5><b>Tipo de Item</b></h5></p></td>
+						  		<td><p><h5><b>Padre</b></h5></p></td>
+						  		<td><p><h5><b>Version</b></h5></p></td>
+						  		<td><p><h5><b>Costo Monetario</b></h5></p></td>
+						  		<td><p><h5><b>Costo Temporal</b></h5></p></td>
+						  	</tr>
+						  	
+						  	{% for id, nombre, tipoitem, padre, version, costoM, costoT in lista_items %}
+								<tr class="active">
+									<td><p><h5>{{ id }}</h5></p></td>
+									<td><p><h5>{{ nombre }}</h5></p></td>
+									<td><p><h5>{{ tipoitem }}</h5></p></td>
+									<td><p><h5>{{ padre }}</h5></p></td>
+									<td><p><h5>{{ version }}</h5></p></td>
+									<td><p><h5>{{ costoM }}</h5></p></td>
+									<td><p><h5>{{ costoT }}</h5></p></td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+					{% else %}
+						<table class="table table-hover table-bordered table-condensed table-responsive">
+							<tbody>
+						  		<tr class="active" align="left">
+						  			<td><p><h5>No se encontraron items en la fase</h5></p></td>
+						  		</tr>
+						 	</tbody>
+						</table>
+					{% endif %}
+				{% endfor %}
+			{% else %}
+				<table class="table table-hover table-bordered table-condensed table-responsive">
+						<tbody>
+						  	<tr class="active">
+						  		<td><p><h4><b>No se encontraron fases en el proyecto</b></h4></p></td>
+						  	</tr>
+						 </tbody>
+				</table>
+			{% endif %}
+</div>
+<div align="center">
+	<a class="btn btn-default" href="javascript:window.history.go(-1);"><span class="glyphicon glyphicon-arrow-left"></span> Volver</a>
+	<a href="/informes/seleccionar_proyecto/items/{{ proyecto.id }}/items_pdf/"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-tasks"></span> Generar PDF</button></a>
+</div>
+{% endblock %}

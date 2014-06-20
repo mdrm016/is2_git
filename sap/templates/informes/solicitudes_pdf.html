@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>Informe de Solicitudes</title>
+<style type="text/css">
+            @page {
+                size: {{ pagesize }};
+                margin: 2cm;
+                @frame footer {
+                    -pdf-frame-content: footerContent;
+                    bottom: 0cm;
+                    margin-left: 10cm;
+                    margin-right: 9cm;
+                    height: 1cm;
+                }
+            }
+        </style>
+</head>
+<body>
+<h1 align="center">SISTEMA DE ADMINITRACION DE PROYECTOS</h1>
+<div>
+    <h2></h2>
+    <div>
+    	<strong><p align="right">{{ fecha }}</p></strong>
+    	<h1 align="center">Informe de Solicitudes</h1>
+
+    	<h2>Solicitudes del Proyecto "{{ proyecto.nombre }}"</h2>
+    	{% if existen %}
+    	<div style="text-align:center;">
+    		<table border="1" style=" margin: 1px; padding: 1px;">
+						<tbody>
+						  	<tr class="active">
+						  		<td><p><h4><b>Nombre de Fase - Nro. de Linea Base</b></h4></p></td>
+						  		<td><p><h4><b>Usuario</b></h2></p></td>
+						  		<td><p><h4><b>Ha sido votada por el lider</b></h2></p></td>
+						  		<td><p><h4><b>Estado</b></h2></p></td>
+						  	</tr>
+						  	
+						  	{% for solic, usu, lineabase, ya_voto in lista_SP %}
+								<tr class="active">
+									<td><p><h4>{{ solic.fase.nombre }} - {{ lineabase.numero }}</h4></p></td>
+									<td><p><h4>{{ usu.username }}</h4></p></td>
+									{% ifequal ya_voto True %}
+										<td><p><h4>Si</h4></p></td>
+									{% else %}
+										<td><p><h4>No</h4></p></td>
+									{% endifequal %}
+									<td><p><h4>Pendiente</h4></p></td>
+								</tr>
+							{% endfor %}
+							{% for solic, usu, lineabase, ya_voto in lista_SA %}
+								<tr class="active">
+									<td><p><h4>{{ solic.fase.nombre }} - {{ lineabase.numero }}</h4></p></td>
+									<td><p><h4>{{ usu.username }}</h4></p></td>
+									{% ifequal ya_voto True %}
+										<td><p><h4>Si</h4></p></td>
+									{% else %}
+										<td><p><h4>No</h4></p></td>
+									{% endifequal %}
+									<td><p><h4>Aprobada</h4></p></td>
+								</tr>
+							{% endfor %}
+							{% for solic, usu, lineabase, ya_voto in lista_SR %}
+								<tr class="active">
+									<td><p><h4>{{ solic.fase.nombre }} - {{ lineabase.numero }}</h4></p></td>
+									<td><p><h4>{{ usu.username }}</h4></p></td>
+									{% ifequal ya_voto True %}
+										<td><p><h4>Si</h4></p></td>
+									{% else %}
+										<td><p><h4>No</h4></p></td>
+									{% endifequal %}
+									<td><p><h4>Rechazada</h4></p></td>
+								</tr>
+							{% endfor %}
+							{% for solic, usu, lineabase, ya_voto in lista_SC %}
+								<tr class="active">
+									<td><p><h4>{{ solic.fase.nombre }} - {{ lineabase.numero }}</h4></p></td>
+									<td><p><h4>{{ usu.username }}</h4></p></td>
+									{% ifequal ya_voto True %}
+										<td><p><h4>Si</h4></p></td>
+									{% else %}
+										<td><p><h4>No</h4></p></td>
+									{% endifequal %}
+									<td><p><h4>Cancelada</h4></p></td>
+								</tr>
+							{% endfor %}
+						<tbody>
+					</table>
+				{% else %}
+					<table class="table table-hover table-bordered table-condensed table-responsive">
+						<tbody>
+						  	<tr class="active">
+						  		<td><p><h4><b>No se encontraron solicitudes en el proyecto</b></h4></p></td>
+						  	</tr>
+						 </tbody>
+					</table>
+				</div>
+				{% endif %}
+</div>
+<div id="footerContent">
+	<big>Pagina <pdf:pagenumber></big>
+</div>
+</body>
+</html>

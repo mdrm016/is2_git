@@ -11,6 +11,7 @@ from django.contrib.auth.models import User
 from aplicaciones.roles.models import Roles
 from aplicaciones.fases.models import Fases
 from aplicaciones.items.models import Items
+from aplicaciones.solicitudes.models import Solicitudes, Votos
 from aplicaciones.lineabase.models import LineaBase
 from aplicaciones.tipoitem.models import TipoItem
 
@@ -106,4 +107,149 @@ def informe_proyecto (request):
     ctx ={ 'lista_P_I':lista_P_I, 'cantidad_pi':cantidad_pi, 'lista_P_C':lista_P_C, 'cantidad_pc':cantidad_pc, 'lista_P_F':lista_P_F, 'cantidad_pf':cantidad_pf, 'fecha':datetime.now()}
     template_name = 'informes/proyecto_html.html'
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
+
+def informe_solicitudes(request, id_proyecto):
+    proyecto = Proyectos.objects.get(id=id_proyecto)
+    solicitudes_pendientes = Solicitudes.objects.filter(estado='Pendiente', proyecto_id=id_proyecto)
+    lista_SP = preparar_solicitudes(solicitudes_pendientes)
+    total = len(solicitudes_pendientes)
     
+    solicitudes_aprobadas = Solicitudes.objects.filter(estado='Aprobada', proyecto_id=id_proyecto)
+    lista_SA = preparar_solicitudes(solicitudes_aprobadas)
+    total = total + len(solicitudes_aprobadas)
+    
+    solicitudes_reprobadas = Solicitudes.objects.filter(estado='Reprobada', proyecto_id=id_proyecto)
+    lista_SR = preparar_solicitudes(solicitudes_reprobadas)
+    total = total + len(solicitudes_reprobadas)
+    
+    solicitudes_canceladas = Solicitudes.objects.filter(estado='Cancelado', proyecto_id=id_proyecto)
+    lista_SC = preparar_solicitudes(solicitudes_canceladas)
+    total = total + len(solicitudes_canceladas)
+
+    if solicitudes_pendientes or solicitudes_aprobadas or solicitudes_reprobadas or solicitudes_canceladas:
+        existen = True
+    else:
+        existen = False
+    
+    ctx ={'lista_SP': lista_SP, 'lista_SA': lista_SA, 'lista_SR': lista_SR, 'lista_SC': lista_SC, 'fecha':datetime.now(), 'existen': existen, 'total': total, 'proyecto': proyecto}
+    template_name = 'informes/solicitudes_html.html'
+    return render_to_response(template_name, ctx, context_instance=RequestContext(request))
+
+def informe_solicitudes_pdf(request, id_proyecto):
+    
+    solicitudes_pendientes = Solicitudes.objects.filter(estado='Pendiente', proyecto_id=id_proyecto)
+    cantidad_sp = len(solicitudes_pendientes)
+    lista_SP = preparar_solicitudes(solicitudes_pendientes)
+    
+    solicitudes_aprobadas = Solicitudes.objects.filter(estado='Aprobada', proyecto_id=id_proyecto)
+    cantidad_sa = len(solicitudes_aprobadas)
+    lista_SA = preparar_solicitudes(solicitudes_aprobadas)
+    
+    solicitudes_reprobadas = Solicitudes.objects.filter(estado='Reprobada', proyecto_id=id_proyecto)
+    cantidad_sr = len(solicitudes_reprobadas)
+    lista_SR = preparar_solicitudes(solicitudes_reprobadas)
+    
+    solicitudes_canceladas = Solicitudes.objects.filter(estado='Cancelado', proyecto_id=id_proyecto)
+    cantidad_sc = len(solicitudes_canceladas)
+    lista_SC = preparar_solicitudes(solicitudes_canceladas)
+    
+    proyecto = Proyectos.objects.get(id=id_proyecto)
+    filename = 'informe_solicitudes_'+proyecto.nombre+'.pdf'
+    
+    if solicitudes_pendientes or solicitudes_aprobadas or solicitudes_reprobadas or solicitudes_canceladas:
+        existen = True
+    else:
+        existen = False
+    
+    ctx ={'pagesize':'A4', 'lista_SP':lista_SP, 'cantidad_sp':cantidad_sp, 'lista_SA':lista_SA, 'cantidad_sa':cantidad_sa, 'lista_SR':lista_SR, 'cantidad_sr':cantidad_sr, 'lista_SC':lista_SC, 'cantidad_sc':cantidad_sc, 'existen': existen, 'fecha':datetime.now(), 'proyecto': proyecto}
+    html = render_to_string('informes/solicitudes_pdf.html', ctx, context_instance=RequestContext(request))
+    return generar_pdf(html, filename)
+        
+def preparar_solicitudes(solicitudes):
+    lista_SP = []
+    for solic in solicitudes:
+        proyecto = solic.proyecto
+        fase = solic.fase
+        item = solic.item
+        lineabase = LineaBase.objects.get(id=item.lb)
+        votos = Votos.objects.filter(solicitud=solic)
+        usuario = solic.usuario
+        ya_voto = False
+        for voto in votos:
+            if usuario.user_id==voto.miembro.id:
+                ya_voto=True
+                usu = voto.miembro
+        tupla=(solic, usu, lineabase, ya_voto)
+        lista_SP.append(tupla)
+        
+    return lista_SP
+
+def seleccionar_proyecto(request):
+    if request.user.id != 1:
+        id_p=[]
+        usuario = User.objects.get(id=request.user.id)
+        proyectos = Proyectos.objects.filter(lider_id=request.user.id, estado='En Construccion')
+    else:
+        proyectos = Proyectos.objects.filter(is_active=True)
+
+    ctx = {'proyectos':proyectos}   
+    template_name = 'informes/seleccionar_proyecto.html'
+    return render_to_response(template_name, ctx, context_instance=RequestContext(request))
+
+def informe_items(request, id_proyecto):
+    proyecto = Proyectos.objects.get(id=id_proyecto)
+    fases = Fases.objects.filter(proyecto_id=id_proyecto, is_active=True).order_by('orden')
+    lista_fases = []
+    existen = False
+    for fase in fases:
+        lista_items = []
+        items = Items.objects.filter(fase_id=fase.id, is_active=True)
+        for it in items:
+            id = it.id
+            nombre = it.nombre
+            tipoitem = it.tipo_item.nombre
+            if it.padre!=0:
+                padre = Items.objects.get(id=it.padre)
+            else:
+                padre = 'No posee'
+            version = it.version
+            costoM = it.costoMonetario
+            costoT = it.costoTemporal
+            tupla_item = (id, nombre, tipoitem, padre, version, costoM, costoT)
+            lista_items.append(tupla_item)
+            existen = True
+        tupla_fase = (fase, lista_items)
+        lista_fases.append(tupla_fase)
+        
+    ctx ={'lista_fases': lista_fases, 'fecha':datetime.now(), 'proyecto': proyecto, 'existen': existen}
+    template_name = 'informes/items_html.html'
+    return render_to_response(template_name, ctx, context_instance=RequestContext(request))
+
+def informe_items_pdf(request, id_proyecto):
+        
+    proyecto = Proyectos.objects.get(id=id_proyecto)
+    fases = Fases.objects.filter(proyecto_id=id_proyecto, is_active=True).order_by('orden')
+    lista_fases = []
+    for fase in fases:
+        lista_items = []
+        items = Items.objects.filter(fase_id=fase.id, is_active=True)
+        for it in items:
+            id = it.id
+            nombre = it.nombre
+            tipoitem = it.tipo_item.nombre
+            if it.padre!=0:
+                padre = Items.objects.get(id=it.padre)
+            else:
+                padre = 'No posee'
+            version = it.version
+            costoM = it.costoMonetario
+            costoT = it.costoTemporal
+            tupla_item = (id, nombre, tipoitem, padre, version, costoM, costoT)
+            lista_items.append(tupla_item)
+        tupla_fase = (fase, lista_items)
+        lista_fases.append(tupla_fase)
+    
+    filename = 'informe_items_'+proyecto.nombre+'.pdf'
+    ctx ={'pagesize':'A4', 'fecha':datetime.now(), 'lista_fases': lista_fases, 'proyecto': proyecto}
+    html = render_to_string('informes/items_pdf.html', ctx, context_instance=RequestContext(request))
+    return generar_pdf(html, filename)

@@ -196,4 +196,48 @@ INFO 19/Jun/2014 00:00:46 10978 Logout de Usuario
 INFO 19/Jun/2014 00:00:54 10978 Login de Usuario eduardo
 INFO 19/Jun/2014 00:00:54 10978 Administracion de Proyectos, hecho por eduardo
 INFO 19/Jun/2014 00:01:06 10978 Ingreso a Administracion de Fases, proyecto Proyecto 2, hecho por eduardo
-INFO 19/Jun/2014 09:08:52 10978 Administracion de Proyectos, hecho por eduardo
+INFO 19/Jun/2014 09:08:52 10978 Administracion de Proyectos, hecho por eduardoINFO 19/Jun/2014 16:16:31 10978 Administracion de Proyectos, hecho por eduardo
+INFO 19/Jun/2014 16:16:32 10978 Listado de solicitudes realizadas, hecho por eduardo
+INFO 19/Jun/2014 16:16:34 10978 Listado de Solicitudes recibidas, hecho por eduardo
+INFO 19/Jun/2014 16:16:46 10977 Logout de Usuario 
+INFO 19/Jun/2014 16:16:58 10977 Login de Usuario ysapy
+INFO 19/Jun/2014 16:16:58 10977 Administracion de Proyectos, hecho por ysapy
+INFO 19/Jun/2014 16:17:01 10977 Listado de solicitudes realizadas, hecho por ysapy
+INFO 19/Jun/2014 18:04:07 10978 Administracion de Proyectos, hecho por ysapy
+19/06/2014 21:44:10 INFO Administracion de Proyectos, hecho por ysapy
+19/06/2014 21:44:14 INFO Ingreso a Administracion de Fases, proyecto Proyecto 2, hecho por ysapy
+19/06/2014 21:44:31 INFO Administracion de Proyectos, hecho por ysapy
+19/06/2014 21:44:41 INFO Ingreso a Administracion de Fases, proyecto Proyecto 2, hecho por ysapy
+19/06/2014 21:46:54 INFO Ingreso a Administracion de Fases, proyecto Proyecto 2, hecho por ysapy
+19/06/2014 21:52:08 INFO Administracion de Proyectos, hecho por ysapy
+19/06/2014 22:36:29 INFO Administracion de Proyectos, hecho por ysapy
+19/06/2014 22:36:52 INFO Creacion de proyecto 434, hecho por ysapy
+19/06/2014 22:36:57 INFO Administracion de Proyectos, hecho por ysapy
+19/06/2014 22:36:59 INFO Administracion de Roles, hecho por ysapy
+19/06/2014 22:37:26 INFO Creacion de Rol 3425 , hecho por ysapy
+19/06/2014 22:37:28 INFO Administracion de Roles, hecho por ysapy
+19/06/2014 22:37:37 INFO Asignacion del Rol 3425 al usuario ysapy, hecho por ysapy
+19/06/2014 22:37:39 INFO Administracion de Roles, hecho por ysapy
+19/06/2014 22:37:41 INFO Administracion de Proyectos, hecho por ysapy
+19/06/2014 22:37:48 INFO Modificacion de proyecto 434, hecho por ysapy
+19/06/2014 22:37:50 INFO Administracion de Proyectos, hecho por ysapy
+19/06/2014 22:38:15 INFO Administracion de Proyectos, hecho por ysapy
+19/06/2014 22:38:23 INFO Ingreso a Administracion de Fases, proyecto 434, hecho por ysapy
+19/06/2014 22:38:36 INFO Creacion de Fase Fase 1 proyecto 434, hecho por ysapy
+19/06/2014 22:38:38 INFO Ingreso a Administracion de Fases, proyecto 434, hecho por ysapy
+19/06/2014 22:38:40 INFO Administracion de Proyectos, hecho por ysapy
+19/06/2014 22:38:58 INFO Administracion de Proyectos, hecho por ysapy
+19/06/2014 22:39:04 INFO Administracion de Roles, hecho por ysapy
+19/06/2014 22:39:12 INFO Asignacion del Rol 3425 al usuario usuario1, hecho por ysapy
+19/06/2014 22:39:14 INFO Administracion de Roles, hecho por ysapy
+19/06/2014 22:39:26 INFO Asignacion del Rol 3425 al usuario usuario2, hecho por ysapy
+19/06/2014 22:39:28 INFO Administracion de Roles, hecho por ysapy
+19/06/2014 22:39:42 INFO Asignacion del Rol 3425 al usuario usuario3, hecho por ysapy
+19/06/2014 22:39:43 INFO Administracion de Roles, hecho por ysapy
+19/06/2014 22:39:49 INFO Administracion de Proyectos, hecho por ysapy
+19/06/2014 22:39:52 INFO Ingreso a Administracion de Fases, proyecto 434, hecho por ysapy
+19/06/2014 22:40:01 INFO Agregacion de miembros de comite None, hecho por ysapy 
+19/06/2014 22:40:03 INFO Ingreso a Administracion de Fases, proyecto 434, hecho por ysapy
+19/06/2014 22:40:04 INFO Administracion de Proyectos, hecho por ysapy
+19/06/2014 22:40:12 INFO Modificacion de proyecto 434, hecho por ysapy
+19/06/2014 22:40:14 INFO Administracion de Proyectos, hecho por ysapy

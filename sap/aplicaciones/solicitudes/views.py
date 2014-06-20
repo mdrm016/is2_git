@@ -262,7 +262,7 @@ def votar_solicitud(request, id_solicitud):
                     ctx = {'mensaje': mensaje}
                     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
                 if votosAprobado > votosRechazado:
-                    solicitud.estado = 'Cancelado'
+                    solicitud.estado = 'Aprobada'
                     credencial = Credenciales()
                     credencial.usuario = solicitud.usuario
                     credencial.proyecto = solicitud.proyecto
@@ -557,3 +557,5 @@ def revertir_credencial(id_proyecto, id_fase, credencial):
             if relacionitem:
                 relacionitem.version = 0
                 relacionitem.save()
+    item.version = version_anterior
+    item.save()

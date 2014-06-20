@@ -1,0 +1,107 @@
+{% extends "base_general.html" %}
+
+{% block navegacion %}
+<nav class="navbar navbar-default">
+	<div class="navbar-header">
+		<a href="/" class="navbar-brand">SAP</a>
+	</div>
+
+	<div  class="collapse navbar-collapse navbar-ex1-collapse">
+		<ul class="nav navbar-nav">
+			<li><a href="/informes/">Informes</a></li>
+			<li class="active"><a href="/informes/proyectos">Informe de Proyectos</a></li>
+        </ul>
+
+		<ul class="nav navbar-nav navbar-right">
+			<li><a href="/informes/">Informes</a><li><li><a href="#">Acerca de</a></li>
+			<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Registro del Sistema<b class="caret"></b></a>
+				<ul class="dropdown-menu">
+				
+				</ul>
+			</li>
+		</ul>
+	</div>
+</nav>
+{% endblock %}
+
+{% block contenido %}
+<div class="row ">
+    	<strong><p align="right"><b>{{ fecha }}</b></p></strong>
+    	<h1 align="center">Informe de Solicitudes</h1>
+
+    	<td><p><h2><span class="label label-default">Solicitudes del Proyecto "{{ proyecto.nombre }}": {{ total }} solicitudes </span></h2></h4></p></td>
+    		{% if existen %}
+    				<table class="table table-hover table-bordered table-condensed table-responsive">
+						<tbody>
+						  	<tr class="active">
+						  		<td><p><h4><b>Nombre de Fase - Nro. de Linea Base</b></h4></p></td>
+						  		<td><p><h4><b>Usuario</b></h2></p></td>
+						  		<td><p><h4><b>Ha sido votada por el lider</b></h2></p></td>
+						  		<td><p><h4><b>Estado</b></h2></p></td>
+						  	</tr>
+						  	
+						  	{% for solic, usu, lineabase, ya_voto in lista_SP %}
+								<tr class="active">
+									<td><p><h4>{{ solic.fase.nombre }} - {{ lineabase.numero }}</h4></p></td>
+									<td><p><h4>{{ usu.username }}</h4></p></td>
+									{% ifequal ya_voto True %}
+										<td><p><h4>Si</h4></p></td>
+									{% else %}
+										<td><p><h4>No</h4></p></td>
+									{% endifequal %}
+									<td><p><h4>Pendiente</h4></p></td>
+								</tr>
+							{% endfor %}
+							{% for solic, usu, lineabase, ya_voto in lista_SA %}
+								<tr class="active">
+									<td><p><h4>{{ solic.fase.nombre }} - {{ lineabase.numero }}</h4></p></td>
+									<td><p><h4>{{ usu.username }}</h4></p></td>
+									{% ifequal ya_voto True %}
+										<td><p><h4>Si</h4></p></td>
+									{% else %}
+										<td><p><h4>No</h4></p></td>
+									{% endifequal %}
+									<td><p><h4>Aprobada</h4></p></td>
+								</tr>
+							{% endfor %}
+							{% for solic, usu, lineabase, ya_voto in lista_SR %}
+								<tr class="active">
+									<td><p><h4>{{ solic.fase.nombre }} - {{ lineabase.numero }}</h4></p></td>
+									<td><p><h4>{{ usu.username }}</h4></p></td>
+									{% ifequal ya_voto True %}
+										<td><p><h4>Si</h4></p></td>
+									{% else %}
+										<td><p><h4>No</h4></p></td>
+									{% endifequal %}
+									<td><p><h4>Rechazada</h4></p></td>
+								</tr>
+							{% endfor %}
+							{% for solic, usu, lineabase, ya_voto in lista_SC %}
+								<tr class="active">
+									<td><p><h4>{{ solic.fase.nombre }} - {{ lineabase.numero }}</h4></p></td>
+									<td><p><h4>{{ usu.username }}</h4></p></td>
+									{% ifequal ya_voto True %}
+										<td><p><h4>Si</h4></p></td>
+									{% else %}
+										<td><p><h4>No</h4></p></td>
+									{% endifequal %}
+									<td><p><h4>Cancelada</h4></p></td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+			{% else %}
+				<table class="table table-hover table-bordered table-condensed table-responsive">
+						<tbody>
+						  	<tr class="active">
+						  		<td><p><h4><b>No se encontraron solicitudes en el proyecto</b></h4></p></td>
+						  	</tr>
+						 </tbody>
+				</table>
+			{% endif %}
+</div>
+<div align="center">
+	<a class="btn btn-default" href="javascript:window.history.go(-1);"><span class="glyphicon glyphicon-arrow-left"></span> Volver</a>
+	<a href="/informes/seleccionar_proyecto/solicitudes/{{ proyecto.id }}/solicitudes_pdf/"><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-tasks"></span> Generar PDF</button></a>
+</div>
+{% endblock %}

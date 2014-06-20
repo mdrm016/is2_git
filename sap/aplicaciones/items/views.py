@@ -132,6 +132,7 @@ def crear_item(request, id_proyecto, id_fase, id_tipoitem):
             item.is_active = True
             item.tipo_item_id = id_tipoitem
             item.padre=0
+            item.lb=0
             item.save()
             
             if fase.estado == 'DF':

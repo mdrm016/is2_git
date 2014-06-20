@@ -90,6 +90,7 @@ def generarLineaBase(request, id_proyecto, id_fase):
                 for id_item in request.POST.getlist('Items'):
                     item = Items.objects.get(id=id_item)
                     linea_base.items.add(item)
+                    item.lb = linea_base.id
                     item.estado = 'Bloqueado'
                     item.save()
                 linea_base.save()
