@@ -58,7 +58,7 @@ def adm_tipoitem (request, id_proyecto):
             usado= False
         tupla=(TA, usado)
         lista_tipoitem.append(tupla)
-        
+
     logger.info('Listado de tipo de item de proyecto %s, hecho por %s' % (proyecto.nombre, request.user.username))
     ctx = {'lista_tipoitem':lista_tipoitem, 'query':busqueda, 'error':error, 'id_proyecto':id_proyecto, 'proyecto':proyecto}   
     template_name = 'tipoitem/tipoitem.html'

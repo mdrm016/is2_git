@@ -1,0 +1,1244 @@
+%PDF-1.4
+%“Œ‹ž ReportLab Generated PDF document http://www.reportlab.com
+% 'BasicFonts': class PDFDictionary 
+1 0 obj
+% The standard fonts dictionary
+<< /F1 2 0 R
+ /F2 3 0 R >>
+endobj
+% 'F1': class PDFType1Font 
+2 0 obj
+% Font Helvetica
+<< /BaseFont /Helvetica
+ /Encoding /WinAnsiEncoding
+ /Name /F1
+ /Subtype /Type1
+ /Type /Font >>
+endobj
+% 'F2': class PDFType1Font 
+3 0 obj
+% Font Helvetica-Bold
+<< /BaseFont /Helvetica-Bold
+ /Encoding /WinAnsiEncoding
+ /Name /F2
+ /Subtype /Type1
+ /Type /Font >>
+endobj
+% 'Page1': class PDFPage 
+4 0 obj
+% Page dictionary
+<< /Contents 122 0 R
+ /MediaBox [ 0
+ 0
+ 595.2756
+ 841.8898 ]
+ /Parent 121 0 R
+ /Resources << /Font 1 0 R
+ /ProcSet [ /PDF
+ /Text
+ /ImageB
+ /ImageC
+ /ImageI ] >>
+ /Rotate 0
+ /Trans <<  >>
+ /Type /Page >>
+endobj
+% 'R5': class PDFCatalog 
+5 0 obj
+% Document Root
+<< /Outlines 7 0 R
+ /PageMode /UseNone
+ /Pages 121 0 R
+ /Type /Catalog >>
+endobj
+% 'R6': class PDFInfo 
+6 0 obj
+<< /Author ()
+ /CreationDate (D:20140620030851+04'00')
+ /Creator (\(unspecified\))
+ /Keywords ()
+ /Producer (pisa HTML to PDF <http://www.htmltopdf.org>)
+ /Subject ()
+ /Title (Informe de Items) >>
+endobj
+% 'R7': class PDFOutlines 
+7 0 obj
+<< /Count 9
+ /First 8 0 R
+ /Last 9 0 R
+ /Type /Outlines >>
+endobj
+% 'Outline.0': class OutlineEntryObject 
+8 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 9 0 R
+ /Parent 7 0 R
+ /Title (SISTEMA DE ADMINITRACION DE PROYECTOS) >>
+endobj
+% 'Outline.1': class OutlineEntryObject 
+9 0 obj
+<< /Count -1
+ /Dest [ 4 0 R
+ /Fit ]
+ /First 10 0 R
+ /Last 10 0 R
+ /Parent 7 0 R
+ /Prev 8 0 R
+ /Title (Informe de Items) >>
+endobj
+% 'Outline.3.0': class OutlineEntryObject 
+10 0 obj
+<< /Count -1
+ /Dest [ 4 0 R
+ /Fit ]
+ /First 11 0 R
+ /Last 11 0 R
+ /Parent 9 0 R
+ /Title (Items del Proyecto "P2") >>
+endobj
+% 'Outline.4.0': class OutlineEntryObject 
+11 0 obj
+<< /Count -4
+ /Dest [ 4 0 R
+ /Fit ]
+ /First 12 0 R
+ /Last 99 0 R
+ /Parent 10 0 R
+ /Title (Fase: F1 - Estado: FD) >>
+endobj
+% 'Outline.5.0': class OutlineEntryObject 
+12 0 obj
+<< /Count -28
+ /Dest [ 4 0 R
+ /Fit ]
+ /First 13 0 R
+ /Last 40 0 R
+ /Next 41 0 R
+ /Parent 11 0 R
+ /Title (Fase: F1 - Estado: FD) >>
+endobj
+% 'Outline.6.0': class OutlineEntryObject 
+13 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 14 0 R
+ /Parent 12 0 R
+ /Title (Id de Item) >>
+endobj
+% 'Outline.6.1': class OutlineEntryObject 
+14 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 15 0 R
+ /Parent 12 0 R
+ /Prev 13 0 R
+ /Title (Nombre) >>
+endobj
+% 'Outline.6.2': class OutlineEntryObject 
+15 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 16 0 R
+ /Parent 12 0 R
+ /Prev 14 0 R
+ /Title (Tipo de Item) >>
+endobj
+% 'Outline.6.3': class OutlineEntryObject 
+16 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 17 0 R
+ /Parent 12 0 R
+ /Prev 15 0 R
+ /Title (Padre) >>
+endobj
+% 'Outline.6.4': class OutlineEntryObject 
+17 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 18 0 R
+ /Parent 12 0 R
+ /Prev 16 0 R
+ /Title (Version) >>
+endobj
+% 'Outline.6.5': class OutlineEntryObject 
+18 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 19 0 R
+ /Parent 12 0 R
+ /Prev 17 0 R
+ /Title (Costo Monetario) >>
+endobj
+% 'Outline.6.6': class OutlineEntryObject 
+19 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 20 0 R
+ /Parent 12 0 R
+ /Prev 18 0 R
+ /Title (Costo Temporal) >>
+endobj
+% 'Outline.6.7': class OutlineEntryObject 
+20 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 21 0 R
+ /Parent 12 0 R
+ /Prev 19 0 R
+ /Title (2) >>
+endobj
+% 'Outline.6.8': class OutlineEntryObject 
+21 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 22 0 R
+ /Parent 12 0 R
+ /Prev 20 0 R
+ /Title (item212) >>
+endobj
+% 'Outline.6.9': class OutlineEntryObject 
+22 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 23 0 R
+ /Parent 12 0 R
+ /Prev 21 0 R
+ /Title (Planificacion) >>
+endobj
+% 'Outline.6.10': class OutlineEntryObject 
+23 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 24 0 R
+ /Parent 12 0 R
+ /Prev 22 0 R
+ /Title (No posee) >>
+endobj
+% 'Outline.6.11': class OutlineEntryObject 
+24 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 25 0 R
+ /Parent 12 0 R
+ /Prev 23 0 R
+ /Title (1) >>
+endobj
+% 'Outline.6.12': class OutlineEntryObject 
+25 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 26 0 R
+ /Parent 12 0 R
+ /Prev 24 0 R
+ /Title (20000) >>
+endobj
+% 'Outline.6.13': class OutlineEntryObject 
+26 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 27 0 R
+ /Parent 12 0 R
+ /Prev 25 0 R
+ /Title (11) >>
+endobj
+% 'Outline.6.14': class OutlineEntryObject 
+27 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 28 0 R
+ /Parent 12 0 R
+ /Prev 26 0 R
+ /Title (3) >>
+endobj
+% 'Outline.6.15': class OutlineEntryObject 
+28 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 29 0 R
+ /Parent 12 0 R
+ /Prev 27 0 R
+ /Title (item312) >>
+endobj
+% 'Outline.6.16': class OutlineEntryObject 
+29 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 30 0 R
+ /Parent 12 0 R
+ /Prev 28 0 R
+ /Title (Requerimiento) >>
+endobj
+% 'Outline.6.17': class OutlineEntryObject 
+30 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 31 0 R
+ /Parent 12 0 R
+ /Prev 29 0 R
+ /Title (No posee) >>
+endobj
+% 'Outline.6.18': class OutlineEntryObject 
+31 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 32 0 R
+ /Parent 12 0 R
+ /Prev 30 0 R
+ /Title (1) >>
+endobj
+% 'Outline.6.19': class OutlineEntryObject 
+32 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 33 0 R
+ /Parent 12 0 R
+ /Prev 31 0 R
+ /Title (75000) >>
+endobj
+% 'Outline.6.20': class OutlineEntryObject 
+33 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 34 0 R
+ /Parent 12 0 R
+ /Prev 32 0 R
+ /Title (36) >>
+endobj
+% 'Outline.6.21': class OutlineEntryObject 
+34 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 35 0 R
+ /Parent 12 0 R
+ /Prev 33 0 R
+ /Title (1) >>
+endobj
+% 'Outline.6.22': class OutlineEntryObject 
+35 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 36 0 R
+ /Parent 12 0 R
+ /Prev 34 0 R
+ /Title (item112) >>
+endobj
+% 'Outline.6.23': class OutlineEntryObject 
+36 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 37 0 R
+ /Parent 12 0 R
+ /Prev 35 0 R
+ /Title (Planificacion) >>
+endobj
+% 'Outline.6.24': class OutlineEntryObject 
+37 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 38 0 R
+ /Parent 12 0 R
+ /Prev 36 0 R
+ /Title (No posee) >>
+endobj
+% 'Outline.6.25': class OutlineEntryObject 
+38 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 39 0 R
+ /Parent 12 0 R
+ /Prev 37 0 R
+ /Title (12) >>
+endobj
+% 'Outline.6.26': class OutlineEntryObject 
+39 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 40 0 R
+ /Parent 12 0 R
+ /Prev 38 0 R
+ /Title (40000) >>
+endobj
+% 'Outline.6.27': class OutlineEntryObject 
+40 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Parent 12 0 R
+ /Prev 39 0 R
+ /Title (9) >>
+endobj
+% 'Outline.5.1': class OutlineEntryObject 
+41 0 obj
+<< /Count -28
+ /Dest [ 4 0 R
+ /Fit ]
+ /First 42 0 R
+ /Last 69 0 R
+ /Next 70 0 R
+ /Parent 11 0 R
+ /Prev 12 0 R
+ /Title (Fase: F2 - Estado: DR) >>
+endobj
+% 'Outline.7.0': class OutlineEntryObject 
+42 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 43 0 R
+ /Parent 41 0 R
+ /Title (Id de Item) >>
+endobj
+% 'Outline.7.1': class OutlineEntryObject 
+43 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 44 0 R
+ /Parent 41 0 R
+ /Prev 42 0 R
+ /Title (Nombre) >>
+endobj
+% 'Outline.7.2': class OutlineEntryObject 
+44 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 45 0 R
+ /Parent 41 0 R
+ /Prev 43 0 R
+ /Title (Tipo de Item) >>
+endobj
+% 'Outline.7.3': class OutlineEntryObject 
+45 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 46 0 R
+ /Parent 41 0 R
+ /Prev 44 0 R
+ /Title (Padre) >>
+endobj
+% 'Outline.7.4': class OutlineEntryObject 
+46 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 47 0 R
+ /Parent 41 0 R
+ /Prev 45 0 R
+ /Title (Version) >>
+endobj
+% 'Outline.7.5': class OutlineEntryObject 
+47 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 48 0 R
+ /Parent 41 0 R
+ /Prev 46 0 R
+ /Title (Costo Monetario) >>
+endobj
+% 'Outline.7.6': class OutlineEntryObject 
+48 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 49 0 R
+ /Parent 41 0 R
+ /Prev 47 0 R
+ /Title (Costo Temporal) >>
+endobj
+% 'Outline.7.7': class OutlineEntryObject 
+49 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 50 0 R
+ /Parent 41 0 R
+ /Prev 48 0 R
+ /Title (4) >>
+endobj
+% 'Outline.7.8': class OutlineEntryObject 
+50 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 51 0 R
+ /Parent 41 0 R
+ /Prev 49 0 R
+ /Title (item122) >>
+endobj
+% 'Outline.7.9': class OutlineEntryObject 
+51 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 52 0 R
+ /Parent 41 0 R
+ /Prev 50 0 R
+ /Title (Planificacion) >>
+endobj
+% 'Outline.7.10': class OutlineEntryObject 
+52 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 53 0 R
+ /Parent 41 0 R
+ /Prev 51 0 R
+ /Title (item112) >>
+endobj
+% 'Outline.7.11': class OutlineEntryObject 
+53 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 54 0 R
+ /Parent 41 0 R
+ /Prev 52 0 R
+ /Title (4) >>
+endobj
+% 'Outline.7.12': class OutlineEntryObject 
+54 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 55 0 R
+ /Parent 41 0 R
+ /Prev 53 0 R
+ /Title (25000) >>
+endobj
+% 'Outline.7.13': class OutlineEntryObject 
+55 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 56 0 R
+ /Parent 41 0 R
+ /Prev 54 0 R
+ /Title (16) >>
+endobj
+% 'Outline.7.14': class OutlineEntryObject 
+56 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 57 0 R
+ /Parent 41 0 R
+ /Prev 55 0 R
+ /Title (5) >>
+endobj
+% 'Outline.7.15': class OutlineEntryObject 
+57 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 58 0 R
+ /Parent 41 0 R
+ /Prev 56 0 R
+ /Title (item222) >>
+endobj
+% 'Outline.7.16': class OutlineEntryObject 
+58 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 59 0 R
+ /Parent 41 0 R
+ /Prev 57 0 R
+ /Title (Requerimiento) >>
+endobj
+% 'Outline.7.17': class OutlineEntryObject 
+59 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 60 0 R
+ /Parent 41 0 R
+ /Prev 58 0 R
+ /Title (item122) >>
+endobj
+% 'Outline.7.18': class OutlineEntryObject 
+60 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 61 0 R
+ /Parent 41 0 R
+ /Prev 59 0 R
+ /Title (2) >>
+endobj
+% 'Outline.7.19': class OutlineEntryObject 
+61 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 62 0 R
+ /Parent 41 0 R
+ /Prev 60 0 R
+ /Title (15000) >>
+endobj
+% 'Outline.7.20': class OutlineEntryObject 
+62 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 63 0 R
+ /Parent 41 0 R
+ /Prev 61 0 R
+ /Title (6) >>
+endobj
+% 'Outline.7.21': class OutlineEntryObject 
+63 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 64 0 R
+ /Parent 41 0 R
+ /Prev 62 0 R
+ /Title (6) >>
+endobj
+% 'Outline.7.22': class OutlineEntryObject 
+64 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 65 0 R
+ /Parent 41 0 R
+ /Prev 63 0 R
+ /Title (item322) >>
+endobj
+% 'Outline.7.23': class OutlineEntryObject 
+65 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 66 0 R
+ /Parent 41 0 R
+ /Prev 64 0 R
+ /Title (Planificacion) >>
+endobj
+% 'Outline.7.24': class OutlineEntryObject 
+66 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 67 0 R
+ /Parent 41 0 R
+ /Prev 65 0 R
+ /Title (item112) >>
+endobj
+% 'Outline.7.25': class OutlineEntryObject 
+67 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 68 0 R
+ /Parent 41 0 R
+ /Prev 66 0 R
+ /Title (2) >>
+endobj
+% 'Outline.7.26': class OutlineEntryObject 
+68 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 69 0 R
+ /Parent 41 0 R
+ /Prev 67 0 R
+ /Title (30000) >>
+endobj
+% 'Outline.7.27': class OutlineEntryObject 
+69 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Parent 41 0 R
+ /Prev 68 0 R
+ /Title (3) >>
+endobj
+% 'Outline.5.2': class OutlineEntryObject 
+70 0 obj
+<< /Count -28
+ /Dest [ 4 0 R
+ /Fit ]
+ /First 71 0 R
+ /Last 98 0 R
+ /Next 99 0 R
+ /Parent 11 0 R
+ /Prev 41 0 R
+ /Title (Fase: F3 - Estado: DR) >>
+endobj
+% 'Outline.8.0': class OutlineEntryObject 
+71 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 72 0 R
+ /Parent 70 0 R
+ /Title (Id de Item) >>
+endobj
+% 'Outline.8.1': class OutlineEntryObject 
+72 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 73 0 R
+ /Parent 70 0 R
+ /Prev 71 0 R
+ /Title (Nombre) >>
+endobj
+% 'Outline.8.2': class OutlineEntryObject 
+73 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 74 0 R
+ /Parent 70 0 R
+ /Prev 72 0 R
+ /Title (Tipo de Item) >>
+endobj
+% 'Outline.8.3': class OutlineEntryObject 
+74 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 75 0 R
+ /Parent 70 0 R
+ /Prev 73 0 R
+ /Title (Padre) >>
+endobj
+% 'Outline.8.4': class OutlineEntryObject 
+75 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 76 0 R
+ /Parent 70 0 R
+ /Prev 74 0 R
+ /Title (Version) >>
+endobj
+% 'Outline.8.5': class OutlineEntryObject 
+76 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 77 0 R
+ /Parent 70 0 R
+ /Prev 75 0 R
+ /Title (Costo Monetario) >>
+endobj
+% 'Outline.8.6': class OutlineEntryObject 
+77 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 78 0 R
+ /Parent 70 0 R
+ /Prev 76 0 R
+ /Title (Costo Temporal) >>
+endobj
+% 'Outline.8.7': class OutlineEntryObject 
+78 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 79 0 R
+ /Parent 70 0 R
+ /Prev 77 0 R
+ /Title (7) >>
+endobj
+% 'Outline.8.8': class OutlineEntryObject 
+79 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 80 0 R
+ /Parent 70 0 R
+ /Prev 78 0 R
+ /Title (item132) >>
+endobj
+% 'Outline.8.9': class OutlineEntryObject 
+80 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 81 0 R
+ /Parent 70 0 R
+ /Prev 79 0 R
+ /Title (Planificacion) >>
+endobj
+% 'Outline.8.10': class OutlineEntryObject 
+81 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 82 0 R
+ /Parent 70 0 R
+ /Prev 80 0 R
+ /Title (item122) >>
+endobj
+% 'Outline.8.11': class OutlineEntryObject 
+82 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 83 0 R
+ /Parent 70 0 R
+ /Prev 81 0 R
+ /Title (3) >>
+endobj
+% 'Outline.8.12': class OutlineEntryObject 
+83 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 84 0 R
+ /Parent 70 0 R
+ /Prev 82 0 R
+ /Title (10000) >>
+endobj
+% 'Outline.8.13': class OutlineEntryObject 
+84 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 85 0 R
+ /Parent 70 0 R
+ /Prev 83 0 R
+ /Title (8) >>
+endobj
+% 'Outline.8.14': class OutlineEntryObject 
+85 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 86 0 R
+ /Parent 70 0 R
+ /Prev 84 0 R
+ /Title (8) >>
+endobj
+% 'Outline.8.15': class OutlineEntryObject 
+86 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 87 0 R
+ /Parent 70 0 R
+ /Prev 85 0 R
+ /Title (item232) >>
+endobj
+% 'Outline.8.16': class OutlineEntryObject 
+87 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 88 0 R
+ /Parent 70 0 R
+ /Prev 86 0 R
+ /Title (Requerimiento) >>
+endobj
+% 'Outline.8.17': class OutlineEntryObject 
+88 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 89 0 R
+ /Parent 70 0 R
+ /Prev 87 0 R
+ /Title (item132) >>
+endobj
+% 'Outline.8.18': class OutlineEntryObject 
+89 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 90 0 R
+ /Parent 70 0 R
+ /Prev 88 0 R
+ /Title (2) >>
+endobj
+% 'Outline.8.19': class OutlineEntryObject 
+90 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 91 0 R
+ /Parent 70 0 R
+ /Prev 89 0 R
+ /Title (45000) >>
+endobj
+% 'Outline.8.20': class OutlineEntryObject 
+91 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 92 0 R
+ /Parent 70 0 R
+ /Prev 90 0 R
+ /Title (9) >>
+endobj
+% 'Outline.8.21': class OutlineEntryObject 
+92 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 93 0 R
+ /Parent 70 0 R
+ /Prev 91 0 R
+ /Title (9) >>
+endobj
+% 'Outline.8.22': class OutlineEntryObject 
+93 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 94 0 R
+ /Parent 70 0 R
+ /Prev 92 0 R
+ /Title (item332) >>
+endobj
+% 'Outline.8.23': class OutlineEntryObject 
+94 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 95 0 R
+ /Parent 70 0 R
+ /Prev 93 0 R
+ /Title (Planificacion) >>
+endobj
+% 'Outline.8.24': class OutlineEntryObject 
+95 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 96 0 R
+ /Parent 70 0 R
+ /Prev 94 0 R
+ /Title (item322) >>
+endobj
+% 'Outline.8.25': class OutlineEntryObject 
+96 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 97 0 R
+ /Parent 70 0 R
+ /Prev 95 0 R
+ /Title (2) >>
+endobj
+% 'Outline.8.26': class OutlineEntryObject 
+97 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 98 0 R
+ /Parent 70 0 R
+ /Prev 96 0 R
+ /Title (30000) >>
+endobj
+% 'Outline.8.27': class OutlineEntryObject 
+98 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Parent 70 0 R
+ /Prev 97 0 R
+ /Title (13) >>
+endobj
+% 'Outline.5.3': class OutlineEntryObject 
+99 0 obj
+<< /Count -21
+ /Dest [ 4 0 R
+ /Fit ]
+ /First 100 0 R
+ /Last 120 0 R
+ /Parent 11 0 R
+ /Prev 70 0 R
+ /Title (Fase: F4 - Estado: DR) >>
+endobj
+% 'Outline.9.0': class OutlineEntryObject 
+100 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 101 0 R
+ /Parent 99 0 R
+ /Title (Id de Item) >>
+endobj
+% 'Outline.9.1': class OutlineEntryObject 
+101 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 102 0 R
+ /Parent 99 0 R
+ /Prev 100 0 R
+ /Title (Nombre) >>
+endobj
+% 'Outline.9.2': class OutlineEntryObject 
+102 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 103 0 R
+ /Parent 99 0 R
+ /Prev 101 0 R
+ /Title (Tipo de Item) >>
+endobj
+% 'Outline.9.3': class OutlineEntryObject 
+103 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 104 0 R
+ /Parent 99 0 R
+ /Prev 102 0 R
+ /Title (Padre) >>
+endobj
+% 'Outline.9.4': class OutlineEntryObject 
+104 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 105 0 R
+ /Parent 99 0 R
+ /Prev 103 0 R
+ /Title (Version) >>
+endobj
+% 'Outline.9.5': class OutlineEntryObject 
+105 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 106 0 R
+ /Parent 99 0 R
+ /Prev 104 0 R
+ /Title (Costo Monetario) >>
+endobj
+% 'Outline.9.6': class OutlineEntryObject 
+106 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 107 0 R
+ /Parent 99 0 R
+ /Prev 105 0 R
+ /Title (Costo Temporal) >>
+endobj
+% 'Outline.9.7': class OutlineEntryObject 
+107 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 108 0 R
+ /Parent 99 0 R
+ /Prev 106 0 R
+ /Title (10) >>
+endobj
+% 'Outline.9.8': class OutlineEntryObject 
+108 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 109 0 R
+ /Parent 99 0 R
+ /Prev 107 0 R
+ /Title (item142) >>
+endobj
+% 'Outline.9.9': class OutlineEntryObject 
+109 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 110 0 R
+ /Parent 99 0 R
+ /Prev 108 0 R
+ /Title (Planificacion) >>
+endobj
+% 'Outline.9.10': class OutlineEntryObject 
+110 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 111 0 R
+ /Parent 99 0 R
+ /Prev 109 0 R
+ /Title (item332) >>
+endobj
+% 'Outline.9.11': class OutlineEntryObject 
+111 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 112 0 R
+ /Parent 99 0 R
+ /Prev 110 0 R
+ /Title (2) >>
+endobj
+% 'Outline.9.12': class OutlineEntryObject 
+112 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 113 0 R
+ /Parent 99 0 R
+ /Prev 111 0 R
+ /Title (10000) >>
+endobj
+% 'Outline.9.13': class OutlineEntryObject 
+113 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 114 0 R
+ /Parent 99 0 R
+ /Prev 112 0 R
+ /Title (3) >>
+endobj
+% 'Outline.9.14': class OutlineEntryObject 
+114 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 115 0 R
+ /Parent 99 0 R
+ /Prev 113 0 R
+ /Title (11) >>
+endobj
+% 'Outline.9.15': class OutlineEntryObject 
+115 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 116 0 R
+ /Parent 99 0 R
+ /Prev 114 0 R
+ /Title (item242) >>
+endobj
+% 'Outline.9.16': class OutlineEntryObject 
+116 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 117 0 R
+ /Parent 99 0 R
+ /Prev 115 0 R
+ /Title (Planificacion) >>
+endobj
+% 'Outline.9.17': class OutlineEntryObject 
+117 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 118 0 R
+ /Parent 99 0 R
+ /Prev 116 0 R
+ /Title (item142) >>
+endobj
+% 'Outline.9.18': class OutlineEntryObject 
+118 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 119 0 R
+ /Parent 99 0 R
+ /Prev 117 0 R
+ /Title (2) >>
+endobj
+% 'Outline.9.19': class OutlineEntryObject 
+119 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 120 0 R
+ /Parent 99 0 R
+ /Prev 118 0 R
+ /Title (20000) >>
+endobj
+% 'Outline.9.20': class OutlineEntryObject 
+120 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Parent 99 0 R
+ /Prev 119 0 R
+ /Title (4) >>
+endobj
+% 'R121': class PDFPages 
+121 0 obj
+% page tree
+<< /Count 1
+ /Kids [ 4 0 R ]
+ /Type /Pages >>
+endobj
+% 'R122': class PDFStream 
+122 0 obj
+% page stream
+<< /Filter [ /ASCII85Decode
+ /FlateDecode ]
+ /Length 2207 >>
+stream
+Gb"/,9lJcU&A8><Iotd](@ZL^81o<`D5U4W30$]9kY\bP5_14.P(TM/^:TVQ,uP@9.j\u>);?hrESeoDP4L5E*[jdNq<%A=]."o<($*uuS8^cO#Jq3UV"fRI(+1cLe3A<q0!qE(<@Ql5A\%d"DV>BSjHR:>W6TM1;Y'S($^71ZMCD90c4X#K$0P:Y,aGg,Xe/O+2a#TpN6FMLT<?3V-aPPd5Ek)**L"l3JeYuL"Q.fq?ecal)g%7-VRabW.*ZF?.Wt=,1T?)bil`5$68D[W(7aMRfVaXS],)+)7C&^BCo#SJ"l,,UMp&T5aMfHNFn'Ws2(EKMSWDW5fdEq@hYh_F?G*nP=(bQUg+9I<JNHr2U`lpekNXfL/_0R[19/h"=NFar`9`*+dPtO9CUM@;CD)T=q)Y!E6nkbLP@mR]--S$:R0pM2Sl3RKFn?h4`MHU,^`aW@*if%C,kiT&4dFL8qIh^+!>gpaS7\2U4rS%2-S!kS85=l<ad:6qWE(n.-$?OgMDfNKfC457fCS:"o'WJ$0<`>f[f@gddiH<6l7qHtpDNRK]I;*^C#;j0\Tf%M=6@=f-qu%%k%M?U24[p_=KPk<6b-G+C3H=cOefZSqtqnL^H36G"#;>Lb8f?MP6eV*1cLE2AKH]b<Aj_j?G`X\WMu&Xg#>gY-D.?CI4(CBCGR7\&\K1B6[,*B;TeBVRlJVUPk2kiR_cL*V.cH2Of4gP$R85]X',6TSkggQ7:h]:bI*5MYpcNBX82N&7a\(L\]t!,l%qYOM*u,gqG_DV3Nj`kaB_#jB9S+mh=qK8(LBf[;7rpMkA!kK.S:t04A8FX[/r-kJJo/:LB7.::!"XLOb'MEK9MQ/)(ZX[R,+!6^6\B4FAgDUJH)FX?GtcGTNK.*(8qp%-tPu[9LS-e'Wr$);n;]Bbjk9k&WN/X$QcAbdHDVB&gJ=:"*GjFaTjr@:-G<`;[9t`Ldj#c-76eQ>Q'bt7WS+4I;#Y*bQG0bVaP5o[Ec1.oLNkd>F=*Z2P0G)X:)9Fje(F;6OCBK4a#Q":1Pld=YnT-.k=MG21;.PfSOE5[r^&q\]e`%02709nLta]ajU=!;q66u95,T/eqDTE0Gai5dfQpU/brq64h9%W=rug9+F0EKG,h!l<>;4KJYa@/K`JD8+g!lM:,)gePS'"=3Zd?$UH_BZe'>>(D'>_u9t[$0:G;HZ(Rcrq]"&:e^"V7oDMA7?IU?q6^"V7oDMEqS3NSIcY+f=7R]*H6LK4!!<>6uc',B0nTSafVU0tMMW#u7o'm.f&&1CHZ';PbmC*)Wn#a2.n$BkQo6!3_sjk?g;h-7FqYK`psY"c]KmQn>A5mjm#[L[PNHdJni&2A^#nk^,+bLM2uL]OTOLUnm9XqiQZ$pYOje47>q2.6N3!%[8p/dR]@#n##]82UqMD$7u16A:3rX<=V?[r^raJA1EoGA>CAm!Q.J"1RUp>.6-NXQMrR%rNUGXR-$'4HRCbCrD+:3hVQ>10Bj%pqZUk0B@ZmQt79[eCB(1%`^gpf$QdSgfq_7(b!EoGZa85l2Va1RAJH;>F1tp4!r@l^g`[U`.j-3i[3$jPAl^dTns"K49SA@)pH[Io7&[gW8X1i\3L^'PSn%K%hJ0"Ms]I`?oT7O_\4_rO5UmG#3t.Z_2<dbSj9E;C>fI=_FJS\%Fi6N6jF6ae+5PDA?]+-KBN#2(t%OVe\<>am,.'tk+[>1rB'6#62qGkGL4*WrZ1Y"J<^-53tR*2rsnmLi*q69*N1$PIg;tckhk'%LdD%NqKMWJq'#Yt.SnZ?\(SDJqT\t#nehCeP%&jC+I=#F3s#!#^OuM+o^D^er&`S^rAtYj4)np(OiRQAi=ahY_hWRL*^)(O%ZjG5qbFA'TRA1aC4C@&NZ+jEVru>CcXPc4EdB)0:9[clIHOuG'\[d/9:mB^G<#GCd(b54*VAfnIg>p6khe]+%f1Cr^OuM+o^BTg!<#"Chgt(0c?e^362qGkGD>5:iI$&`S'<IYhqYuANq)SZPTT>NM)<:8fYA0fZWdoYn3l8ZKS:e>0Alg@:F'Z[R<Toq43keYQ"7Ca-d"RUJ.mY#"*q&(306@:^)$+bKQ&(6rEMDdqNrb%1#@:rcl\)hK#Id=ncoOT:?4RA+]%0GmW@#?ORF-3Z&VBllbVu"fRq(!*3S7>%>S^Y>f5M=%bG[0L;PkgY2O=/LMJkSF77c&abtWLYcV#/~>endstream
+endobj
+xref
+0 123
+0000000000 65535 f
+0000000113 00000 n
+0000000221 00000 n
+0000000386 00000 n
+0000000559 00000 n
+0000000840 00000 n
+0000000976 00000 n
+0000001225 00000 n
+0000001347 00000 n
+0000001515 00000 n
+0000001707 00000 n
+0000001893 00000 n
+0000002078 00000 n
+0000002279 00000 n
+0000002425 00000 n
+0000002582 00000 n
+0000002745 00000 n
+0000002901 00000 n
+0000003059 00000 n
+0000003225 00000 n
+0000003390 00000 n
+0000003542 00000 n
+0000003700 00000 n
+0000003865 00000 n
+0000004025 00000 n
+0000004178 00000 n
+0000004335 00000 n
+0000004489 00000 n
+0000004642 00000 n
+0000004801 00000 n
+0000004966 00000 n
+0000005126 00000 n
+0000005279 00000 n
+0000005436 00000 n
+0000005590 00000 n
+0000005743 00000 n
+0000005902 00000 n
+0000006067 00000 n
+0000006227 00000 n
+0000006381 00000 n
+0000006538 00000 n
+0000006675 00000 n
+0000006891 00000 n
+0000007037 00000 n
+0000007194 00000 n
+0000007357 00000 n
+0000007513 00000 n
+0000007671 00000 n
+0000007837 00000 n
+0000008002 00000 n
+0000008154 00000 n
+0000008312 00000 n
+0000008477 00000 n
+0000008636 00000 n
+0000008789 00000 n
+0000008946 00000 n
+0000009100 00000 n
+0000009253 00000 n
+0000009412 00000 n
+0000009577 00000 n
+0000009736 00000 n
+0000009889 00000 n
+0000010046 00000 n
+0000010199 00000 n
+0000010352 00000 n
+0000010511 00000 n
+0000010676 00000 n
+0000010835 00000 n
+0000010988 00000 n
+0000011145 00000 n
+0000011282 00000 n
+0000011498 00000 n
+0000011644 00000 n
+0000011801 00000 n
+0000011964 00000 n
+0000012120 00000 n
+0000012278 00000 n
+0000012444 00000 n
+0000012609 00000 n
+0000012761 00000 n
+0000012919 00000 n
+0000013084 00000 n
+0000013243 00000 n
+0000013396 00000 n
+0000013553 00000 n
+0000013706 00000 n
+0000013859 00000 n
+0000014018 00000 n
+0000014183 00000 n
+0000014342 00000 n
+0000014495 00000 n
+0000014652 00000 n
+0000014805 00000 n
+0000014958 00000 n
+0000015117 00000 n
+0000015282 00000 n
+0000015441 00000 n
+0000015594 00000 n
+0000015751 00000 n
+0000015889 00000 n
+0000016092 00000 n
+0000016240 00000 n
+0000016400 00000 n
+0000016566 00000 n
+0000016725 00000 n
+0000016886 00000 n
+0000017055 00000 n
+0000017223 00000 n
+0000017379 00000 n
+0000017540 00000 n
+0000017708 00000 n
+0000017870 00000 n
+0000018026 00000 n
+0000018186 00000 n
+0000018342 00000 n
+0000018499 00000 n
+0000018661 00000 n
+0000018829 00000 n
+0000018991 00000 n
+0000019147 00000 n
+0000019307 00000 n
+0000019429 00000 n
+0000019538 00000 n
+trailer
+<< /ID 
+ % ReportLab generated PDF document -- digest (http://www.reportlab.com) 
+ [( P\376\217\223<\024\027V^\264g\234i\177\210) ( P\376\217\223<\024\027V^\264g\234i\177\210)] 
+
+ /Info 6 0 R
+ /Root 5 0 R
+ /Size 123 >>
+startxref
+21862
+%%EOF

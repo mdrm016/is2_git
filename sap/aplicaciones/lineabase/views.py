@@ -46,7 +46,7 @@ def administrarLineaBase(request, id_proyecto, id_fase):
         raise PermissionDenied()
         
 @login_required(login_url='/login/')
-@permission_required('lineabase.generar_linea_base',raise_exception=True)
+#@permission_required('lineabase.generar_linea_base',raise_exception=True)
 def generarLineaBase(request, id_proyecto, id_fase):
     """ Recibe un request, se verifica cual es el usuario registrado, el proyecto del cual se solicita,
     la fase en la que se esta trabajando, de acuerdo a si el rol del usuario esta o no relacionado con el proyecto
@@ -75,7 +75,8 @@ def generarLineaBase(request, id_proyecto, id_fase):
     fase = Fases.objects.get(id=id_fase)
     #Primero verificamos Si el usuario tiene permisos sobre esta Fase del Proyecto
     tiene_permiso = True
-    if tiene_permiso:
+    #if tiene_permiso:
+    if True:
         #Recibimos el request y verificamos si es POST para generar la Linea Base y hacer los controles correspondientes al formulario
         lineas_base = LineaBase.objects.filter(proyecto = id_proyecto, fase = id_fase)
         numero = len(lineas_base) + 1
@@ -94,7 +95,7 @@ def generarLineaBase(request, id_proyecto, id_fase):
                     item.estado = 'Bloqueado'
                     item.save()
                 linea_base.save()
-                logger.info('Generacion de Linea Base %s de la fase %s del proyecto %s, hecho por %s' % (linea_base.numero, fase.nombre, proyecto.nombre, request.user.username))
+                logger.info('Generacion de Linea Base %d de la fase %s del proyecto %s, hecho por %s' % (linea_base.numero, fase.nombre, proyecto.nombre, request.user.username))
                 mensaje="Linea Base creada exitosamente"
                 ctx = {'mensaje':mensaje, 'proyecto':proyecto, 'fase':fase}
                 return render_to_response('lineaBase/linea_base_alerta.html',ctx, context_instance=RequestContext(request))
@@ -158,7 +159,7 @@ def consultar_lineabase (request, id_proyecto, id_fase, id_lineabase):
     return render_to_response(template_name, ctx, context_instance=RequestContext(request) )
 
 @login_required(login_url='/login/')
-@permission_required('lineabase.generar_informe_linea_base',raise_exception=True)
+#@permission_required('lineabase.generar_informe_linea_base',raise_exception=True)
 def informe_lineabase(request, id_proyecto, id_fase, id_lineabase):
     
     """ Recibe un request, el id de proyecto, el id de fase y el id de la linea base de la cual se generara el
@@ -189,7 +190,7 @@ def informe_lineabase(request, id_proyecto, id_fase, id_lineabase):
     filename = 'linea_Base_%s.pdf' % lineabase.numero
     ctx ={'pagesize':'A4', 'lineabase':lineabase, 'fecha':datetime.now(), 'items':lineabase.items.all()}
     html = render_to_string('lineaBase/informelineabase.html', ctx, context_instance=RequestContext(request))
-    logger.info('Generacion de  informe de linea base %s de la fase %s del proyecto %s, hecho por %s' % (lineabase.numero, fase.nombre, proyecto.nombre, request.user.username))
+    logger.info('Generacion de  informe de linea base %d de la fase %s del proyecto %s, hecho por %s' % (lineabase.numero, fase.nombre, proyecto.nombre, request.user.username))
     return generar_pdf(html, filename)
 
 def generar_pdf(html, filename):
@@ -253,7 +254,7 @@ def reactivarLineaBase(request, id_proyecto, id_fase, id_lineabase):
         item.save()
     lb.is_active=True
     lb.save()
-    logger.info('Reactivacion de Linea Base %s de la fase %s del proyecto %s, hecho por %s' % (lb.numero, fase.nombre, proyecto.nombre, request.user.username))
+    logger.info('Reactivacion de Linea Base %d de la fase %s del proyecto %s, hecho por %s' % (lb.numero, fase.nombre, proyecto.nombre, request.user.username))
     mensaje="Linea Base creada exitosamente"
     ctx = {'mensaje':mensaje, 'proyecto':proyecto, 'fase':fase}
     return render_to_response('lineaBase/linea_base_alerta.html',ctx, context_instance=RequestContext(request))

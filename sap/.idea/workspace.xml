@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ab56f5de-e7af-4abc-bfab-b27c4de6804e" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/informes/acerca_de.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scripts/instalador/prueba.sh" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/aplicaciones/uploads/archivos/79.zip" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/aplicaciones/uploads/archivos/A.odt" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/aplicaciones/uploads/archivos/Hack_x_Crack_de0aPython.pdf" afterPath="" />
@@ -15,7 +15,13 @@
       <change type="DELETED" beforePath="$PROJECT_DIR$/aplicaciones/uploads/imagenes/Captura_de_pantalla_de_2014-04-06_221015.png" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/aplicaciones/uploads/imagenes/Folder.jpg" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/aplicaciones/uploads/imagenes/python.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/instalador/instalador_pydot_pyparsing.txt" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/instalador/paquetes/django-cron-0.3.3.tar.gz" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/instalador/paquetes/graphviz_2.38.0-1~precise_i386.deb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/aplicaciones/informes/informe_items_434.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/aplicaciones/informes/informe_items_Proyecto 2.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/aplicaciones/informes/informe_solicitudes_434.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/aplicaciones/informes/informe_solicitudes_Proyecto 2.pdf" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/static/uploads/archivos/16213aee8eac1c71562f3bbf13e2f9c4o.jpg" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/static/uploads/archivos/79.zip" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/static/uploads/archivos/A.odt" afterPath="" />
@@ -27,6 +33,8 @@
       <change type="DELETED" beforePath="$PROJECT_DIR$/static/uploads/imagenes/2014-06-19 23:49:25.848343item.jpg" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/static/uploads/imagenes/2014-06-19 23:52:07.005050item.jpg" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/static/uploads/imagenes/2014-06-19 23:53:24.073362item.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/uploads/imagenes/2014-06-20 12:03:03.049964item.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/uploads/imagenes/2014-06-20 13:35:48.676679item.jpg" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/static/uploads/imagenes/AlbumArt_5A8193CB-22D1-47C7-A9DC-A455B0C9105D_Large.jpg" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/static/uploads/imagenes/AlbumArt_79AAECA5-4B77-489E-885D-1A482BDAB293_Large.jpg" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/static/uploads/imagenes/AlbumArt_8A4A76A9-A8D6-424D-A5BD-CD9C03B8743B_Small.jpg" afterPath="" />
@@ -34,110 +42,18 @@
       <change type="DELETED" beforePath="$PROJECT_DIR$/static/uploads/imagenes/Folder.jpg" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/static/uploads/imagenes/python.png" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/aplicaciones/informes/linea_Base_1.pdf" afterPath="$PROJECT_DIR$/static/aplicaciones/informes/linea_Base_1.pdf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/tipoAtributo/alerta_tipo_atributo.html" afterPath="$PROJECT_DIR$/templates/tipoAtributo/alerta_tipo_atributo.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/Roles/asignar_fase_rol.html" afterPath="$PROJECT_DIR$/templates/Roles/asignar_fase_rol.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/Roles/asignar_proyecto_rol.html" afterPath="$PROJECT_DIR$/templates/Roles/asignar_proyecto_rol.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/Roles/asignar_rol.html" afterPath="$PROJECT_DIR$/templates/Roles/asignar_rol.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/items/cargaratributos.html" afterPath="$PROJECT_DIR$/templates/items/cargaratributos.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/comite/comitealerta.html" afterPath="$PROJECT_DIR$/templates/comite/comitealerta.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/solicitudes/consultar_credencial.html" afterPath="$PROJECT_DIR$/templates/solicitudes/consultar_credencial.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/Roles/consultar_rol.html" afterPath="$PROJECT_DIR$/templates/Roles/consultar_rol.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/tipoAtributo/consultar_tipo_atributo.html" afterPath="$PROJECT_DIR$/templates/tipoAtributo/consultar_tipo_atributo.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/Usuarios/consultar_usuario.html" afterPath="$PROJECT_DIR$/templates/Usuarios/consultar_usuario.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/items/consultaratributos.html" afterPath="$PROJECT_DIR$/templates/items/consultaratributos.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/items/consultarenrevision.html" afterPath="$PROJECT_DIR$/templates/items/consultarenrevision.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/Fases/consultarfase.html" afterPath="$PROJECT_DIR$/templates/Fases/consultarfase.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/items/consultaritem.html" afterPath="$PROJECT_DIR$/templates/items/consultaritem.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/proyectos/consultarproyecto.html" afterPath="$PROJECT_DIR$/templates/proyectos/consultarproyecto.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/solicitudes/consultarsolicitud.html" afterPath="$PROJECT_DIR$/templates/solicitudes/consultarsolicitud.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/tipoitem/consultartipoitem.html" afterPath="$PROJECT_DIR$/templates/tipoitem/consultartipoitem.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/Fases/crearfaseimportada.html" afterPath="$PROJECT_DIR$/templates/Fases/crearfaseimportada.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/proyectos/crearproyecto.html" afterPath="$PROJECT_DIR$/templates/proyectos/crearproyecto.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/proyectos/crearproyectoimportado.html" afterPath="$PROJECT_DIR$/templates/proyectos/crearproyectoimportado.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/tipoitem/creartipoitem.html" afterPath="$PROJECT_DIR$/templates/tipoitem/creartipoitem.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/tipoitem/creartipoitemimportado.html" afterPath="$PROJECT_DIR$/templates/tipoitem/creartipoitemimportado.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/solicitudes/credencialcreada.html" afterPath="$PROJECT_DIR$/templates/solicitudes/credencialcreada.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/solicitudes/credenciales.html" afterPath="$PROJECT_DIR$/templates/solicitudes/credenciales.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/Roles/desasignar_fase_rol.html" afterPath="$PROJECT_DIR$/templates/Roles/desasignar_fase_rol.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/Roles/desasignar_rol.html" afterPath="$PROJECT_DIR$/templates/Roles/desasignar_rol.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/items/eliminadoversiones.html" afterPath="$PROJECT_DIR$/templates/items/eliminadoversiones.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/Fases/fasealerta.html" afterPath="$PROJECT_DIR$/templates/Fases/fasealerta.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/Fases/fasecreada.html" afterPath="$PROJECT_DIR$/templates/Fases/fasecreada.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/Fases/faseeliminada.html" afterPath="$PROJECT_DIR$/templates/Fases/faseeliminada.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/Fases/fasenueva.html" afterPath="$PROJECT_DIR$/templates/Fases/fasenueva.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/Fases/fases.html" afterPath="$PROJECT_DIR$/templates/Fases/fases.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aplicaciones/roles/forms.py" afterPath="$PROJECT_DIR$/aplicaciones/roles/forms.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/lineaBase/generar_linea_base.html" afterPath="$PROJECT_DIR$/templates/lineaBase/generar_linea_base.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/tipoitem/gestionartipoitem.html" afterPath="$PROJECT_DIR$/templates/tipoitem/gestionartipoitem.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/items/impacto.html" afterPath="$PROJECT_DIR$/templates/items/impacto.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/tipoAtributo/importar_tipo_atributo.html" afterPath="$PROJECT_DIR$/templates/tipoAtributo/importar_tipo_atributo.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/Fases/importarfase.html" afterPath="$PROJECT_DIR$/templates/Fases/importarfase.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/proyectos/importarproyecto.html" afterPath="$PROJECT_DIR$/templates/proyectos/importarproyecto.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/index.html" afterPath="$PROJECT_DIR$/templates/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/informes/informes.html" afterPath="$PROJECT_DIR$/templates/informes/informes.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/items/itemalerta.html" afterPath="$PROJECT_DIR$/templates/items/itemalerta.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/items/itemnuevo.html" afterPath="$PROJECT_DIR$/templates/items/itemnuevo.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/instalador/instalador.sh" afterPath="$PROJECT_DIR$/scripts/instalador/instalador.sh" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/items/items.html" afterPath="$PROJECT_DIR$/templates/items/items.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/informes/items_html.html" afterPath="$PROJECT_DIR$/templates/informes/items_html.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/lineaBase/linea_base_alerta.html" afterPath="$PROJECT_DIR$/templates/lineaBase/linea_base_alerta.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/lineaBase/lineas_base.html" afterPath="$PROJECT_DIR$/templates/lineaBase/lineas_base.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/tipoAtributo/listar_Proyectos.html" afterPath="$PROJECT_DIR$/templates/tipoAtributo/listar_Proyectos.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/items/listareliminados.html" afterPath="$PROJECT_DIR$/templates/items/listareliminados.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/proyectos/listarmiembrosproyecto.html" afterPath="$PROJECT_DIR$/templates/proyectos/listarmiembrosproyecto.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/tipoitem/listarproyectos.html" afterPath="$PROJECT_DIR$/templates/tipoitem/listarproyectos.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/tipoitem/listartipoitem.html" afterPath="$PROJECT_DIR$/templates/tipoitem/listartipoitem.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/items/listartipos.html" afterPath="$PROJECT_DIR$/templates/items/listartipos.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/items/listarversiones.html" afterPath="$PROJECT_DIR$/templates/items/listarversiones.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/Logs/log_hoy.html" afterPath="$PROJECT_DIR$/templates/Logs/log_hoy.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/comite/miembroscomite.html" afterPath="$PROJECT_DIR$/templates/comite/miembroscomite.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/Roles/modificar_rol.html" afterPath="$PROJECT_DIR$/templates/Roles/modificar_rol.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/tipoAtributo/modificar_tipo_atributo.html" afterPath="$PROJECT_DIR$/templates/tipoAtributo/modificar_tipo_atributo.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/Usuarios/modificar_usuario.html" afterPath="$PROJECT_DIR$/templates/Usuarios/modificar_usuario.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/Fases/modificarfase.html" afterPath="$PROJECT_DIR$/templates/Fases/modificarfase.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/items/modificaritem.html" afterPath="$PROJECT_DIR$/templates/items/modificaritem.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/proyectos/modificarproyecto.html" afterPath="$PROJECT_DIR$/templates/proyectos/modificarproyecto.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/tipoitem/modificartipoitem.html" afterPath="$PROJECT_DIR$/templates/tipoitem/modificartipoitem.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/informes/proyecto_html.html" afterPath="$PROJECT_DIR$/templates/informes/proyecto_html.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/proyectos/proyectoalerta.html" afterPath="$PROJECT_DIR$/templates/proyectos/proyectoalerta.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/proyectos/proyectofinalizado.html" afterPath="$PROJECT_DIR$/templates/proyectos/proyectofinalizado.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/items/relaciones.html" afterPath="$PROJECT_DIR$/templates/items/relaciones.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/relaciones/relaciones.html" afterPath="$PROJECT_DIR$/templates/relaciones/relaciones.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/Roles/rol_alerta.html" afterPath="$PROJECT_DIR$/templates/Roles/rol_alerta.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/Roles/rol_asignado.html" afterPath="$PROJECT_DIR$/templates/Roles/rol_asignado.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/Roles/rol_desasignado.html" afterPath="$PROJECT_DIR$/templates/Roles/rol_desasignado.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/Roles/rol_modificado.html" afterPath="$PROJECT_DIR$/templates/Roles/rol_modificado.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/Roles/rolcreado.html" afterPath="$PROJECT_DIR$/templates/Roles/rolcreado.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/Roles/roles.html" afterPath="$PROJECT_DIR$/templates/Roles/roles.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/Roles/rolnuevo.html" afterPath="$PROJECT_DIR$/templates/Roles/rolnuevo.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/logs/sap.log" afterPath="$PROJECT_DIR$/static/logs/sap.log" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/informes/seleccionar_proyecto.html" afterPath="$PROJECT_DIR$/templates/informes/seleccionar_proyecto.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/solicitudes/solicitudalerta.html" afterPath="$PROJECT_DIR$/templates/solicitudes/solicitudalerta.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/solicitudes/solicitudcreada.html" afterPath="$PROJECT_DIR$/templates/solicitudes/solicitudcreada.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/informes/solicitudes_html.html" afterPath="$PROJECT_DIR$/templates/informes/solicitudes_html.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/solicitudes/solicitudesrealizadas.html" afterPath="$PROJECT_DIR$/templates/solicitudes/solicitudesrealizadas.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/solicitudes/solicitudesrecibidas.html" afterPath="$PROJECT_DIR$/templates/solicitudes/solicitudesrecibidas.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/solicitudes/solicitudnueva.html" afterPath="$PROJECT_DIR$/templates/solicitudes/solicitudnueva.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aplicaciones/lineabase/tests.py" afterPath="$PROJECT_DIR$/aplicaciones/lineabase/tests.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/tipoAtributo/tipo_atributo_creado.html" afterPath="$PROJECT_DIR$/templates/tipoAtributo/tipo_atributo_creado.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/tipoAtributo/tipo_atributo_modificado.html" afterPath="$PROJECT_DIR$/templates/tipoAtributo/tipo_atributo_modificado.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/tipoAtributo/tipo_atributo_nuevo.html" afterPath="$PROJECT_DIR$/templates/tipoAtributo/tipo_atributo_nuevo.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/tipoAtributo/tipo_atributos.html" afterPath="$PROJECT_DIR$/templates/tipoAtributo/tipo_atributos.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/tipoitem/tipoitem.html" afterPath="$PROJECT_DIR$/templates/tipoitem/tipoitem.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/tipoitem/tipoitemalerta.html" afterPath="$PROJECT_DIR$/templates/tipoitem/tipoitemalerta.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aplicaciones/informes/urls.py" afterPath="$PROJECT_DIR$/aplicaciones/informes/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/Usuarios/usuario_modificado.html" afterPath="$PROJECT_DIR$/templates/Usuarios/usuario_modificado.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/Usuarios/usuarioalerta.html" afterPath="$PROJECT_DIR$/templates/Usuarios/usuarioalerta.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/Usuarios/usuariocreado.html" afterPath="$PROJECT_DIR$/templates/Usuarios/usuariocreado.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/Usuarios/usuarionuevo.html" afterPath="$PROJECT_DIR$/templates/Usuarios/usuarionuevo.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/Usuarios/usuarios.html" afterPath="$PROJECT_DIR$/templates/Usuarios/usuarios.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/comite/usuariosparacomite.html" afterPath="$PROJECT_DIR$/templates/comite/usuariosparacomite.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aplicaciones/fases/views.py" afterPath="$PROJECT_DIR$/aplicaciones/fases/views.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aplicaciones/informes/views.py" afterPath="$PROJECT_DIR$/aplicaciones/informes/views.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aplicaciones/items/views.py" afterPath="$PROJECT_DIR$/aplicaciones/items/views.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aplicaciones/lineabase/views.py" afterPath="$PROJECT_DIR$/aplicaciones/lineabase/views.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aplicaciones/proyectos/views.py" afterPath="$PROJECT_DIR$/aplicaciones/proyectos/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aplicaciones/roles/views.py" afterPath="$PROJECT_DIR$/aplicaciones/roles/views.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aplicaciones/relaciones/views.py" afterPath="$PROJECT_DIR$/aplicaciones/relaciones/views.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aplicaciones/solicitudes/views.py" afterPath="$PROJECT_DIR$/aplicaciones/solicitudes/views.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aplicaciones/tipoitem/views.py" afterPath="$PROJECT_DIR$/aplicaciones/tipoitem/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/solicitudes/votarsolicitud.html" afterPath="$PROJECT_DIR$/templates/solicitudes/votarsolicitud.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="sap.iws" />
@@ -181,12 +97,54 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="tests.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="tests.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/aplicaciones/lineabase/tests.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="21" column="41" selection-start="1021" selection-end="1021" vertical-scroll-proportion="0.17142858" vertical-offset="306" max-vertical-offset="1512">
+            <state line="21" column="41" selection-start="1021" selection-end="1021" vertical-scroll-proportion="0.0" vertical-offset="306" max-vertical-offset="1512">
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/aplicaciones/tipoitem/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="62" column="8" selection-start="2563" selection-end="2563" vertical-scroll-proportion="0.0" vertical-offset="750" max-vertical-offset="11430">
+              <folding>
+                <element signature="e#0#77#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="tests.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/aplicaciones/roles/tests.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="1344" max-vertical-offset="1764">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="views.py" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/aplicaciones/lineabase/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="19" column="0" selection-start="790" selection-end="790" vertical-scroll-proportion="0.69849247" vertical-offset="64" max-vertical-offset="4770">
+              <folding>
+                <element signature="e#0#22#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/aplicaciones/lineabase/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="278" max-vertical-offset="792">
+              <folding>
+                <element signature="e#0#28#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -205,8 +163,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/templates/items/cargaratributos.html" />
-        <option value="$PROJECT_DIR$/templates/items/consultaratributos.html" />
         <option value="$PROJECT_DIR$/templates/items/consultarenrevision.html" />
         <option value="$PROJECT_DIR$/templates/items/consultaritem.html" />
         <option value="$PROJECT_DIR$/templates/items/eliminadoversiones.html" />
@@ -256,6 +212,8 @@
         <option value="$PROJECT_DIR$/templates/tipoitem/tipoitemalerta.html" />
         <option value="$PROJECT_DIR$/aplicaciones/roles/views.py" />
         <option value="$PROJECT_DIR$/aplicaciones/lineabase/tests.py" />
+        <option value="$PROJECT_DIR$/aplicaciones/tipoitem/views.py" />
+        <option value="$PROJECT_DIR$/aplicaciones/lineabase/views.py" />
       </list>
     </option>
   </component>
@@ -684,7 +642,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="25" width="1024" height="575" extended-state="7" />
+    <frame x="0" y="25" width="1024" height="575" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32826087" sideWeight="0.4995015" order="7" side_tool="false" content_ui="tabs" />
@@ -735,27 +693,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/templates/items/impacto.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="20" selection-start="1211" selection-end="1211" vertical-scroll-proportion="0.32061067" vertical-offset="360" max-vertical-offset="2916">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/items/eliminadoversiones.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="20" selection-start="1353" selection-end="1353" vertical-scroll-proportion="0.7150127" vertical-offset="223" max-vertical-offset="1800">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/lineaBase/consultarlineabase.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2034">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/lineaBase/generar_linea_base.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="123" column="20" selection-start="3745" selection-end="3745" vertical-scroll-proportion="-12.0" vertical-offset="1890" max-vertical-offset="2772">
@@ -1073,15 +1010,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/aplicaciones/roles/tests.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1854">
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/aplicaciones/usuarios/fixtures/user.json">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2250">
@@ -1091,9 +1019,43 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/aplicaciones/lineabase/tests.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="41" selection-start="1021" selection-end="1021" vertical-scroll-proportion="0.17142858" vertical-offset="306" max-vertical-offset="1512">
+        <state line="21" column="41" selection-start="1021" selection-end="1021" vertical-scroll-proportion="0.0" vertical-offset="306" max-vertical-offset="1512">
           <folding>
             <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/aplicaciones/tipoitem/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="62" column="8" selection-start="2563" selection-end="2563" vertical-scroll-proportion="0.0" vertical-offset="750" max-vertical-offset="11430">
+          <folding>
+            <element signature="e#0#77#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/aplicaciones/roles/tests.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1854">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/aplicaciones/lineabase/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="792">
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/aplicaciones/lineabase/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="0" selection-start="790" selection-end="790" vertical-scroll-proportion="0.69849247" vertical-offset="64" max-vertical-offset="4770">
+          <folding>
+            <element signature="e#0#22#0" expanded="true" />
           </folding>
         </state>
       </provider>
