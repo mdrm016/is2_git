@@ -19,7 +19,8 @@ from aplicaciones.relaciones.views import cargar_atributos, pasar_construccion
 from aplicaciones.solicitudes.models import Credenciales
 from aplicaciones.lineabase.models import LineaBase
 import logging
-
+import pydot
+from sap import settings
 # Create your views here.
 logger = logging.getLogger(__name__)
 
@@ -1024,7 +1025,7 @@ def consultar_atributos(request, id_proyecto, id_fase, id_item):
             valorfuturo.valor_fecha = ""
             
             lista_valores.append(valorfuturo)
-    logger.info('Consulta de atributos de item % de la fase %s del proyecto %s, hecho por %s' % (itemactual.nombre, fase.nombre, proyecto.nombre, request.user.username))
+    logger.info('Consulta de atributos de item %s de la fase %s del proyecto %s, hecho por %s' % (itemactual.nombre, fase.nombre, proyecto.nombre, request.user.username))
     template_name='./items/consultaratributos.html'
     return render(request, template_name, {'id_proyecto':id_proyecto, 'id_fase': id_fase, 'lista_valores': lista_valores, 'id_item': id_item, 'proyecto':proyecto, 'fase':fase})        
 
@@ -1385,11 +1386,13 @@ def costo_impacto(request, id_proyecto, id_fase, id_item):
     itemporal = impacto_temporal(id_item)
     items_afectado = calcular_items_afectados(id_item)
     items_afectados = []
+    grafo = dibujar_grafo(id_item, id_fase, id_proyecto)
+
     for items_af in items_afectado:
         if items_af.id!=item.id:
             items_afectados.append(items_af)
     
-    ctx = {'id_proyecto':id_proyecto, 'id_fase': id_fase, 'id_item': id_item, 'impacto_monetario': imonetario, 'impacto_temporal': itemporal, 'items_afectados': items_afectados}
+    ctx = {'id_proyecto':id_proyecto, 'id_fase': id_fase, 'id_item': id_item, 'impacto_monetario': imonetario, 'impacto_temporal': itemporal, 'items_afectados': items_afectados, 'ruta_grafo' : grafo}
     logger.info('Calculo del impacto del item %s de la fase %s del proyecto %s, hecho por %s' % (item.nombre, fase.nombre, proyecto.nombre, request.user.username))
     template_name = './items/impacto.html'
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
@@ -1527,3 +1530,32 @@ def finrevision(request, id_proyecto, id_fase, id_item):
     logger.info('Revision finalizada de item %s de la fase %s del proyecto %s, hecho por %s' % (item.nombre, fase.nombre, proyecto.nombre, request.user.username))
     ctx = {'lista_items': lista_items, 'mensaje': mensaje, 'id_proyecto':id_proyecto, 'id_fase': id_fase, 'proyecto':proyecto, 'fase':fase}
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
+
+def dibujar_grafo(id_item, id_fase, id_proyecto):
+    fases = Fases.objects.filter(proyecto=id_proyecto)
+    faseAfectada = Fases.objects.get(id=id_fase)
+    fasesAfectadas = fases.filter(orden__gte=faseAfectada.orden)
+    itemsAfectados = calcular_items_afectados(id_item)
+    lineasBase = LineaBase.objects.filter(proyecto=id_proyecto, fase__gte=id_fase, is_active=True)
+    grafo = pydot.Dot(graph_type='digraph',rankdir="LR")
+    clusters = []
+    for fase in fasesAfectadas:
+        clusterFases = pydot.Cluster(str(fase.orden), label=str(fase.nombre))
+        clusters.append(clusterFases)
+        for item in itemsAfectados:
+            if item.fase == fase.id:
+                clusters[str(fase.orden)].add_node(pydot.Node(str(item.id), label=str(item.nombre)))#, style="filled", fillcolor="'Green"))
+    for cluster in clusters:
+        grafo.add_subgraph(cluster)
+
+    for item in itemsAfectados:
+        if item.padre:
+            if str(item.id) != id_item:
+                padre = Items.objects.get(id=item.padre)
+                grafo.add_edge(pydot.Edge(str(padre.nombre), str(item.nombre)))
+    if len(itemsAfectados)>1:
+        nombre = str(datetime.now()) + 'item.jpg'
+        grafo.write_jpg(str(settings.MEDIA_ROOT)+'/imagenes/'+str(nombre))
+        return nombre
+    else:
+        return ""

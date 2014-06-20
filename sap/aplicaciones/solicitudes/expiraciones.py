@@ -37,9 +37,3 @@ def expiracionDeCredencial():
                       'Su credencial ha sido revocada debido a que si credencial expiro, favor comunicarse con el lider del proyecto o realizar una nueva solicitud de cambio',
                       administradorSistema.email, [credencial.usuario.user.email], fail_silently=False)
 
-
-#def pruebaDeFuncionamientoCelery():
-#    listaSolicitudesRechazadas = Solicitudes.objects.filter(estado='Pendiente')
-#    for solicitud in listaSolicitudesRechazadas:
-#        solicitud.estado = 'Reprobada'
-#        solicitud.save()

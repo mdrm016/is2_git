@@ -38,7 +38,7 @@ def administrarLineaBase(request, id_proyecto, id_fase):
     proyecto = Proyectos.objects.get(id=id_proyecto)
     fase = Fases.objects.get(id=id_fase)
     if request.user.has_perm('roles.administrar_roles'):
-        logger.info('Administracion de Lineas Base de fase % del proyecto %s, hecho por %s' % (fase.nombre, proyecto.nombre, request.user.username))
+        logger.info('Administracion de Lineas Base de fase %s del proyecto %s, hecho por %s' % (fase.nombre, proyecto.nombre, request.user.username))
         lineasbase = LineaBase.objects.filter(is_active=True, proyecto=id_proyecto, fase=id_fase)
         template_name='./lineaBase/lineas_base.html'
         return render(request, template_name, {'lista_lineas_base': lineasbase, 'proyecto': proyecto, 'fase': fase})
@@ -151,7 +151,7 @@ def consultar_lineabase (request, id_proyecto, id_fase, id_lineabase):
     fase = Fases.objects.get(id=id_fase)
     lineabase = LineaBase.objects.get(id=id_lineabase)
     items = lineabase.items.all()
-    logger.info('Consulta de Linea Base % de la fase %s del proyecto %s, hecho por %s' % (lineabase.numero, fase.nombre, proyecto.nombre, request.user.username))
+    logger.info('Consulta de Linea Base %s de la fase %s del proyecto %s, hecho por %s' % (lineabase.numero, fase.nombre, proyecto.nombre, request.user.username))
     template_name='lineaBase/consultarlineabase.html'
     ctx = {'lineabase':lineabase, 'items':items, 'proyecto':proyecto, 'fase':fase}
     return render_to_response(template_name, ctx, context_instance=RequestContext(request) )

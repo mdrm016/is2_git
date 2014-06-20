@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ab56f5de-e7af-4abc-bfab-b27c4de6804e" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/Logs/log_hoy.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/aplicaciones/logs/urls.py" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/instalador/paquetes/django-cron-0.3.3.tar.gz" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/instalador/paquetes/django-cron-0.3.3/AUTHORS" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/instalador/paquetes/django-cron-0.3.3/LICENSE" afterPath="" />
@@ -47,12 +45,13 @@
       <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/instalador/paquetes/django-cron-0.3.3/django_cron/timezone.py" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/instalador/paquetes/django-cron-0.3.3/setup.cfg" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/instalador/paquetes/django-cron-0.3.3/setup.py" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/celerybeat-schedule" afterPath="$PROJECT_DIR$/celerybeat-schedule" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aplicaciones/solicitudes/expiraciones.py" afterPath="$PROJECT_DIR$/aplicaciones/solicitudes/expiraciones.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/index.html" afterPath="$PROJECT_DIR$/templates/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/items/impacto.html" afterPath="$PROJECT_DIR$/templates/items/impacto.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/logs/sap.log" afterPath="$PROJECT_DIR$/static/logs/sap.log" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sap/settings.py" afterPath="$PROJECT_DIR$/sap/settings.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sap/urls.py" afterPath="$PROJECT_DIR$/sap/urls.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aplicaciones/solicitudes/tasks.py" afterPath="$PROJECT_DIR$/aplicaciones/solicitudes/tasks.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aplicaciones/logs/urls.py" afterPath="$PROJECT_DIR$/aplicaciones/logs/urls.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aplicaciones/items/views.py" afterPath="$PROJECT_DIR$/aplicaciones/items/views.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aplicaciones/lineabase/views.py" afterPath="$PROJECT_DIR$/aplicaciones/lineabase/views.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="sap.iws" />
@@ -76,42 +75,67 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/index.html">
+      <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/aplicaciones/solicitudes/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="27" selection-start="488" selection-end="488" vertical-scroll-proportion="17.925926" vertical-offset="754" max-vertical-offset="3582">
+            <state line="34" column="30" selection-start="1570" selection-end="1570" vertical-scroll-proportion="0.0" vertical-offset="612" max-vertical-offset="1368">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/aplicaciones/logs/views.py">
+        <entry file="file://$PROJECT_DIR$/aplicaciones/items/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="104" column="4" selection-start="3539" selection-end="3545" vertical-scroll-proportion="0.0" vertical-offset="1795" max-vertical-offset="2412">
+            <state line="1553" column="56" selection-start="80634" selection-end="80634" vertical-scroll-proportion="0.0" vertical-offset="27682" max-vertical-offset="28206">
               <folding>
-                <element signature="e#0#55#0" expanded="true" />
+                <element signature="e#0#35#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="log_hoy.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/Logs/log_hoy.html">
+      <file leaf-file-name="urls.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/aplicaciones/items/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="44" column="14" selection-start="1518" selection-end="1518" vertical-scroll-proportion="-7.962963" vertical-offset="577" max-vertical-offset="1026">
+            <state line="1" column="13" selection-start="56" selection-end="56" vertical-scroll-proportion="0.0" vertical-offset="18" max-vertical-offset="558">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="urls.py" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/aplicaciones/logs/urls.py">
+      <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/aplicaciones/items/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="20" selection-start="321" selection-end="321" vertical-scroll-proportion="0.29099306" vertical-offset="0" max-vertical-offset="433">
-              <folding>
-                <element signature="e#0#42#0" expanded="true" />
-              </folding>
+            <state line="31" column="12" selection-start="1435" selection-end="1435" vertical-scroll-proportion="0.0" vertical-offset="558" max-vertical-offset="1764">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="impacto.html" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/templates/items/impacto.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="86" column="79" selection-start="2692" selection-end="2692" vertical-scroll-proportion="0.56334233" vertical-offset="1339" max-vertical-offset="2808">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/aplicaciones/fases/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="27" column="42" selection-start="1261" selection-end="1261" vertical-scroll-proportion="0.0" vertical-offset="486" max-vertical-offset="774">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/aplicaciones/lineabase/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="24" column="25" selection-start="1309" selection-end="1309" vertical-scroll-proportion="0.0" vertical-offset="432" max-vertical-offset="792">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -144,8 +168,6 @@
         <option value="$PROJECT_DIR$/aplicaciones/autenticacion/views.py" />
         <option value="$PROJECT_DIR$/aplicaciones/comite/views.py" />
         <option value="$PROJECT_DIR$/aplicaciones/fases/views.py" />
-        <option value="$PROJECT_DIR$/aplicaciones/items/views.py" />
-        <option value="$PROJECT_DIR$/aplicaciones/lineabase/views.py" />
         <option value="$PROJECT_DIR$/aplicaciones/proyectos/views.py" />
         <option value="$PROJECT_DIR$/aplicaciones/relaciones/views.py" />
         <option value="$PROJECT_DIR$/aplicaciones/roles/views.py" />
@@ -153,21 +175,25 @@
         <option value="$PROJECT_DIR$/aplicaciones/tipoitem/views.py" />
         <option value="$PROJECT_DIR$/aplicaciones/usuarios/views.py" />
         <option value="$PROJECT_DIR$/aplicaciones/tipoatributo/views.py" />
-        <option value="$PROJECT_DIR$/aplicaciones/solicitudes/tasks.py" />
         <option value="$PROJECT_DIR$/sap/urls.py" />
         <option value="$PROJECT_DIR$/templates/index.html" />
         <option value="$PROJECT_DIR$/sap/settings.py" />
         <option value="$PROJECT_DIR$/templates/Logs/log_hoy.html" />
-        <option value="$PROJECT_DIR$/aplicaciones/solicitudes/expiraciones.py" />
         <option value="$PROJECT_DIR$/aplicaciones/logs/views.py" />
+        <option value="$PROJECT_DIR$/aplicaciones/lineabase/views.py" />
         <option value="$PROJECT_DIR$/aplicaciones/logs/urls.py" />
+        <option value="$PROJECT_DIR$/aplicaciones/solicitudes/tasks.py" />
+        <option value="$PROJECT_DIR$/aplicaciones/solicitudes/expiraciones.py" />
+        <option value="$PROJECT_DIR$/aplicaciones/items/views.py" />
+        <option value="$PROJECT_DIR$/templates/items/impacto.html" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
+    <option name="x" value="-1" />
     <option name="y" value="25" />
-    <option name="width" value="1024" />
-    <option name="height" value="575" />
+    <option name="width" value="1026" />
+    <option name="height" value="576" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -261,6 +287,24 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="items" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sap" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sap" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="templates" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="Logs" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -275,6 +319,60 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="uploads" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="imagenes" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sap" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sap" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="uploads" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sap" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sap" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sap" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sap" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="aplicaciones" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -293,7 +391,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="logs" />
+              <option name="myItemId" value="items" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -521,14 +619,14 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="25" width="1024" height="575" extended-state="6" />
+    <frame x="-1" y="25" width="1026" height="576" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32826087" sideWeight="0.4995015" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32826087" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24925224" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24925224" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32826087" sideWeight="0.50049853" order="7" side_tool="true" content_ui="tabs" />
@@ -548,8 +646,8 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32826087" sideWeight="0.4995015" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32826087" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32826087" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32826087" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32826087" sideWeight="0.50049853" order="9" side_tool="true" content_ui="tabs" />
@@ -559,9 +657,9 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24925224" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
     </layout-to-restore>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -590,41 +688,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/aplicaciones/usuarios/fixtures/credenciales.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="684" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/aplicaciones/solicitudes/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="61" selection-start="1328" selection-end="1405" vertical-scroll-proportion="0.0" vertical-offset="216" max-vertical-offset="360" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sap/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="71" column="1" selection-start="2066" selection-end="2066" vertical-scroll-proportion="0.0" vertical-offset="1026" max-vertical-offset="2340" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/aplicaciones/solicitudes/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="228" column="25" selection-start="10839" selection-end="10839" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="6840" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/aplicaciones/solicitudes/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="51" column="41" selection-start="2364" selection-end="2364" vertical-scroll-proportion="0.0" vertical-offset="660" max-vertical-offset="1080" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/aplicaciones/solicitudes/forms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="72" column="57" selection-start="3840" selection-end="3840" vertical-scroll-proportion="0.0" vertical-offset="984" max-vertical-offset="1404" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sap/wsgi.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="26" selection-start="320" selection-end="320" vertical-scroll-proportion="0.49884528" vertical-offset="0" max-vertical-offset="433" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/sap.wsgi">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="433" />
@@ -670,11 +733,6 @@
         <state line="13" column="61" selection-start="1513" selection-end="1513" vertical-scroll-proportion="0.5427136" vertical-offset="0" max-vertical-offset="398" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/aplicaciones/solicitudes/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="43" column="43" selection-start="1849" selection-end="1849" vertical-scroll-proportion="-0.35929647" vertical-offset="827" max-vertical-offset="1278" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/aplicaciones/usuarios/fixtures/credenciales.json">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="684" />
@@ -705,11 +763,6 @@
         <state line="18" column="53" selection-start="946" selection-end="946" vertical-scroll-proportion="0.34285715" vertical-offset="108" max-vertical-offset="558" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/aplicaciones/lineabase/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="792" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/aplicaciones/roles/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="774" />
@@ -725,34 +778,14 @@
         <state line="15" column="6" selection-start="657" selection-end="663" vertical-scroll-proportion="0.091603056" vertical-offset="0" max-vertical-offset="9324" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/aplicaciones/items/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="6" selection-start="1137" selection-end="1143" vertical-scroll-proportion="0.33333334" vertical-offset="283" max-vertical-offset="27630" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/aplicaciones/lineabase/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="6" selection-start="791" selection-end="797" vertical-scroll-proportion="0.33333334" vertical-offset="229" max-vertical-offset="4734" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/aplicaciones/proyectos/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="16" column="6" selection-start="744" selection-end="750" vertical-scroll-proportion="0.33333334" vertical-offset="157" max-vertical-offset="10224" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/aplicaciones/relaciones/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="6" selection-start="915" selection-end="921" vertical-scroll-proportion="0.33333334" vertical-offset="211" max-vertical-offset="7398" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/aplicaciones/roles/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="11" column="6" selection-start="493" selection-end="499" vertical-scroll-proportion="0.33333334" vertical-offset="67" max-vertical-offset="7776" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/aplicaciones/solicitudes/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="6" selection-start="885" selection-end="891" vertical-scroll-proportion="0.33333334" vertical-offset="229" max-vertical-offset="9594" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/aplicaciones/tipoitem/views.py">
@@ -800,70 +833,129 @@
         <state line="30" column="14" selection-start="1132" selection-end="1132" vertical-scroll-proportion="0.393531" vertical-offset="394" max-vertical-offset="828" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sap/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="135" column="45" selection-start="3698" selection-end="3698" vertical-scroll-proportion="-0.22864321" vertical-offset="2521" max-vertical-offset="2934" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/informes/informes.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="35" selection-start="93" selection-end="93" vertical-scroll-proportion="0.0" vertical-offset="54" max-vertical-offset="1656">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/aplicaciones/solicitudes/tasks.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="17" selection-start="522" selection-end="522" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="324">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/aplicaciones/solicitudes/expiraciones.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="1" selection-start="2319" selection-end="2319" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="900">
-          <folding>
-            <element signature="e#0#45#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="27" selection-start="488" selection-end="488" vertical-scroll-proportion="17.925926" vertical-offset="754" max-vertical-offset="3582">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/Logs/log_hoy.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="44" column="14" selection-start="1518" selection-end="1518" vertical-scroll-proportion="-7.962963" vertical-offset="577" max-vertical-offset="1026">
-          <folding />
-        </state>
+        <state line="3" column="35" selection-start="93" selection-end="93" vertical-scroll-proportion="0.0" vertical-offset="54" max-vertical-offset="1656" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/aplicaciones/informes/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="94" column="60" selection-start="3956" selection-end="3956" vertical-scroll-proportion="0.16666667" vertical-offset="1370" max-vertical-offset="1800">
-          <folding />
-        </state>
+        <state line="94" column="60" selection-start="3956" selection-end="3956" vertical-scroll-proportion="0.16666667" vertical-offset="1370" max-vertical-offset="1800" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/aplicaciones/logs/views.py">
+    <entry file="file://$PROJECT_DIR$/aplicaciones/solicitudes/tasks.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="104" column="4" selection-start="3539" selection-end="3545" vertical-scroll-proportion="0.0" vertical-offset="1795" max-vertical-offset="2412">
-          <folding>
-            <element signature="e#0#55#0" expanded="true" />
-          </folding>
-        </state>
+        <state line="14" column="41" selection-start="500" selection-end="500" vertical-scroll-proportion="0.4157044" vertical-offset="0" max-vertical-offset="433" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/aplicaciones/solicitudes/expiraciones.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="26" column="24" selection-start="1450" selection-end="1450" vertical-scroll-proportion="0.0" vertical-offset="336" max-vertical-offset="756" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/aplicaciones/logs/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="20" selection-start="321" selection-end="321" vertical-scroll-proportion="0.29099306" vertical-offset="0" max-vertical-offset="433">
+        <state line="10" column="0" selection-start="437" selection-end="437" vertical-scroll-proportion="0.37413394" vertical-offset="0" max-vertical-offset="433" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/Logs/log_hoy.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="44" column="14" selection-start="1518" selection-end="1518" vertical-scroll-proportion="0.40458015" vertical-offset="633" max-vertical-offset="1026" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/aplicaciones/logs/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="104" column="4" selection-start="3539" selection-end="3545" vertical-scroll-proportion="-0.17142858" vertical-offset="1872" max-vertical-offset="2340" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="27" selection-start="488" selection-end="488" vertical-scroll-proportion="-1.2315521" vertical-offset="754" max-vertical-offset="3582" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/aplicaciones/solicitudes/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="242" column="59" selection-start="11889" selection-end="11889" vertical-scroll-proportion="0.70229006" vertical-offset="3774" max-vertical-offset="9288" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/aplicaciones/solicitudes/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="34" column="30" selection-start="1570" selection-end="1570" vertical-scroll-proportion="0.0" vertical-offset="325" max-vertical-offset="1278">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/aplicaciones/lineabase/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="153" column="42" selection-start="7887" selection-end="7887" vertical-scroll-proportion="0.21105528" vertical-offset="2346" max-vertical-offset="4410" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/aplicaciones/relaciones/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="6" selection-start="915" selection-end="921" vertical-scroll-proportion="-3.4497488" vertical-offset="1409" max-vertical-offset="7092" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/items/consultaratributos.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-3.4204853" vertical-offset="1269" max-vertical-offset="1764" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/aplicaciones/relaciones/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="26" selection-start="964" selection-end="964" vertical-scroll-proportion="0.60301507" vertical-offset="120" max-vertical-offset="576" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/aplicaciones/fases/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="414" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sap/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="38" column="23" selection-start="1201" selection-end="1201" vertical-scroll-proportion="0.38944724" vertical-offset="529" max-vertical-offset="2934" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/aplicaciones/items/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="13" selection-start="56" selection-end="56" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="558">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/aplicaciones/fases/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="27" column="42" selection-start="1261" selection-end="1261" vertical-scroll-proportion="0.0" vertical-offset="128" max-vertical-offset="774">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/aplicaciones/items/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="31" column="12" selection-start="1435" selection-end="1435" vertical-scroll-proportion="0.0" vertical-offset="306" max-vertical-offset="1710">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/aplicaciones/lineabase/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="25" selection-start="1309" selection-end="1309" vertical-scroll-proportion="0.0" vertical-offset="124" max-vertical-offset="738">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/aplicaciones/items/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1553" column="56" selection-start="80634" selection-end="80634" vertical-scroll-proportion="0.0" vertical-offset="27682" max-vertical-offset="28206">
           <folding>
-            <element signature="e#0#42#0" expanded="true" />
+            <element signature="e#0#35#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/items/impacto.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="86" column="79" selection-start="2692" selection-end="2692" vertical-scroll-proportion="0.56334233" vertical-offset="1339" max-vertical-offset="2808">
+          <folding />
         </state>
       </provider>
     </entry>
