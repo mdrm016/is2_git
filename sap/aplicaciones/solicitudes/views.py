@@ -567,3 +567,6 @@ def revertir_credencial(id_proyecto, id_fase, credencial):
                 relacionitem.save()
     item.version = version_anterior
     item.save()
+
+def probar():
+    noanda.save()
