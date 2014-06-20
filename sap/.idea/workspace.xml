@@ -2,8 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ab56f5de-e7af-4abc-bfab-b27c4de6804e" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/Logs/log_hoy.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/aplicaciones/logs/urls.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/aplicaciones/informes/informe_items_434.pdf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/aplicaciones/informes/informe_items_Proyecto 2.pdf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/aplicaciones/informes/informe_solicitudes_434.pdf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/aplicaciones/informes/informe_solicitudes_Proyecto 2.pdf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/informes/items_html.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/informes/items_pdf.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/informes/seleccionar_proyecto.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/informes/solicitudes_html.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/informes/solicitudes_pdf.html" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/instalador/instalacion_celery.abw" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/instalador/paquetes/django-cron-0.3.3.tar.gz" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/instalador/paquetes/django-cron-0.3.3/AUTHORS" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/instalador/paquetes/django-cron-0.3.3/LICENSE" afterPath="" />
@@ -47,12 +55,554 @@
       <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/instalador/paquetes/django-cron-0.3.3/django_cron/timezone.py" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/instalador/paquetes/django-cron-0.3.3/setup.cfg" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/instalador/paquetes/django-cron-0.3.3/setup.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/scripts/instalador/syncdb.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/aplicaciones/informes/informe_proyecto.pdf" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/instalador/paquetes/Django-1.6.2.tar.gz" afterPath="$PROJECT_DIR$/scripts/instalador/paquetes/Django-1.6.2.tar.gz" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/instalador/paquetes/Imaging-1.1.7.tar.gz" afterPath="$PROJECT_DIR$/scripts/instalador/paquetes/Imaging-1.1.7.tar.gz" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/instalador/paquetes/Python-2.7.4.tar.xz" afterPath="$PROJECT_DIR$/scripts/instalador/paquetes/Python-2.7.4.tar.xz" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/instalador/paquetes/Unipath-1.0.tar.gz" afterPath="$PROJECT_DIR$/scripts/instalador/paquetes/Unipath-1.0.tar.gz" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/celerybeat-schedule" afterPath="$PROJECT_DIR$/celerybeat-schedule" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Autenticacion/crarr.png" afterPath="$PROJECT_DIR$/Sap_documentacion/Autenticacion/crarr.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Comite/crarr.png" afterPath="$PROJECT_DIR$/Sap_documentacion/Comite/crarr.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Fases/crarr.png" afterPath="$PROJECT_DIR$/Sap_documentacion/Fases/crarr.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Items/crarr.png" afterPath="$PROJECT_DIR$/Sap_documentacion/Items/crarr.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/LineaBase/crarr.png" afterPath="$PROJECT_DIR$/Sap_documentacion/LineaBase/crarr.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Proyectos/crarr.png" afterPath="$PROJECT_DIR$/Sap_documentacion/Proyectos/crarr.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Relaciones/crarr.png" afterPath="$PROJECT_DIR$/Sap_documentacion/Relaciones/crarr.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Roles/crarr.png" afterPath="$PROJECT_DIR$/Sap_documentacion/Roles/crarr.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Sap/crarr.png" afterPath="$PROJECT_DIR$/Sap_documentacion/Sap/crarr.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Solicitudes/crarr.png" afterPath="$PROJECT_DIR$/Sap_documentacion/Solicitudes/crarr.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/TipoAtributo/crarr.png" afterPath="$PROJECT_DIR$/Sap_documentacion/TipoAtributo/crarr.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/TipoItem/crarr.png" afterPath="$PROJECT_DIR$/Sap_documentacion/TipoItem/crarr.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Usuarios/crarr.png" afterPath="$PROJECT_DIR$/Sap_documentacion/Usuarios/crarr.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/instalador/paquetes/html5lib-0.90.tar.gz" afterPath="$PROJECT_DIR$/scripts/instalador/paquetes/html5lib-0.90.tar.gz" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/aplicaciones/informes/linea_Base_1.pdf" afterPath="$PROJECT_DIR$/static/aplicaciones/informes/linea_Base_1.pdf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/instalador/paquetes/pisa-3.0.33.tar.gz" afterPath="$PROJECT_DIR$/scripts/instalador/paquetes/pisa-3.0.33.tar.gz" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/instalador/paquetes/pyPdf-1.10.tar.gz" afterPath="$PROJECT_DIR$/scripts/instalador/paquetes/pyPdf-1.10.tar.gz" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/instalador/paquetes/reportlab-3.1.8.tar.gz" afterPath="$PROJECT_DIR$/scripts/instalador/paquetes/reportlab-3.1.8.tar.gz" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aplicaciones/informes/__init__.py" afterPath="$PROJECT_DIR$/aplicaciones/informes/__init__.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aplicaciones/logs/__init__.py" afterPath="$PROJECT_DIR$/aplicaciones/logs/__init__.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sap/.settings/__init__.py" afterPath="$PROJECT_DIR$/sap/.settings/__init__.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aplicaciones/informes/admin.py" afterPath="$PROJECT_DIR$/aplicaciones/informes/admin.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aplicaciones/logs/admin.py" afterPath="$PROJECT_DIR$/aplicaciones/logs/admin.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Autenticacion/api-objects.txt" afterPath="$PROJECT_DIR$/Sap_documentacion/Autenticacion/api-objects.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Comite/api-objects.txt" afterPath="$PROJECT_DIR$/Sap_documentacion/Comite/api-objects.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Fases/api-objects.txt" afterPath="$PROJECT_DIR$/Sap_documentacion/Fases/api-objects.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Items/api-objects.txt" afterPath="$PROJECT_DIR$/Sap_documentacion/Items/api-objects.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/LineaBase/api-objects.txt" afterPath="$PROJECT_DIR$/Sap_documentacion/LineaBase/api-objects.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Proyectos/api-objects.txt" afterPath="$PROJECT_DIR$/Sap_documentacion/Proyectos/api-objects.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Relaciones/api-objects.txt" afterPath="$PROJECT_DIR$/Sap_documentacion/Relaciones/api-objects.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Roles/api-objects.txt" afterPath="$PROJECT_DIR$/Sap_documentacion/Roles/api-objects.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Sap/api-objects.txt" afterPath="$PROJECT_DIR$/Sap_documentacion/Sap/api-objects.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Solicitudes/api-objects.txt" afterPath="$PROJECT_DIR$/Sap_documentacion/Solicitudes/api-objects.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/TipoAtributo/api-objects.txt" afterPath="$PROJECT_DIR$/Sap_documentacion/TipoAtributo/api-objects.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/TipoItem/api-objects.txt" afterPath="$PROJECT_DIR$/Sap_documentacion/TipoItem/api-objects.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Usuarios/api-objects.txt" afterPath="$PROJECT_DIR$/Sap_documentacion/Usuarios/api-objects.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Autenticacion/aplicaciones.autenticacion-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Autenticacion/aplicaciones.autenticacion-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Autenticacion/aplicaciones.autenticacion-pysrc.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Autenticacion/aplicaciones.autenticacion-pysrc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Autenticacion/aplicaciones.autenticacion.admin-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Autenticacion/aplicaciones.autenticacion.admin-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Autenticacion/aplicaciones.autenticacion.admin-pysrc.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Autenticacion/aplicaciones.autenticacion.admin-pysrc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Autenticacion/aplicaciones.autenticacion.forms-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Autenticacion/aplicaciones.autenticacion.forms-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Autenticacion/aplicaciones.autenticacion.forms-pysrc.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Autenticacion/aplicaciones.autenticacion.forms-pysrc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Autenticacion/aplicaciones.autenticacion.forms.LoginForms-class.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Autenticacion/aplicaciones.autenticacion.forms.LoginForms-class.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Autenticacion/aplicaciones.autenticacion.models-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Autenticacion/aplicaciones.autenticacion.models-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Autenticacion/aplicaciones.autenticacion.models-pysrc.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Autenticacion/aplicaciones.autenticacion.models-pysrc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Autenticacion/aplicaciones.autenticacion.tests-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Autenticacion/aplicaciones.autenticacion.tests-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Autenticacion/aplicaciones.autenticacion.tests-pysrc.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Autenticacion/aplicaciones.autenticacion.tests-pysrc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Autenticacion/aplicaciones.autenticacion.tests.TestLoguin-class.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Autenticacion/aplicaciones.autenticacion.tests.TestLoguin-class.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Autenticacion/aplicaciones.autenticacion.urls-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Autenticacion/aplicaciones.autenticacion.urls-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Autenticacion/aplicaciones.autenticacion.urls-pysrc.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Autenticacion/aplicaciones.autenticacion.urls-pysrc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Autenticacion/aplicaciones.autenticacion.views-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Autenticacion/aplicaciones.autenticacion.views-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Autenticacion/aplicaciones.autenticacion.views-pysrc.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Autenticacion/aplicaciones.autenticacion.views-pysrc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Autenticacion/aplicaciones.autenticacion.views.Autenticacion-class.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Autenticacion/aplicaciones.autenticacion.views.Autenticacion-class.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Comite/aplicaciones.comite-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Comite/aplicaciones.comite-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Comite/aplicaciones.comite-pysrc.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Comite/aplicaciones.comite-pysrc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Comite/aplicaciones.comite.admin-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Comite/aplicaciones.comite.admin-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Comite/aplicaciones.comite.admin-pysrc.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Comite/aplicaciones.comite.admin-pysrc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Comite/aplicaciones.comite.models-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Comite/aplicaciones.comite.models-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Comite/aplicaciones.comite.models-pysrc.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Comite/aplicaciones.comite.models-pysrc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Comite/aplicaciones.comite.models.Comite-class.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Comite/aplicaciones.comite.models.Comite-class.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Comite/aplicaciones.comite.tests-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Comite/aplicaciones.comite.tests-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Comite/aplicaciones.comite.tests-pysrc.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Comite/aplicaciones.comite.tests-pysrc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Comite/aplicaciones.comite.urls-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Comite/aplicaciones.comite.urls-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Comite/aplicaciones.comite.urls-pysrc.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Comite/aplicaciones.comite.urls-pysrc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Comite/aplicaciones.comite.views-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Comite/aplicaciones.comite.views-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Comite/aplicaciones.comite.views-pysrc.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Comite/aplicaciones.comite.views-pysrc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Fases/aplicaciones.fases-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Fases/aplicaciones.fases-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Fases/aplicaciones.fases-pysrc.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Fases/aplicaciones.fases-pysrc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Fases/aplicaciones.fases.admin-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Fases/aplicaciones.fases.admin-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Fases/aplicaciones.fases.admin-pysrc.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Fases/aplicaciones.fases.admin-pysrc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Fases/aplicaciones.fases.forms-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Fases/aplicaciones.fases.forms-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Fases/aplicaciones.fases.forms-pysrc.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Fases/aplicaciones.fases.forms-pysrc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Fases/aplicaciones.fases.forms.FaseModificadaForm-class.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Fases/aplicaciones.fases.forms.FaseModificadaForm-class.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Fases/aplicaciones.fases.forms.FaseModificadaFormProyectoActivo-class.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Fases/aplicaciones.fases.forms.FaseModificadaFormProyectoActivo-class.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Fases/aplicaciones.fases.forms.FaseNuevaForm-class.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Fases/aplicaciones.fases.forms.FaseNuevaForm-class.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Fases/aplicaciones.fases.models-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Fases/aplicaciones.fases.models-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Fases/aplicaciones.fases.models-pysrc.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Fases/aplicaciones.fases.models-pysrc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Fases/aplicaciones.fases.models.Fases-class.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Fases/aplicaciones.fases.models.Fases-class.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Fases/aplicaciones.fases.models.Fases.Meta-class.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Fases/aplicaciones.fases.models.Fases.Meta-class.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Fases/aplicaciones.fases.tests-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Fases/aplicaciones.fases.tests-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Fases/aplicaciones.fases.tests-pysrc.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Fases/aplicaciones.fases.tests-pysrc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Fases/aplicaciones.fases.tests.test_fase-class.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Fases/aplicaciones.fases.tests.test_fase-class.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Fases/aplicaciones.fases.urls-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Fases/aplicaciones.fases.urls-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Fases/aplicaciones.fases.urls-pysrc.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Fases/aplicaciones.fases.urls-pysrc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Fases/aplicaciones.fases.views-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Fases/aplicaciones.fases.views-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Fases/aplicaciones.fases.views-pysrc.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Fases/aplicaciones.fases.views-pysrc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Items/aplicaciones.items-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Items/aplicaciones.items-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Items/aplicaciones.items-pysrc.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Items/aplicaciones.items-pysrc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Items/aplicaciones.items.admin-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Items/aplicaciones.items.admin-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Items/aplicaciones.items.admin-pysrc.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Items/aplicaciones.items.admin-pysrc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Items/aplicaciones.items.forms-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Items/aplicaciones.items.forms-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Items/aplicaciones.items.forms-pysrc.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Items/aplicaciones.items.forms-pysrc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Items/aplicaciones.items.forms.ItemModificadoForm-class.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Items/aplicaciones.items.forms.ItemModificadoForm-class.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Items/aplicaciones.items.forms.ItemNuevoForm-class.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Items/aplicaciones.items.forms.ItemNuevoForm-class.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Items/aplicaciones.items.models-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Items/aplicaciones.items.models-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Items/aplicaciones.items.models-pysrc.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Items/aplicaciones.items.models-pysrc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Items/aplicaciones.items.models.Items-class.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Items/aplicaciones.items.models.Items-class.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Items/aplicaciones.items.models.ListaValores-class.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Items/aplicaciones.items.models.ListaValores-class.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Items/aplicaciones.items.models.ValorItem-class.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Items/aplicaciones.items.models.ValorItem-class.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Items/aplicaciones.items.tests-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Items/aplicaciones.items.tests-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Items/aplicaciones.items.tests-pysrc.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Items/aplicaciones.items.tests-pysrc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Items/aplicaciones.items.tests.test_fase-class.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Items/aplicaciones.items.tests.test_fase-class.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Items/aplicaciones.items.urls-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Items/aplicaciones.items.urls-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Items/aplicaciones.items.urls-pysrc.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Items/aplicaciones.items.urls-pysrc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Items/aplicaciones.items.views-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Items/aplicaciones.items.views-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Items/aplicaciones.items.views-pysrc.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Items/aplicaciones.items.views-pysrc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/LineaBase/aplicaciones.lineabase-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/LineaBase/aplicaciones.lineabase-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/LineaBase/aplicaciones.lineabase-pysrc.html" afterPath="$PROJECT_DIR$/Sap_documentacion/LineaBase/aplicaciones.lineabase-pysrc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/LineaBase/aplicaciones.lineabase.admin-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/LineaBase/aplicaciones.lineabase.admin-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/LineaBase/aplicaciones.lineabase.admin-pysrc.html" afterPath="$PROJECT_DIR$/Sap_documentacion/LineaBase/aplicaciones.lineabase.admin-pysrc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/LineaBase/aplicaciones.lineabase.models-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/LineaBase/aplicaciones.lineabase.models-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/LineaBase/aplicaciones.lineabase.models-pysrc.html" afterPath="$PROJECT_DIR$/Sap_documentacion/LineaBase/aplicaciones.lineabase.models-pysrc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/LineaBase/aplicaciones.lineabase.models.LineaBase-class.html" afterPath="$PROJECT_DIR$/Sap_documentacion/LineaBase/aplicaciones.lineabase.models.LineaBase-class.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/LineaBase/aplicaciones.lineabase.models.LineaBase.Meta-class.html" afterPath="$PROJECT_DIR$/Sap_documentacion/LineaBase/aplicaciones.lineabase.models.LineaBase.Meta-class.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/LineaBase/aplicaciones.lineabase.tests-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/LineaBase/aplicaciones.lineabase.tests-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/LineaBase/aplicaciones.lineabase.tests-pysrc.html" afterPath="$PROJECT_DIR$/Sap_documentacion/LineaBase/aplicaciones.lineabase.tests-pysrc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/LineaBase/aplicaciones.lineabase.tests.test_user-class.html" afterPath="$PROJECT_DIR$/Sap_documentacion/LineaBase/aplicaciones.lineabase.tests.test_user-class.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/LineaBase/aplicaciones.lineabase.urls-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/LineaBase/aplicaciones.lineabase.urls-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/LineaBase/aplicaciones.lineabase.urls-pysrc.html" afterPath="$PROJECT_DIR$/Sap_documentacion/LineaBase/aplicaciones.lineabase.urls-pysrc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/LineaBase/aplicaciones.lineabase.views-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/LineaBase/aplicaciones.lineabase.views-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/LineaBase/aplicaciones.lineabase.views-pysrc.html" afterPath="$PROJECT_DIR$/Sap_documentacion/LineaBase/aplicaciones.lineabase.views-pysrc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Proyectos/aplicaciones.proyectos-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Proyectos/aplicaciones.proyectos-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Proyectos/aplicaciones.proyectos-pysrc.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Proyectos/aplicaciones.proyectos-pysrc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Proyectos/aplicaciones.proyectos.admin-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Proyectos/aplicaciones.proyectos.admin-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Proyectos/aplicaciones.proyectos.admin-pysrc.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Proyectos/aplicaciones.proyectos.admin-pysrc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Proyectos/aplicaciones.proyectos.admin.ProyectoAdmin-class.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Proyectos/aplicaciones.proyectos.admin.ProyectoAdmin-class.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Proyectos/aplicaciones.proyectos.forms-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Proyectos/aplicaciones.proyectos.forms-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Proyectos/aplicaciones.proyectos.forms-pysrc.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Proyectos/aplicaciones.proyectos.forms-pysrc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Proyectos/aplicaciones.proyectos.forms.ProyectoModificadoForm-class.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Proyectos/aplicaciones.proyectos.forms.ProyectoModificadoForm-class.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Proyectos/aplicaciones.proyectos.forms.ProyectoNuevoForm-class.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Proyectos/aplicaciones.proyectos.forms.ProyectoNuevoForm-class.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Proyectos/aplicaciones.proyectos.models-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Proyectos/aplicaciones.proyectos.models-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Proyectos/aplicaciones.proyectos.models-pysrc.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Proyectos/aplicaciones.proyectos.models-pysrc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Proyectos/aplicaciones.proyectos.models.Proyectos-class.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Proyectos/aplicaciones.proyectos.models.Proyectos-class.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Proyectos/aplicaciones.proyectos.models.Proyectos.Meta-class.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Proyectos/aplicaciones.proyectos.models.Proyectos.Meta-class.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Proyectos/aplicaciones.proyectos.tests-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Proyectos/aplicaciones.proyectos.tests-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Proyectos/aplicaciones.proyectos.tests-pysrc.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Proyectos/aplicaciones.proyectos.tests-pysrc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Proyectos/aplicaciones.proyectos.tests.test_proyectos-class.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Proyectos/aplicaciones.proyectos.tests.test_proyectos-class.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Proyectos/aplicaciones.proyectos.urls-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Proyectos/aplicaciones.proyectos.urls-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Proyectos/aplicaciones.proyectos.urls-pysrc.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Proyectos/aplicaciones.proyectos.urls-pysrc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Proyectos/aplicaciones.proyectos.views-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Proyectos/aplicaciones.proyectos.views-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Proyectos/aplicaciones.proyectos.views-pysrc.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Proyectos/aplicaciones.proyectos.views-pysrc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Relaciones/aplicaciones.relaciones-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Relaciones/aplicaciones.relaciones-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Relaciones/aplicaciones.relaciones-pysrc.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Relaciones/aplicaciones.relaciones-pysrc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Relaciones/aplicaciones.relaciones.admin-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Relaciones/aplicaciones.relaciones.admin-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Relaciones/aplicaciones.relaciones.admin-pysrc.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Relaciones/aplicaciones.relaciones.admin-pysrc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Relaciones/aplicaciones.relaciones.models-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Relaciones/aplicaciones.relaciones.models-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Relaciones/aplicaciones.relaciones.models-pysrc.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Relaciones/aplicaciones.relaciones.models-pysrc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Relaciones/aplicaciones.relaciones.models.Relaciones-class.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Relaciones/aplicaciones.relaciones.models.Relaciones-class.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Relaciones/aplicaciones.relaciones.tests-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Relaciones/aplicaciones.relaciones.tests-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Relaciones/aplicaciones.relaciones.tests-pysrc.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Relaciones/aplicaciones.relaciones.tests-pysrc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Relaciones/aplicaciones.relaciones.tests.test_relaciones-class.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Relaciones/aplicaciones.relaciones.tests.test_relaciones-class.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Relaciones/aplicaciones.relaciones.urls-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Relaciones/aplicaciones.relaciones.urls-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Relaciones/aplicaciones.relaciones.urls-pysrc.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Relaciones/aplicaciones.relaciones.urls-pysrc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Relaciones/aplicaciones.relaciones.views-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Relaciones/aplicaciones.relaciones.views-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Relaciones/aplicaciones.relaciones.views-pysrc.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Relaciones/aplicaciones.relaciones.views-pysrc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Roles/aplicaciones.roles-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Roles/aplicaciones.roles-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Roles/aplicaciones.roles-pysrc.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Roles/aplicaciones.roles-pysrc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Roles/aplicaciones.roles.admin-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Roles/aplicaciones.roles.admin-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Roles/aplicaciones.roles.admin-pysrc.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Roles/aplicaciones.roles.admin-pysrc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Roles/aplicaciones.roles.admin.RolesAdmin-class.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Roles/aplicaciones.roles.admin.RolesAdmin-class.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Roles/aplicaciones.roles.forms-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Roles/aplicaciones.roles.forms-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Roles/aplicaciones.roles.forms-pysrc.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Roles/aplicaciones.roles.forms-pysrc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Roles/aplicaciones.roles.forms.RolForm-class.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Roles/aplicaciones.roles.forms.RolForm-class.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Roles/aplicaciones.roles.forms.RolModificadoForm-class.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Roles/aplicaciones.roles.forms.RolModificadoForm-class.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Roles/aplicaciones.roles.models-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Roles/aplicaciones.roles.models-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Roles/aplicaciones.roles.models-pysrc.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Roles/aplicaciones.roles.models-pysrc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Roles/aplicaciones.roles.models.Roles-class.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Roles/aplicaciones.roles.models.Roles-class.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Roles/aplicaciones.roles.models.Roles.Meta-class.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Roles/aplicaciones.roles.models.Roles.Meta-class.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Roles/aplicaciones.roles.tests-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Roles/aplicaciones.roles.tests-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Roles/aplicaciones.roles.tests-pysrc.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Roles/aplicaciones.roles.tests-pysrc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Roles/aplicaciones.roles.tests.test_user-class.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Roles/aplicaciones.roles.tests.test_user-class.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Roles/aplicaciones.roles.urls-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Roles/aplicaciones.roles.urls-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Roles/aplicaciones.roles.urls-pysrc.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Roles/aplicaciones.roles.urls-pysrc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Roles/aplicaciones.roles.views-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Roles/aplicaciones.roles.views-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Roles/aplicaciones.roles.views-pysrc.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Roles/aplicaciones.roles.views-pysrc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Solicitudes/aplicaciones.solicitudes-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Solicitudes/aplicaciones.solicitudes-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Solicitudes/aplicaciones.solicitudes-pysrc.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Solicitudes/aplicaciones.solicitudes-pysrc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Solicitudes/aplicaciones.solicitudes.admin-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Solicitudes/aplicaciones.solicitudes.admin-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Solicitudes/aplicaciones.solicitudes.admin-pysrc.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Solicitudes/aplicaciones.solicitudes.admin-pysrc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Solicitudes/aplicaciones.solicitudes.cron-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Solicitudes/aplicaciones.solicitudes.cron-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Solicitudes/aplicaciones.solicitudes.cron-pysrc.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Solicitudes/aplicaciones.solicitudes.cron-pysrc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Solicitudes/aplicaciones.solicitudes.cron.CronExpirador-class.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Solicitudes/aplicaciones.solicitudes.cron.CronExpirador-class.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Solicitudes/aplicaciones.solicitudes.forms-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Solicitudes/aplicaciones.solicitudes.forms-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Solicitudes/aplicaciones.solicitudes.forms-pysrc.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Solicitudes/aplicaciones.solicitudes.forms-pysrc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Solicitudes/aplicaciones.solicitudes.forms.SolicitudNuevaForm-class.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Solicitudes/aplicaciones.solicitudes.forms.SolicitudNuevaForm-class.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Solicitudes/aplicaciones.solicitudes.forms.SolicitudPrimeraForm-class.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Solicitudes/aplicaciones.solicitudes.forms.SolicitudPrimeraForm-class.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Solicitudes/aplicaciones.solicitudes.forms.votarSolicitudForm-class.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Solicitudes/aplicaciones.solicitudes.forms.votarSolicitudForm-class.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Solicitudes/aplicaciones.solicitudes.models-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Solicitudes/aplicaciones.solicitudes.models-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Solicitudes/aplicaciones.solicitudes.models-pysrc.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Solicitudes/aplicaciones.solicitudes.models-pysrc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Solicitudes/aplicaciones.solicitudes.models.Credenciales-class.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Solicitudes/aplicaciones.solicitudes.models.Credenciales-class.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Solicitudes/aplicaciones.solicitudes.models.Solicitudes-class.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Solicitudes/aplicaciones.solicitudes.models.Solicitudes-class.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Solicitudes/aplicaciones.solicitudes.models.Votos-class.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Solicitudes/aplicaciones.solicitudes.models.Votos-class.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Solicitudes/aplicaciones.solicitudes.tests-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Solicitudes/aplicaciones.solicitudes.tests-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Solicitudes/aplicaciones.solicitudes.tests-pysrc.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Solicitudes/aplicaciones.solicitudes.tests-pysrc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Solicitudes/aplicaciones.solicitudes.tests.test_solicitudes-class.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Solicitudes/aplicaciones.solicitudes.tests.test_solicitudes-class.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Solicitudes/aplicaciones.solicitudes.urls-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Solicitudes/aplicaciones.solicitudes.urls-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Solicitudes/aplicaciones.solicitudes.urls-pysrc.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Solicitudes/aplicaciones.solicitudes.urls-pysrc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Solicitudes/aplicaciones.solicitudes.views-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Solicitudes/aplicaciones.solicitudes.views-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Solicitudes/aplicaciones.solicitudes.views-pysrc.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Solicitudes/aplicaciones.solicitudes.views-pysrc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/TipoAtributo/aplicaciones.tipoatributo-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/TipoAtributo/aplicaciones.tipoatributo-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/TipoAtributo/aplicaciones.tipoatributo-pysrc.html" afterPath="$PROJECT_DIR$/Sap_documentacion/TipoAtributo/aplicaciones.tipoatributo-pysrc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/TipoAtributo/aplicaciones.tipoatributo.admin-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/TipoAtributo/aplicaciones.tipoatributo.admin-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/TipoAtributo/aplicaciones.tipoatributo.admin-pysrc.html" afterPath="$PROJECT_DIR$/Sap_documentacion/TipoAtributo/aplicaciones.tipoatributo.admin-pysrc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/TipoAtributo/aplicaciones.tipoatributo.forms-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/TipoAtributo/aplicaciones.tipoatributo.forms-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/TipoAtributo/aplicaciones.tipoatributo.forms-pysrc.html" afterPath="$PROJECT_DIR$/Sap_documentacion/TipoAtributo/aplicaciones.tipoatributo.forms-pysrc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/TipoAtributo/aplicaciones.tipoatributo.forms.TipoAtributoForm-class.html" afterPath="$PROJECT_DIR$/Sap_documentacion/TipoAtributo/aplicaciones.tipoatributo.forms.TipoAtributoForm-class.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/TipoAtributo/aplicaciones.tipoatributo.forms.TipoAtributoModificadoForm-class.html" afterPath="$PROJECT_DIR$/Sap_documentacion/TipoAtributo/aplicaciones.tipoatributo.forms.TipoAtributoModificadoForm-class.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/TipoAtributo/aplicaciones.tipoatributo.models-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/TipoAtributo/aplicaciones.tipoatributo.models-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/TipoAtributo/aplicaciones.tipoatributo.models-pysrc.html" afterPath="$PROJECT_DIR$/Sap_documentacion/TipoAtributo/aplicaciones.tipoatributo.models-pysrc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/TipoAtributo/aplicaciones.tipoatributo.models.ArchivoExterno-class.html" afterPath="$PROJECT_DIR$/Sap_documentacion/TipoAtributo/aplicaciones.tipoatributo.models.ArchivoExterno-class.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/TipoAtributo/aplicaciones.tipoatributo.models.Fecha-class.html" afterPath="$PROJECT_DIR$/Sap_documentacion/TipoAtributo/aplicaciones.tipoatributo.models.Fecha-class.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/TipoAtributo/aplicaciones.tipoatributo.models.Imagen-class.html" afterPath="$PROJECT_DIR$/Sap_documentacion/TipoAtributo/aplicaciones.tipoatributo.models.Imagen-class.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/TipoAtributo/aplicaciones.tipoatributo.models.Logico-class.html" afterPath="$PROJECT_DIR$/Sap_documentacion/TipoAtributo/aplicaciones.tipoatributo.models.Logico-class.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/TipoAtributo/aplicaciones.tipoatributo.models.Numerico-class.html" afterPath="$PROJECT_DIR$/Sap_documentacion/TipoAtributo/aplicaciones.tipoatributo.models.Numerico-class.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/TipoAtributo/aplicaciones.tipoatributo.models.Texto-class.html" afterPath="$PROJECT_DIR$/Sap_documentacion/TipoAtributo/aplicaciones.tipoatributo.models.Texto-class.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/TipoAtributo/aplicaciones.tipoatributo.models.TipoAtributo-class.html" afterPath="$PROJECT_DIR$/Sap_documentacion/TipoAtributo/aplicaciones.tipoatributo.models.TipoAtributo-class.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/TipoAtributo/aplicaciones.tipoatributo.models.TipoAtributo.Meta-class.html" afterPath="$PROJECT_DIR$/Sap_documentacion/TipoAtributo/aplicaciones.tipoatributo.models.TipoAtributo.Meta-class.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/TipoAtributo/aplicaciones.tipoatributo.tests-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/TipoAtributo/aplicaciones.tipoatributo.tests-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/TipoAtributo/aplicaciones.tipoatributo.tests-pysrc.html" afterPath="$PROJECT_DIR$/Sap_documentacion/TipoAtributo/aplicaciones.tipoatributo.tests-pysrc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/TipoAtributo/aplicaciones.tipoatributo.tests.test_user-class.html" afterPath="$PROJECT_DIR$/Sap_documentacion/TipoAtributo/aplicaciones.tipoatributo.tests.test_user-class.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/TipoAtributo/aplicaciones.tipoatributo.urls-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/TipoAtributo/aplicaciones.tipoatributo.urls-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/TipoAtributo/aplicaciones.tipoatributo.urls-pysrc.html" afterPath="$PROJECT_DIR$/Sap_documentacion/TipoAtributo/aplicaciones.tipoatributo.urls-pysrc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/TipoAtributo/aplicaciones.tipoatributo.views-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/TipoAtributo/aplicaciones.tipoatributo.views-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/TipoAtributo/aplicaciones.tipoatributo.views-pysrc.html" afterPath="$PROJECT_DIR$/Sap_documentacion/TipoAtributo/aplicaciones.tipoatributo.views-pysrc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/TipoItem/aplicaciones.tipoitem-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/TipoItem/aplicaciones.tipoitem-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/TipoItem/aplicaciones.tipoitem-pysrc.html" afterPath="$PROJECT_DIR$/Sap_documentacion/TipoItem/aplicaciones.tipoitem-pysrc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/TipoItem/aplicaciones.tipoitem.admin-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/TipoItem/aplicaciones.tipoitem.admin-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/TipoItem/aplicaciones.tipoitem.admin-pysrc.html" afterPath="$PROJECT_DIR$/Sap_documentacion/TipoItem/aplicaciones.tipoitem.admin-pysrc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/TipoItem/aplicaciones.tipoitem.forms-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/TipoItem/aplicaciones.tipoitem.forms-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/TipoItem/aplicaciones.tipoitem.forms-pysrc.html" afterPath="$PROJECT_DIR$/Sap_documentacion/TipoItem/aplicaciones.tipoitem.forms-pysrc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/TipoItem/aplicaciones.tipoitem.forms.TipoItemModificadoForm-class.html" afterPath="$PROJECT_DIR$/Sap_documentacion/TipoItem/aplicaciones.tipoitem.forms.TipoItemModificadoForm-class.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/TipoItem/aplicaciones.tipoitem.forms.TipoItemNuevoForm-class.html" afterPath="$PROJECT_DIR$/Sap_documentacion/TipoItem/aplicaciones.tipoitem.forms.TipoItemNuevoForm-class.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/TipoItem/aplicaciones.tipoitem.models-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/TipoItem/aplicaciones.tipoitem.models-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/TipoItem/aplicaciones.tipoitem.models-pysrc.html" afterPath="$PROJECT_DIR$/Sap_documentacion/TipoItem/aplicaciones.tipoitem.models-pysrc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/TipoItem/aplicaciones.tipoitem.models.ListaAtributo-class.html" afterPath="$PROJECT_DIR$/Sap_documentacion/TipoItem/aplicaciones.tipoitem.models.ListaAtributo-class.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/TipoItem/aplicaciones.tipoitem.models.TipoItem-class.html" afterPath="$PROJECT_DIR$/Sap_documentacion/TipoItem/aplicaciones.tipoitem.models.TipoItem-class.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/TipoItem/aplicaciones.tipoitem.models.TipoItem.Meta-class.html" afterPath="$PROJECT_DIR$/Sap_documentacion/TipoItem/aplicaciones.tipoitem.models.TipoItem.Meta-class.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/TipoItem/aplicaciones.tipoitem.tests-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/TipoItem/aplicaciones.tipoitem.tests-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/TipoItem/aplicaciones.tipoitem.tests-pysrc.html" afterPath="$PROJECT_DIR$/Sap_documentacion/TipoItem/aplicaciones.tipoitem.tests-pysrc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/TipoItem/aplicaciones.tipoitem.tests.test_tipoitem-class.html" afterPath="$PROJECT_DIR$/Sap_documentacion/TipoItem/aplicaciones.tipoitem.tests.test_tipoitem-class.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/TipoItem/aplicaciones.tipoitem.urls-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/TipoItem/aplicaciones.tipoitem.urls-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/TipoItem/aplicaciones.tipoitem.urls-pysrc.html" afterPath="$PROJECT_DIR$/Sap_documentacion/TipoItem/aplicaciones.tipoitem.urls-pysrc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/TipoItem/aplicaciones.tipoitem.views-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/TipoItem/aplicaciones.tipoitem.views-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/TipoItem/aplicaciones.tipoitem.views-pysrc.html" afterPath="$PROJECT_DIR$/Sap_documentacion/TipoItem/aplicaciones.tipoitem.views-pysrc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Usuarios/aplicaciones.usuarios-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Usuarios/aplicaciones.usuarios-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Usuarios/aplicaciones.usuarios-pysrc.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Usuarios/aplicaciones.usuarios-pysrc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Usuarios/aplicaciones.usuarios.admin-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Usuarios/aplicaciones.usuarios.admin-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Usuarios/aplicaciones.usuarios.admin-pysrc.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Usuarios/aplicaciones.usuarios.admin-pysrc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Usuarios/aplicaciones.usuarios.forms-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Usuarios/aplicaciones.usuarios.forms-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Usuarios/aplicaciones.usuarios.forms-pysrc.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Usuarios/aplicaciones.usuarios.forms-pysrc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Usuarios/aplicaciones.usuarios.forms.UsuarioModificadoForm-class.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Usuarios/aplicaciones.usuarios.forms.UsuarioModificadoForm-class.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Usuarios/aplicaciones.usuarios.forms.UsuarioNuevoForm-class.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Usuarios/aplicaciones.usuarios.forms.UsuarioNuevoForm-class.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Usuarios/aplicaciones.usuarios.models-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Usuarios/aplicaciones.usuarios.models-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Usuarios/aplicaciones.usuarios.models-pysrc.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Usuarios/aplicaciones.usuarios.models-pysrc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Usuarios/aplicaciones.usuarios.models.Usuarios-class.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Usuarios/aplicaciones.usuarios.models.Usuarios-class.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Usuarios/aplicaciones.usuarios.models.Usuarios.Meta-class.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Usuarios/aplicaciones.usuarios.models.Usuarios.Meta-class.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Usuarios/aplicaciones.usuarios.tests-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Usuarios/aplicaciones.usuarios.tests-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Usuarios/aplicaciones.usuarios.tests-pysrc.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Usuarios/aplicaciones.usuarios.tests-pysrc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Usuarios/aplicaciones.usuarios.tests.test_user-class.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Usuarios/aplicaciones.usuarios.tests.test_user-class.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Usuarios/aplicaciones.usuarios.urls-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Usuarios/aplicaciones.usuarios.urls-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Usuarios/aplicaciones.usuarios.urls-pysrc.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Usuarios/aplicaciones.usuarios.urls-pysrc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Usuarios/aplicaciones.usuarios.views-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Usuarios/aplicaciones.usuarios.views-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Usuarios/aplicaciones.usuarios.views-pysrc.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Usuarios/aplicaciones.usuarios.views-pysrc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sap/celery.py" afterPath="$PROJECT_DIR$/sap/celery.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/celerybeat.pid" afterPath="$PROJECT_DIR$/celerybeat.pid" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Autenticacion/class-tree.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Autenticacion/class-tree.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Comite/class-tree.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Comite/class-tree.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Fases/class-tree.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Fases/class-tree.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Items/class-tree.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Items/class-tree.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/LineaBase/class-tree.html" afterPath="$PROJECT_DIR$/Sap_documentacion/LineaBase/class-tree.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Proyectos/class-tree.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Proyectos/class-tree.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Relaciones/class-tree.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Relaciones/class-tree.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Roles/class-tree.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Roles/class-tree.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Solicitudes/class-tree.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Solicitudes/class-tree.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/TipoAtributo/class-tree.html" afterPath="$PROJECT_DIR$/Sap_documentacion/TipoAtributo/class-tree.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/TipoItem/class-tree.html" afterPath="$PROJECT_DIR$/Sap_documentacion/TipoItem/class-tree.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Usuarios/class-tree.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Usuarios/class-tree.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aplicaciones/usuarios/fixtures/comite.json" afterPath="$PROJECT_DIR$/aplicaciones/usuarios/fixtures/comite.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/comite/comitealerta.html" afterPath="$PROJECT_DIR$/templates/comite/comitealerta.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/solicitudes/consultar_credencial.html" afterPath="$PROJECT_DIR$/templates/solicitudes/consultar_credencial.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/items/consultarenrevision.html" afterPath="$PROJECT_DIR$/templates/items/consultarenrevision.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/proyectos/crearproyecto.html" afterPath="$PROJECT_DIR$/templates/proyectos/crearproyecto.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/solicitudes/credencialcreada.html" afterPath="$PROJECT_DIR$/templates/solicitudes/credencialcreada.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/solicitudes/credenciales.html" afterPath="$PROJECT_DIR$/templates/solicitudes/credenciales.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aplicaciones/solicitudes/fixtures/credenciales.json" afterPath="$PROJECT_DIR$/aplicaciones/solicitudes/fixtures/credenciales.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aplicaciones/usuarios/fixtures/credenciales.json" afterPath="$PROJECT_DIR$/aplicaciones/usuarios/fixtures/credenciales.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Autenticacion/epydoc.css" afterPath="$PROJECT_DIR$/Sap_documentacion/Autenticacion/epydoc.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Comite/epydoc.css" afterPath="$PROJECT_DIR$/Sap_documentacion/Comite/epydoc.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Fases/epydoc.css" afterPath="$PROJECT_DIR$/Sap_documentacion/Fases/epydoc.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Items/epydoc.css" afterPath="$PROJECT_DIR$/Sap_documentacion/Items/epydoc.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/LineaBase/epydoc.css" afterPath="$PROJECT_DIR$/Sap_documentacion/LineaBase/epydoc.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Proyectos/epydoc.css" afterPath="$PROJECT_DIR$/Sap_documentacion/Proyectos/epydoc.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Relaciones/epydoc.css" afterPath="$PROJECT_DIR$/Sap_documentacion/Relaciones/epydoc.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Roles/epydoc.css" afterPath="$PROJECT_DIR$/Sap_documentacion/Roles/epydoc.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Sap/epydoc.css" afterPath="$PROJECT_DIR$/Sap_documentacion/Sap/epydoc.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Solicitudes/epydoc.css" afterPath="$PROJECT_DIR$/Sap_documentacion/Solicitudes/epydoc.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/TipoAtributo/epydoc.css" afterPath="$PROJECT_DIR$/Sap_documentacion/TipoAtributo/epydoc.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/TipoItem/epydoc.css" afterPath="$PROJECT_DIR$/Sap_documentacion/TipoItem/epydoc.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Usuarios/epydoc.css" afterPath="$PROJECT_DIR$/Sap_documentacion/Usuarios/epydoc.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Autenticacion/epydoc.js" afterPath="$PROJECT_DIR$/Sap_documentacion/Autenticacion/epydoc.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Comite/epydoc.js" afterPath="$PROJECT_DIR$/Sap_documentacion/Comite/epydoc.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Fases/epydoc.js" afterPath="$PROJECT_DIR$/Sap_documentacion/Fases/epydoc.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Items/epydoc.js" afterPath="$PROJECT_DIR$/Sap_documentacion/Items/epydoc.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/LineaBase/epydoc.js" afterPath="$PROJECT_DIR$/Sap_documentacion/LineaBase/epydoc.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Proyectos/epydoc.js" afterPath="$PROJECT_DIR$/Sap_documentacion/Proyectos/epydoc.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Relaciones/epydoc.js" afterPath="$PROJECT_DIR$/Sap_documentacion/Relaciones/epydoc.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Roles/epydoc.js" afterPath="$PROJECT_DIR$/Sap_documentacion/Roles/epydoc.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Sap/epydoc.js" afterPath="$PROJECT_DIR$/Sap_documentacion/Sap/epydoc.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Solicitudes/epydoc.js" afterPath="$PROJECT_DIR$/Sap_documentacion/Solicitudes/epydoc.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/TipoAtributo/epydoc.js" afterPath="$PROJECT_DIR$/Sap_documentacion/TipoAtributo/epydoc.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/TipoItem/epydoc.js" afterPath="$PROJECT_DIR$/Sap_documentacion/TipoItem/epydoc.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Usuarios/epydoc.js" afterPath="$PROJECT_DIR$/Sap_documentacion/Usuarios/epydoc.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aplicaciones/solicitudes/expiraciones.py" afterPath="$PROJECT_DIR$/aplicaciones/solicitudes/expiraciones.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/index.html" afterPath="$PROJECT_DIR$/templates/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aplicaciones/usuarios/fixtures/fases.json" afterPath="$PROJECT_DIR$/aplicaciones/usuarios/fixtures/fases.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Autenticacion/frames.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Autenticacion/frames.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Comite/frames.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Comite/frames.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Fases/frames.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Fases/frames.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Items/frames.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Items/frames.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/LineaBase/frames.html" afterPath="$PROJECT_DIR$/Sap_documentacion/LineaBase/frames.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Proyectos/frames.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Proyectos/frames.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Relaciones/frames.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Relaciones/frames.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Roles/frames.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Roles/frames.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Sap/frames.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Sap/frames.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Solicitudes/frames.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Solicitudes/frames.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/TipoAtributo/frames.html" afterPath="$PROJECT_DIR$/Sap_documentacion/TipoAtributo/frames.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/TipoItem/frames.html" afterPath="$PROJECT_DIR$/Sap_documentacion/TipoItem/frames.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Usuarios/frames.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Usuarios/frames.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aplicaciones/usuarios/fixtures/fulldb.json" afterPath="$PROJECT_DIR$/aplicaciones/usuarios/fixtures/fulldb.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aplicaciones/usuarios/fixtures/group.json" afterPath="$PROJECT_DIR$/aplicaciones/usuarios/fixtures/group.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Autenticacion/help.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Autenticacion/help.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Comite/help.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Comite/help.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Fases/help.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Fases/help.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Items/help.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Items/help.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/LineaBase/help.html" afterPath="$PROJECT_DIR$/Sap_documentacion/LineaBase/help.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Proyectos/help.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Proyectos/help.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Relaciones/help.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Relaciones/help.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Roles/help.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Roles/help.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Sap/help.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Sap/help.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Solicitudes/help.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Solicitudes/help.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/TipoAtributo/help.html" afterPath="$PROJECT_DIR$/Sap_documentacion/TipoAtributo/help.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/TipoItem/help.html" afterPath="$PROJECT_DIR$/Sap_documentacion/TipoItem/help.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Usuarios/help.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Usuarios/help.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Autenticacion/identifier-index.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Autenticacion/identifier-index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Comite/identifier-index.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Comite/identifier-index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Fases/identifier-index.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Fases/identifier-index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Items/identifier-index.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Items/identifier-index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/LineaBase/identifier-index.html" afterPath="$PROJECT_DIR$/Sap_documentacion/LineaBase/identifier-index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Proyectos/identifier-index.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Proyectos/identifier-index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Relaciones/identifier-index.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Relaciones/identifier-index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Roles/identifier-index.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Roles/identifier-index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Sap/identifier-index.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Sap/identifier-index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Solicitudes/identifier-index.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Solicitudes/identifier-index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/TipoAtributo/identifier-index.html" afterPath="$PROJECT_DIR$/Sap_documentacion/TipoAtributo/identifier-index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/TipoItem/identifier-index.html" afterPath="$PROJECT_DIR$/Sap_documentacion/TipoItem/identifier-index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Usuarios/identifier-index.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Usuarios/identifier-index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Autenticacion/index.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Autenticacion/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Comite/index.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Comite/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Fases/index.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Fases/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Items/index.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Items/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/LineaBase/index.html" afterPath="$PROJECT_DIR$/Sap_documentacion/LineaBase/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Proyectos/index.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Proyectos/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Relaciones/index.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Relaciones/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Roles/index.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Roles/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Sap/index.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Sap/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Solicitudes/index.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Solicitudes/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/TipoAtributo/index.html" afterPath="$PROJECT_DIR$/Sap_documentacion/TipoAtributo/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/TipoItem/index.html" afterPath="$PROJECT_DIR$/Sap_documentacion/TipoItem/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Usuarios/index.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Usuarios/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/informes/informes.html" afterPath="$PROJECT_DIR$/templates/informes/informes.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/instalador/instalador.sh" afterPath="$PROJECT_DIR$/scripts/instalador/instalador.sh" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/items/items.html" afterPath="$PROJECT_DIR$/templates/items/items.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aplicaciones/usuarios/fixtures/items.json" afterPath="$PROJECT_DIR$/aplicaciones/usuarios/fixtures/items.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aplicaciones/usuarios/fixtures/linea_base.json" afterPath="$PROJECT_DIR$/aplicaciones/usuarios/fixtures/linea_base.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aplicaciones/usuarios/fixtures/listaatributo.json" afterPath="$PROJECT_DIR$/aplicaciones/usuarios/fixtures/listaatributo.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/Logs/log_hoy.html" afterPath="$PROJECT_DIR$/templates/Logs/log_hoy.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Sap/manage-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Sap/manage-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Sap/manage-pysrc.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Sap/manage-pysrc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/comite/miembroscomite.html" afterPath="$PROJECT_DIR$/templates/comite/miembroscomite.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aplicaciones/comite/models.py" afterPath="$PROJECT_DIR$/aplicaciones/comite/models.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aplicaciones/informes/models.py" afterPath="$PROJECT_DIR$/aplicaciones/informes/models.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aplicaciones/logs/models.py" afterPath="$PROJECT_DIR$/aplicaciones/logs/models.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aplicaciones/solicitudes/models.py" afterPath="$PROJECT_DIR$/aplicaciones/solicitudes/models.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Autenticacion/module-tree.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Autenticacion/module-tree.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Comite/module-tree.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Comite/module-tree.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Fases/module-tree.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Fases/module-tree.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Items/module-tree.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Items/module-tree.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/LineaBase/module-tree.html" afterPath="$PROJECT_DIR$/Sap_documentacion/LineaBase/module-tree.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Proyectos/module-tree.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Proyectos/module-tree.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Relaciones/module-tree.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Relaciones/module-tree.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Roles/module-tree.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Roles/module-tree.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Sap/module-tree.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Sap/module-tree.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Solicitudes/module-tree.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Solicitudes/module-tree.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/TipoAtributo/module-tree.html" afterPath="$PROJECT_DIR$/Sap_documentacion/TipoAtributo/module-tree.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/TipoItem/module-tree.html" afterPath="$PROJECT_DIR$/Sap_documentacion/TipoItem/module-tree.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Usuarios/module-tree.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Usuarios/module-tree.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/instalador/poblacion_produccion.sql" afterPath="$PROJECT_DIR$/scripts/instalador/poblacion_produccion.sql" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/instalador/poblar_produccion.sh" afterPath="$PROJECT_DIR$/scripts/instalador/poblar_produccion.sh" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/informes/proyecto_html.html" afterPath="$PROJECT_DIR$/templates/informes/proyecto_html.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/informes/proyecto_pdf.html" afterPath="$PROJECT_DIR$/templates/informes/proyecto_pdf.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aplicaciones/usuarios/fixtures/proyectos.json" afterPath="$PROJECT_DIR$/aplicaciones/usuarios/fixtures/proyectos.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Autenticacion/redirect.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Autenticacion/redirect.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Comite/redirect.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Comite/redirect.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Fases/redirect.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Fases/redirect.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Items/redirect.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Items/redirect.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/LineaBase/redirect.html" afterPath="$PROJECT_DIR$/Sap_documentacion/LineaBase/redirect.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Proyectos/redirect.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Proyectos/redirect.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Relaciones/redirect.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Relaciones/redirect.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Roles/redirect.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Roles/redirect.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Sap/redirect.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Sap/redirect.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Solicitudes/redirect.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Solicitudes/redirect.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/TipoAtributo/redirect.html" afterPath="$PROJECT_DIR$/Sap_documentacion/TipoAtributo/redirect.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/TipoItem/redirect.html" afterPath="$PROJECT_DIR$/Sap_documentacion/TipoItem/redirect.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Usuarios/redirect.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Usuarios/redirect.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aplicaciones/usuarios/fixtures/roles.json" afterPath="$PROJECT_DIR$/aplicaciones/usuarios/fixtures/roles.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/logs/sap.log" afterPath="$PROJECT_DIR$/static/logs/sap.log" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sap/settings.py" afterPath="$PROJECT_DIR$/sap/settings.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sap/urls.py" afterPath="$PROJECT_DIR$/sap/urls.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aplicaciones/usuarios/fixtures/solicitudes.json" afterPath="$PROJECT_DIR$/aplicaciones/usuarios/fixtures/solicitudes.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aplicaciones/solicitudes/tasks.py" afterPath="$PROJECT_DIR$/aplicaciones/solicitudes/tasks.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aplicaciones/informes/tests.py" afterPath="$PROJECT_DIR$/aplicaciones/informes/tests.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aplicaciones/logs/tests.py" afterPath="$PROJECT_DIR$/aplicaciones/logs/tests.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aplicaciones/usuarios/fixtures/tipoatributo.json" afterPath="$PROJECT_DIR$/aplicaciones/usuarios/fixtures/tipoatributo.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aplicaciones/usuarios/fixtures/tipoitem.json" afterPath="$PROJECT_DIR$/aplicaciones/usuarios/fixtures/tipoitem.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Autenticacion/toc-aplicaciones.autenticacion-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Autenticacion/toc-aplicaciones.autenticacion-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Autenticacion/toc-aplicaciones.autenticacion.admin-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Autenticacion/toc-aplicaciones.autenticacion.admin-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Autenticacion/toc-aplicaciones.autenticacion.forms-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Autenticacion/toc-aplicaciones.autenticacion.forms-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Autenticacion/toc-aplicaciones.autenticacion.models-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Autenticacion/toc-aplicaciones.autenticacion.models-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Autenticacion/toc-aplicaciones.autenticacion.tests-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Autenticacion/toc-aplicaciones.autenticacion.tests-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Autenticacion/toc-aplicaciones.autenticacion.urls-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Autenticacion/toc-aplicaciones.autenticacion.urls-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Autenticacion/toc-aplicaciones.autenticacion.views-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Autenticacion/toc-aplicaciones.autenticacion.views-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Comite/toc-aplicaciones.comite-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Comite/toc-aplicaciones.comite-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Comite/toc-aplicaciones.comite.admin-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Comite/toc-aplicaciones.comite.admin-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Comite/toc-aplicaciones.comite.models-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Comite/toc-aplicaciones.comite.models-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Comite/toc-aplicaciones.comite.tests-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Comite/toc-aplicaciones.comite.tests-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Comite/toc-aplicaciones.comite.urls-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Comite/toc-aplicaciones.comite.urls-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Comite/toc-aplicaciones.comite.views-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Comite/toc-aplicaciones.comite.views-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Fases/toc-aplicaciones.fases-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Fases/toc-aplicaciones.fases-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Fases/toc-aplicaciones.fases.admin-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Fases/toc-aplicaciones.fases.admin-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Fases/toc-aplicaciones.fases.forms-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Fases/toc-aplicaciones.fases.forms-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Fases/toc-aplicaciones.fases.models-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Fases/toc-aplicaciones.fases.models-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Fases/toc-aplicaciones.fases.tests-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Fases/toc-aplicaciones.fases.tests-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Fases/toc-aplicaciones.fases.urls-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Fases/toc-aplicaciones.fases.urls-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Fases/toc-aplicaciones.fases.views-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Fases/toc-aplicaciones.fases.views-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Items/toc-aplicaciones.items-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Items/toc-aplicaciones.items-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Items/toc-aplicaciones.items.admin-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Items/toc-aplicaciones.items.admin-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Items/toc-aplicaciones.items.forms-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Items/toc-aplicaciones.items.forms-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Items/toc-aplicaciones.items.models-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Items/toc-aplicaciones.items.models-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Items/toc-aplicaciones.items.tests-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Items/toc-aplicaciones.items.tests-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Items/toc-aplicaciones.items.urls-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Items/toc-aplicaciones.items.urls-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Items/toc-aplicaciones.items.views-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Items/toc-aplicaciones.items.views-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/LineaBase/toc-aplicaciones.lineabase-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/LineaBase/toc-aplicaciones.lineabase-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/LineaBase/toc-aplicaciones.lineabase.admin-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/LineaBase/toc-aplicaciones.lineabase.admin-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/LineaBase/toc-aplicaciones.lineabase.models-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/LineaBase/toc-aplicaciones.lineabase.models-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/LineaBase/toc-aplicaciones.lineabase.tests-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/LineaBase/toc-aplicaciones.lineabase.tests-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/LineaBase/toc-aplicaciones.lineabase.urls-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/LineaBase/toc-aplicaciones.lineabase.urls-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/LineaBase/toc-aplicaciones.lineabase.views-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/LineaBase/toc-aplicaciones.lineabase.views-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Proyectos/toc-aplicaciones.proyectos-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Proyectos/toc-aplicaciones.proyectos-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Proyectos/toc-aplicaciones.proyectos.admin-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Proyectos/toc-aplicaciones.proyectos.admin-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Proyectos/toc-aplicaciones.proyectos.forms-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Proyectos/toc-aplicaciones.proyectos.forms-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Proyectos/toc-aplicaciones.proyectos.models-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Proyectos/toc-aplicaciones.proyectos.models-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Proyectos/toc-aplicaciones.proyectos.tests-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Proyectos/toc-aplicaciones.proyectos.tests-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Proyectos/toc-aplicaciones.proyectos.urls-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Proyectos/toc-aplicaciones.proyectos.urls-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Proyectos/toc-aplicaciones.proyectos.views-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Proyectos/toc-aplicaciones.proyectos.views-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Relaciones/toc-aplicaciones.relaciones-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Relaciones/toc-aplicaciones.relaciones-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Relaciones/toc-aplicaciones.relaciones.admin-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Relaciones/toc-aplicaciones.relaciones.admin-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Relaciones/toc-aplicaciones.relaciones.models-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Relaciones/toc-aplicaciones.relaciones.models-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Relaciones/toc-aplicaciones.relaciones.tests-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Relaciones/toc-aplicaciones.relaciones.tests-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Relaciones/toc-aplicaciones.relaciones.urls-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Relaciones/toc-aplicaciones.relaciones.urls-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Relaciones/toc-aplicaciones.relaciones.views-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Relaciones/toc-aplicaciones.relaciones.views-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Roles/toc-aplicaciones.roles-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Roles/toc-aplicaciones.roles-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Roles/toc-aplicaciones.roles.admin-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Roles/toc-aplicaciones.roles.admin-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Roles/toc-aplicaciones.roles.forms-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Roles/toc-aplicaciones.roles.forms-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Roles/toc-aplicaciones.roles.models-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Roles/toc-aplicaciones.roles.models-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Roles/toc-aplicaciones.roles.tests-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Roles/toc-aplicaciones.roles.tests-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Roles/toc-aplicaciones.roles.urls-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Roles/toc-aplicaciones.roles.urls-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Roles/toc-aplicaciones.roles.views-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Roles/toc-aplicaciones.roles.views-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Solicitudes/toc-aplicaciones.solicitudes-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Solicitudes/toc-aplicaciones.solicitudes-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Solicitudes/toc-aplicaciones.solicitudes.admin-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Solicitudes/toc-aplicaciones.solicitudes.admin-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Solicitudes/toc-aplicaciones.solicitudes.cron-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Solicitudes/toc-aplicaciones.solicitudes.cron-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Solicitudes/toc-aplicaciones.solicitudes.forms-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Solicitudes/toc-aplicaciones.solicitudes.forms-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Solicitudes/toc-aplicaciones.solicitudes.models-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Solicitudes/toc-aplicaciones.solicitudes.models-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Solicitudes/toc-aplicaciones.solicitudes.tests-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Solicitudes/toc-aplicaciones.solicitudes.tests-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Solicitudes/toc-aplicaciones.solicitudes.urls-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Solicitudes/toc-aplicaciones.solicitudes.urls-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Solicitudes/toc-aplicaciones.solicitudes.views-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Solicitudes/toc-aplicaciones.solicitudes.views-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/TipoAtributo/toc-aplicaciones.tipoatributo-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/TipoAtributo/toc-aplicaciones.tipoatributo-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/TipoAtributo/toc-aplicaciones.tipoatributo.admin-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/TipoAtributo/toc-aplicaciones.tipoatributo.admin-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/TipoAtributo/toc-aplicaciones.tipoatributo.forms-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/TipoAtributo/toc-aplicaciones.tipoatributo.forms-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/TipoAtributo/toc-aplicaciones.tipoatributo.models-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/TipoAtributo/toc-aplicaciones.tipoatributo.models-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/TipoAtributo/toc-aplicaciones.tipoatributo.tests-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/TipoAtributo/toc-aplicaciones.tipoatributo.tests-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/TipoAtributo/toc-aplicaciones.tipoatributo.urls-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/TipoAtributo/toc-aplicaciones.tipoatributo.urls-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/TipoAtributo/toc-aplicaciones.tipoatributo.views-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/TipoAtributo/toc-aplicaciones.tipoatributo.views-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/TipoItem/toc-aplicaciones.tipoitem-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/TipoItem/toc-aplicaciones.tipoitem-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/TipoItem/toc-aplicaciones.tipoitem.admin-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/TipoItem/toc-aplicaciones.tipoitem.admin-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/TipoItem/toc-aplicaciones.tipoitem.forms-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/TipoItem/toc-aplicaciones.tipoitem.forms-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/TipoItem/toc-aplicaciones.tipoitem.models-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/TipoItem/toc-aplicaciones.tipoitem.models-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/TipoItem/toc-aplicaciones.tipoitem.tests-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/TipoItem/toc-aplicaciones.tipoitem.tests-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/TipoItem/toc-aplicaciones.tipoitem.urls-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/TipoItem/toc-aplicaciones.tipoitem.urls-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/TipoItem/toc-aplicaciones.tipoitem.views-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/TipoItem/toc-aplicaciones.tipoitem.views-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Usuarios/toc-aplicaciones.usuarios-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Usuarios/toc-aplicaciones.usuarios-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Usuarios/toc-aplicaciones.usuarios.admin-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Usuarios/toc-aplicaciones.usuarios.admin-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Usuarios/toc-aplicaciones.usuarios.forms-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Usuarios/toc-aplicaciones.usuarios.forms-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Usuarios/toc-aplicaciones.usuarios.models-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Usuarios/toc-aplicaciones.usuarios.models-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Usuarios/toc-aplicaciones.usuarios.tests-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Usuarios/toc-aplicaciones.usuarios.tests-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Usuarios/toc-aplicaciones.usuarios.urls-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Usuarios/toc-aplicaciones.usuarios.urls-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Usuarios/toc-aplicaciones.usuarios.views-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Usuarios/toc-aplicaciones.usuarios.views-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Autenticacion/toc-everything.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Autenticacion/toc-everything.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Comite/toc-everything.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Comite/toc-everything.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Fases/toc-everything.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Fases/toc-everything.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Items/toc-everything.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Items/toc-everything.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/LineaBase/toc-everything.html" afterPath="$PROJECT_DIR$/Sap_documentacion/LineaBase/toc-everything.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Proyectos/toc-everything.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Proyectos/toc-everything.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Relaciones/toc-everything.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Relaciones/toc-everything.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Roles/toc-everything.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Roles/toc-everything.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Sap/toc-everything.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Sap/toc-everything.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Solicitudes/toc-everything.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Solicitudes/toc-everything.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/TipoAtributo/toc-everything.html" afterPath="$PROJECT_DIR$/Sap_documentacion/TipoAtributo/toc-everything.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/TipoItem/toc-everything.html" afterPath="$PROJECT_DIR$/Sap_documentacion/TipoItem/toc-everything.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Usuarios/toc-everything.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Usuarios/toc-everything.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Sap/toc-manage-module.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Sap/toc-manage-module.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Autenticacion/toc.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Autenticacion/toc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Comite/toc.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Comite/toc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Fases/toc.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Fases/toc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Items/toc.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Items/toc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/LineaBase/toc.html" afterPath="$PROJECT_DIR$/Sap_documentacion/LineaBase/toc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Proyectos/toc.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Proyectos/toc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Relaciones/toc.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Relaciones/toc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Roles/toc.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Roles/toc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Sap/toc.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Sap/toc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Solicitudes/toc.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Solicitudes/toc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/TipoAtributo/toc.html" afterPath="$PROJECT_DIR$/Sap_documentacion/TipoAtributo/toc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/TipoItem/toc.html" afterPath="$PROJECT_DIR$/Sap_documentacion/TipoItem/toc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sap_documentacion/Usuarios/toc.html" afterPath="$PROJECT_DIR$/Sap_documentacion/Usuarios/toc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aplicaciones/informes/urls.py" afterPath="$PROJECT_DIR$/aplicaciones/informes/urls.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aplicaciones/logs/urls.py" afterPath="$PROJECT_DIR$/aplicaciones/logs/urls.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aplicaciones/usuarios/fixtures/user.json" afterPath="$PROJECT_DIR$/aplicaciones/usuarios/fixtures/user.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aplicaciones/usuarios/fixtures/usuarios.json" afterPath="$PROJECT_DIR$/aplicaciones/usuarios/fixtures/usuarios.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aplicaciones/comite/views.py" afterPath="$PROJECT_DIR$/aplicaciones/comite/views.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aplicaciones/informes/views.py" afterPath="$PROJECT_DIR$/aplicaciones/informes/views.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aplicaciones/items/views.py" afterPath="$PROJECT_DIR$/aplicaciones/items/views.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aplicaciones/lineabase/views.py" afterPath="$PROJECT_DIR$/aplicaciones/lineabase/views.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aplicaciones/logs/views.py" afterPath="$PROJECT_DIR$/aplicaciones/logs/views.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aplicaciones/solicitudes/views.py" afterPath="$PROJECT_DIR$/aplicaciones/solicitudes/views.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/solicitudes/votarsolicitud.html" afterPath="$PROJECT_DIR$/templates/solicitudes/votarsolicitud.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="sap.iws" />
@@ -76,42 +626,69 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/index.html">
+      <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/aplicaciones/solicitudes/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="27" selection-start="488" selection-end="488" vertical-scroll-proportion="17.925926" vertical-offset="754" max-vertical-offset="3582">
+            <state line="44" column="12" selection-start="1862" selection-end="1862" vertical-scroll-proportion="0.0" vertical-offset="612" max-vertical-offset="1296">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/aplicaciones/logs/views.py">
+        <entry file="file://$PROJECT_DIR$/aplicaciones/items/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="104" column="4" selection-start="3539" selection-end="3545" vertical-scroll-proportion="0.0" vertical-offset="1795" max-vertical-offset="2412">
-              <folding>
-                <element signature="e#0#55#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="log_hoy.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/Logs/log_hoy.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="44" column="14" selection-start="1518" selection-end="1518" vertical-scroll-proportion="-7.962963" vertical-offset="577" max-vertical-offset="1026">
+            <state line="1553" column="56" selection-start="80622" selection-end="80622" vertical-scroll-proportion="0.0" vertical-offset="27682" max-vertical-offset="28206">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="urls.py" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/aplicaciones/logs/urls.py">
+      <file leaf-file-name="urls.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/aplicaciones/items/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="20" selection-start="321" selection-end="321" vertical-scroll-proportion="0.29099306" vertical-offset="0" max-vertical-offset="433">
+            <state line="1" column="13" selection-start="56" selection-end="56" vertical-scroll-proportion="0.0" vertical-offset="18" max-vertical-offset="558">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="impacto.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/items/impacto.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="98" column="46" selection-start="2993" selection-end="2993" vertical-scroll-proportion="-8.0" vertical-offset="1548" max-vertical-offset="2808">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="expiraciones.py" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/aplicaciones/solicitudes/expiraciones.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="37" column="33" selection-start="2238" selection-end="2238" vertical-scroll-proportion="0.6834171" vertical-offset="394" max-vertical-offset="828">
               <folding>
-                <element signature="e#0#42#0" expanded="true" />
+                <element signature="e#0#45#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/aplicaciones/solicitudes/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="531" column="0" selection-start="24241" selection-end="24241" vertical-scroll-proportion="-8.407408" vertical-offset="9331" max-vertical-offset="10206">
+              <folding>
+                <element signature="e#0#35#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/aplicaciones/lineabase/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="24" column="25" selection-start="1309" selection-end="1309" vertical-scroll-proportion="0.0" vertical-offset="432" max-vertical-offset="792">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -144,8 +721,6 @@
         <option value="$PROJECT_DIR$/aplicaciones/autenticacion/views.py" />
         <option value="$PROJECT_DIR$/aplicaciones/comite/views.py" />
         <option value="$PROJECT_DIR$/aplicaciones/fases/views.py" />
-        <option value="$PROJECT_DIR$/aplicaciones/items/views.py" />
-        <option value="$PROJECT_DIR$/aplicaciones/lineabase/views.py" />
         <option value="$PROJECT_DIR$/aplicaciones/proyectos/views.py" />
         <option value="$PROJECT_DIR$/aplicaciones/relaciones/views.py" />
         <option value="$PROJECT_DIR$/aplicaciones/roles/views.py" />
@@ -153,21 +728,25 @@
         <option value="$PROJECT_DIR$/aplicaciones/tipoitem/views.py" />
         <option value="$PROJECT_DIR$/aplicaciones/usuarios/views.py" />
         <option value="$PROJECT_DIR$/aplicaciones/tipoatributo/views.py" />
-        <option value="$PROJECT_DIR$/aplicaciones/solicitudes/tasks.py" />
         <option value="$PROJECT_DIR$/sap/urls.py" />
         <option value="$PROJECT_DIR$/templates/index.html" />
         <option value="$PROJECT_DIR$/sap/settings.py" />
         <option value="$PROJECT_DIR$/templates/Logs/log_hoy.html" />
-        <option value="$PROJECT_DIR$/aplicaciones/solicitudes/expiraciones.py" />
         <option value="$PROJECT_DIR$/aplicaciones/logs/views.py" />
         <option value="$PROJECT_DIR$/aplicaciones/logs/urls.py" />
+        <option value="$PROJECT_DIR$/aplicaciones/solicitudes/tasks.py" />
+        <option value="$PROJECT_DIR$/aplicaciones/items/views.py" />
+        <option value="$PROJECT_DIR$/templates/items/impacto.html" />
+        <option value="$PROJECT_DIR$/aplicaciones/lineabase/views.py" />
+        <option value="$PROJECT_DIR$/aplicaciones/solicitudes/expiraciones.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
+    <option name="x" value="-1" />
     <option name="y" value="25" />
-    <option name="width" value="1024" />
-    <option name="height" value="575" />
+    <option name="width" value="1026" />
+    <option name="height" value="576" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -214,7 +793,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -261,6 +839,24 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="items" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sap" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sap" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="templates" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="Logs" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -275,7 +871,47 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="aplicaciones" />
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="uploads" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="imagenes" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sap" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sap" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="uploads" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sap" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sap" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="static" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -292,13 +928,10 @@
               <option name="myItemId" value="aplicaciones" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="logs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -521,7 +1154,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="25" width="1024" height="575" extended-state="6" />
+    <frame x="-1" y="25" width="1026" height="576" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32826087" sideWeight="0.4995015" order="7" side_tool="false" content_ui="tabs" />
@@ -548,8 +1181,8 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32826087" sideWeight="0.4995015" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32826087" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32826087" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32826087" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32826087" sideWeight="0.50049853" order="9" side_tool="true" content_ui="tabs" />
@@ -559,8 +1192,8 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24925224" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
     </layout-to-restore>
   </component>
@@ -587,44 +1220,11 @@
     <option name="LAST_COMMIT_MESSAGE" value="test de consultar credencial terminado, arreglo en la parte de permisos  de crear roles&#10;" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/aplicaciones/usuarios/fixtures/credenciales.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="684" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/aplicaciones/solicitudes/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="61" selection-start="1328" selection-end="1405" vertical-scroll-proportion="0.0" vertical-offset="216" max-vertical-offset="360" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sap/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="71" column="1" selection-start="2066" selection-end="2066" vertical-scroll-proportion="0.0" vertical-offset="1026" max-vertical-offset="2340" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/aplicaciones/solicitudes/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="228" column="25" selection-start="10839" selection-end="10839" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="6840" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/aplicaciones/solicitudes/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="51" column="41" selection-start="2364" selection-end="2364" vertical-scroll-proportion="0.0" vertical-offset="660" max-vertical-offset="1080" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/aplicaciones/solicitudes/forms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="72" column="57" selection-start="3840" selection-end="3840" vertical-scroll-proportion="0.0" vertical-offset="984" max-vertical-offset="1404" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sap/wsgi.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="26" selection-start="320" selection-end="320" vertical-scroll-proportion="0.49884528" vertical-offset="0" max-vertical-offset="433" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/sap.wsgi">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="433" />
@@ -670,11 +1270,6 @@
         <state line="13" column="61" selection-start="1513" selection-end="1513" vertical-scroll-proportion="0.5427136" vertical-offset="0" max-vertical-offset="398" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/aplicaciones/solicitudes/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="43" column="43" selection-start="1849" selection-end="1849" vertical-scroll-proportion="-0.35929647" vertical-offset="827" max-vertical-offset="1278" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/aplicaciones/usuarios/fixtures/credenciales.json">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="684" />
@@ -705,11 +1300,6 @@
         <state line="18" column="53" selection-start="946" selection-end="946" vertical-scroll-proportion="0.34285715" vertical-offset="108" max-vertical-offset="558" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/aplicaciones/lineabase/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="792" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/aplicaciones/roles/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="774" />
@@ -725,34 +1315,14 @@
         <state line="15" column="6" selection-start="657" selection-end="663" vertical-scroll-proportion="0.091603056" vertical-offset="0" max-vertical-offset="9324" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/aplicaciones/items/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="6" selection-start="1137" selection-end="1143" vertical-scroll-proportion="0.33333334" vertical-offset="283" max-vertical-offset="27630" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/aplicaciones/lineabase/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="6" selection-start="791" selection-end="797" vertical-scroll-proportion="0.33333334" vertical-offset="229" max-vertical-offset="4734" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/aplicaciones/proyectos/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="16" column="6" selection-start="744" selection-end="750" vertical-scroll-proportion="0.33333334" vertical-offset="157" max-vertical-offset="10224" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/aplicaciones/relaciones/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="6" selection-start="915" selection-end="921" vertical-scroll-proportion="0.33333334" vertical-offset="211" max-vertical-offset="7398" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/aplicaciones/roles/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="11" column="6" selection-start="493" selection-end="499" vertical-scroll-proportion="0.33333334" vertical-offset="67" max-vertical-offset="7776" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/aplicaciones/solicitudes/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="6" selection-start="885" selection-end="891" vertical-scroll-proportion="0.33333334" vertical-offset="229" max-vertical-offset="9594" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/aplicaciones/tipoitem/views.py">
@@ -800,69 +1370,136 @@
         <state line="30" column="14" selection-start="1132" selection-end="1132" vertical-scroll-proportion="0.393531" vertical-offset="394" max-vertical-offset="828" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sap/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="135" column="45" selection-start="3698" selection-end="3698" vertical-scroll-proportion="-0.22864321" vertical-offset="2521" max-vertical-offset="2934" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/informes/informes.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="35" selection-start="93" selection-end="93" vertical-scroll-proportion="0.0" vertical-offset="54" max-vertical-offset="1656">
-          <folding />
-        </state>
+        <state line="3" column="35" selection-start="93" selection-end="93" vertical-scroll-proportion="0.0" vertical-offset="54" max-vertical-offset="1656" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/aplicaciones/informes/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="94" column="60" selection-start="3956" selection-end="3956" vertical-scroll-proportion="0.16666667" vertical-offset="1370" max-vertical-offset="1800" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/aplicaciones/solicitudes/tasks.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="17" selection-start="522" selection-end="522" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="324">
+        <state line="14" column="41" selection-start="500" selection-end="500" vertical-scroll-proportion="0.4157044" vertical-offset="0" max-vertical-offset="433" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/aplicaciones/logs/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="0" selection-start="437" selection-end="437" vertical-scroll-proportion="0.37413394" vertical-offset="0" max-vertical-offset="433" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/Logs/log_hoy.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="44" column="14" selection-start="1518" selection-end="1518" vertical-scroll-proportion="0.40458015" vertical-offset="633" max-vertical-offset="1026" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/aplicaciones/logs/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="104" column="4" selection-start="3539" selection-end="3545" vertical-scroll-proportion="-0.17142858" vertical-offset="1872" max-vertical-offset="2340" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="27" selection-start="488" selection-end="488" vertical-scroll-proportion="-1.2315521" vertical-offset="754" max-vertical-offset="3582" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/aplicaciones/relaciones/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="6" selection-start="915" selection-end="921" vertical-scroll-proportion="-3.4497488" vertical-offset="1409" max-vertical-offset="7092" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/items/consultaratributos.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-3.4204853" vertical-offset="1269" max-vertical-offset="1764" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/aplicaciones/relaciones/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="26" selection-start="964" selection-end="964" vertical-scroll-proportion="0.60301507" vertical-offset="120" max-vertical-offset="576" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/aplicaciones/fases/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="414" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sap/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="38" column="23" selection-start="1201" selection-end="1201" vertical-scroll-proportion="0.38944724" vertical-offset="529" max-vertical-offset="2934" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/aplicaciones/lineabase/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="25" selection-start="1309" selection-end="1309" vertical-scroll-proportion="0.0" vertical-offset="124" max-vertical-offset="738">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/aplicaciones/items/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1553" column="56" selection-start="80622" selection-end="80622" vertical-scroll-proportion="0.0" vertical-offset="27682" max-vertical-offset="28206">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/items/impacto.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="98" column="46" selection-start="2993" selection-end="2993" vertical-scroll-proportion="-8.0" vertical-offset="1548" max-vertical-offset="2808">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/aplicaciones/lineabase/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="50" selection-start="500" selection-end="500" vertical-scroll-proportion="-9.866835" vertical-offset="4125" max-vertical-offset="4752">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/aplicaciones/items/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="31" column="12" selection-start="1435" selection-end="1435" vertical-scroll-proportion="-0.1356784" vertical-offset="558" max-vertical-offset="1710">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/aplicaciones/items/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="13" selection-start="56" selection-end="56" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="558">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/aplicaciones/fases/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="27" column="42" selection-start="1261" selection-end="1261" vertical-scroll-proportion="1.1758794" vertical-offset="0" max-vertical-offset="756">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/aplicaciones/solicitudes/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="44" column="12" selection-start="1862" selection-end="1862" vertical-scroll-proportion="0.0" vertical-offset="612" max-vertical-offset="1296">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/aplicaciones/solicitudes/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="531" column="0" selection-start="24241" selection-end="24241" vertical-scroll-proportion="-8.407408" vertical-offset="9331" max-vertical-offset="10206">
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/aplicaciones/solicitudes/expiraciones.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="1" selection-start="2319" selection-end="2319" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="900">
+        <state line="37" column="33" selection-start="2238" selection-end="2238" vertical-scroll-proportion="0.6834171" vertical-offset="394" max-vertical-offset="828">
           <folding>
-            <element signature="e#0#45#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="27" selection-start="488" selection-end="488" vertical-scroll-proportion="17.925926" vertical-offset="754" max-vertical-offset="3582">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/Logs/log_hoy.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="44" column="14" selection-start="1518" selection-end="1518" vertical-scroll-proportion="-7.962963" vertical-offset="577" max-vertical-offset="1026">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/aplicaciones/informes/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="94" column="60" selection-start="3956" selection-end="3956" vertical-scroll-proportion="0.16666667" vertical-offset="1370" max-vertical-offset="1800">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/aplicaciones/logs/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="104" column="4" selection-start="3539" selection-end="3545" vertical-scroll-proportion="0.0" vertical-offset="1795" max-vertical-offset="2412">
-          <folding>
-            <element signature="e#0#55#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/aplicaciones/logs/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="20" selection-start="321" selection-end="321" vertical-scroll-proportion="0.29099306" vertical-offset="0" max-vertical-offset="433">
-          <folding>
-            <element signature="e#0#42#0" expanded="true" />
+            <element signature="e#0#45#0" expanded="true" />
           </folding>
         </state>
       </provider>

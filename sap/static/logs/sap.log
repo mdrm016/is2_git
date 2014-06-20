@@ -282,3 +282,89 @@
 20/06/2014 03:23:56 INFO Creacion de Solicitud de cambio id 3, hecho por ysapy
 20/06/2014 03:24:12 INFO Administracion de Proyectos, hecho por ysapy
 20/06/2014 03:24:20 INFO Ingreso a Administracion de Fases, proyecto P2, hecho por ysapy
+INFO 17/Jun/2014 15:40:24 3122 Listado de Solicitudes recibidas, hecho por sap
+INFO 17/Jun/2014 15:40:39 3122 Administracion de Proyectos, hecho por sap
+INFO 17/Jun/2014 15:41:12 3122 Administracion de Proyectos, hecho por sap
+INFO 17/Jun/2014 15:44:37 3122 Administracion de Proyectos, hecho por sap
+INFO 17/Jun/2014 15:44:48 3122 Ingreso a Administracion de Fases, proyecto Proyecto 2, hecho por sap
+INFO 17/Jun/2014 16:28:29 5027 Ingreso a Administracion de Fases, proyecto Proyecto 2, hecho por sap
+INFO 17/Jun/2014 16:28:33 5027 Logout de Usuario 
+17/Jun/2014 17:04:13 INFO Login de Usuario sap
+17/Jun/2014 17:04:14 INFO Administracion de Proyectos, hecho por sap
+17/Jun/2014 20:09:37 INFO Logout de Usuario 
+17/Jun/2014 20:09:47 INFO Login de Usuario sap
+17/Jun/2014 20:09:48 INFO Administracion de Proyectos, hecho por sap
+17/Jun/2014 20:11:17 INFO Administracion de Proyectos, hecho por sap
+17/06/2014 20:17:04 INFO Administracion de Proyectos, hecho por sap
+17/06/2014 20:26:52 INFO Administracion de Proyectos, hecho por sap
+17/06/2014 20:27:30 INFO Administracion de Proyectos, hecho por sap
+17/06/2014 20:40:41 INFO Administracion de Proyectos, hecho por sap
+17/06/2014 20:40:47 INFO Ingreso a Administracion de Fases, proyecto Proyecto 1, hecho por sap
+17/06/2014 20:41:12 INFO Ingreso a Administracion de Fases, proyecto Proyecto 2, hecho por sap
+17/06/2014 20:41:41 INFO Administracion de Proyectos, hecho por sap
+17/06/2014 21:03:59 INFO Administracion de Proyectos, hecho por sap
+18/06/2014 18:40:36 INFO Login de Usuario sap
+18/06/2014 18:40:37 INFO Administracion de Proyectos, hecho por sap
+18/06/2014 19:19:36 INFO Administracion de Proyectos, hecho por sap
+18/06/2014 19:54:32 INFO Administracion de Proyectos, hecho por sap
+18/06/2014 20:04:17 INFO Administracion de Proyectos, hecho por sap
+18/06/2014 20:04:24 INFO Listado de solicitudes realizadas, hecho por sap
+18/06/2014 20:04:36 INFO Administracion de Proyectos, hecho por sap
+19/06/2014 09:49:19 INFO Administracion de Proyectos, hecho por sap
+19/06/2014 09:49:28 INFO Logout de Usuario 
+19/06/2014 16:35:15 INFO Login de Usuario sap
+19/06/2014 16:35:16 INFO Administracion de Proyectos, hecho por sap
+19/06/2014 16:36:05 INFO Ingreso a Administracion de Fases, proyecto Proyecto 3, hecho por sap
+19/06/2014 17:12:55 INFO Administracion de Lineas Base de fase Fase 1 del proyecto Proyecto 3, hecho por sap
+19/06/2014 18:22:29 INFO Consulta de item item113 de la fase Fase 1 del proyecto Proyecto 3, hecho por sap
+19/06/2014 18:22:40 INFO Consulta de relaciones de item item113 de la fase Fase 1 del proyecto Proyecto 3, hecho por sap
+19/06/2014 18:22:53 INFO Consulta de item item213 de la fase Fase 1 del proyecto Proyecto 3, hecho por sap
+19/06/2014 18:22:58 INFO Consulta de relaciones de item item213 de la fase Fase 1 del proyecto Proyecto 3, hecho por sap
+19/06/2014 18:23:19 INFO Ingreso a Administracion de Fases, proyecto Proyecto 3, hecho por sap
+19/06/2014 18:23:42 INFO Consulta de item item223 de la fase Fase 2 del proyecto Proyecto 3, hecho por sap
+19/06/2014 18:23:58 INFO Consulta de relaciones de item item223 de la fase Fase 2 del proyecto Proyecto 3, hecho por sap
+19/06/2014 18:24:23 INFO Consulta de item item123 de la fase Fase 2 del proyecto Proyecto 3, hecho por sap
+19/06/2014 18:24:29 INFO Consulta de relaciones de item item123 de la fase Fase 2 del proyecto Proyecto 3, hecho por sap
+19/06/2014 18:24:39 INFO Ingreso a Administracion de Fases, proyecto Proyecto 3, hecho por sap
+19/06/2014 18:27:12 INFO Ingreso a Administracion de Fases, proyecto Proyecto 3, hecho por sap
+19/06/2014 18:27:28 INFO Ingreso a Administracion de Fases, proyecto Proyecto 3, hecho por sap
+19/06/2014 18:32:14 INFO Consulta de item item223 de la fase Fase 2 del proyecto Proyecto 3, hecho por sap
+19/06/2014 18:32:21 INFO Consulta de relaciones de item item223 de la fase Fase 2 del proyecto Proyecto 3, hecho por sap
+19/06/2014 18:32:42 INFO Consulta de item item223 de la fase Fase 2 del proyecto Proyecto 3, hecho por sap
+19/06/2014 18:33:32 INFO Ingreso a Administracion de Fases, proyecto Proyecto 3, hecho por sap
+19/06/2014 20:21:46 INFO Calculo del impacto del item item123 de la fase Fase 2 del proyecto Proyecto 3, hecho por sap
+19/06/2014 20:27:31 INFO Calculo del impacto del item item123 de la fase Fase 2 del proyecto Proyecto 3, hecho por sap
+19/06/2014 20:36:34 INFO Calculo del impacto del item item123 de la fase Fase 2 del proyecto Proyecto 3, hecho por sap
+19/06/2014 20:42:24 INFO Calculo del impacto del item item123 de la fase Fase 2 del proyecto Proyecto 3, hecho por sap
+19/06/2014 20:42:38 INFO Calculo del impacto del item item123 de la fase Fase 2 del proyecto Proyecto 3, hecho por sap
+19/06/2014 20:43:11 INFO Calculo del impacto del item item123 de la fase Fase 2 del proyecto Proyecto 3, hecho por sap
+19/06/2014 20:44:58 INFO Calculo del impacto del item item123 de la fase Fase 2 del proyecto Proyecto 3, hecho por sap
+19/06/2014 20:46:28 INFO Calculo del impacto del item item123 de la fase Fase 2 del proyecto Proyecto 3, hecho por sap
+19/06/2014 20:47:38 INFO Calculo del impacto del item item123 de la fase Fase 2 del proyecto Proyecto 3, hecho por sap
+19/06/2014 20:59:47 INFO Calculo del impacto del item item123 de la fase Fase 2 del proyecto Proyecto 3, hecho por sap
+19/06/2014 21:40:56 INFO Calculo del impacto del item item123 de la fase Fase 2 del proyecto Proyecto 3, hecho por sap
+19/06/2014 21:46:43 INFO Calculo del impacto del item item123 de la fase Fase 2 del proyecto Proyecto 3, hecho por sap
+19/06/2014 21:48:24 INFO Calculo del impacto del item item123 de la fase Fase 2 del proyecto Proyecto 3, hecho por sap
+19/06/2014 21:49:16 INFO Calculo del impacto del item item123 de la fase Fase 2 del proyecto Proyecto 3, hecho por sap
+19/06/2014 22:08:06 INFO Calculo del impacto del item item123 de la fase Fase 2 del proyecto Proyecto 3, hecho por sap
+19/06/2014 22:10:06 INFO Calculo del impacto del item item223 de la fase Fase 2 del proyecto Proyecto 3, hecho por sap
+19/06/2014 22:10:34 INFO Ingreso a Administracion de Fases, proyecto Proyecto 3, hecho por sap
+19/06/2014 22:10:49 INFO Calculo del impacto del item item133 de la fase Fase 3 del proyecto Proyecto 3, hecho por sap
+19/06/2014 22:11:06 INFO Calculo del impacto del item item233 de la fase Fase 3 del proyecto Proyecto 3, hecho por sap
+19/06/2014 22:15:06 INFO Calculo del impacto del item item233 de la fase Fase 3 del proyecto Proyecto 3, hecho por sap
+19/06/2014 22:15:27 INFO Calculo del impacto del item item233 de la fase Fase 3 del proyecto Proyecto 3, hecho por sap
+19/06/2014 22:15:41 INFO Calculo del impacto del item item333 de la fase Fase 3 del proyecto Proyecto 3, hecho por sap
+19/06/2014 22:15:59 INFO Calculo del impacto del item item333 de la fase Fase 3 del proyecto Proyecto 3, hecho por sap
+19/06/2014 22:19:49 INFO Ingreso a Administracion de Fases, proyecto Proyecto 3, hecho por sap
+19/06/2014 22:20:04 INFO Calculo del impacto del item item123 de la fase Fase 2 del proyecto Proyecto 3, hecho por sap
+19/06/2014 22:24:07 INFO Calculo del impacto del item item123 de la fase Fase 2 del proyecto Proyecto 3, hecho por sap
+19/06/2014 22:27:32 INFO Calculo del impacto del item item123 de la fase Fase 2 del proyecto Proyecto 3, hecho por sap
+19/06/2014 22:32:45 INFO Calculo del impacto del item item123 de la fase Fase 2 del proyecto Proyecto 3, hecho por sap
+19/06/2014 22:47:14 INFO Calculo del impacto del item item123 de la fase Fase 2 del proyecto Proyecto 3, hecho por sap
+19/06/2014 23:02:21 INFO Calculo del impacto del item item123 de la fase Fase 2 del proyecto Proyecto 3, hecho por sap
+19/06/2014 23:20:45 INFO Calculo del impacto del item item123 de la fase Fase 2 del proyecto Proyecto 3, hecho por sap
+19/06/2014 23:43:43 INFO Calculo del impacto del item item123 de la fase Fase 2 del proyecto Proyecto 3, hecho por sap
+19/06/2014 23:49:26 INFO Calculo del impacto del item item123 de la fase Fase 2 del proyecto Proyecto 3, hecho por sap
+19/06/2014 23:52:07 INFO Calculo del impacto del item item123 de la fase Fase 2 del proyecto Proyecto 3, hecho por sap
+19/06/2014 23:53:24 INFO Calculo del impacto del item item123 de la fase Fase 2 del proyecto Proyecto 3, hecho por sap
+20/06/2014 00:03:39 INFO Administracion de Roles, hecho por sap

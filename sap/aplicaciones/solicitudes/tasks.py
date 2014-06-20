@@ -8,10 +8,9 @@ from datetime import datetime
 logger = get_task_logger(__name__)
 
 
-@periodic_task(run_every=(crontab(hour="*", minute="*", day_of_week="*")))
+@periodic_task(run_every=(crontab(hour=0, minute=0, day_of_week="*")))
 def expiracionesSolicitudesCredenciales():
     logger.info("Inicio de la tarea de expiraciones")
     expiraciones.expiracionDeSolicitud()
     expiraciones.expiracionDeCredencial()
-    expiraciones.pruebaDeFuncionamientoCelery()
     logger.info("Tarea de solicitudes y credenciales expiradas terminada!!")

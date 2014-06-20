@@ -7,4 +7,4 @@ urlpatterns = patterns('',
                       url(r'^logs/semana1/$', logSemana1),
                       url(r'^logs/semana2/$', logSemana2),
                       url(r'^logs/mas/$', logMas),
-                       )
+                        )

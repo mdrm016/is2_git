@@ -80,8 +80,17 @@
 				    </div>
 				 </div>
 			</div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="panel-heading">
+                        {% if ruta_grafo %}
+                            <img src="{{ MEDIA_URL }}imagenes/{{ ruta_grafo }}">
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
 		</div>
-		
+
 		{% if items_afectados %}
 		<div class="row ">
 			<div class="panel-group" id="accordion">
@@ -134,8 +143,7 @@
 			</div>
 		</div>	
 		{% endif %}
-		
-		
+
 		<div  align="center">
 			<a type="button" class="btn btn-default" href="/adm_proyectos/gestionar/{{ id_proyecto }}/adm_items/{{ id_fase }}">Volver</a>
 		</div>
