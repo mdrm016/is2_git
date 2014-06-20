@@ -102,12 +102,14 @@ def rolNuevo(request):
     else:
         form = RolForm()
         
-    permisos = Permission.objects.filter(id__gt=18)  
-    parte1 = permisos.filter(id__range=(19,46))
-    parte2 = permisos.filter(id__gt=65)
+    permisos = Permission.objects.filter(id__gt=42)
+    parte1 = permisos.filter(id__range=(43,70))
+    parte2 = permisos.filter(id__range=(92,98))
+    parte3 = permisos.filter(id__range=(114,117))
     permisos = []
     permisos.extend(parte1)
     permisos.extend(parte2)
+    permisos.extend(parte3)
     permisos = [(permiso.codename, permiso.name) for permiso in permisos]
     template_name='./Roles/rolnuevo.html'
     return render(request, template_name, {'form': form, 'permisos': permisos})
@@ -231,12 +233,14 @@ def modificarRol(request, id_rol):
         for perm in rol.permissions.all():
             marcados.append(perm.codename)
         data = {'Nombre_de_Rol': rol.name, 'Descripcion': rol.descripcion}
-        permisos = Permission.objects.filter(id__gt=18)  
-        parte1 = permisos.filter(id__range=(19,44))
-        parte2 = permisos.filter(id__gt=62)
+        permisos = Permission.objects.filter(id__gt=42)
+        parte1 = permisos.filter(id__range=(43,70))
+        parte2 = permisos.filter(id__range=(92,98))
+        parte3 = permisos.filter(id__range=(114,117))
         permisos = []
         permisos.extend(parte1)
         permisos.extend(parte2)
+        permisos.extend(parte3)
         permisos = [(permiso.codename, permiso.name) for permiso in permisos]
         form = RolModificadoForm(data)
 
@@ -263,7 +267,7 @@ def eliminarRol(request, id_rol):
     rol.is_active = False
     rol.save()
 
-    logger.info('Eliminacion logica de Rol %s, hecho por %s' % (rol.nombre, request.user.username))
+    logger.info('Eliminacion logica de Rol %s, hecho por %s' % (rol.name, request.user.username))
     return HttpResponseRedirect('/adm_roles/')
 
 @login_required(login_url='/login/')
@@ -415,7 +419,8 @@ def asignarProyectoRol(request, id_rol):
                 errors.append('Debe escoger al menos un Proyecto')
             if not errors:
                 rol.save()
-                logger.info('Asignacion de Proyecto %s a Rol %s, hecho por %s' % (rol.name, proyecto.nombre, request.user.username))
+                proyecto=Proyectos.objects.get(id=proyecto)
+                logger.info('Asignacion de Proyecto %s a Rol %s, hecho por %s' % (proyecto.nombre, rol.name, request.user.username))
                 template_name='./Roles/rol_alerta.html'
                 return render_to_response(template_name, {'mensaje': 'El proyecto ha sido asginado correctamente'}, context_instance=RequestContext(request))
        

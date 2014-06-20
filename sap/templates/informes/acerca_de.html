@@ -1,0 +1,127 @@
+{% extends "base_general.html" %}
+
+{% block navegacion %}
+<nav class="navbar navbar-default">
+	<div class="navbar-header">
+		<a href="/" class="navbar-brand">SAP</a>
+	</div>
+
+	<div  class="collapse navbar-collapse navbar-ex1-collapse">
+		<ul class="nav navbar-nav">
+			<li class="active"><a href="/informes/">Informes</a></li>
+        </ul>
+
+		<ul class="nav navbar-nav navbar-right">
+			<li><a href="/informes/acercade/">Acerca de</a></li>
+			{% if user.id == 1 %}
+            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Registro del Sistema<b class="caret"></b></a>
+				<ul class="dropdown-menu">
+				   	<li><a href="/logs/hoy/">Hoy</a><li>
+                    <li><a href="/logs/ayer/">Ayer</a></li>
+                    <li><a href="/logs/semana1/">Una semana</a></li>
+                    <li><a href="/logs/semana2/">Dos semanas</a></li>
+                    <li><a href="/logs/mas/">mas...</a></li>
+				</ul>
+			</li>
+            {% endif %}
+		</ul>
+	</div>
+</nav>
+{% endblock %}
+
+{% block contenido %}
+<h3 align="center">Acerca del Proceso de Desarrollo de SAP</h3>
+<div class="content-secondary">
+	<div class="row ">
+		<div class="panel-group" id="accordion">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+                  <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="collapse1">
+                        El equipo de trabajo
+                    </a>
+                  </h4>
+                </div>
+				<div id="collapse1" class="panel-collapse collapse in">
+                  <div class="panel-body">
+                    Sin duda el factor humano fue la piedra angular de todo el proceso de software. Cada uno de los 3 integrantes tuvo un papel decisivo en la etapa de análisis, diseño y construcción, analizando, descubriendo y aprendiendo por sí mismos mediante investigación y el uso de herramientas de gestión de configuración los elementos necesarios para el desarrollo del proyecto.
+                    En la fase de análisis, en cada reunión se trató cuestiones relacionadas a los requisitos del sistema y cómo encararlos, la participación activa de todos los miembro arrojó finalmente el documento de “Especificación de Requerimientos del Sistema”
+                    Luego llegó la redacción de los documentos relacionados a los casos de uso que fue dividida y realizada de forma equitativa por cada integrante.
+                    La fase de diseño no fue la excepción de la regla, puesto que la división también fue equitativa, cada integrante realizo los diagramas en los que tenía profundos conocimientos lo que produjo un buen resultado final.
+                    Cada integrante solicitaba de la pila de casos de usos previstos para cada iteración lo que estaba dispuesto a realizar y este era el responsable de implementar cada detalle del mismo, que va desde la lógica a utilizar para implementar un método hasta como será visualizado finalmente por el software.
+                  </div>
+                </div>
+				    
+			</div>
+		</div>
+	</div>
+    <div class="row ">
+		<div class="panel-group" id="accordion">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+                  <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="collapse2">
+                        Proceso Utilizado
+                    </a>
+                  </h4>
+                </div>
+				<div id="collapse2" class="panel-collapse collapse in">
+                  <div class="panel-body">
+                     En todo momento, la base guía sobre la cual se desarrolló el proyecto de software fue modelo de desarrollo ágil Scrum, la cual se basa en una estrategia de desarrollo incremental, en lugar de la planificación y ejecución completa del producto.
+                      <h5>Roles</h5>
+                      Desde la perspectiva del grupo R11 la distribución de los roles queda definida de la siguiente manera:
+                      <h6>Product Owner</h6>
+                      Los profesores. Fueron los encargados de inspeccionar que el software cumpliera los requisitos definidos desde el primer momento, acompañando y encaminando al equipo.
+                      <h6>Scrum Master</h6>
+                      Eduardo Giménez. Actuó de juez y resolvió las disputas del equipo de desarrollo.
+                      <h6>Equipo de desarrollo</h6>
+                      Ysapy Ortiz y Marcelo Denis. Junto con Eduardo Giménez desarrollaron el producto software resultante.
+                      Cada Sprint (Iteraciones) generalmente se desarrollaba cada 2 semanas según lo estipulado por los Product Owner, para esto, el equipo de desarrollo se reunía para planificar los casos de usos a entregar y se determinaba quien era el responsable de desarrollar una determinada cantidad de los mismos. Se preparaba tomando del Product backlog que en este caso sería la pila de casos de usos definidas en la etapa de diseño, la funcionalidades que serían implementadas para la iteración que se aproximaba.
+                      Las reuniones por lo general se realizaban a las 18:00 hs de lunes a viernes utilizando para esto pinceles y pizarrones de la Facultad Politécnica. En la planificación cada integrante solicitaba los casos de usos dispuesto a desarrollar hasta alcanzar la totalidad de casos de usos previstos por el alcance de cada iteración, denominamos a esto “Reunión de Planificación”. Luego de cada iteración las reuniones de “Revisión” se desarrollaban para identificar los elementos que se deben mejorar, perfeccionar, cambiar o implementar.
+                      Durante la iteración cada miembro del equipo expone frente al profesor los elementos desarrollados por este explicando la metodología y la lógica utilizada para fabricar dicha funcionalidad.
+
+                  </div>
+                </div>
+
+			</div>
+		</div>
+	</div>
+    <div class="row ">
+		<div class="panel-group" id="accordion">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+                  <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="collapse3">
+                       Oportunidades de Mejora del Equipo
+                    </a>
+                  </h4>
+                </div>
+				<div id="collapse3" class="panel-collapse collapse in">
+                  <div class="panel-body">
+                    Como todo proceso hay puntos en los que la decisión tomada pudiera no ser la más acertada para la resolución de tal o cual problema pera aun así la decisión tomada tiene una aproximación bastante razonable con lo que se pretende lograr.
+                    En vista de ello, tomar una decisión, lo que conlleva a confiar plenamente en ella, pues nos acompañara de ahora en más en lo que reste del proceso no resulta nada fácil y menos con un equipo donde las idea abundan en número y en ingenio, ahora bien, desde el punto de vista del software, cabe notar que la forma en que se desarrolla desde un pequeño componente que arroja algún resultado útil, hasta un complejo e intricado sistema resultante producto de numerosos debates, resulta verdaderamente emocionante.
+                    <li>
+                      <ul>
+                          Concretamente, en cuanto a las mejoras podemos destacar el uso de medios de comunicación que faciliten la comunicación y la compresión de las ideas y lo métodos de resolución cuando los desarrolladores se encuentran en línea de producción del software. El entendimiento en esta parte de la fabricación de software es esencial pues un desacuerdo en el funcionamiento de un sistema podría conducir a volver a iniciar todo de nuevo perdiendo tiempo esfuerzo y dinero.
+                          En vista de ello, tomar una decisión, lo que conlleva a confiar plenamente en ella, pues nos acompañara de ahora en más en lo que reste del proceso no resulta nada fácil y menos con un equipo donde las idea abundan en número y en ingenio, ahora bien, desde el punto de vista del software, cabe notar que la forma en que se desarrolla desde un pequeño componente que arroja algún resultado útil, hasta un complejo e intricado sistema resultante producto de numerosos debates, resulta verdaderamente emocionante.
+                      </ul>
+                      <ul>
+                          Utilizar un método de gestión de software que nos permita ahorrar tiempo y esfuerzo a la hora de iniciar a programar para evitar perder un valioso tiempo para volver  comprender lo que se había detallado desde el inicio del proyecto.
+                      </ul>
+                      <ul>
+                          La utilización de mecanismos de fácil comprensión y utilización a la hora de desarrollar código para que el equipo se adecue a normas de programación que faciliten la programación.
+                      </ul>
+                      <ul>
+                          La dedicación de tiempo y esfuerzo para el aprendizaje del funcionamiento de la herramienta de desarrollo por el equipo de trabajo para evitar hacerlo en la línea de producción lo que podría ocasionar discrepancias en uno u otro punto del software.
+                      </ul>
+                    </li>
+                  </div>
+                </div>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+		
+{% endblock %}

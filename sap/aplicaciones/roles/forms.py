@@ -17,12 +17,14 @@ def listaProyectos():
     return proyectos
 
 def listaPermisos():
-    permisos = Permission.objects.filter(id__gt=18)  
-    parte1 = permisos.filter(id__range=(19,46))
-    parte2 = permisos.filter(id__gt=65)
+    permisos = Permission.objects.filter(id__gt=42)
+    parte1 = permisos.filter(id__range=(43,70))
+    parte2 = permisos.filter(id__range=(92,98))
+    parte3 = permisos.filter(id__range=(114,117))
     permisos = []
     permisos.extend(parte1)
     permisos.extend(parte2)
+    permisos.extend(parte3)
     permisos = [(permiso.codename, permiso.name) for permiso in permisos]
     return permisos
 

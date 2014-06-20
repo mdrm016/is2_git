@@ -19,7 +19,7 @@ class test_user(TestCase):
         
     def testAdministrarLineaBase(self): 
            
-        self.user = User.objects.get(pk=2)  
+        self.user = User.objects.get(pk=1)
         request = self.factory.get('/adm_proyectos/gestionar/1/adm_items/1/adm_lineas_base/')
         request.user = self.user
         response = administrarLineaBase(request, 1, 1)
@@ -28,7 +28,7 @@ class test_user(TestCase):
         
     def testGenerarLineaBase(self):
         
-        self.user = User.objects.get(pk=2) 
+        self.user = User.objects.get(pk=1)
         request = self.factory.post('/adm_proyectos/gestionar/1/adm_items/1/adm_lineas_base/nuevo/', {'Descripcion': 'Prueba', 'Items': ['3']})
         request.user = self.user 
         response = generarLineaBase(request, 1, 1) 

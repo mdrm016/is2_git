@@ -253,3 +253,7 @@ def informe_items_pdf(request, id_proyecto):
     ctx ={'pagesize':'A4', 'fecha':datetime.now(), 'lista_fases': lista_fases, 'proyecto': proyecto}
     html = render_to_string('informes/items_pdf.html', ctx, context_instance=RequestContext(request))
     return generar_pdf(html, filename)
+
+def acercaDe(request):
+    ctx = {'para_que_ande': 0}
+    return render_to_response('informes/acerca_de.html',ctx, context_instance=RequestContext(request))

@@ -455,7 +455,7 @@ def listar_miembros (request, id_proyecto):
         tupla = (miembro, rls)
         lista.append(tupla)                       
 
-    logger.info('Listado de miembros del Proyecto %, hecho por %s' % (proyecto.nombre, request.user.username))
+    logger.info('Listado de miembros del Proyecto %s, hecho por %s' % (proyecto.nombre, request.user.username))
     ctx ={'miembros':lista, 'proyecto':proyecto}
     template_name = 'proyectos/listarmiembrosproyecto.html'
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
