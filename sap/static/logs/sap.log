@@ -1,0 +1,136 @@
+20/06/2014 18:06:31 INFO Listado de usuarios, hecho por sap
+20/06/2014 18:06:31 INFO Busqueda de usuario con patron ysapy
+20/06/2014 18:06:32 INFO Creacion de usuario usuario2, hecho por sap
+20/06/2014 18:06:32 INFO Eliminacion logica de usuario eduardo, hecho por sap
+20/06/2014 18:06:32 INFO Administracion de Lineas Base de fase Fase 1 del proyecto Proyecto 1, hecho por sap
+20/06/2014 18:06:32 INFO Generacion de Linea Base 3 de la fase Fase 1 del proyecto Proyecto 1, hecho por sap
+20/06/2014 18:06:33 INFO Administracion de Lineas Base de fase Fase 1 del proyecto Proyecto 1, hecho por sap
+20/06/2014 18:06:35 INFO Consulta de Linea Base 1 de la fase Fase 1 del proyecto Proyecto 1, hecho por sap
+20/06/2014 18:06:35 INFO Generacion de  informe de linea base 1 de la fase Fase 1 del proyecto Proyecto 1, hecho por sap
+20/06/2014 18:06:39 INFO Administracion de Proyectos, hecho por sap
+20/06/2014 18:06:39 INFO Administracion de Proyectos, hecho por sap
+20/06/2014 18:06:42 INFO Creacion de proyecto Proyecto 10, hecho por sap
+20/06/2014 18:06:42 INFO Proyecto Proyecto 1 importado, hecho por sap
+20/06/2014 18:06:46 INFO Listado de miembros del Proyecto Proyecto 1, hecho por sap
+20/06/2014 18:06:46 INFO Modificacion de proyecto Proyecto 12, hecho por sap
+20/06/2014 18:06:46 INFO Eliminacion logica del Proyecto proyecto 5, hecho por sap
+20/06/2014 18:06:52 INFO Listado de tipo de item de proyecto Proyecto 1, hecho por ysapy
+20/06/2014 18:06:53 INFO Busqueda de tipo de item de proyecto Proyecto 1 con patron Tipo de Item 1, hecho por ysapy
+20/06/2014 18:06:53 INFO Listado de tipo de item de proyecto Proyecto 1, hecho por ysapy
+20/06/2014 18:06:54 INFO Consulta de tipo de item Tipo de item 1 de proyecto Proyecto 1, hecho por ysapy
+20/06/2014 18:06:56 INFO Creacion de tipo de atributo Tipo de Item 3 de proyecto Proyecto 1, hecho por ysapy
+20/06/2014 18:07:00 INFO Eliminacion de tipo de item Tipo de item 3 de proyecto andromeda, hecho por ysapy
+20/06/2014 18:07:00 INFO Gestion de tipo de item Tipo de item 1 de proyecto Proyecto 1, hecho por ysapy
+20/06/2014 18:07:00 INFO Tipo de item Tipo de item 1 importado al proyecto Proyecto 2 como el tipo de item Tipo de Item 1 importado, hecho por sap
+20/06/2014 18:07:03 INFO Modificacion de tipo de item Tipo de Item 10 de proyecto andromeda, hecho por ysapy
+20/06/2014 18:07:08 INFO Administracion de Roles, hecho por sap
+20/06/2014 18:07:08 INFO Busqueda de Rol con el patron rolPrueba, hecho por sap
+20/06/2014 18:07:09 INFO Administracion de Proyectos, hecho por ysapy
+20/06/2014 18:07:09 INFO Consulta de Rol desarrolador, hecho por sap
+20/06/2014 18:07:09 INFO Eliminacion logica de Rol jefe supremo, hecho por sap
+20/06/2014 18:07:09 INFO Modificacion de Rol pruebaRol3, hecho por sap
+20/06/2014 18:07:10 INFO Creacion de Rol pruebaRol3 , hecho por sap
+20/06/2014 18:07:10 INFO Listado de Tipos de Atributo de Proyecto Proyecto 1, hecho por sap
+20/06/2014 18:07:10 INFO Listado de Tipos de Atributo de Proyecto Proyecto 1, hecho por sap
+20/06/2014 18:07:13 INFO Consulta de tipo de atributo cantidad de proyecto Proyecto 1, hecho por sap
+20/06/2014 18:07:13 INFO Eliminacion de tipo de atributo atributoNulo de proyecto Proyecto 1, hecho por sap
+20/06/2014 18:07:13 INFO Tipo de Atributo cantidad importdo al proyecto andromeda, hecho por sap
+20/06/2014 18:07:14 INFO Modificacion de datos de tipo de atributo Foto Adjunta de proyecto Proyecto 2, hecho por sap
+20/06/2014 18:07:14 INFO Creacion de Tipos de Atributo Detalle de Proyecto Proyecto 1, hecho por sap
+20/06/2014 18:07:14 INFO Consulta de credncial con id 1, hecho por sap
+20/06/2014 18:07:17 INFO Votacion de solicitud con id 2, hecho por marcelo
+20/06/2014 18:07:17 INFO Listado de Credenciales, hecho por sap
+20/06/2014 18:07:20 INFO Listado de solicitudes realizadas, hecho por ysapy
+20/06/2014 18:07:21 INFO Listado de Solicitudes recibidas, hecho por ysapy
+20/06/2014 18:07:26 INFO Listado de usuarios, hecho por sap
+20/06/2014 18:07:26 INFO Listado de usuarios, hecho por sap
+20/06/2014 18:07:26 INFO Administracion de Proyectos, hecho por sap
+20/06/2014 18:07:26 INFO Listado de usuarios, hecho por sap
+20/06/2014 18:07:26 INFO Ingreso a Administracion de Fases, proyecto Proyecto 1, hecho por sap
+20/06/2014 18:07:29 INFO Creacion de Fase Fase 20 proyecto Proyecto 2, hecho por sap
+20/06/2014 18:07:33 INFO Ingreso a Administracion de Fases, proyecto Proyecto 1, hecho por sap
+20/06/2014 18:07:37 INFO Creacion de Fase Fase 20 proyecto Proyecto 2, hecho por sap
+20/06/2014 18:07:38 INFO Ingreso a Administracion de Fases, proyecto Proyecto 1, hecho por sap
+20/06/2014 18:07:38 INFO Creacion de Fase Fase 20 proyecto Proyecto 2, hecho por sap
+20/06/2014 18:46:04 INFO Administracion de Proyectos, hecho por ysapy
+20/06/2014 18:49:21 INFO Login de Usuario ysapy
+20/06/2014 18:49:22 INFO Administracion de Proyectos, hecho por ysapy
+20/06/2014 18:50:37 INFO Login de Usuario ysapy
+20/06/2014 18:50:38 INFO Administracion de Proyectos, hecho por ysapy
+20/06/2014 18:55:50 INFO Administracion de Proyectos, hecho por ysapy
+20/06/2014 18:59:10 INFO Administracion de Proyectos, hecho por ysapy
+20/06/2014 18:59:44 INFO Modificacion de proyecto P1, hecho por ysapy
+20/06/2014 18:59:46 INFO Administracion de Proyectos, hecho por ysapy
+20/06/2014 18:59:48 INFO Logout de Usuario 
+20/06/2014 18:59:56 INFO Login de Usuario eduardo
+20/06/2014 18:59:56 INFO Administracion de Proyectos, hecho por eduardo
+20/06/2014 19:01:29 INFO Modificacion de proyecto P1, hecho por eduardo
+20/06/2014 19:01:31 INFO Administracion de Proyectos, hecho por eduardo
+20/06/2014 19:01:33 INFO Logout de Usuario 
+20/06/2014 19:01:41 INFO Login de Usuario marcelo
+20/06/2014 19:01:41 INFO Administracion de Proyectos, hecho por marcelo
+20/06/2014 19:02:16 INFO Logout de Usuario 
+20/06/2014 19:27:43 INFO Login de Usuario ysapy
+20/06/2014 19:27:43 INFO Administracion de Proyectos, hecho por ysapy
+20/06/2014 19:27:45 INFO Listado de Solicitudes recibidas, hecho por ysapy
+20/06/2014 19:27:58 INFO Votacion de solicitud con id 3, hecho por ysapy
+20/06/2014 19:28:00 INFO Listado de solicitudes realizadas, hecho por ysapy
+20/06/2014 19:28:08 INFO Administracion de Proyectos, hecho por ysapy
+20/06/2014 19:28:14 INFO Logout de Usuario 
+20/06/2014 19:29:44 INFO Login de Usuario ysapy
+20/06/2014 19:29:44 INFO Administracion de Proyectos, hecho por ysapy
+20/06/2014 19:31:20 INFO Listado de usuarios, hecho por sap
+20/06/2014 19:31:20 INFO Busqueda de usuario con patron ysapy
+20/06/2014 19:31:21 INFO Creacion de usuario usuario2, hecho por sap
+20/06/2014 19:31:21 INFO Eliminacion logica de usuario eduardo, hecho por sap
+20/06/2014 19:31:23 INFO Administracion de Lineas Base de fase Fase 1 del proyecto Proyecto 1, hecho por sap
+20/06/2014 19:31:27 INFO Generacion de Linea Base 3 de la fase Fase 1 del proyecto Proyecto 1, hecho por sap
+20/06/2014 19:31:27 INFO Login de Usuario ysapy
+20/06/2014 19:31:27 INFO Administracion de Lineas Base de fase Fase 1 del proyecto Proyecto 1, hecho por sap
+20/06/2014 19:31:27 INFO Consulta de Linea Base 1 de la fase Fase 1 del proyecto Proyecto 1, hecho por sap
+20/06/2014 19:31:27 INFO Administracion de Proyectos, hecho por ysapy
+20/06/2014 19:31:28 INFO Generacion de  informe de linea base 1 de la fase Fase 1 del proyecto Proyecto 1, hecho por sap
+20/06/2014 19:31:28 INFO Administracion de Proyectos, hecho por sap
+20/06/2014 19:31:28 INFO Administracion de Proyectos, hecho por sap
+20/06/2014 19:31:29 INFO Creacion de proyecto Proyecto 10, hecho por sap
+20/06/2014 19:31:29 INFO Proyecto Proyecto 1 importado, hecho por sap
+20/06/2014 19:31:31 INFO Listado de miembros del Proyecto Proyecto 1, hecho por sap
+20/06/2014 19:31:32 INFO Modificacion de proyecto Proyecto 12, hecho por sap
+20/06/2014 19:31:35 INFO Eliminacion logica del Proyecto proyecto 5, hecho por sap
+20/06/2014 19:31:35 INFO Listado de tipo de item de proyecto Proyecto 1, hecho por ysapy
+20/06/2014 19:31:38 INFO Busqueda de tipo de item de proyecto Proyecto 1 con patron Tipo de Item 1, hecho por ysapy
+20/06/2014 19:31:38 INFO Listado de tipo de item de proyecto Proyecto 1, hecho por ysapy
+20/06/2014 19:31:39 INFO Consulta de tipo de item Tipo de item 1 de proyecto Proyecto 1, hecho por ysapy
+20/06/2014 19:31:39 INFO Creacion de tipo de atributo Tipo de Item 3 de proyecto Proyecto 1, hecho por ysapy
+20/06/2014 19:31:39 INFO Eliminacion de tipo de item Tipo de item 3 de proyecto andromeda, hecho por ysapy
+20/06/2014 19:31:39 INFO Gestion de tipo de item Tipo de item 1 de proyecto Proyecto 1, hecho por ysapy
+20/06/2014 19:31:42 INFO Tipo de item Tipo de item 1 importado al proyecto Proyecto 2 como el tipo de item Tipo de Item 1 importado, hecho por sap
+20/06/2014 19:31:43 INFO Modificacion de tipo de item Tipo de Item 10 de proyecto andromeda, hecho por ysapy
+20/06/2014 19:31:46 INFO Administracion de Roles, hecho por sap
+20/06/2014 19:31:53 INFO Busqueda de Rol con el patron rolPrueba, hecho por sap
+20/06/2014 19:31:53 INFO Consulta de Rol desarrolador, hecho por sap
+20/06/2014 19:31:54 INFO Eliminacion logica de Rol jefe supremo, hecho por sap
+20/06/2014 19:31:54 INFO Modificacion de Rol pruebaRol3, hecho por sap
+20/06/2014 19:31:57 INFO Creacion de Rol pruebaRol3 , hecho por sap
+20/06/2014 19:32:00 INFO Listado de Tipos de Atributo de Proyecto Proyecto 1, hecho por sap
+20/06/2014 19:32:00 INFO Listado de Tipos de Atributo de Proyecto Proyecto 1, hecho por sap
+20/06/2014 19:32:00 INFO Consulta de tipo de atributo cantidad de proyecto Proyecto 1, hecho por sap
+20/06/2014 19:32:03 INFO Eliminacion de tipo de atributo atributoNulo de proyecto Proyecto 1, hecho por sap
+20/06/2014 19:32:04 INFO Tipo de Atributo cantidad importdo al proyecto andromeda, hecho por sap
+20/06/2014 19:32:07 INFO Modificacion de datos de tipo de atributo Foto Adjunta de proyecto Proyecto 2, hecho por sap
+20/06/2014 19:32:07 INFO Creacion de Tipos de Atributo Detalle de Proyecto Proyecto 1, hecho por sap
+20/06/2014 19:32:07 INFO Consulta de credncial con id 1, hecho por sap
+20/06/2014 19:32:08 INFO Votacion de solicitud con id 2, hecho por marcelo
+20/06/2014 19:32:08 INFO Listado de Credenciales, hecho por sap
+20/06/2014 19:32:08 INFO Listado de solicitudes realizadas, hecho por ysapy
+20/06/2014 19:32:10 INFO Listado de Solicitudes recibidas, hecho por ysapy
+20/06/2014 19:32:14 INFO Listado de usuarios, hecho por sap
+20/06/2014 19:32:14 INFO Listado de usuarios, hecho por sap
+20/06/2014 19:32:15 INFO Administracion de Proyectos, hecho por sap
+20/06/2014 19:32:15 INFO Listado de usuarios, hecho por sap
+20/06/2014 19:32:15 INFO Ingreso a Administracion de Fases, proyecto Proyecto 1, hecho por sap
+20/06/2014 19:32:21 INFO Creacion de Fase Fase 20 proyecto Proyecto 2, hecho por sap
+20/06/2014 19:32:25 INFO Ingreso a Administracion de Fases, proyecto Proyecto 1, hecho por sap
+20/06/2014 19:32:28 INFO Creacion de Fase Fase 20 proyecto Proyecto 2, hecho por sap
+20/06/2014 19:32:32 INFO Ingreso a Administracion de Fases, proyecto Proyecto 1, hecho por sap
+20/06/2014 19:32:33 INFO Creacion de Fase Fase 20 proyecto Proyecto 2, hecho por sap

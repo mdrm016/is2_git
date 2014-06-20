@@ -94,7 +94,7 @@ def adm_proyectos (request):
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
 
 @login_required(login_url='/login/')
-@permission_required('proyectos.consultar_proyectosfinalizados',raise_exception=True)
+#@permission_required('proyectos.consultar_proyectosfinalizados',raise_exception=True)
 def proyecto_finalizado (request):
     
     """ Recibe un request, se verifica cual es el usuario registrado y se obtiene la lista de proyectos finalizados
@@ -147,7 +147,7 @@ def proyecto_finalizado (request):
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
 
 @login_required(login_url='/login/')
-@permission_required('proyectos.crear_proyectos',raise_exception=True)
+#@permission_required('proyectos.crear_proyectos',raise_exception=True)
 def crear_proyecto (request):
     
     """ Recibe un request, se verifica si el usuario tiene permisos para crear un proyecto 
