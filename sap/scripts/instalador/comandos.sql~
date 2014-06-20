@@ -1,9 +1,0 @@
-\password postgres
-"postgres"
-"postgres"
-createuser --superuser $USER
-\password $USER
-"444444666666"
-"444444666666"
-\q
-
