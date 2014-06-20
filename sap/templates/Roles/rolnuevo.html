@@ -13,12 +13,18 @@
         </ul>
 
 		<ul class="nav navbar-nav navbar-right">
-			<li><a href="#">Acerca de</a></li>
-			<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Registro del Sistema<b class="caret"></b></a>
+			<li><a href="/informes/acercade/">Acerca de</a></li>
+			{% if user.id == 1 %}
+            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Registro del Sistema<b class="caret"></b></a>
 				<ul class="dropdown-menu">
-				
+				   	<li><a href="/logs/hoy/">Hoy</a><li>
+                    <li><a href="/logs/ayer/">Ayer</a></li>
+                    <li><a href="/logs/semana1/">Una semana</a></li>
+                    <li><a href="/logs/semana2/">Dos semanas</a></li>
+                    <li><a href="/logs/mas/">mas...</a></li>
 				</ul>
 			</li>
+            {% endif %}
 		</ul>
 	</div>
 </nav>
@@ -65,7 +71,7 @@
 							  <div class="panel-body">
 							 {% endif %}
 							    <li><input type="checkbox" name="Permisos" value="{{ id }}" />{{ permiso }}</li>
-							 
+
 						{% elif forloop.counter <= 12 %}
 							{% if forloop.counter == 6 %}
 							  </div>
@@ -110,8 +116,8 @@
 							  <div class="panel-body">
 							 {% endif %}
 							    <li><input type="checkbox" name="Permisos" value="{{ id }}" />{{ permiso }}</li>
-						{% elif forloop.counter >= 56 %}
-							{% if forloop.counter == 56 %}
+						{% elif forloop.counter <= 35 %}
+							{% if forloop.counter == 29 %}
 							  </div>
 							 </div>
 			            	 <div class="panel panel-default">
@@ -121,7 +127,18 @@
 							  <div class="panel-body">
 							 {% endif %}
 							    <li><input type="checkbox" name="Permisos" value="{{ id }}" />{{ permiso }}</li>
-						{% endif %}
+						{% elif forloop.counter <= 39 %}
+							{% if forloop.counter == 36 %}
+							  </div>
+							 </div>
+			            	 <div class="panel panel-default">
+							  <div class="panel-heading">
+							    <h3 class="panel-title">Linea Base</h3>
+							  </div>
+							  <div class="panel-body">
+							 {% endif %}
+							    <li><input type="checkbox" name="Permisos" value="{{ id }}" />{{ permiso }}</li>
+                        {% endif %}
 					{% endfor %}
 							</div>
 							 </div>

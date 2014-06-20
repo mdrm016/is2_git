@@ -76,7 +76,7 @@ def listar_tipo_item(request, id_proyecto, id_fase):
     else:
         lista_tipo_item = TipoItem.objects.filter(id_proyecto=id_proyecto, is_active=True)
     ctx={'lista_tipo_item':lista_tipo_item, 'id_proyecto':id_proyecto, 'id_fase':id_fase, 'proyecto':proyecto, 'fase':fase}
-    logger.info('Lita de tipos de Item del proyecto %s, hecho por %s' % proyecto.nombre, request.user.username)
+    logger.info('Lita de tipos de Item del proyecto %s, hecho por %s' % (proyecto.nombre, request.user.username))
     template_name = './items/listartipos.html'
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
 
@@ -141,7 +141,7 @@ def crear_item(request, id_proyecto, id_fase, id_tipoitem):
                 fase.save()
 
             mensaje = 'Item creado con exito.'
-            logger.info('Creacion de Item %s de la fase % del proyecto %s, hecho por %s', (item.nombre, fase.nombre, proyecto.nombre, request.user.username))
+            logger.info('Creacion de Item %s de la fase %s del proyecto %s, hecho por %s', (item.nombre, fase.nombre, proyecto.nombre, request.user.username))
             template_name='./items/itemalerta.html'
             ctx = {'mensaje': mensaje, 'id_proyecto':id_proyecto, 'id_fase': id_fase, 'proyecto':proyecto, 'fase':fase}
             return render_to_response(template_name, ctx, context_instance=RequestContext(request))
@@ -582,7 +582,7 @@ def listar_versiones(request, id_proyecto, id_fase, id_item):
         lista_versiones.append(i)
         i = i+1
 
-    logger.info('Lista de las versiones del item % de la fase %s del proyecto %s, hecho por %s', (itemactual.nombre, fase.nombre, proyecto.nombre, request.user.username))
+    logger.info('Lista de las versiones del item %s de la fase %s del proyecto %s, hecho por %s', (itemactual.nombre, fase.nombre, proyecto.nombre, request.user.username))
     ctx={'lista_versiones':lista_versiones, 'id_proyecto':id_proyecto, 'id_fase':id_fase, 'id_item': id_item, 'proyecto':proyecto, 'fase':fase, 'item':itemactual}
     template_name = './items/listarversiones.html'
     return render_to_response(template_name, ctx, context_instance=RequestContext(request))
@@ -672,7 +672,7 @@ def consultar_version(request, id_proyecto, id_fase, id_item, version):
             padre = False
     else:
         padre = False
-    logger.info('COnsulta de version del item %s de la fase %s del proyecto %s, hecho por %s', (item.nombre, fase.nombre, proyecto.nombre, request.user.username))
+    logger.info('Connsulta de version del item %s de la fase %s del proyecto %s, hecho por %s', (item.nombre, fase.nombre, proyecto.nombre, request.user.username))
     template_name='./items/mostraratributos.html'
     return render(request, template_name, {'id_proyecto':id_proyecto, 'id_fase': id_fase, 'lista_valores': lista_valores,'id_item': id_item, 'padre':padre, 'proyecto':proyecto, 'fase':fase})
 
@@ -1077,7 +1077,7 @@ def eliminar_item(request, id_proyecto, id_fase, id_item):
             
         item.is_active = False
         item.save()
-        logger.info('ELiminacion logica de item %s de la fase %s del proyecto %s, hecho por %s' % (item.nombre, fase.nombre, proyecto.nombre, request.user.username))
+        logger.info('Eliminacion logica de item %s de la fase %s del proyecto %s, hecho por %s' % (item.nombre, fase.nombre, proyecto.nombre, request.user.username))
         mensaje ='Eliminacion exitosa.'
     template_name = './items/itemalerta.html'
     return render(request, template_name, {'id_proyecto':id_proyecto, 'id_fase': id_fase, 'mensaje': mensaje, 'id_item': id_item, 'proyecto':proyecto, 'fase':fase})
@@ -1105,7 +1105,7 @@ def listar_eliminados(request, id_proyecto, id_fase):
         template_name = './items.itemalerta.html'
         return render(request, template_name, {'id_proyecto':id_proyecto, 'id_fase': id_fase, 'mensaje': mensaje, 'proyecto':proyecto, 'fase':fase})
     lista_eliminados = Items.objects.filter(proyecto_id=id_proyecto, fase_id=id_fase, is_active=False)
-    logger.info('Lista de items eliminados de Fase %s de proyecto %s, hecho por %s' % (fase.nombre, proyecto, request.user.username))
+    logger.info('Lista de items eliminados de Fase %s de proyecto %s, hecho por %s' % (fase.nombre, proyecto.nombre, request.user.username))
     template_name='./items/listareliminados.html'
     return render(request, template_name, {'id_proyecto':id_proyecto, 'id_fase': id_fase, 'lista_eliminados': lista_eliminados, 'proyecto':proyecto, 'fase':fase})
 
