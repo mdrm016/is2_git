@@ -134,3 +134,55 @@
 20/06/2014 19:32:28 INFO Creacion de Fase Fase 20 proyecto Proyecto 2, hecho por sap
 20/06/2014 19:32:32 INFO Ingreso a Administracion de Fases, proyecto Proyecto 1, hecho por sap
 20/06/2014 19:32:33 INFO Creacion de Fase Fase 20 proyecto Proyecto 2, hecho por sap
+20/06/2014 19:40:18 INFO Administracion de Proyectos, hecho por ysapy
+20/06/2014 19:46:07 INFO Login de Usuario ysapy
+20/06/2014 19:46:07 INFO Administracion de Proyectos, hecho por ysapy
+20/06/2014 19:47:36 INFO Login de Usuario ysapy
+20/06/2014 19:47:38 INFO Administracion de Proyectos, hecho por ysapy
+20/06/2014 19:48:24 INFO Ingreso a Administracion de Fases, proyecto P2, hecho por ysapy
+20/06/2014 19:48:32 INFO Listado de Proyectos Finalizados, hecho por ysapy
+20/06/2014 19:48:48 INFO Administracion de Proyectos, hecho por ysapy
+20/06/2014 19:49:08 INFO Listado de Solicitudes recibidas, hecho por ysapy
+20/06/2014 19:49:19 INFO Logout de Usuario 
+20/06/2014 21:17:13 INFO Login de Usuario ysapy
+20/06/2014 21:17:14 INFO Administracion de Proyectos, hecho por ysapy
+20/06/2014 21:17:18 INFO Ingreso a Administracion de Fases, proyecto P3, hecho por ysapy
+20/06/2014 21:17:33 INFO Administracion de Proyectos, hecho por ysapy
+20/06/2014 21:17:37 INFO Ingreso a Administracion de Fases, proyecto P3, hecho por ysapy
+20/06/2014 21:22:42 INFO Administracion de Lineas Base de fase F1 del proyecto P3, hecho por ysapy
+20/06/2014 21:23:16 INFO Consulta de Linea Base 1 de la fase F1 del proyecto P3, hecho por ysapy
+20/06/2014 21:23:27 INFO Reactivacion de Linea Base 1 de la fase F1 del proyecto P3, hecho por ysapy
+20/06/2014 21:23:29 INFO Administracion de Lineas Base de fase F1 del proyecto P3, hecho por ysapy
+20/06/2014 21:23:35 INFO Generacion de  informe de linea base 1 de la fase F1 del proyecto P3, hecho por ysapy
+20/06/2014 21:24:48 INFO Generacion de  informe de linea base 1 de la fase F1 del proyecto P3, hecho por ysapy
+20/06/2014 21:25:01 INFO Administracion de Lineas Base de fase F1 del proyecto P3, hecho por ysapy
+20/06/2014 21:25:05 INFO Generacion de  informe de linea base 1 de la fase F1 del proyecto P3, hecho por ysapy
+20/06/2014 21:25:26 INFO Administracion de Lineas Base de fase F1 del proyecto P3, hecho por ysapy
+20/06/2014 21:25:38 INFO Generacion de  informe de linea base 1 de la fase F1 del proyecto P3, hecho por ysapy
+20/06/2014 21:26:04 INFO Ingreso a Administracion de Fases, proyecto P3, hecho por ysapy
+20/06/2014 21:26:05 INFO Administracion de Proyectos, hecho por ysapy
+20/06/2014 21:26:17 INFO Administracion de Proyectos, hecho por ysapy
+20/06/2014 21:26:22 INFO Ingreso a Administracion de Fases, proyecto P3, hecho por ysapy
+20/06/2014 21:26:30 INFO Consulta de item item223 en revision de fase F2 de proyecto P3, hecho por ysapy
+20/06/2014 21:26:34 INFO Revision finalizada de item item223 de la fase F2 del proyecto P3, hecho por ysapy
+20/06/2014 21:26:39 INFO Consulta de item item123 en revision de fase F2 de proyecto P3, hecho por ysapy
+20/06/2014 21:26:44 INFO Consulta de atributos de item item123 de la fase F2 del proyecto P3, hecho por ysapy
+20/06/2014 21:26:51 INFO Consulta de item item123 en revision de fase F2 de proyecto P3, hecho por ysapy
+20/06/2014 21:26:53 INFO Consulta de relaciones de item item123 de la fase F2 del proyecto P3, hecho por ysapy
+20/06/2014 21:26:58 INFO Revision finalizada de item item123 de la fase F2 del proyecto P3, hecho por ysapy
+20/06/2014 21:27:06 INFO Ingreso a Administracion de Fases, proyecto P3, hecho por ysapy
+20/06/2014 21:27:13 INFO Calculo del impacto del item item133 de la fase F3 del proyecto P3, hecho por ysapy
+20/06/2014 21:27:19 INFO Consulta de item item133 en revision de fase F3 de proyecto P3, hecho por ysapy
+20/06/2014 21:27:23 INFO Revision finalizada de item item133 de la fase F3 del proyecto P3, hecho por ysapy
+20/06/2014 21:27:27 INFO Ingreso a Administracion de Fases, proyecto P3, hecho por ysapy
+20/06/2014 21:27:35 INFO Calculo del impacto del item item213 de la fase F1 del proyecto P3, hecho por ysapy
+20/06/2014 21:27:42 INFO Calculo del impacto del item item113 de la fase F1 del proyecto P3, hecho por ysapy
+20/06/2014 21:27:56 INFO Administracion de Proyectos, hecho por ysapy
+20/06/2014 21:28:12 INFO Logout de Usuario 
+20/06/2014 21:28:23 INFO Login de Usuario eduardo
+20/06/2014 21:28:23 INFO Administracion de Proyectos, hecho por eduardo
+20/06/2014 21:28:31 INFO Modificacion de proyecto P3, hecho por eduardo
+20/06/2014 21:28:33 INFO Administracion de Proyectos, hecho por eduardo
+20/06/2014 21:28:37 INFO Listado de Proyectos Finalizados, hecho por eduardo
+20/06/2014 21:28:44 INFO Consulta de Proyecto P3, hecho por eduardo
+20/06/2014 21:28:52 INFO Listado de miembros del Proyecto P3, hecho por eduardo
